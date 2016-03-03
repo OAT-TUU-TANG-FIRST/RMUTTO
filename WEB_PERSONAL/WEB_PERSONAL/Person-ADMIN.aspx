@@ -56,42 +56,13 @@
             text-align: center;
         }
     </style>
-    <asp:Panel ID="PanelButton" runat="server" CssClass="divpan" BackColor="White" ForeColor="#6699FF" BorderColor="Aqua" DefaultButton="btnSubmitPerson">
-        <asp:ScriptManager ID="ScriptManager1" runat="server" />
-        <div>
-            <table>
-                <tr>
-                    <td style="text-align: left; width: 3px; height: 1px; width:80px "></td>
-                    <td style="text-align: left; width: 50px;">
-                        <asp:Button ID="ButtonPerson1" Text="ข้อมูลส่วนตัว" runat="server" OnClick="ButtonPerson1_Click" Width="140px" CssClass="master_OAT_button" /></td>
-                    <td style="text-align: left; width: 50px;">
-                        <asp:Button ID="ButtonPerson2" Text="ข้อมูลตำแหน่ง" runat="server" OnClick="ButtonPerson2_Click" Width="140px" CssClass="master_OAT_button" /></td>
-                    <td style="text-align: left; width: 50px;">
-                        <asp:Button ID="ButtonPerson3" Text="ข้อมูลประวัติการศึกษา,ใบอนุญาตประกอบวิชาชีพ,ประวัติการฝึกอบรม,การได้รับโทษ,ตำแหน่งและเงินเดือน" runat="server" OnClick="ButtonPerson3_Click" Width="580px" CssClass="master_OAT_button" /></td>
-
-                </tr>
-                </table>
-                <table>
-                <tr>
-                    <td style="text-align: left; width: 3px; height: 1px; width:400px"></td>
-                     <td style="text-align: left; width: 50px;">
-                        <asp:Button ID="btnCancelPerson" Text="Cancel" runat="server" OnClick="btnCancelPerson_Click" Width="140px" CssClass="master_OAT_button" /></td>   
-                    <td style="text-align: right; margin-right: 5px;">
-                        <asp:UpdatePanel ID="UpdatebtnSubmitPerson" runat="server">
-                            <ContentTemplate>
-                                <asp:Button ID="btnSubmitPerson" Text="OK" runat="server" OnClick="btnSubmitPerson_Click" Width="140px" CssClass="master_OAT_button" />
-                            </ContentTemplate>
-                        </asp:UpdatePanel>
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </asp:Panel>
     <asp:Panel ID="Panel0" runat="server" CssClass="divpan" BackColor="White" ForeColor="#6699FF" BorderColor="Aqua" DefaultButton="btnSearchPerson">
         <div>
             <fieldset>
                 <legend>ค้นหา</legend>
                 <div>
+                    <asp:ScriptManager ID="ScriptManager1" runat="server" />
+                   
                             เลขบัตรประจำตัวประชาชน 13 หลัก :&nbsp<asp:TextBox ID="txtSearchPersonID" runat="server" CssClass="tb5" Width="230px" MaxLength="13"></asp:TextBox>
                             <asp:Button ID="btnSearchPerson" Text="Search" runat="server" CssClass="master_OAT_button" OnClick="btnSearchPerson_Click" />
                         
@@ -448,33 +419,6 @@
                         </tr>
                     </table>
 
-                     <table>
-                        <tr>
-                            <td style="text-align: left; width: 30px;"></td>
-                            <td style="text-align: left; margin-right: 5px; width: 220px">ศาสนา<span class="textred">*</span></td>
-                            <td style="text-align: left; width: 30px;"></td>
-                            <td style="text-align: left; margin-right: 5px; width: 220px">สถานะการทำงาน<span class="textred">*</span></td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: left; width: 30px;"></td>
-                            <td style="text-align: left; width: 290px;">
-                                <asp:UpdatePanel ID="UpdateDropDownReligion" runat="server">
-                                    <ContentTemplate>
-                                        <asp:DropDownList ID="DropDownReligion" runat="server" CssClass="tb5" Width="283px"></asp:DropDownList></td>
-                                    </ContentTemplate>
-                                </asp:UpdatePanel>
-                            </td>
-                            <td style="text-align: left; width: 30px;"></td>
-                            <td style="text-align: left; width: 170px;">
-                                <asp:UpdatePanel ID="UpdateDropDownStatusWork" runat="server">
-                                    <ContentTemplate>
-                                        <asp:DropDownList ID="DropDownStatusWork" runat="server" CssClass="tb5" Width="283px"></asp:DropDownList></td>
-                                    </ContentTemplate>
-                                </asp:UpdatePanel>
-                            </td>
-                        </tr>
-                    </table>
-
                     <table>
                         <tr>
                             <td style="text-align: left; width: 30px;"></td>
@@ -523,7 +467,7 @@
     <asp:Panel ID="Panel1_2" runat="server" CssClass="divpan" BackColor="White" ForeColor="#6699FF" BorderColor="Aqua" DefaultButton="btnSubmitPerson">
         <div>
             <fieldset>
-                <legend style="margin-left: auto; margin-right: auto; text-align: center;">ข้อมูลตำแหน่ง</legend>
+                <legend style="margin-left: auto; margin-right: auto; text-align: center;">ข้อมูลการงาน</legend>
                 <div>
 
                     <table>
@@ -1543,6 +1487,17 @@
                             <asp:AsyncPostBackTrigger ControlID="GridView5" />
                         </Triggers>
                     </asp:UpdatePanel>
+
+                    <table>
+                        <tr>
+                            <td style="text-align: left; width: 350px; height: 50px;"></td>
+                            <td style="text-align: left; width: 50px;">
+                                <asp:Button ID="btnCancelPerson" Text="Cancel" runat="server" OnClick="btnCancelPerson_Click" Width="140px" CssClass="master_OAT_button" /></td>
+                            <td style="text-align: left; width: 50px;"></td>
+                            <td style="text-align: right; margin-right: 5px;">
+                                <asp:Button ID="btnSubmitPerson" Text="OK" runat="server" OnClick="btnSubmitPerson_Click" Width="140px" CssClass="master_OAT_button" /></td>
+                        </tr>
+                    </table>
 
                 </div>
             </fieldset>

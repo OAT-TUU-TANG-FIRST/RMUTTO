@@ -23,7 +23,7 @@ namespace WEB_PERSONAL
 
                 using (OracleConnection conn = Util.OC())
                 {
-                    using (OracleCommand cmd = new OracleCommand("select CITIZEN_ID,TITLE_ID,PERSON_NAME,PERSON_LASTNAME,TO_CHAR(BIRTHDATE,'dd MON yyyy','NLS_DATE_LANGUAGE = THAI'),BIRTHDATE_LONG,TO_CHAR(RETIRE_DATE,'dd MON yyyy','NLS_DATE_LANGUAGE = THAI'),RETIRE_DATE_LONG,TO_CHAR(INWORK_DATE,'dd MON yyyy','NLS_DATE_LANGUAGE = THAI'),STAFFTYPE_ID,FATHER_NAME,FATHER_LASTNAME,MOTHER_NAME,MOTHER_LASTNAME,MOTHER_OLD_LASTNAME,COUPLE_NAME,COUPLE_LASTNAME,COUPLE_OLD_LASTNAME,MINISTRY_ID,DEPARTMENT_NAME,GENDER_ID,NATION_ID,HOMEADD,MOO,STREET,DISTRICT_ID,AMPHUR_ID,PROVINCE_ID,ZIPCODE_ID,TELEPHONE,TIME_CONTACT_ID,BUDGET_ID,SUBSTAFFTYPE_ID,ADMIN_POSITION_ID,POSITION_WORK_ID,SPECIAL_NAME,TEACH_ISCED_ID,GRAD_ISCED_ID,GRAD_PROG_ID,GRAD_UNIV,GRAD_COUNTRY_ID,FACULTY_ID,CAMPUS_ID,STATUS_ID,RELIGION_ID from tb_person where citizen_id = '" + Session["login_id"].ToString() + "'", conn))
+                    using (OracleCommand cmd = new OracleCommand("select CITIZEN_ID,TITLE_ID,PERSON_NAME,PERSON_LASTNAME,TO_CHAR(BIRTHDATE,'dd MON yyyy','NLS_DATE_LANGUAGE = THAI'),BIRTHDATE_LONG,TO_CHAR(RETIRE_DATE,'dd MON yyyy','NLS_DATE_LANGUAGE = THAI'),RETIRE_DATE_LONG,TO_CHAR(INWORK_DATE,'dd MON yyyy','NLS_DATE_LANGUAGE = THAI'),STAFFTYPE_ID,FATHER_NAME,FATHER_LASTNAME,MOTHER_NAME,MOTHER_LASTNAME,MOTHER_OLD_LASTNAME,COUPLE_NAME,COUPLE_LASTNAME,COUPLE_OLD_LASTNAME,MINISTRY_ID,DEPARTMENT_NAME,GENDER_ID,NATION_ID,HOMEADD,MOO,STREET,DISTRICT_ID,AMPHUR_ID,PROVINCE_ID,ZIPCODE_ID,TELEPHONE,TIME_CONTACT_ID,BUDGET_ID,SUBSTAFFTYPE_ID,ADMIN_POSITION_ID,POSITION_WORK_ID,SPECIAL_NAME,TEACH_ISCED_ID,GRAD_ISCED_ID,GRAD_PROG_ID,GRAD_UNIV,GRAD_COUNTRY_ID,FACULTY_ID,CAMPUS_ID from tb_person where citizen_id = '" + Session["login_id"].ToString() + "'", conn))
 
                     {
                         using (OracleDataReader reader = cmd.ExecuteReader())
@@ -73,19 +73,11 @@ namespace WEB_PERSONAL
                                 DropDownGRAD_COUNTRY.SelectedValue = reader.IsDBNull(40) ? "0" : reader.GetInt32(40).ToString();
                                 DropDownFaculty.SelectedValue = reader.IsDBNull(41) ? "0" : reader.GetInt32(41).ToString();
                                 DropDownCampus.SelectedValue = reader.IsDBNull(42) ? "0" : reader.GetInt32(42).ToString();
-                                DropDownStatusWork.SelectedValue = reader.IsDBNull(43) ? "0" : reader.GetInt32(43).ToString();
-                                DropDownReligion.SelectedValue = reader.IsDBNull(44) ? "0" : reader.GetInt32(44).ToString();
                             }
                         }
                     }
                 }
 
-                Panel1_2.Visible = false;
-                Panel2.Visible = false;
-                Panel3.Visible = false;
-                Panel4.Visible = false;
-                Panel5.Visible = false;
-                Panel6.Visible = false;
                 DDLMisnistry();
                 DDLTitle();
                 DDLStaffType();
@@ -120,8 +112,6 @@ namespace WEB_PERSONAL
                 txtTELEPHONE.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
                 txtZIPCODE.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
                 DDLCampus();
-                DDLStatusWork();
-                DDLReligion();
             }
         }
 
@@ -280,62 +270,6 @@ namespace WEB_PERSONAL
                         sqlConn.Close();
 
                         DropDownNATION.Items.Insert(0, new ListItem("--กรุณาเลือก สัญชาติ--", "0"));
-
-                    }
-                }
-            }
-            catch { }
-        }
-
-        private void DDLStatusWork()
-        {
-            try
-            {
-                using (OracleConnection sqlConn = new OracleConnection(strConn))
-                {
-                    using (OracleCommand sqlCmd = new OracleCommand())
-                    {
-                        sqlCmd.CommandText = "select * from TB_STATUS_WORK";
-                        sqlCmd.Connection = sqlConn;
-                        sqlConn.Open();
-                        OracleDataAdapter da = new OracleDataAdapter(sqlCmd);
-                        DataTable dt = new DataTable();
-                        da.Fill(dt);
-                        DropDownStatusWork.DataSource = dt;
-                        DropDownStatusWork.DataValueField = "STATUS_ID";
-                        DropDownStatusWork.DataTextField = "STATUS_WORK";
-                        DropDownStatusWork.DataBind();
-                        sqlConn.Close();
-
-                        DropDownStatusWork.Items.Insert(0, new ListItem("--กรุณาเลือก สถานะการทำงาน--", "0"));
-
-                    }
-                }
-            }
-            catch { }
-        }
-
-        private void DDLReligion()
-        {
-            try
-            {
-                using (OracleConnection sqlConn = new OracleConnection(strConn))
-                {
-                    using (OracleCommand sqlCmd = new OracleCommand())
-                    {
-                        sqlCmd.CommandText = "select * from TB_RELIGION";
-                        sqlCmd.Connection = sqlConn;
-                        sqlConn.Open();
-                        OracleDataAdapter da = new OracleDataAdapter(sqlCmd);
-                        DataTable dt = new DataTable();
-                        da.Fill(dt);
-                        DropDownReligion.DataSource = dt;
-                        DropDownReligion.DataValueField = "RELIGION_ID";
-                        DropDownReligion.DataTextField = "RELIGION_NAME";
-                        DropDownReligion.DataBind();
-                        sqlConn.Close();
-
-                        DropDownReligion.Items.Insert(0, new ListItem("--กรุณาเลือก ศาสนา--", "0"));
 
                     }
                 }
@@ -1102,8 +1036,6 @@ namespace WEB_PERSONAL
             txtMarriedLastName.Text = "";
             txtMarriedLastNameOld.Text = "";
             DropDownNATION.SelectedIndex = 0;
-            DropDownStatusWork.SelectedIndex = 0;
-            DropDownReligion.SelectedIndex = 0;
 
             DropDownStaffType.SelectedIndex = 0;
             DropDownTIME_CONTACT.SelectedIndex = 0;
@@ -1203,11 +1135,11 @@ namespace WEB_PERSONAL
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาเลือก กระทรวง')", true);
                 return true;
             }
-            //if (string.IsNullOrEmpty(txtDepart.Text))
-            //{
-            //    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก กรม')", true);
-            //    return true;
-            //}
+            if (string.IsNullOrEmpty(txtDepart.Text))
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก กรม')", true);
+                return true;
+            }
             if (DropDownTitle.SelectedIndex == 0)
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาเลือก คำนำหน้านาม')", true);
@@ -1243,16 +1175,16 @@ namespace WEB_PERSONAL
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก บ้านเลขที่')", true);
                 return true;
             }
-            //if (string.IsNullOrEmpty(txtMOO.Text))
-            //{
-            //    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก หมู่')", true);
-            //    return true;
-            //}
-            //if (string.IsNullOrEmpty(txtSTREET.Text))
-            //{
-            //    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก ถนน')", true);
-            //    return true;
-            //}
+            if (string.IsNullOrEmpty(txtMOO.Text))
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก หมู่')", true);
+                return true;
+            }
+            if (string.IsNullOrEmpty(txtSTREET.Text))
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก ถนน')", true);
+                return true;
+            }
             if (ddlPROVINCE.SelectedIndex == 0)
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาเลือก จังหวัด')", true);
@@ -1273,11 +1205,11 @@ namespace WEB_PERSONAL
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก รหัสไปรษณีย์')", true);
                 return true;
             }
-            //if (string.IsNullOrEmpty(txtTELEPHONE.Text))
-            //{
-            //   ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก หมายเลขโทรศัพท์ที่ทำงาน')", true);
-            //   return true;
-            //}
+            if (string.IsNullOrEmpty(txtTELEPHONE.Text))
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก หมายเลขโทรศัพท์ที่ทำงาน')", true);
+                return true;
+            }
             if (DropDownGENDER.SelectedIndex == 0)
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาเลือก เพศ')", true);
@@ -1313,39 +1245,29 @@ namespace WEB_PERSONAL
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก นามสกุลมารดา')", true);
                 return true;
             }
-            //if (string.IsNullOrEmpty(txtMotherLastNameOld.Text))
-            //{
-            //    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก นามสกุลมารดาเดิม')", true);
-            //    return true;
-            //}
-            //if (string.IsNullOrEmpty(txtMarriedName.Text))
-            //{
-            //    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก ชื่อคู่สมรส')", true);
-            //    return true;
-            //}
-            //if (string.IsNullOrEmpty(txtMarriedLastName.Text))
-            //{
-            //    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก นามสกุลคู่สมรส')", true);
-            //    return true;
-            //}
-            //if (string.IsNullOrEmpty(txtMarriedLastNameOld.Text))
-            //{
-            //    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก นามสกุลเดิมคู่สมรสเดิม')", true);
-            //    return true;
-            //}
+            if (string.IsNullOrEmpty(txtMotherLastNameOld.Text))
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก นามสกุลมารดาเดิม')", true);
+                return true;
+            }
+            if (string.IsNullOrEmpty(txtMarriedName.Text))
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก ชื่อคู่สมรส')", true);
+                return true;
+            }
+            if (string.IsNullOrEmpty(txtMarriedLastName.Text))
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก นามสกุลคู่สมรส')", true);
+                return true;
+            }
+            if (string.IsNullOrEmpty(txtMarriedLastNameOld.Text))
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก นามสกุลเดิมคู่สมรสเดิม')", true);
+                return true;
+            }
             if (DropDownNATION.SelectedIndex == 0)
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาเลือก สัญชาติ')", true);
-                return true;
-            }
-            if (DropDownStatusWork.SelectedIndex == 0)
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาเลือก สถานะการทำงาน')", true);
-                return true;
-            }
-            if (DropDownReligion.SelectedIndex == 0)
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาเลือก ศาสนา')", true);
                 return true;
             }
             //
@@ -1419,6 +1341,7 @@ namespace WEB_PERSONAL
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก ระดับการศึกษาที่จบสูงสุด และหลักสูตรที่จบการศึกษาสูงสุด')", true);
                 return true;
             }
+
 
             return false;
         }
@@ -2696,8 +2619,7 @@ namespace WEB_PERSONAL
             P.GRAD_COUNTRY_ID = Convert.ToInt32(DropDownGRAD_COUNTRY.SelectedValue);
             P.FACULTY_ID = Convert.ToInt32(DropDownFaculty.SelectedValue);
             P.CAMPUS_ID = Convert.ToInt32(DropDownCampus.SelectedValue);
-            P.STATUS_ID = Convert.ToInt32(DropDownStatusWork.SelectedValue);
-            P.RELIGION_ID = Convert.ToInt32(DropDownReligion.SelectedValue);
+
             string[] splitDate1 = txtBirthDayNumber.Text.Split(' ');
             string[] splitDate2 = txtDateInWork.Text.Split(' ');
             string[] splitDate3 = txtAge60Number.Text.Split(' ');
@@ -2920,10 +2842,6 @@ namespace WEB_PERSONAL
 
         protected void btnSearchPerson_Click(object sender, EventArgs e)
         {
-            if (txtSearchPersonID.Text.Length < 13)
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก รหัสบัตรประชาชนให้ครบ 13 หลัก')", true);
-            }
             if (string.IsNullOrEmpty(txtSearchPersonID.Text))
             {
                 ClassPersonStudyHistory p1 = new ClassPersonStudyHistory();
@@ -3029,7 +2947,7 @@ namespace WEB_PERSONAL
 
             /*using (OracleConnection conn = Util.OC())
             {
-                using (OracleCommand cmd = new OracleCommand("select CITIZEN_ID,TITLE_ID,PERSON_NAME,PERSON_LASTNAME,TO_CHAR(BIRTHDATE,'dd MON yyyy','NLS_DATE_LANGUAGE = THAI'),BIRTHDATE_LONG,TO_CHAR(RETIRE_DATE,'dd MON yyyy','NLS_DATE_LANGUAGE = THAI'),RETIRE_DATE_LONG,TO_CHAR(INWORK_DATE,'dd MON yyyy','NLS_DATE_LANGUAGE = THAI'),STAFFTYPE_ID,FATHER_NAME,FATHER_LASTNAME,MOTHER_NAME,MOTHER_LASTNAME,MOTHER_OLD_LASTNAME,COUPLE_NAME,COUPLE_LASTNAME,COUPLE_OLD_LASTNAME,MINISTRY_ID,DEPARTMENT_NAME,GENDER_ID,NATION_ID,HOMEADD,MOO,STREET,DISTRICT_ID,AMPHUR_ID,PROVINCE_ID,ZIPCODE_ID,TELEPHONE,TIME_CONTACT_ID,BUDGET_ID,SUBSTAFFTYPE_ID,ADMIN_POSITION_ID,POSITION_WORK_ID,SPECIAL_NAME,TEACH_ISCED_ID,GRAD_ISCED_ID,GRAD_PROG_ID,GRAD_UNIV,GRAD_COUNTRY_ID,FACULTY_ID,CAMPUS_ID,STATUS_ID,RELIGION_ID from tb_person where citizen_id = '" + txtSearchPersonID.Text + "'", conn))
+                using (OracleCommand cmd = new OracleCommand("select CITIZEN_ID,TITLE_ID,PERSON_NAME,PERSON_LASTNAME,TO_CHAR(BIRTHDATE,'dd MON yyyy','NLS_DATE_LANGUAGE = THAI'),BIRTHDATE_LONG,TO_CHAR(RETIRE_DATE,'dd MON yyyy','NLS_DATE_LANGUAGE = THAI'),RETIRE_DATE_LONG,TO_CHAR(INWORK_DATE,'dd MON yyyy','NLS_DATE_LANGUAGE = THAI'),STAFFTYPE_ID,FATHER_NAME,FATHER_LASTNAME,MOTHER_NAME,MOTHER_LASTNAME,MOTHER_OLD_LASTNAME,COUPLE_NAME,COUPLE_LASTNAME,COUPLE_OLD_LASTNAME,MINISTRY_ID,DEPARTMENT_NAME,GENDER_ID,NATION_ID,HOMEADD,MOO,STREET,DISTRICT_ID,AMPHUR_ID,PROVINCE_ID,ZIPCODE_ID,TELEPHONE,TIME_CONTACT_ID,BUDGET_ID,SUBSTAFFTYPE_ID,ADMIN_POSITION_ID,POSITION_WORK_ID,SPECIAL_NAME,TEACH_ISCED_ID,GRAD_ISCED_ID,GRAD_PROG_ID,GRAD_UNIV,GRAD_COUNTRY_ID,FACULTY_ID,CAMPUS_ID from tb_person where citizen_id = '" + txtSearchPersonID.Text + "'", conn))
 
                 {
                     using (OracleDataReader reader = cmd.ExecuteReader())
@@ -3079,47 +2997,12 @@ namespace WEB_PERSONAL
                             DropDownGRAD_COUNTRY.SelectedValue = reader.IsDBNull(40) ? "0" : reader.GetInt32(40).ToString();
                             DropDownFaculty.SelectedValue = reader.IsDBNull(41) ? "0" : reader.GetInt32(41).ToString();
                             DropDownCampus.SelectedValue = reader.IsDBNull(42) ? "0" : reader.GetInt32(42).ToString();
-                            DropDownStatusWork.SelectedValue = reader.IsDBNull(43) ? "0" : reader.GetInt32(43).ToString();
-                            DropDownReligion.SelectedValue = reader.IsDBNull(44) ? "0" : reader.GetInt32(44).ToString();
                         }
                     }
                 }
             }*/
-        }
 
-        protected void ButtonPerson1_Click(object sender, EventArgs e)
-        {
-            Panel1_1.Visible = true;
-            Panel1_2.Visible = false;
-            Panel2.Visible = false;
-            Panel3.Visible = false;
-            Panel4.Visible = false;
-            Panel5.Visible = false;
-            Panel6.Visible = false;
-        }
-
-        protected void ButtonPerson2_Click(object sender, EventArgs e)
-        {
-            Panel1_1.Visible = false;
-            Panel1_2.Visible = true;
-            Panel2.Visible = false;
-            Panel3.Visible = false;
-            Panel4.Visible = false;
-            Panel5.Visible = false;
-            Panel6.Visible = false;
-        }
-
-        protected void ButtonPerson3_Click(object sender, EventArgs e)
-        {
-            Panel1_1.Visible = false;
-            Panel1_2.Visible = false;
-            Panel2.Visible = true;
-            Panel3.Visible = true;
-            Panel4.Visible = true;
-            Panel5.Visible = true;
-            Panel6.Visible = true;
         }
 
     }
 }
- 

@@ -20,7 +20,6 @@ namespace WEB_PERSONAL
 
             if (!IsPostBack)
             {
-                Panel2.Visible = false;
                 txtBudget.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
             }
 
@@ -184,7 +183,7 @@ namespace WEB_PERSONAL
         }
         protected void btnSubmitSeminar_Click(object sender, EventArgs e)
         {
-            if (NeedData()) { return; };
+            // if (NeedData()) { return; };
 
             Seminar S = new Seminar();
             S.SEMINAR_NAME = txtName.Text;
@@ -227,8 +226,7 @@ namespace WEB_PERSONAL
 
         protected void btnCancelSeminar_Click(object sender, EventArgs e)
         {
-            //ClearData();
-            Response.Redirect("Default.aspx");
+            ClearData();
         }
 
 
@@ -277,16 +275,6 @@ namespace WEB_PERSONAL
             }
         }
 
-        protected void ButtonPerson1_Click(object sender, EventArgs e)
-        {
-            Panel1.Visible = true;
-            Panel2.Visible = false;
-        }
 
-        protected void ButtonPerson2_Click(object sender, EventArgs e)
-        {
-            Panel1.Visible = false;
-            Panel2.Visible = true;
-        }
     }
 }

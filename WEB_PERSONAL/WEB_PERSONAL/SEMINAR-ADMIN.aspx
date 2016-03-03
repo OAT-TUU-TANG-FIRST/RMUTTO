@@ -47,35 +47,7 @@
             color: red;
         }
     </style>
-    <asp:Panel ID="PanelButton" runat="server" CssClass="divpan" BackColor="White" ForeColor="#6699FF" BorderColor="Aqua" DefaultButton="btnSubmitSeminar">
-        <asp:ScriptManager ID="ScriptManager2" runat="server" />
-        <div>
-            <table>
-                <tr>
-                    <td style="text-align: left; width: 3px; height: 1px; width:400px"></td>
-                    <td style="text-align: left; width: 50px;">
-                        <asp:Button ID="ButtonPerson1" Text="ข้อมูลพัฒนาบุคลากร" runat="server" OnClick="ButtonPerson1_Click" Width="140px" CssClass="master_OAT_button" /></td>
-                    <td style="text-align: left; width: 50px;">
-                        <asp:Button ID="ButtonPerson2" Text="ข้อมูลรายงานผล" runat="server" OnClick="ButtonPerson2_Click" Width="140px" CssClass="master_OAT_button" /></td>
-                   
-
-                </tr>
-                </table>
-                <table>
-                <tr>
-                    <td style="text-align: left; width: 3px; height: 1px; width:400px"></td>
-                     <td style="text-align: left; width: 50px;">
-                        <asp:Button ID="Button1" Text="Cancel" runat="server" OnClick="btnCancelSeminar_Click" Width="140px" CssClass="master_OAT_button" /></td>   
-                    <td style="text-align: right; margin-right: 5px;">
-                        
-                                <asp:Button ID="btnSubmitSeminar" Text="OK" runat="server" OnClick="btnSubmitSeminar_Click" Width="140px" CssClass="master_OAT_button" />
-                            
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </asp:Panel>
-    <asp:Panel ID="PanelSearch" runat="server" CssClass="divpan" BackColor="White" ForeColor="#6699FF" BorderColor="Aqua" DefaultButton="btnSearchSeminar">
+    <asp:Panel ID="Panel2" runat="server" CssClass="divpan" BackColor="White" ForeColor="#6699FF" BorderColor="Aqua" DefaultButton="btnSearchSeminar">
        <div>
             <fieldset>
                 <legend>ค้นหา</legend>
@@ -303,14 +275,15 @@
         </UpdateParameters>
     </asp:SqlDataSource>
     </asp:Panel>
-    <asp:Panel ID="Panel1" runat="server" CssClass="divpan" BackColor="White" ForeColor="#6699FF" BorderColor="Aqua" DefaultButton="btnSubmitSeminar">
+    <asp:Panel ID="Panel1" runat="server" CssClass="divpan" BackColor="White" ForeColor="#6699FF" BorderColor="Aqua" DefaultButton="btnSaveSeminar">
         <div>
             <fieldset>
                 <legend>แก้ไขข้อมูลการฝึกอบรม/สัมมนา/ดูงาน</legend>
                 <div>
+                    <asp:ScriptManager ID="ScriptManager1" runat="server" />
                     <table>
                         <tr>
-                            <td style="text-align: right; margin-right: 5px;"> </td>
+                            <td style="text-align: right; margin-right: 5px;">1. </td>
                             <td style="text-align: right; margin-right: 5px;">ชื่อ<span class="textred">*</span> :&nbsp;</td>
                             <td style="text-align: left; width: 50px;">
                                 <asp:TextBox ID="txtName" runat="server" MaxLength="100" Width="148px" CssClass="tb5"></asp:TextBox>
@@ -338,7 +311,7 @@
                     </table>
                     <table>
                         <tr>
-                            <td style="text-align: right; margin-right: 5px;"> </td>
+                            <td style="text-align: right; margin-right: 5px;">2. </td>
                             <td style="text-align: right; margin-right: 5px;">ชื่อโครงการฝึกอบรม/สัมมนา/ดูงาน<span class="textred">*</span> :&nbsp;</td>
                             <td style="text-align: left;">
                                 <asp:TextBox ID="txtNameOfProject" runat="server" MaxLength="100" Width="691px" CssClass="tb5" Placeholder="ชื่อโครงการฝึกอบรม/สัมมนา/ดูงาน"></asp:TextBox></td>
@@ -346,7 +319,7 @@
                     </table>
                     <table>
                         <tr>
-                            <td style="text-align: right; margin-right: 5px;"> </td>
+                            <td style="text-align: right; margin-right: 5px;">3. </td>
                             <td style="text-align: right; margin-right: 5px;">สถานที่ฝึกอบรม/สัมมนา/ดูงาน<span class="textred">*</span> :&nbsp;</td>
                             <td style="text-align: left;">
                                 <asp:TextBox ID="txtPlace" runat="server" MaxLength="100" Width="718px" CssClass="tb5" Placeholder="สถานที่ฝึกอบรม/สัมมนา/ดูงาน"></asp:TextBox></td>
@@ -425,18 +398,9 @@
                                 <asp:TextBox ID="txtSupportBudget" runat="server" MaxLength="100" Width="718px" CssClass="tb5" Placeholder="แหล่งงบประมาณที่ได้รับการสนับสนุน"></asp:TextBox></td>
                         </tr>
                     </table>
-                     </div>
-            </fieldset>
-        </div>
-    </asp:Panel>
-    <asp:Panel ID="Panel2" runat="server" CssClass="divpan" BackColor="White" ForeColor="#6699FF" BorderColor="Aqua" DefaultButton="btnSubmitSeminar">
-        <div>
-            <fieldset>
-                <legend>แก้ไขข้อมูลรายงานผลพัฒนาบุคลากร</legend>
-                <div>
                     <table>
                         <tr>
-                            <td style="text-align: right; margin-right: 5px;"> ประกาศนียบัตรที่ได้รับ </td>
+                            <td style="text-align: right; margin-right: 5px;">4. ประกาศนียบัตรที่ได้รับ </td>
                             <td style="text-align: left; width: 40px;">
                                 <asp:UpdatePanel ID="UpdatechkBox" runat="server">
                                     <ContentTemplate>
@@ -461,7 +425,7 @@
                     </table>
                     <table>
                         <tr>
-                            <td style="text-align: left; margin-right: 10px;"> สรุปผลการฝึกอบรม/สัมมนา/ดูงาน </td>
+                            <td style="text-align: left; margin-right: 10px;">5. สรุปผลการฝึกอบรม/สัมมนา/ดูงาน </td>
                         </tr>
                         <tr>
                             <td style="text-align: left; width: 50px;">
@@ -470,7 +434,7 @@
                     </table>
                     <table>
                         <tr>
-                            <td style="text-align: left; margin-right: 5px;"> ผลที่ได้รับจากการฝึกอบรม/สัมมนา/ดูงาน </td>
+                            <td style="text-align: left; margin-right: 5px;">6. ผลที่ได้รับจากการฝึกอบรม/สัมมนา/ดูงาน </td>
 
                         </tr>
                         <tr>
@@ -480,10 +444,10 @@
                     </table>
                     <table>
                         <tr>
-                            <td style="text-align: left; margin-right: 5px;"> การนำผลงานที่ได้รับจากการฝึกอบรม/สัมมนา/ดูงาน </td>
+                            <td style="text-align: left; margin-right: 5px;">7. การนำผลงานที่ได้รับจากการฝึกอบรม/สัมมนา/ดูงาน </td>
                         </tr>
                         <tr>
-                            <td style="text-align: left; margin-right: 5px;"> ด้านการเรียนการสอน </td>
+                            <td style="text-align: left; margin-right: 5px;">7.1 ด้านการเรียนการสอน </td>
                         </tr>
                         <tr>
                             <td style="text-align: left; width: 50px;">
@@ -492,7 +456,7 @@
                     </table>
                     <table>
                         <tr>
-                            <td style="text-align: left; margin-right: 5px;"> ด้านการวิจัย </td>
+                            <td style="text-align: left; margin-right: 5px;">7.2 ด้านการวิจัย </td>
                         </tr>
                         <tr>
                             <td style="text-align: left; width: 50px;">
@@ -501,7 +465,7 @@
                     </table>
                     <table>
                         <tr>
-                            <td style="text-align: left; margin-right: 5px;"> ด้านการบริการวิชาการ </td>
+                            <td style="text-align: left; margin-right: 5px;">7.3 ด้านการบริการวิชาการ </td>
                         </tr>
                         <tr>
                             <td style="text-align: left; width: 50px;">
@@ -510,7 +474,7 @@
                     </table>
                     <table>
                         <tr>
-                            <td style="text-align: left; margin-right: 5px;"> ด้านอื่นๆ </td>
+                            <td style="text-align: left; margin-right: 5px;">7.4 ด้านอื่นๆ </td>
                         </tr>
                         <tr>
                             <td style="text-align: left; width: 50px;">
@@ -519,7 +483,7 @@
                     </table>
                     <table>
                         <tr>
-                            <td style="text-align: left; margin-right: 5px;"> ปัญหาอุปสรรคในการฝึกอบรม/สัมมนา/ดูงาน </td>
+                            <td style="text-align: left; margin-right: 5px;">8. ปัญหาอุปสรรคในการฝึกอบรม/สัมมนา/ดูงาน </td>
                         </tr>
                         <tr>
                             <td style="text-align: left; width: 50px;">
@@ -528,14 +492,22 @@
                     </table>
                     <table>
                         <tr>
-                            <td style="text-align: left; margin-right: 5px;"> ความคิดเห็น/ข้อเสนอแนะอื่นๆ </td>
+                            <td style="text-align: left; margin-right: 5px;">9. ความคิดเห็น/ข้อเสนอแนะอื่นๆ </td>
                         </tr>
                         <tr>
                             <td style="text-align: left; width: 50px;">
                                 <asp:TextBox ID="txtComment" runat="server" MaxLength="1000" TextMode="MultiLine" Height="100px" Width="955px" CssClass="tb5" Placeholder="ความคิดเห็น/ข้อเสนอแนะอื่นๆ"></asp:TextBox></td>
                         </tr>
                     </table>
-                    
+                    <table>
+                        <tr>
+                            <td style="text-align: left; width: 50px;">
+                                <asp:Button ID="btnCancelSeminar" Text="Cancel" runat="server" OnClick="btnCancelSeminar_Click" Width="140px" CssClass="master_OAT_button" /></td>
+                            <td style="text-align: left; width: 50px;"></td>
+                            <td style="text-align: right; margin-right: 5px;">
+                                <asp:Button ID="btnSaveSeminar" Text="OK" runat="server" OnClick="btnSubmitSeminar_Click" Width="140px" CssClass="master_OAT_button" /></td>
+                        </tr>
+                    </table>
                 </div>
             </fieldset>
         </div>
