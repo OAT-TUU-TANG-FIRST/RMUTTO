@@ -23,7 +23,7 @@ namespace WEB_PERSONAL.Entities
         public string INVOICE { get; set; }
         public string DECORATION { get; set; }
         public string NOTES { get; set; }
-        
+
 
         public ClassInsigRecord2() { }
         public ClassInsigRecord2(int ID, string CITIZEN_ID, DateTime DDATE, string POSITION_WORK_NAME, string POSITION_NAME, string GRADEINSIGNIA_NAME, string GAZETTE_LAM, string GAZETTE_TON, string GAZETTE_NA, DateTime GAZETTE_DATE, string INVOICE, string DECORATION, string NOTES)
@@ -181,7 +181,7 @@ namespace WEB_PERSONAL.Entities
 
             try
             {
-               if (conn.State != ConnectionState.Open)
+                if (conn.State != ConnectionState.Open)
                 {
                     conn.Open();
                 }
@@ -330,6 +330,150 @@ namespace WEB_PERSONAL.Entities
                 conn.Close();
             }
             return result;
-        } 
+        }
+    }
+
+    public class ClassRequest
+    {
+        public int ID { get; set; }
+        public string CITIZEN_ID { get; set; }
+        public int RANK_ID { get; set; }
+        public int TITLE_ID { get; set; }
+        public string NAME { get; set; }
+        public string LASTNAME { get; set; }
+        public int GENDER_ID { get; set; }
+        public DateTime BIRTHDATE { get; set; }
+        public int STAFFTYPE_ID { get; set; }
+        public int FACULTY_ID { get; set; }
+        public int GRADEINSIGNIA_ID { get; set; }
+        public DateTime STARTING_DATE { get; set; }
+        public int STARTING_POSITION_ID { get; set; }
+        public string CURRENT_POSITION { get; set; }
+        public int CURRENT_SALARY { get; set; }
+
+        public ClassRequest() { }
+        public ClassRequest(int ID, string CITIZEN_ID, int RANK_ID, int TITLE_ID, string NAME, string LASTNAME, int GENDER_ID,
+           DateTime BIRTHDATE, int STAFFTYPE_ID, int FACULTY_ID, int GRADEINSIGNIA_ID, DateTime STARTING_DATE, int STARTING_POSITION_ID,
+           string CURRENT_POSITION, int CURRENT_SALARY)
+        {
+            this.ID = ID;
+            this.CITIZEN_ID = CITIZEN_ID;
+            this.RANK_ID = RANK_ID;
+            this.TITLE_ID = TITLE_ID;
+            this.NAME = NAME;
+            this.LASTNAME = LASTNAME;
+            this.GENDER_ID = GENDER_ID;
+            this.BIRTHDATE = BIRTHDATE;
+            this.STAFFTYPE_ID = STAFFTYPE_ID;
+            this.FACULTY_ID = FACULTY_ID;
+            this.GRADEINSIGNIA_ID = GRADEINSIGNIA_ID;
+            this.STARTING_DATE = STARTING_DATE;
+            this.STARTING_POSITION_ID = STARTING_POSITION_ID;
+            this.CURRENT_POSITION = CURRENT_POSITION;
+            this.CURRENT_SALARY = CURRENT_SALARY;
+
+        }
+        public int InsertRequest()
+        {
+            int id = 0;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            OracleCommand command = new OracleCommand("INSERT INTO TB_PERSON (CITIZEN_ID,TITLE_ID,PERSON_NAME,PERSON_LASTNAME,BIRTHDATE,BIRTHDATE_LONG,RETIRE_DATE,RETIRE_DATE_LONG,INWORK_DATE,STAFFTYPE_ID,FATHER_NAME,FATHER_LASTNAME,MOTHER_NAME,MOTHER_LASTNAME,MOTHER_OLD_LASTNAME,COUPLE_NAME,COUPLE_LASTNAME,COUPLE_OLD_LASTNAME,MINISTRY_ID,DEPARTMENT_NAME,GENDER_ID,NATION_ID,HOMEADD,MOO,STREET,DISTRICT_ID,AMPHUR_ID,PROVINCE_ID,ZIPCODE_ID,TELEPHONE,TIME_CONTACT_ID,BUDGET_ID,SUBSTAFFTYPE_ID,ADMIN_POSITION_ID,POSITION_WORK_ID,SPECIAL_NAME,TEACH_ISCED_ID,GRAD_ISCED_ID,GRAD_PROG_ID,GRAD_UNIV,GRAD_COUNTRY_ID,FACULTY_ID,CAMPUS_ID,STATUS_ID,RELIGION_ID) VALUES (:CITIZEN_ID,:TITLE_ID,:PERSON_NAME,:PERSON_LASTNAME,:BIRTHDATE,:BIRTHDATE_LONG,:RETIRE_DATE,:RETIRE_DATE_LONG,:INWORK_DATE,:STAFFTYPE_ID,:FATHER_NAME,:FATHER_LASTNAME,:MOTHER_NAME,:MOTHER_LASTNAME,:MOTHER_OLD_LASTNAME,:COUPLE_NAME,:COUPLE_LASTNAME,:COUPLE_OLD_LASTNAME,:MINISTRY_ID,:DEPARTMENT_NAME,:GENDER_ID,:NATION_ID,:HOMEADD,:MOO,:STREET,:DISTRICT_ID,:AMPHUR_ID,:PROVINCE_ID,:ZIPCODE_ID,:TELEPHONE,:TIME_CONTACT_ID,:BUDGET_ID,:SUBSTAFFTYPE_ID,:ADMIN_POSITION_ID,:POSITION_WORK_ID,:SPECIAL_NAME,:TEACH_ISCED_ID,:GRAD_ISCED_ID,:GRAD_PROG_ID,:GRAD_UNIV,:GRAD_COUNTRY_ID,:FACULTY_ID,:CAMPUS_ID,:STATUS_ID,:RELIGION_ID)", conn);
+
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+
+                command.Parameters.Add(new OracleParameter("CITIZEN_ID", CITIZEN_ID));
+                command.Parameters.Add(new OracleParameter("RANK_ID", RANK_ID));
+                command.Parameters.Add(new OracleParameter("TITLE_ID", TITLE_ID));
+                command.Parameters.Add(new OracleParameter("NAME", NAME));
+                command.Parameters.Add(new OracleParameter("LASTNAME", LASTNAME));
+                command.Parameters.Add(new OracleParameter("GENDER_ID", GENDER_ID));
+                command.Parameters.Add(new OracleParameter("BIRTHDATE", BIRTHDATE));
+                command.Parameters.Add(new OracleParameter("STAFFTYPE_ID", STAFFTYPE_ID));
+                command.Parameters.Add(new OracleParameter("FACULTY_ID", FACULTY_ID));
+                command.Parameters.Add(new OracleParameter("GRADEINSIGNIA_ID", GRADEINSIGNIA_ID));
+                command.Parameters.Add(new OracleParameter("STARTING_DATE", STARTING_DATE));
+                command.Parameters.Add(new OracleParameter("STARTING_POSITION_ID", STARTING_POSITION_ID));
+                command.Parameters.Add(new OracleParameter("CURRENT_POSITION", CURRENT_POSITION));
+                command.Parameters.Add(new OracleParameter("CURRENT_SALARY", CURRENT_SALARY));    
+
+                id = command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return id;
+        }
+
+        public bool UpdateRequest()
+        {
+            bool result = false;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            string query = "Update TB_PERSON Set ";
+            query += " RANK_ID = :RANK_ID ,";
+            query += " TITLE_ID = :TITLE_ID ,";
+            query += " NAME = :NAME ,";
+            query += " LASTNAME = :LASTNAME ,";
+            query += " GENDER_ID = :GENDER_ID ,";
+            query += " BIRTHDATE = :BIRTHDATE ,";
+            query += " STAFFTYPE_ID = :STAFFTYPE_ID ,";
+            query += " FACULTY_ID = :FACULTY_ID ,";
+            query += " STAFFTYPE_ID = :STAFFTYPE_ID ,";
+            query += " GRADEINSIGNIA_ID = :GRADEINSIGNIA_ID ,";
+            query += " STARTING_DATE = :STARTING_DATE ,";
+            query += " STARTING_POSITION_ID = :STARTING_POSITION_ID ,";
+            query += " CURRENT_POSITION = :CURRENT_POSITION ,";
+            query += " CURRENT_SALARY = :CURRENT_SALARY ";
+            query += " where CITIZEN_ID  = :CITIZEN_ID";
+
+            OracleCommand command = new OracleCommand(query, conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                
+                command.Parameters.Add(new OracleParameter("RANK_ID", RANK_ID));
+                command.Parameters.Add(new OracleParameter("TITLE_ID", TITLE_ID));
+                command.Parameters.Add(new OracleParameter("NAME", NAME));
+                command.Parameters.Add(new OracleParameter("LASTNAME", LASTNAME));
+                command.Parameters.Add(new OracleParameter("GENDER_ID", GENDER_ID));
+                command.Parameters.Add(new OracleParameter("BIRTHDATE", BIRTHDATE));
+                command.Parameters.Add(new OracleParameter("STAFFTYPE_ID", STAFFTYPE_ID));
+                command.Parameters.Add(new OracleParameter("FACULTY_ID", FACULTY_ID));
+                command.Parameters.Add(new OracleParameter("GRADEINSIGNIA_ID", GRADEINSIGNIA_ID));
+                command.Parameters.Add(new OracleParameter("STARTING_DATE", STARTING_DATE));
+                command.Parameters.Add(new OracleParameter("STARTING_POSITION_ID", STARTING_POSITION_ID));
+                command.Parameters.Add(new OracleParameter("CURRENT_POSITION", CURRENT_POSITION));
+                command.Parameters.Add(new OracleParameter("CURRENT_SALARY", CURRENT_SALARY));
+                command.Parameters.Add(new OracleParameter("CITIZEN_ID", CITIZEN_ID));
+
+                if (command.ExecuteNonQuery() > 0)
+                {
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return result;
+        }
     }
 }

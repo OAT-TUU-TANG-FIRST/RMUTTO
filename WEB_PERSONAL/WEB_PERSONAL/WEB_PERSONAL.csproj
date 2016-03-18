@@ -198,6 +198,9 @@
     <Content Include="insignia_maintence.aspx" />
     <Content Include="insignia_print.aspx" />
     <Content Include="insignia_recordnote2-ADMIN.aspx" />
+    <Content Include="INS_ReturnandPay.aspx" />
+    <Content Include="INS_borrow.aspx" />
+    <Content Include="INS_Request.aspx" />
     <Content Include="jquery.mCustomScrollbar\jquery.mCustomScrollbar.css" />
     <Content Include="Default.aspx" />
     <Content Include="Department-ADMIN.aspx" />
@@ -593,6 +596,27 @@
     </Compile>
     <Compile Include="insignia_recordnote2.aspx.designer.cs">
       <DependentUpon>insignia_recordnote2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="INS_ReturnandPay.aspx.cs">
+      <DependentUpon>INS_ReturnandPay.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="INS_ReturnandPay.aspx.designer.cs">
+      <DependentUpon>INS_ReturnandPay.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="INS_borrow.aspx.cs">
+      <DependentUpon>INS_borrow.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="INS_borrow.aspx.designer.cs">
+      <DependentUpon>INS_borrow.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="INS_Request.aspx.cs">
+      <DependentUpon>INS_Request.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="INS_Request.aspx.designer.cs">
+      <DependentUpon>INS_Request.aspx</DependentUpon>
     </Compile>
     <Compile Include="Late.aspx.cs">
       <DependentUpon>Late.aspx</DependentUpon>
