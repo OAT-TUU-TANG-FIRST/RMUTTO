@@ -19,13 +19,11 @@
                  </p>
                 
                 <p><label>วิทยาเขต:</label>
-                    <asp:DropDownList ID="ddlcampus" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource3" DataTextField="CAMPUS_NAME" DataValueField="CAMPUS_ID"></asp:DropDownList>
-                    <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:RMUTTOORCL %>" ProviderName="<%$ ConnectionStrings:RMUTTOORCL.ProviderName %>" SelectCommand="SELECT * FROM &quot;TB_CAMPUS&quot;"></asp:SqlDataSource>
+                    <asp:DropDownList ID="DropDownCampus" runat="server" AutoPostBack="True" OnSelectedIndexChanged="DropDownCampus_SelectedIndexChanged" ></asp:DropDownList>
                 </p>
                 
                 <p><label>สำนัก/สถาบัน/คณะ:</label>
-                <asp:DropDownList ID="ddlfacuty" runat="server" DataSourceID="SqlDataSource4" DataTextField="FACULTY_NAME" DataValueField="FACULTY_ID"></asp:DropDownList>
-                    <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:RMUTTOORCL %>" ProviderName="<%$ ConnectionStrings:RMUTTOORCL.ProviderName %>" SelectCommand="SELECT &quot;FACULTY_ID&quot;, &quot;FACULTY_NAME&quot;, &quot;CAMPUS_ID&quot; FROM &quot;TB_FACULTY&quot;"></asp:SqlDataSource>
+                <asp:DropDownList ID="DropDownFaculty" runat="server" AutoPostBack="True" ></asp:DropDownList>
                 </p>
 
                 <tr></tr>

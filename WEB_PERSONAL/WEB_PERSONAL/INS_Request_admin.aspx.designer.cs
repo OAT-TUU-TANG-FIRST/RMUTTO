@@ -58,40 +58,22 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
         
         /// <summary>
-        /// ddlcampus control.
+        /// DropDownCampus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlcampus;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownCampus;
         
         /// <summary>
-        /// SqlDataSource3 control.
+        /// DropDownFaculty control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource3;
-        
-        /// <summary>
-        /// ddlfacuty control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlfacuty;
-        
-        /// <summary>
-        /// SqlDataSource4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource4;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownFaculty;
         
         /// <summary>
         /// file1 control.
