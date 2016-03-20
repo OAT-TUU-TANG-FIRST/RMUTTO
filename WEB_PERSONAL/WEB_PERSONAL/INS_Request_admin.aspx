@@ -8,14 +8,12 @@
             <div>
                 <tr></tr>
                 <p><label>ปี:</label>
-                <asp:DropDownList ID="DDLyear" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource2" DataTextField="YEAR_ID" DataValueField="YEAR_ID"></asp:DropDownList>
-                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:RMUTTOORCL %>" ProviderName="<%$ ConnectionStrings:RMUTTOORCL.ProviderName %>" SelectCommand="SELECT &quot;YEAR_ID&quot; FROM &quot;INS_YEAR&quot;"></asp:SqlDataSource>
+                <asp:DropDownList ID="DDLyear" runat="server" AutoPostBack="True" ></asp:DropDownList>
 
                 </p>
                
                  <p><label>ประเภทบุคลากร:</label>
-                <asp:DropDownList ID="DDLstafftype" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource1" DataTextField="STAFFTYPE_NAME" DataValueField="STAFFTYPE_ID"></asp:DropDownList>
-                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:RMUTTOORCL %>" ProviderName="<%$ ConnectionStrings:RMUTTOORCL.ProviderName %>" SelectCommand="SELECT &quot;STAFFTYPE_ID&quot;, &quot;STAFFTYPE_NAME&quot; FROM &quot;TB_STAFFTYPE&quot;"></asp:SqlDataSource>
+                <asp:DropDownList ID="DDLstafftype" runat="server" AutoPostBack="True" ></asp:DropDownList>
                  </p>
                 
                 <p><label>วิทยาเขต:</label>

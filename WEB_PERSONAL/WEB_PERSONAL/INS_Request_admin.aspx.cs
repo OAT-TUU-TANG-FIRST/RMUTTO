@@ -20,6 +20,8 @@ namespace WEB_PERSONAL
             if (!IsPostBack)
             {
                 BindData();
+                DDLyear1();
+                DDLstafftype1();
                 DDLCampus();
             }
 
@@ -32,6 +34,60 @@ namespace WEB_PERSONAL
                 Response.Redirect("Access.aspx");
                 return;
             }
+        }
+
+        private void DDLyear1()
+        {
+            try
+            {
+                using (OracleConnection sqlConn = new OracleConnection(strConn))
+                {
+                    using (OracleCommand sqlCmd = new OracleCommand())
+                    {
+                        sqlCmd.CommandText = "select * from TB_DATE_YEAR";
+                        sqlCmd.Connection = sqlConn;
+                        sqlConn.Open();
+                        OracleDataAdapter da = new OracleDataAdapter(sqlCmd);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        DDLyear.DataSource = dt;
+                        DDLyear.DataValueField = "YEAR_ID";
+                        DDLyear.DataTextField = "YEAR_ID";
+                        DDLyear.DataBind();
+                        sqlConn.Close();
+
+                        DDLyear.Items.Insert(0, new ListItem("--กรุณาเลือก ปี--", "0"));
+                    }
+                }
+            }
+            catch { }
+        }
+
+        private void DDLstafftype1()
+        {
+            try
+            {
+                using (OracleConnection sqlConn = new OracleConnection(strConn))
+                {
+                    using (OracleCommand sqlCmd = new OracleCommand())
+                    {
+                        sqlCmd.CommandText = "select * from TB_STAFFTYPE";
+                        sqlCmd.Connection = sqlConn;
+                        sqlConn.Open();
+                        OracleDataAdapter da = new OracleDataAdapter(sqlCmd);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        DDLstafftype.DataSource = dt;
+                        DDLstafftype.DataValueField = "STAFFTYPE_ID";
+                        DDLstafftype.DataTextField = "STAFFTYPE_NAME";
+                        DDLstafftype.DataBind();
+                        sqlConn.Close();
+
+                        DDLstafftype.Items.Insert(0, new ListItem("--กรุณาเลือก ประเภทบุคลากร--", "0"));
+                    }
+                }
+            }
+            catch { }
         }
 
         private void DDLCampus()
