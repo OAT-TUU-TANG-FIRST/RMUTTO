@@ -3,8 +3,11 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:Panel ID="Panel1" runat="server" Height="592px">
+        
+        <label><center><font size="16">ค้นหาผู้มีสิทธิ์รับครื่องราชอิสริยาภรณ์</font></center></label>
+        <label><center>กองพัฒนาบุคลากร มหาวิทลัยเทคโนโลยีราชมงคลตะวันออก</center></label>
         <fieldset>
-            <legend> <font size="20"><B>คำนวณเครื่องราชอิสริยาภรณ์</B></font></legend>
+            <legend><font ><B>กรุณาเลือกเงื่อนไขที่ท่านต้องการ</B></legend>
             <div>
                 <tr></tr>
                 <p><label>ปี:</label>
@@ -29,6 +32,12 @@
                 <asp:Button ID="file1" runat="server" Text="ค้นหา" />
              </div>
             </fieldset>
-        <marquee>หมายเหตุ: อยู่ระหว่างการปรับปรุง</marquee>
+
+        <fieldset>
+         <legend> <B>รายชื่อผู้ที่เข้าเกณฑ์การรับเครื่องราชอิสริยาภรณ์</B></legend>
+            <div>   
+        <asp:GridView ID="GridView1" runat="server"></asp:GridView> 
+            </div>
+        </fieldset>  
     </asp:Panel>
 </asp:Content>

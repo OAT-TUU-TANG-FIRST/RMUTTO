@@ -44,7 +44,7 @@ namespace WEB_PERSONAL
                 {
                     using (OracleCommand sqlCmd = new OracleCommand())
                     {
-                        sqlCmd.CommandText = "select * from TB_DATE_YEAR";
+                        sqlCmd.CommandText = "select * from INS_YEAR";
                         sqlCmd.Connection = sqlConn;
                         sqlConn.Open();
                         OracleDataAdapter da = new OracleDataAdapter(sqlCmd);
@@ -146,6 +146,30 @@ namespace WEB_PERSONAL
             catch { }
         }
 
-    }
+        protected void search1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (OracleConnection sqlConn = new OracleConnection(strConn))
+                {
+                    using (OracleCommand sqlCmd = new OracleCommand())
+                    {
+                        sqlConn.Open();
 
-}
+                        string query = "select * from tb_campus";
+                        sqlCmd.Connection = sqlConn;
+                        OracleDataAdapter da = new OracleDataAdapter(sqlCmd);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        dataGridView1.DataSource = dt;
+
+                        sqlConn.Close();
+
+                    }
+                }
+            }
+            catch { }
+        }
+
+    }
+    }
