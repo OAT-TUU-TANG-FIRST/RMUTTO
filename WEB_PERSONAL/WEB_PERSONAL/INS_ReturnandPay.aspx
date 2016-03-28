@@ -35,6 +35,10 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:Panel ID="Panel1" runat="server" Height="1800px">
+
+        <fieldset>
+            <legend><font ><B>บันทึกรายชื่อผู้ขอพระราชทานเครื่องราชอิสริยาภรณ์</B></font></legend>
+
         <table style="width:100%;">
             <tr>
                 <td class="auto-style1">&nbsp;</td>
@@ -190,5 +194,6 @@
                 <td class="auto-style4">&nbsp;</td>
             </tr>
         </table>
+            </fieldset>
     </asp:Panel>
 </asp:Content>

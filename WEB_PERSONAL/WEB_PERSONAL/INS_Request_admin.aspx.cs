@@ -145,31 +145,15 @@ namespace WEB_PERSONAL
             }
             catch { }
         }
-
-        protected void search1_Click(object sender, EventArgs e)
+        
+        protected void Button1_Click(object sender, EventArgs e)
         {
-            try
-            {
-                using (OracleConnection sqlConn = new OracleConnection(strConn))
-                {
-                    using (OracleCommand sqlCmd = new OracleCommand())
-                    {
-                        sqlConn.Open();
-
-                        string query = "select * from tb_campus";
-                        sqlCmd.Connection = sqlConn;
-                        OracleDataAdapter da = new OracleDataAdapter(sqlCmd);
-                        DataTable dt = new DataTable();
-                        da.Fill(dt);
-                        dataGridView1.DataSource = dt;
-
-                        sqlConn.Close();
-
-                    }
-                }
-            }
-            catch { }
+            SqlDataSource2.SelectCommand = "select * from INS_COMMAND";
+            GridView1.DataBind();
         }
+        
+    }
 
-    }
-    }
+        }
+    
+    

@@ -27,16 +27,24 @@
                 <asp:DropDownList ID="DropDownFaculty" runat="server" AutoPostBack="True" ></asp:DropDownList>
                 </p>
 
+                <p>
+                    <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="ค้นหา" />
+                </p>
+
                 <tr></tr>
 
-                <asp:Button ID="file1" runat="server" Text="ค้นหา" />
              </div>
+            </font>
             </fieldset>
 
         <fieldset>
          <legend> <B>รายชื่อผู้ที่เข้าเกณฑ์การรับเครื่องราชอิสริยาภรณ์</B></legend>
-            <div>   
-        <asp:GridView ID="GridView1" runat="server"></asp:GridView> 
+            <div>
+                <asp:GridView ID="GridView1" runat="server" DataSourceID="SqlDataSource2" AllowPaging="True">
+                </asp:GridView>
+                <asp:SqlDataSource ID="SqlDataSource2" runat="server"></asp:SqlDataSource>
+
+
             </div>
         </fieldset>  
     </asp:Panel>
