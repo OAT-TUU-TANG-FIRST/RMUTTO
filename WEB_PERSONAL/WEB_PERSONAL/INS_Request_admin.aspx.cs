@@ -145,15 +145,51 @@ namespace WEB_PERSONAL
             }
             catch { }
         }
-        
-        protected void Button1_Click(object sender, EventArgs e)
+        protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            SqlDataSource2.SelectCommand = "select * from INS_COMMAND";
-            GridView1.DataBind();
-        }
-        
-    }
+            if (e.Row.RowType == DataControlRowType.Header)
+            {
+                e.Row.Cells[1].Text = "คำนำหน้า";
+                e.Row.Cells[2].Text = "ชื่อ";
+                e.Row.Cells[3].Text = "นามสกุล";
+                e.Row.Cells[4].Text = "วันเกิด";
+                e.Row.Cells[5].Text = "ประเภทบุคลากร";
+                e.Row.Cells[6].Text = "เพศ";
+                e.Row.Cells[7].Text = "เบอร์โทรศัพท์";
+                e.Row.Cells[8].Text = "ตำแหน่งในสายงาน";
+                e.Row.Cells[9].Text = "คณะ";
+                e.Row.Cells[10].Text = "วิทยาเขต";
+            }
 
         }
-    
-    
+
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+
+            SqlDataSource1.SelectCommand = "select t.TITLE_NAME_TH,p.PERSON_NAME,p.PERSON_LASTNAME,TO_CHAR(p.BIRTHDATE,'dd MON yyyy','NLS_DATE_LANGUAGE = THAI'),s.STAFFTYPE_NAME,g.GENDER_NAME,p.TELEPHONE,pw.POSITION_WORK_NAME,f.FACULTY_NAME,c.CAMPUS_NAME from TB_PERSON p inner join TB_TITLENAME t on p.TITLE_ID = t.TITLE_ID inner join TB_STAFFTYPE s on p.STAFFTYPE_ID = s.STAFFTYPE_ID inner join TB_GENDER g on p.GENDER_ID = g.GENDER_ID inner join TB_POSITION_WORK pw on p.POSITION_WORK_ID = pw.POSITION_WORK_ID inner join TB_FACULTY f on p.FACULTY_ID = f.FACULTY_ID inner join TB_CAMPUS c on p.CAMPUS_ID = c.CAMPUS_ID";
+
+            GridView1.DataBind();
+        }
+
+        protected void chkboxSelectAll_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox ChkBoxHeader = (CheckBox)GridView1.HeaderRow.FindControl("chkboxSelectAll");
+            foreach (GridViewRow row in GridView1.Rows)
+            {
+                CheckBox ChkBoxRows = (CheckBox)row.FindControl("chkEmp");
+                if (ChkBoxHeader.Checked == true)
+                {
+                    ChkBoxRows.Checked = true;
+                }
+                else
+                {
+                    ChkBoxRows.Checked = false;
+                }
+            }
+        }
+
+    }
+
+}
+

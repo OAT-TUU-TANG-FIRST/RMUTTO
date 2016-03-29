@@ -95,14 +95,10 @@
 
                                   <div class="master_header_under_insig">
                                     <span class="master_header_under_header">เครื่องราชอิสริยาภรณ์</span>
-                                    <a href="insignia_from_add.aspx">ผู้มีสิทธิ์รับเครื่องราชอิสริยาภรณ์</a>
-                                    <a href="insignia_from_view.aspx">(ปรับปรุง)ประวัติการขอเครื่องราชอิสริยาภรณ์</a>
-                                    <a href="insignia_recordnote2.aspx">(ปรับปรุง)ประวัติการรับเครื่องราชอิสริยาภรณ์</a>
-                                    <a href="insignia_recordnote2-ADMIN.aspx">(ปรับปรุง)เพิ่มประวัติการรับเครื่องราชอิสริยาภรณ์</a>
-                                    <a href="insignia_maintence.aspx">(ปรับปรุง)บัญชีรายชื่อผู้ขอรับภาพถ่ายเข้าเฝ้า(ชั้นสายสะพาย)</a>
-                                    <a href="insignia_maintence.aspx">(ปรับปรุง)แบบคำขอยืมเครื่องราชอิสริยาภรณ์</a>
-                                    <a href="insignia_maintence.aspx">(ปรับปรุง)หลักฐานการส่งคืน/ชดใช้ราคาเครื่องราชอิสริยาภรณ์</a>
-                                    <a href="insignia_maintence.aspx">(ปรับปรุง)บัญชีรายชื่อผู้ส่งคืนเครื่องราชอิสริยาภรณ์</a>
+                                    <a href="INS_Request_admin.aspx">ค้นหาผู้มีสิทธิ์รับครื่องราชอิสริยาภรณ์ (แอดมิน)</a>
+                                    <a href="INS_Request.aspx">บันทึกรายชื่อผู้ขอพระราชทานเครื่องราชอิสริยาภรณ์</a>
+                                    <a href="INS_borrow.aspx">แบบคำขอยืมเครื่องราชอิสริยาภรณ์</a>
+                                    <a href="INS_ReturnandPay.aspx">หลักฐานการส่งคืน/ชดใช้ราคาเครื่องราชอิสริยาภรณ์</a>
                                 </div>
 
                     <div class="master_header_under_admin">
