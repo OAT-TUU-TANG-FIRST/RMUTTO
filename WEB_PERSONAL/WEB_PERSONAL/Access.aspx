@@ -41,13 +41,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 
-        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-            <Triggers>
-                <asp:AsyncPostBackTrigger ControlID="LinkButton1X" EventName="click" />
-            </Triggers>
-            <ContentTemplate>
                 <div class="all_div">
 
 
@@ -135,8 +129,7 @@
 
                     </div>
                 </div>
-            </ContentTemplate>
-        </asp:UpdatePanel>
+
     </form>
 </body>
 </html>

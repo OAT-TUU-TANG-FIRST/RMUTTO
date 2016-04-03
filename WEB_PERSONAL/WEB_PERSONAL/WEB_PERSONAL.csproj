@@ -90,8 +90,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="1Test.aspx" />
     <Content Include="404.aspx" />
+    <Content Include="AAA.aspx" />
     <Content Include="About.aspx" />
     <Content Include="Access.aspx" />
     <Content Include="AdminPosition-ADMIN.aspx" />
@@ -162,6 +162,8 @@
     <Content Include="GradISCED-ADMIN.aspx" />
     <Content Include="GradLev-ADMIN.aspx" />
     <Content Include="GradProgram-ADMIN.aspx" />
+    <Content Include="images\icon\Before_Print.gif" />
+    <Content Include="images\icon\Icon1.png" />
     <Content Include="Image\anime_p1.png" />
     <Content Include="Image\anime_p2.png" />
     <Content Include="Image\Bar\header_bar.png" />
@@ -371,6 +373,7 @@
     <Content Include="personalDataSet.xss">
       <DependentUpon>personalDataSet.xsd</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\ORCL.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -393,22 +396,24 @@
     <Content Include="TitleName-ADMIN.aspx" />
     <Content Include="Salary.aspx" />
     <Content Include="CSS\Master.css" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="1Test.aspx.cs">
-      <DependentUpon>1Test.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="1Test.aspx.designer.cs">
-      <DependentUpon>1Test.aspx</DependentUpon>
-    </Compile>
     <Compile Include="404.aspx.cs">
       <DependentUpon>404.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="404.aspx.designer.cs">
       <DependentUpon>404.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AAA.aspx.cs">
+      <DependentUpon>AAA.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AAA.aspx.designer.cs">
+      <DependentUpon>AAA.aspx</DependentUpon>
     </Compile>
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
