@@ -12,5 +12,5 @@
             </asp:ChartArea>
         </ChartAreas>
     </asp:Chart>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:RMUTTOORCL %>" ProviderName="<%$ ConnectionStrings:RMUTTOORCL.ProviderName %>" SelectCommand="SELECT &quot;STAFFTYPE_ID&quot; FROM &quot;TB_PERSON&quot;"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ORCL_RMUTTO %>" ProviderName="<%$ ConnectionStrings:ORCL_RMUTTO.ProviderName %>" SelectCommand="SELECT &quot;STAFFTYPE_ID&quot; FROM &quot;TB_PERSON&quot;"></asp:SqlDataSource>
 </asp:Content>

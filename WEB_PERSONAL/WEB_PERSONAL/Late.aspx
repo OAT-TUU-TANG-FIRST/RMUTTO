@@ -235,7 +235,7 @@
                         <SortedDescendingCellStyle BackColor="#EAEAD3" />
                         <SortedDescendingHeaderStyle BackColor="#575357" />
                     </asp:GridView>
-                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:RMUTTOORCL %>" ProviderName="<%$ ConnectionStrings:RMUTTOORCL.ProviderName %>" SelectCommand="SELECT TB_WORK_CHECK_IN.ID, TO_CHAR(DDATE, 'DD MON YYYY', 'NLS_DATE_LANGUAGE = THAI'), TB_WORK_CHECK_IN.CITIZEN_ID, PERSON_NAME || ' ' || PERSON_LASTNAME, HOUR_IN || ':' || MINUTE_IN, HOUR_OUT || ':' || MINUTE_OUT FROM TB_WORK_CHECK_IN, TB_PERSON WHERE TB_WORK_CHECK_IN.CITIZEN_ID = TB_PERSON.CITIZEN_ID ORDER BY TB_WORK_CHECK_IN.ID DESC" DeleteCommand="DELETE TB_WORK_CHECK_IN WHERE ID = :ID">
+                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ORCL_RMUTTO %>" ProviderName="<%$ ConnectionStrings:ORCL_RMUTTO.ProviderName %>" SelectCommand="SELECT TB_WORK_CHECK_IN.ID, TO_CHAR(DDATE, 'DD MON YYYY', 'NLS_DATE_LANGUAGE = THAI'), TB_WORK_CHECK_IN.CITIZEN_ID, PERSON_NAME || ' ' || PERSON_LASTNAME, HOUR_IN || ':' || MINUTE_IN, HOUR_OUT || ':' || MINUTE_OUT FROM TB_WORK_CHECK_IN, TB_PERSON WHERE TB_WORK_CHECK_IN.CITIZEN_ID = TB_PERSON.CITIZEN_ID ORDER BY TB_WORK_CHECK_IN.ID DESC" DeleteCommand="DELETE TB_WORK_CHECK_IN WHERE ID = :ID">
                         <DeleteParameters>
                             <asp:Parameter Name="ID" />
                         </DeleteParameters>
@@ -274,7 +274,7 @@
                         <SortedDescendingCellStyle BackColor="#EAEAD3" />
                         <SortedDescendingHeaderStyle BackColor="#575357" />
                     </asp:GridView>
-                    <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:RMUTTOORCL %>" ProviderName="<%$ ConnectionStrings:RMUTTOORCL.ProviderName %>" SelectCommand="SELECT TB_WORK_CHECK_IN.ID, TO_CHAR(DDATE, 'DD MON YYYY', 'NLS_DATE_LANGUAGE = THAI'), TB_WORK_CHECK_IN.CITIZEN_ID, PERSON_NAME || ' ' || PERSON_LASTNAME, HOUR_IN || ':' || MINUTE_IN, HOUR_OUT || ':' || MINUTE_OUT FROM TB_WORK_CHECK_IN, TB_PERSON WHERE TB_WORK_CHECK_IN.CITIZEN_ID = TB_PERSON.CITIZEN_ID AND tb_work_check_in.hour_in*60 + tb_work_check_in.minute_in > 510 ORDER BY TB_WORK_CHECK_IN.ID DESC">
+                    <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ORCL_RMUTTO %>" ProviderName="<%$ ConnectionStrings:ORCL_RMUTTO.ProviderName %>" SelectCommand="SELECT TB_WORK_CHECK_IN.ID, TO_CHAR(DDATE, 'DD MON YYYY', 'NLS_DATE_LANGUAGE = THAI'), TB_WORK_CHECK_IN.CITIZEN_ID, PERSON_NAME || ' ' || PERSON_LASTNAME, HOUR_IN || ':' || MINUTE_IN, HOUR_OUT || ':' || MINUTE_OUT FROM TB_WORK_CHECK_IN, TB_PERSON WHERE TB_WORK_CHECK_IN.CITIZEN_ID = TB_PERSON.CITIZEN_ID AND tb_work_check_in.hour_in*60 + tb_work_check_in.minute_in > 510 ORDER BY TB_WORK_CHECK_IN.ID DESC">
                         <DeleteParameters>
                             <asp:Parameter Name="ID" />
                         </DeleteParameters>

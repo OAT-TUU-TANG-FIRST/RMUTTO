@@ -54,7 +54,7 @@
         <div>
             <asp:Button ID="Button1" runat="server" Text="สั่งพิมพ์รายงาน" OnClick="Button1_Click1" />
         </div>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:RMUTTOORCL %>" ProviderName="<%$ ConnectionStrings:RMUTTOORCL.ProviderName %>" SelectCommand="select tb_recordnote1.id, tb_recordnote1.citizen_id, person_name || ' ' || person_lastname, to_char(DDATE,'DD MON YYYY','NLS_DATE_LANGUAGE = THAI'), POSITION_WORK_NAME, POSITION_NAME, GRADEINSIGNIA_NAME, GAZETTE_LAM, GAZETTE_TON, GAZETTE_NA, GAZETTE_DATE, INVOICE, DECORATION, NOTES from tb_recordnote1, tb_person where tb_recordnote1.citizen_id = tb_person.citizen_id"></asp:SqlDataSource>
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ORCL_RMUTTO %>" ProviderName="<%$ ConnectionStrings:ORCL_RMUTTO.ProviderName %>" SelectCommand="select tb_recordnote1.id, tb_recordnote1.citizen_id, person_name || ' ' || person_lastname, to_char(DDATE,'DD MON YYYY','NLS_DATE_LANGUAGE = THAI'), POSITION_WORK_NAME, POSITION_NAME, GRADEINSIGNIA_NAME, GAZETTE_LAM, GAZETTE_TON, GAZETTE_NA, GAZETTE_DATE, INVOICE, DECORATION, NOTES from tb_recordnote1, tb_person where tb_recordnote1.citizen_id = tb_person.citizen_id"></asp:SqlDataSource>
         
     </asp:Panel>
 </asp:Content>

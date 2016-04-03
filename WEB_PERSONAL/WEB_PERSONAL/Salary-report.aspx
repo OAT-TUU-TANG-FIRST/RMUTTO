@@ -64,7 +64,7 @@
                 <SortedDescendingHeaderStyle BackColor="#4870BE" />
             </asp:GridView>
         </div>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:RMUTTOORCL %>" SelectCommand="SELECT * FROM (SELECT TB_BRANCH.BRANCH_NAME,ROWNUM,TB_DPIS.COUNT_PEOPLE,TB_DPIS.SUM_SALARY,TB_DPIS.RATE_SUMSALARY,TB_DPIS.RATE_MONEY_UP,TB_DPIS.RATE_BALANCE,TB_DPIS.SUM_PRE_MONTH,TB_DPIS.ADMIN_MONEY_ADD,TB_DPIS.SUM_MONEY_UP,TB_DPIS.SUM_MONEY_TOTAL,TB_DPIS.SUM_BALANCE,nvl(TB_DPIS.&quot;COMMENT&quot;,' ')as &quot;COMMENT&quot; FROM TB_DPIS,TB_BRANCH WHERE tb_dpis.branch_id=1 and TB_DPIS.BRANCH_ID = TB_BRANCH.BRANCH_ID order by tb_dpis.dpis_id desc) where rownum =1" ProviderName="<%$ ConnectionStrings:RMUTTOORCL.ProviderName %>"></asp:SqlDataSource>
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ORCL_RMUTTO %>" SelectCommand="SELECT * FROM (SELECT TB_BRANCH.BRANCH_NAME,ROWNUM,TB_DPIS.COUNT_PEOPLE,TB_DPIS.SUM_SALARY,TB_DPIS.RATE_SUMSALARY,TB_DPIS.RATE_MONEY_UP,TB_DPIS.RATE_BALANCE,TB_DPIS.SUM_PRE_MONTH,TB_DPIS.ADMIN_MONEY_ADD,TB_DPIS.SUM_MONEY_UP,TB_DPIS.SUM_MONEY_TOTAL,TB_DPIS.SUM_BALANCE,nvl(TB_DPIS.&quot;COMMENT&quot;,' ')as &quot;COMMENT&quot; FROM TB_DPIS,TB_BRANCH WHERE tb_dpis.branch_id=1 and TB_DPIS.BRANCH_ID = TB_BRANCH.BRANCH_ID order by tb_dpis.dpis_id desc) where rownum =1" ProviderName="<%$ ConnectionStrings:ORCL_RMUTTO.ProviderName %>"></asp:SqlDataSource>
         </asp:Panel>
     </div>
 
