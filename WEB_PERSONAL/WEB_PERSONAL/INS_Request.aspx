@@ -43,6 +43,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:Panel ID="Panel1" runat="server" Height="802px">
         <asp:ScriptManager ID="ScriptManager1" runat="server" />
+
+        <fieldset>
+            <legend><font ><B>บันทึกรายชื่อผู้ขอพระราชทานเครื่องราชอิสริยาภรณ์</B></font></legend>
+  
         <table class="auto-style1">
             <tr>
                 <td class="auto-style6">&nbsp;</td>
@@ -62,13 +66,13 @@
             <tr>
                 <td class="auto-style13">&nbsp;</td>
                 <td class="auto-style15" colspan="3">
-                    <asp:Button ID="Insert" runat="server" Height="35px" Text="เพิ่ม" Width="103px" OnClick="Insert_Click" />
+                    <asp:Button ID="Insert" runat="server" Height="35px" Text="ดึงข้อมูล" Width="103px" OnClick="Insert_Click" />
                     &nbsp;&nbsp;
                     <asp:Button ID="Update" runat="server" Height="35px" Text="แก้ไข" Width="103px" />
                     &nbsp;&nbsp;
                     <asp:Button ID="Delete" runat="server" Height="35px" Text="ลบ" Width="103px" />
                     &nbsp;&nbsp;
-                    <asp:Button ID="Send" runat="server" Height="35px" Text="ส่ง" Width="103px" />
+                    <asp:Button ID="Send" runat="server" Height="35px" Text="ส่ง" Width="103px" OnClick="Send_Click" />
                 </td>
             </tr>
             <tr>
@@ -255,5 +259,6 @@
                 <td>&nbsp;</td>
             </tr>
         </table>
+            </fieldset>
     </asp:Panel>
 </asp:Content>

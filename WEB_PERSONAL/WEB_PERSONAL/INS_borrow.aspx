@@ -25,6 +25,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:Panel ID="Panel1" runat="server" Height="1800px">
+         <fieldset>
+            <legend><font ><B>บันทึกรายชื่อผู้ขอพระราชทานเครื่องราชอิสริยาภรณ์</B></font></legend>
+
         <table style="width:100%;">
             <tr>
                 <td class="auto-style1">&nbsp;</td>
@@ -120,11 +123,9 @@
                     &nbsp;<asp:CheckBox ID="CheckBox2" runat="server" Text="สตรี" />
                     &nbsp;&nbsp;
                     <asp:Label ID="Label30" runat="server" Text="จำนวน"></asp:Label>
-                    &nbsp;<asp:DropDownList ID="DropDownList2" runat="server">
-                    </asp:DropDownList>
+                    &nbsp;<asp:TextBox ID="TextBox10" runat="server"></asp:TextBox>
                     &nbsp;<asp:Label ID="Label31" runat="server" Text="สำรับ"></asp:Label>
-                    &nbsp;<asp:DropDownList ID="DropDownList3" runat="server">
-                    </asp:DropDownList>
+                    &nbsp;<asp:TextBox ID="TextBox11" runat="server"></asp:TextBox>
                     &nbsp;<asp:Label ID="Label33" runat="server" Text="ดวง"></asp:Label>
                 </td>
             </tr>
@@ -138,15 +139,6 @@
                 </td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td class="auto-style1">&nbsp;</td>
-                <td colspan="4">
-                    <asp:Label ID="Label17" runat="server" Text="ในวันที่"></asp:Label>
-                    &nbsp;<asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
-                    &nbsp;<asp:Label ID="Label34" runat="server" Text="ถึงวันที่"></asp:Label>
-                    &nbsp;<asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
-                </td>
             </tr>
             <tr>
                 <td class="auto-style1">&nbsp;</td>
@@ -175,5 +167,6 @@
                 <td class="auto-style4">&nbsp;</td>
             </tr>
         </table>
+             </fieldset>
     </asp:Panel>
 </asp:Content>

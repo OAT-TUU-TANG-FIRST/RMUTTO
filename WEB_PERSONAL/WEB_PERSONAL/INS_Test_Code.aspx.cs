@@ -13,5 +13,12 @@ namespace WEB_PERSONAL
         {
 
         }
+
+        protected void BT1_Click(object sender, EventArgs e)
+        {
+            SqlDataSource1.SelectCommand = "select * from INS_COMMAND";
+            GridView1.DataBind();
+            
+        }
     }
 }
