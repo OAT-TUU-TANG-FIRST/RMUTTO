@@ -15,16 +15,16 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div class="login_popup">
-            <div class="login_popup_in">
+                    <div class="login_popup">
+                        <div class="login_popup_in">
                 <div class="login_popup_in2">
-                    <div class="login_popup_div_sec" id="locsec1">
-                    <div class="login_popup_div_sec_header">
+                            <div class="login_popup_div_sec" id="locsec1">
+                                <div class="login_popup_div_sec_header">
                         <img class="login_logo" src="Image/RMUTTO.png" />
                 
                                               
-                    </div>
-                    <div class="login_popup_div_sec_in">
+                                </div>
+                                <div class="login_popup_div_sec_in">
                         <div class="t1">ระบบบุคลากร</div>
                         <div class="t2">มหาวิทยาลัยเทคโนโลยีราชมงคลตะวันออก</div>  
                         <div style="margin: 10px 0;"></div>
@@ -35,22 +35,22 @@
                             <div style="margin: 5px 0;"></div>
                             <asp:LinkButton ID="lbuLogin" runat="server" OnClick="lbuLogin_Click" CssClass="login_button">เข้าสู่ระบบ</asp:LinkButton>
                             <div style="margin: 5px 0;"></div>
-                            <asp:Label ID="Label12X" runat="server" CssClass="cerror"></asp:Label>
+                                                    <asp:Label ID="Label12X" runat="server" CssClass="cerror"></asp:Label>
 
-                        </asp:Panel>
+                                    </asp:Panel>
+
+                                </div>
+                            </div>
+                </div>
+
+                                    
+
+                        </div>
+
+
+
 
                     </div>
-                </div>
-                </div>
-                
-
-
-            </div>
-
-
-
-
-        </div>
 
 
     </form>

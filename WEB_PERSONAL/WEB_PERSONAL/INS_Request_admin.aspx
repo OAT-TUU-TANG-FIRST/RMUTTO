@@ -76,7 +76,7 @@
                         <asp:AsyncPostBackTrigger ControlID="Gridview1" />
                     </Triggers>
                 </asp:UpdatePanel>
-                 <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:RMUTTOORCL %>" ProviderName="<%$ ConnectionStrings:RMUTTOORCL.ProviderName %>" ></asp:SqlDataSource>
+                 <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ORCL_RMUTTO %>" ProviderName="<%$ ConnectionStrings:ORCL_RMUTTO.ProviderName %>" ></asp:SqlDataSource>
 
             </div>
         </fieldset>  

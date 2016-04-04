@@ -43,6 +43,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Web, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="EPPlus, Version=4.0.4.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Plugins\EPPlus.dll</HintPath>
@@ -90,8 +94,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="1Test.aspx" />
     <Content Include="404.aspx" />
+    <Content Include="AAA.aspx" />
     <Content Include="About.aspx" />
     <Content Include="Access.aspx" />
     <Content Include="AdminPosition-ADMIN.aspx" />
@@ -159,10 +163,13 @@
     <Content Include="District-ADMIN.aspx" />
     <Content Include="Entities\Virus.mp3" />
     <Content Include="Faculty-ADMIN.aspx" />
+    <Content Include="Global.asax" />
     <Content Include="GradCountry-ADMIN.aspx" />
     <Content Include="GradISCED-ADMIN.aspx" />
     <Content Include="GradLev-ADMIN.aspx" />
     <Content Include="GradProgram-ADMIN.aspx" />
+    <Content Include="images\icon\Before_Print.gif" />
+    <Content Include="images\icon\Icon1.png" />
     <Content Include="Image\anime_p1.png" />
     <Content Include="Image\anime_p2.png" />
     <Content Include="Image\Bar\header_bar.png" />
@@ -365,6 +372,7 @@
     <Content Include="jquery.mCustomScrollbar\jquery.mCustomScrollbar.concat.min.js" />
     <Content Include="Province-ADMIN.aspx" />
     <Content Include="Religion-ADMIN.aspx" />
+    <Content Include="Report-Custom-Person.aspx" />
     <Content Include="SalarybyID-Edit-Permanent.aspx" />
     <Content Include="Salary_Salary_Admin.aspx" />
     <Content Include="Salary_Basesalary_Admin.aspx" />
@@ -396,6 +404,7 @@
     <Content Include="personalDataSet.xss">
       <DependentUpon>personalDataSet.xsd</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\ORCL.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -418,22 +427,24 @@
     <Content Include="TitleName-ADMIN.aspx" />
     <Content Include="Salary.aspx" />
     <Content Include="CSS\Master.css" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="1Test.aspx.cs">
-      <DependentUpon>1Test.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="1Test.aspx.designer.cs">
-      <DependentUpon>1Test.aspx</DependentUpon>
-    </Compile>
     <Compile Include="404.aspx.cs">
       <DependentUpon>404.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="404.aspx.designer.cs">
       <DependentUpon>404.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AAA.aspx.cs">
+      <DependentUpon>AAA.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AAA.aspx.designer.cs">
+      <DependentUpon>AAA.aspx</DependentUpon>
     </Compile>
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
@@ -502,6 +513,11 @@
     <Compile Include="Class\StudyHistory.cs" />
     <Compile Include="Class\TrainingHistory.cs" />
     <Compile Include="Connection\ConnectionDB.cs" />
+    <Compile Include="CrystalReport1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReport1.rpt</DependentUpon>
+    </Compile>
     <Compile Include="DataManager.aspx.cs">
       <DependentUpon>DataManager.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -563,6 +579,9 @@
     </Compile>
     <Compile Include="Gender-ADMIN.aspx.designer.cs">
       <DependentUpon>Gender-ADMIN.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="GradCountry-ADMIN.aspx.cs">
       <DependentUpon>GradCountry-ADMIN.aspx</DependentUpon>
@@ -863,6 +882,13 @@
     <Compile Include="Religion-ADMIN.aspx.designer.cs">
       <DependentUpon>Religion-ADMIN.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Report-Custom-Person.aspx.cs">
+      <DependentUpon>Report-Custom-Person.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Report-Custom-Person.aspx.designer.cs">
+      <DependentUpon>Report-Custom-Person.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Salary-report.aspx.cs">
       <DependentUpon>Salary-report.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1064,6 +1090,15 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Temp\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CrystalReport1.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReport1.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

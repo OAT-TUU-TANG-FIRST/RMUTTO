@@ -15,7 +15,7 @@ namespace Rmutto.Connection
             //
             // TODO: Add constructor logic here
             //
-            string connectionString = ConfigurationManager.ConnectionStrings["RMUTTOORCL"].ToString();
+            string connectionString = ConfigurationManager.ConnectionStrings["ORCL_RMUTTO"].ToString();
             conn = new OracleConnection(connectionString);
         }
 

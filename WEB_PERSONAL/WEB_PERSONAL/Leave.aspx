@@ -88,18 +88,18 @@
     <div class="default_page_style">
         <div class="default_header">
             <img src="Image/Small/table.png" />ทำการลา
-        </div>
+                    </div>
 
         <div class="sectionSelectLeaveType">
             เลือกประเภทการลา&nbsp;
             <asp:DropDownList ID="ddlLeaveType" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlLeaveType_SelectedIndexChanged" CssClass="dropdown dropdown_default"></asp:DropDownList>
-        </div>
+                        </div>
 
         <div id="notification" runat="server"></div>
 
         <div class="section" id="sectionF1S1" runat="server">
             <table>
-                <tr>
+                                    <tr>
                     <td class="col1">&nbsp;</td>
                     <td class="col2">
                         วันที่ขอลา</td>
@@ -108,15 +108,15 @@
                     <td class="col1">จากวันที่</td>
                     <td class="col2">
                         <asp:TextBox ID="tbF1S1FromDate" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
-                    </td>
+                                        </td>
                 </tr>
                 <tr>
                     <td class="col1">ถึงวันที่</td>
                     <td class="col2">
                         <asp:TextBox ID="tbF1S1ToDate" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
+                                        </td>
+                                    </tr>
+                                    <tr>
                     <td class="col1">&nbsp;</td>
                     <td class="col2">
                         &nbsp;</td>
@@ -125,19 +125,19 @@
                     <td class="col1">เหตุผล</td>
                     <td class="col2">
                         <asp:TextBox ID="tbF1S1Reason" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
-                    </td>
+                                        </td>
                 </tr>
                 <tr>
                     <td class="col1">ติดต่อได้ที่</td>
                     <td class="col2">
                         <asp:TextBox ID="tbF1S1Contact" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
+                                        </td>
+                                    </tr>
+                                    <tr>
                     <td class="col1">เบอร์โทรศัพท์</td>
                     <td class="col2">
                         <asp:TextBox ID="tbF1S1Phone" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
-                    </td>
+                                        </td>
                 </tr>
                 <tr>
                     <td class="col1">&nbsp;</td>
@@ -147,42 +147,42 @@
                     <td class="col1">&nbsp;</td>
                     <td class="col2">
                         <asp:LinkButton ID="lbuF1S1Check" runat="server" CssClass="button button_default" OnClick="lbuF1S1Check_Click">ตรวจสอบ<img src="Image/Small/forward.png" class="icon_right"/></asp:LinkButton>
-                    </td>
-                </tr>
+                                        </td>
+                                    </tr>
             </table>
         </div>
         <div class="section" id="sectionF1S2" runat="server">
             <table>
-                <tr>
+                                    <tr>
                     <td class="col1">ประเภทการลา</td>
                     <td class="col_res">
                         <asp:Label ID="lbF1S2LeaveTypeName" runat="server"></asp:Label>
-                    </td>
+                                        </td>
                 </tr>
                 <tr>
                     <td class="col1">ชื่อ</td>
                     <td class="col_res">
                         <asp:Label ID="lbF1S2PersonName" runat="server"></asp:Label>
                         &nbsp;
-                        </td>
-                </tr>
-                <tr>
+                                        </td>
+                                    </tr>
+                                    <tr>
                     <td class="col1">ตำแหน่ง</td>
                     <td class="col_res">
                         <asp:Label ID="lbF1S2PersonPosition" runat="server"></asp:Label>
-                        </td>
+                                        </td>
                 </tr>
                 <tr>
                     <td class="col1">ระดับ</td>
                     <td class="col_res">
                         <asp:Label ID="lbF1S2PersonRank" runat="server"></asp:Label>
-                        </td>
-                </tr>
-                <tr>
+                                        </td>
+                                    </tr>
+                                    <tr>
                     <td class="col1">สังกัด</td>
                     <td class="col_res">
                         <asp:Label ID="lbF1S2PersonDepartment" runat="server"></asp:Label>
-                        </td>
+                                        </td>
                 </tr>
                 <tr>
                     <td class="col1">&nbsp;</td>
@@ -193,13 +193,13 @@
                     <td class="col1">ลาล่าสุด</td>
                     <td class="col_res">
                         <asp:Label ID="lbF1S2LastFTTDate" runat="server"></asp:Label>
-                    </td>
-                </tr>
-                <tr>
+                                        </td>
+                                    </tr>
+                                    <tr>
                     <td class="col1">วันที่ลา</td>
                     <td class="col_res">
                         <asp:Label ID="lbF1S2FTTDate" runat="server"></asp:Label>
-                    </td>
+                                        </td>
                 </tr>
                 <tr>
                     <td class="col1">&nbsp;</td>
@@ -210,14 +210,14 @@
                     <td class="col1" style="vertical-align: top;">เหตุผล</td>
                     <td class="col_res">
                         <asp:Label ID="lbF1S2Reason" runat="server"></asp:Label>
-                    </td>
-                </tr>
-                <tr>
+                                        </td>
+                                    </tr>
+                                    <tr>
                     <td class="col1" style="vertical-align: top;">ติดต่อได้ที่</td>
                     <td class="col_res">
                         <asp:Label ID="lbF1S2Contact" runat="server"></asp:Label>
-                    </td>
-                </tr>
+                                        </td>
+                                    </tr>
                 <tr>
                     <td class="col1" style="vertical-align: top;">เบอร์โทรศัพท์</td>
                     <td class="col_res">
@@ -237,7 +237,7 @@
                         <asp:LinkButton ID="lbuF1S2Add" runat="server" CssClass="button button_default" OnClick="lbuF1S2Add_Click"><img src="Image/Small/add.png" class="icon_left"/>ยืนคำขอลา</asp:LinkButton>
                     </td>
                 </tr>
-            </table>
+                                </table>
         </div>
 
         <div class="section" id="sectionF2S1" runat="server">
@@ -315,7 +315,7 @@
                     </td>
                 </tr>
             </table>
-        </div>
+                            </div>
         <div class="section" id="sectionF2S2" runat="server">
             <table>
                 <tr>
@@ -425,7 +425,7 @@
                     </td>
                 </tr>
             </table>
-        </div>
+                        </div>
 
         <div class="section" id="sectionF3S1" runat="server">
             <table>
@@ -474,41 +474,41 @@
                     </td>
                 </tr>
             </table>
-        </div>
+                        </div>
         <div class="section" id="sectionF3S2" runat="server">
             <table>
-                <tr>
+                                    <tr>
                     <td class="col1">ประเภทการลา</td>
                     <td class="col_res">
                         <asp:Label ID="lbF3S2LeaveTypeName" runat="server"></asp:Label>
-                    </td>
-                </tr>
-                <tr>
+                                        </td>
+                                    </tr>
+                                    <tr>
                     <td class="col1">ชื่อ</td>
                     <td class="col_res">
                         <asp:Label ID="lbF3S2PersonName" runat="server"></asp:Label>
                         &nbsp;
-                        </td>
+                                        </td>
                 </tr>
                 <tr>
                     <td class="col1">ตำแหน่ง</td>
                     <td class="col_res">
                         <asp:Label ID="lbF3S2PersonPosition" runat="server"></asp:Label>
-                        </td>
-                </tr>
-                <tr>
+                                        </td>
+                                    </tr>
+                                    <tr>
                     <td class="col1">ระดับ</td>
                     <td class="col_res">
                         <asp:Label ID="lbF3S2PersonRank" runat="server"></asp:Label>
-                        </td>
+                                        </td>
                 </tr>
                 <tr>
                     <td class="col1">สังกัด</td>
                     <td class="col_res">
                         <asp:Label ID="lbF3S2PersonDepartment" runat="server"></asp:Label>
-                        </td>
-                </tr>
-                <tr>
+                                        </td>
+                                    </tr>
+                                    <tr>
                     <td class="col1">&nbsp;</td>
                     <td class="col_res">
                         &nbsp;</td>
@@ -517,19 +517,19 @@
                     <td class="col1">วันลาพักผ่อนสะสม</td>
                     <td class="col_res">
                         <asp:Label ID="lbF3S2SaveDay" runat="server"></asp:Label>
-                    </td>
+                                        </td>
                 </tr>
                 <tr>
                     <td class="col1">มีสิทธิลาประจำปีนี้อีก</td>
                     <td class="col_res">
                         <asp:Label ID="lbF3S2LeftDay" runat="server"></asp:Label>
-                    </td>
-                </tr>
-                <tr>
+                                        </td>
+                                    </tr>
+                                    <tr>
                     <td class="col1">รวม</td>
                     <td class="col_res">
                         <asp:Label ID="lbF3S2LeftTotalDay" runat="server"></asp:Label>
-                    </td>
+                                        </td>
                 </tr>
                 <tr>
                     <td class="col1">&nbsp;</td>
@@ -540,21 +540,21 @@
                     <td class="col1">จากวันที่</td>
                     <td class="col_res">
                         <asp:Label ID="lbF3S2FromDate" runat="server"></asp:Label>
-                    </td>
-                </tr>
-                <tr>
+                                        </td>
+                                    </tr>
+                                    <tr>
                     <td class="col1">ถึงวันที่</td>
                     <td class="col_res">
                         <asp:Label ID="lbF3S2ToDate" runat="server"></asp:Label>
-                    </td>
+                                        </td>
                 </tr>
                 <tr>
                     <td class="col1">รวมวัน</td>
                     <td class="col_res">
                         <asp:Label ID="lbF3S2TotalDay" runat="server"></asp:Label>
-                    </td>
-                </tr>
-                <tr>
+                                        </td>
+                                    </tr>
+                                    <tr>
                     <td class="col1">&nbsp;</td>
                     <td class="col_res">
                         &nbsp;</td>
@@ -563,7 +563,7 @@
                     <td class="col1" style="vertical-align: top;">ติดต่อได้ที่</td>
                     <td class="col_res">
                         <asp:Label ID="lbF3S2Contact" runat="server"></asp:Label>
-                    </td>
+                                        </td>
                 </tr>
                 <tr>
                     <td class="col1" style="vertical-align: top;">เบอร์โทรศัพท์</td>
@@ -598,25 +598,25 @@
                     <td class="col2">
                         <asp:RadioButton ID="rbOrdainedTrue" runat="server" GroupName="ordained" Text="เคย" CssClass="radio_button radio_button_default" />
                         <asp:RadioButton ID="rbOrdainedFalse" runat="server" GroupName="ordained" Text="ไม่เคย" CssClass="radio_button radio_button_default" />
-                    </td>
-                </tr>
-                <tr>
+                                        </td>
+                                    </tr>
+                                    <tr>
                     <td class="col1">ชื่อวัด</td>
                     <td class="col2">
                         <asp:TextBox ID="tbF4S1TempleName" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
-                    </td>
+                                        </td>
                 </tr>
                 <tr>
                     <td class="col1">สถานที่</td>
                     <td class="col2">
                         <asp:TextBox ID="tbF4S1TempleLocation" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
+                                        </td>
+                                    </tr>
+                                    <tr>
                     <td class="col1">อุปสมบทวันที่</td>
                     <td class="col2">
                         <asp:TextBox ID="tbF4S1OrdainDate" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
-                    </td>
+                                        </td>
                 </tr>
                 <tr>
                     <td class="col1">&nbsp;</td>
@@ -632,13 +632,13 @@
                     <td class="col1">จากวันที่</td>
                     <td class="col2">
                         <asp:TextBox ID="tbF4S1FromDate" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
+                                        </td>
+                                    </tr>
+                                    <tr>
                     <td class="col1">ถึงวันที่</td>
                     <td class="col2">
                         <asp:TextBox ID="tbF4S1ToDate" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
-                    </td>
+                                        </td>
                 </tr>
                 <tr>
                     <td class="col1">&nbsp;</td>
@@ -648,54 +648,54 @@
                     <td class="col1">&nbsp;</td>
                     <td class="col2">
                         <asp:LinkButton ID="lbuF4S1Check" runat="server" CssClass="button button_default" OnClick="lbuF4S1Check_Click">ตรวจสอบ<img src="Image/Small/forward.png" class="icon_right"/></asp:LinkButton>
-                    </td>
-                </tr>
+                                        </td>
+                                    </tr>
             </table>
         </div>
         <div class="section" id="sectionF4S2" runat="server">
             <table>
-                <tr>
+                                    <tr>
                     <td class="col1">ประเภทการลา</td>
                     <td class="col_res">
                         <asp:Label ID="lbF4S2LeaveTypeName" runat="server"></asp:Label>
-                    </td>
+                                        </td>
                 </tr>
                 <tr>
                     <td class="col1">ชื่อ</td>
                     <td class="col_res">
                         <asp:Label ID="lbF4S2PersonName" runat="server"></asp:Label>
                         &nbsp;
-                        </td>
-                </tr>
-                <tr>
+                                        </td>
+                                    </tr>
+                                    <tr>
                     <td class="col1">ตำแหน่ง</td>
                     <td class="col_res">
                         <asp:Label ID="lbF4S2PersonPosition" runat="server"></asp:Label>
-                        </td>
+                                        </td>
                 </tr>
                 <tr>
                     <td class="col1">ระดับ</td>
                     <td class="col_res">
                         <asp:Label ID="lbF4S2PersonRank" runat="server"></asp:Label>
-                        </td>
-                </tr>
-                <tr>
+                                        </td>
+                                    </tr>
+                                    <tr>
                     <td class="col1">สังกัด</td>
                     <td class="col_res">
                         <asp:Label ID="lbF4S2PersonDepartment" runat="server"></asp:Label>
-                        </td>
+                                        </td>
                 </tr>
                 <tr>
                     <td class="auto-style1">เกิดวันที่</td>
                     <td class="auto-style2">
                         <asp:Label ID="lbF4S2PersonBirthDate" runat="server"></asp:Label>
-                        </td>
-                </tr>
-                <tr>
+                                        </td>
+                                    </tr>
+                                    <tr>
                     <td class="col1">เข้ารับราชการเมื่อวันที่</td>
                     <td class="col_res">
                         <asp:Label ID="lbF4S2PersonWorkInDate" runat="server"></asp:Label>
-                        </td>
+                                        </td>
                 </tr>
                 <tr>
                     <td class="col1">&nbsp;</td>
@@ -706,14 +706,14 @@
                     <td class="col1">การอุปสมบท</td>
                     <td class="col_res">
                         <asp:Label ID="lbF4S2PersonOrdained" runat="server"></asp:Label>
-                        </td>
-                </tr>
-                <tr>
+                                        </td>
+                                    </tr>
+                                    <tr>
                     <td class="col1">ชื่อวัด</td>
                     <td class="col_res">
                         <asp:Label ID="lbF4S2TempleName" runat="server"></asp:Label>
-                    </td>
-                </tr>
+                                        </td>
+                                    </tr>
                 <tr>
                     <td class="col1">สถานที่</td>
                     <td class="col_res">
@@ -756,7 +756,7 @@
                         <asp:LinkButton ID="lbuF4S2Confirm" runat="server" CssClass="button button_default" OnClick="lbuF1S2Add_Click">ยืนคำขอลา</asp:LinkButton>
                     </td>
                 </tr>
-            </table>
+                                </table>
         </div>
 
         <div class="section" id="sectionF5S1" runat="server">
@@ -935,7 +935,7 @@
                     </td>
                 </tr>
             </table>
-        </div>
+                            </div>
         <div class="section" id="sectionF6S2" runat="server">
             <table>
                 <tr>
@@ -1035,7 +1035,7 @@
                     </td>
                 </tr>
             </table>
-        </div>
+                    </div>
 
         <div class="section" id="sectionF7S1" runat="server">
             <table>
@@ -1105,7 +1105,7 @@
             </table>
 
             <table>
-                
+
                 <tr>
                     <td class="col1">ตั้งแต่วันที่</td>
                     <td class="col2">
@@ -1241,18 +1241,18 @@
                     </td>
                 </tr>
             </table>
-        </div>
+                        </div>
 
         <div class="section" id="sectionF8S1" runat="server">
             <table>
-                <tr>
+                                    <tr>
                     <td class="col1">ประเภท</td>
                     <td class="col2">
                         <asp:RadioButton ID="RadioButton1" runat="server" GroupName="F7S1T" Text="ศึกษาวิชา" CssClass="radio_button radio_button_default" AutoPostBack="True" OnCheckedChanged="rbF7S1T1_CheckedChanged" />
                         <asp:RadioButton ID="RadioButton2" runat="server" GroupName="F7S1T" Text="ฝึกอบรม" CssClass="radio_button radio_button_default" AutoPostBack="True" OnCheckedChanged="rbF7S1T2_CheckedChanged" />
                         <asp:RadioButton ID="RadioButton3" runat="server" GroupName="F7S1T" Text="ปฏิบัติการวิจัย" CssClass="radio_button radio_button_default" AutoPostBack="True" OnCheckedChanged="rbF7S1T3_CheckedChanged" />
                         <asp:RadioButton ID="RadioButton4" runat="server" GroupName="F7S1T" Text="ดูงาน" CssClass="radio_button radio_button_default" AutoPostBack="True" OnCheckedChanged="rbF7S1T4_CheckedChanged" />
-                    </td>
+                                        </td>
                 </tr>
             </table>
 
@@ -1273,13 +1273,13 @@
                     <td class="col1">ประเทศ</td>
                     <td class="col2">
                         <asp:TextBox ID="TextBox3" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
+                                        </td>
+                                    </tr>
+                                    <tr>
                     <td class="col1">ด้วยทุน</td>
                     <td class="col2">
                         <asp:TextBox ID="TextBox16" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
-                    </td>
+                                        </td>
                 </tr>
             </table>
 
@@ -1300,18 +1300,18 @@
                     <td class="col1">ประเทษ</td>
                     <td class="col2">
                         <asp:TextBox ID="TextBox19" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
+                                        </td>
+                                    </tr>
+                                    <tr>
                     <td class="col1">ด้วยทุน</td>
                     <td class="col2">
                         <asp:TextBox ID="TextBox20" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
-                    </td>
+                                        </td>
                 </tr>
             </table>
 
             <table>
-                
+
                 <tr>
                     <td class="col1">ตั้งแต่วันที่</td>
                     <td class="col2">
@@ -1322,97 +1322,97 @@
                     <td class="col1">ถึงวันที่</td>
                     <td class="col2">
                         <asp:TextBox ID="TextBox22" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
+                                        </td>
+                                    </tr>
+                                    <tr>
                     <td class="col1">&nbsp;</td>
                     <td class="col2">
                         &nbsp;</td>
-                </tr>
-                
+                                    </tr>
+
                 <tr>
                     <td class="col1">ไปปฏิบัติงานให้กับ</td>
                     <td class="col2">
                         <asp:TextBox ID="TextBox25" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
                     </td>
                 </tr>
-                
+
                 <tr>
                     <td class="col1">ณ ประเทศ</td>
                     <td class="col2">
                         <asp:TextBox ID="TextBox26" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
                     </td>
                 </tr>
-                
+
                 <tr>
                     <td class="col1">&nbsp;</td>
                     <td class="col2">
                         &nbsp;</td>
                 </tr>
-                
+
                 <tr>
                     <td class="col1">ตำแหน่งที่จะไปปฏิบัติงาน</td>
                     <td class="col2">
                         <asp:TextBox ID="TextBox27" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
                     </td>
                 </tr>
-                
+
                 <tr>
                     <td class="col1">ระดับ</td>
                     <td class="col2">
                         <asp:TextBox ID="TextBox28" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
                     </td>
                 </tr>
-                
+
                 <tr>
                     <td class="col1">หน้าที่ที่จะไปปฏิบัติงาน (โดยย่อ)</td>
                     <td class="col2">
                         <asp:TextBox ID="TextBox29" runat="server" CssClass="textbox textbox_default" Height="50px" TextMode="MultiLine" Width="200px"></asp:TextBox>
                     </td>
                 </tr>
-                
+
                 <tr>
                     <td class="col1">กำหนดออกเดินทางประมานวันที่</td>
                     <td class="col2">
                         <asp:TextBox ID="TextBox30" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
                     </td>
                 </tr>
-                
+
                 <tr>
                     <td class="col1">ค่าตอบแทนที่ได้รับ</td>
                     <td class="col2">
                         <asp:TextBox ID="TextBox31" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
                     </td>
                 </tr>
-                
+
                 <tr>
                     <td class="col1">เงินเดือน อัตราเดือน/ปีละ</td>
                     <td class="col2">
                         <asp:TextBox ID="TextBox32" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
                     </td>
                 </tr>
-                
+
                 <tr>
                     <td class="col1">ค่าที่พัก</td>
                     <td class="col2">
                         <asp:TextBox ID="TextBox33" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
                     </td>
                 </tr>
-                
+
                 <tr>
                     <td class="col1">ค่าพาหนะในการเดินทาง</td>
                     <td class="col2">
                         <asp:TextBox ID="TextBox34" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
                     </td>
                 </tr>
-                
+
                 <tr>
                     <td class="col1">อื่นๆ</td>
                     <td class="col2">
                         <asp:TextBox ID="TextBox35" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
                     </td>
                 </tr>
-                
+
                 <tr>
                     <td class="col1">&nbsp;</td>
                     <td class="col2">
@@ -1443,8 +1443,8 @@
             </table>
         </div>
         <div class="section" id="sectionF8S2" runat="server">
-            <table>
-                <tr>
+                                <table>
+                                    <tr>
                     <td class="col1">ประเภทการลา</td>
                     <td class="col_res">
                         <asp:Label ID="Label14" runat="server"></asp:Label>
@@ -1508,25 +1508,25 @@
                     <td class="col1">ณ ที่</td>
                     <td class="col_res">
                         <asp:Label ID="Label23" runat="server"></asp:Label>
-                    </td>
-                </tr>
-                <tr>
+                                        </td>
+                                    </tr>
+                                    <tr>
                     <td class="col1">จากวันที่</td>
                     <td class="col_res">
                         <asp:Label ID="Label24" runat="server"></asp:Label>
-                    </td>
+                                        </td>
                 </tr>
                 <tr>
                     <td class="col1">ถึงวันที่</td>
                     <td class="col_res">
                         <asp:Label ID="Label25" runat="server"></asp:Label>
-                    </td>
-                </tr>
-                <tr>
+                                        </td>
+                                    </tr>
+                                    <tr>
                     <td class="col1">รวมวัน</td>
                     <td class="col_res">
                         <asp:Label ID="Label26" runat="server"></asp:Label>
-                    </td>
+                                        </td>
                 </tr>
                 <tr>
                     <td class="col1">&nbsp;</td>
@@ -1538,9 +1538,9 @@
                     <td class="col_res">
                         <asp:LinkButton ID="lbuF8S2Back" runat="server" CssClass="button button_default" OnClick="lbuF8S2Back_Click"><img src="Image/Small/back.png" class="icon_left"/>ย้อนกลับ</asp:LinkButton>
                         <asp:LinkButton ID="LinkButton6" runat="server" CssClass="button button_default" OnClick="lbuF1S2Add_Click">ยืนคำขอลา</asp:LinkButton>
-                    </td>
-                </tr>
-            </table>
+                                        </td>
+                                    </tr>
+                                </table>
         </div>
 
         <div class="section" id="sectionF9S1" runat="server">
@@ -1618,8 +1618,8 @@
             </table>
         </div>
         <div class="section" id="sectionF9S2" runat="server">
-            <table>
-                <tr>
+                                <table>
+                                    <tr>
                     <td class="col1">ประเภทการลา</td>
                     <td class="col_res">
                         <asp:Label ID="Label27" runat="server"></asp:Label>
@@ -1695,7 +1695,7 @@
                     <td class="col_res">
                         <asp:LinkButton ID="lbuF9S2Back" runat="server" CssClass="button button_default" OnClick="lbuF9S2Back_Click"><img src="Image/Small/back.png" class="icon_left"/>ย้อนกลับ</asp:LinkButton>
                         <asp:LinkButton ID="LinkButton9" runat="server" CssClass="button button_default" OnClick="lbuF1S2Add_Click">ยืนคำขอลา</asp:LinkButton>
-                    </td>
+                                        </td>
                 </tr>
             </table>
         </div>
@@ -1711,39 +1711,39 @@
                     <td class="col1">คู่สมรสชื่อ</td>
                     <td class="col2">
                         <asp:TextBox ID="TextBox46" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
+                                        </td>
+                                    </tr>
+                                    <tr>
                     <td class="col1">ตำแหน่ง</td>
                     <td class="col2">
                         <asp:TextBox ID="TextBox47" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
-                    </td>
+                                        </td>
                 </tr>
                 <tr>
                     <td class="col1">ระดับ</td>
                     <td class="col2">
                         <asp:TextBox ID="TextBox48" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
+                                        </td>
+                                    </tr>
+                                    <tr>
                     <td class="col1">สังกัด</td>
                     <td class="col2">
                         <asp:TextBox ID="TextBox49" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
-                    </td>
+                                        </td>
                 </tr>
                 <tr>
                     <td class="col1">ซึ่งไปปฏิบัติราชการ/ปฏิบัติงาน ณ ประเทศ</td>
                     <td class="col2">
                         <asp:TextBox ID="TextBox50" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
+                                        </td>
+                                    </tr>
+                                    <tr>
                     <td class="col1">มีกำหนด</td>
                     <td class="col2">
                         ปี<asp:TextBox ID="TextBox51" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
                         เดือน<asp:TextBox ID="TextBox52" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
                         วัน<asp:TextBox ID="TextBox53" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
-                    </td>
+                                        </td>
                 </tr>
                 <tr>
                     <td class="col1">&nbsp;</td>
@@ -1754,13 +1754,13 @@
                     <td class="col1">จากวันที่</td>
                     <td class="col2">
                         <asp:TextBox ID="TextBox54" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
+                                        </td>
+                                    </tr>
+                                    <tr>
                     <td class="col1">ถึงวันที่</td>
                     <td class="col2">
                         <asp:TextBox ID="TextBox55" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
-                    </td>
+                                        </td>
                 </tr>
                 <tr>
                     <td class="col1">&nbsp;</td>
@@ -1770,10 +1770,10 @@
                     <td class="col1">&nbsp;</td>
                     <td class="col2">
                         <asp:LinkButton ID="lbuF10S1Check" runat="server" CssClass="button button_default" OnClick="lbuF10S1Check_Click">ตรวจสอบ<img src="Image/Small/forward.png" class="icon_right"/></asp:LinkButton>
-                    </td>
-                </tr>
-            </table>
-        </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                    </div>
         <div class="section" id="sectionF10S2" runat="server">
             <table>
                 <tr>
@@ -1852,9 +1852,9 @@
                     <td class="col_res">
                         <asp:LinkButton ID="lbuF10S2Back" runat="server" CssClass="button button_default" OnClick="lbuF10S2Back_Click"><img src="Image/Small/back.png" class="icon_left"/>ย้อนกลับ</asp:LinkButton>
                         <asp:LinkButton ID="LinkButton7" runat="server" CssClass="button button_default" OnClick="lbuF1S2Add_Click">ยืนคำขอลา</asp:LinkButton>
-                    </td>
-                </tr>
-            </table>
+                </td>
+            </tr>
+        </table>
         </div>
 
         <div id="sectionComplete" runat="server">
@@ -1864,7 +1864,7 @@
         </div>
 
         <div id="sectionUnder" style="border-bottom: 1px solid #00a2e8; margin: 20px 0px; display: none;" runat="server"></div>
-        
+
 
     </div>
 

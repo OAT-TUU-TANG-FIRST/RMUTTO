@@ -201,7 +201,7 @@
                                 <td>
                                     <asp:DropDownList ID="DDL_Vitakad" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource1" DataTextField="CAMPUS_NAME" DataValueField="CAMPUS_ID">
                                     </asp:DropDownList>
-                                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:RMUTTOORCL %>" ProviderName="<%$ ConnectionStrings:RMUTTOORCL.ProviderName %>" SelectCommand="SELECT * FROM &quot;TB_CAMPUS&quot;"></asp:SqlDataSource>
+                                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ORCL_RMUTTO %>" ProviderName="<%$ ConnectionStrings:ORCL_RMUTTO.ProviderName %>" SelectCommand="SELECT * FROM &quot;TB_CAMPUS&quot;"></asp:SqlDataSource>
                                 </td>
                             </tr>
                             <tr>
@@ -211,7 +211,7 @@
                                 <td>
                                     <asp:DropDownList ID="DDL_Branch" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource2" DataTextField="BRANCH_NAME" DataValueField="BRANCH_ID">
                                     </asp:DropDownList>
-                                    <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:RMUTTOORCL %>" ProviderName="<%$ ConnectionStrings:RMUTTOORCL.ProviderName %>" SelectCommand="SELECT * FROM &quot;TB_BRANCH&quot;"></asp:SqlDataSource>
+                                    <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ORCL_RMUTTO %>" ProviderName="<%$ ConnectionStrings:ORCL_RMUTTO.ProviderName %>" SelectCommand="SELECT * FROM &quot;TB_BRANCH&quot;"></asp:SqlDataSource>
                                 </td>
                             </tr>
                             <tr>
@@ -221,7 +221,7 @@
                                 <td>
                                     <asp:DropDownList ID="DDL_Year" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource3" DataTextField="YEAR_ID" DataValueField="YEAR_ID">
                                     </asp:DropDownList>
-                                    <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:RMUTTOORCL %>" ProviderName="<%$ ConnectionStrings:RMUTTOORCL.ProviderName %>" SelectCommand="SELECT * FROM &quot;TB_DATE_YEAR&quot;"></asp:SqlDataSource>
+                                    <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:ORCL_RMUTTO %>" ProviderName="<%$ ConnectionStrings:ORCL_RMUTTO.ProviderName %>" SelectCommand="SELECT * FROM &quot;TB_DATE_YEAR&quot;"></asp:SqlDataSource>
                                 </td>
                             </tr>
                             <tr>
@@ -231,7 +231,7 @@
                                 <td>
                                     <asp:DropDownList ID="DDL_insigclass" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource4" DataTextField="NAME_GRADEINSIGNIA_THA" DataValueField="ID_GRADEINSIGNIA" OnSelectedIndexChanged="DDL_insigclass_SelectedIndexChanged">
                                     </asp:DropDownList>
-                                    <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:RMUTTOORCL %>" ProviderName="<%$ ConnectionStrings:RMUTTOORCL.ProviderName %>" SelectCommand="SELECT * FROM &quot;TB_GRADEINSIGNIA&quot;"></asp:SqlDataSource>
+                                    <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:ORCL_RMUTTO %>" ProviderName="<%$ ConnectionStrings:ORCL_RMUTTO.ProviderName %>" SelectCommand="SELECT * FROM &quot;TB_GRADEINSIGNIA&quot;"></asp:SqlDataSource>
                                 </td>
                             </tr>
                         </table>

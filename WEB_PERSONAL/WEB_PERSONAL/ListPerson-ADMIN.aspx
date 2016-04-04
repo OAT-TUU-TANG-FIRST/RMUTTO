@@ -68,9 +68,9 @@
                     </Columns>
                 </asp:GridView>
 
-                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:RMUTTOORCL %>" ProviderName="<%$ ConnectionStrings:RMUTTOORCL.ProviderName %>" SelectCommand="SELECT &quot;ID&quot;, &quot;CITIZEN_ID&quot;, &quot;PERSON_NAME&quot;, &quot;PERSON_LASTNAME&quot; FROM &quot;TB_PERSON&quot;"></asp:SqlDataSource>
+                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ORCL_RMUTTO %>" ProviderName="<%$ ConnectionStrings:ORCL_RMUTTO.ProviderName %>" SelectCommand="SELECT &quot;ID&quot;, &quot;CITIZEN_ID&quot;, &quot;PERSON_NAME&quot;, &quot;PERSON_LASTNAME&quot; FROM &quot;TB_PERSON&quot;"></asp:SqlDataSource>
 
-                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:RMUTTOORCL %>" ProviderName="<%$ ConnectionStrings:RMUTTOORCL.ProviderName %>" SelectCommand="SELECT &quot;ID&quot;, &quot;PERSON_NAME&quot;, &quot;PERSON_LASTNAME&quot;, &quot;CITIZEN_ID&quot; FROM &quot;TB_PERSON&quot; WHERE (&quot;CITIZEN_ID&quot; = :CITIZEN_ID)">
+                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ORCL_RMUTTO %>" ProviderName="<%$ ConnectionStrings:ORCL_RMUTTO.ProviderName %>" SelectCommand="SELECT &quot;ID&quot;, &quot;PERSON_NAME&quot;, &quot;PERSON_LASTNAME&quot;, &quot;CITIZEN_ID&quot; FROM &quot;TB_PERSON&quot; WHERE (&quot;CITIZEN_ID&quot; = :CITIZEN_ID)">
                     <SelectParameters>
                         <asp:ControlParameter ControlID="txtSearchName" Name="CITIZEN_ID" PropertyName="Text" Type="String" />
                     </SelectParameters>
