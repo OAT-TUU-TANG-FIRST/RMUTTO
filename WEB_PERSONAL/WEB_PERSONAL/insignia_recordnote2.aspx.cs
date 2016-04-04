@@ -75,8 +75,8 @@ namespace WEB_PERSONAL
 
         protected void LinkButton1_Click(object sender, EventArgs e)
         {
-            Person P = new Person(TextBox1.Text);
-            TextBox2.Text = P.NameAndLastname;
+            Person P = DatabaseManager.GetPerson(TextBox1.Text);
+            TextBox2.Text = P.FirstNameAndLastName;
             GridView1.DataSourceID = null;
             SqlDataSource sds = new SqlDataSource("System.Data.OracleClient", "DATA SOURCE=ORCL_RMUTTO;USER ID=RMUTTO;PASSWORD=Zxcvbnm;", "select tb_recordnote1.id, tb_recordnote1.citizen_id, person_name || ' ' || person_lastname, to_char(DDATE,'DD MON YYYY','NLS_DATE_LANGUAGE = THAI'), POSITION_WORK_NAME, POSITION_NAME, GRADEINSIGNIA_NAME, GAZETTE_LAM, GAZETTE_TON, GAZETTE_NA, GAZETTE_DATE, INVOICE, DECORATION, NOTES from tb_recordnote1, tb_person where tb_recordnote1.citizen_id = tb_person.citizen_id and tb_person.citizen_id = " + TextBox1.Text);
             

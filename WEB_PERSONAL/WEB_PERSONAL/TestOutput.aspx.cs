@@ -9,7 +9,7 @@ using WEB_PERSONAL.Class;
 namespace WEB_PERSONAL {
     public partial class TestOutput : System.Web.UI.Page {
         protected void Page_Load(object sender, EventArgs e) {
-            TextBox1.Text += Person.GetNameAndLastname("1234");
+            //TextBox1.Text += Person.GetNameAndLastname("1234");
         }
     }
 }
