@@ -7,7 +7,6 @@ using System.Web.UI.WebControls;
 using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Shared;
 using CrystalDecisions.ReportSource;
-using CrystalDecisions.CrystalReports.Engine;
 
 namespace WEB_PERSONAL
 {
@@ -16,6 +15,12 @@ namespace WEB_PERSONAL
         public static string strConn = @"Data Source = ORCL_RMUTTO;USER ID=RMUTTO;PASSWORD=Zxcvbnm";
         protected void Page_Load(object sender, EventArgs e)
         {
+
+        }
+
+        protected void btnShowReport_Click(object sender, EventArgs e)
+        {
+
             CrystalDecisions.CrystalReports.Engine.ReportDocument rpt = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
             rpt.Load(Server.MapPath("CrystalReport1.rpt"));
             ConnectionInfo crConnectionInfo = new ConnectionInfo();
@@ -34,17 +39,9 @@ namespace WEB_PERSONAL
                 table.ApplyLogOnInfo(crTableLogonInfo);
             }
             CrystalReportViewer1.LogOnInfo = crTableLogonInfos;
-            rpt.SetParameterValue("CITIZEN PARAMETER", this.txt1.Text);
+            //rpt.SetParameterValue("CITIZEN PARAMETER", this.txt1.Text);
             CrystalReportViewer1.ReportSource = rpt;
-        }
-
-        protected void btnShowReport_Click(object sender, EventArgs e)
-        {
             
-            ReportDocument rpt = new ReportDocument();
-            rpt.Load(Server.MapPath("CrystalReport1.rpt"));
-            rpt.SetParameterValue("CITIZEN PARAMETER", this.txt1.Text);
-            this.CrystalReportViewer1.ReportSource = rpt;
         }
 
     }
