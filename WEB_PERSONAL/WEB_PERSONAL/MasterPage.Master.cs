@@ -4,13 +4,55 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data.OracleClient;
+using System.Data.OleDb;
 using WEB_PERSONAL.Class;
 
 namespace WEB_PERSONAL {
     public partial class MasterPage : System.Web.UI.MasterPage {
+
+        protected void Page_Init(object sender, EventArgs e) {
+            if (PersonnelSystem.GetPersonnelSystem(this) == null) {
+                Response.Redirect("Access.aspx");
+                return;
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e) {
+            PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
+            Person loginPerson = ps.LoginPerson;
+
+            string name = loginPerson.FirstNameAndLastName;
+            LinkButton1.Text = name;
+            LinkButton10.Visible = true;
+
+            int v1 = DatabaseManager.GetLeaveRequiredCountByCommanderLow(loginPerson.CitizenID);
+            if (v1 != 0) {
+                lbLeaveCommentCount.Text = "" + v1;
+                lbLeaveCommentCount.Visible = true;
+            } else {
+                lbLeaveCommentCount.Text = "";
+                lbLeaveCommentCount.Visible = false;
+            }
+
+            int v2 = DatabaseManager.GetLeaveRequiredCountByCommanderHigh(loginPerson.CitizenID);
+            if (v2 != 0) {
+                lbLeaveAllowCount.Text = "" + v2;
+                lbLeaveAllowCount.Visible = true;
+            } else {
+                lbLeaveAllowCount.Text = "";
+                lbLeaveAllowCount.Visible = false;
+            }
+
+            /*if(v1 + v2 == 0) {
+                lbN1.Text = "ไม่มีการแจ้งเตือนการลา";
+            } else {
+                lbN1.Text = "คุณมี " + (v1 + v2) + " การแจ้งเตือนการลา";
+            }*/
             
+
+            if (!IsPostBack) {
+                DatabaseManager.AddCounter();
+            }
         }
 
         protected void LinkButton4_Click(object sender, EventArgs e) {
@@ -35,58 +77,6 @@ namespace WEB_PERSONAL {
 
         protected void LinkButton9_Click(object sender, EventArgs e) {
             Response.Redirect("Login.aspx");
-        }
-
-        protected void form1_Load(object sender, EventArgs e) {
-            if (Session["login_id"] == null) {
-                Session["redirect_to"] = Request.Url.ToString();
-                Response.Redirect("Access.aspx");
-                return;
-            } else {
-                Session.Timeout = 3600;
-                if ((DateTime.Now - (DateTime)Session["login_date_time"]).TotalSeconds > Int32.Parse(Session["login_total_second"].ToString())) {
-                    Session["login_date_time"] = null;
-                    Logout();
-
-                    Session["redirect_to"] = Request.Url.ToString();
-                    Response.Redirect("Access.aspx");
-                    return;
-                }
-                Person person = ((Person)Session["login_person"]);
-
-                /*Label7.Text = Session["login_id"].ToString();*/
-                //string name = Session["login_name"].ToString() + " " + Session["login_lastname"];
-                string name = person.NameAndLastname;
-                //string systemRank = "(" + Session["login_system_status"].ToString() + ")";
-                LinkButton1.Text = name;
-                //Label7.Text = systemRank;
-                LinkButton10.Visible = true;
-                if (Session["login_system_status_id"].ToString() == "1") {
-                    LinkButton1.ForeColor = System.Drawing.Color.FromArgb(204, 41, 57);
-                    //Label7.ForeColor = System.Drawing.Color.FromArgb(204, 41, 57);
-                } else {
-                    LinkButton1.ForeColor = System.Drawing.Color.FromArgb(0, 162, 232);
-                    //Label7.ForeColor = System.Drawing.Color.FromArgb(0, 162, 232);
-                }
-
-            }
-
-            if (!IsPostBack) {
-                using (OracleConnection con = Util.OC()) {
-                    using (OracleCommand command = new OracleCommand("UPDATE TB_WEB SET COUNTER = COUNTER+1 WHERE ID = 1", con)) {
-                        command.ExecuteNonQuery();
-                    }
-                    /*using (OracleCommand command = new OracleCommand("SELECT COUNTER FROM TB_WEB WHERE ID = 1", con)) {
-                        using (OracleDataReader reader = command.ExecuteReader()) {
-                            if (reader.HasRows) {
-                                reader.Read();
-                                LabelCounter.Text = "จำนวนผู้เข้าชม : " + reader.GetInt32(0).ToString("#,###") + " ครั้ง";
-                            }
-                        }
-                    }*/
-                }
-            }
-
         }
 
         protected void LinkButton10_Click(object sender, EventArgs e) {
@@ -140,13 +130,9 @@ namespace WEB_PERSONAL {
             Response.Redirect("Profile.aspx");
         }
 
-        protected void LinkButton2_Click1(object sender, EventArgs e) {
-            Response.Redirect(Request.Url.ToString());
-        }
+   
 
-        protected void LinkButton3_Click1(object sender, EventArgs e) {
-            Response.Redirect("Default.aspx");
-        }
+ 
 
     }
 }

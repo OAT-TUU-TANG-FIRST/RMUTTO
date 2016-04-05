@@ -163,6 +163,7 @@
     <Content Include="CSS\Study.css" />
     <Content Include="CSS\UpdateHistory.css" />
     <Content Include="DataManager.aspx" />
+    <Content Include="Developer.aspx" />
     <Content Include="District-ADMIN.aspx" />
     <Content Include="Entities\Virus.mp3" />
     <Content Include="Faculty-ADMIN.aspx" />
@@ -189,13 +190,31 @@
     <Content Include="Image\font_icon.png" />
     <Content Include="Image\ImageTUU\maintence.png" />
     <Content Include="Image\loading_spinner.gif" />
+    <Content Include="Image\login.png" />
+    <Content Include="Image\nature2.jpg" />
+    <Content Include="Image\no-email.jpg" />
     <Content Include="Image\no_image.png" />
+    <Content Include="Image\Small\person.png" />
     <Content Include="Image\plus.png" />
+    <Content Include="Image\rmutto_place.jpg" />
     <Content Include="Image\roka.gif" />
     <Content Include="Image\ImageTUU\Desktop-icon.png" />
     <Content Include="Image\ImageTUU\Documents-icon.png" />
     <Content Include="Image\ImageTUU\User-icon.png" />
     <Content Include="Image\ImageTUU\Utilities-icon.png" />
+    <Content Include="Image\Small\add.png" />
+    <Content Include="Image\Small\back.png" />
+    <Content Include="Image\Small\calendar.gif" />
+    <Content Include="Image\Small\clock.png" />
+    <Content Include="Image\Small\correct.png" />
+    <Content Include="Image\Small\delete.png" />
+    <Content Include="Image\Small\forward.png" />
+    <Content Include="Image\Small\paper.png" />
+    <Content Include="Image\Small\pencil_y.png" />
+    <Content Include="Image\Small\red_alert.png" />
+    <Content Include="Image\Small\statistic.png" />
+    <Content Include="Image\Small\table.png" />
+    <Content Include="Image\Small\yellow_alert.png" />
     <Content Include="Image\stickman.png" />
     <Content Include="Image\Texture.png" />
     <Content Include="Image\TUUbg1.jpg" />
@@ -321,12 +340,16 @@
     <Content Include="jQueryCalendarThai\jquery-ui-1.10.3.custom.js" />
     <Content Include="jQueryCalendarThai\SpecialDateSheet.css" />
     <Content Include="js\index.js" />
-    <Content Include="Late.aspx" />
     <Content Include="Leave-Report1.aspx" />
     <Content Include="insignia_from_edit.aspx" />
     <Content Include="insignia_citizen.aspx" />
     <Content Include="insignia_user.aspx" />
     <Content Include="Leave.aspx" />
+    <Content Include="LeaveAllow.aspx" />
+    <Content Include="LeaveCancel.aspx" />
+    <Content Include="LeaveClaim.aspx" />
+    <Content Include="LeaveComment.aspx" />
+    <Content Include="LeaveHistory.aspx" />
     <Content Include="ListPerson-ADMIN.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Ministry-ADMIN.aspx" />
@@ -369,6 +392,8 @@
     <Content Include="TestOutput.aspx" />
     <Content Include="TimeContact-ADMIN.aspx" />
     <Content Include="UNIVERSITY-ADMIN.aspx" />
+    <Content Include="ViewLeaveForm.aspx" />
+    <Content Include="WorkingTime.aspx" />
     <Content Include="Year-ADMIN.aspx" />
     <Content Include="Font\WDB_Bangna.ttf" />
     <Content Include="Font\THSARABUNNEW BOLDITALIC_0.TTF" />
@@ -482,9 +507,12 @@
       <DependentUpon>CitizenDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="Class\BaseSalary.cs" />
+    <Compile Include="Class\DatabaseManager.cs" />
     <Compile Include="Class\DisciplinaryAndAmnesty.cs" />
+    <Compile Include="Class\Form1Package.cs" />
     <Compile Include="Class\JobLicense.cs" />
     <Compile Include="Class\Person.cs" />
+    <Compile Include="Class\PersonnelSystem.cs" />
     <Compile Include="Class\PositionAndSalary.cs" />
     <Compile Include="Class\StudyHistory.cs" />
     <Compile Include="Class\TrainingHistory.cs" />
@@ -493,7 +521,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CrystalReport1.rpt</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="DataManager.aspx.cs">
       <DependentUpon>DataManager.aspx</DependentUpon>
@@ -515,6 +542,13 @@
     </Compile>
     <Compile Include="Department-ADMIN.aspx.designer.cs">
       <DependentUpon>Department-ADMIN.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Developer.aspx.cs">
+      <DependentUpon>Developer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Developer.aspx.designer.cs">
+      <DependentUpon>Developer.aspx</DependentUpon>
     </Compile>
     <Compile Include="District-ADMIN.aspx.cs">
       <DependentUpon>District-ADMIN.aspx</DependentUpon>
@@ -658,13 +692,6 @@
     <Compile Include="INS_Test_Code.aspx.designer.cs">
       <DependentUpon>INS_Test_Code.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Late.aspx.cs">
-      <DependentUpon>Late.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Late.aspx.designer.cs">
-      <DependentUpon>Late.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Leave-Report1.aspx.cs">
       <DependentUpon>Leave-Report1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -699,6 +726,41 @@
     </Compile>
     <Compile Include="Leave.aspx.designer.cs">
       <DependentUpon>Leave.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LeaveAllow.aspx.cs">
+      <DependentUpon>LeaveAllow.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LeaveAllow.aspx.designer.cs">
+      <DependentUpon>LeaveAllow.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LeaveCancel.aspx.cs">
+      <DependentUpon>LeaveCancel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LeaveCancel.aspx.designer.cs">
+      <DependentUpon>LeaveCancel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LeaveClaim.aspx.cs">
+      <DependentUpon>LeaveClaim.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LeaveClaim.aspx.designer.cs">
+      <DependentUpon>LeaveClaim.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LeaveComment.aspx.cs">
+      <DependentUpon>LeaveComment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LeaveComment.aspx.designer.cs">
+      <DependentUpon>LeaveComment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LeaveHistory.aspx.cs">
+      <DependentUpon>LeaveHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LeaveHistory.aspx.designer.cs">
+      <DependentUpon>LeaveHistory.aspx</DependentUpon>
     </Compile>
     <Compile Include="ListPerson-ADMIN.aspx.cs">
       <DependentUpon>ListPerson-ADMIN.aspx</DependentUpon>
@@ -994,6 +1056,20 @@
       <DependentUpon>UNIVERSITY-ADMIN.aspx</DependentUpon>
     </Compile>
     <Compile Include="Util.cs" />
+    <Compile Include="ViewLeaveForm.aspx.cs">
+      <DependentUpon>ViewLeaveForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewLeaveForm.aspx.designer.cs">
+      <DependentUpon>ViewLeaveForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WorkingTime.aspx.cs">
+      <DependentUpon>WorkingTime.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WorkingTime.aspx.designer.cs">
+      <DependentUpon>WorkingTime.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Year-ADMIN.aspx.cs">
       <DependentUpon>Year-ADMIN.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

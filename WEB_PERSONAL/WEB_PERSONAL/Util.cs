@@ -5,11 +5,14 @@ using System.Web;
 using System.Data.OracleClient;
 using System.Web.UI;
 using System.Globalization;
+using System.Data.OleDb;
+using WEB_PERSONAL.Class;
 
 namespace WEB_PERSONAL {
 
     public class Util {
 
+        public static readonly string CONNECTION_STRING = @"Provider=OraOLEDB.Oracle; Data Source = 203.158.140.67:1521/orcl;USER ID=rmutto;PASSWORD=Zxcvbnm";
         public static string ToOracleDate2(string date)
         {
             string[] s = date.Split('/');
@@ -223,6 +226,164 @@ namespace WEB_PERSONAL {
         }
         public static void RunScript(Control control, string script) {
             ScriptManager.RegisterClientScriptBlock(control, control.GetType(), "ServerControlScript", script, true);
+        }
+
+        //-------------------
+
+        public static string ToOracleDateTime(DateTime dt) {
+            string s = dt.ToString("dd/MM/yyyy");
+            string[] s2 = s.Split('/');
+            switch (s2[1]) {
+                case "01": s2[1] = "ม.ค."; break;
+                case "02": s2[1] = "ก.พ."; break;
+                case "03": s2[1] = "มี.ค."; break;
+                case "04": s2[1] = "เม.ย."; break;
+                case "05": s2[1] = "พ.ค."; break;
+                case "06": s2[1] = "มิ.ย."; break;
+                case "07": s2[1] = "ก.ค."; break;
+                case "08": s2[1] = "ส.ค."; break;
+                case "09": s2[1] = "ก.ย."; break;
+                case "10": s2[1] = "ต.ค."; break;
+                case "11": s2[1] = "พ.ย."; break;
+                case "12": s2[1] = "ธ.ค."; break;
+            }
+            return s2[0] + " " + s2[1] + " " + s2[2];
+            //return s;
+        }
+        public static string DatabaseToDate(string s) {
+            if (s == null) {
+                return "''";
+            }
+            string[] ss = s.Split(' ');
+            if (ss.Length != 3)
+                return "''";
+            switch (ss[1]) {
+                case "ม.ค.": ss[1] = "01"; break;
+                case "ก.พ.": ss[1] = "02"; break;
+                case "มี.ค.": ss[1] = "03"; break;
+                case "เม.ย.": ss[1] = "04"; break;
+                case "พ.ค.": ss[1] = "05"; break;
+                case "มิ.ย.": ss[1] = "06"; break;
+                case "ก.ค.": ss[1] = "07"; break;
+                case "ส.ค.": ss[1] = "08"; break;
+                case "ก.ย.": ss[1] = "09"; break;
+                case "ต.ค.": ss[1] = "10"; break;
+                case "พ.ย.": ss[1] = "11"; break;
+                case "ธ.ค.": ss[1] = "12"; break;
+            }
+            return "TO_DATE('" + ss[0] + "/" + ss[1] + "/" + (int.Parse(ss[2]) - 543) + "', 'DD/MM/YYYY')";
+        }
+        public static string TodayDatabaseToDate() {
+            string s = "-";
+            using (OleDbConnection con = new OleDbConnection(DatabaseManager.CONNECTION_STRING)) {
+                con.Open();
+                using (OleDbCommand com = new OleDbCommand("SELECT TO_CHAR(CURRENT_DATE, 'DD/MM/YYYY') FROM DUAL", con)) {
+                    using (OleDbDataReader reader = com.ExecuteReader()) {
+                        while (reader.Read()) {
+                            s = reader.GetValue(0).ToString();
+                        }
+                    }
+                }
+            }
+            //string[] ss = s.Split('/');
+            //s = ss[0] + " " + ss[1] + " " + (int.Parse(ss[2]) - 543);
+            return "TO_DATE('" + s + "', 'DD/MM/YYYY')";
+        }
+        public static string PureDatabaseToThaiDate(string s) {
+            if (s == null) {
+                return "";
+            }
+            string[] ss = s.Split('/');
+            if (ss.Length != 3)
+                return "";
+            switch (int.Parse(ss[1])) {
+                case 1: ss[1] = "ม.ค."; break;
+                case 2: ss[1] = "ก.พ."; break;
+                case 3: ss[1] = "มี.ค."; break;
+                case 4: ss[1] = "เม.ย."; break;
+                case 5: ss[1] = "พ.ค."; break;
+                case 6: ss[1] = "มี.ค."; break;
+                case 7: ss[1] = "ก.ค."; break;
+                case 8: ss[1] = "ส.ค."; break;
+                case 9: ss[1] = "ก.ย."; break;
+                case 10: ss[1] = "ต.ค."; break;
+                case 11: ss[1] = "พ.ศ."; break;
+                case 12: ss[1] = "ธ.ค."; break;
+            }
+            return ss[0] + " " + ss[1] + " " + ss[2].Substring(0, 4);
+        }
+        public static void alertF(Page page, string message) {
+            page.Page.ClientScript.RegisterStartupScript(page.GetType(), "ALERT", "alert('" + message + "')", true);
+        }
+        public static void alertF(MasterPage page, string message) {
+            page.Page.ClientScript.RegisterStartupScript(page.GetType(), "ALERT", "alert('" + message + "')", true);
+        }
+        public static bool IsDateValid(string date) {
+            try {
+                string[] split = date.Split(' ');
+
+                if (split.Length != 3) {
+                    return false;
+                }
+
+                string day = split[0];
+                string month = split[1];
+                string year = split[2];
+
+                int iDay = int.Parse(day);
+                if (iDay < 1 || iDay > 31) {
+                    return false;
+                }
+                switch (month) {
+                    case "ม.ค.":
+                    case "ก.พ.":
+                    case "มี.ค.":
+                    case "เม.ย.":
+                    case "พ.ค.":
+                    case "มิ.ย.":
+                    case "ก.ค.":
+                    case "ส.ค.":
+                    case "ก.ย.":
+                    case "ต.ค.":
+                    case "พ.ย.":
+                    case "ธ.ค.":
+                        break;
+                    default: return false;
+                }
+                int iYear = int.Parse(year);
+                if (iYear < 0 || iYear > 9999) {
+                    return false;
+                }
+
+
+                return true;
+            } catch {
+                return false;
+            }
+        }
+        public static DateTime ToDateTime(string date) {
+            string[] split = date.Split(' ');
+            string day = split[0];
+            string month = split[1];
+            string year = split[2];
+            string sMonth = "";
+            switch (month) {
+                case "ม.ค.": sMonth = "01"; break;
+                case "ก.พ.": sMonth = "02"; break;
+                case "มี.ค.": sMonth = "03"; break;
+                case "เม.ย.": sMonth = "04"; break;
+                case "พ.ค.": sMonth = "05"; break;
+                case "มิ.ย.": sMonth = "06"; break;
+                case "ก.ค.": sMonth = "07"; break;
+                case "ส.ค.": sMonth = "08"; break;
+                case "ก.ย.": sMonth = "09"; break;
+                case "ต.ค.": sMonth = "10"; break;
+                case "พ.ย.": sMonth = "11"; break;
+                case "ธ.ค.": sMonth = "12"; break;
+            }
+            DateTime dt = new DateTime(int.Parse(year), int.Parse(sMonth), int.Parse(day));
+            return dt;
+
         }
     }
 

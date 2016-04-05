@@ -7,12 +7,123 @@ using System.Globalization;
 
 namespace WEB_PERSONAL.Class {
 
-    // universal person
-    // created by tangkwa
     public class Person {
 
+        public string ID;
+        public string CitizenID;
+        public string TitleID;
+        public string TitleName;
+        public string FirstName;
+        public string LastName;
+        public string BirthDate;
+        public string BirthDateLong;
+        public string RetireDate;
+        public string RetireDateLong;
+        public string InWorkDate;
+        public string StaffTypeID;
+        public string StaffTypeName;
+        public string FatherFirstName;
+        public string FatherLastName;
+        public string MotherFirstName;
+        public string MotherLastName;
+        public string MotherOldLastName;
+        public string CoupleFirstName;
+        public string CoupleLastName;
+        public string CoupleOldLastName;
+        public string MinistryID;
+        public string MinistryName;
+        public string DepartmentName;
+        public string Password;
+        public string SystemStatusID;
+        public string SystemStatusName;
+        public string GenderID;
+        public string GenderName;
+        public string NationID;
+        public string NationName;
+        public string HomeAdd;
+        public string Moo;
+        public string Street;
+        public string DistrictID;
+        public string DistrictName;
+        public string AmphurID;
+        public string AmphurName;
+        public string ProvinceID;
+        public string ProvinceName;
+        public string ZipCodeID;
+        public string Telephone;
+        public string TimeContactID;
+        public string TimeContactName;
+        public string BudgetID;
+        public string BudgetName;
+        public string SubStaffTypeID;
+        public string SubStaffTypeName;
+        public string AdminPositionID;
+        public string AdminPositionName;
+        public string PositionWorkID;
+        public string PositionWorkName;
+        public string SpecialName;
+        public string TeachISCEDID;
+        public string TeachISCEDName;
+        public string GradISCEDID;
+        public string GradISCEDName;
+        public string GradProgID;
+        public string GradProgName;
+        public string GradUniv;
+        public string GradCountryID;
+        public string GradCountryName;
+        public string BranchID;
+        public string BranchName;
+        public string RankID;
+        public string RankName;
+        public string FacultyID;
+        public string FacultyName;
+        public string StartPositionWorkID;
+        public string StartPositionWorkName;
+        public string CampusID;
+        public string CampusName;
+        public string StatusID;
+        public string StatusName;
+        public string ReligionID;
+        public string ReligionName;
+
+        public string GotID;
+        public string GetID;
+
+        public string PositionID;
+        public string PositionName;
+
+
+        
+        
+        public int NotificationCount;
+
+        public string FullName {
+            get { return TitleName + FirstName + " " + LastName; }
+        }
+        public string FirstNameAndLastName {
+            get { return FirstName + " " + LastName; }
+        }
+        public string FatherFirstNameAndLastName {
+            get { return FatherFirstName + " " + FatherLastName; }
+        }
+        public string MotherFirstNameAndLastName {
+            get { return MotherFirstName + " " + MotherLastName; }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
         //static -----------------------------------------------------------------
-        public static bool IsExist(string citizen_id) {
+
+        /*public static bool IsExist(string citizen_id) {
             using (OracleConnection con = Util.OC()) {
                 using (OracleCommand command = new OracleCommand("SELECT COUNT(*) FROM TB_PERSON WHERE CITIZEN_ID = :1", con)) {
                     command.Parameters.AddWithValue("1", citizen_id);
@@ -718,18 +829,6 @@ namespace WEB_PERSONAL.Class {
 
 
 
-                /*using (OracleCommand command = new OracleCommand("SELECT NVL(LEV_NAME, '-') FROM TB_PERSON, TB_LEV WHERE CITIZEN_ID = :1 AND TB_PERSON.GRAD_LEV_ID = TB_LEV.LEV_ID", con)) {
-                    command.Parameters.AddWithValue("1", citizen_id);
-                    using (OracleDataReader reader = command.ExecuteReader()) {
-                        if (reader.HasRows) {
-                            reader.Read();
-                            grad_lev_name = reader.GetString(0);
-                        } else {
-                            grad_lev_name = "-";
-                        }
-                    }
-                }*/
-
                 try {
                     using (OracleCommand command = new OracleCommand("SELECT NVL(TEACH_ISCED_NAME_TH, '-') FROM TB_PERSON, TB_TEACH_ISCED WHERE CITIZEN_ID = :1 AND TB_PERSON.GRAD_ISCED_ID = TB_TEACH_ISCED.TEACH_ISCED_ID", con)) {
                         command.Parameters.AddWithValue("1", citizen_id);
@@ -765,17 +864,6 @@ namespace WEB_PERSONAL.Class {
                 }
 
 
-                /*using (OracleCommand command = new OracleCommand("SELECT NVL(SHORT_NAME, '-') FROM TB_PERSON, TB_COUNTRY WHERE CITIZEN_ID = :1 AND TB_PERSON.GRAD_COUNTRY_ID = TB_COUNTRY.COUNTRY_ID", con)) {
-                    command.Parameters.AddWithValue("1", citizen_id);
-                    using (OracleDataReader reader = command.ExecuteReader()) {
-                        if (reader.HasRows) {
-                            reader.Read();
-                            grad_country_name = reader.GetString(0);
-                        } else {
-                            grad_country_name = "-";
-                        }
-                    }
-                }*/
 
                 try {
                     using (OracleCommand command = new OracleCommand("SELECT NVL(BRANCH_NAME, '-') FROM TB_PERSON, TB_BRANCH WHERE CITIZEN_ID = :1 AND TB_PERSON.BRANCH_ID = TB_BRANCH.BRANCH_ID", con)) {
@@ -878,6 +966,9 @@ namespace WEB_PERSONAL.Class {
         public string NameAndLastname {
             get { return name + " " + lastname; }
         }
+        public string FullName {
+            get { return title_name + name + " " + lastname; }
+        }
         public int GenderID {
             get { return gender_id; }
         }
@@ -904,6 +995,9 @@ namespace WEB_PERSONAL.Class {
         }
         public string PositionNameDescription {
             get { return position_name_description; }
+        }
+        public string PositionRank {
+            get { return "rank"; }
         }
         public int MinistryID {
             get { return ministry_id; }
@@ -1112,6 +1206,7 @@ namespace WEB_PERSONAL.Class {
         public string StartPositionWorkName {
             get { return start_position_work_name; }
         }
+        */
     }
 
 }
