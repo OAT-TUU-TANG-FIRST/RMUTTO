@@ -18,7 +18,7 @@
                             <asp:Button ID="btnShowReport" Text="Show Report" runat="server" onclick="btnShowReport_Click"> </asp:Button>
                             <CR:CrystalReportViewer ID="CrystalReportViewer1" runat="server" AutoDataBind="True" 
                                 HasPrintButton="True" HasRefreshButton="True" ReuseParameterValuesOnRefresh="True"
-                                Height="50px" Width="350px" OnReportRefresh="CrystalReportViewer1_ReportRefresh" PrintMode="ActiveX" />
+                                Height="50px" Width="350px" OnReportRefresh="CrystalReportViewer1_ReportRefresh" PrintMode="ActiveX" ToolPanelView="None" />
                         </td>
                     </tr>
                 </table>

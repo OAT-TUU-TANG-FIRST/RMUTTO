@@ -204,7 +204,7 @@ namespace WEB_PERSONAL
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            /*
+            
             CrystalDecisions.CrystalReports.Engine.ReportDocument rpt = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
             rpt.Load(Server.MapPath("~/Reports/CrystalReport1.rpt"));
             ConnectionInfo crConnectionInfo = new ConnectionInfo();
@@ -223,10 +223,8 @@ namespace WEB_PERSONAL
                 table.ApplyLogOnInfo(crTableLogonInfo);
             }
             CrystalReportViewer1.LogOnInfo = crTableLogonInfos;
-
-            rpt.SetParameterValue("CITIZEN_ID", this.txt1.Text);
             CrystalReportViewer1.ReportSource = rpt;
-            */
+            
         }
 
         protected void btnShowReport_Click(object sender, EventArgs e)
@@ -260,7 +258,6 @@ namespace WEB_PERSONAL
             rpt.SetParameterValue("CITIZEN_ID", this.txt1.Text);
             //rpt.Database.Tables[0].SetDatasource(this.dataset);
             CrystalReportViewer1.ReportSource = rpt;
-            rpt.SetDatabaseLogon("RMUTTO", "Zxcvbnm", "ORCL_RMUTTO", "");
 
             GetReportDocument(); //Generate Report document
             ViewCystalReport(); //View report document in crystal report viewer
