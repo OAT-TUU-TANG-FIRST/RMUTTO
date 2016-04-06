@@ -16,13 +16,9 @@
                             CITIZEN_ID
                             <asp:TextBox ID="txt1" runat="server"> </asp:TextBox>
                             <asp:Button ID="btnShowReport" Text="Show Report" runat="server" onclick="btnShowReport_Click"> </asp:Button>
-                            <CR:CrystalReportViewer ID="CrystalReportViewer1" runat="server" AutoDataBind="True" Height="1202px" ReportSourceID="CrystalReportSource1" ToolPanelWidth="200px" Width="1104px" OnInit="CrystalReportViewer1_Init" ToolPanelView="None" />
-                       
-                            <CR:CrystalReportSource ID="CrystalReportSource1" runat="server">
-                                <Report FileName="CrystalReport1.rpt">
-                                </Report>
-                            </CR:CrystalReportSource>
-                       
+                            <CR:CrystalReportViewer ID="CrystalReportViewer1" runat="server" AutoDataBind="True" 
+                                HasPrintButton="True" HasRefreshButton="True" ReuseParameterValuesOnRefresh="True"
+                                Height="50px" Width="350px" OnReportRefresh="CrystalReportViewer1_ReportRefresh" PrintMode="ActiveX" />
                         </td>
                     </tr>
                 </table>
