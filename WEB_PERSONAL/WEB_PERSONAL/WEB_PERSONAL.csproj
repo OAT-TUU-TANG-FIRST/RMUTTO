@@ -1116,6 +1116,7 @@
     <Compile Include="District-ADMIN.aspx.designer.cs">
       <DependentUpon>District-ADMIN.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Entities\Report.cs" />
     <Compile Include="Entities\Tuu.cs" />
     <Compile Include="Entities\Ministry.cs" />
     <Compile Include="Entities\Personnel.cs" />
