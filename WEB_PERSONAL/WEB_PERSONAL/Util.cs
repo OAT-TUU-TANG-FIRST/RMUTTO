@@ -7,6 +7,8 @@ using System.Web.UI;
 using System.Globalization;
 using System.Data.OleDb;
 using WEB_PERSONAL.Class;
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
 
 namespace WEB_PERSONAL {
 
@@ -310,7 +312,7 @@ namespace WEB_PERSONAL {
                 case 11: ss[1] = "พ.ศ."; break;
                 case 12: ss[1] = "ธ.ค."; break;
             }
-            return ss[0] + " " + ss[1] + " " + ss[2].Substring(0, 4);
+            return int.Parse(ss[0]).ToString("00") + " " + ss[1] + " " + ss[2].Substring(0, 4);
         }
         public static void alertF(Page page, string message) {
             page.Page.ClientScript.RegisterStartupScript(page.GetType(), "ALERT", "alert('" + message + "')", true);
@@ -385,7 +387,25 @@ namespace WEB_PERSONAL {
             return dt;
 
         }
+        public static void NormalizeGridViewDate(GridView gw, int rowIndex) {
+            for (int i = 0; i < gw.Rows.Count; ++i) {
+                string s = gw.Rows[i].Cells[rowIndex].Text;
+                string[] ss = s.Split('/');
+                gw.Rows[i].Cells[rowIndex].Text = PureDatabaseToThaiDate(s);
+            }
+        }
+        public static void NormalizeGridViewDate(GridView gw, int[] rowIndex) {
+            for (int i = 0; i < gw.Rows.Count; ++i) {
+                for(int j = 0; j < rowIndex.Length; ++j) {
+                    string s = gw.Rows[i].Cells[rowIndex[j]].Text;
+                    string[] ss = s.Split('/');
+                    gw.Rows[i].Cells[rowIndex[j]].Text = PureDatabaseToThaiDate(s);
+                }
+                
+            }
+        }
     }
+
 
 
 }

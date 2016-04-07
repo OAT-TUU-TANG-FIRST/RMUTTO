@@ -3,5 +3,11 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div>
+        <asp:MultiView ID="MultiView1" runat="server">
+            <asp:View ID="View1" runat="server">
 
+            </asp:View>
+        </asp:MultiView>
+    </div>
 </asp:Content>

@@ -11,6 +11,10 @@ using System.Data.OleDb;
 namespace WEB_PERSONAL {
     public partial class ViewLeaveForm : System.Web.UI.Page {
         protected void Page_Load(object sender, EventArgs e) {
+            if(Request.QueryString["Form"] == null ||
+                Request.QueryString["LeaveID"] == null) {
+                return;
+            }
             string form = Request.QueryString["Form"].ToString();
             string leaveID = Request.QueryString["LeaveID"].ToString();
             if(form == "1") {
@@ -27,6 +31,7 @@ namespace WEB_PERSONAL {
                         }
                     }
                 } else {
+
                     CreateForm1Display(i1, leaveID);
                 }
                 
@@ -36,55 +41,40 @@ namespace WEB_PERSONAL {
             
         }
 
-        public static void CreateForm1Display(HtmlGenericControl hgc, string leaveID) {
+        public void CreateForm1Display(HtmlGenericControl hgc, string leaveID) {
 
             Form1Package f1 = DatabaseManager.GetForm1Package(leaveID);
-            Table table = new Table();
-            table.Style.Add("border", "1px solid #f0f0f0");
-            table.Style.Add("margin-bottom", "20px");
-
             if (f1 != null) {
-                table.Rows.Add(Create2Row("รหัสการลา", f1.LeaveID));
-                table.Rows.Add(Create2Row("วันที่ลงข้อมูล", f1.RequestDate));
-                table.Rows.Add(CreateEmptyRow());
-                table.Rows.Add(Create2Row("ชื่อผู้ลา", f1.PersonPrefix + f1.PersonFirstName + " " + f1.PersonLastName));
-                table.Rows.Add(Create2Row("ตำแหน่ง", f1.PersonPosition));
-                table.Rows.Add(Create2Row("ระดับ", f1.PersonRank));
-                table.Rows.Add(Create2Row("สังกัด", f1.PersonDepartment));
-                table.Rows.Add(CreateEmptyRow());
-                table.Rows.Add(Create2Row("ประเภทการลา", f1.LeaveTypeName));
-                table.Rows.Add(Create2Row("จากวันที่", f1.FromDate));
-                table.Rows.Add(Create2Row("ถึงวันที่", f1.ToDate));
-                table.Rows.Add(Create2Row("รวม", f1.TotalDay + " วัน"));
-                table.Rows.Add(Create2Row("เหตุผล", f1.Reason));
-                table.Rows.Add(Create2Row("ติดต่อได้ที่", f1.Contact));
-                table.Rows.Add(Create2Row("เบอร์โทรศัพท์", f1.Phone));
-                table.Rows.Add(CreateEmptyRow());
-                table.Rows.Add(Create2Row("วันที่ลาล่าสุด", f1.LastFromDate));
-                table.Rows.Add(Create2Row("ถึงวันที่ล่าสุด", f1.LastToDate));
-                table.Rows.Add(Create2Row("รวม", f1.LastTotalDay + " วัน"));
-                table.Rows.Add(CreateEmptyRow());
-                table.Rows.Add(Create2Row("ชื่อผู้บังคับบัญชา", f1.CommanderLowPrefix + f1.CommanderLowFirstName + " " + f1.CommanderLowLastName));
-                table.Rows.Add(Create2Row("ตำแหน่ง", f1.CommanderLowPosition));
-                table.Rows.Add(Create2Row("ความเห็น", f1.CommanderLowComment));
-                table.Rows.Add(Create2Row("วันที่", f1.CommanderLowDate));
-                table.Rows.Add(CreateEmptyRow());
-                table.Rows.Add(Create2Row("ชื่อผู้อนุมัติ", f1.CommanderHighPrefix + f1.CommanderHighFirstName + " " + f1.CommanderHighLastName));
-                table.Rows.Add(Create2Row("ตำแหน่ง", f1.CommanderHighPosition));
-                table.Rows.Add(Create2Row("ความเห็น", f1.CommanderHighComment));
-                table.Rows.Add(Create2Row("วันที่", f1.CommanderHighDate));
-                table.Rows.Add(Create2Row("การอนุมัติ", f1.CommanderHighAllowName));
-                table.Rows.Add(CreateEmptyRow());
-                table.Rows.Add(Create2Row("ชื่อผู้ตรวจสอบ", f1.StaffPrefix + f1.StaffFirstName + " " + f1.StaffLastName));
-                table.Rows.Add(Create2Row("ตำแหน่ง", f1.StaffPosition));
-                table.Rows.Add(Create2Row("วันที่", f1.StaffDate));
-            } else {
-                table.Rows.Add(Create2Row("", "ไม่มีข้อมูล"));
+                lbLeaveID.Text = f1.LeaveID;
+                lbReqDate.Text = f1.RequestDate;
+                lbName.Text = f1.PersonPrefix + f1.PersonFirstName + " " + f1.PersonLastName;
+                lbPosition.Text = f1.PersonPosition;
+                lbRank.Text = f1.PersonRank;
+                lbDepartment.Text = f1.PersonDepartment;
+                lbLeaveType.Text = f1.LeaveTypeName;
+                lbFromDate.Text = f1.FromDate;
+                lbToDate.Text = f1.ToDate;
+                lbTotalDay.Text = f1.TotalDay + " วัน";
+                lbReason.Text = f1.Reason;
+                lbContact.Text = f1.Contact;
+                lbPhone.Text = f1.Phone;
+                lbLastFromDate.Text = f1.LastFromDate;
+                lbLastToDate.Text = f1.LastToDate;
+                lbLastTotalDay.Text = f1.LastTotalDay + " วัน";
+                lbCmdLowName.Text = f1.CommanderLowPrefix + f1.CommanderLowFirstName + " " + f1.CommanderLowLastName;
+                lbCmdLowPosition.Text = f1.CommanderLowPosition;
+                lbCmdLowComment.Text = f1.CommanderLowComment;
+                lbCmdLowDate.Text = f1.CommanderLowDate;
+                lbCmdHighName.Text = f1.CommanderHighPrefix + f1.CommanderHighFirstName + " " + f1.CommanderHighLastName;
+                lbCmdHighPosition.Text = f1.CommanderHighPosition;
+                lbCmdHighComment.Text = f1.CommanderHighComment;
+                lbCmdHighDate.Text = f1.CommanderHighDate;
+                lbCmdHighAllow.Text = f1.CommanderHighAllowName;
+                lbStaffName.Text = f1.StaffPrefix + f1.StaffFirstName + " " + f1.StaffLastName;
+                lbStaffPosition.Text = f1.StaffPosition;
+                lbStaffDate.Text = f1.StaffDate;
             }
 
-
-
-            hgc.Controls.Add(table);
         }
 
         private static TableRow Create2Row(string v1, string v2) {

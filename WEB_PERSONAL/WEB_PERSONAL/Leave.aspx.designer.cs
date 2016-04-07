@@ -31,13 +31,22 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl notification;
         
         /// <summary>
-        /// sectionF1S1 control.
+        /// MultiView1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl sectionF1S1;
+        protected global::System.Web.UI.WebControls.MultiView MultiView1;
+        
+        /// <summary>
+        /// View1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View View1;
         
         /// <summary>
         /// tbF1S1FromDate control.
@@ -94,13 +103,13 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.LinkButton lbuF1S1Check;
         
         /// <summary>
-        /// sectionF1S2 control.
+        /// View2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl sectionF1S2;
+        protected global::System.Web.UI.WebControls.View View2;
         
         /// <summary>
         /// lbF1S2LeaveTypeName control.
@@ -220,13 +229,13 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.LinkButton lbuF1S2Add;
         
         /// <summary>
-        /// sectionF2S1 control.
+        /// View3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl sectionF2S1;
+        protected global::System.Web.UI.WebControls.View View3;
         
         /// <summary>
         /// tbF2S1WifeName control.
@@ -301,13 +310,13 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.LinkButton lbuF2S1Check;
         
         /// <summary>
-        /// sectionF2S2 control.
+        /// View4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl sectionF2S2;
+        protected global::System.Web.UI.WebControls.View View4;
         
         /// <summary>
         /// lbF2S2LeaveTypeName control.
@@ -445,13 +454,13 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.LinkButton lbuF2S2Add;
         
         /// <summary>
-        /// sectionF3S1 control.
+        /// View5 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl sectionF3S1;
+        protected global::System.Web.UI.WebControls.View View5;
         
         /// <summary>
         /// tbF3S1FromDate control.
@@ -499,13 +508,13 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.LinkButton lbuF3S1Check;
         
         /// <summary>
-        /// sectionF3S2 control.
+        /// View6 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl sectionF3S2;
+        protected global::System.Web.UI.WebControls.View View6;
         
         /// <summary>
         /// lbF3S2LeaveTypeName control.
@@ -643,13 +652,13 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.LinkButton lbuF3S2Add;
         
         /// <summary>
-        /// sectionF4S1 control.
+        /// View7 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl sectionF4S1;
+        protected global::System.Web.UI.WebControls.View View7;
         
         /// <summary>
         /// rbOrdainedTrue control.
@@ -724,13 +733,13 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.LinkButton lbuF4S1Check;
         
         /// <summary>
-        /// sectionF4S2 control.
+        /// View8 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl sectionF4S2;
+        protected global::System.Web.UI.WebControls.View View8;
         
         /// <summary>
         /// lbF4S2LeaveTypeName control.
@@ -877,13 +886,13 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.LinkButton lbuF4S2Confirm;
         
         /// <summary>
-        /// sectionF5S1 control.
+        /// View9 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl sectionF5S1;
+        protected global::System.Web.UI.WebControls.View View9;
         
         /// <summary>
         /// rbHujedTrue control.
@@ -931,13 +940,13 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.LinkButton lbuF5S1Check;
         
         /// <summary>
-        /// sectionF5S2 control.
+        /// View10 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl sectionF5S2;
+        protected global::System.Web.UI.WebControls.View View10;
         
         /// <summary>
         /// lbF5S2LeaveTypeName control.
@@ -1048,13 +1057,13 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.LinkButton LinkButton3;
         
         /// <summary>
-        /// sectionF6S1 control.
+        /// View11 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl sectionF6S1;
+        protected global::System.Web.UI.WebControls.View View11;
         
         /// <summary>
         /// tbF6S1GotFrom control.
@@ -1129,13 +1138,13 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.LinkButton lbuF6S1Check;
         
         /// <summary>
-        /// sectionF6S2 control.
+        /// View12 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl sectionF6S2;
+        protected global::System.Web.UI.WebControls.View View12;
         
         /// <summary>
         /// lbF6S2LeaveTypeName control.
@@ -1273,13 +1282,13 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.LinkButton LinkButton4;
         
         /// <summary>
-        /// sectionF7S1 control.
+        /// View13 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl sectionF7S1;
+        protected global::System.Web.UI.WebControls.View View13;
         
         /// <summary>
         /// rbF7S1T1 control.
@@ -1453,13 +1462,13 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.LinkButton lbuF7S1Check;
         
         /// <summary>
-        /// sectionF7S2 control.
+        /// View14 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl sectionF7S2;
+        protected global::System.Web.UI.WebControls.View View14;
         
         /// <summary>
         /// Label1 control.
@@ -1597,13 +1606,13 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.LinkButton LinkButton5;
         
         /// <summary>
-        /// sectionF8S1 control.
+        /// View15 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl sectionF8S1;
+        protected global::System.Web.UI.WebControls.View View15;
         
         /// <summary>
         /// RadioButton1 control.
@@ -1876,13 +1885,13 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.LinkButton lbuF8S1Check;
         
         /// <summary>
-        /// sectionF8S2 control.
+        /// View16 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl sectionF8S2;
+        protected global::System.Web.UI.WebControls.View View16;
         
         /// <summary>
         /// Label14 control.
@@ -2020,13 +2029,13 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.LinkButton LinkButton6;
         
         /// <summary>
-        /// sectionF9S1 control.
+        /// View17 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl sectionF9S1;
+        protected global::System.Web.UI.WebControls.View View17;
         
         /// <summary>
         /// TextBox38 control.
@@ -2128,13 +2137,13 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.LinkButton lbuF9S1Check;
         
         /// <summary>
-        /// sectionF9S2 control.
+        /// View18 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl sectionF9S2;
+        protected global::System.Web.UI.WebControls.View View18;
         
         /// <summary>
         /// Label27 control.
@@ -2245,13 +2254,13 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.LinkButton LinkButton9;
         
         /// <summary>
-        /// sectionF10S1 control.
+        /// View19 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl sectionF10S1;
+        protected global::System.Web.UI.WebControls.View View19;
         
         /// <summary>
         /// TextBox46 control.
@@ -2353,13 +2362,13 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.LinkButton lbuF10S1Check;
         
         /// <summary>
-        /// sectionF10S2 control.
+        /// View20 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl sectionF10S2;
+        protected global::System.Web.UI.WebControls.View View20;
         
         /// <summary>
         /// Label37 control.
@@ -2470,13 +2479,13 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.LinkButton LinkButton7;
         
         /// <summary>
-        /// sectionComplete control.
+        /// View21 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl sectionComplete;
+        protected global::System.Web.UI.WebControls.View View21;
         
         /// <summary>
         /// lbuBackMain control.
@@ -2486,15 +2495,6 @@ namespace WEB_PERSONAL {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lbuBackMain;
-        
-        /// <summary>
-        /// sectionUnder control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl sectionUnder;
         
         /// <summary>
         /// hfSql control.

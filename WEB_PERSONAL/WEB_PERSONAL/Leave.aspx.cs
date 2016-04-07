@@ -18,7 +18,6 @@ namespace WEB_PERSONAL {
         protected void Page_Load(object sender, EventArgs e) {
             if (!IsPostBack) {
                 DatabaseManager.BindDropDown(ddlLeaveType, "SELECT * FROM LEV_TYPE", "LEAVE_TYPE_NAME", "LEAVE_TYPE_ID", "-- กรุณาเลือกประเภทการลา --");
-                HideAll();
             }
         }
 
@@ -53,7 +52,7 @@ namespace WEB_PERSONAL {
                     AddNotification("<div class='hm_tab'></div>- กรุณากรอก <strong>เบอร์โทรศัพท์</strong><br>");
                 }
             } else {
-                HideAllAndShow(sectionF1S2);
+                MultiView1.ActiveViewIndex = 1;
                 ChangeNotification("info", "กรุณายืนยันข้อมูลอีกครั้ง");
 
                 PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
@@ -429,39 +428,39 @@ namespace WEB_PERSONAL {
         }
 
         protected void lbuF1S2Back_Click(object sender, EventArgs e) {
-            HideAllAndShow(sectionF1S1);
+            MultiView1.ActiveViewIndex = 1;
             ChangeNotification("info", "กรุณากรอกข้อมูล");
         }
         protected void lbuF2S2Back_Click(object sender, EventArgs e) {
-            HideAllAndShow(sectionF2S1);
+            MultiView1.ActiveViewIndex = 3;
             ChangeNotification("info", "กรุณากรอกข้อมูล");
         }
         protected void lbuF3S2Back_Click(object sender, EventArgs e) {
-            HideAllAndShow(sectionF3S1);
+            MultiView1.ActiveViewIndex = 5;
             ChangeNotification("info", "กรุณากรอกข้อมูล");
         }
         protected void lbuF4S2Back_Click(object sender, EventArgs e) {
-            HideAllAndShow(sectionF4S1);
+            MultiView1.ActiveViewIndex = 7;
             ChangeNotification("info", "กรุณากรอกข้อมูล");
         }
         protected void lbuF5S2Back_Click(object sender, EventArgs e) {
-            HideAllAndShow(sectionF5S1);
+            MultiView1.ActiveViewIndex = 9;
             ChangeNotification("info", "กรุณากรอกข้อมูล");
         }
         protected void lbuF6S2Back_Click(object sender, EventArgs e) {
-            HideAllAndShow(sectionF6S1);
+            MultiView1.ActiveViewIndex = 11;
             ChangeNotification("info", "กรุณากรอกข้อมูล");
         }
         protected void lbuF7S2Back_Click(object sender, EventArgs e) {
-            HideAllAndShow(sectionF7S1);
+            MultiView1.ActiveViewIndex = 13;
             ChangeNotification("info", "กรุณากรอกข้อมูล");
         }
         protected void lbuF8S2Back_Click(object sender, EventArgs e) {
-            HideAllAndShow(sectionF8S1);
+            MultiView1.ActiveViewIndex = 15;
             ChangeNotification("info", "กรุณากรอกข้อมูล");
         }
         protected void lbuF9S2Back_Click(object sender, EventArgs e) {
-            HideAllAndShow(sectionF9S1);
+            MultiView1.ActiveViewIndex = 17;
             ChangeNotification("info", "กรุณากรอกข้อมูล");
         }
         protected void lbuF10S2Back_Click(object sender, EventArgs e) {
@@ -481,95 +480,65 @@ namespace WEB_PERSONAL {
             DatabaseManager.ExecuteNonQuery(sql2);
 
             ChangeNotification("success", "<strong>ทำการลาสำเร็จ!</strong> คุณสามารถตรวจสอบสถานะการลาได้ที่เมนู การลา -> สถานะ และ ประวัติการลา");
-            HideAllAndShow(sectionComplete);
+            MultiView1.ActiveViewIndex = 20;
 
         }
         protected void lbuBackMain_Click(object sender, EventArgs e) {
             Response.Redirect("Default.aspx");
         }
 
-        private void HideAll() {
-            sectionF1S1.Style["display"] = "none";
-            sectionF1S2.Style["display"] = "none";
-            sectionF2S1.Style["display"] = "none";
-            sectionF2S2.Style["display"] = "none";
-            sectionF3S1.Style["display"] = "none";
-            sectionF3S2.Style["display"] = "none";
-            sectionF4S1.Style["display"] = "none";
-            sectionF4S2.Style["display"] = "none";
-            sectionF5S1.Style["display"] = "none";
-            sectionF5S2.Style["display"] = "none";
-            sectionF6S1.Style["display"] = "none";
-            sectionF6S2.Style["display"] = "none";
-            sectionF7S1.Style["display"] = "none";
-            sectionF7S2.Style["display"] = "none";
-            sectionF8S1.Style["display"] = "none";
-            sectionF8S2.Style["display"] = "none";
-            sectionF9S1.Style["display"] = "none";
-            sectionF9S2.Style["display"] = "none";
-            sectionF10S1.Style["display"] = "none";
-            sectionF10S2.Style["display"] = "none";
-            sectionComplete.Style["display"] = "none";
-            sectionUnder.Style["display"] = "none";
-        }
-        private void HideAllAndShow(HtmlGenericControl target) {
-            HideAll();
-            target.Style["display"] = "block";
-            sectionUnder.Style["display"] = "block";
-        }
-
         protected void ddlLeaveType_SelectedIndexChanged(object sender, EventArgs e) {
             switch (ddlLeaveType.SelectedValue) {
                 case "0":
-                    HideAll();
+                    MultiView1.ActiveViewIndex = -1;
                     ClearNotification();
                     break;
                 case "1":
-                    HideAllAndShow(sectionF1S1);
+                    MultiView1.ActiveViewIndex = 0;
                     ChangeNotification("info", "กรุณากรอกข้อมูล");
                     break;
                 case "2":
-                    HideAllAndShow(sectionF1S1);
+                    MultiView1.ActiveViewIndex = 0;
                     ChangeNotification("info", "กรุณากรอกข้อมูล");
                     break;
                 case "3":
-                    HideAllAndShow(sectionF1S1);
+                    MultiView1.ActiveViewIndex = 0;
                     ChangeNotification("info", "กรุณากรอกข้อมูล");
                     break;
                 case "4":
-                    HideAllAndShow(sectionF3S1);
+                    MultiView1.ActiveViewIndex = 4;
                     ChangeNotification("info", "กรุณากรอกข้อมูล");
                     break;
                 case "5":
-                    HideAllAndShow(sectionF2S1);
+                    MultiView1.ActiveViewIndex = 2;
                     ChangeNotification("info", "กรุณากรอกข้อมูล");
                     break;
                 case "6":
-                    HideAllAndShow(sectionF4S1);
+                    MultiView1.ActiveViewIndex = 6;
                     ChangeNotification("info", "กรุณากรอกข้อมูล");
                     break;
                 case "7":
-                    HideAllAndShow(sectionF5S1);
+                    MultiView1.ActiveViewIndex = 8;
                     ChangeNotification("info", "กรุณากรอกข้อมูล");
                     break;
                 case "8":
-                    HideAllAndShow(sectionF6S1);
+                    MultiView1.ActiveViewIndex = 10;
                     ChangeNotification("info", "กรุณากรอกข้อมูล");
                     break;
                 case "9":
-                    HideAllAndShow(sectionF7S1);
+                    MultiView1.ActiveViewIndex = 12;
                     ChangeNotification("info", "กรุณากรอกข้อมูล");
                     break;
                 case "10":
-                    HideAllAndShow(sectionF8S1);
+                    MultiView1.ActiveViewIndex = 14;
                     ChangeNotification("info", "กรุณากรอกข้อมูล");
                     break;
                 case "11":
-                    HideAllAndShow(sectionF9S1);
+                    MultiView1.ActiveViewIndex = 16;
                     ChangeNotification("info", "กรุณากรอกข้อมูล");
                     break;
                 case "12":
-                    HideAllAndShow(sectionF10S1);
+                    MultiView1.ActiveViewIndex = 18;
                     ChangeNotification("info", "กรุณากรอกข้อมูล");
                     break;
             }
