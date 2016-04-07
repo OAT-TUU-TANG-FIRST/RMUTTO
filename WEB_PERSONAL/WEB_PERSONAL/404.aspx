@@ -70,7 +70,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:Panel ID="Panel8" runat="server" Height="400px">
-            <div id="notfound"></div>
+            <div id="notfound">ERROR 404 PAGE NOT FOUND</div>
     <script src='http://cdnjs.cloudflare.com/ajax/libs/svg.js/1.0.0-rc.8/svg.min.js'></script>
     <script src='http://strangeplanet.fr/files/misc/perlin-noise-simplex.js'></script>
     <script src="js/index.js"></script>

@@ -131,7 +131,7 @@
                             <td class="auto-style27">
                                 <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource1" DataTextField="STUDY_DEGREE_NAME" DataValueField="STUDY_DEGREE_ID" CssClass="master_clean_dropdown" OnDataBound="DropDownList1_DataBound">
                                 </asp:DropDownList>
-                                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:RMUTTOORCL %>" ProviderName="<%$ ConnectionStrings:RMUTTOORCL.ProviderName %>" SelectCommand="SELECT * FROM &quot;TB_STUDY_DEGREE&quot;"></asp:SqlDataSource>
+                                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ORCL_RMUTTO %>" ProviderName="<%$ ConnectionStrings:ORCL_RMUTTO.ProviderName %>" SelectCommand="SELECT * FROM &quot;TB_STUDY_DEGREE&quot;"></asp:SqlDataSource>
                             </td>
                         </tr>
                         <tr>
@@ -157,7 +157,7 @@
                             <td class="auto-style27">
                                 <asp:DropDownList ID="DropDownList3" runat="server" DataSourceID="SqlDataSource3" DataTextField="STUDY_COURSE_NAME" DataValueField="STUDY_COURSE_ID" CssClass="master_clean_dropdown" OnDataBound="DropDownList3_DataBound">
                                 </asp:DropDownList>
-                                <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:RMUTTOORCL %>" ProviderName="<%$ ConnectionStrings:RMUTTOORCL.ProviderName %>" SelectCommand="SELECT * FROM &quot;TB_STUDY_COURSE&quot;"></asp:SqlDataSource>
+                                <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:ORCL_RMUTTO %>" ProviderName="<%$ ConnectionStrings:ORCL_RMUTTO.ProviderName %>" SelectCommand="SELECT * FROM &quot;TB_STUDY_COURSE&quot;"></asp:SqlDataSource>
                             </td>
                         </tr>
                         <tr>
@@ -268,7 +268,7 @@
                     </asp:GridView>
 
 
-                    <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:RMUTTOORCL %>" ProviderName="<%$ ConnectionStrings:RMUTTOORCL.ProviderName %>" SelectCommand="SELECT TB_STUDY.STUDY_ID, TO_CHAR(TB_STUDY.STUDY_PAPER_DATE, 'DD MON YYYY', 'NLS_DATE_LANGUAGE=THAI') as &quot;STUDY_PAPER_DATE&quot;, TB_STUDY.CITIZEN_ID, TB_STUDY.STUDY_YEAR, TB_STUDY_DEGREE.STUDY_DEGREE_SHORT_NAME, TB_STUDY.STUDY_BRANCH_NAME, TB_STUDY.STUDY_LOCATION, TB_STUDY_COURSE.STUDY_COURSE_NAME, TB_STUDY.STUDY_TIME || ' (' || TB_STUDY.STUDY_TIME_YEAR || ')' as &quot;STUDY_TIME&quot;, TO_CHAR(TB_STUDY.STUDY_FROM_DATE, 'DD MON RRRR', 'NLS_DATE_LANGUAGE = THAI') || ' - ' || TO_CHAR(TB_STUDY.STUDY_TO_DATE, 'DD MON RRRR', 'NLS_DATE_LANGUAGE = THAI') as &quot;FROM_TO_DATE&quot;, TB_STUDY.STUDY_TIME_COURSE, TB_STUDY.&quot;COMMENT&quot; FROM TB_STUDY, TB_STUDY_DEGREE, TB_STUDY_COURSE WHERE TB_STUDY.STUDY_COURSE_ID = TB_STUDY_COURSE.STUDY_COURSE_ID AND TB_STUDY.STUDY_DEGREE_ID = TB_STUDY_DEGREE.STUDY_DEGREE_ID ORDER BY TB_STUDY.STUDY_ID DESC" DeleteCommand="DELETE FROM TB_STUDY WHERE STUDY_ID = :STUDY_ID">
+                    <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:ORCL_RMUTTO %>" ProviderName="<%$ ConnectionStrings:ORCL_RMUTTO.ProviderName %>" SelectCommand="SELECT TB_STUDY.STUDY_ID, TO_CHAR(TB_STUDY.STUDY_PAPER_DATE, 'DD MON YYYY', 'NLS_DATE_LANGUAGE=THAI') as &quot;STUDY_PAPER_DATE&quot;, TB_STUDY.CITIZEN_ID, TB_STUDY.STUDY_YEAR, TB_STUDY_DEGREE.STUDY_DEGREE_SHORT_NAME, TB_STUDY.STUDY_BRANCH_NAME, TB_STUDY.STUDY_LOCATION, TB_STUDY_COURSE.STUDY_COURSE_NAME, TB_STUDY.STUDY_TIME || ' (' || TB_STUDY.STUDY_TIME_YEAR || ')' as &quot;STUDY_TIME&quot;, TO_CHAR(TB_STUDY.STUDY_FROM_DATE, 'DD MON RRRR', 'NLS_DATE_LANGUAGE = THAI') || ' - ' || TO_CHAR(TB_STUDY.STUDY_TO_DATE, 'DD MON RRRR', 'NLS_DATE_LANGUAGE = THAI') as &quot;FROM_TO_DATE&quot;, TB_STUDY.STUDY_TIME_COURSE, TB_STUDY.&quot;COMMENT&quot; FROM TB_STUDY, TB_STUDY_DEGREE, TB_STUDY_COURSE WHERE TB_STUDY.STUDY_COURSE_ID = TB_STUDY_COURSE.STUDY_COURSE_ID AND TB_STUDY.STUDY_DEGREE_ID = TB_STUDY_DEGREE.STUDY_DEGREE_ID ORDER BY TB_STUDY.STUDY_ID DESC" DeleteCommand="DELETE FROM TB_STUDY WHERE STUDY_ID = :STUDY_ID">
                         <DeleteParameters>
                             <asp:Parameter Name="STUDY_ID" />
                         </DeleteParameters>

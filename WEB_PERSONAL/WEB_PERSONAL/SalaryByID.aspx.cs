@@ -49,7 +49,7 @@ namespace WEB_PERSONAL
 
             if (TextBox1.Text.Length == 13 && reg.IsMatch(TextBox1.Text))
             {
-                Person person = new Person(Session["login_id"].ToString());
+               /* Person person = new Person(Session["login_id"].ToString());
                 BaseSalary salary = new BaseSalary(person.PositionID);
                 Label11.Text = person.Name;
                 Label3.Text = person.Name;
@@ -83,7 +83,7 @@ namespace WEB_PERSONAL
                         Edit_page.Attributes["href"] = "SalarybyID-Edit-Permanent.aspx";
 
                     }
-                }
+                }*/
             }
             else
             {
@@ -97,7 +97,7 @@ namespace WEB_PERSONAL
         {
             if (TextBox2.Text != "" && TextBox2.Text != null && TextBox3.Text != "" && TextBox3.Text != null && TextBox6.Text != "" && TextBox6.Text != null && TextBox7.Text != "" && TextBox7.Text != null)
             {
-                Person person = new Person(TextBox1.Text);
+                /*Person person = new Person(TextBox1.Text);
                 BaseSalary basesalasy = new BaseSalary(person.PositionID);
                 string position = person.PositionName;
                 double maxsal = basesalasy.MaxSalary;
@@ -151,7 +151,7 @@ namespace WEB_PERSONAL
                                     Label24.Text = "37080";
                             }
                             /* บริหาร */
-                            if (position == "ผู้อำนวยการสำนักงานอธิการบดีหรือเทียบเท่า")
+                            /*if (position == "ผู้อำนวยการสำนักงานอธิการบดีหรือเทียบเท่า")
                             {
                                 if (salary <= maxlowsal)
                                 {
@@ -168,9 +168,9 @@ namespace WEB_PERSONAL
                                 }
                                 else
                                     Label24.Text = "60990";
-                            }
+                            }*/
                             /* วิชาชีพเฉพาะหรือเชียวชาญเฉพาะ */
-                            if (position == "เชี่ยวชาญพิเศษ")
+                            /*if (position == "เชี่ยวชาญพิเศษ")
                             {
                                 if (salary <= maxlowsal)
                                 {
@@ -214,9 +214,9 @@ namespace WEB_PERSONAL
                                 }
                                 else
                                     Label24.Text = "23930";
-                            }
+                            }*/
                             /* ทั่วไป */
-                            if (position == "ชำนาญงานพิเศษ")
+                            /*if (position == "ชำนาญงานพิเศษ")
                             {
                                 if (salary <= maxlowsal)
                                 {
@@ -242,7 +242,7 @@ namespace WEB_PERSONAL
                                 }
                                 else
                                     Label24.Text = "18110";
-                            }
+                            }*/
                     /* จำนวนเงินที่คำนวณได้แบบไม่ปัดเศษ */
                     double basesalcal = Convert.ToDouble(Label24.Text);
                     double rate = Convert.ToDouble(TextBox3.Text);
@@ -397,7 +397,7 @@ namespace WEB_PERSONAL
             }
             if (Session["STAFFTYPE_STATUS"].ToString() == "ลูกจ้างประจำ")
             {
-                Person person = new Person(Session["login_id"].ToString());
+                /*Person person = new Person(Session["login_id"].ToString());
                 using (OracleConnection conn = new OracleConnection("DATA SOURCE=ORCL_RMUTTO;USER ID=RMUTTO;PASSWORD=Zxcvbnm;"))
                 {
                     conn.Open();
@@ -438,7 +438,7 @@ namespace WEB_PERSONAL
                     }
 
 
-                }
+                }*/
             }
 
 

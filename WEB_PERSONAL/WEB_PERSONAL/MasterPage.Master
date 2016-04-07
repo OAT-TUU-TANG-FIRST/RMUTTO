@@ -57,295 +57,112 @@
         };
         $.datepicker.setDefaults($.datepicker.regional['th']);
     </script>
-    <script>
-        (function ($) {
-            $(window).load(function () {
-                $(".master_header_under_in2").mCustomScrollbar({
-                    axis: "y",
-                    theme: "dark-thin",
-                    //theme: "minimal-dark",
-                    autoExpandScrollbar: true,
-                    //scrollbarPosition: "outside",
-                    advanced: { autoExpandHorizontalScroll: true }
-                });
-                /*$(".master_header_under_in2").mCustomScrollbar({
-                    axis: "y",
-                    scrollButtons: { enable: true },
-                    theme: "light-thick",
-                    scrollbarPosition: "outside"
-                });*/
-            });
-        })(jQuery);
-    </script>
-    <script>
-        $(document).ready(function () {
-            $("#i2").hide();
-            $(".all_div").css('opacity', '1');
-            $(window).resize(checkWidth);
-
-        });
-        function mover(target) {
-            //var v = document.getElementById('master_header_under_id');
-            //v.src = target;
-
-            //$("#i2").css('background-image', 'url(../' + target + ')');
-        }
-        function toggleMenu() {
-            checkWidth();
-            //$("#i2").slideToggle(250);
-
-            $("#i2").fadeToggle(250);
-            //$("#pu").slideUp(500);
-            
-            //$("#pu").fadeOut(1);
-        }
-        function goOnTop() {
-            $('html, body').animate({ scrollTop: 0 }, 250);
-        }
-        function checkWidth() {
-            if ($("body").width() < 800) {
-                $("#i2").css('width', '240px');
-            } else {
-                $("#i2").css('width', 'unset');
-            }
-        }
-    </script>
-
 
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
 
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
-    <style type="text/css">
-        .mt2 {
-            width: 643px;
-        }
 
-        .mt1 {
-            width: 50px;
-        }
-
-        .mt3 {
-            width: 446px;
-        }
-    </style>
 </head>
 <body>
 
-    <form id="form1" runat="server" onload="form1_Load">
-        <div class="all_div">
+    <form id="form1" runat="server">
 
 
-            <div class="master_login">
-                <div class="master_login_pre_in">
-                    <div class="master_login_in">
-                        <table style="width: 100%;">
-                            <tr>
-                                <td>
-                                    <div class="master_login_left">
-                                        <span class="master_menu_button" onclick="toggleMenu();">&nbsp</span>
-                                        <asp:LinkButton ID="LinkButton3" runat="server" OnClick="LinkButton3_Click1" CssClass="master_home_button">&nbsp</asp:LinkButton>
-                                        <asp:LinkButton ID="LinkButton2" runat="server" OnClick="LinkButton2_Click1" CssClass="master_reload_button">&nbsp</asp:LinkButton>
-                                        <span class="master_go_on_top_button" onclick="goOnTop();">&nbsp</span>
-                                    </div>
-                                </td>
-                                <td style="text-align: right;">
-                                    <ul class="master_login_right">
-                                        <li>
-                                            <asp:Label ID="Label9" runat="server" Text="ยินดีต้อนรับ" CssClass="master_login_name"></asp:Label>
-                                        </li>
-                                        <li>
-                                            <asp:LinkButton ID="LinkButton1" runat="server" CssClass="master_login_name_link" OnClick="LinkButton1_Click1">LinkButton</asp:LinkButton>
-
-                                        </li>
-
-                                        <li>
-                                            <span style="display: inline-block; width: 5px"></span>
-                                        </li>
-
-                                        <li>
-                                            <asp:LinkButton ID="LinkButton10" runat="server" OnClick="LinkButton10_Click" CssClass="master_logout">&nbsp</asp:LinkButton>
-                                        </li>
-                                    </ul>
-                                </td>
-                            </tr>
-
-                        </table>
-
-
-                    </div>
-                </div>
-
-                <div class="master_header_under" id="i2">
-                    <div class="master_header_under_in">
-                        <div class="master_header_under_in2">
-                            <div class="master_header_under_in2_head">
-                                <table>
-                                    <tr>
-                                        <td>
-                                            <img src="Image/RMUTTO.png" style="height: 100px; background-color: transparent;" />
-                                        </td>
-                                        <td>
-                                            <asp:Label ID="Label4" runat="server" Text="ระบบบุคลากร" CssClass="master_header_under_label"></asp:Label>
-                                        </td>
-                                    </tr>
-                                </table>
-
-                            </div>
-
-                            <div class="master_header_under_div_left">
-                                <div class="master_header_under_main">
-                                    <span class="master_header_under_header">เมนูหลัก</span>
-                                    <a href="Default.aspx">หน้าหลัก</a>
-                                    <a href="About.aspx">เกี่ยวกับ</a>
-                                </div>
-                                <div class="master_header_under_person">
-                                    <span class="master_header_under_header">บุคลากร</span>
-                                    <a href="Person-GENERAL.aspx">เพิ่มบุคลากร</a>
-                                    <a href="Person-ADMIN.aspx">แก้ไขบุคลากร</a>
-                                    <a href="ListPerson-ADMIN.aspx">รายชื่อบุคลากร</a>
-                                    <a href="SEMINAR-GENERAL.aspx">การเพิ่มพัฒนาบุคลากร</a>
-                                    <a href="SEMINAR-ADMIN.aspx">การแก้ไขพัฒนาบุคลากร</a>
-                                    <a href="SearchForLinkPrint.aspx">ออกรายงานบุคลากร</a>
-                                    <a href="SearchForLinkPrint.aspx">ออกรายงานพัฒนาบุคลากร</a>
-                                </div>
-                                <div class="master_header_under_salary">
-                                    <span class="master_header_under_header">การขึ้นเงินเดือน</span>
-                                    <a href="Salary.aspx">DPIS</a>
-                                    <a href="SalarybyID.aspx">การขึ้นเงินเดือนรายบุคคล</a>
-                                </div>
-                                <div class="master_header_under_leave">
-                                    <span class="master_header_under_header">การลา | มาสาย | ศึกษาต่อ</span>
-                                    <a href="Leave.aspx">การลา</a>
-                                    <a href="Late.aspx">การเข้างาน (มาสาย)</a>
-                                    <a href="Study-IN.aspx">ศึกษาต่อ</a>
-                                    <a href="Leave-Report1.aspx">ออกรายงานการลา</a>
-                                    <a href="Study-Report1.aspx">ออกรายงานการลาศึกษาต่อ</a>
-                                </div>
-
-                                 <div class="master_header_under_insig">
-                                    <span class="master_header_under_header">เครื่องราชอิสริยาภรณ์</span>
-                                    <a href="insignia_from_view.aspx">ประวัติการขอเครื่องราชอิสริยาภรณ์</a>
-                                    <a href="insignia_recordnote2.aspx">ประวัติการรับเครื่องราชอิสริยาภรณ์</a>
-                                    <a href="insignia_from_add.aspx">เพิ่มข้อมูลเครื่องราชอิสริยาภรณ์</a>
-                                    <a href="insignia_recordnote2-ADMIN.aspx">เพิ่มประวัติการรับเครื่องราชอิสริยาภรณ์</a>
-                                     <!--a href="insignia_maintence.aspx">บัญชีรายชื่อผู้ขอรับภาพถ่ายเข้าเฝ้า(ชั้นสายสะพาย)</!--a>
-                                    <a href="insignia_maintence.aspx">แบบคำขอยืมเครื่องราชอิสริยาภรณ์</a>
-                                    <a href="insignia_maintence.aspx">หลักฐานการส่งคืน/ชดใช้ราคาเครื่องราชอิสริยาภรณ์</a>
-                                    <a href="insignia_maintence.aspx">บัญชีรายชื่อผู้ส่งคืนเครื่องราชอิสริยาภรณ์<!--/a-->
-                                </div>
-
-                                <div class="master_header_under_admin">
-                                    <span class="master_header_under_header">ผู้ดูแลระบบ</span>
-                                    <a href="DataManager.aspx">จัดการข้อมูล Drop-down List</a>
-                                </div>
-
-                            </div>
-
-                            <!--table class="master_header_under_table2">
-                                <tr>
-                                    <td class="master_header_under_left">
-                                        <span class="master_header_under_header">เมนูหลัก</span>
-                                    </td>
-                                    <td>
-                                        <span class="master_header_under_header">การขึ้นเงินเดือน</span>
-                                    </td>
-                                    <td>
-                                        <span class="master_header_under_header">การลา | มาสาย | ศึกษาต่อ</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="master_header_under_left">
-                                        <a href="Default.aspx">หน้าหลัก</a>
-                                    </td>
-                                    <td>
-                                        <a href="Salary.aspx">DPIS</a>
-                                    </td>
-                                    <td>
-                                        <a href="Leave.aspx">การลา</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="master_header_under_left">
-                                        <a href="M-Admin.aspx">ติดต่อผู้ดูแลระบบ</a></td>
-                                    <td>
-                                        <a href="SalarybyID.aspx">การขึ้นเงินเดือนรายบุคคล</a>
-                                    </td>
-                                    <td>
-                                        <a href="Late.aspx">มาสาย</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="master_header_under_left">
-                                        <span class="master_header_under_header">บุคลากร</span>
-                                    </td>
-                                    <td>
-                                        <span class="master_header_under_header">การสัมมนา</span>
-                                    </td>
-                                    <td>
-                                        <a href="Study-IN.aspx">ศึกษาต่อ</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="master_header_under_left">
-                                        <a href="Person-GENERAL.aspx">เพิ่มบุคลากร</a>
-                                    </td>
-                                    <td>
-                                        <a href="SEMINAR-GENERAL.aspx">การสัมมนา</a>
-                                    </td>
-                                    <td>
-                                        <a href="Leave-Report1.aspx">ออกรายงานการลา</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="master_header_under_left">
-                                        <a href="Person-ADMIN.aspx">แก้ไขบุคลากร</a>
-                                    </td>
-                                    <td></td>
-                                    <td>
-                                        <a href="Study-Report1.aspx">ออกรายงานการลาศึกษาต่อ</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="master_header_under_left">
-                                        <span class="master_header_under_header">สำหรับผู้ดูแลระบบ</span>
-                                    </td>
-                                    <td></td>
-                                    <td>
-                                        <span class="master_header_under_header">เครื่องราชอิสริยาภรณ์</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="Admin.aspx">จัดการระบบ</a>
-                                    </td>
-                                    <td></td>
-                                    <td>
-                                        <a href="insignia_citizen.aspx">เครื่องราชอิสริยาภรณ์</a>
-                                    </td>
-                                </tr>
-                            </!--table-->
-
-
-
-                        </div>
-                    </div>
-                </div>
+        <div class="master_login">
+            <div class="master_login_left">
+                <span class="master_login_logo">ระบบบุคลากร (Personnel System)</span>
             </div>
 
-            <div style="height: 32px;"></div>
-            <!--div class="master_header_bar"></!--div-->
 
-            <div class="wrapper">
 
-                <div class="master_content_place_holder">
-                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-                    </asp:ContentPlaceHolder>
-                </div>
 
+            <div class="master_login_right">
+                <img src="Image/Small/person.png" />
+                <asp:LinkButton ID="LinkButton1" runat="server" CssClass="master_login_name_link" OnClick="LinkButton1_Click1">LinkButton</asp:LinkButton>
+                <span style="display: inline-block; width: 5px"></span>
+                <asp:LinkButton ID="LinkButton10" runat="server" OnClick="LinkButton10_Click" CssClass="master_logout">ออกจากระบบ</asp:LinkButton>
+            </div>
+
+            <div class="master_top_r2">
+                <asp:Label ID="lbN1" runat="server" Text="-" CssClass="master_top_r2_n1"></asp:Label>
             </div>
 
         </div>
+
+        <div class="wrapper">
+
+            <div class="master_sidebar">
+
+                <div class="master_sidebar_group">
+                    <span class="master_sidebar_group_header">เมนูหลัก</span>
+                    <a href="Default.aspx"><img src="Image/Small/table.png" />หน้าหลัก</a>
+                    <a href="About.aspx"><img src="Image/Small/table.png" />เกี่ยวกับ</a>
+                </div>
+                <div class="master_sidebar_group">
+                    <span class="master_sidebar_group_header">บุคลากร</span>
+                    <a href="Person-GENERAL.aspx"><img src="Image/Small/table.png" />เพิ่มบุคลากร</a>
+                    <a href="Person-ADMIN.aspx"><img src="Image/Small/table.png" />แก้ไขบุคลากร</a>
+                    <a href="ListPerson-ADMIN.aspx"><img src="Image/Small/table.png" />รายชื่อบุคลากร</a>
+                    <a href="SEMINAR-GENERAL.aspx"><img src="Image/Small/table.png" />การเพิ่มพัฒนาบุคลากร</a>
+                    <a href="SEMINAR-ADMIN.aspx"><img src="Image/Small/table.png" />การแก้ไขพัฒนาบุคลากร</a>
+                    <a href="SearchForLinkPrint.aspx"><img src="Image/Small/table.png" />ออกรายงานบุคลากร</a>
+                    <a href="SearchForLinkPrint.aspx"><img src="Image/Small/table.png" />ออกรายงานพัฒนาบุคลากร</a>
+                </div>
+                <div class="master_sidebar_group">
+                    <span class="master_sidebar_group_header">การขึ้นเงินเดือน</span>
+                    <a href="Salary.aspx"><img src="Image/Small/table.png" />DPIS</a>
+                    <a href="SalarybyID.aspx"><img src="Image/Small/table.png" />การขึ้นเงินเดือนรายบุคคล</a>
+                </div>
+                <div class="master_sidebar_group">
+                    <span class="master_sidebar_group_header">การลา</span>
+                    <a href="Leave.aspx"><img src="Image/Small/add.png" />ทำการลา</a>
+                    <a href="LeaveCancel.aspx"><img src="Image/Small/delete.png" />ยกเลิกการลา</a>
+                    <a href="LeaveComment.aspx"><img src="Image/Small/pencil_y.png" />ลงความเห็นการลา<asp:Label ID="lbLeaveCommentCount" runat="server" Text="ทดสอบ" CssClass="master_text_alert"></asp:Label></a>
+                    <a href="LeaveAllow.aspx"><img src="Image/Small/correct.png" />อนุมัติการลา<asp:Label ID="lbLeaveAllowCount" runat="server" Text="ทดสอบ" CssClass="master_text_alert"></asp:Label></a>
+                    <a href="LeaveHistory.aspx"><img src="Image/Small/table.png" />ประวัติการลา</a>
+                    <a href="LeaveClaim.aspx"><img src="Image/Small/statistic.png" />สิทธิการลา</a>
+                    <a href="WorkingTime.aspx"><img src="Image/Small/add.png" />เพิ่มการเข้างาน</a>
+
+                    <a href="Study-IN.aspx"><img src="Image/Small/table.png" />ศึกษาต่อ</a>
+                    <a href="Leave-Report1.aspx"><img src="Image/Small/table.png" />ออกรายงานการลา</a>
+                    <a href="Study-Report1.aspx"><img src="Image/Small/table.png" />ออกรายงานการลาศึกษาต่อ</a>
+                </div>
+
+                <div class="master_sidebar_group">
+                    <span class="master_sidebar_group_header">เครื่องราชอิสริยาภรณ์</span>
+                    <a href="insignia_from_view.aspx"><img src="Image/Small/table.png" />ประวัติการขอเครื่องราชอิสริยาภรณ์</a>
+                    <a href="insignia_recordnote2.aspx"><img src="Image/Small/table.png" />ประวัติการรับเครื่องราชอิสริยาภรณ์</a>
+                    <a href="insignia_from_add.aspx"><img src="Image/Small/table.png" />เพิ่มข้อมูลเครื่องราชอิสริยาภรณ์</a>
+                    <a href="insignia_recordnote2-ADMIN.aspx"><img src="Image/Small/table.png" />เพิ่มประวัติการรับเครื่องราชอิสริยาภรณ์</a>
+                    <!--a href="insignia_maintence.aspx">บัญชีรายชื่อผู้ขอรับภาพถ่ายเข้าเฝ้า(ชั้นสายสะพาย)</!--a>
+                                    <a href="insignia_maintence.aspx">แบบคำขอยืมเครื่องราชอิสริยาภรณ์</a>
+                                    <a href="insignia_maintence.aspx">หลักฐานการส่งคืน/ชดใช้ราคาเครื่องราชอิสริยาภรณ์</a>
+                                    <a href="insignia_maintence.aspx">บัญชีรายชื่อผู้ส่งคืนเครื่องราชอิสริยาภรณ์<!--/a-->
+                </div>
+
+                <div class="master_sidebar_group">
+                    <span class="master_sidebar_group_header">ผู้ดูแลระบบ</span>
+                    <a href="DataManager.aspx"><img src="Image/Small/table.png" />จัดการข้อมูล Drop-down List</a>
+                    <a href="Developer.aspx"><img src="Image/Small/table.png" />DEVELOPER ZONE</a>
+                </div>
+
+
+            </div>
+
+            <div class="master_content_place_holder">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+
+
+
+        </div>
+
+        <div class="master_footer">
+            Copyright © 2016 Rajamangala University of Technology Tawan-ok. All rights reserved
+        </div>
+
     </form>
 </body>
 </html>

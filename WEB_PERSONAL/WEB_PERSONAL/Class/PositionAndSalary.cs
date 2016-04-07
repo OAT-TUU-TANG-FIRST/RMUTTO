@@ -98,7 +98,7 @@ namespace WEB_PERSONAL.Class {
             get { return citizen_id; }
         }
         public Person Citizen {
-           get { return new Person(citizen_id); }
+           get { return DatabaseManager.GetPerson(citizen_id); }
         }
 
     }

@@ -228,10 +228,10 @@ namespace WEB_PERSONAL {
         }
 
         protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e) {
-            if (!Person.IsAdmin(Session["login_id"].ToString())) {
+           /* if (!Person.IsAdmin(Session["login_id"].ToString())) {
                 e.Cancel = true;
                 Util.Alert(this, "คุณไม่มีสิทธิใช้งานในส่วนนี้");
-            }
+            }*/
         }
 
         protected void GridView1_RowDeleted(object sender, GridViewDeletedEventArgs e) {

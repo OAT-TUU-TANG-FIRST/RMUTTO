@@ -59,7 +59,7 @@
             <asp:BoundField DataField="RELIGION_ID" HeaderText="รหัสศาสนา" SortExpression="RELIGION_ID" />
         </Fields>
     </asp:DetailsView>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:RMUTTOORCL %>" ProviderName="<%$ ConnectionStrings:RMUTTOORCL.ProviderName %>" SelectCommand="SELECT * FROM &quot;TB_PERSON&quot; WHERE (&quot;CITIZEN_ID&quot; = :CITIZEN_ID)">
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ORCL_RMUTTO %>" ProviderName="<%$ ConnectionStrings:ORCL_RMUTTO.ProviderName %>" SelectCommand="SELECT * FROM &quot;TB_PERSON&quot; WHERE (&quot;CITIZEN_ID&quot; = :CITIZEN_ID)">
         <SelectParameters>
             <asp:QueryStringParameter Name="CITIZEN_ID" QueryStringField="CID" Type="String" />
         </SelectParameters>
