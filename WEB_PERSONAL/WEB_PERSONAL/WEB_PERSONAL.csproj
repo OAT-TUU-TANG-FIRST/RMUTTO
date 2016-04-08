@@ -953,7 +953,6 @@
     <Content Include="Salary_Basesalary_Admin.aspx" />
     <Content Include="Profile.aspx" />
     <Content Include="SearchForLinkPrint.aspx" />
-    <Content Include="Seminar-ADMIN - new.aspx" />
     <Content Include="Staff-ADMIN.aspx" />
     <Content Include="StaffType-ADMIN.aspx" />
     <Content Include="StatusWork-ADMIN.aspx" />
@@ -1519,13 +1518,6 @@
     </Compile>
     <Compile Include="SearchForLinkPrint.aspx.designer.cs">
       <DependentUpon>SearchForLinkPrint.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Seminar-ADMIN - new.aspx.cs">
-      <DependentUpon>Seminar-ADMIN - new.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Seminar-ADMIN - new.aspx.designer.cs">
-      <DependentUpon>Seminar-ADMIN - new.aspx</DependentUpon>
     </Compile>
     <Compile Include="SEMINAR-ADMIN.aspx.cs">
       <DependentUpon>SEMINAR-ADMIN.aspx</DependentUpon>

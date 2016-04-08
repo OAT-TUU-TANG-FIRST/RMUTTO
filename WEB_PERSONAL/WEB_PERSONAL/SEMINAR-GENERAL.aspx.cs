@@ -9,6 +9,7 @@ using System.Data.OracleClient;
 using System.Data;
 using System.Configuration;
 using System.Data.OracleClient;
+using WEB_PERSONAL.Class;
 
 namespace WEB_PERSONAL
 {
@@ -25,7 +26,9 @@ namespace WEB_PERSONAL
 
             using (OracleConnection conn = Util.OC())
             {
-                using (OracleCommand cmd = new OracleCommand("select PERSON_NAME,PERSON_LASTNAME from tb_person where citizen_id = '" + Session["login_id"].ToString() + "'", conn))
+                PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
+                Person PP = ps.LoginPerson;
+                using (OracleCommand cmd = new OracleCommand("select PERSON_NAME,PERSON_LASTNAME from tb_person where citizen_id = '" + PP.CitizenID + "'", conn))
 
                 {
                     using (OracleDataReader reader = cmd.ExecuteReader())
@@ -43,7 +46,7 @@ namespace WEB_PERSONAL
 
         void BindData()
         {
-            if (Session["login_id"] == null)
+            if (Session["PersonnelSystem"] == null)
             {
                 Response.Redirect("Access.aspx");
                 return;
@@ -186,6 +189,8 @@ namespace WEB_PERSONAL
             // if (NeedData()) { return; };
 
             Seminar S = new Seminar();
+            PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
+            Person PP = ps.LoginPerson;
             S.SEMINAR_NAME = txtName.Text;
             S.SEMINAR_LASTNAME = txtLastName.Text;
             S.SEMINAR_POSITION = txtPosition.Text;
@@ -210,7 +215,7 @@ namespace WEB_PERSONAL
             S.SEMINAR_PROBLEM = txtProblem.Text;
             S.SEMINAR_COMMENT = txtComment.Text;
             S.SEMINAR_SIGNED_DATETIME = DateTime.Now;
-            S.CITIZEN_ID = Session["login_id"].ToString();
+            S.CITIZEN_ID = PP.CitizenID;
 
             string[] splitDate1 = txtDateFrom.Text.Split(' ');
             string[] splitDate2 = txtDateTO.Text.Split(' ');
