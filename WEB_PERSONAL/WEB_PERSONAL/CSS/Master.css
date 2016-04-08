@@ -1,49 +1,43 @@
-﻿/*1*/
+﻿@font-face {
+    font-family: 'THSARABUNNEW_0';
+    src: url('../Font/THSARABUNNEW_0.TTF') format('truetype');
+}
 @font-face {
-    font-family: 'WDB_Bangna';
-    src: url('../Font/WDB_Bangna.ttf') format('truetype');
+    font-family: 'Roboto-Regular';
+    src: url('../Font/Roboto-Regular.ttf') format('truetype');
 }
 * {
     margin: 0;
 }
-html, body {
-    /*height: 100%;*/
 
-}
-@font-face {
-    font-family: 'THSARABUNNEW_0';
-    src: url('../Font/THSARABUNNEW_0.TTF') format('truetype');
-}
 body {
     background-color: #f0f0f0;
-    background-color: #000000;
-    background-color: #f0f0f0;
-    background-color: #f8f8f8;
-    background-color: #ffffff;
-    font-family: Calibri, Tahoma;
+    font-family: Roboto-Regular, Tahoma;
     font-size: 12px;
 }
 
-form {
-    /*min-height: 100%;*/
-}
 .wrapper {
-    min-height: calc(100vh - 90px);
+    min-height: calc(100vh - 100px);
     min-width: 1280px;
 }
 
-
 .master_content_place_holder {
     float: left;
-    width: calc(100% - 240px);
+    margin-left: 10px;
+    width: calc(100% - 260px);
     padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0px 1px 10px #e0e0e0;
 }
 
 .master_login {
+    background-color: #ffffff;
     color: #000000;
     height: 32px;
     line-height: 32px;
     min-width: 1280px;
+    margin-bottom: 10px;
+    box-shadow: 0px 1px 10px #e0e0e0;
 }
 .master_login_left {
     float: left;
@@ -54,7 +48,7 @@ form {
 }
 .master_login_right {
     float: right;
-    background-color: rgba(248,248,248,0.9);
+    /*background-color: rgba(248,248,248,0.9);*/
     border-bottom-left-radius: 100px;
     padding: 0px 20px;
     padding-left: 30px;
@@ -98,7 +92,7 @@ form {
 
 .master_login_logo {
     display: inline-block;
-    font-weight: bold;
+
     color: #ffffff;
 }
 
@@ -110,7 +104,6 @@ form {
 .master_login_name_link {
     text-decoration: none;
     color: #000000;
-    font-weight: bold;
 }
 .master_login_name_link:hover {
     
@@ -162,9 +155,10 @@ form {
     width: 179px;
     font-size: 12px;
     background-color: #ffffff;
-    border-right: 1px solid #00a2e8;
-    border-bottom: 1px solid #00a2e8;
+    /*border-right: 1px solid #00a2e8;
+    border-bottom: 1px solid #00a2e8;*/
     padding: 10px;
+    box-shadow: 0px 1px 10px #e0e0e0;
 }
 .master_sidebar img {
     margin-right: 5px;
@@ -188,6 +182,7 @@ form {
     padding: 3px 10px;
     text-decoration: none;
     color: #404040;
+    border-radius: 40px;
     /*border-top: 1px solid #ffffff;
     border-bottom: 1px solid #ffffff;*/
     /*transition: background-color ease 0.2s, border-color ease 0.2s;*/
@@ -200,7 +195,6 @@ form {
     border-bottom: 1px solid #f8f8f8;*/
     transition: background-color ease 0s, border-color ease 0s;
 }
-
 
 .master_header_under img {
     float:right;
@@ -388,9 +382,10 @@ form {
 
 .master_footer {
     clear: both;
-    background-color: #f0f0f0;
+    background-color: #f8f8f8;
     text-align: center;
     padding: 20px 20px;
+    border-top: 10px solid #f0f0f0;
 }
 
 
@@ -952,7 +947,7 @@ ault_page_header {
     background-color: #ff0000;
     padding: 3px 5px;
     float: right;
-    font-weight: bold;
+    margin-right: 0px;
 }
 .default_page_style {
     
@@ -1128,12 +1123,12 @@ ault_page_header {
 }
 .col2 {
     color: #000000;
-    font-weight: bold;
 }
 select {
     outline: none;
     border-radius: 4px;
     border: 1px solid #c0c0c0;
+    font-family: Roboto-Regular, Tahoma;
     font-size: 12px;
     color: #000000;
     background-color: #ffffff;
@@ -1146,7 +1141,8 @@ select:hover {
 select:focus {
     border: 1px solid #00a2e8;
 }
-input[type='text'], input[type='password'] {
+input[type='text'], input[type='password'], textarea {
+    font-family: Roboto-Regular, Tahoma;
     outline: none;
     border-radius: 4px;
     border: 1px solid #c0c0c0;
@@ -1156,13 +1152,14 @@ input[type='text'], input[type='password'] {
     padding: 3px 5px;
     transition: border-color ease 0.25s;
 }
-input[type='text']:hover, input[type='password']:hover {
+input[type='text']:hover, input[type='password']:hover, textarea:hover {
     border: 1px solid #808080;
 }
-input[type='text']:focus, input[type='password']:focus {
+input[type='text']:focus, input[type='password']:focus, textarea:focus {
     border: 1px solid #00a2e8;
 }
 input[type='submit'] {
+    font-family: Roboto-Regular, Tahoma;
     cursor: pointer;
     outline: none;
     border-radius: 4px;
@@ -1186,6 +1183,7 @@ input[type='submit']:active {
     color: #ff0000;
 }
 input[type='checkbox'], input[type='radio'] {
+    font-family: Roboto-Regular, Tahoma;
     margin-right: 2px;
 }
 input[type='checkbox'] + label, input[type='radio'] + label {

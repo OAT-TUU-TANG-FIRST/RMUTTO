@@ -4,19 +4,7 @@
 <%@ Register Assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.UI.DataVisualization.Charting" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
-        .col1 {
-            
-            text-align: right;
-            vertical-align: top;
-            padding-right: 10px;
-            color: #808080;
-        }
-        .col2 {
-            font-weight: bold;
-        }
-        .col_res {
-            font-weight: bold;
-        }
+
         .sectionSelectLeaveType {
             border-bottom: 1px solid #c0c0c0;
             padding-bottom: 20px;
@@ -72,6 +60,17 @@
         .auto-style4 {
             font-weight: bold;
             height: 36px;
+        }
+        .auto-style98 {
+            text-align: right;
+            color: #808080;
+            vertical-align: top;
+            height: 18px;
+            padding-right: 10px;
+        }
+        .auto-style99 {
+            font-weight: bold;
+            height: 18px;
         }
     </style>
     <script>
@@ -156,72 +155,72 @@
                 <table>
                                     <tr>
                     <td class="col1">ประเภทการลา</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF1S2LeaveTypeName" runat="server"></asp:Label>
                                         </td>
                 </tr>
                 <tr>
-                    <td class="col1">ชื่อ</td>
-                    <td class="col_res">
+                    <td class="auto-style98">ชื่อ</td>
+                    <td class="col2">
                         <asp:Label ID="lbF1S2PersonName" runat="server"></asp:Label>
                         &nbsp;
                                         </td>
                                     </tr>
                                     <tr>
                     <td class="col1">ตำแหน่ง</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF1S2PersonPosition" runat="server"></asp:Label>
                                         </td>
                 </tr>
                 <tr>
                     <td class="col1">ระดับ</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF1S2PersonRank" runat="server"></asp:Label>
                                         </td>
                                     </tr>
                                     <tr>
                     <td class="col1">สังกัด</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF1S2PersonDepartment" runat="server"></asp:Label>
                                         </td>
                 </tr>
                 <tr>
                     <td class="col1">&nbsp;</td>
-                    <td class="col_res">
+                    <td class="col2">
                         &nbsp;</td>
                 </tr>
                 <tr>
                     <td class="col1">ลาล่าสุด</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF1S2LastFTTDate" runat="server"></asp:Label>
                                         </td>
                                     </tr>
                                     <tr>
                     <td class="col1">วันที่ลา</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF1S2FTTDate" runat="server"></asp:Label>
                                         </td>
                 </tr>
                 <tr>
                     <td class="col1">&nbsp;</td>
-                    <td class="col_res">
+                    <td class="col2">
                         &nbsp;</td>
                 </tr>
                 <tr>
                     <td class="col1" style="vertical-align: top;">เหตุผล</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF1S2Reason" runat="server"></asp:Label>
                                         </td>
                                     </tr>
                                     <tr>
                     <td class="col1" style="vertical-align: top;">ติดต่อได้ที่</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF1S2Contact" runat="server"></asp:Label>
                                         </td>
                                     </tr>
                 <tr>
                     <td class="col1" style="vertical-align: top;">เบอร์โทรศัพท์</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF1S2Phone" runat="server"></asp:Label>
                     </td>
                 </tr>
@@ -320,95 +319,95 @@
                  <table>
                 <tr>
                     <td class="col1">ประเภทการลา</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF2S2LeaveTypeName" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">ชื่อ</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF2S2PersonName" runat="server"></asp:Label>
                         &nbsp;
                         </td>
                 </tr>
                 <tr>
                     <td class="col1">ตำแหน่ง</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF2S2PersonPosition" runat="server"></asp:Label>
                         </td>
                 </tr>
                 <tr>
                     <td class="col1">ระดับ</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF2S2PersonRank" runat="server"></asp:Label>
                         </td>
                 </tr>
                 <tr>
                     <td class="col1">สังกัด</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF2S2PersonDepartment" runat="server"></asp:Label>
                         </td>
                 </tr>
                 <tr>
                     <td class="col1">&nbsp;</td>
-                    <td class="col_res">
+                    <td class="col2">
                         &nbsp;</td>
                 </tr>
                 <tr>
                     <td class="col1">ชื่อภริยา</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF2S2WifeName" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">นามสกุลภริยา</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF2S2WifeLastName" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">คลอดบุตรวันที่</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF2S2GiveBirthDate" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">&nbsp;</td>
-                    <td class="col_res">
+                    <td class="col2">
                         &nbsp;</td>
                 </tr>
                 <tr>
                     <td class="col1">จากวันที่</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF2S2FromDate" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">ถึงวันที่</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF2S2ToDate" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">รวมวัน</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF2S2TotalDay" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">&nbsp;</td>
-                    <td class="col_res">
+                    <td class="col2">
                         &nbsp;</td>
                 </tr>
                 <tr>
                     <td class="col1" style="vertical-align: top;">ติดต่อได้ที่</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF2S2Contact" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1" style="vertical-align: top;">เบอร์โทรศัพท์</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF2S2Phone" runat="server"></asp:Label>
                     </td>
                 </tr>
@@ -478,95 +477,95 @@
                 <table>
                                     <tr>
                     <td class="col1">ประเภทการลา</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF3S2LeaveTypeName" runat="server"></asp:Label>
                                         </td>
                                     </tr>
                                     <tr>
                     <td class="col1">ชื่อ</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF3S2PersonName" runat="server"></asp:Label>
                         &nbsp;
                                         </td>
                 </tr>
                 <tr>
                     <td class="col1">ตำแหน่ง</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF3S2PersonPosition" runat="server"></asp:Label>
                                         </td>
                                     </tr>
                                     <tr>
                     <td class="col1">ระดับ</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF3S2PersonRank" runat="server"></asp:Label>
                                         </td>
                 </tr>
                 <tr>
                     <td class="col1">สังกัด</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF3S2PersonDepartment" runat="server"></asp:Label>
                                         </td>
                                     </tr>
                                     <tr>
                     <td class="col1">&nbsp;</td>
-                    <td class="col_res">
+                    <td class="col2">
                         &nbsp;</td>
                 </tr>
                 <tr>
                     <td class="col1">วันลาพักผ่อนสะสม</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF3S2SaveDay" runat="server"></asp:Label>
                                         </td>
                 </tr>
                 <tr>
                     <td class="col1">มีสิทธิลาประจำปีนี้อีก</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF3S2LeftDay" runat="server"></asp:Label>
                                         </td>
                                     </tr>
                                     <tr>
                     <td class="col1">รวม</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF3S2LeftTotalDay" runat="server"></asp:Label>
                                         </td>
                 </tr>
                 <tr>
                     <td class="col1">&nbsp;</td>
-                    <td class="col_res">
+                    <td class="col2">
                         &nbsp;</td>
                 </tr>
                 <tr>
                     <td class="col1">จากวันที่</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF3S2FromDate" runat="server"></asp:Label>
                                         </td>
                                     </tr>
                                     <tr>
                     <td class="col1">ถึงวันที่</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF3S2ToDate" runat="server"></asp:Label>
                                         </td>
                 </tr>
                 <tr>
                     <td class="col1">รวมวัน</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF3S2TotalDay" runat="server"></asp:Label>
                                         </td>
                                     </tr>
                                     <tr>
                     <td class="col1">&nbsp;</td>
-                    <td class="col_res">
+                    <td class="col2">
                         &nbsp;</td>
                 </tr>
                 <tr>
                     <td class="col1" style="vertical-align: top;">ติดต่อได้ที่</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF3S2Contact" runat="server"></asp:Label>
                                         </td>
                 </tr>
                 <tr>
                     <td class="col1" style="vertical-align: top;">เบอร์โทรศัพท์</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF3S2Phone" runat="server"></asp:Label>
                     </td>
                 </tr>
@@ -654,91 +653,91 @@
                 <table>
                                     <tr>
                     <td class="col1">ประเภทการลา</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF4S2LeaveTypeName" runat="server"></asp:Label>
                                         </td>
                 </tr>
                 <tr>
                     <td class="col1">ชื่อ</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF4S2PersonName" runat="server"></asp:Label>
                         &nbsp;
                                         </td>
                                     </tr>
                                     <tr>
                     <td class="col1">ตำแหน่ง</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF4S2PersonPosition" runat="server"></asp:Label>
                                         </td>
                 </tr>
                 <tr>
                     <td class="col1">ระดับ</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF4S2PersonRank" runat="server"></asp:Label>
                                         </td>
                                     </tr>
                                     <tr>
                     <td class="col1">สังกัด</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF4S2PersonDepartment" runat="server"></asp:Label>
                                         </td>
                 </tr>
                 <tr>
                     <td class="auto-style1">เกิดวันที่</td>
-                    <td class="auto-style2">
+                    <td class="col2">
                         <asp:Label ID="lbF4S2PersonBirthDate" runat="server"></asp:Label>
                                         </td>
                                     </tr>
                                     <tr>
                     <td class="col1">เข้ารับราชการเมื่อวันที่</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF4S2PersonWorkInDate" runat="server"></asp:Label>
                                         </td>
                 </tr>
                 <tr>
                     <td class="col1">&nbsp;</td>
-                    <td class="col_res">
+                    <td class="col2">
                         &nbsp;</td>
                 </tr>
                 <tr>
                     <td class="col1">การอุปสมบท</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF4S2PersonOrdained" runat="server"></asp:Label>
                                         </td>
                                     </tr>
                                     <tr>
                     <td class="col1">ชื่อวัด</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF4S2TempleName" runat="server"></asp:Label>
                                         </td>
                                     </tr>
                 <tr>
                     <td class="col1">สถานที่</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF4S2TempleLocation" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">อุปสมบทวันที่</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF4S2OrdainDate" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">จากวันที่</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF4S2FromDate" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">ถึงวันที่</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF4S2ToDate" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">รวมวัน</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF4S2TotalDay" runat="server"></asp:Label>
                     </td>
                 </tr>
@@ -798,67 +797,67 @@
                 <table>
                 <tr>
                     <td class="col1">ประเภทการลา</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF5S2LeaveTypeName" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">ชื่อ</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF5S2PersonName" runat="server"></asp:Label>
                         &nbsp;
                         </td>
                 </tr>
                 <tr>
                     <td class="col1">ตำแหน่ง</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF5S2PersonPosition" runat="server"></asp:Label>
                         </td>
                 </tr>
                 <tr>
                     <td class="col1">ระดับ</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF5S2PersonRank" runat="server"></asp:Label>
                         </td>
                 </tr>
                 <tr>
                     <td class="col1">สังกัด</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF5S2PersonDepartment" runat="server"></asp:Label>
                         </td>
                 </tr>
                 <tr>
                     <td class="col1">เข้ารับราชการเมื่อวันที่</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF5S2PersonWorkInDate" runat="server"></asp:Label>
                         </td>
                 </tr>
                 <tr>
                     <td class="col1">&nbsp;</td>
-                    <td class="col_res">
+                    <td class="col2">
                         &nbsp;</td>
                 </tr>
                 <tr>
                     <td class="col1">การไปประกอบพิธีฮัจย์</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF5S2PersonHujed" runat="server"></asp:Label>
                         </td>
                 </tr>
                 <tr>
                     <td class="col1">จากวันที่</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF5S2FromDate" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">ถึงวันที่</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF5S2ToDate" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">รวมวัน</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF5S2TotalDay" runat="server"></asp:Label>
                     </td>
                 </tr>
@@ -936,85 +935,85 @@
                 <table>
                 <tr>
                     <td class="col1">ประเภทการลา</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF6S2LeaveTypeName" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">ชื่อ</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF6S2PersonName" runat="server"></asp:Label>
                         &nbsp;
                         </td>
                 </tr>
                 <tr>
                     <td class="col1">ตำแหน่ง</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF6S2PersonPosition" runat="server"></asp:Label>
                         </td>
                 </tr>
                 <tr>
                     <td class="col1">ระดับ</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF6S2PersonRank" runat="server"></asp:Label>
                         </td>
                 </tr>
                 <tr>
                     <td class="col1">สังกัด</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF6S2PersonDepartment" runat="server"></asp:Label>
                         </td>
                 </tr>
                 <tr>
                     <td class="col1">&nbsp;</td>
-                    <td class="col_res">
+                    <td class="col2">
                         &nbsp;</td>
                 </tr>
                 <tr>
                     <td class="col1">ได้รับหมายเรียกของ</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF6S2GotFrom" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">ที่</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF6S2GotAt" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">ลงวันที่</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF6S2GotDate" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">ให้เข้ารับการ</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF6S2ToDo" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">ณ ที่</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF6S2ToDoAt" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">จากวันที่</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF6S2FromDate" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">ถึงวันที่</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF6S2ToDate" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">รวมวัน</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="lbF6S2TotalDay" runat="server"></asp:Label>
                     </td>
                 </tr>
@@ -1141,85 +1140,85 @@
                 <table>
                 <tr>
                     <td class="col1">ประเภทการลา</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="Label1" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">ชื่อ</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="Label2" runat="server"></asp:Label>
                         &nbsp;
                         </td>
                 </tr>
                 <tr>
                     <td class="col1">ตำแหน่ง</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="Label3" runat="server"></asp:Label>
                         </td>
                 </tr>
                 <tr>
                     <td class="col1">ระดับ</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="Label4" runat="server"></asp:Label>
                         </td>
                 </tr>
                 <tr>
                     <td class="col1">สังกัด</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="Label5" runat="server"></asp:Label>
                         </td>
                 </tr>
                 <tr>
                     <td class="col1">&nbsp;</td>
-                    <td class="col_res">
+                    <td class="col2">
                         &nbsp;</td>
                 </tr>
                 <tr>
                     <td class="col1">ได้รับหมายเรียกของ</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="Label6" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">ที่</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="Label7" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">ลงวันที่</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="Label8" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">ให้เข้ารับการ</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="Label9" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">ณ ที่</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="Label10" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">จากวันที่</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="Label11" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">ถึงวันที่</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="Label12" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">รวมวัน</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="Label13" runat="server"></asp:Label>
                     </td>
                 </tr>
@@ -1440,85 +1439,85 @@
                 <table>
                                     <tr>
                     <td class="col1">ประเภทการลา</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="Label14" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">ชื่อ</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="Label15" runat="server"></asp:Label>
                         &nbsp;
                         </td>
                 </tr>
                 <tr>
                     <td class="col1">ตำแหน่ง</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="Label16" runat="server"></asp:Label>
                         </td>
                 </tr>
                 <tr>
                     <td class="col1">ระดับ</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="Label17" runat="server"></asp:Label>
                         </td>
                 </tr>
                 <tr>
                     <td class="col1">สังกัด</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="Label18" runat="server"></asp:Label>
                         </td>
                 </tr>
                 <tr>
                     <td class="col1">&nbsp;</td>
-                    <td class="col_res">
+                    <td class="col2">
                         &nbsp;</td>
                 </tr>
                 <tr>
                     <td class="col1">ได้รับหมายเรียกของ</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="Label19" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">ที่</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="Label20" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">ลงวันที่</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="Label21" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">ให้เข้ารับการ</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="Label22" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">ณ ที่</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="Label23" runat="server"></asp:Label>
                                         </td>
                                     </tr>
                                     <tr>
                     <td class="col1">จากวันที่</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="Label24" runat="server"></asp:Label>
                                         </td>
                 </tr>
                 <tr>
                     <td class="col1">ถึงวันที่</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="Label25" runat="server"></asp:Label>
                                         </td>
                                     </tr>
                                     <tr>
                     <td class="col1">รวมวัน</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="Label26" runat="server"></asp:Label>
                                         </td>
                 </tr>
@@ -1614,67 +1613,67 @@
                 <table>
                                     <tr>
                     <td class="col1">ประเภทการลา</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="Label27" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">ชื่อ</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="Label28" runat="server"></asp:Label>
                         &nbsp;
                         </td>
                 </tr>
                 <tr>
                     <td class="col1">ตำแหน่ง</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="Label29" runat="server"></asp:Label>
                         </td>
                 </tr>
                 <tr>
                     <td class="col1">ระดับ</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="Label30" runat="server"></asp:Label>
                         </td>
                 </tr>
                 <tr>
                     <td class="col1">สังกัด</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="Label31" runat="server"></asp:Label>
                         </td>
                 </tr>
                 <tr>
                     <td class="col1">เข้ารับราชการเมื่อวันที่</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="Label32" runat="server"></asp:Label>
                         </td>
                 </tr>
                 <tr>
                     <td class="col1">&nbsp;</td>
-                    <td class="col_res">
+                    <td class="col2">
                         &nbsp;</td>
                 </tr>
                 <tr>
                     <td class="col1">การไปประกอบพิธีฮัจย์</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="Label33" runat="server"></asp:Label>
                         </td>
                 </tr>
                 <tr>
                     <td class="col1">จากวันที่</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="Label34" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">ถึงวันที่</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="Label35" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">รวมวัน</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="Label36" runat="server"></asp:Label>
                     </td>
                 </tr>
@@ -1770,67 +1769,67 @@
                 <table>
                 <tr>
                     <td class="col1">ประเภทการลา</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="Label37" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">ชื่อ</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="Label38" runat="server"></asp:Label>
                         &nbsp;
                         </td>
                 </tr>
                 <tr>
                     <td class="col1">ตำแหน่ง</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="Label39" runat="server"></asp:Label>
                         </td>
                 </tr>
                 <tr>
                     <td class="col1">ระดับ</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="Label40" runat="server"></asp:Label>
                         </td>
                 </tr>
                 <tr>
                     <td class="col1">สังกัด</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="Label41" runat="server"></asp:Label>
                         </td>
                 </tr>
                 <tr>
                     <td class="col1">เข้ารับราชการเมื่อวันที่</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="Label42" runat="server"></asp:Label>
                         </td>
                 </tr>
                 <tr>
                     <td class="col1">&nbsp;</td>
-                    <td class="col_res">
+                    <td class="col2">
                         &nbsp;</td>
                 </tr>
                 <tr>
                     <td class="col1">การไปประกอบพิธีฮัจย์</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="Label43" runat="server"></asp:Label>
                         </td>
                 </tr>
                 <tr>
                     <td class="col1">จากวันที่</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="Label44" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">ถึงวันที่</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="Label45" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">รวมวัน</td>
-                    <td class="col_res">
+                    <td class="col2">
                         <asp:Label ID="Label46" runat="server"></asp:Label>
                     </td>
                 </tr>

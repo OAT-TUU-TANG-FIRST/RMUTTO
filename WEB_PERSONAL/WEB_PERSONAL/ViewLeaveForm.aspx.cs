@@ -58,9 +58,16 @@ namespace WEB_PERSONAL {
                 lbReason.Text = f1.Reason;
                 lbContact.Text = f1.Contact;
                 lbPhone.Text = f1.Phone;
-                lbLastFromDate.Text = f1.LastFromDate;
-                lbLastToDate.Text = f1.LastToDate;
-                lbLastTotalDay.Text = f1.LastTotalDay + " วัน";
+                if(f1.LastFromDate == "") {
+                    lbLastFromDate.Text = "-";
+                    lbLastToDate.Text = "-";
+                    lbLastTotalDay.Text = "-";
+                } else {
+                    lbLastFromDate.Text = f1.LastFromDate;
+                    lbLastToDate.Text = f1.LastToDate;
+                    lbLastTotalDay.Text = f1.LastTotalDay + " วัน";
+                }
+                
                 lbCmdLowName.Text = f1.CommanderLowPrefix + f1.CommanderLowFirstName + " " + f1.CommanderLowLastName;
                 lbCmdLowPosition.Text = f1.CommanderLowPosition;
                 lbCmdLowComment.Text = f1.CommanderLowComment;

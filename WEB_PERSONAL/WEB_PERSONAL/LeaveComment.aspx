@@ -10,10 +10,24 @@
 
         <div id="error_area" runat="server"></div>
 
-        <asp:GridView ID="GridView1" runat="server"></asp:GridView>
-
-        <div id="i1" runat="server"></div> 
-        <div id="i2" runat="server">
+        <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex="0">
+            <asp:View ID="View1" runat="server">
+                <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
+                    <AlternatingRowStyle BackColor="White" />
+                    <EditRowStyle BackColor="#2461BF" />
+                    <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                    <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                    <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                    <RowStyle BackColor="#EFF3FB" />
+                    <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                    <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                    <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                    <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                    <SortedDescendingHeaderStyle BackColor="#4870BE" />
+                </asp:GridView>
+            </asp:View>
+            <asp:View ID="View2" runat="server">
+                
             <table>
                 <tr>
                     <td class="col1">รหัสการลา</td>
@@ -108,7 +122,7 @@
                 <tr>
                     <td class="col1">ความเห็น</td>
                     <td class="col2">
-                        <asp:TextBox ID="tbF1Comment" runat="server" Height="50px" Width="300px" TextMode="MultiLine" CssClass="textbox textbox_default"></asp:TextBox>
+                        <asp:TextBox ID="tbF1Comment" runat="server" Height="50px" Width="300px" TextMode="MultiLine" ></asp:TextBox>
                     </td>
                     <td>&nbsp;</td>
                 </tr>
@@ -126,10 +140,18 @@
                     <td>&nbsp;</td>
                 </tr>
             </table>
-        </div>
-        <div id="i3" runat="server">
+     
+            </asp:View>
+            <asp:View ID="View3" runat="server">
+
             <asp:LinkButton ID="lbu1" runat="server" CssClass="button button_default" OnClick="lbu1_Click"><img src="Image/Small/back.png" class="icon_left"/>กลับหน้าหลัก</asp:LinkButton>
             <asp:LinkButton ID="lbu2" runat="server" CssClass="button button_default" OnClick="lbu2_Click">ลงความเห็นต่อ<img src="Image/Small/forward.png" class="icon_right"/></asp:LinkButton>
-        </div>
+  
+            </asp:View>
+        </asp:MultiView>
+
+        
+        
+        
     </div>
 </asp:Content>

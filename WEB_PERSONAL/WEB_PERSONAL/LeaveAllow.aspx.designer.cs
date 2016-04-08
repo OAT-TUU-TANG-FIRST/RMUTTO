@@ -22,6 +22,24 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl error_area;
         
         /// <summary>
+        /// MultiView1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.MultiView MultiView1;
+        
+        /// <summary>
+        /// View1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View View1;
+        
+        /// <summary>
         /// GridView1 control.
         /// </summary>
         /// <remarks>
@@ -31,121 +49,130 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.GridView GridView1;
         
         /// <summary>
-        /// i1 control.
+        /// View2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl i1;
+        protected global::System.Web.UI.WebControls.View View2;
         
         /// <summary>
-        /// i2 control.
+        /// lbF1LeaveID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl i2;
+        protected global::System.Web.UI.WebControls.Label lbF1LeaveID;
         
         /// <summary>
-        /// lbLeaveID control.
+        /// lbF1LeaverName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbLeaveID;
+        protected global::System.Web.UI.WebControls.Label lbF1LeaverName;
         
         /// <summary>
-        /// lbLeaverName control.
+        /// lbF1PersonPosition control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbLeaverName;
+        protected global::System.Web.UI.WebControls.Label lbF1PersonPosition;
         
         /// <summary>
-        /// lbPosition control.
+        /// lbF1PersonRank control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbPosition;
+        protected global::System.Web.UI.WebControls.Label lbF1PersonRank;
         
         /// <summary>
-        /// lbDepartment control.
+        /// lbF1PersonDepartment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbDepartment;
+        protected global::System.Web.UI.WebControls.Label lbF1PersonDepartment;
         
         /// <summary>
-        /// lbReqDate control.
+        /// lbF1ReqDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbReqDate;
+        protected global::System.Web.UI.WebControls.Label lbF1ReqDate;
         
         /// <summary>
-        /// lbLeaveTypeName control.
+        /// lbF1LeaveTypeName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbLeaveTypeName;
+        protected global::System.Web.UI.WebControls.Label lbF1LeaveTypeName;
         
         /// <summary>
-        /// lbFromDate control.
+        /// lbF1LastFTTDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbFromDate;
+        protected global::System.Web.UI.WebControls.Label lbF1LastFTTDate;
         
         /// <summary>
-        /// lbToDate control.
+        /// lbF1FTTDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbToDate;
+        protected global::System.Web.UI.WebControls.Label lbF1FTTDate;
         
         /// <summary>
-        /// lbTotalDay control.
+        /// lbF1Reason control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbTotalDay;
+        protected global::System.Web.UI.WebControls.Label lbF1Reason;
         
         /// <summary>
-        /// lbReason control.
+        /// lbF1Contact control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbReason;
+        protected global::System.Web.UI.WebControls.Label lbF1Contact;
         
         /// <summary>
-        /// tbComment control.
+        /// lbF1Phone control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbComment;
+        protected global::System.Web.UI.WebControls.Label lbF1Phone;
+        
+        /// <summary>
+        /// tbF1Comment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbF1Comment;
         
         /// <summary>
         /// rbAllow control.
@@ -184,13 +211,13 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.LinkButton lbuAddComment;
         
         /// <summary>
-        /// i3 control.
+        /// View3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl i3;
+        protected global::System.Web.UI.WebControls.View View3;
         
         /// <summary>
         /// lbu1 control.

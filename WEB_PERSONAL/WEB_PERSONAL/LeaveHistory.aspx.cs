@@ -66,33 +66,7 @@ namespace WEB_PERSONAL {
                 
                 
             }
-            {
-                SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEV_MAIN.LEAVE_ID รหัสการลา, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_MAIN.LEAVE_TYPE_ID) ประเภทการลา, LEV_MAIN.REQ_DATE วันที่ข้อมูล FROM LEV_MAIN WHERE CITIZEN_ID = '" + loginPerson.CitizenID + "'");
-                GridView3.DataSource = sds;
-                GridView3.DataBind();
-
-                if(GridView3.Rows.Count > 0) {
-                    TableCell headerCell = new TableCell();
-                    headerCell.Text = "ดูข้อมูล";
-                    GridView3.HeaderRow.Cells.Add(headerCell);
-
-                    for (int i = 0; i < GridView3.Rows.Count; ++i) {
-                        string ID = GridView3.Rows[i].Cells[0].Text;
-                        TableCell cell = new TableCell();
-                        Button btn = new Button();
-                        btn.Text = "ดูข้อมูล";
-                        btn.Click += (e2, e3) => {
-                            Response.Redirect("ViewLeaveForm.aspx?Form=1&LeaveID=" + ID);
-                        };
-                        cell.Controls.Add(btn);
-                        GridView3.Rows[i].Cells.Add(cell);
-                    }
-
-                    Util.NormalizeGridViewDate(GridView3, 2);
-                }
-
-                
-            }
+         
 
             //}
         }

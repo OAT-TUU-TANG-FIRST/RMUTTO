@@ -39,10 +39,10 @@ namespace WEB_PERSONAL {
                 notification_area.InnerHtml += "<div class='alert alert_info'>ไม่มีรายการแจ้งเตือนในขณะนี้</div>";
                 notification_area.InnerHtml += "<div><img src='Image/no-email.jpg' style='width: 100px;'/></div>";
             } else {
-                notification_area.InnerHtml += "<div class='alert alert_warning'>คุณมี <strong>" + count + "</strong> รายการแจ้งเตือน</div>";
+                notification_area.InnerHtml += "<div class='alert alert_warning'>คุณมี " + count + " รายการแจ้งเตือน</div>";
                 if (count_cmd_low != 0) {
                     notification_area.InnerHtml += "<div class='comment_left' style='margin-bottom: 20px;'></div>";
-                    notification_area.InnerHtml += "<div class='comment_center'><img src='Image/Small/pencil_y.png' class='icon_left'/>คุณมี <strong>" + count_cmd_low + "</strong> รายการที่ต้องลงความเห็นการลา<br>";
+                    notification_area.InnerHtml += "<div class='comment_center'><img src='Image/Small/pencil_y.png' class='icon_left'/>คุณมี " + count_cmd_low + " รายการที่ต้องลงความเห็นการลา<br>";
                     notification_area.InnerHtml += "<a href='LeaveComment.aspx' class='button button_default'>ไปหน้าการลงความเห็น<img src='Image/Small/forward.png' class='icon_right' /></a>";
                     notification_area.InnerHtml += "</div>";
                 }

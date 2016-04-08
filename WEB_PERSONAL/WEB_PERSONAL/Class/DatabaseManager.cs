@@ -266,7 +266,7 @@ namespace WEB_PERSONAL.Class {
         public static int GetLeaveRequiredCountByCommanderHigh(string citizenID) {
             using (OleDbConnection con = new OleDbConnection(CONNECTION_STRING)) {
                 con.Open();
-                using (OleDbCommand com = new OleDbCommand("SELECT COUNT(LEV_MAIN.LEAVE_ID) FROM LEV_MAIN, LEV_FORM1 WHERE LEV_MAIN.LEAVE_TYPE_ID in(1,2,3) AND LEV_MAIN.LEAVE_ID = LEV_FORM1.LEAVE_ID AND LEV_MAIN.LEAVE_STATE = 2 AND LEV_FORM1.CMD_LOW_ID = '" + citizenID + "'", con)) {
+                using (OleDbCommand com = new OleDbCommand("SELECT COUNT(LEV_MAIN.LEAVE_ID) FROM LEV_MAIN, LEV_FORM1 WHERE LEV_MAIN.LEAVE_TYPE_ID in(1,2,3) AND LEV_MAIN.LEAVE_ID = LEV_FORM1.LEAVE_ID AND LEV_MAIN.LEAVE_STATE = 2 AND LEV_FORM1.CMD_HIGH_ID = '" + citizenID + "'", con)) {
                     using (OleDbDataReader reader = com.ExecuteReader()) {
                         while (reader.Read()) {
                             int count = int.Parse(reader.GetValue(0).ToString());
