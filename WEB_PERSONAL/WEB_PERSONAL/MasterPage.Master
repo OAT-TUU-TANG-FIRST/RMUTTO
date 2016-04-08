@@ -106,8 +106,8 @@
                     <a href="ListPerson-ADMIN.aspx"><img src="Image/Small/table.png" />รายชื่อบุคลากร</a>
                     <a href="SEMINAR-GENERAL.aspx"><img src="Image/Small/table.png" />การเพิ่มพัฒนาบุคลากร</a>
                     <a href="SEMINAR-ADMIN.aspx"><img src="Image/Small/table.png" />การแก้ไขพัฒนาบุคลากร</a>
-                    <a href="SearchForLinkPrint.aspx"><img src="Image/Small/table.png" />ออกรายงานบุคลากร</a>
-                    <a href="SearchForLinkPrint.aspx"><img src="Image/Small/table.png" />ออกรายงานพัฒนาบุคลากร</a>
+                    <a href="Report-Custom-Person.aspx"><img src="Image/Small/table.png" />ออกรายงานบุคลากร</a>
+                    <a href="Report-Custom-Person.aspx"><img src="Image/Small/table.png" />ออกรายงานพัฒนาบุคลากร</a>
                 </div>
                 <div class="master_sidebar_group">
                     <span class="master_sidebar_group_header">การขึ้นเงินเดือน</span>

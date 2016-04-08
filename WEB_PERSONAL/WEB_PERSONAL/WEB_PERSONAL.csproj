@@ -934,7 +934,6 @@
     <Content Include="Font\THSarabun.ttf" />
     <Content Include="Person-ADMIN.aspx" />
     <Content Include="Person-Detail.aspx" />
-    <Content Include="Person-FormatPrint - new.aspx" />
     <Content Include="Person-FormatPrint.aspx" />
     <Content Include="Person-GENERAL.aspx" />
     <Content Include="personalDataSet.xsc">
@@ -952,7 +951,6 @@
     <Content Include="Salary_Salary_Admin.aspx" />
     <Content Include="Salary_Basesalary_Admin.aspx" />
     <Content Include="Profile.aspx" />
-    <Content Include="SearchForLinkPrint.aspx" />
     <Content Include="Staff-ADMIN.aspx" />
     <Content Include="StaffType-ADMIN.aspx" />
     <Content Include="StatusWork-ADMIN.aspx" />
@@ -1381,13 +1379,6 @@
     <Compile Include="Person-Detail.aspx.designer.cs">
       <DependentUpon>Person-Detail.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Person-FormatPrint - new.aspx.cs">
-      <DependentUpon>Person-FormatPrint - new.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Person-FormatPrint - new.aspx.designer.cs">
-      <DependentUpon>Person-FormatPrint - new.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Person-FormatPrint.aspx.cs">
       <DependentUpon>Person-FormatPrint.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1511,13 +1502,6 @@
     </Compile>
     <Compile Include="Salary_Basesalary_Admin.aspx.designer.cs">
       <DependentUpon>Salary_Basesalary_Admin.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SearchForLinkPrint.aspx.cs">
-      <DependentUpon>SearchForLinkPrint.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SearchForLinkPrint.aspx.designer.cs">
-      <DependentUpon>SearchForLinkPrint.aspx</DependentUpon>
     </Compile>
     <Compile Include="SEMINAR-ADMIN.aspx.cs">
       <DependentUpon>SEMINAR-ADMIN.aspx</DependentUpon>
