@@ -36,5 +36,18 @@ namespace WEB_PERSONAL {
             GridView1.DataSource = sds;
             GridView1.DataBind();
         }
+
+        protected void Button1_Click(object sender, EventArgs e) {
+            int max = MultiView1.Views.Count;
+            int next = MultiView1.ActiveViewIndex + 1;
+            if(next >= max) {
+                next = 0;
+            }
+            MultiView1.ActiveViewIndex = next;
+        }
+
+        protected void btnSqlUpdate_Click(object sender, EventArgs e) {
+            DatabaseManager.ExecuteNonQuery(tbSqlUpdate.Text);
+        }
     }
 }

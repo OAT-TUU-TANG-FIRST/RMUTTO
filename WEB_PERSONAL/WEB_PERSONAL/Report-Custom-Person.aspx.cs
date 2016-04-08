@@ -57,7 +57,7 @@ namespace WEB_PERSONAL
             ReportBase objReportBase = new ReportBase();
             
 
-            ObjReportClientDocument.SetParameterValue("CITIZEN_ID", this.txt1.Text);
+            //ObjReportClientDocument.SetParameterValue("CITIZEN_ID", this.txt1.Text);
             GetReportDocument();
             ViewCystalReport();
             
