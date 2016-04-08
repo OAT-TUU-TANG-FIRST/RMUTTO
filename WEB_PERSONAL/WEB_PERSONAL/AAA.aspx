@@ -6,7 +6,7 @@
         <Series>
             <asp:Series Name="Series1">
             </asp:Series>
-        </Series>
+        </Series> 
         <ChartAreas>
             <asp:ChartArea Name="ChartArea1">
             </asp:ChartArea>
