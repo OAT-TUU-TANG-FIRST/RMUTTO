@@ -130,13 +130,13 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.DropDownList ddlNation;
         
         /// <summary>
-        /// ddlTitle3 control.
+        /// ddlBlood control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTitle3;
+        protected global::System.Web.UI.WebControls.DropDownList ddlBlood;
         
         /// <summary>
         /// tbEmail control.
@@ -175,13 +175,13 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.DropDownList ddlReligion;
         
         /// <summary>
-        /// ddlTitle5 control.
+        /// ddlStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTitle5;
+        protected global::System.Web.UI.WebControls.DropDownList ddlStatus;
         
         /// <summary>
         /// tbFatherName control.

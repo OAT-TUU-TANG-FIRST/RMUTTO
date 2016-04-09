@@ -99,7 +99,7 @@
                     <tr>
                         <td class="col1">กรุ๊ปเลือด</td>
                         <td class="col2">
-                            <asp:DropDownList ID="ddlTitle3" runat="server">
+                            <asp:DropDownList ID="ddlBlood" runat="server">
                             </asp:DropDownList>
                         </td>
                     </tr>
@@ -131,7 +131,7 @@
                     <tr>
                         <td class="col1">สถานภาพ</td>
                         <td class="col2">
-                            <asp:DropDownList ID="ddlTitle5" runat="server">
+                            <asp:DropDownList ID="ddlStatus" runat="server">
                             </asp:DropDownList>
                         </td>
                     </tr>
