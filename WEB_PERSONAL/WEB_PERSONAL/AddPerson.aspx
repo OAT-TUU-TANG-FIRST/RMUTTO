@@ -16,10 +16,17 @@
             height: 10px;
         }
     </style>
-
+    <script>
+        $(function () {
+            $("#ContentPlaceHolder1_tbBirthday").datepicker($.datepicker.regional["th"]);
+        });
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="default_page_style">
+
+        <div id="notification" runat="server"></div>
+
         <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex="0">
             <asp:View ID="View1" runat="server">
                 <div class="default_header">
