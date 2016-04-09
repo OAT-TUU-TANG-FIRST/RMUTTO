@@ -9,6 +9,7 @@ using System.Data.OracleClient;
 using System.Data;
 using System.Configuration;
 using System.Data.OracleClient;
+using WEB_PERSONAL.Class;
 
 namespace WEB_PERSONAL
 {
@@ -23,7 +24,9 @@ namespace WEB_PERSONAL
 
                 using (OracleConnection conn = Util.OC())
                 {
-                    using (OracleCommand cmd = new OracleCommand("select CITIZEN_ID,TITLE_ID,PERSON_NAME,PERSON_LASTNAME,TO_CHAR(BIRTHDATE,'dd MON yyyy','NLS_DATE_LANGUAGE = THAI'),BIRTHDATE_LONG,TO_CHAR(RETIRE_DATE,'dd MON yyyy','NLS_DATE_LANGUAGE = THAI'),RETIRE_DATE_LONG,TO_CHAR(INWORK_DATE,'dd MON yyyy','NLS_DATE_LANGUAGE = THAI'),STAFFTYPE_ID,FATHER_NAME,FATHER_LASTNAME,MOTHER_NAME,MOTHER_LASTNAME,MOTHER_OLD_LASTNAME,COUPLE_NAME,COUPLE_LASTNAME,COUPLE_OLD_LASTNAME,MINISTRY_ID,DEPARTMENT_NAME,GENDER_ID,NATION_ID,HOMEADD,MOO,STREET,DISTRICT_ID,AMPHUR_ID,PROVINCE_ID,ZIPCODE_ID,TELEPHONE,TIME_CONTACT_ID,BUDGET_ID,SUBSTAFFTYPE_ID,ADMIN_POSITION_ID,POSITION_WORK_ID,SPECIAL_NAME,TEACH_ISCED_ID,GRAD_ISCED_ID,GRAD_PROG_ID,GRAD_UNIV,GRAD_COUNTRY_ID,FACULTY_ID,CAMPUS_ID from tb_person where citizen_id = '" + Session["login_id"].ToString() + "'", conn))
+                    PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
+                    Person PP = ps.LoginPerson;
+                    using (OracleCommand cmd = new OracleCommand("select CITIZEN_ID,TITLE_ID,PERSON_NAME,PERSON_LASTNAME,TO_CHAR(BIRTHDATE,'dd MON yyyy','NLS_DATE_LANGUAGE = THAI'),BIRTHDATE_LONG,TO_CHAR(RETIRE_DATE,'dd MON yyyy','NLS_DATE_LANGUAGE = THAI'),RETIRE_DATE_LONG,TO_CHAR(INWORK_DATE,'dd MON yyyy','NLS_DATE_LANGUAGE = THAI'),STAFFTYPE_ID,FATHER_NAME,FATHER_LASTNAME,MOTHER_NAME,MOTHER_LASTNAME,MOTHER_OLD_LASTNAME,COUPLE_NAME,COUPLE_LASTNAME,COUPLE_OLD_LASTNAME,MINISTRY_ID,DEPARTMENT_NAME,GENDER_ID,NATION_ID,HOMEADD,MOO,STREET,DISTRICT_ID,AMPHUR_ID,PROVINCE_ID,ZIPCODE_ID,TELEPHONE,TIME_CONTACT_ID,BUDGET_ID,SUBSTAFFTYPE_ID,ADMIN_POSITION_ID,POSITION_WORK_ID,SPECIAL_NAME,TEACH_ISCED_ID,GRAD_ISCED_ID,GRAD_PROG_ID,GRAD_UNIV,GRAD_COUNTRY_ID,FACULTY_ID,CAMPUS_ID from tb_person where citizen_id = '" + PP.CitizenID + "'", conn))
 
                     {
                         using (OracleDataReader reader = cmd.ExecuteReader())
@@ -1524,39 +1527,43 @@ namespace WEB_PERSONAL
 
         void BindData()
         {
-            if (Session["login_id"] == null)
+
+            if (Session["PersonnelSystem"] == null)
             {
                 Response.Redirect("Access.aspx");
                 return;
             }
 
             ClassPersonStudyHistory p1 = new ClassPersonStudyHistory();
-            DataTable dt1 = p1.GetPersonStudyHistory("", "", "", "", "", "", Session["login_id"].ToString());
+            PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
+            Person PP = ps.LoginPerson;
+
+            DataTable dt1 = p1.GetPersonStudyHistory("", "", "", "", "", "", PP.CitizenID);
             GridView1.DataSource = dt1;
             GridView1.DataBind();
 
             ClassPersonJobLisence p2 = new ClassPersonJobLisence();
-            DataTable dt2 = p2.GetPersonJobLisence("", "", "", "", Session["login_id"].ToString());
+            DataTable dt2 = p2.GetPersonJobLisence("", "", "", "", PP.CitizenID);
             GridView2.DataSource = dt2;
             GridView2.DataBind();
 
             ClassPersonTraining p3 = new ClassPersonTraining();
-            DataTable dt3 = p3.GetPersonTraining("", "", "", "", "", "", Session["login_id"].ToString());
+            DataTable dt3 = p3.GetPersonTraining("", "", "", "", "", "", PP.CitizenID);
             GridView3.DataSource = dt3;
             GridView3.DataBind();
 
             ClassPersonDISCIPLINARY p4 = new ClassPersonDISCIPLINARY();
-            DataTable dt4 = p4.GetPersonDISCIPLINARY("", "", "", Session["login_id"].ToString());
+            DataTable dt4 = p4.GetPersonDISCIPLINARY("", "", "", PP.CitizenID);
             GridView4.DataSource = dt4;
             GridView4.DataBind();
 
             ClassPersonPosiSalary p5 = new ClassPersonPosiSalary();
-            DataTable dt5 = p5.GetPersonPosiSalary("", "", "", "", 0, 0, 0, "", Session["login_id"].ToString());
+            DataTable dt5 = p5.GetPersonPosiSalary("", "", "", "", 0, 0, 0, "", PP.CitizenID);
             GridView5.DataSource = dt5;
             GridView5.DataBind();
 
             ClassPersonStudyGraduateTop p6 = new ClassPersonStudyGraduateTop();
-            DataTable dt6 = p6.GetPersonStudyGraduateTop("", "", Session["login_id"].ToString());
+            DataTable dt6 = p6.GetPersonStudyGraduateTop("", "", PP.CitizenID);
             GridView6.DataSource = dt6;
             GridView6.DataBind();
 
@@ -2679,7 +2686,9 @@ namespace WEB_PERSONAL
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('เพิ่มข้อมูลเในส่วน<ประวัติการศึกษา>เรียบร้อย')", true);
                 ClearDataGridViewNumber10();
                 ClassPersonStudyHistory p1 = new ClassPersonStudyHistory();
-                DataTable dt1 = p1.GetPersonStudyHistory("", "", "", "", "", "", Session["login_id"].ToString());
+                PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
+                Person PP = ps.LoginPerson;
+                DataTable dt1 = p1.GetPersonStudyHistory("", "", "", "", "", "", PP.CitizenID);
                 GridView1.DataSource = dt1;
                 GridView1.DataBind();
                 SetViewState(dt1);
@@ -2705,7 +2714,9 @@ namespace WEB_PERSONAL
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('เพิ่มข้อมูลเในส่วน<ใบอนุญาตประกอบวิชาชีพ>เรียบร้อย')", true);
                 ClearDataGridViewNumber11();
                 ClassPersonJobLisence p2 = new ClassPersonJobLisence();
-                DataTable dt2 = p2.GetPersonJobLisence("", "", "", "", Session["login_id"].ToString());
+                PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
+                Person PP = ps.LoginPerson;
+                DataTable dt2 = p2.GetPersonJobLisence("", "", "", "", PP.CitizenID);
                 GridView2.DataSource = dt2;
                 GridView2.DataBind();
                 SetViewState(dt2);
@@ -2737,7 +2748,9 @@ namespace WEB_PERSONAL
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('เพิ่มข้อมูลเในส่วน<ประวัติการฝึกอบรม>เรียบร้อย')", true);
                 ClearDataGridViewNumber12();
                 ClassPersonTraining p3 = new ClassPersonTraining();
-                DataTable dt3 = p3.GetPersonTraining("", "", "", "", "", "", Session["login_id"].ToString());
+                PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
+                Person PP = ps.LoginPerson;
+                DataTable dt3 = p3.GetPersonTraining("", "", "", "", "", "", PP.CitizenID);
                 GridView3.DataSource = dt3;
                 GridView3.DataBind();
                 SetViewState(dt3);
@@ -2766,7 +2779,9 @@ namespace WEB_PERSONAL
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('เพิ่มข้อมูลเในส่วน<การได้รับโทษทางวินัยและการนิรโทษกรรม>เรียบร้อย')", true);
                 ClearDataGridViewNumber13();
                 ClassPersonDISCIPLINARY p4 = new ClassPersonDISCIPLINARY();
-                DataTable dt4 = p4.GetPersonDISCIPLINARY("", "", "", Session["login_id"].ToString());
+                PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
+                Person PP = ps.LoginPerson;
+                DataTable dt4 = p4.GetPersonDISCIPLINARY("", "", "", PP.CitizenID);
                 GridView4.DataSource = dt4;
                 GridView4.DataBind();
                 SetViewState(dt4);
@@ -2800,7 +2815,9 @@ namespace WEB_PERSONAL
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('เพิ่มข้อมูลเในส่วน<ตำแหน่งและเงินเดือน>เรียบร้อย')", true);
                 ClearDataGridViewNumber14();
                 ClassPersonPosiSalary p5 = new ClassPersonPosiSalary();
-                DataTable dt5 = p5.GetPersonPosiSalary("", "", "", "", 0, 0, 0, "", Session["login_id"].ToString());
+                PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
+                Person PP = ps.LoginPerson;
+                DataTable dt5 = p5.GetPersonPosiSalary("", "", "", "", 0, 0, 0, "", PP.CitizenID);
                 GridView5.DataSource = dt5;
                 GridView5.DataBind();
                 SetViewState(dt5);
@@ -2828,7 +2845,9 @@ namespace WEB_PERSONAL
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('เพิ่มข้อมูลระดับการศึกษาที่จบสูงสุด และหลักสูตรที่จบการศึกษาสูงสุด เรียบร้อย')", true);
                 ClearDataGridViewLev();
                 ClassPersonStudyGraduateTop p6 = new ClassPersonStudyGraduateTop();
-                DataTable dt6 = p6.GetPersonStudyGraduateTop("", "", Session["login_id"].ToString());
+                PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
+                Person PP = ps.LoginPerson;
+                DataTable dt6 = p6.GetPersonStudyGraduateTop("", "", PP.CitizenID);
                 GridView6.DataSource = dt6;
                 GridView6.DataBind();
                 SetViewState(dt6);
@@ -2845,7 +2864,9 @@ namespace WEB_PERSONAL
             if (string.IsNullOrEmpty(txtSearchPersonID.Text))
             {
                 ClassPersonStudyHistory p1 = new ClassPersonStudyHistory();
-                DataTable dt1 = p1.GetPersonStudyHistory("", "", "", "", "", "", Session["login_id"].ToString());
+                PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
+                Person PP = ps.LoginPerson;
+                DataTable dt1 = p1.GetPersonStudyHistory("", "", "", "", "", "", PP.CitizenID);
                 GridView1.DataSource = dt1;
                 GridView1.DataBind();
                 SetViewState(dt1);
@@ -2862,7 +2883,9 @@ namespace WEB_PERSONAL
             if (string.IsNullOrEmpty(txtSearchPersonID.Text))
             {
                 ClassPersonJobLisence p2 = new ClassPersonJobLisence();
-                DataTable dt2 = p2.GetPersonJobLisence("", "", "", "", Session["login_id"].ToString());
+                PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
+                Person PP = ps.LoginPerson;
+                DataTable dt2 = p2.GetPersonJobLisence("", "", "", "", PP.CitizenID);
                 GridView2.DataSource = dt2;
                 GridView2.DataBind();
                 SetViewState(dt2);
@@ -2879,7 +2902,9 @@ namespace WEB_PERSONAL
             if (string.IsNullOrEmpty(txtSearchPersonID.Text))
             {
                 ClassPersonTraining p3 = new ClassPersonTraining();
-                DataTable dt3 = p3.GetPersonTraining("", "", "", "", "", "", Session["login_id"].ToString());
+                PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
+                Person PP = ps.LoginPerson;
+                DataTable dt3 = p3.GetPersonTraining("", "", "", "", "", "", PP.CitizenID);
                 GridView3.DataSource = dt3;
                 GridView3.DataBind();
                 SetViewState(dt3);
@@ -2896,7 +2921,9 @@ namespace WEB_PERSONAL
             if (string.IsNullOrEmpty(txtSearchPersonID.Text))
             {
                 ClassPersonDISCIPLINARY p4 = new ClassPersonDISCIPLINARY();
-                DataTable dt4 = p4.GetPersonDISCIPLINARY("", "", "", Session["login_id"].ToString());
+                PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
+                Person PP = ps.LoginPerson;
+                DataTable dt4 = p4.GetPersonDISCIPLINARY("", "", "", PP.CitizenID);
                 GridView4.DataSource = dt4;
                 GridView4.DataBind();
                 SetViewState(dt4);
@@ -2913,7 +2940,9 @@ namespace WEB_PERSONAL
             if (string.IsNullOrEmpty(txtSearchPersonID.Text))
             {
                 ClassPersonPosiSalary p5 = new ClassPersonPosiSalary();
-                DataTable dt5 = p5.GetPersonPosiSalary("", "", "", "", 0, 0, 0, "", Session["login_id"].ToString());
+                PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
+                Person PP = ps.LoginPerson;
+                DataTable dt5 = p5.GetPersonPosiSalary("", "", "", "", 0, 0, 0, "", PP.CitizenID);
                 GridView5.DataSource = dt5;
                 GridView5.DataBind();
                 SetViewState(dt5);
@@ -2931,7 +2960,9 @@ namespace WEB_PERSONAL
             if (string.IsNullOrEmpty(txtSearchPersonID.Text))
             {
                 ClassPersonStudyGraduateTop p6 = new ClassPersonStudyGraduateTop();
-                DataTable dt6 = p6.GetPersonStudyGraduateTop("", "", Session["login_id"].ToString());
+                PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
+                Person PP = ps.LoginPerson;
+                DataTable dt6 = p6.GetPersonStudyGraduateTop("", "", PP.CitizenID);
                 GridView6.DataSource = dt6;
                 GridView6.DataBind();
                 SetViewState(dt6);
