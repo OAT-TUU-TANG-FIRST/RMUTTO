@@ -49,5 +49,22 @@ namespace WEB_PERSONAL {
         protected void btnSqlUpdate_Click(object sender, EventArgs e) {
             DatabaseManager.ExecuteNonQuery(tbSqlUpdate.Text);
         }
+
+        protected void Button2_Click(object sender, EventArgs e) {
+            TableRow row = new TableRow();
+
+            TableCell cell = new TableCell();
+            cell.Text = "1";
+            row.Cells.Add(cell);
+
+            cell = new TableCell();
+            cell.Text = "2";
+            row.Cells.Add(cell);
+
+            Table1.Rows.Add(row);
+
+            //Session["dev_t1"] = Table1;
+
+        }
     }
 }

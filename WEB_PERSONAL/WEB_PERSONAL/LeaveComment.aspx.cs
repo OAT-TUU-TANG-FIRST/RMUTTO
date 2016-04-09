@@ -10,10 +10,7 @@ using System.Data.OleDb;
 namespace WEB_PERSONAL {
     public partial class LeaveComment : System.Web.UI.Page {
         protected void Page_Load(object sender, EventArgs e) {
-            if (!IsPostBack) {
-                i2.Style.Add("display", "none");
-                i3.Style.Add("display", "none");
-            }
+            
 
             PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
             Person loginPerson = ps.LoginPerson;
@@ -38,9 +35,11 @@ namespace WEB_PERSONAL {
 
             if (count > 0) {
 
-                SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEV_MAIN.* FROM LEV_MAIN, LEV_FORM1 WHERE LEV_MAIN.LEAVE_ID = LEV_FORM1.LEAVE_ID AND LEAVE_STATE = 1 AND CMD_LOW_ID = '" + loginPerson.CitizenID + "'");
+                SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEV_MAIN.LEAVE_ID รหัสการลา, (SELECT PERSON_NAME || ' ' || PERSON_LASTNAME FROM TB_PERSON WHERE CITIZEN_ID = LEV_MAIN.CITIZEN_ID) ชื่อผู้ลา, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_MAIN.LEAVE_TYPE_ID) ประเภทการลา, LEV_MAIN.REQ_DATE วันที่ข้อมูล FROM LEV_MAIN, LEV_FORM1 WHERE LEV_MAIN.LEAVE_ID = LEV_FORM1.LEAVE_ID AND LEAVE_STATE = 1 AND CMD_LOW_ID = '" + loginPerson.CitizenID + "'");
                 GridView1.DataSource = sds;
                 GridView1.DataBind();
+
+                Util.NormalizeGridViewDate(GridView1, 3);
 
                 TableCell newHeader = new TableCell();
                 newHeader.Text = "เลือก";
@@ -54,32 +53,26 @@ namespace WEB_PERSONAL {
                     LinkButton lbu = new LinkButton();
                     lbu.Text = "เลือก";
                     lbu.CssClass = "button button_default";
-                    lbu.Click += (e2, e3) => {
-                        
-
+                    lbu.Click += (e2, e3) => { 
                         lbF1LeaveID.Text = id;
-                        //lbF1LeaverName.Text = name;
-
+                        lbF1LeaverName.Text = f1.PersonPrefix + f1.PersonFirstName + " " + f1.PersonLastName;
                         lbF1PersonPosition.Text = f1.PersonPosition;
                         lbF1PersonDepartment.Text = f1.PersonDepartment;
                         lbF1PersonRank.Text = f1.PersonRank;
-                        //lbF1ReqDate.Text = req_date;
-                        //lbF1LeaveTypeName.Text = leave_type_name;
-                        if (f1.LastFromDate == "''") {
+                        lbF1ReqDate.Text = f1.RequestDate;
+                        lbF1LeaveTypeName.Text = f1.LeaveTypeName;
+                        if (f1.LastFromDate == "") {
                             lbF1LastFTTDate.Text = "ยังไม่เคยลา";
                         } else {
                             lbF1LastFTTDate.Text = f1.LastFromDate + " - " + f1.LastToDate + " / รวม " + f1.LastTotalDay + " วัน";
                         }
-
                         lbF1FTTDate.Text = f1.FromDate + " - " + f1.ToDate + " / รวม " + f1.TotalDay + " วัน";
-
                         lbF1Reason.Text = f1.Reason;
                         lbF1Contact.Text = f1.Contact;
                         lbF1Phone.Text = f1.Phone;
 
-                        i1.Style.Add("display", "none");
-                        i2.Style.Add("display", "block");
-                        i3.Style.Add("display", "none");
+                        MultiView1.ActiveViewIndex = 1;
+
                         error_area.Attributes["class"] = "alert alert_info";
                         error_area.InnerHtml = "กรุณาลงความเห็น";
                     };
@@ -158,9 +151,8 @@ namespace WEB_PERSONAL {
                 error_area.Attributes["class"] = "alert alert_success";
                 error_area.InnerHtml = "";
                 error_area.InnerHtml += "<strong>ลงความเห็นสำเร็จ!</strong><br>";
-                i1.Style.Add("display", "none");
-                i2.Style.Add("display", "none");
-                i3.Style.Add("display", "block");
+
+                MultiView1.ActiveViewIndex = 2;
 
                 PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
                 Person loginPerson = ps.LoginPerson;
@@ -199,9 +191,8 @@ namespace WEB_PERSONAL {
                 error_area.InnerHtml = "กรุณาเลือกรายการที่ต้องการลงความเห็น";
             }
             error_area.Attributes["class"] = "alert alert_info";
-            i1.Style.Add("display", "block");
-            i2.Style.Add("display", "none");
-            i3.Style.Add("display", "none");
+
+            MultiView1.ActiveViewIndex = 0;
         }
     }
 }

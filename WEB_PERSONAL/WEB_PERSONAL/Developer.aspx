@@ -6,6 +6,16 @@
 
     <div>
 
+        <asp:Table ID="Table1" runat="server">
+            <asp:TableHeaderRow>
+                <asp:TableHeaderCell>Col1</asp:TableHeaderCell>
+                <asp:TableHeaderCell>Col2</asp:TableHeaderCell>
+            </asp:TableHeaderRow>
+
+        </asp:Table>
+
+        <asp:Button ID="Button2" runat="server" Text="Button" onclick="Button2_Click"/>
+
         <div>
             <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex="0">
                 <asp:View ID="View1" runat="server">

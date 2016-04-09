@@ -55,13 +55,13 @@ namespace WEB_PERSONAL.Class {
             return seq;
         }
         public static void BindDropDown(DropDownList ddl, string sql, string text, string value) {
-            ddl.DataSource = CreateSQLDataSource("SELECT * FROM LEV_TYPE");
+            ddl.DataSource = CreateSQLDataSource(sql);
             ddl.DataTextField = text;
             ddl.DataValueField = value;
             ddl.DataBind();
         }
         public static void BindDropDown(DropDownList ddl, string sql, string text, string value, string first) {
-            ddl.DataSource = CreateSQLDataSource("SELECT * FROM LEV_TYPE");
+            ddl.DataSource = CreateSQLDataSource(sql);
             ddl.DataTextField = text;
             ddl.DataValueField = value;
             ddl.DataBind();
