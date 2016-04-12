@@ -10,40 +10,51 @@ namespace WEB_PERSONAL.Entities
 {
     public class Personnel
     {
-        public int YEAR { get; set; }
-        public string UNIV_ID { get; set; }
-        public string CITIZEN_ID { get; set; }
-        public string TITLE_ID { get; set; }
-        public string STF_NAME { get; set; }
-        public string STF_LNAME { get; set; }
-        public int GENDER_ID { get; set; }
-        public DateTime BIRTHDAY { get; set; }
-        public string HOMEADD { get; set; }
-        public string MOO { get; set; }
-        public string STREET { get; set; }
-        public int DISTRICT_ID { get; set; }
-        public int AMPHUR_ID { get; set; }
-        public int PROVINCE_ID { get; set; }
-        public string TELEPHONE { get; set; }
-        public int ZIPCODE_ID { get; set; }
-        public string NATION_ID { get; set; }
-        public int STAFFTYPE_ID { get; set; }
-        public int TIME_CONTACT_ID { get; set; }
-        public int BUDGET_ID { get; set; }
-        public int SUBSTAFFTYPE_ID { get; set; }
-        public string ADMIN_POSITION_ID { get; set; }
-        public string POSITION_ID { get; set; }
-        public string POSITION_WORK_ID { get; set; }
-        public string DEPARTMENT_ID { get; set; }
-        public DateTime DATETIME_INWORK { get; set; }
-        public string SPECIAL_NAME { get; set; }
-        public string TEACH_ISCED_ID { get; set; }
-        public string GRAD_LEV_ID { get; set; }
-        public string GRAD_CURR { get; set; }
-        public string GRAD_ISCED_ID { get; set; }
-        public string GRAD_PROG_ID { get; set; }
-        public string GRAD_UNIV { get; set; }
-        public int GRAD_COUNTRY_ID { get; set; }
+        
+        public string PS_CITIZEN_ID { get; set; }
+        public int PS_MINISTRY_ID { get; set; }
+        public string PS_GROM { get; set; }
+        public int PS_TITLE_ID { get; set; }
+        public string PS_FN_TH { get; set; }
+        public string PS_FN_EN { get; set; }
+        public string PS_LN_TH { get; set; }
+        public string PS_LN_EN { get; set; }
+        public int PS_GENDER_ID { get; set; }
+        public DateTime PS_BIRTHDAY_DATE { get; set; }
+        public string PS_BIRTHDAY_LONG { get; set; }
+        public int PS_RACE_ID { get; set; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         public Personnel() { }

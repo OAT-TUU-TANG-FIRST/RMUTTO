@@ -10,11 +10,15 @@ using System.Data;
 using System.Configuration;
 using WEB_PERSONAL.Class;
 
-namespace WEB_PERSONAL {
-    public partial class AddPerson : System.Web.UI.Page {
+namespace WEB_PERSONAL
+{
+    public partial class AddPerson : System.Web.UI.Page
+    {
         public static string strConn = @"Data Source = ORCL_RMUTTO;USER ID=RMUTTO;PASSWORD=Zxcvbnm";
-        protected void Page_Load(object sender, EventArgs e) {
-            if (!IsPostBack) {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
                 BindProvinceList();
                 SQLCampus();
                 SQLddlPositionType14();
@@ -340,8 +344,7 @@ namespace WEB_PERSONAL {
                 {
                     using (OracleCommand sqlCmd = new OracleCommand())
                     {
-                        sqlCmd.CommandText = "select * from TB_FACULTY where CAMPUS_ID=:CAMPUS_ID";
-                        sqlCmd.Parameters.AddWithValue(":CAMPUS_ID", ddlCampus.SelectedValue);
+                        sqlCmd.CommandText = "select * from TB_FACULTY where CAMPUS_ID = " + ddlCampus.SelectedValue;
                         sqlCmd.Connection = sqlConn;
                         sqlConn.Open();
                         OracleDataAdapter da = new OracleDataAdapter(sqlCmd);
@@ -372,17 +375,16 @@ namespace WEB_PERSONAL {
                 {
                     using (OracleCommand sqlCmd = new OracleCommand())
                     {
-                        sqlCmd.CommandText = "select * from TB_DIVISION where FACULTY_ID=:DIVISION_ID";
-                        sqlCmd.Parameters.AddWithValue(":DIVISION_ID", ddlFaculty.SelectedValue);
+                        sqlCmd.CommandText = "select * from TB_DIVISION where FACULTY_ID = " + ddlFaculty.SelectedValue;
                         sqlCmd.Connection = sqlConn;
                         sqlConn.Open();
                         OracleDataAdapter da = new OracleDataAdapter(sqlCmd);
                         DataTable dt = new DataTable();
                         da.Fill(dt);
-                        ddlFaculty.DataSource = dt;
-                        ddlFaculty.DataValueField = "DIVISION_ID";
-                        ddlFaculty.DataTextField = "DIVISION_NAME";
-                        ddlFaculty.DataBind();
+                        ddlDivision.DataSource = dt;
+                        ddlDivision.DataValueField = "DIVISION_ID";
+                        ddlDivision.DataTextField = "DIVISION_NAME";
+                        ddlDivision.DataBind();
                         sqlConn.Close();
 
                         ddlDivision.Items.Insert(0, new ListItem("--กรุณาเลือกกอง / สำนักงานเลขา / ภาควิชา--", "0"));
@@ -402,17 +404,16 @@ namespace WEB_PERSONAL {
                 {
                     using (OracleCommand sqlCmd = new OracleCommand())
                     {
-                        sqlCmd.CommandText = "select * from TB_WORK_DIVISION where DIVISION_ID=:WORK_ID";
-                        sqlCmd.Parameters.AddWithValue(":WORK_ID", ddlDivision.SelectedValue);
+                        sqlCmd.CommandText = "select * from TB_WORK_DIVISION where DIVISION_ID = " + ddlDivision.SelectedValue;
                         sqlCmd.Connection = sqlConn;
                         sqlConn.Open();
                         OracleDataAdapter da = new OracleDataAdapter(sqlCmd);
                         DataTable dt = new DataTable();
                         da.Fill(dt);
-                        ddlDivision.DataSource = dt;
-                        ddlDivision.DataValueField = "WORK_ID";
-                        ddlDivision.DataTextField = "WORK_NAME";
-                        ddlDivision.DataBind();
+                        ddlWorkDivision.DataSource = dt;
+                        ddlWorkDivision.DataValueField = "WORK_ID";
+                        ddlWorkDivision.DataTextField = "WORK_NAME";
+                        ddlWorkDivision.DataBind();
                         sqlConn.Close();
 
                         ddlWorkDivision.Items.Insert(0, new ListItem("--กรุณาเลือกงาน / ฝ่าย--", "0"));
@@ -476,7 +477,8 @@ namespace WEB_PERSONAL {
             catch { }
         }
 
-        protected void lbuV1Next_Click(object sender, EventArgs e) {
+        protected void lbuV1Next_Click(object sender, EventArgs e)
+        {
             /*  if(tbCitizenID.Text == "" || ddlTitle.SelectedIndex == 0 || tbNameTH.Text == ""|| tbLastNameTH.Text == "" || tbNameEN.Text == "" || tbLastNameEN.Text == "" || ddlGender.SelectedIndex == 0 || tbBirthday.Text == "" || ddlRace.SelectedIndex == 0 || ddlNation.SelectedIndex == 0 || ddlBlood.SelectedIndex == 0 || tbEmail.Text == "" || tbPhone.Text == "" || tbTelephone.Text == "" || ddlReligion.SelectedIndex == 0 || ddlStatus.SelectedIndex == 0 || tbFatherName.Text == "" || tbFatherLastName.Text == "" || tbMotherName.Text == "" || tbMotherLastName.Text == "" || tbMotherOldLastName.Text == "" || tbCoupleName.Text == "" || tbCoupleLastName.Text == "" || tbCoupleOldLastName.Text == "") {
 
                 notification.Attributes["class"] = "alert alert_danger";
@@ -586,11 +588,13 @@ namespace WEB_PERSONAL {
             MultiView1.ActiveViewIndex = 1;
         }
 
-        protected void lbuV2Back_Click(object sender, EventArgs e) {
+        protected void lbuV2Back_Click(object sender, EventArgs e)
+        {
             MultiView1.ActiveViewIndex = 0;
         }
 
-        protected void lbuV2Next_Click(object sender, EventArgs e) {
+        protected void lbuV2Next_Click(object sender, EventArgs e)
+        {
             /* if (tbHomeAdd.Text == "" || tbSoi.Text == "" || tbMoo.Text == "" || tbRoad.Text == "" || ddlProvince.SelectedIndex == 0 || ddlAmphur.SelectedIndex == 0 || ddlDistrict.SelectedIndex == 0 || tbZipcode.Text == "" || ddlCountry.SelectedIndex == 0 || tbState.Text == "" ||
                  tbHomeAdd2.Text == "" || tbSoi2.Text == "" || tbMoo2.Text == "" || tbRoad2.Text == "" || ddlProvince2.SelectedIndex == 0 || ddlAmphur2.SelectedIndex == 0 || ddlDistrict2.SelectedIndex == 0 || tbZipcode2.Text == "" || ddlCountry2.SelectedIndex == 0 || tbState2.Text == "")
              {
@@ -647,7 +651,8 @@ namespace WEB_PERSONAL {
              */
             MultiView1.ActiveViewIndex = 2;
         }
-        protected void lbuAddressFetch_Click(object sender, EventArgs e) {
+        protected void lbuAddressFetch_Click(object sender, EventArgs e)
+        {
             tbHomeAdd2.Text = tbHomeAdd.Text;
             tbSoi2.Text = tbSoi.Text;
             tbMoo2.Text = tbMoo.Text;
@@ -669,11 +674,13 @@ namespace WEB_PERSONAL {
             ddlCountry2.SelectedIndex = ddlCountry.SelectedIndex;
         }
 
-        protected void lbuV3Back_Click(object sender, EventArgs e) {
+        protected void lbuV3Back_Click(object sender, EventArgs e)
+        {
             MultiView1.ActiveViewIndex = 1;
         }
 
-        protected void lbuV3Next_Click(object sender, EventArgs e) {
+        protected void lbuV3Next_Click(object sender, EventArgs e)
+        {
             /* if (ddlDegree10.SelectedIndex == 0 || tbUnivName10.Text == "" || ddlMonth10From.SelectedIndex == 0 || ddlYear10From.SelectedIndex == 0 || ddlMonth10To.SelectedIndex == 0 || ddlYear10To.SelectedIndex == 0 || tbQualification10.Text == "" || tbMajor10.Text == "" || tbCountrySuccess10.Text == "")
             {
                 notification.Attributes["class"] = "alert alert_danger";
@@ -714,11 +721,13 @@ namespace WEB_PERSONAL {
             MultiView1.ActiveViewIndex = 3;
         }
 
-        protected void lbuV4Back_Click(object sender, EventArgs e) {
+        protected void lbuV4Back_Click(object sender, EventArgs e)
+        {
             MultiView1.ActiveViewIndex = 2;
         }
 
-        protected void lbuV4Next_Click(object sender, EventArgs e) {
+        protected void lbuV4Next_Click(object sender, EventArgs e)
+        {
             /*  if (ddlDegree10.SelectedIndex == 0 || ddlCampus.SelectedIndex == 0 || ddlFaculty.SelectedIndex == 0 || ddlDivision.SelectedIndex == 0 || ddlWorkDivision.SelectedIndex == 0 || ddlStaffType.SelectedIndex == 0 || ddlBudget.SelectedIndex == 0 || ddlAdminPosition.SelectedIndex == 0 || ddlPositionWork.SelectedIndex == 0 || ddlAcademic.SelectedIndex == 0 || tbDateInwork.Text == "" || tbSpecialWork.Text == "" || ddlTeachISCED.SelectedIndex == 0)
               {
                   notification.Attributes["class"] = "alert alert_danger";
@@ -783,11 +792,13 @@ namespace WEB_PERSONAL {
             MultiView1.ActiveViewIndex = 4;
         }
 
-        protected void lbuV5Back_Click(object sender, EventArgs e) {
+        protected void lbuV5Back_Click(object sender, EventArgs e)
+        {
             MultiView1.ActiveViewIndex = 3;
         }
 
-        protected void lbuV5Next_Click(object sender, EventArgs e) {
+        protected void lbuV5Next_Click(object sender, EventArgs e)
+        {
             /*  if (tbLicenseName11.Text == "" || tbLicenseName11.Text == "" || tbDepartment11.Text == "" || tbLicenseNo11.Text == "" || tbUseDate11.Text == "")
               {
                   notification.Attributes["class"] = "alert alert_danger";
@@ -820,11 +831,13 @@ namespace WEB_PERSONAL {
             MultiView1.ActiveViewIndex = 5;
         }
 
-        protected void lbuV6Back_Click(object sender, EventArgs e) {
+        protected void lbuV6Back_Click(object sender, EventArgs e)
+        {
             MultiView1.ActiveViewIndex = 4;
         }
 
-        protected void lbuV6Next_Click(object sender, EventArgs e) {
+        protected void lbuV6Next_Click(object sender, EventArgs e)
+        {
             /*  if (tbCourse.Text == "" || ddlMonth12From.SelectedIndex == 0 || ddlYear12From.SelectedIndex == 0 || ddlMonth12To.SelectedIndex == 0 || ddlYear12To.SelectedIndex == 0 || tbDepartment.Text == "")
             {
                 notification.Attributes["class"] = "alert alert_danger";
@@ -853,11 +866,13 @@ namespace WEB_PERSONAL {
             MultiView1.ActiveViewIndex = 6;
         }
 
-        protected void lbuV7Back_Click(object sender, EventArgs e) {
+        protected void lbuV7Back_Click(object sender, EventArgs e)
+        {
             MultiView1.ActiveViewIndex = 5;
         }
 
-        protected void lbuV7Next_Click(object sender, EventArgs e) {
+        protected void lbuV7Next_Click(object sender, EventArgs e)
+        {
             /*  if (ddlYear13.SelectedIndex == 0 || tbName13.Text == "" || tbREF13.Text == "")
             {
                 notification.Attributes["class"] = "alert alert_danger";
@@ -886,11 +901,13 @@ namespace WEB_PERSONAL {
             MultiView1.ActiveViewIndex = 7;
         }
 
-        protected void lbuV8Back_Click(object sender, EventArgs e) {
+        protected void lbuV8Back_Click(object sender, EventArgs e)
+        {
             MultiView1.ActiveViewIndex = 6;
         }
 
-        protected void lbuV8Next_Click(object sender, EventArgs e) {
+        protected void lbSubmit_Click(object sender, EventArgs e)
+        {
             /*   if (tbDate14.Text == "" || tbPosition14.Text == "" || tbPositionNo14.Text == "" || ddlPositionType14.SelectedIndex == 0 || ddlPositionDegree14.SelectedIndex == 0 || tbSalary14.Text == "" || tbSalaryPosition14.Text == "" || tbRef14.Text == "")
              {
                  notification.Attributes["class"] = "alert alert_danger";
@@ -935,14 +952,15 @@ namespace WEB_PERSONAL {
                      notification.Attributes["class"] = "none";
                      notification.InnerHtml = "";
                  }
-             }
+             } */
 //////////////////////////////////////////////////////////
-            for (int i = 0; i < GridView1.Rows.Count; ++i)
+          
+            for (int i = 0; i < GridViewStudy.Rows.Count; ++i)
             {
                 int id = 0;
                 using (OracleConnection conn = Util.OC())
                 {
-                    using (OracleCommand command = new OracleCommand("INSERT INTO TB_STUDY_HISTORY (CITIZEN_ID,GRAD_UNIV,MONTH_FROM,YEAR_FROM,MONTH_TO,YEAR_TO,MAJOR) VALUES (:CITIZEN_ID,:GRAD_UNIV,:MONTH_FROM,:YEAR_FROM,:MONTH_TO,:YEAR_TO,:MAJOR)", conn))
+                    using (OracleCommand command = new OracleCommand("INSERT INTO PS_STUDY (PS_CITIZEN_ID,PS_DEGREE_ID,PS_UNIV_NAME,PS_FROM_MONTH,PS_FROM_YEAR,PS_TO_MONTH,PS_TO_YEAR,PS_QUALIFICATION,PS_MAJOR,PS_COUNTRY_ID) VALUES (:PS_CITIZEN_ID,:PS_DEGREE_ID,:PS_UNIV_NAME,:PS_FROM_MONTH,:PS_FROM_YEAR,:PS_TO_MONTH,:PS_TO_YEAR,:PS_QUALIFICATION,:PS_MAJOR,:PS_COUNTRY_ID)", conn))
                     {
 
                         try
@@ -952,14 +970,16 @@ namespace WEB_PERSONAL {
                                 conn.Open();
                             }
 
-                            command.Parameters.Add(new OracleParameter("CITIZEN_ID", txtCitizen.Text));
-                            command.Parameters.Add(new OracleParameter("GRAD_UNIV", GridView1.Rows[i].Cells[0].Text));
-                            command.Parameters.Add(new OracleParameter("MONTH_FROM", GridView1.Rows[i].Cells[1].Text));
-                            command.Parameters.Add(new OracleParameter("YEAR_FROM", GridView1.Rows[i].Cells[2].Text));
-                            command.Parameters.Add(new OracleParameter("MONTH_TO", GridView1.Rows[i].Cells[3].Text));
-                            command.Parameters.Add(new OracleParameter("YEAR_TO", GridView1.Rows[i].Cells[4].Text));
-                            command.Parameters.Add(new OracleParameter("MAJOR", GridView1.Rows[i].Cells[5].Text));
-
+                            command.Parameters.Add(new OracleParameter("PS_CITIZEN_ID", tbCitizenID.Text));
+                            command.Parameters.Add(new OracleParameter("PS_DEGREE_ID", GridViewStudy.Rows[i].Cells[0].Text));
+                            command.Parameters.Add(new OracleParameter("PS_UNIV_NAME", GridViewStudy.Rows[i].Cells[1].Text));
+                            command.Parameters.Add(new OracleParameter("PS_FROM_MONTH", GridViewStudy.Rows[i].Cells[2].Text));
+                            command.Parameters.Add(new OracleParameter("PS_FROM_YEAR", GridViewStudy.Rows[i].Cells[3].Text));
+                            command.Parameters.Add(new OracleParameter("PS_TO_MONTH", GridViewStudy.Rows[i].Cells[4].Text));
+                            command.Parameters.Add(new OracleParameter("PS_TO_YEAR", GridViewStudy.Rows[i].Cells[5].Text));
+                            command.Parameters.Add(new OracleParameter("PS_QUALIFICATION", GridViewStudy.Rows[i].Cells[6].Text));
+                            command.Parameters.Add(new OracleParameter("PS_MAJOR", GridViewStudy.Rows[i].Cells[7].Text));
+                            command.Parameters.Add(new OracleParameter("PS_COUNTRY_ID", GridViewStudy.Rows[i].Cells[8].Text));
                             id = command.ExecuteNonQuery();
                         }
 
@@ -976,12 +996,12 @@ namespace WEB_PERSONAL {
                 }
             }
 
-            for (int i = 0; i < GridView2.Rows.Count; ++i)
+            for (int i = 0; i < GridViewLicense.Rows.Count; ++i)
             {
                 int id = 0;
                 using (OracleConnection conn = Util.OC())
                 {
-                    using (OracleCommand command = new OracleCommand("INSERT INTO TB_JOB_LICENSE (CITIZEN_ID,LICENCE_NAME,BRANCH,LICENCE_NO,DDATE) VALUES (:CITIZEN_ID,:LICENCE_NAME,:BRANCH,:LICENCE_NO,:DDATE)", conn))
+                    using (OracleCommand command = new OracleCommand("INSERT INTO PS_PROFESSIONAL_LICENSE (PS_CITIZEN_ID,PS_LICENSE_NAME,PS_DEPARTMENT,PS_LICENSE_NO,PS_USE_DATE) VALUES (:PS_CITIZEN_ID,:PS_LICENSE_NAME,:PS_DEPARTMENT,:PS_LICENSE_NO,:PS_USE_DATE)", conn))
                     {
 
                         try
@@ -990,19 +1010,18 @@ namespace WEB_PERSONAL {
                             {
                                 conn.Open();
                             }
-                            string[] ss2 = GridView2.Rows[i].Cells[3].Text.Split(' ');
+                            string[] ss2 = GridViewLicense.Rows[i].Cells[3].Text.Split(' ');
                             for (int j = 0; j < ss2.Length; ++j)
                             {
                                 ss2[j] = ss2[j].Trim();
                             }
                             DateTime DATE_11 = new DateTime(Convert.ToInt32(ss2[2]), Util.MonthToNumber(ss2[1]), Convert.ToInt32(ss2[0]));
 
-                            command.Parameters.Add(new OracleParameter("CITIZEN_ID", txtCitizen.Text));
-                            command.Parameters.Add(new OracleParameter("LICENCE_NAME", GridView2.Rows[i].Cells[0].Text));
-                            command.Parameters.Add(new OracleParameter("BRANCH", GridView2.Rows[i].Cells[1].Text));
-                            command.Parameters.Add(new OracleParameter("LICENCE_NO", GridView2.Rows[i].Cells[2].Text));
-                            command.Parameters.Add(new OracleParameter("DDATE", DATE_11));
-
+                            command.Parameters.Add(new OracleParameter("PS_CITIZEN_ID", tbCitizenID.Text));
+                            command.Parameters.Add(new OracleParameter("PS_LICENSE_NAME", GridViewLicense.Rows[i].Cells[0].Text));
+                            command.Parameters.Add(new OracleParameter("PS_DEPARTMENT", GridViewLicense.Rows[i].Cells[1].Text));
+                            command.Parameters.Add(new OracleParameter("PS_LICENSE_NO", GridViewLicense.Rows[i].Cells[2].Text));
+                            command.Parameters.Add(new OracleParameter("PS_USE_DATE", DATE_11));
                             id = command.ExecuteNonQuery();
 
                         }
@@ -1020,12 +1039,12 @@ namespace WEB_PERSONAL {
                 }
             }
 
-            for (int i = 0; i < GridView3.Rows.Count; ++i)
+            for (int i = 0; i < GridViewTraining.Rows.Count; ++i)
             {
                 int id = 0;
                 using (OracleConnection conn = Util.OC())
                 {
-                    using (OracleCommand command = new OracleCommand("INSERT INTO TB_TRAINING_HISTORY (CITIZEN_ID,COURSE,MONTH_FROM,YEAR_FROM,MONTH_TO,YEAR_TO,BRANCH_TRAINING) VALUES (:CITIZEN_ID,:COURSE,:MONTH_FROM,:YEAR_FROM,:MONTH_TO,:YEAR_TO,:BRANCH_TRAINING)", conn))
+                    using (OracleCommand command = new OracleCommand("INSERT INTO PS_TRAINING (PS_CITIZEN_ID,PS_COURSE,PS_FROM_MONTH,PS_FROM_YEAR,PS_TO_MONTH,PS_TO_FROM,PS_DEPARTMENT) VALUES (:PS_CITIZEN_ID,:PS_COURSE,:PS_FROM_MONTH,:PS_FROM_YEAR,:PS_TO_MONTH,:PS_TO_FROM,:PS_DEPARTMENT)", conn))
                     {
 
                         try
@@ -1035,14 +1054,13 @@ namespace WEB_PERSONAL {
                                 conn.Open();
                             }
 
-                            command.Parameters.Add(new OracleParameter("CITIZEN_ID", txtCitizen.Text));
-                            command.Parameters.Add(new OracleParameter("COURSE", GridView3.Rows[i].Cells[0].Text));
-                            command.Parameters.Add(new OracleParameter("MONTH_FROM", GridView3.Rows[i].Cells[1].Text));
-                            command.Parameters.Add(new OracleParameter("YEAR_FROM", GridView3.Rows[i].Cells[2].Text));
-                            command.Parameters.Add(new OracleParameter("MONTH_TO", GridView3.Rows[i].Cells[3].Text));
-                            command.Parameters.Add(new OracleParameter("YEAR_TO", GridView3.Rows[i].Cells[4].Text));
-                            command.Parameters.Add(new OracleParameter("BRANCH_TRAINING", GridView3.Rows[i].Cells[5].Text));
-
+                            command.Parameters.Add(new OracleParameter("PS_CITIZEN_ID", tbCitizenID.Text));
+                            command.Parameters.Add(new OracleParameter("PS_COURSE", GridViewTraining.Rows[i].Cells[0].Text));
+                            command.Parameters.Add(new OracleParameter("PS_FROM_MONTH", GridViewTraining.Rows[i].Cells[1].Text));
+                            command.Parameters.Add(new OracleParameter("PS_FROM_YEAR", GridViewTraining.Rows[i].Cells[2].Text));
+                            command.Parameters.Add(new OracleParameter("PS_TO_MONTH", GridViewTraining.Rows[i].Cells[3].Text));
+                            command.Parameters.Add(new OracleParameter("PS_TO_FROM", GridViewTraining.Rows[i].Cells[4].Text));
+                            command.Parameters.Add(new OracleParameter("PS_DEPARTMENT", GridViewTraining.Rows[i].Cells[5].Text));
                             id = command.ExecuteNonQuery();
                         }
 
@@ -1059,12 +1077,12 @@ namespace WEB_PERSONAL {
                 }
             }
 
-            for (int i = 0; i < GridView4.Rows.Count; ++i)
+            for (int i = 0; i < GridViewDDA.Rows.Count; ++i)
             {
                 int id = 0;
                 using (OracleConnection conn = Util.OC())
                 {
-                    using (OracleCommand command = new OracleCommand("INSERT INTO TB_DISCIPLINARY_AND_AMNESTY (CITIZEN_ID,YEAR,MENU,REF_DOC) VALUES (:CITIZEN_ID,:YEAR,:MENU,:REF_DOC)", conn))
+                    using (OracleCommand command = new OracleCommand("INSERT INTO PS_DISCIPLINARY_AND_AMNESTY (PS_CITIZEN_ID,PS_YEAR,PS_DAA_NAME,PS_REF) VALUES (:PS_CITIZEN_ID,:PS_YEAR,:PS_DAA_NAME,:PS_REF)", conn))
                     {
 
                         try
@@ -1074,11 +1092,10 @@ namespace WEB_PERSONAL {
                                 conn.Open();
                             }
 
-                            command.Parameters.Add(new OracleParameter("CITIZEN_ID", txtCitizen.Text));
-                            command.Parameters.Add(new OracleParameter("YEAR", GridView4.Rows[i].Cells[0].Text));
-                            command.Parameters.Add(new OracleParameter("MENU", GridView4.Rows[i].Cells[1].Text));
-                            command.Parameters.Add(new OracleParameter("REF_DOC", GridView4.Rows[i].Cells[2].Text));
-
+                            command.Parameters.Add(new OracleParameter("PS_CITIZEN_ID", tbCitizenID.Text));
+                            command.Parameters.Add(new OracleParameter("PS_YEAR", GridViewDDA.Rows[i].Cells[0].Text));
+                            command.Parameters.Add(new OracleParameter("PS_DAA_NAME", GridViewDDA.Rows[i].Cells[1].Text));
+                            command.Parameters.Add(new OracleParameter("PS_REF", GridViewDDA.Rows[i].Cells[2].Text));
                             id = command.ExecuteNonQuery();
                         }
 
@@ -1095,12 +1112,12 @@ namespace WEB_PERSONAL {
                 }
             }
 
-            for (int i = 0; i < GridView5.Rows.Count; ++i)
+            for (int i = 0; i < GridViewPAS.Rows.Count; ++i)
             {
                 int id = 0;
                 using (OracleConnection conn = Util.OC())
                 {
-                    using (OracleCommand command = new OracleCommand("INSERT INTO TB_POSITION_AND_SALARY (DDATE,POSITION_NAME,PERSON_ID,ST_ID,POSITION_ID,SALARY,POSITION_SALARY,REFERENCE_DOCUMENT,CITIZEN_ID) VALUES (:DDATE,:POSITION_NAME,:PERSON_ID,:ST_ID,:POSITION_ID,:SALARY,:POSITION_SALARY,:REFERENCE_DOCUMENT,:CITIZEN_ID)", conn))
+                    using (OracleCommand command = new OracleCommand("INSERT INTO PS_POSITION_AND_SALARY (PAS_CITIZEN_ID,PAS_DATE,PAS_POSITION,PAS_POSITION_NO,PAS_POSITION_TYPE,PAS_POSITION_DEGREE,PAS_SALARY,PAS_SALARY_POSITION,PAS_REF) VALUES (:PAS_CITIZEN_ID,:PAS_DATE,:PAS_POSITION,:PAS_POSITION_NO,:PAS_POSITION_TYPE,:PAS_POSITION_DEGREE,:PAS_SALARY,:PAS_SALARY_POSITION,:PAS_REF)", conn))
                     {
 
                         try
@@ -1109,25 +1126,22 @@ namespace WEB_PERSONAL {
                             {
                                 conn.Open();
                             }
-                            string[] ss5 = GridView5.Rows[i].Cells[0].Text.Split(' ');
+                            string[] ss5 = GridViewPAS.Rows[i].Cells[0].Text.Split(' ');
                             for (int j = 0; j < ss5.Length; ++j)
                             {
                                 ss5[j] = ss5[j].Trim();
                             }
                             DateTime DATE_11 = new DateTime(Convert.ToInt32(ss5[2]), Util.MonthToNumber(ss5[1]), Convert.ToInt32(ss5[0]));
 
-                            command.Parameters.Add(new OracleParameter("DDATE", DATE_11));
-                            command.Parameters.Add(new OracleParameter("POSITION_NAME", GridView5.Rows[i].Cells[1].Text));
-                            command.Parameters.Add(new OracleParameter("PERSON_ID", GridView5.Rows[i].Cells[2].Text));
-                            command.Parameters.Add(new OracleParameter("ST_ID", GridView5.Rows[i].Cells[3].Text));
-                            command.Parameters.Add(new OracleParameter("POSITION_ID", GridView5.Rows[i].Cells[4].Text));
-                            command.Parameters.Add(new OracleParameter("SALARY", GridView5.Rows[i].Cells[5].Text));
-                            command.Parameters.Add(new OracleParameter("POSITION_SALARY", GridView5.Rows[i].Cells[6].Text));
-                            command.Parameters.Add(new OracleParameter("REFERENCE_DOCUMENT", GridView5.Rows[i].Cells[7].Text));
-                            command.Parameters.Add(new OracleParameter("CITIZEN_ID", txtCitizen.Text));
-
-
-
+                            command.Parameters.Add(new OracleParameter("PAS_CITIZEN_ID", tbCitizenID.Text));
+                            command.Parameters.Add(new OracleParameter("PAS_DATE", DATE_11));
+                            command.Parameters.Add(new OracleParameter("PAS_POSITION", GridViewPAS.Rows[i].Cells[1].Text));
+                            command.Parameters.Add(new OracleParameter("PAS_POSITION_NO", GridViewPAS.Rows[i].Cells[2].Text));
+                            command.Parameters.Add(new OracleParameter("PAS_POSITION_TYPE", GridViewPAS.Rows[i].Cells[3].Text));
+                            command.Parameters.Add(new OracleParameter("PAS_POSITION_DEGREE", GridViewPAS.Rows[i].Cells[4].Text));
+                            command.Parameters.Add(new OracleParameter("PAS_SALARY", GridViewPAS.Rows[i].Cells[5].Text));
+                            command.Parameters.Add(new OracleParameter("PAS_SALARY_POSITION", GridViewPAS.Rows[i].Cells[6].Text));
+                            command.Parameters.Add(new OracleParameter("PAS_REF", GridViewPAS.Rows[i].Cells[7].Text));
                             id = command.ExecuteNonQuery();
 
                         }
@@ -1143,11 +1157,14 @@ namespace WEB_PERSONAL {
                         }
                     }
                 }
-            }*/
+            }
+
+            //////
             MultiView1.ActiveViewIndex = 8;
         }
 
-        protected void lbuV3Add_Click(object sender, EventArgs e) {
+        protected void lbuV3Add_Click(object sender, EventArgs e)
+        {
             DataRow dr = ((DataTable)(Session["Study"])).NewRow();
             dr[0] = ddlDegree10.SelectedValue;
             dr[1] = tbUnivName10.Text;
@@ -1199,7 +1216,8 @@ namespace WEB_PERSONAL {
             }
         }
 
-        protected void lbuV5Add_Click(object sender, EventArgs e) {
+        protected void lbuV5Add_Click(object sender, EventArgs e)
+        {
             DataRow dr = ((DataTable)(Session["ProLisence"])).NewRow();
             dr[0] = tbLicenseName11.Text;
             dr[1] = tbDepartment11.Text;
@@ -1227,18 +1245,19 @@ namespace WEB_PERSONAL {
                 {
                     notification.InnerHtml += "<div>กรุณากรอก 'วันที่มีผลบังคับใช้ (วัน เดือน ปี)'</div>";
                 }
-                else {
-                    ((DataTable)(Session["ProLisence"])).Rows.Add(dr);
-                    GridViewLicense.DataSource = ((DataTable)(Session["ProLisence"]));
-                    GridViewLicense.DataBind();
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('เพิ่มข้อมูลใบประกอบวิชาชีพเรียบร้อย')", true);
-                    notification.Attributes["class"] = "none";
-                    notification.InnerHtml = "";
-                }
+            }
+            else {
+                ((DataTable)(Session["ProLisence"])).Rows.Add(dr);
+                GridViewLicense.DataSource = ((DataTable)(Session["ProLisence"]));
+                GridViewLicense.DataBind();
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('เพิ่มข้อมูลใบประกอบวิชาชีพเรียบร้อย')", true);
+                notification.Attributes["class"] = "none";
+                notification.InnerHtml = "";
             }
         }
 
-        protected void lbuV6Add_Click(object sender, EventArgs e) {
+        protected void lbuV6Add_Click(object sender, EventArgs e)
+        {
             DataRow dr = ((DataTable)(Session["Trainning"])).NewRow();
             dr[0] = tbCourse.Text;
             dr[1] = ddlMonth12From.SelectedValue;
@@ -1264,18 +1283,19 @@ namespace WEB_PERSONAL {
                 {
                     notification.InnerHtml += "<div>กรุณากรอก 'หน่วยงานที่จัดฝึกอบรม'</div>";
                 }
-                else {
-                    ((DataTable)(Session["Trainning"])).Rows.Add(dr);
-                    GridViewTraining.DataSource = ((DataTable)(Session["Trainning"]));
-                    GridViewTraining.DataBind();
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('เพิ่มข้อมูลประวัติการฝึกอบรมเรียบร้อย')", true);
-                    notification.Attributes["class"] = "none";
-                    notification.InnerHtml = "";
-                }
+            }
+            else {
+                ((DataTable)(Session["Trainning"])).Rows.Add(dr);
+                GridViewTraining.DataSource = ((DataTable)(Session["Trainning"]));
+                GridViewTraining.DataBind();
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('เพิ่มข้อมูลประวัติการฝึกอบรมเรียบร้อย')", true);
+                notification.Attributes["class"] = "none";
+                notification.InnerHtml = "";
             }
         }
 
-        protected void lbuV7Add_Click(object sender, EventArgs e) {
+        protected void lbuV7Add_Click(object sender, EventArgs e)
+        {
             DataRow dr = ((DataTable)(Session["DDA"])).NewRow();
             dr[0] = ddlYear13.SelectedValue;
             dr[1] = tbName13.Text;
@@ -1298,18 +1318,19 @@ namespace WEB_PERSONAL {
                 {
                     notification.InnerHtml += "<div>กรุณากรอก 'เอกสารอ้างอิง'</div>";
                 }
-                else {
-                    ((DataTable)(Session["DDA"])).Rows.Add(dr);
-                    GridViewDDA.DataSource = ((DataTable)(Session["DDA"]));
-                    GridViewDDA.DataBind();
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('เพิ่มข้อมูลการได้รับโทษทางวินัยและการนิรโทษกรรมเรียบร้อย')", true);
-                    notification.Attributes["class"] = "none";
-                    notification.InnerHtml = "";
-                }
+            }
+            else {
+                ((DataTable)(Session["DDA"])).Rows.Add(dr);
+                GridViewDDA.DataSource = ((DataTable)(Session["DDA"]));
+                GridViewDDA.DataBind();
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('เพิ่มข้อมูลการได้รับโทษทางวินัยและการนิรโทษกรรมเรียบร้อย')", true);
+                notification.Attributes["class"] = "none";
+                notification.InnerHtml = "";
             }
         }
 
-        protected void lbuV8Add_Click(object sender, EventArgs e) {
+        protected void lbuV8Add_Click(object sender, EventArgs e)
+        {
             DataRow dr = ((DataTable)(Session["PAS"])).NewRow();
             dr[0] = tbDate14.Text;
             dr[1] = tbPosition14.Text;
@@ -1358,17 +1379,15 @@ namespace WEB_PERSONAL {
                 {
                     notification.InnerHtml += "<div>กรุณากรอก 'เอกสารอ้างอิง'</div>";
                 }
-                else {
-                    ((DataTable)(Session["PAS"])).Rows.Add(dr);
-                    GridViewPAS.DataSource = ((DataTable)(Session["PAS"]));
-                    GridViewPAS.DataBind();
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('เพิ่มข้อมูลตำแหน่งและเงินเดือนเรียบร้อย')", true);
-                    notification.Attributes["class"] = "none";
-                    notification.InnerHtml = "";
-                }
+            }
+            else {
+                ((DataTable)(Session["PAS"])).Rows.Add(dr);
+                GridViewPAS.DataSource = ((DataTable)(Session["PAS"]));
+                GridViewPAS.DataBind();
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('เพิ่มข้อมูลตำแหน่งและเงินเดือนเรียบร้อย')", true);
+                notification.Attributes["class"] = "none";
+                notification.InnerHtml = "";
             }
         }
-
-        
     }
 }

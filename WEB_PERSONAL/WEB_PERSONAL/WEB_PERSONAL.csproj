@@ -988,7 +988,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Personnel-GENERAL.aspx" />
     <Content Include="Salary-report.aspx" />
     <Content Include="SalarybyID-Edit.aspx" />
     <Content Include="SalaryByID-Report.aspx" />
@@ -1407,13 +1406,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>personalDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Personnel-GENERAL.aspx.cs">
-      <DependentUpon>Personnel-GENERAL.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Personnel-GENERAL.aspx.designer.cs">
-      <DependentUpon>Personnel-GENERAL.aspx</DependentUpon>
     </Compile>
     <Compile Include="Position-ADMIN.aspx.cs">
       <DependentUpon>Position-ADMIN.aspx</DependentUpon>
