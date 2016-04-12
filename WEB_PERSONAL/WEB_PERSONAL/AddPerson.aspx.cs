@@ -1154,7 +1154,7 @@ namespace WEB_PERSONAL {
             dr[2] = ddlMonth10From.SelectedValue;
             dr[3] = ddlYear10From.SelectedValue;
             dr[4] = ddlMonth10To.SelectedValue;
-            dr[5] = ddlYear10To.SelectedValue;
+            dr[5] = ddlYear10To.SelectedValue; 
             dr[6] = tbQualification10.Text;
             dr[7] = tbMajor10.Text;
             dr[8] = ddlCountrySuccess10.SelectedValue;
