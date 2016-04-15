@@ -1245,7 +1245,7 @@ namespace WEB_PERSONAL
                 {
                     notification.InnerHtml += "<div>กรุณากรอก 'วันที่มีผลบังคับใช้ (วัน เดือน ปี)'</div>";
                 }
-            }
+            } 
                 else {
                     ((DataTable)(Session["ProLisence"])).Rows.Add(dr);
                     GridViewLicense.DataSource = ((DataTable)(Session["ProLisence"]));
