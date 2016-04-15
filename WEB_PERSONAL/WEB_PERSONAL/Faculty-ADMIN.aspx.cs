@@ -16,6 +16,8 @@ namespace WEB_PERSONAL
             if (!IsPostBack)
             {
                 BindData();
+                txtSearchFacultyID.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
+                txtInsertFacultyID.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
                 txtSearchCampusID.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
                 txtInsertCampusID.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
             }
@@ -49,7 +51,7 @@ namespace WEB_PERSONAL
         void BindData1()
         {
             ClassFaculty f = new ClassFaculty();
-            DataTable dt = f.GetFacultySearch(txtSearchFacultyName.Text, txtSearchFacultyShort.Text, txtSearchCampusID.Text);
+            DataTable dt = f.GetFacultySearch(txtSearchFacultyID.Text, txtSearchFacultyName.Text, txtSearchCampusID.Text);
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);
@@ -57,25 +59,24 @@ namespace WEB_PERSONAL
 
         private void ClearData()
         {
+            txtSearchFacultyID.Text = "";
             txtSearchFacultyName.Text = "";
-            txtSearchFacultyShort.Text = "";
             txtSearchCampusID.Text = "";
+            txtInsertFacultyID.Text = "";
             txtInsertFacultyName.Text = "";
-            txtInsertFacultyShort.Text = "";
             txtInsertCampusID.Text = "";
         }
 
         protected void btnSubmitFaculty_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtInsertFacultyID.Text))
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ รหัสคณะ')", true);
+                return;
+            }
             if (string.IsNullOrEmpty(txtInsertFacultyName.Text))
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ ชื่อคณะ')", true);
-                return;
-            }
-
-            if (string.IsNullOrEmpty(txtInsertFacultyShort.Text))
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ ชื่อย่อคณะ')", true);
                 return;
             }
 
@@ -86,9 +87,8 @@ namespace WEB_PERSONAL
             }
             ClassFaculty f = new ClassFaculty();
             f.FACULTY_NAME = txtInsertFacultyName.Text;
-            f.FACULTY_SHORT = txtInsertFacultyShort.Text;
             f.CAMPUS_ID = Convert.ToInt32(txtInsertCampusID.Text);
- 
+
             f.InsertFaculty();
             BindData();
             ClearData();
@@ -118,14 +118,12 @@ namespace WEB_PERSONAL
         }
         protected void modUpdateCommand(Object sender, GridViewUpdateEventArgs e)
         {
-            Label lblFacultyIDEdit = (Label)GridView1.Rows[e.RowIndex].FindControl("lblFacultyIDEdit");
+            TextBox txtFacultyIDEdit = (TextBox)GridView1.Rows[e.RowIndex].FindControl("txtFacultyIDEdit");
             TextBox txtFacultyNameEdit = (TextBox)GridView1.Rows[e.RowIndex].FindControl("txtFacultyNameEdit");
-            TextBox txtFacultyShortEdit = (TextBox)GridView1.Rows[e.RowIndex].FindControl("txtFacultyShortEdit");
             TextBox txtCampusIDEdit = (TextBox)GridView1.Rows[e.RowIndex].FindControl("txtCampusIDEdit");
 
-            ClassFaculty f = new ClassFaculty(Convert.ToInt32(lblFacultyIDEdit.Text)
+            ClassFaculty f = new ClassFaculty(Convert.ToInt32(txtFacultyIDEdit.Text)
                 , txtFacultyNameEdit.Text
-                , txtFacultyShortEdit.Text
                 , Convert.ToInt32(txtCampusIDEdit.Text));
 
             f.UpdateFaculty();
@@ -167,7 +165,7 @@ namespace WEB_PERSONAL
         protected void btnSearchFaculty_Click(object sender, EventArgs e)
         {
 
-            if (string.IsNullOrEmpty(txtSearchFacultyName.Text) && string.IsNullOrEmpty(txtSearchFacultyShort.Text) && string.IsNullOrEmpty(txtSearchCampusID.Text))
+            if (string.IsNullOrEmpty(txtSearchFacultyID.Text) && string.IsNullOrEmpty(txtSearchFacultyName.Text) && string.IsNullOrEmpty(txtSearchCampusID.Text))
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก คำค้นหา')", true);
 
@@ -176,7 +174,7 @@ namespace WEB_PERSONAL
             else
             {
                 ClassFaculty f = new ClassFaculty();
-                DataTable dt = f.GetFacultySearch(txtSearchFacultyName.Text, txtSearchFacultyShort.Text, txtSearchCampusID.Text);
+                DataTable dt = f.GetFacultySearch(txtSearchFacultyID.Text, txtSearchFacultyName.Text, txtSearchCampusID.Text);
                 GridView1.DataSource = dt;
                 GridView1.DataBind();
                 SetViewState(dt);

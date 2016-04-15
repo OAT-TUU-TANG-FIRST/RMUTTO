@@ -43,10 +43,6 @@ namespace WEB_PERSONAL
                 DatabaseManager.BindDropDown(ddlYear10To, "SELECT * FROM TB_DATE_YEAR", "YEAR_ID", "YEAR_ID", "--ปี--");
                 DatabaseManager.BindDropDown(ddlCountrySuccess10, "SELECT * FROM TB_GRAD_COUNTRY", "GRAD_SHORT_NAME", "GRAD_COUNTRY_ID", "--กรุณาเลือกประเทศที่จบ--");
                 //view4
-                //DatabaseManager.BindDropDown(ddlCampus, "SELECT * FROM TB_CAMPUS", "CAMPUS_NAME", "CAMPUS_ID", "--วิทยาเขต--");
-                //DatabaseManager.BindDropDown(ddlFaculty, "SELECT * FROM TB_FACULTY", "FACULTY_NAME", "FACULTY_ID", "--สำนัก / สถาบัน / คณะ--");
-                //DatabaseManager.BindDropDown(ddlDivision, "SELECT * FROM TB_DIVISION", "DIVISION_NAME", "DIVISION_ID", "--กอง / สำนักงานเลขา / ภาควิชา--");
-                //DatabaseManager.BindDropDown(ddlWorkDivision, "SELECT * FROM TB_WORK_DIVISION", "WORK_NAME", "WORK_ID", "--งาน / ฝ่าย--");
                 DatabaseManager.BindDropDown(ddlStaffType, "SELECT * FROM TB_STAFFTYPE", "STAFFTYPE_NAME", "STAFFTYPE_ID", "--กรุณาเลือกประเภทบุคลากร--");
                 DatabaseManager.BindDropDown(ddlBudget, "SELECT * FROM TB_BUDGET", "BUDGET_NAME", "BUDGET_ID", "--กรุณาเลือกประเภทเงินจ้าง--");
                 DatabaseManager.BindDropDown(ddlAdminPosition, "SELECT * FROM TB_ADMIN_POSITION", "ADMIN_POSITION_NAME", "ADMIN_POSITION_ID", "--กรุณาเลือกตำแหน่งบริหาร--");
@@ -62,8 +58,6 @@ namespace WEB_PERSONAL
                 //view7
                 DatabaseManager.BindDropDown(ddlYear13, "SELECT * FROM TB_DATE_YEAR", "YEAR_ID", "YEAR_ID", "--ปี--");
                 //view8
-                //DatabaseManager.BindDropDown(ddlPositionType14, "SELECT * FROM TB_STAFF", "ST_NAME", "ST_ID", "--ตำแหน่งประเภท--");
-                //DatabaseManager.BindDropDown(ddlPositionDegree14, "SELECT * FROM TB_POSITION_GOVERNMENT_OFFICER UNION ALL SELECT * FROM TB_POSITION_PERMANENT_EMP", "NAME", "ST_ID", "--ระดับ--");
 
                 Session["Study"] = new DataTable();
                 ((DataTable)(Session["Study"])).Columns.Add("ระดับการศึกษา");
