@@ -960,7 +960,6 @@
     <Content Include="TeachISCED-ADMIN.aspx" />
     <Content Include="TestOutput.aspx" />
     <Content Include="TimeContact-ADMIN.aspx" />
-    <Content Include="UNIVERSITY-ADMIN.aspx" />
     <Content Include="ViewLeaveForm.aspx" />
     <Content Include="WorkingTime.aspx" />
     <Content Include="Year-ADMIN.aspx" />
@@ -1596,13 +1595,6 @@
     </Compile>
     <Compile Include="Salary.aspx.designer.cs">
       <DependentUpon>Salary.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UNIVERSITY-ADMIN.aspx.cs">
-      <DependentUpon>UNIVERSITY-ADMIN.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UNIVERSITY-ADMIN.aspx.designer.cs">
-      <DependentUpon>UNIVERSITY-ADMIN.aspx</DependentUpon>
     </Compile>
     <Compile Include="Util.cs" />
     <Compile Include="ViewLeaveForm.aspx.cs">

@@ -42,6 +42,7 @@
     <script>
         $(function () {
             $("#ContentPlaceHolder1_tbBirthday,#ContentPlaceHolder1_tbDateInwork,#ContentPlaceHolder1_tbUseDate11,#ContentPlaceHolder1_tbDate14").datepicker($.datepicker.regional["th"]);
+            $("#ContentPlaceHolder1_tbDateInwork").datepicker($.datepicker.regional["th"]);
         });
     </script>
 </asp:Content>
@@ -62,7 +63,7 @@
                             <td class="col1">บัตรประชาชน</td>
                             <td class="col2">
                                 <asp:UpdatePanel ID="UpdatetbCitizenID" runat="server"><ContentTemplate>
-                                <asp:TextBox ID="tbCitizenID" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tbCitizenID" runat="server" MaxLength="13"></asp:TextBox>
                                 </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbCitizenID" /></Triggers></asp:UpdatePanel></td>
                         </tr>
                         <tr>

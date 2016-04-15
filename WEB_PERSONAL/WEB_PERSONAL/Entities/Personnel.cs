@@ -28,8 +28,8 @@ namespace WEB_PERSONAL.Entities
         public string PS_EMAIL { get; set; }
         public string PS_PHONE { get; set; }
         public string PS_TELEPHONE_WORK { get; set; }
-        public string PS_RELIGION_ID { get; set; }
-        public string PS_STATUS { get; set; }
+        public int PS_RELIGION_ID { get; set; }
+        public int PS_STATUS_ID { get; set; }
         public string PS_DAD_FN { get; set; }
         public string PS_DAD_LN { get; set; }
         public string PS_MOM_FN { get; set; }
@@ -71,11 +71,11 @@ namespace WEB_PERSONAL.Entities
         public DateTime PS_RETIRE_DATE { get; set; }
         public string PS_RETIRE_LONG { get; set; }
         public string PS_SPECIAL_WORK { get; set; }
-        public int PS_TEACH_ISCED_ID { get; set; }
+        public string PS_TEACH_ISCED_ID { get; set; }
         public string PS_PASSWORD { get; set; }
 
         public PS_PERSON() { }
-        public PS_PERSON(string PS_CITIZEN_ID,int PS_ID, int PS_MINISTRY_ID, string PS_GROM, int PS_TITLE_ID, string PS_FN_TH, string PS_FN_EN, string PS_LN_TH, string PS_LN_EN, int PS_GENDER_ID, DateTime PS_BIRTHDAY_DATE, string PS_BIRTHDAY_LONG, int PS_RACE_ID, string PS_NATION_ID, int PS_BLOOD_ID, string PS_EMAIL, string PS_PHONE, string PS_TELEPHONE_WORK, string PS_RELIGION_ID, string PS_STATUS, string PS_DAD_FN, string PS_DAD_LN, string PS_MOM_FN, string PS_MOM_LN, string PS_MOM_LN_OLD, string PS_LOV_FN, string PS_LOV_LN, string PS_LOV_LN_OLD, string PS_HOMEADD, string PS_SOI, string PS_MOO, string PS_STREET, int PS_PROVINCE_ID, int PS_AMPHUR_ID, int PS_DISTRICT, string PS_ZIPCODE, int PS_COUNTRY_ID, string PS_STATE, string PS_HOMEADD_NOW, string PS_SOI_NOW, string PS_MOO_NOW, string PS_STREET_NOW, int PS_PROVINCE_ID_NOW, int PS_AMPHUR_ID_NOW, int PS_DISTRICT_ID_NOW, string PS_ZIPCODE_NOW, int PS_COUNTRY_ID_NOW, string PS_STATE_NOW, int PS_CAMPUS_ID, int PS_FACULTY_ID, int PS_DIVISION_ID, int PS_WORK_DIVISION_ID, int PS_STAFFTYPE_ID, int PS_BUDGET_ID, string PS_ADMIN_POS_ID, int PS_WORK_POS_ID, int PS_ACAD_POS_ID, DateTime PS_INWORK_DATE, DateTime PS_RETIRE_DATE, string PS_RETIRE_LONG, string PS_SPECIAL_WORK, int PS_TEACH_ISCED_ID, string PS_PASSWORD)
+        public PS_PERSON(string PS_CITIZEN_ID,int PS_ID, int PS_MINISTRY_ID, string PS_GROM, int PS_TITLE_ID, string PS_FN_TH, string PS_FN_EN, string PS_LN_TH, string PS_LN_EN, int PS_GENDER_ID, DateTime PS_BIRTHDAY_DATE, string PS_BIRTHDAY_LONG, int PS_RACE_ID, string PS_NATION_ID, int PS_BLOOD_ID, string PS_EMAIL, string PS_PHONE, string PS_TELEPHONE_WORK, int PS_RELIGION_ID, int PS_STATUS_ID, string PS_DAD_FN, string PS_DAD_LN, string PS_MOM_FN, string PS_MOM_LN, string PS_MOM_LN_OLD, string PS_LOV_FN, string PS_LOV_LN, string PS_LOV_LN_OLD, string PS_HOMEADD, string PS_SOI, string PS_MOO, string PS_STREET, int PS_PROVINCE_ID, int PS_AMPHUR_ID, int PS_DISTRICT, string PS_ZIPCODE, int PS_COUNTRY_ID, string PS_STATE, string PS_HOMEADD_NOW, string PS_SOI_NOW, string PS_MOO_NOW, string PS_STREET_NOW, int PS_PROVINCE_ID_NOW, int PS_AMPHUR_ID_NOW, int PS_DISTRICT_ID_NOW, string PS_ZIPCODE_NOW, int PS_COUNTRY_ID_NOW, string PS_STATE_NOW, int PS_CAMPUS_ID, int PS_FACULTY_ID, int PS_DIVISION_ID, int PS_WORK_DIVISION_ID, int PS_STAFFTYPE_ID, int PS_BUDGET_ID, string PS_ADMIN_POS_ID, int PS_WORK_POS_ID, int PS_ACAD_POS_ID, DateTime PS_INWORK_DATE, DateTime PS_RETIRE_DATE, string PS_RETIRE_LONG, string PS_SPECIAL_WORK, string PS_TEACH_ISCED_ID, string PS_PASSWORD)
         {
             this.PS_CITIZEN_ID = PS_CITIZEN_ID;
             this.PS_ID = PS_ID;
@@ -96,7 +96,7 @@ namespace WEB_PERSONAL.Entities
             this.PS_PHONE = PS_PHONE;
             this.PS_TELEPHONE_WORK = PS_TELEPHONE_WORK;
             this.PS_RELIGION_ID = PS_RELIGION_ID;
-            this.PS_STATUS = PS_STATUS;
+            this.PS_STATUS_ID = PS_STATUS_ID;
             this.PS_DAD_FN = PS_DAD_FN;
             this.PS_DAD_LN = PS_DAD_LN;
             this.PS_MOM_FN = PS_MOM_FN;
@@ -146,7 +146,7 @@ namespace WEB_PERSONAL.Entities
         {
             int id = 0;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
-            OracleCommand command = new OracleCommand("INSERT INTO PS_PERSON (PS_CITIZEN_ID,PS_MINISTRY_ID,PS_GROM,PS_TITLE_ID,PS_FN_TH,PS_FN_EN,PS_LN_TH,PS_LN_EN,PS_GENDER_ID,PS_BIRTHDAY_DATE,PS_BIRTHDAY_LONG,PS_RACE_ID,PS_NATION_ID,PS_BLOOD_ID,PS_EMAIL,PS_PHONE,PS_TELEPHONE_WORK,PS_RELIGION_ID,PS_STATUS,PS_DAD_FN,PS_DAD_LN,PS_MOM_FN,PS_MOM_LN,PS_MOM_LN_OLD,PS_LOV_FN,PS_LOV_LN,PS_LOV_LN_OLD,PS_HOMEADD,PS_SOI,PS_MOO,PS_STREET,PS_PROVINCE_ID,PS_AMPHUR_ID,PS_DISTRICT,PS_ZIPCODE,PS_COUNTRY_ID,PS_STATE,PS_HOMEADD_NOW,PS_SOI_NOW,PS_MOO_NOW,PS_STREET_NOW,PS_PROVINCE_ID_NOW,PS_AMPHUR_ID_NOW,PS_DISTRICT_ID_NOW,PS_ZIPCODE_NOW,PS_COUNTRY_ID_NOW,PS_STATE_NOW,PS_CAMPUS_ID,PS_FACULTY_ID,PS_DIVISION_ID,PS_WORK_DIVISION_ID,PS_STAFFTYPE_ID,PS_BUDGET_ID,PS_ADMIN_POS_ID,PS_WORK_POS_ID,PS_ACAD_POS_ID,PS_INWORK_DATE,PS_RETIRE_DATE,PS_RETIRE_LONG,PS_SPECIAL_WORK,PS_TEACH_ISCED_ID) VALUES (:PS_CITIZEN_ID, :PS_MINISTRY_ID, :PS_GROM, :PS_TITLE_ID, :PS_FN_TH, :PS_FN_EN, :PS_LN_TH, :PS_LN_EN, :PS_GENDER_ID, :PS_BIRTHDAY_DATE, :PS_BIRTHDAY_LONG, :PS_RACE_ID, :PS_NATION_ID, :PS_BLOOD_ID, :PS_EMAIL, :PS_PHONE, :PS_TELEPHONE_WORK, :PS_RELIGION_ID, :PS_STATUS, :PS_DAD_FN, :PS_DAD_LN, :PS_MOM_FN, :PS_MOM_LN, :PS_MOM_LN_OLD, :PS_LOV_FN, :PS_LOV_LN, :PS_LOV_LN_OLD, :PS_HOMEADD, :PS_SOI, :PS_MOO, :PS_STREET, :PS_PROVINCE_ID, :PS_AMPHUR_ID, :PS_DISTRICT, :PS_ZIPCODE, :PS_COUNTRY_ID, :PS_STATE, :PS_HOMEADD_NOW, :PS_SOI_NOW, :PS_MOO_NOW, :PS_STREET_NOW, :PS_PROVINCE_ID_NOW, :PS_AMPHUR_ID_NOW, :PS_DISTRICT_ID_NOW, :PS_ZIPCODE_NOW, :PS_COUNTRY_ID_NOW, :PS_STATE_NOW, :PS_CAMPUS_ID, :PS_FACULTY_ID, :PS_DIVISION_ID, :PS_WORK_DIVISION_ID, :PS_STAFFTYPE_ID, :PS_BUDGET_ID, :PS_ADMIN_POS_ID, :PS_WORK_POS_ID, :PS_ACAD_POS_ID, :PS_INWORK_DATE, :PS_RETIRE_DATE, :PS_RETIRE_LONG, :PS_SPECIAL_WORK, :PS_TEACH_ISCED_ID)", conn);
+            OracleCommand command = new OracleCommand("INSERT INTO PS_PERSON (PS_CITIZEN_ID,PS_MINISTRY_ID,PS_GROM,PS_TITLE_ID,PS_FN_TH,PS_FN_EN,PS_LN_TH,PS_LN_EN,PS_GENDER_ID,PS_BIRTHDAY_DATE,PS_BIRTHDAY_LONG,PS_RACE_ID,PS_NATION_ID,PS_BLOOD_ID,PS_EMAIL,PS_PHONE,PS_TELEPHONE_WORK,PS_RELIGION_ID,PS_STATUS_ID,PS_DAD_FN,PS_DAD_LN,PS_MOM_FN,PS_MOM_LN,PS_MOM_LN_OLD,PS_LOV_FN,PS_LOV_LN,PS_LOV_LN_OLD,PS_HOMEADD,PS_SOI,PS_MOO,PS_STREET,PS_PROVINCE_ID,PS_AMPHUR_ID,PS_DISTRICT,PS_ZIPCODE,PS_COUNTRY_ID,PS_STATE,PS_HOMEADD_NOW,PS_SOI_NOW,PS_MOO_NOW,PS_STREET_NOW,PS_PROVINCE_ID_NOW,PS_AMPHUR_ID_NOW,PS_DISTRICT_ID_NOW,PS_ZIPCODE_NOW,PS_COUNTRY_ID_NOW,PS_STATE_NOW,PS_CAMPUS_ID,PS_FACULTY_ID,PS_DIVISION_ID,PS_WORK_DIVISION_ID,PS_STAFFTYPE_ID,PS_BUDGET_ID,PS_ADMIN_POS_ID,PS_WORK_POS_ID,PS_ACAD_POS_ID,PS_INWORK_DATE,PS_RETIRE_DATE,PS_RETIRE_LONG,PS_SPECIAL_WORK,PS_TEACH_ISCED_ID,PS_PASSWORD) VALUES (:PS_CITIZEN_ID,:PS_MINISTRY_ID,:PS_GROM,:PS_TITLE_ID,:PS_FN_TH,:PS_FN_EN,:PS_LN_TH,:PS_LN_EN,:PS_GENDER_ID,:PS_BIRTHDAY_DATE,:PS_BIRTHDAY_LONG,:PS_RACE_ID,:PS_NATION_ID,:PS_BLOOD_ID,:PS_EMAIL,:PS_PHONE,:PS_TELEPHONE_WORK,:PS_RELIGION_ID,:PS_STATUS_ID,:PS_DAD_FN, :PS_DAD_LN, :PS_MOM_FN, :PS_MOM_LN, :PS_MOM_LN_OLD, :PS_LOV_FN, :PS_LOV_LN, :PS_LOV_LN_OLD, :PS_HOMEADD, :PS_SOI, :PS_MOO, :PS_STREET, :PS_PROVINCE_ID, :PS_AMPHUR_ID, :PS_DISTRICT, :PS_ZIPCODE, :PS_COUNTRY_ID, :PS_STATE, :PS_HOMEADD_NOW, :PS_SOI_NOW, :PS_MOO_NOW, :PS_STREET_NOW, :PS_PROVINCE_ID_NOW, :PS_AMPHUR_ID_NOW, :PS_DISTRICT_ID_NOW, :PS_ZIPCODE_NOW, :PS_COUNTRY_ID_NOW, :PS_STATE_NOW, :PS_CAMPUS_ID, :PS_FACULTY_ID, :PS_DIVISION_ID, :PS_WORK_DIVISION_ID, :PS_STAFFTYPE_ID, :PS_BUDGET_ID, :PS_ADMIN_POS_ID, :PS_WORK_POS_ID, :PS_ACAD_POS_ID, :PS_INWORK_DATE, :PS_RETIRE_DATE, :PS_RETIRE_LONG, :PS_SPECIAL_WORK, :PS_TEACH_ISCED_ID, :PS_PASSWORD)", conn);
 
             try
             {
@@ -172,7 +172,7 @@ namespace WEB_PERSONAL.Entities
                 command.Parameters.Add(new OracleParameter("PS_PHONE", PS_PHONE));
                 command.Parameters.Add(new OracleParameter("PS_TELEPHONE_WORK", PS_TELEPHONE_WORK));
                 command.Parameters.Add(new OracleParameter("PS_RELIGION_ID", PS_RELIGION_ID));
-                command.Parameters.Add(new OracleParameter("PS_STATUS", PS_STATUS));
+                command.Parameters.Add(new OracleParameter("PS_STATUS_ID", PS_STATUS_ID));
                 command.Parameters.Add(new OracleParameter("PS_DAD_FN", PS_DAD_FN));
                 command.Parameters.Add(new OracleParameter("PS_DAD_LN", PS_DAD_LN));
                 command.Parameters.Add(new OracleParameter("PS_MOM_FN", PS_MOM_FN));
@@ -215,6 +215,7 @@ namespace WEB_PERSONAL.Entities
                 command.Parameters.Add(new OracleParameter("PS_RETIRE_LONG", PS_RETIRE_LONG));
                 command.Parameters.Add(new OracleParameter("PS_SPECIAL_WORK", PS_SPECIAL_WORK));
                 command.Parameters.Add(new OracleParameter("PS_TEACH_ISCED_ID", PS_TEACH_ISCED_ID));
+                command.Parameters.Add(new OracleParameter("PS_PASSWORD", PS_PASSWORD));
 
                 id = command.ExecuteNonQuery();
             }
@@ -253,7 +254,7 @@ namespace WEB_PERSONAL.Entities
             query += " PS_PHONE = :PS_PHONE ,";
             query += " PS_TELEPHONE_WORK = :PS_TELEPHONE_WORK ,";
             query += " PS_RELIGION_ID = :PS_RELIGION_ID ,";
-            query += " PS_STATUS = :PS_STATUS ,";
+            query += " PS_STATUS_ID = :PS_STATUS_ID ,";
             query += " PS_DAD_FN = :PS_DAD_FN ,";
             query += " PS_DAD_LN = :PS_DAD_LN    ,";
             query += " PS_MOM_FN = :PS_MOM_FN ,";
@@ -324,7 +325,7 @@ namespace WEB_PERSONAL.Entities
                 command.Parameters.Add(new OracleParameter("PS_PHONE", PS_PHONE));
                 command.Parameters.Add(new OracleParameter("PS_TELEPHONE_WORK", PS_TELEPHONE_WORK));
                 command.Parameters.Add(new OracleParameter("PS_RELIGION_ID", PS_RELIGION_ID));
-                command.Parameters.Add(new OracleParameter("PS_STATUS", PS_STATUS));
+                command.Parameters.Add(new OracleParameter("PS_STATUS_ID", PS_STATUS_ID));
                 command.Parameters.Add(new OracleParameter("PS_DAD_FN", PS_DAD_FN));
                 command.Parameters.Add(new OracleParameter("PS_DAD_LN", PS_DAD_LN));
                 command.Parameters.Add(new OracleParameter("PS_MOM_FN", PS_MOM_FN));

@@ -942,13 +942,84 @@ namespace WEB_PERSONAL
                      notification.InnerHtml += "<div>กรุณากรอก 'เอกสารอ้างอิง'</div>";
                  }
                  else {
-                     MultiView1.ActiveViewIndex = 8;
                      notification.Attributes["class"] = "none";
                      notification.InnerHtml = "";
                  }
              } */
-//////////////////////////////////////////////////////////
-          
+
+            //view1/8
+            PS_PERSON P0 = new PS_PERSON();
+            P0.PS_CITIZEN_ID = tbCitizenID.Text;
+            P0.PS_MINISTRY_ID = 1;
+            P0.PS_GROM = "มหาวิทยาลัยเทคโนโลยีราชมงคลตะวันออก";
+            P0.PS_TITLE_ID = Convert.ToInt32(ddlTitle.SelectedValue);
+            P0.PS_FN_TH = tbNameTH.Text;
+            P0.PS_FN_EN = tbNameEN.Text;
+            P0.PS_LN_TH = tbLastNameTH.Text;
+            P0.PS_LN_EN = tbLastNameEN.Text;
+            P0.PS_GENDER_ID = Convert.ToInt32(ddlGender.SelectedValue);
+            P0.PS_BIRTHDAY_DATE = Util.ToDateTime(tbBirthday.Text);
+            P0.PS_BIRTHDAY_LONG = Util.ToThaiWord(tbBirthday.Text);
+            P0.PS_RACE_ID = Convert.ToInt32(ddlRace.SelectedValue);
+            P0.PS_NATION_ID = ddlNation.SelectedValue;
+            P0.PS_BLOOD_ID = Convert.ToInt32(ddlBlood.SelectedValue);
+            P0.PS_EMAIL = tbEmail.Text;
+            P0.PS_PHONE = tbPhone.Text;
+            P0.PS_TELEPHONE_WORK = tbTelephone.Text;
+            P0.PS_RELIGION_ID = Convert.ToInt32(ddlReligion.SelectedValue);
+            P0.PS_STATUS_ID = Convert.ToInt32(ddlStatus.SelectedValue);
+            P0.PS_DAD_FN = tbFatherName.Text;
+            P0.PS_DAD_LN = tbFatherLastName.Text;
+            P0.PS_MOM_FN = tbMotherName.Text;
+            P0.PS_MOM_LN = tbMotherLastName.Text;
+            P0.PS_MOM_LN_OLD = tbMotherOldLastName.Text;
+            P0.PS_LOV_FN = tbCoupleName.Text;
+            P0.PS_LOV_LN = tbCoupleLastName.Text;
+            P0.PS_LOV_LN_OLD = tbCoupleOldLastName.Text;
+            //view2/8
+            P0.PS_HOMEADD = tbHomeAdd.Text;
+            P0.PS_SOI = tbSoi.Text;
+            P0.PS_MOO = tbMoo.Text;
+            P0.PS_STREET = tbRoad.Text;
+            P0.PS_PROVINCE_ID = Convert.ToInt32(ddlProvince.SelectedValue);
+            P0.PS_AMPHUR_ID = Convert.ToInt32(ddlAmphur.SelectedValue);
+            P0.PS_DISTRICT = Convert.ToInt32(ddlDistrict.SelectedValue);
+            P0.PS_ZIPCODE = tbZipcode.Text;
+            P0.PS_COUNTRY_ID = Convert.ToInt32(ddlCountry.SelectedValue);
+            P0.PS_STATE = tbState.Text;
+            P0.PS_HOMEADD_NOW = tbHomeAdd2.Text;
+            P0.PS_SOI_NOW = tbSoi2.Text;
+            P0.PS_MOO_NOW = tbMoo2.Text;
+            P0.PS_STREET_NOW = tbRoad.Text;
+            P0.PS_PROVINCE_ID_NOW = Convert.ToInt32(ddlProvince2.SelectedValue);
+            P0.PS_AMPHUR_ID_NOW = Convert.ToInt32(ddlAmphur2.SelectedValue);
+            P0.PS_DISTRICT_ID_NOW = Convert.ToInt32(ddlDistrict2.SelectedValue);
+            P0.PS_ZIPCODE_NOW = tbZipcode2.Text;
+            P0.PS_COUNTRY_ID_NOW = Convert.ToInt32(ddlCountry2.SelectedValue);
+            P0.PS_STATE_NOW = tbState2.Text;
+            //view4/8
+            P0.PS_CAMPUS_ID = Convert.ToInt32(ddlCampus.SelectedValue);
+            P0.PS_FACULTY_ID = Convert.ToInt32(ddlFaculty.SelectedValue);
+            P0.PS_DIVISION_ID = Convert.ToInt32(ddlDivision.SelectedValue);
+            P0.PS_WORK_DIVISION_ID = Convert.ToInt32(ddlWorkDivision.SelectedValue);
+            P0.PS_STAFFTYPE_ID = Convert.ToInt32(ddlStaffType.SelectedValue);
+            P0.PS_BUDGET_ID = Convert.ToInt32(ddlBudget.SelectedValue);
+            P0.PS_ADMIN_POS_ID = ddlAdminPosition.SelectedValue;
+            P0.PS_WORK_POS_ID = Convert.ToInt32(ddlPositionWork.SelectedValue);
+            P0.PS_ACAD_POS_ID = Convert.ToInt32(ddlAcademic.SelectedValue);
+            P0.PS_INWORK_DATE = Util.ToDateTime(tbDateInwork.Text);
+            P0.PS_RETIRE_DATE = Util.ToDateTime(tbBirthday.Text);
+            P0.PS_RETIRE_LONG = Util.ToThaiWord(tbBirthday.Text);
+            P0.PS_SPECIAL_WORK = tbSpecialWork.Text;
+            P0.PS_TEACH_ISCED_ID = ddlTeachISCED.SelectedValue;
+            P0.PS_PASSWORD = "1234";
+            P0.INSERT_PS_PERSON();
+
+            Response.Redirect("access.aspx");
+            notification.Attributes["class"] = "alert alert_success";
+            notification.InnerHtml = "";
+            notification.InnerHtml += "<div><img src='Image/Small/correct.png' /><strong> เพิ่มข้อมูลบุคลากร เรียบร้อย</strong></div>";
+            
             for (int i = 0; i < GridViewStudy.Rows.Count; ++i)
             {
                 int id = 0;
@@ -1152,9 +1223,6 @@ namespace WEB_PERSONAL
                     }
                 }
             }
-
-            //////
-            MultiView1.ActiveViewIndex = 8;
         }
 
         protected void lbuV3Add_Click(object sender, EventArgs e)

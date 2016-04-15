@@ -6498,4 +6498,1939 @@ namespace WEB_PERSONAL.Entities
             return result;
         }
     }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public class ClassBranch
+    {
+        public int BRANCH_ID { get; set; }
+        public string BRANCH_NAME { get; set; }
+
+        public ClassBranch() { }
+        public ClassBranch(int BRANCH_ID, string BRANCH_NAME)
+        {
+            this.BRANCH_ID = BRANCH_ID;
+            this.BRANCH_NAME = BRANCH_NAME;
+        }
+
+        public DataTable GetBranch(string BRANCH_ID, string BRANCH_NAME)
+        {
+            DataTable dt = new DataTable();
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            string query = "SELECT * FROM TB_BRANCH ";
+            if (!string.IsNullOrEmpty(BRANCH_ID) || !string.IsNullOrEmpty(BRANCH_NAME))
+            {
+                query += " where 1=1 ";
+                if (!string.IsNullOrEmpty(BRANCH_ID))
+                {
+                    query += " and BRANCH_ID like :BRANCH_ID ";
+                }
+                if (!string.IsNullOrEmpty(BRANCH_NAME))
+                {
+                    query += " and BRANCH_NAME like :BRANCH_NAME ";
+                }
+            }
+            OracleCommand command = new OracleCommand(query, conn);
+            // Create the command
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                if (!string.IsNullOrEmpty(BRANCH_ID))
+                {
+                    command.Parameters.Add(new OracleParameter("BRANCH_ID", BRANCH_ID + "%"));
+                }
+                if (!string.IsNullOrEmpty(BRANCH_NAME))
+                {
+                    command.Parameters.Add(new OracleParameter("BRANCH_NAME", "%" + BRANCH_NAME + "%"));
+                }
+                OracleDataAdapter sd = new OracleDataAdapter(command);
+                sd.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+
+            return dt;
+        }
+
+        public DataTable GetBranchSearch(string BRANCH_ID, string BRANCH_NAME)
+        {
+            DataTable dt = new DataTable();
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            string query = "SELECT * FROM TB_BRANCH ";
+            if (!string.IsNullOrEmpty(BRANCH_ID) || !string.IsNullOrEmpty(BRANCH_NAME))
+            {
+                query += " where 1=1 ";
+                if (!string.IsNullOrEmpty(BRANCH_ID))
+                {
+                    query += " and BRANCH_ID like :BRANCH_ID ";
+                }
+                if (!string.IsNullOrEmpty(BRANCH_NAME))
+                {
+                    query += " and BRANCH_NAME like :BRANCH_NAME ";
+                }
+            }
+            OracleCommand command = new OracleCommand(query, conn);
+            // Create the command
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                if (!string.IsNullOrEmpty(BRANCH_ID))
+                {
+                    command.Parameters.Add(new OracleParameter("BRANCH_ID", BRANCH_ID + "%"));
+                }
+                if (!string.IsNullOrEmpty(BRANCH_NAME))
+                {
+                    command.Parameters.Add(new OracleParameter("BRANCH_NAME", "%" + BRANCH_NAME + "%"));
+                }
+                OracleDataAdapter sd = new OracleDataAdapter(command);
+                sd.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+
+            return dt;
+        }
+
+        public int InsertBranch()
+        {
+            int id = 0;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            OracleCommand command = new OracleCommand("INSERT INTO TB_BRANCH(BRANCH_ID,BRANCH_NAME) VALUES (:BRANCH_ID,:BRANCH_NAME)", conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("BRANCH_ID", BRANCH_ID));
+                command.Parameters.Add(new OracleParameter("BRANCH_NAME", BRANCH_NAME));
+                id = command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return id;
+        }
+
+        public bool UpdateBranch()
+        {
+            bool result = false;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            string query = "Update TB_BRANCH Set ";
+            query += " BRANCH_ID = :BRANCH_ID,";
+            query += " BRANCH_NAME = :BRANCH_NAME";
+            query += " where BRANCH_ID = :BRANCH_ID";
+
+            OracleCommand command = new OracleCommand(query, conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("BRANCH_ID", BRANCH_ID));
+                command.Parameters.Add(new OracleParameter("BRANCH_NAME", BRANCH_NAME));
+
+                if (command.ExecuteNonQuery() > 0)
+                {
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+            }
+            return result;
+        }
+
+        public bool DeleteBranch()
+        {
+            bool result = false;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            OracleCommand command = new OracleCommand("Delete TB_BRANCH where BRANCH_ID = :BRANCH_ID", conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("BRANCH_ID", BRANCH_ID));
+                if (command.ExecuteNonQuery() >= 0)
+                {
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return result;
+        }
+
+        public bool CheckUseBranchID()
+        {
+            bool result = true;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+
+            // Create the command
+            OracleCommand command = new OracleCommand("SELECT count(BRANCH_ID) FROM TB_BRANCH WHERE BRANCH_ID = :BRANCH_ID ", conn);
+
+            // Add the parameters.
+            command.Parameters.Add(new OracleParameter("BRANCH_ID", BRANCH_ID));
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                int count = (int)(decimal)command.ExecuteScalar();
+                if (count >= 1)
+                {
+                    result = false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return result;
+        }
+    }
+    //////////////////////////////////////////////////////////////////////////////////////////////
+    public class ClassDepartment
+    {
+        public string DEPARTMENT_ID { get; set; }
+        public string DEPARTMENT_NAME { get; set; }
+
+        public ClassDepartment() { }
+        public ClassDepartment(string DEPARTMENT_ID, string DEPARTMENT_NAME)
+        {
+            this.DEPARTMENT_ID = DEPARTMENT_ID;
+            this.DEPARTMENT_NAME = DEPARTMENT_NAME;
+        }
+
+        public DataTable GetDepartment(string DEPARTMENT_ID, string DEPARTMENT_NAME)
+        {
+            DataTable dt = new DataTable();
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            string query = "SELECT * FROM TB_DEPARTMENT ";
+            if (!string.IsNullOrEmpty(DEPARTMENT_ID) || !string.IsNullOrEmpty(DEPARTMENT_NAME))
+            {
+                query += " where 1=1 ";
+                if (!string.IsNullOrEmpty(DEPARTMENT_ID))
+                {
+                    query += " and DEPARTMENT_ID like :DEPARTMENT_ID ";
+                }
+                if (!string.IsNullOrEmpty(DEPARTMENT_NAME))
+                {
+                    query += " and DEPARTMENT_NAME like :DEPARTMENT_NAME ";
+                }
+            }
+            OracleCommand command = new OracleCommand(query, conn);
+            // Create the command
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                if (!string.IsNullOrEmpty(DEPARTMENT_ID))
+                {
+                    command.Parameters.Add(new OracleParameter("DEPARTMENT_ID", DEPARTMENT_ID + "%"));
+                }
+                if (!string.IsNullOrEmpty(DEPARTMENT_NAME))
+                {
+                    command.Parameters.Add(new OracleParameter("DEPARTMENT_NAME", "%" + DEPARTMENT_NAME + "%"));
+                }
+                OracleDataAdapter sd = new OracleDataAdapter(command);
+                sd.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+
+            return dt;
+        }
+
+        public DataTable GetDepartmentSearch(string DEPARTMENT_ID, string DEPARTMENT_NAME)
+        {
+            DataTable dt = new DataTable();
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            string query = "SELECT * FROM TB_DEPARTMENT";
+            if (!string.IsNullOrEmpty(DEPARTMENT_ID) || !string.IsNullOrEmpty(DEPARTMENT_NAME))
+            {
+                query += " where 1=1 ";
+                if (!string.IsNullOrEmpty(DEPARTMENT_ID))
+                {
+                    query += " and DEPARTMENT_ID like :DEPARTMENT_ID ";
+                }
+                if (!string.IsNullOrEmpty(DEPARTMENT_NAME))
+                {
+                    query += " and DEPARTMENT_NAME like :DEPARTMENT_NAME ";
+                }
+            }
+            OracleCommand command = new OracleCommand(query, conn);
+            // Create the command
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                if (!string.IsNullOrEmpty(DEPARTMENT_ID))
+                {
+                    command.Parameters.Add(new OracleParameter("DEPARTMENT_ID", DEPARTMENT_ID + "%"));
+                }
+                if (!string.IsNullOrEmpty(DEPARTMENT_NAME))
+                {
+                    command.Parameters.Add(new OracleParameter("DEPARTMENT_NAME", "%" + DEPARTMENT_NAME + "%"));
+                }
+                OracleDataAdapter sd = new OracleDataAdapter(command);
+                sd.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+
+            return dt;
+        }
+
+        public int InsertDepartment()
+        {
+            int id = 0;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            OracleCommand command = new OracleCommand("INSERT INTO TB_DEPARTMENT (DEPARTMENT_ID,DEPARTMENT_NAME) VALUES (:DEPARTMENT_ID,:DEPARTMENT_NAME)", conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("DEPARTMENT_ID", DEPARTMENT_ID));
+                command.Parameters.Add(new OracleParameter("DEPARTMENT_NAME", DEPARTMENT_NAME));
+                id = command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return id;
+        }
+
+        public bool UpdateDepartment()
+        {
+            bool result = false;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            string query = "Update TB_DEPARTMENT Set ";
+            query += " DEPARTMENT_ID = :DEPARTMENT_ID,";
+            query += " DEPARTMENT_NAME = :DEPARTMENT_NAME";
+            query += " where DEPARTMENT_ID = :DEPARTMENT_ID";
+
+            OracleCommand command = new OracleCommand(query, conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("DEPARTMENT_ID", DEPARTMENT_ID));
+                command.Parameters.Add(new OracleParameter("DEPARTMENT_NAME", DEPARTMENT_NAME));
+
+                if (command.ExecuteNonQuery() > 0)
+                {
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+            }
+            return result;
+        }
+
+        public bool DeleteDepartment()
+        {
+            bool result = false;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            OracleCommand command = new OracleCommand("Delete TB_DEPARTMENT where DEPARTMENT_ID = :DEPARTMENT_ID", conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("DEPARTMENT_ID", DEPARTMENT_ID));
+                if (command.ExecuteNonQuery() >= 0)
+                {
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return result;
+        }
+
+        public bool CheckUseDepartmentID()
+        {
+            bool result = true;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+
+            // Create the command
+            OracleCommand command = new OracleCommand("SELECT count(DEPARTMENT_ID) FROM TB_DEPARTMENT WHERE DEPARTMENT_ID = :DEPARTMENT_ID ", conn);
+
+            // Add the parameters.
+            command.Parameters.Add(new OracleParameter("DEPARTMENT_ID", DEPARTMENT_ID));
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                int count = (int)(decimal)command.ExecuteScalar();
+                if (count >= 1)
+                {
+                    result = false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return result;
+        }
+    }
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public class ClassGradISCED
+    {
+        public string GRAD_ISCED_ID { get; set; }
+        public string GRAD_ISCED_NAME_THAI { get; set; }
+        public string GRAD_ISCED_NAME_ENG { get; set; }
+
+        public ClassGradISCED() { }
+        public ClassGradISCED(string GRAD_ISCED_ID, string GRAD_ISCED_NAME_THAI, string GRAD_ISCED_NAME_ENG)
+        {
+            this.GRAD_ISCED_ID = GRAD_ISCED_ID;
+            this.GRAD_ISCED_NAME_THAI = GRAD_ISCED_NAME_THAI;
+            this.GRAD_ISCED_NAME_ENG = GRAD_ISCED_NAME_ENG;
+        }
+
+        public DataTable GetGradISCED(string GRAD_ISCED_ID, string GRAD_ISCED_NAME_THAI, string GRAD_ISCED_NAME_ENG)
+        {
+            DataTable dt = new DataTable();
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            string query = "SELECT * FROM TB_GRAD_ISCED ";
+            if (!string.IsNullOrEmpty(GRAD_ISCED_ID) || !string.IsNullOrEmpty(GRAD_ISCED_NAME_THAI) || !string.IsNullOrEmpty(GRAD_ISCED_NAME_ENG))
+            {
+                query += " where 1=1 ";
+                if (!string.IsNullOrEmpty(GRAD_ISCED_ID))
+                {
+                    query += " and GRAD_ISCED_ID like :GRAD_ISCED_ID ";
+                }
+                if (!string.IsNullOrEmpty(GRAD_ISCED_NAME_THAI))
+                {
+                    query += " and GRAD_ISCED_NAME_THAI like :GRAD_ISCED_NAME_THAI ";
+                }
+                if (!string.IsNullOrEmpty(GRAD_ISCED_NAME_ENG))
+                {
+                    query += " and lower(GRAD_ISCED_NAME_ENG) like lower (:GRAD_ISCED_NAME_ENG) ";
+                }
+            }
+            OracleCommand command = new OracleCommand(query, conn);
+            // Create the command
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                if (!string.IsNullOrEmpty(GRAD_ISCED_ID))
+                {
+                    command.Parameters.Add(new OracleParameter("GRAD_ISCED_ID", GRAD_ISCED_ID + "%"));
+                }
+                if (!string.IsNullOrEmpty(GRAD_ISCED_NAME_THAI))
+                {
+                    command.Parameters.Add(new OracleParameter("GRAD_ISCED_NAME_THAI", "%" + GRAD_ISCED_NAME_THAI + "%"));
+                }
+                if (!string.IsNullOrEmpty(GRAD_ISCED_NAME_ENG))
+                {
+                    command.Parameters.Add(new OracleParameter("GRAD_ISCED_NAME_ENG", "%" + GRAD_ISCED_NAME_ENG + "%"));
+                }
+                OracleDataAdapter sd = new OracleDataAdapter(command);
+                sd.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+
+            return dt;
+        }
+
+        public DataTable GetGradISCEDSearch(string GRAD_ISCED_ID, string GRAD_ISCED_NAME_THAI, string GRAD_ISCED_NAME_ENG)
+        {
+            DataTable dt = new DataTable();
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            string query = "SELECT * FROM TB_GRAD_ISCED ";
+            if (!string.IsNullOrEmpty(GRAD_ISCED_ID) || !string.IsNullOrEmpty(GRAD_ISCED_NAME_THAI) || !string.IsNullOrEmpty(GRAD_ISCED_NAME_ENG))
+            {
+                query += " where 1=1 ";
+                if (!string.IsNullOrEmpty(GRAD_ISCED_ID))
+                {
+                    query += " and GRAD_ISCED_ID like :GRAD_ISCED_ID ";
+                }
+                if (!string.IsNullOrEmpty(GRAD_ISCED_NAME_THAI))
+                {
+                    query += " and GRAD_ISCED_NAME_THAI like :GRAD_ISCED_NAME_THAI ";
+                }
+                if (!string.IsNullOrEmpty(GRAD_ISCED_NAME_ENG))
+                {
+                    query += " and lower(GRAD_ISCED_NAME_ENG) like lower (:GRAD_ISCED_NAME_ENG) ";
+                }
+            }
+            OracleCommand command = new OracleCommand(query, conn);
+            // Create the command
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                if (!string.IsNullOrEmpty(GRAD_ISCED_ID))
+                {
+                    command.Parameters.Add(new OracleParameter("GRAD_ISCED_ID", GRAD_ISCED_ID + "%"));
+                }
+                if (!string.IsNullOrEmpty(GRAD_ISCED_NAME_THAI))
+                {
+                    command.Parameters.Add(new OracleParameter("GRAD_ISCED_NAME_THAI", "%" + GRAD_ISCED_NAME_THAI + "%"));
+                }
+                if (!string.IsNullOrEmpty(GRAD_ISCED_NAME_ENG))
+                {
+                    command.Parameters.Add(new OracleParameter("GRAD_ISCED_NAME_ENG", "%" + GRAD_ISCED_NAME_ENG + "%"));
+                }
+                OracleDataAdapter sd = new OracleDataAdapter(command);
+                sd.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+
+            return dt;
+        }
+
+        public int InsertGradISCED()
+        {
+            int id = 0;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            OracleCommand command = new OracleCommand("INSERT INTO TB_GRAD_ISCED (GRAD_ISCED_ID,GRAD_ISCED_NAME_THAI,GRAD_ISCED_NAME_ENG) VALUES (:GRAD_ISCED_ID,:GRAD_ISCED_NAME_THAI,:GRAD_ISCED_NAME_ENG)", conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("GRAD_ISCED_ID", GRAD_ISCED_ID));
+                command.Parameters.Add(new OracleParameter("GRAD_ISCED_NAME_THAI", GRAD_ISCED_NAME_THAI));
+                command.Parameters.Add(new OracleParameter("GRAD_ISCED_NAME_ENG", GRAD_ISCED_NAME_ENG));
+                id = command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return id;
+        }
+
+        public bool UpdateGradISCED()
+        {
+            bool result = false;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            string query = "Update TB_GRAD_ISCED Set ";
+            query += " GRAD_ISCED_ID = :GRAD_ISCED_ID,";
+            query += " GRAD_ISCED_NAME_THAI = :GRAD_ISCED_NAME_THAI,";
+            query += " GRAD_ISCED_NAME_ENG = :GRAD_ISCED_NAME_ENG";
+            query += " where GRAD_ISCED_ID = :GRAD_ISCED_ID";
+
+            OracleCommand command = new OracleCommand(query, conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("GRAD_ISCED_ID", GRAD_ISCED_ID));
+                command.Parameters.Add(new OracleParameter("GRAD_ISCED_NAME_THAI", GRAD_ISCED_NAME_THAI));
+                command.Parameters.Add(new OracleParameter("GRAD_ISCED_NAME_ENG", GRAD_ISCED_NAME_ENG));
+                if (command.ExecuteNonQuery() > 0)
+                {
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+            }
+            return result;
+        }
+
+        public bool DeleteGradISCED()
+        {
+            bool result = false;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            OracleCommand command = new OracleCommand("Delete TB_GRAD_ISCED where GRAD_ISCED_ID = :GRAD_ISCED_ID", conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("GRAD_ISCED_ID", GRAD_ISCED_ID));
+                if (command.ExecuteNonQuery() >= 0)
+                {
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return result;
+        }
+
+        public bool CheckUseGradISCEDID()
+        {
+            bool result = true;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+
+            // Create the command
+            OracleCommand command = new OracleCommand("SELECT count(GRAD_ISCED_ID) FROM TB_GRAD_ISCED WHERE GRAD_ISCED_ID = :GRAD_ISCED_ID ", conn);
+
+            // Add the parameters.
+            command.Parameters.Add(new OracleParameter("GRAD_ISCED_ID", GRAD_ISCED_ID));
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                int count = (int)(decimal)command.ExecuteScalar();
+                if (count >= 1)
+                {
+                    result = false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return result;
+        }
+    }
+    //////////////////////////////////////////////////////////////////////////////////////////////////////
+    public class ClassGradProgram
+    {
+        public string GRAD_PROG_ID { get; set; }
+        public string GRAD_PROG_NAME { get; set; }
+
+        public ClassGradProgram() { }
+        public ClassGradProgram(string GRAD_PROG_ID, string GRAD_PROG_NAME)
+        {
+            this.GRAD_PROG_ID = GRAD_PROG_ID;
+            this.GRAD_PROG_NAME = GRAD_PROG_NAME;
+        }
+
+        public DataTable GetGradProgram(string GRAD_PROG_ID, string GRAD_PROG_NAME)
+        {
+            DataTable dt = new DataTable();
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            string query = "SELECT * FROM TB_GRAD_PROGRAM ";
+            if (!string.IsNullOrEmpty(GRAD_PROG_ID) || !string.IsNullOrEmpty(GRAD_PROG_NAME))
+            {
+                query += " where 1=1 ";
+                if (!string.IsNullOrEmpty(GRAD_PROG_ID))
+                {
+                    query += " and GRAD_PROG_ID like :GRAD_PROG_ID ";
+                }
+                if (!string.IsNullOrEmpty(GRAD_PROG_NAME))
+                {
+                    query += " and GRAD_PROG_NAME like :GRAD_PROG_NAME ";
+                }
+            }
+            OracleCommand command = new OracleCommand(query, conn);
+            // Create the command
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                if (!string.IsNullOrEmpty(GRAD_PROG_ID))
+                {
+                    command.Parameters.Add(new OracleParameter("GRAD_PROG_ID", GRAD_PROG_ID + "%"));
+                }
+                if (!string.IsNullOrEmpty(GRAD_PROG_NAME))
+                {
+                    command.Parameters.Add(new OracleParameter("GRAD_PROG_NAME", "%" + GRAD_PROG_NAME + "%"));
+                }
+                OracleDataAdapter sd = new OracleDataAdapter(command);
+                sd.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+
+            return dt;
+        }
+
+        public DataTable GetGradProgramSearch(string GRAD_PROG_ID, string GRAD_PROG_NAME)
+        {
+            DataTable dt = new DataTable();
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            string query = "SELECT * FROM TB_GRAD_PROGRAM ";
+            if (!string.IsNullOrEmpty(GRAD_PROG_ID) || !string.IsNullOrEmpty(GRAD_PROG_NAME))
+            {
+                query += " where 1=1 ";
+                if (!string.IsNullOrEmpty(GRAD_PROG_ID))
+                {
+                    query += " and GRAD_PROG_ID like :GRAD_PROG_ID ";
+                }
+                if (!string.IsNullOrEmpty(GRAD_PROG_NAME))
+                {
+                    query += " and GRAD_PROG_NAME like :GRAD_PROG_NAME ";
+                }
+            }
+            OracleCommand command = new OracleCommand(query, conn);
+            // Create the command
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                if (!string.IsNullOrEmpty(GRAD_PROG_ID))
+                {
+                    command.Parameters.Add(new OracleParameter("GRAD_PROG_ID", GRAD_PROG_ID + "%"));
+                }
+                if (!string.IsNullOrEmpty(GRAD_PROG_NAME))
+                {
+                    command.Parameters.Add(new OracleParameter("GRAD_PROG_NAME", "%" + GRAD_PROG_NAME + "%"));
+                }
+                OracleDataAdapter sd = new OracleDataAdapter(command);
+                sd.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+
+            return dt;
+        }
+
+        public int InsertGradProgram()
+        {
+            int id = 0;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            OracleCommand command = new OracleCommand("INSERT INTO TB_GRAD_PROGRAM (GRAD_PROG_ID,GRAD_PROG_NAME) VALUES (:GRAD_PROG_ID,:GRAD_PROG_NAME)", conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("GRAD_PROG_ID", GRAD_PROG_ID));
+                command.Parameters.Add(new OracleParameter("GRAD_PROG_NAME", GRAD_PROG_NAME));
+                id = command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return id;
+        }
+
+        public bool UpdateGradProgram()
+        {
+            bool result = false;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            string query = "Update TB_GRAD_PROGRAM Set ";
+            query += " GRAD_PROG_ID = :GRAD_PROG_ID,";
+            query += " GRAD_PROG_NAME = :GRAD_PROG_NAME";
+            query += " where GRAD_PROG_ID = :GRAD_PROG_ID";
+
+            OracleCommand command = new OracleCommand(query, conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("GRAD_PROG_ID", GRAD_PROG_ID));
+                command.Parameters.Add(new OracleParameter("GRAD_PROG_NAME", GRAD_PROG_NAME));
+
+                if (command.ExecuteNonQuery() > 0)
+                {
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+            }
+            return result;
+        }
+
+        public bool DeleteGradProgram()
+        {
+            bool result = false;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            OracleCommand command = new OracleCommand("Delete TB_GRAD_PROGRAM where GRAD_PROG_ID = :GRAD_PROG_ID", conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("GRAD_PROG_ID", GRAD_PROG_ID));
+                if (command.ExecuteNonQuery() >= 0)
+                {
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return result;
+        }
+
+        public bool CheckUseGradProgramID()
+        {
+            bool result = true;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+
+            // Create the command
+            OracleCommand command = new OracleCommand("SELECT count(GRAD_PROG_ID) FROM TB_GRAD_PROGRAM WHERE GRAD_PROG_ID = :GRAD_PROG_ID ", conn);
+
+            // Add the parameters.
+            command.Parameters.Add(new OracleParameter("GRAD_PROG_ID", GRAD_PROG_ID));
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                int count = (int)(decimal)command.ExecuteScalar();
+                if (count >= 1)
+                {
+                    result = false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return result;
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////
+    public class ClassPosition
+    {
+        public string ID { get; set; }
+        public string NAME { get; set; }
+        public string ST_ID { get; set; }
+
+
+        public ClassPosition() { }
+        public ClassPosition(string ID, string NAME, string ST_ID)
+        {
+            this.ID = ID;
+            this.NAME = NAME;
+            this.ST_ID = ST_ID;
+
+        }
+
+        public DataTable GetPosition(string ID, string NAME, string ST_ID)
+        {
+            DataTable dt = new DataTable();
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            string query = "SELECT * FROM TB_POSITION ";
+            if (!string.IsNullOrEmpty(ID) || !string.IsNullOrEmpty(NAME) || !string.IsNullOrEmpty(ST_ID))
+            {
+                query += " where 1=1 ";
+                if (!string.IsNullOrEmpty(ID))
+                {
+                    query += " and ID like :ID ";
+                }
+                if (!string.IsNullOrEmpty(NAME))
+                {
+                    query += " and NAME like :NAME ";
+                }
+                if (!string.IsNullOrEmpty(ST_ID))
+                {
+                    query += " and ST_ID like :ST_ID ";
+                }
+
+            }
+            OracleCommand command = new OracleCommand(query, conn);
+            // Create the command
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                if (!string.IsNullOrEmpty(ID))
+                {
+                    command.Parameters.Add(new OracleParameter("ID", ID + "%"));
+                }
+                if (!string.IsNullOrEmpty(NAME))
+                {
+                    command.Parameters.Add(new OracleParameter("NAME", NAME + "%"));
+                }
+                if (!string.IsNullOrEmpty(ST_ID))
+                {
+                    command.Parameters.Add(new OracleParameter("ST_ID", "%" + ST_ID + "%"));
+                }
+
+                OracleDataAdapter sd = new OracleDataAdapter(command);
+                sd.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+
+            return dt;
+        }
+
+        public DataTable GetPositionSearch(string ID, string NAME, string ST_ID)
+        {
+            DataTable dt = new DataTable();
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            string query = "SELECT * FROM TB_POSITION ";
+            if (!string.IsNullOrEmpty(ID) || !string.IsNullOrEmpty(NAME) || !string.IsNullOrEmpty(ST_ID))
+            {
+                query += " where 1=1 ";
+                if (!string.IsNullOrEmpty(ID))
+                {
+                    query += " and ID like :ID ";
+                }
+                if (!string.IsNullOrEmpty(NAME))
+                {
+                    query += " and NAME like :NAME ";
+                }
+                if (!string.IsNullOrEmpty(ST_ID))
+                {
+                    query += " and ST_ID like :ST_ID ";
+                }
+
+            }
+            OracleCommand command = new OracleCommand(query, conn);
+            // Create the command
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                if (!string.IsNullOrEmpty(ID))
+                {
+                    command.Parameters.Add(new OracleParameter("ID", ID + "%"));
+                }
+                if (!string.IsNullOrEmpty(NAME))
+                {
+                    command.Parameters.Add(new OracleParameter("NAME", NAME + "%"));
+                }
+                if (!string.IsNullOrEmpty(ST_ID))
+                {
+                    command.Parameters.Add(new OracleParameter("ST_ID", "%" + ST_ID + "%"));
+                }
+
+                OracleDataAdapter sd = new OracleDataAdapter(command);
+                sd.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+
+            return dt;
+        }
+
+        public int InsertPosition()
+        {
+            int id = 0;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            OracleCommand command = new OracleCommand("INSERT INTO TB_POSITION (ID,NAME,ST_ID) VALUES (:ID,:NAME,:ST_ID)", conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("ID", ID));
+                command.Parameters.Add(new OracleParameter("NAME", NAME));
+                command.Parameters.Add(new OracleParameter("ST_ID", ST_ID));
+                id = command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return id;
+        }
+
+        public bool UpdatePosition()
+        {
+            bool result = false;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            string query = "Update TB_POSITION Set ";
+            query += " ID = :ID,";
+            query += " NAME = :NAME,";
+            query += " ST_ID = :ST_ID";
+            query += " where ID = :ID";
+
+            OracleCommand command = new OracleCommand(query, conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("ID", ID));
+                command.Parameters.Add(new OracleParameter("NAME", NAME));
+                command.Parameters.Add(new OracleParameter("ST_ID", ST_ID));
+
+                if (command.ExecuteNonQuery() > 0)
+                {
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+            }
+            return result;
+        }
+
+        public bool DeletePosition()
+        {
+            bool result = false;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            OracleCommand command = new OracleCommand("Delete TB_POSITION where ID = :ID", conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("ID", ID));
+                if (command.ExecuteNonQuery() >= 0)
+                {
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return result;
+        }
+
+        public bool CheckUsePositionID()
+        {
+            bool result = true;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+
+            // Create the command
+            OracleCommand command = new OracleCommand("SELECT count(ID) FROM TB_POSITION WHERE ID = :ID ", conn);
+
+            // Add the parameters.
+            command.Parameters.Add(new OracleParameter("ID", ID));
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                int count = (int)(decimal)command.ExecuteScalar();
+                if (count >= 1)
+                {
+                    result = false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return result;
+        }
+    }
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    public class ClassStatusWork
+    {
+
+        public int STATUS_ID { get; set; }
+        public string STATUS_WORK { get; set; }
+
+        public ClassStatusWork() { }
+        public ClassStatusWork(int STATUS_ID, string STATUS_WORK)
+        {
+            this.STATUS_ID = STATUS_ID;
+            this.STATUS_WORK = STATUS_WORK;
+        }
+
+        public DataTable GetStatusWork(string STATUS_WORK)
+        {
+            DataTable dt = new DataTable();
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            string query = "SELECT * FROM TB_STATUS_WORK ";
+            if (!string.IsNullOrEmpty(STATUS_WORK))
+            {
+                query += " where 1=1 ";
+                if (!string.IsNullOrEmpty(STATUS_WORK))
+                {
+                    query += " and STATUS_WORK like :STATUS_WORK ";
+                }
+            }
+            OracleCommand command = new OracleCommand(query, conn);
+            // Create the command
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                if (!string.IsNullOrEmpty(STATUS_WORK))
+                {
+                    command.Parameters.Add(new OracleParameter("STATUS_WORK", STATUS_WORK + "%"));
+                }
+                OracleDataAdapter sd = new OracleDataAdapter(command);
+                sd.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+
+            return dt;
+        }
+
+        public DataTable GetStatusWorkSearch(string STATUS_WORK)
+        {
+            DataTable dt = new DataTable();
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            string query = "SELECT * FROM TB_STATUS_WORK ";
+            if (!string.IsNullOrEmpty(STATUS_WORK))
+            {
+                query += " where 1=1 ";
+                if (!string.IsNullOrEmpty(STATUS_WORK))
+                {
+                    query += " and STATUS_WORK like :STATUS_WORK ";
+                }
+            }
+            OracleCommand command = new OracleCommand(query, conn);
+            // Create the command
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                if (!string.IsNullOrEmpty(STATUS_WORK))
+                {
+                    command.Parameters.Add(new OracleParameter("STATUS_WORK", STATUS_WORK + "%"));
+                }
+                OracleDataAdapter sd = new OracleDataAdapter(command);
+                sd.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+
+            return dt;
+        }
+
+        public int InsertStatusWork()
+        {
+            int id = 0;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            OracleCommand command = new OracleCommand("INSERT INTO TB_STATUS_WORK (STATUS_WORK) VALUES (:STATUS_WORK)", conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("STATUS_WORK", STATUS_WORK));
+                id = command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return id;
+        }
+
+        public bool UpdateStatusWork()
+        {
+            bool result = false;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            string query = "Update TB_STATUS_WORK Set ";
+            query += " STATUS_WORK = :STATUS_WORK";
+            query += " where STATUS_ID = :STATUS_ID";
+
+            OracleCommand command = new OracleCommand(query, conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("STATUS_ID", STATUS_ID));
+                command.Parameters.Add(new OracleParameter("STATUS_WORK", STATUS_WORK));
+
+                if (command.ExecuteNonQuery() > 0)
+                {
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+            }
+            return result;
+        }
+
+        public bool DeleteStatusWork()
+        {
+            bool result = false;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            OracleCommand command = new OracleCommand("Delete TB_STATUS_WORK where STATUS_ID = :STATUS_ID", conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("STATUS_ID", STATUS_ID));
+                if (command.ExecuteNonQuery() >= 0)
+                {
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return result;
+        }
+
+        public bool CheckUseStatusWorkID()
+        {
+            bool result = true;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+
+            // Create the command
+            OracleCommand command = new OracleCommand("SELECT count(STATUS_ID) FROM TB_STATUS_WORK WHERE STATUS_ID = :STATUS_ID ", conn);
+
+            // Add the parameters.
+            command.Parameters.Add(new OracleParameter("STATUS_ID", STATUS_ID));
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                int count = (int)(decimal)command.ExecuteScalar();
+                if (count >= 1)
+                {
+                    result = false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return result;
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////
+    public class ClassSubStaffType
+    {
+        public int SUBSTAFFTYPE_ID { get; set; }
+        public string SUBSTAFFTYPE_NAME { get; set; }
+
+
+        public ClassSubStaffType() { }
+        public ClassSubStaffType(int SUBSTAFFTYPE_ID, string SUBSTAFFTYPE_NAME)
+        {
+            this.SUBSTAFFTYPE_ID = SUBSTAFFTYPE_ID;
+            this.SUBSTAFFTYPE_NAME = SUBSTAFFTYPE_NAME;
+        }
+
+        public DataTable GetSubStaffType(string SUBSTAFFTYPE_ID, string SUBSTAFFTYPE_NAME)
+        {
+            DataTable dt = new DataTable();
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            string query = "SELECT * FROM TB_SUBSTAFFTYPE ";
+            if (!string.IsNullOrEmpty(SUBSTAFFTYPE_ID) || !string.IsNullOrEmpty(SUBSTAFFTYPE_NAME))
+            {
+                query += " where 1=1 ";
+                if (!string.IsNullOrEmpty(SUBSTAFFTYPE_ID))
+                {
+                    query += " and SUBSTAFFTYPE_ID like :SUBSTAFFTYPE_ID ";
+                }
+                if (!string.IsNullOrEmpty(SUBSTAFFTYPE_NAME))
+                {
+                    query += " and SUBSTAFFTYPE_NAME like :SUBSTAFFTYPE_NAME ";
+                }
+            }
+            OracleCommand command = new OracleCommand(query, conn);
+            // Create the command
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+
+                if (!string.IsNullOrEmpty(SUBSTAFFTYPE_ID))
+                {
+                    command.Parameters.Add(new OracleParameter("SUBSTAFFTYPE_ID", SUBSTAFFTYPE_ID + "%"));
+                }
+                if (!string.IsNullOrEmpty(SUBSTAFFTYPE_NAME))
+                {
+                    command.Parameters.Add(new OracleParameter("SUBSTAFFTYPE_NAME", "%" + SUBSTAFFTYPE_NAME + "%"));
+                }
+                OracleDataAdapter sd = new OracleDataAdapter(command);
+                sd.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+
+            return dt;
+        }
+
+        public DataTable GetSubStaffTypeSearch(string SUBSTAFFTYPE_ID, string SUBSTAFFTYPE_NAME)
+        {
+            DataTable dt = new DataTable();
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            string query = "SELECT * FROM TB_SUBSTAFFTYPE ";
+            if (!string.IsNullOrEmpty(SUBSTAFFTYPE_ID) || !string.IsNullOrEmpty(SUBSTAFFTYPE_NAME))
+            {
+                query += " where 1=1 ";
+                if (!string.IsNullOrEmpty(SUBSTAFFTYPE_ID))
+                {
+                    query += " and SUBSTAFFTYPE_ID like :SUBSTAFFTYPE_ID ";
+                }
+                if (!string.IsNullOrEmpty(SUBSTAFFTYPE_NAME))
+                {
+                    query += " and SUBSTAFFTYPE_NAME like :SUBSTAFFTYPE_NAME ";
+                }
+            }
+            OracleCommand command = new OracleCommand(query, conn);
+            // Create the command
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+
+                if (!string.IsNullOrEmpty(SUBSTAFFTYPE_ID))
+                {
+                    command.Parameters.Add(new OracleParameter("SUBSTAFFTYPE_ID", SUBSTAFFTYPE_ID + "%"));
+                }
+                if (!string.IsNullOrEmpty(SUBSTAFFTYPE_NAME))
+                {
+                    command.Parameters.Add(new OracleParameter("SUBSTAFFTYPE_NAME", "%" + SUBSTAFFTYPE_NAME + "%"));
+                }
+                OracleDataAdapter sd = new OracleDataAdapter(command);
+                sd.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+
+            return dt;
+        }
+
+        public int InsertSubStaffType()
+        {
+            int id = 0;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            OracleCommand command = new OracleCommand("INSERT INTO TB_SUBSTAFFTYPE (SUBSTAFFTYPE_ID,SUBSTAFFTYPE_NAME) VALUES (:SUBSTAFFTYPE_ID,:SUBSTAFFTYPE_NAME)", conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("SUBSTAFFTYPE_ID", SUBSTAFFTYPE_ID));
+                command.Parameters.Add(new OracleParameter("SUBSTAFFTYPE_NAME", SUBSTAFFTYPE_NAME));
+                id = command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return id;
+        }
+
+        public bool UpdateSubStaffType()
+        {
+            bool result = false;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            string query = "Update TB_SUBSTAFFTYPE Set ";
+            query += " SUBSTAFFTYPE_ID = :SUBSTAFFTYPE_ID,";
+            query += " SUBSTAFFTYPE_NAME = :SUBSTAFFTYPE_NAME";
+            query += " where SUBSTAFFTYPE_ID = :SUBSTAFFTYPE_ID";
+
+            OracleCommand command = new OracleCommand(query, conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("SUBSTAFFTYPE_ID", SUBSTAFFTYPE_ID));
+                command.Parameters.Add(new OracleParameter("SUBSTAFFTYPE_NAME", SUBSTAFFTYPE_NAME));
+
+                if (command.ExecuteNonQuery() > 0)
+                {
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+            }
+            return result;
+        }
+
+        public bool DeleteSubStaffType()
+        {
+            bool result = false;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            OracleCommand command = new OracleCommand("Delete TB_SUBSTAFFTYPE where SUBSTAFFTYPE_ID = :SUBSTAFFTYPE_ID", conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("SUBSTAFFTYPE_ID", SUBSTAFFTYPE_ID));
+                if (command.ExecuteNonQuery() >= 0)
+                {
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return result;
+        }
+        public bool CheckUseSubStaffTypeID()
+        {
+            bool result = true;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+
+            // Create the command
+            OracleCommand command = new OracleCommand("SELECT count(SUBSTAFFTYPE_ID) FROM TB_SUBSTAFFTYPE WHERE SUBSTAFFTYPE_ID = :SUBSTAFFTYPE_ID ", conn);
+
+            // Add the parameters.
+            command.Parameters.Add(new OracleParameter("SUBSTAFFTYPE_ID", SUBSTAFFTYPE_ID));
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                int count = (int)(decimal)command.ExecuteScalar();
+                if (count >= 1)
+                {
+                    result = false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return result;
+        }
+    }
+    public class ClassTimeContact
+    {
+        public int TIME_CONTACT_ID { get; set; }
+        public string TIME_CONTACT_NAME { get; set; }
+
+        public ClassTimeContact() { }
+        public ClassTimeContact(int TIME_CONTACT_ID, string TIME_CONTACT_NAME)
+        {
+            this.TIME_CONTACT_ID = TIME_CONTACT_ID;
+            this.TIME_CONTACT_NAME = TIME_CONTACT_NAME;
+        }
+
+        public DataTable GetTimeContact(string TIME_CONTACT_ID, string TIME_CONTACT_NAME)
+        {
+            DataTable dt = new DataTable();
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            string query = "SELECT * FROM TB_TIME_CONTACT ";
+            if (!string.IsNullOrEmpty(TIME_CONTACT_ID) || !string.IsNullOrEmpty(TIME_CONTACT_NAME))
+            {
+                query += " where 1=1 ";
+                if (!string.IsNullOrEmpty(TIME_CONTACT_ID))
+                {
+                    query += " and TIME_CONTACT_ID like :TIME_CONTACT_ID ";
+                }
+                if (!string.IsNullOrEmpty(TIME_CONTACT_NAME))
+                {
+                    query += " and TIME_CONTACT_NAME like :TIME_CONTACT_NAME ";
+                }
+            }
+            OracleCommand command = new OracleCommand(query, conn);
+            // Create the command
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                if (!string.IsNullOrEmpty(TIME_CONTACT_ID))
+                {
+                    command.Parameters.Add(new OracleParameter("TIME_CONTACT_ID", TIME_CONTACT_ID + "%"));
+                }
+                if (!string.IsNullOrEmpty(TIME_CONTACT_NAME))
+                {
+                    command.Parameters.Add(new OracleParameter("TIME_CONTACT_NAME", "%" + TIME_CONTACT_NAME + "%"));
+                }
+                OracleDataAdapter sd = new OracleDataAdapter(command);
+                sd.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+
+            return dt;
+        }
+
+        public DataTable GetTimeContactSearch(string TIME_CONTACT_ID, string TIME_CONTACT_NAME)
+        {
+            DataTable dt = new DataTable();
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            string query = "SELECT * FROM TB_TIME_CONTACT";
+            if (!string.IsNullOrEmpty(TIME_CONTACT_ID) || !string.IsNullOrEmpty(TIME_CONTACT_NAME))
+            {
+                query += " where 1=1 ";
+                if (!string.IsNullOrEmpty(TIME_CONTACT_ID))
+                {
+                    query += " and TIME_CONTACT_ID like :TIME_CONTACT_ID ";
+                }
+                if (!string.IsNullOrEmpty(TIME_CONTACT_NAME))
+                {
+                    query += " and TIME_CONTACT_NAME like :TIME_CONTACT_NAME ";
+                }
+            }
+            OracleCommand command = new OracleCommand(query, conn);
+            // Create the command
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                if (!string.IsNullOrEmpty(TIME_CONTACT_ID))
+                {
+                    command.Parameters.Add(new OracleParameter("TIME_CONTACT_ID", TIME_CONTACT_ID + "%"));
+                }
+                if (!string.IsNullOrEmpty(TIME_CONTACT_NAME))
+                {
+                    command.Parameters.Add(new OracleParameter("TIME_CONTACT_NAME", "%" + TIME_CONTACT_NAME + "%"));
+                }
+                OracleDataAdapter sd = new OracleDataAdapter(command);
+                sd.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+
+            return dt;
+        }
+
+        public int InsertTimeContact()
+        {
+            int id = 0;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            OracleCommand command = new OracleCommand("INSERT INTO TB_TIME_CONTACT (TIME_CONTACT_ID,TIME_CONTACT_NAME) VALUES (:TIME_CONTACT_ID,:TIME_CONTACT_NAME)", conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("TIME_CONTACT_ID", TIME_CONTACT_ID));
+                command.Parameters.Add(new OracleParameter("TIME_CONTACT_NAME", TIME_CONTACT_NAME));
+                id = command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return id;
+        }
+
+        public bool UpdateTimeContact()
+        {
+            bool result = false;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            string query = "Update TB_TIME_CONTACT Set ";
+            query += " TIME_CONTACT_ID = :TIME_CONTACT_ID,";
+            query += " TIME_CONTACT_NAME = :TIME_CONTACT_NAME";
+            query += " where TIME_CONTACT_ID = :TIME_CONTACT_ID";
+
+            OracleCommand command = new OracleCommand(query, conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("TIME_CONTACT_ID", TIME_CONTACT_ID));
+                command.Parameters.Add(new OracleParameter("TIME_CONTACT_NAME", TIME_CONTACT_NAME));
+
+                if (command.ExecuteNonQuery() > 0)
+                {
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+            }
+            return result;
+        }
+
+        public bool DeleteTimeContact()
+        {
+            bool result = false;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            OracleCommand command = new OracleCommand("Delete TB_TIME_CONTACT where TIME_CONTACT_ID = :TIME_CONTACT_ID", conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("TIME_CONTACT_ID", TIME_CONTACT_ID));
+                if (command.ExecuteNonQuery() >= 0)
+                {
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return result;
+        }
+
+        public bool CheckUseTimeContactID()
+        {
+            bool result = true;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+
+            // Create the command
+            OracleCommand command = new OracleCommand("SELECT count(TIME_CONTACT_ID) FROM TB_TIME_CONTACT WHERE TIME_CONTACT_ID = :TIME_CONTACT_ID ", conn);
+
+            // Add the parameters.
+            command.Parameters.Add(new OracleParameter("TIME_CONTACT_ID", TIME_CONTACT_ID));
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                int count = (int)(decimal)command.ExecuteScalar();
+                if (count >= 1)
+                {
+                    result = false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return result;
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
 }
