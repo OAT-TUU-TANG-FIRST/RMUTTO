@@ -1044,7 +1044,7 @@ namespace WEB_PERSONAL
                 int id = 0;
                 using (OracleConnection conn = Util.OC())
                 {
-                    using (OracleCommand command = new OracleCommand("INSERT INTO PS_TRAINING (PS_CITIZEN_ID,PS_COURSE,PS_FROM_MONTH,PS_FROM_YEAR,PS_TO_MONTH,PS_TO_FROM,PS_DEPARTMENT) VALUES (:PS_CITIZEN_ID,:PS_COURSE,:PS_FROM_MONTH,:PS_FROM_YEAR,:PS_TO_MONTH,:PS_TO_FROM,:PS_DEPARTMENT)", conn))
+                    using (OracleCommand command = new OracleCommand("INSERT INTO PS_TRAINING (PS_CITIZEN_ID,PS_COURSE,PS_FROM_MONTH,PS_FROM_YEAR,PS_TO_MONTH,PS_TO_YEAR,PS_DEPARTMENT) VALUES (:PS_CITIZEN_ID,:PS_COURSE,:PS_FROM_MONTH,:PS_FROM_YEAR,:PS_TO_MONTH,:PS_TO_YEAR,:PS_DEPARTMENT)", conn))
                     {
 
                         try
@@ -1059,7 +1059,7 @@ namespace WEB_PERSONAL
                             command.Parameters.Add(new OracleParameter("PS_FROM_MONTH", GridViewTraining.Rows[i].Cells[1].Text));
                             command.Parameters.Add(new OracleParameter("PS_FROM_YEAR", GridViewTraining.Rows[i].Cells[2].Text));
                             command.Parameters.Add(new OracleParameter("PS_TO_MONTH", GridViewTraining.Rows[i].Cells[3].Text));
-                            command.Parameters.Add(new OracleParameter("PS_TO_FROM", GridViewTraining.Rows[i].Cells[4].Text));
+                            command.Parameters.Add(new OracleParameter("PS_TO_YEAR", GridViewTraining.Rows[i].Cells[4].Text));
                             command.Parameters.Add(new OracleParameter("PS_DEPARTMENT", GridViewTraining.Rows[i].Cells[5].Text));
                             id = command.ExecuteNonQuery();
                         }
@@ -1117,7 +1117,7 @@ namespace WEB_PERSONAL
                 int id = 0;
                 using (OracleConnection conn = Util.OC())
                 {
-                    using (OracleCommand command = new OracleCommand("INSERT INTO PS_POSITION_AND_SALARY (PAS_CITIZEN_ID,PAS_DATE,PAS_POSITION,PAS_POSITION_NO,PAS_POSITION_TYPE,PAS_POSITION_DEGREE,PAS_SALARY,PAS_SALARY_POSITION,PAS_REF) VALUES (:PAS_CITIZEN_ID,:PAS_DATE,:PAS_POSITION,:PAS_POSITION_NO,:PAS_POSITION_TYPE,:PAS_POSITION_DEGREE,:PAS_SALARY,:PAS_SALARY_POSITION,:PAS_REF)", conn))
+                    using (OracleCommand command = new OracleCommand("INSERT INTO PS_POSITION_AND_SALARY (PS_CITIZEN_ID,PS_DATE,PS_POSITION,PS_POSITION_NO,PS_POSITION_TYPE,PS_POSITION_DEGREE,PS_SALARY,PS_SALARY_POSITION,PS_REF) VALUES (:PS_CITIZEN_ID,:PS_DATE,:PS_POSITION,:PS_POSITION_NO,:PS_POSITION_TYPE,:PS_POSITION_DEGREE,:PS_SALARY,:PS_SALARY_POSITION,:PS_REF)", conn))
                     {
 
                         try
@@ -1133,15 +1133,15 @@ namespace WEB_PERSONAL
                             }
                             DateTime DATE_11 = new DateTime(Convert.ToInt32(ss5[2]), Util.MonthToNumber(ss5[1]), Convert.ToInt32(ss5[0]));
 
-                            command.Parameters.Add(new OracleParameter("PAS_CITIZEN_ID", tbCitizenID.Text));
-                            command.Parameters.Add(new OracleParameter("PAS_DATE", DATE_11));
-                            command.Parameters.Add(new OracleParameter("PAS_POSITION", GridViewPAS.Rows[i].Cells[1].Text));
-                            command.Parameters.Add(new OracleParameter("PAS_POSITION_NO", GridViewPAS.Rows[i].Cells[2].Text));
-                            command.Parameters.Add(new OracleParameter("PAS_POSITION_TYPE", GridViewPAS.Rows[i].Cells[3].Text));
-                            command.Parameters.Add(new OracleParameter("PAS_POSITION_DEGREE", GridViewPAS.Rows[i].Cells[4].Text));
-                            command.Parameters.Add(new OracleParameter("PAS_SALARY", GridViewPAS.Rows[i].Cells[5].Text));
-                            command.Parameters.Add(new OracleParameter("PAS_SALARY_POSITION", GridViewPAS.Rows[i].Cells[6].Text));
-                            command.Parameters.Add(new OracleParameter("PAS_REF", GridViewPAS.Rows[i].Cells[7].Text));
+                            command.Parameters.Add(new OracleParameter("PS_CITIZEN_ID", tbCitizenID.Text));
+                            command.Parameters.Add(new OracleParameter("PS_DATE", DATE_11));
+                            command.Parameters.Add(new OracleParameter("PS_POSITION", GridViewPAS.Rows[i].Cells[1].Text));
+                            command.Parameters.Add(new OracleParameter("PS_POSITION_NO", GridViewPAS.Rows[i].Cells[2].Text));
+                            command.Parameters.Add(new OracleParameter("PS_POSITION_TYPE", GridViewPAS.Rows[i].Cells[3].Text));
+                            command.Parameters.Add(new OracleParameter("PS_POSITION_DEGREE", GridViewPAS.Rows[i].Cells[4].Text));
+                            command.Parameters.Add(new OracleParameter("PS_SALARY", GridViewPAS.Rows[i].Cells[5].Text));
+                            command.Parameters.Add(new OracleParameter("PS_SALARY_POSITION", GridViewPAS.Rows[i].Cells[6].Text));
+                            command.Parameters.Add(new OracleParameter("PS_REF", GridViewPAS.Rows[i].Cells[7].Text));
                             id = command.ExecuteNonQuery();
 
                         }
