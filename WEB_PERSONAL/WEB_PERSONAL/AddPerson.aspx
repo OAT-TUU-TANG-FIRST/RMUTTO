@@ -603,7 +603,7 @@
 
                     <asp:UpdatePanel ID="UpdateGridViewLicense" runat="server">
                         <ContentTemplate>
-                            <asp:GridView ID="GridViewLicense" runat="server"></asp:GridView>
+                            <asp:GridView ID="GridViewLicense" runat="server" Width="70%"></asp:GridView>
                         </ContentTemplate>
                         <Triggers>
                             <asp:AsyncPostBackTrigger ControlID="GridViewLicense" />
@@ -779,7 +779,7 @@
                     </asp:UpdatePanel>
                     <div>
                         <asp:LinkButton ID="lbuV8Back" runat="server" CssClass="button button_default" OnClick="lbuV8Back_Click">ย้อนกลับ</asp:LinkButton>
-                        <asp:LinkButton ID="lbuV8Next" runat="server" CssClass="button button_default" OnClick="lbuV8Next_Click">ยืนยันการเพิ่มข้อมูลบุคลากร</asp:LinkButton>
+                        <asp:LinkButton ID="lbSubmit" runat="server" CssClass="button button_default" OnClick="lbSubmit_Click">ยืนยันการเพิ่มข้อมูลบุคลากร</asp:LinkButton>
                     </div>
                 </fieldset>
             </asp:View>
