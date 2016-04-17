@@ -22,6 +22,15 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.Panel Panel1;
         
         /// <summary>
+        /// txtSearchMonthID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSearchMonthID;
+        
+        /// <summary>
         /// txtSearchMonthNameSmall control.
         /// </summary>
         /// <remarks>
@@ -67,22 +76,31 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.Panel Panel2;
         
         /// <summary>
-        /// txtInsertNameSmall control.
+        /// txtInsertMonthID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtInsertNameSmall;
+        protected global::System.Web.UI.WebControls.TextBox txtInsertMonthID;
         
         /// <summary>
-        /// txtInsertNameFull control.
+        /// txtInsertMonthNameSmall control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtInsertNameFull;
+        protected global::System.Web.UI.WebControls.TextBox txtInsertMonthNameSmall;
+        
+        /// <summary>
+        /// txtInsertMonthNameFull control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtInsertMonthNameFull;
         
         /// <summary>
         /// btnSubmitMonth control.

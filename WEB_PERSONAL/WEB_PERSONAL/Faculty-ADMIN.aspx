@@ -28,6 +28,9 @@
             border-radius: 10px;
             resize: none;
         }
+        .center1 { 
+               display:inline-block; 
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -36,8 +39,8 @@
             <fieldset>
                 <legend>ค้นหาข้อมูล</legend>
                 <div>
-                    รหัสคณะ :&nbsp<asp:TextBox ID="txtSearchFacultyID" runat="server" CssClass="tb5" Width="100px" MaxLength="3"></asp:TextBox>
-                    ชื่อคณะ :&nbsp<asp:TextBox ID="txtSearchFacultyName" runat="server" CssClass="tb5" Width="200px" MaxLength="100"></asp:TextBox>
+                    รหัสสำนัก / สถาบัน / คณะ :&nbsp<asp:TextBox ID="txtSearchFacultyID" runat="server" CssClass="tb5" Width="100px" MaxLength="4"></asp:TextBox>
+                    ชื่อสำนัก / สถาบัน / คณะ :&nbsp<asp:TextBox ID="txtSearchFacultyName" runat="server" CssClass="tb5" Width="200px" MaxLength="100"></asp:TextBox>
                     รหัสวิทยาเขต :&nbsp<asp:TextBox ID="txtSearchCampusID" runat="server" CssClass="tb5" Width="100px" MaxLength="2"></asp:TextBox>
                     <asp:Button ID="btnSearchFaculty" Text="Search" runat="server" CssClass="master_OAT_button" OnClick="btnSearchFaculty_Click" />
                     <asp:Button ID="btnSearchRefresh" Text="Refresh" runat="server" CssClass="master_OAT_button" OnClick="btnSearchRefresh_Click" />
@@ -50,13 +53,12 @@
             <fieldset>
                 <legend>เพิ่มข้อมูล</legend>
                 <div>
-                    <table>
+                    <table class="center1">
                         <tr>
-                            <td style="text-align: left; width: 225px"></td>
-                            <td style="margin-left: auto; margin-right: auto; text-align: center">รหัสคณะ :</td>
+                            <td style="margin-left: auto; margin-right: auto; text-align: center">รหัสสำนัก / สถาบัน / คณะ :</td>
                             <td style="text-align: left; width: 50px;">
-                                <asp:TextBox ID="txtInsertFacultyID" runat="server" CssClass="tb5" MaxLength="3" Width="100px"></asp:TextBox></td>
-                            <td style="margin-left: auto; margin-right: auto; text-align: center">ชื่อคณะ :</td>
+                                <asp:TextBox ID="txtInsertFacultyID" runat="server" CssClass="tb5" MaxLength="4" Width="100px"></asp:TextBox></td>
+                            <td style="margin-left: auto; margin-right: auto; text-align: center">ชื่อสำนัก / สถาบัน / คณะ :</td>
                             <td style="text-align: left; width: 50px;">
                                 <asp:TextBox ID="txtInsertFacultyName" runat="server" CssClass="tb5" MaxLength="100" Width="200px"></asp:TextBox></td>
                             <td style="margin-left: auto; margin-right: auto; text-align: center">รหัสวิทยาเขต :</td>
@@ -88,15 +90,15 @@
                             OnRowDataBound="GridView1_RowDataBound"
                             OnPageIndexChanging="myGridViewFaculty_PageIndexChanging" PageSize="15" BackColor="White" BorderColor="#999999">
                             <Columns>
-                                <asp:TemplateField HeaderText="รหัสคณะ" ControlStyle-Width="100" HeaderStyle-BackColor="#0099FF" HeaderStyle-ForeColor="Aqua">
+                                <asp:TemplateField HeaderText="รหัสสำนัก / สถาบัน / คณะ" ControlStyle-Width="100" HeaderStyle-BackColor="#0099FF" HeaderStyle-ForeColor="Aqua">
                                     <ItemTemplate>
                                         <asp:Label ID="lblFacultyIDEdit" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.FACULTY_ID") %>'></asp:Label>
                                     </ItemTemplate>
                                     <EditItemTemplate>
-                                        <asp:TextBox ID="txtFacultyIDEdit" MaxLength="3" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.FACULTY_ID") %>'></asp:TextBox>
+                                        <asp:TextBox ID="txtFacultyIDEdit" Enabled="false" MaxLength="4" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.FACULTY_ID") %>'></asp:TextBox>
                                     </EditItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="ชื่อคณะ" ControlStyle-Width="380" HeaderStyle-BackColor="#0099FF" HeaderStyle-ForeColor="Aqua">
+                                <asp:TemplateField HeaderText="ชื่อสำนัก / สถาบัน / คณะ" ControlStyle-Width="380" HeaderStyle-BackColor="#0099FF" HeaderStyle-ForeColor="Aqua">
                                     <ItemTemplate>
                                         <asp:Label ID="lblFacultyNameEdit" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.FACULTY_NAME") %>'></asp:Label>
                                     </ItemTemplate>
@@ -129,4 +131,3 @@
         </div>
     </asp:Panel>
 </asp:Content>
-

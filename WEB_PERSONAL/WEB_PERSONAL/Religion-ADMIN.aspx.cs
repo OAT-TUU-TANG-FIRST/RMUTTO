@@ -16,6 +16,8 @@ namespace WEB_PERSONAL
             if (!IsPostBack)
             {
                 BindData();
+                txtSearchReligionID.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
+                txtInsertReligionID.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
             }
         }
 
@@ -38,7 +40,7 @@ namespace WEB_PERSONAL
         void BindData()
         {
             ClassReligion r = new ClassReligion();
-            DataTable dt = r.GetReligion("");
+            DataTable dt = r.GetReligion("", "");
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);
@@ -47,7 +49,7 @@ namespace WEB_PERSONAL
         void BindData1()
         {
             ClassReligion r = new ClassReligion();
-            DataTable dt = r.GetReligionSearch(txtSearchName.Text);
+            DataTable dt = r.GetReligionSearch(txtSearchReligionID.Text,txtSearchReligionName.Text);
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);
@@ -55,23 +57,39 @@ namespace WEB_PERSONAL
 
         private void ClearData()
         {
-            txtSearchName.Text = "";
-            txtInsertName.Text = "";
+            txtSearchReligionID.Text = "";
+            txtInsertReligionID.Text = "";
+            txtSearchReligionName.Text = "";
+            txtInsertReligionName.Text = "";
         }
 
         protected void btnSubmitReligion_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtInsertName.Text))
+            if (string.IsNullOrEmpty(txtInsertReligionID.Text))
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ รหัสศาสนา')", true);
+                return;
+            }
+            if (string.IsNullOrEmpty(txtInsertReligionName.Text))
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ ชื่อศาสนา')", true);
                 return;
             }
             ClassReligion r = new ClassReligion();
-            r.RELIGION_NAME = txtInsertName.Text;
+            r.RELIGION_ID = Convert.ToInt32(txtInsertReligionID.Text);
+            r.RELIGION_NAME = txtInsertReligionName.Text;
 
-            r.InsertReligion();
-            BindData();
-            ClearData();
+            if (r.CheckUseReligionID())
+            {
+                r.InsertReligion();
+                BindData();
+                ClearData();
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('เพิ่มข้อมูลเรียบร้อย')", true);
+            }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('มีรหัสศาสนานี้ อยู่ในระบบแล้ว !')", true);
+            }
 
         }
 
@@ -98,10 +116,10 @@ namespace WEB_PERSONAL
         }
         protected void modUpdateCommand(Object sender, GridViewUpdateEventArgs e)
         {
-            Label lblReligionID = (Label)GridView1.Rows[e.RowIndex].FindControl("lblReligionID");
+            TextBox txtReligionIDEdit = (TextBox)GridView1.Rows[e.RowIndex].FindControl("txtReligionIDEdit");
             TextBox txtReligionNameEdit = (TextBox)GridView1.Rows[e.RowIndex].FindControl("txtReligionNameEdit");
 
-            ClassReligion r = new ClassReligion(Convert.ToInt32(lblReligionID.Text),
+            ClassReligion r = new ClassReligion(Convert.ToInt32(txtReligionIDEdit.Text),
                 txtReligionNameEdit.Text);
 
             r.UpdateReligion();
@@ -115,7 +133,12 @@ namespace WEB_PERSONAL
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 LinkButton lb = (LinkButton)e.Row.FindControl("DeleteButton1");
-                lb.Attributes.Add("onclick", "return confirm('คุณต้องการจะลบ " + DataBinder.Eval(e.Row.DataItem, "Religion_NAME") + " ใช่ไหม ?');");
+                lb.Attributes.Add("onclick", "return confirm('คุณต้องการจะลบชื่อศาสนา " + DataBinder.Eval(e.Row.DataItem, "Religion_NAME") + " ใช่ไหม ?');");
+                if ((e.Row.RowState & DataControlRowState.Edit) > 0)
+                {
+                    TextBox txt = (TextBox)e.Row.FindControl("txtReligionIDEdit");
+                    txt.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
+                }
             }
         }
         protected void myGridViewReligion_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -129,7 +152,7 @@ namespace WEB_PERSONAL
         {
             ClearData();
             ClassReligion r = new ClassReligion();
-            DataTable dt = r.GetReligion("");
+            DataTable dt = r.GetReligion("", "");
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);
@@ -137,7 +160,7 @@ namespace WEB_PERSONAL
 
         protected void btnSearchReligion_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtSearchName.Text))
+            if (string.IsNullOrEmpty(txtSearchReligionID.Text) && string.IsNullOrEmpty(txtSearchReligionName.Text))
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก คำค้นหา')", true);
                 return;
@@ -145,7 +168,7 @@ namespace WEB_PERSONAL
             else
             {
                 ClassReligion r = new ClassReligion();
-                DataTable dt = r.GetReligionSearch(txtSearchName.Text);
+                DataTable dt = r.GetReligionSearch(txtSearchReligionID.Text, txtSearchReligionName.Text);
                 GridView1.DataSource = dt;
                 GridView1.DataBind();
                 SetViewState(dt);
@@ -156,7 +179,7 @@ namespace WEB_PERSONAL
         {
             ClearData();
             ClassReligion r = new ClassReligion();
-            DataTable dt = r.GetReligion("");
+            DataTable dt = r.GetReligion("", "");
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);

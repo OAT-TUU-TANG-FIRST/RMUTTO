@@ -1,21 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="AddPerson.aspx.cs" Inherits="WEB_PERSONAL.AddPerson" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-
     <style type="text/css">
-        .auto-style1 {
-            padding-right: 10px;
-            vertical-align: top;
-            text-align: right;
-            color: #808080;
-            height: 10px;
-        }
-
-        .auto-style2 {
-            color: #000000;
-            height: 10px;
-        }
-
         .TMZ {
             font-family: tahoma;
             text-align: left;
@@ -74,8 +59,8 @@
                                 </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="ddlTitle" /></Triggers></asp:UpdatePanel></td>
                         </tr>
                         <tr>
-                            <td class="auto-style1">ชื่อ</td>
-                            <td class="auto-style2">
+                            <td class="col1">ชื่อ</td>
+                            <td class="col2">
                                 <asp:UpdatePanel ID="UpdatetbNameTH" runat="server"><ContentTemplate>
                                 <asp:TextBox ID="tbNameTH" runat="server"></asp:TextBox>
                                 </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbNameTH" /></Triggers></asp:UpdatePanel></td>

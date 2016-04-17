@@ -22,13 +22,22 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.Panel Panel1;
         
         /// <summary>
-        /// txtSearchName control.
+        /// txtSearchCampusID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearchName;
+        protected global::System.Web.UI.WebControls.TextBox txtSearchCampusID;
+        
+        /// <summary>
+        /// txtSearchCampusName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSearchCampusName;
         
         /// <summary>
         /// btnSearchCampus control.
@@ -58,13 +67,22 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.Panel Panel2;
         
         /// <summary>
-        /// txtInsertName control.
+        /// txtInsertCampusID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtInsertName;
+        protected global::System.Web.UI.WebControls.TextBox txtInsertCampusID;
+        
+        /// <summary>
+        /// txtInsertCampusName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtInsertCampusName;
         
         /// <summary>
         /// btnSubmitCampus control.

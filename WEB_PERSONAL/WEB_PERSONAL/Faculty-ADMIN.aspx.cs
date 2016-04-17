@@ -71,12 +71,12 @@ namespace WEB_PERSONAL
         {
             if (string.IsNullOrEmpty(txtInsertFacultyID.Text))
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ รหัสคณะ')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ รหัสสำนัก / สถาบัน / คณะ')", true);
                 return;
             }
             if (string.IsNullOrEmpty(txtInsertFacultyName.Text))
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ ชื่อคณะ')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ ชื่อสำนัก / สถาบัน / คณะ')", true);
                 return;
             }
 
@@ -86,13 +86,21 @@ namespace WEB_PERSONAL
                 return;
             }
             ClassFaculty f = new ClassFaculty();
+            f.FACULTY_ID = Convert.ToInt32(txtInsertFacultyID.Text);
             f.FACULTY_NAME = txtInsertFacultyName.Text;
             f.CAMPUS_ID = Convert.ToInt32(txtInsertCampusID.Text);
 
-            f.InsertFaculty();
-            BindData();
-            ClearData();
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('เพิ่มข้อมูลเรียบร้อย')", true);
+            if (f.CheckUseFacultyID())
+            {
+                f.InsertFaculty();
+                BindData();
+                ClearData();
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('เพิ่มข้อมูลเรียบร้อย')", true);
+            }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('มีรหัสสำนัก / สถาบัน / คณะ นี้อยู่ในระบบแล้ว !')", true);
+            }
         }
 
         protected void modEditCommand(Object sender, GridViewEditEventArgs e)
@@ -136,12 +144,14 @@ namespace WEB_PERSONAL
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 LinkButton lb = (LinkButton)e.Row.FindControl("DeleteButton1");
-                lb.Attributes.Add("onclick", "return confirm('คุณต้องการจะลบ " + DataBinder.Eval(e.Row.DataItem, "FACULTY_NAME") + " ใช่ไหม ?');");
+                lb.Attributes.Add("onclick", "return confirm('คุณต้องการจะลบชื่อสำนัก / สถาบัน / คณะ " + DataBinder.Eval(e.Row.DataItem, "FACULTY_NAME") + " ใช่ไหม ?');");
 
                 if ((e.Row.RowState & DataControlRowState.Edit) > 0)
                 {
-                    TextBox txt = (TextBox)e.Row.FindControl("txtCampusIDEdit");
-                    txt.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
+                    TextBox txt1 = (TextBox)e.Row.FindControl("txtFacultyIDEdit");
+                    txt1.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
+                    TextBox txt2 = (TextBox)e.Row.FindControl("txtCampusIDEdit");
+                    txt2.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
                 }
             }
         }
