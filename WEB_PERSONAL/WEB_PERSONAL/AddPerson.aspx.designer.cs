@@ -10,16 +10,7 @@
 namespace WEB_PERSONAL {
     
     
-    public partial class Person_GENERAL {
-        
-        /// <summary>
-        /// Panel1_1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel1_1;
+    public partial class AddPerson {
         
         /// <summary>
         /// ScriptManager1 control.
@@ -31,1533 +22,1866 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.ScriptManager ScriptManager1;
         
         /// <summary>
-        /// UpdatetxtCitizen control.
+        /// notification control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetxtCitizen;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl notification;
         
         /// <summary>
-        /// txtCitizen control.
+        /// MultiView1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCitizen;
+        protected global::System.Web.UI.WebControls.MultiView MultiView1;
         
         /// <summary>
-        /// UpdatetxtHOMEADD control.
+        /// View1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetxtHOMEADD;
+        protected global::System.Web.UI.WebControls.View View1;
         
         /// <summary>
-        /// txtHOMEADD control.
+        /// UpdatetbCitizenID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtHOMEADD;
+        protected global::System.Web.UI.UpdatePanel UpdatetbCitizenID;
         
         /// <summary>
-        /// UpdatetxtFatherName control.
+        /// tbCitizenID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetxtFatherName;
+        protected global::System.Web.UI.WebControls.TextBox tbCitizenID;
         
         /// <summary>
-        /// txtFatherName control.
+        /// UpdateddlTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFatherName;
+        protected global::System.Web.UI.UpdatePanel UpdateddlTitle;
         
         /// <summary>
-        /// UpdateDropDownCampus control.
+        /// ddlTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdateDropDownCampus;
+        protected global::System.Web.UI.WebControls.DropDownList ddlTitle;
         
         /// <summary>
-        /// DropDownCampus control.
+        /// UpdatetbNameTH control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownCampus;
+        protected global::System.Web.UI.UpdatePanel UpdatetbNameTH;
         
         /// <summary>
-        /// UpdatetxtMOO control.
+        /// tbNameTH control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetxtMOO;
+        protected global::System.Web.UI.WebControls.TextBox tbNameTH;
         
         /// <summary>
-        /// txtMOO control.
+        /// UpdatetbLastNameTH control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMOO;
+        protected global::System.Web.UI.UpdatePanel UpdatetbLastNameTH;
         
         /// <summary>
-        /// UpdatetxtFatherLastName control.
+        /// tbLastNameTH control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetxtFatherLastName;
+        protected global::System.Web.UI.WebControls.TextBox tbLastNameTH;
         
         /// <summary>
-        /// txtFatherLastName control.
+        /// UpdatetbNameEN control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFatherLastName;
+        protected global::System.Web.UI.UpdatePanel UpdatetbNameEN;
         
         /// <summary>
-        /// UpdateDropDownFaculty control.
+        /// tbNameEN control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdateDropDownFaculty;
+        protected global::System.Web.UI.WebControls.TextBox tbNameEN;
         
         /// <summary>
-        /// DropDownFaculty control.
+        /// UpdatetbLastNameEN control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownFaculty;
+        protected global::System.Web.UI.UpdatePanel UpdatetbLastNameEN;
         
         /// <summary>
-        /// UpdatetxtSTREET control.
+        /// tbLastNameEN control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetxtSTREET;
+        protected global::System.Web.UI.WebControls.TextBox tbLastNameEN;
         
         /// <summary>
-        /// txtSTREET control.
+        /// UpdateddlGender control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSTREET;
+        protected global::System.Web.UI.UpdatePanel UpdateddlGender;
         
         /// <summary>
-        /// UpdatetxtMotherName control.
+        /// ddlGender control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetxtMotherName;
+        protected global::System.Web.UI.WebControls.DropDownList ddlGender;
         
         /// <summary>
-        /// txtMotherName control.
+        /// UpdatetbBirthday control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMotherName;
+        protected global::System.Web.UI.UpdatePanel UpdatetbBirthday;
         
         /// <summary>
-        /// UpdateDropDownMinistry control.
+        /// tbBirthday control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdateDropDownMinistry;
+        protected global::System.Web.UI.WebControls.TextBox tbBirthday;
         
         /// <summary>
-        /// DropDownMinistry control.
+        /// UpdateddlRace control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownMinistry;
+        protected global::System.Web.UI.UpdatePanel UpdateddlRace;
         
         /// <summary>
-        /// UpdateddlPROVINCE control.
+        /// ddlRace control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdateddlPROVINCE;
+        protected global::System.Web.UI.WebControls.DropDownList ddlRace;
         
         /// <summary>
-        /// ddlPROVINCE control.
+        /// UpdateddlNation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPROVINCE;
+        protected global::System.Web.UI.UpdatePanel UpdateddlNation;
         
         /// <summary>
-        /// UpdatetxtMotherLastName control.
+        /// ddlNation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetxtMotherLastName;
+        protected global::System.Web.UI.WebControls.DropDownList ddlNation;
         
         /// <summary>
-        /// txtMotherLastName control.
+        /// UpdateddlBlood control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMotherLastName;
+        protected global::System.Web.UI.UpdatePanel UpdateddlBlood;
         
         /// <summary>
-        /// UpdatetxtDepart control.
+        /// ddlBlood control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetxtDepart;
+        protected global::System.Web.UI.WebControls.DropDownList ddlBlood;
         
         /// <summary>
-        /// txtDepart control.
+        /// UpdatetbEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDepart;
+        protected global::System.Web.UI.UpdatePanel UpdatetbEmail;
         
         /// <summary>
-        /// UpdateddlAMPHUR control.
+        /// tbEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdateddlAMPHUR;
+        protected global::System.Web.UI.WebControls.TextBox tbEmail;
         
         /// <summary>
-        /// ddlAMPHUR control.
+        /// UpdatetbPhone control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlAMPHUR;
+        protected global::System.Web.UI.UpdatePanel UpdatetbPhone;
         
         /// <summary>
-        /// UpdatetxtMotherLastNameOld control.
+        /// tbPhone control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetxtMotherLastNameOld;
+        protected global::System.Web.UI.WebControls.TextBox tbPhone;
         
         /// <summary>
-        /// txtMotherLastNameOld control.
+        /// UpdatetbTelephone control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMotherLastNameOld;
+        protected global::System.Web.UI.UpdatePanel UpdatetbTelephone;
         
         /// <summary>
-        /// UpdateDropDownTitle control.
+        /// tbTelephone control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdateDropDownTitle;
+        protected global::System.Web.UI.WebControls.TextBox tbTelephone;
         
         /// <summary>
-        /// DropDownTitle control.
+        /// UpdateddlReligion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownTitle;
+        protected global::System.Web.UI.UpdatePanel UpdateddlReligion;
         
         /// <summary>
-        /// UpdateddlDISTRICT control.
+        /// ddlReligion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdateddlDISTRICT;
+        protected global::System.Web.UI.WebControls.DropDownList ddlReligion;
         
         /// <summary>
-        /// ddlDISTRICT control.
+        /// UpdateddlStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlDISTRICT;
+        protected global::System.Web.UI.UpdatePanel UpdateddlStatus;
         
         /// <summary>
-        /// UpdatetxtMarriedName control.
+        /// ddlStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetxtMarriedName;
+        protected global::System.Web.UI.WebControls.DropDownList ddlStatus;
         
         /// <summary>
-        /// txtMarriedName control.
+        /// UpdatetbFatherName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMarriedName;
+        protected global::System.Web.UI.UpdatePanel UpdatetbFatherName;
         
         /// <summary>
-        /// UpdatetxtName control.
+        /// tbFatherName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetxtName;
+        protected global::System.Web.UI.WebControls.TextBox tbFatherName;
         
         /// <summary>
-        /// txtName control.
+        /// UpdatetbFatherLastName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtName;
+        protected global::System.Web.UI.UpdatePanel UpdatetbFatherLastName;
         
         /// <summary>
-        /// UpdatetxtZIPCODE control.
+        /// tbFatherLastName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetxtZIPCODE;
+        protected global::System.Web.UI.WebControls.TextBox tbFatherLastName;
         
         /// <summary>
-        /// txtZIPCODE control.
+        /// UpdatetbMotherName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtZIPCODE;
+        protected global::System.Web.UI.UpdatePanel UpdatetbMotherName;
         
         /// <summary>
-        /// UpdatetxtMarriedLastName control.
+        /// tbMotherName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetxtMarriedLastName;
+        protected global::System.Web.UI.WebControls.TextBox tbMotherName;
         
         /// <summary>
-        /// txtMarriedLastName control.
+        /// UpdatetbMotherLastName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMarriedLastName;
+        protected global::System.Web.UI.UpdatePanel UpdatetbMotherLastName;
         
         /// <summary>
-        /// UpdatetxtLastName control.
+        /// tbMotherLastName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetxtLastName;
+        protected global::System.Web.UI.WebControls.TextBox tbMotherLastName;
         
         /// <summary>
-        /// txtLastName control.
+        /// UpdatetbMotherOldLastName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtLastName;
+        protected global::System.Web.UI.UpdatePanel UpdatetbMotherOldLastName;
         
         /// <summary>
-        /// UpdatetxtTELEPHONE control.
+        /// tbMotherOldLastName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetxtTELEPHONE;
+        protected global::System.Web.UI.WebControls.TextBox tbMotherOldLastName;
         
         /// <summary>
-        /// txtTELEPHONE control.
+        /// UpdatetbCoupleName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTELEPHONE;
+        protected global::System.Web.UI.UpdatePanel UpdatetbCoupleName;
         
         /// <summary>
-        /// UpdatetxtMarriedLastNameOld control.
+        /// tbCoupleName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetxtMarriedLastNameOld;
+        protected global::System.Web.UI.WebControls.TextBox tbCoupleName;
         
         /// <summary>
-        /// txtMarriedLastNameOld control.
+        /// UpdatetbCoupleLastName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMarriedLastNameOld;
+        protected global::System.Web.UI.UpdatePanel UpdatetbCoupleLastName;
         
         /// <summary>
-        /// UpdatetxtDateInWork control.
+        /// tbCoupleLastName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetxtDateInWork;
+        protected global::System.Web.UI.WebControls.TextBox tbCoupleLastName;
         
         /// <summary>
-        /// txtDateInWork control.
+        /// UpdatetbCoupleOldLastName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDateInWork;
+        protected global::System.Web.UI.UpdatePanel UpdatetbCoupleOldLastName;
         
         /// <summary>
-        /// UpdateDropDownGENDER control.
+        /// tbCoupleOldLastName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdateDropDownGENDER;
+        protected global::System.Web.UI.WebControls.TextBox tbCoupleOldLastName;
         
         /// <summary>
-        /// DropDownGENDER control.
+        /// lbuV1Next control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownGENDER;
+        protected global::System.Web.UI.WebControls.LinkButton lbuV1Next;
         
         /// <summary>
-        /// UpdateDropDownNATION control.
+        /// View2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdateDropDownNATION;
+        protected global::System.Web.UI.WebControls.View View2;
         
         /// <summary>
-        /// DropDownNATION control.
+        /// UpdatetbHomeAdd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownNATION;
+        protected global::System.Web.UI.UpdatePanel UpdatetbHomeAdd;
         
         /// <summary>
-        /// UpdateUpdatetxtBirthDayNumber control.
+        /// tbHomeAdd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdateUpdatetxtBirthDayNumber;
+        protected global::System.Web.UI.WebControls.TextBox tbHomeAdd;
         
         /// <summary>
-        /// UpdatetxtBirthDayNumber control.
+        /// UpdatetbSoi control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetxtBirthDayNumber;
+        protected global::System.Web.UI.UpdatePanel UpdatetbSoi;
         
         /// <summary>
-        /// txtBirthDayNumber control.
+        /// tbSoi control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBirthDayNumber;
+        protected global::System.Web.UI.WebControls.TextBox tbSoi;
         
         /// <summary>
-        /// txtBirthDayChar control.
+        /// UpdatetbMoo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBirthDayChar;
+        protected global::System.Web.UI.UpdatePanel UpdatetbMoo;
         
         /// <summary>
-        /// UpdatetxtAge60Number control.
+        /// tbMoo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetxtAge60Number;
+        protected global::System.Web.UI.WebControls.TextBox tbMoo;
         
         /// <summary>
-        /// txtAge60Number control.
+        /// UpdatetbRoad control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtAge60Number;
+        protected global::System.Web.UI.UpdatePanel UpdatetbRoad;
         
         /// <summary>
-        /// txtAge60Char control.
+        /// tbRoad control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtAge60Char;
+        protected global::System.Web.UI.WebControls.TextBox tbRoad;
         
         /// <summary>
-        /// Panel1_2 control.
+        /// UpdateddlProvince control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel1_2;
+        protected global::System.Web.UI.UpdatePanel UpdateddlProvince;
         
         /// <summary>
-        /// UpdateDropDownStaffType control.
+        /// ddlProvince control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdateDropDownStaffType;
+        protected global::System.Web.UI.WebControls.DropDownList ddlProvince;
         
         /// <summary>
-        /// DropDownStaffType control.
+        /// UpdateddlAmphur control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownStaffType;
+        protected global::System.Web.UI.UpdatePanel UpdateddlAmphur;
         
         /// <summary>
-        /// UpdateDropDownADMIN_POSITION control.
+        /// ddlAmphur control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdateDropDownADMIN_POSITION;
+        protected global::System.Web.UI.WebControls.DropDownList ddlAmphur;
         
         /// <summary>
-        /// DropDownADMIN_POSITION control.
+        /// UpdateddlDistrict control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownADMIN_POSITION;
+        protected global::System.Web.UI.UpdatePanel UpdateddlDistrict;
         
         /// <summary>
-        /// UpdateDropDownGRAD_ISCED control.
+        /// ddlDistrict control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdateDropDownGRAD_ISCED;
+        protected global::System.Web.UI.WebControls.DropDownList ddlDistrict;
         
         /// <summary>
-        /// DropDownGRAD_ISCED control.
+        /// UpdatetbZipcode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownGRAD_ISCED;
+        protected global::System.Web.UI.UpdatePanel UpdatetbZipcode;
         
         /// <summary>
-        /// UpdateDropDownTIME_CONTACT control.
+        /// tbZipcode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdateDropDownTIME_CONTACT;
+        protected global::System.Web.UI.WebControls.TextBox tbZipcode;
         
         /// <summary>
-        /// DropDownTIME_CONTACT control.
+        /// UpdateddlCountry control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownTIME_CONTACT;
+        protected global::System.Web.UI.UpdatePanel UpdateddlCountry;
         
         /// <summary>
-        /// UpdateDropDownPOSITION_WORK control.
+        /// ddlCountry control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdateDropDownPOSITION_WORK;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCountry;
         
         /// <summary>
-        /// DropDownPOSITION_WORK control.
+        /// UpdatetbState control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownPOSITION_WORK;
+        protected global::System.Web.UI.UpdatePanel UpdatetbState;
         
         /// <summary>
-        /// UpdateDropDownGRAD_PROG control.
+        /// tbState control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdateDropDownGRAD_PROG;
+        protected global::System.Web.UI.WebControls.TextBox tbState;
         
         /// <summary>
-        /// DropDownGRAD_PROG control.
+        /// UpdatetbHomeAdd2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownGRAD_PROG;
+        protected global::System.Web.UI.UpdatePanel UpdatetbHomeAdd2;
         
         /// <summary>
-        /// UpdateDropDownBUDGET control.
+        /// tbHomeAdd2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdateDropDownBUDGET;
+        protected global::System.Web.UI.WebControls.TextBox tbHomeAdd2;
         
         /// <summary>
-        /// DropDownBUDGET control.
+        /// UpdatetbSoi2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownBUDGET;
+        protected global::System.Web.UI.UpdatePanel UpdatetbSoi2;
         
         /// <summary>
-        /// UpdatetxtSPECIAL_NAME control.
+        /// tbSoi2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetxtSPECIAL_NAME;
+        protected global::System.Web.UI.WebControls.TextBox tbSoi2;
         
         /// <summary>
-        /// txtSPECIAL_NAME control.
+        /// UpdatetbMoo2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSPECIAL_NAME;
+        protected global::System.Web.UI.UpdatePanel UpdatetbMoo2;
         
         /// <summary>
-        /// UpdatetxtGRAD_UNIVDown control.
+        /// tbMoo2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetxtGRAD_UNIVDown;
+        protected global::System.Web.UI.WebControls.TextBox tbMoo2;
         
         /// <summary>
-        /// txtGRAD_UNIVDown control.
+        /// UpdatetbRoad2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtGRAD_UNIVDown;
+        protected global::System.Web.UI.UpdatePanel UpdatetbRoad2;
         
         /// <summary>
-        /// UpdateDropDownSUBSTAFFTYPE control.
+        /// tbRoad2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdateDropDownSUBSTAFFTYPE;
+        protected global::System.Web.UI.WebControls.TextBox tbRoad2;
         
         /// <summary>
-        /// DropDownSUBSTAFFTYPE control.
+        /// UpdateddlProvince2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownSUBSTAFFTYPE;
+        protected global::System.Web.UI.UpdatePanel UpdateddlProvince2;
         
         /// <summary>
-        /// UpdateDropDownTEACH_ISCED control.
+        /// ddlProvince2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdateDropDownTEACH_ISCED;
+        protected global::System.Web.UI.WebControls.DropDownList ddlProvince2;
         
         /// <summary>
-        /// DropDownTEACH_ISCED control.
+        /// UpdateddlAmphur2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownTEACH_ISCED;
+        protected global::System.Web.UI.UpdatePanel UpdateddlAmphur2;
         
         /// <summary>
-        /// UpdateDropDownGRAD_COUNTRY control.
+        /// ddlAmphur2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdateDropDownGRAD_COUNTRY;
+        protected global::System.Web.UI.WebControls.DropDownList ddlAmphur2;
         
         /// <summary>
-        /// DropDownGRAD_COUNTRY control.
+        /// UpdateddlDistrict2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownGRAD_COUNTRY;
+        protected global::System.Web.UI.UpdatePanel UpdateddlDistrict2;
         
         /// <summary>
-        /// UpdateDropDownGRAD_LEV control.
+        /// ddlDistrict2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdateDropDownGRAD_LEV;
+        protected global::System.Web.UI.WebControls.DropDownList ddlDistrict2;
         
         /// <summary>
-        /// DropDownGRAD_LEV control.
+        /// UpdatetbZipcode2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownGRAD_LEV;
+        protected global::System.Web.UI.UpdatePanel UpdatetbZipcode2;
         
         /// <summary>
-        /// txtGRAD_CURR control.
+        /// tbZipcode2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtGRAD_CURR;
+        protected global::System.Web.UI.WebControls.TextBox tbZipcode2;
         
         /// <summary>
-        /// UpdateButtonPlusLEV control.
+        /// UpdateddlCountry2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdateButtonPlusLEV;
+        protected global::System.Web.UI.UpdatePanel UpdateddlCountry2;
         
         /// <summary>
-        /// ButtonPlusLEV control.
+        /// ddlCountry2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonPlusLEV;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCountry2;
         
         /// <summary>
-        /// UpdateGridView6 control.
+        /// UpdatetbState2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdateGridView6;
+        protected global::System.Web.UI.UpdatePanel UpdatetbState2;
         
         /// <summary>
-        /// GridView6 control.
+        /// tbState2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView6;
+        protected global::System.Web.UI.WebControls.TextBox tbState2;
         
         /// <summary>
-        /// Panel2 control.
+        /// lbuV2Back control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel2;
+        protected global::System.Web.UI.WebControls.LinkButton lbuV2Back;
         
         /// <summary>
-        /// UpdatetxtGrad_Univ control.
+        /// lbuV2Next control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetxtGrad_Univ;
+        protected global::System.Web.UI.WebControls.LinkButton lbuV2Next;
         
         /// <summary>
-        /// txtGrad_Univ control.
+        /// lbuAddressFetch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtGrad_Univ;
+        protected global::System.Web.UI.WebControls.LinkButton lbuAddressFetch;
         
         /// <summary>
-        /// UpdateDropDownMonth10From control.
+        /// View3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdateDropDownMonth10From;
+        protected global::System.Web.UI.WebControls.View View3;
         
         /// <summary>
-        /// DropDownMonth10From control.
+        /// UpdateddlDegree10 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownMonth10From;
+        protected global::System.Web.UI.UpdatePanel UpdateddlDegree10;
         
         /// <summary>
-        /// DropDownYear10From control.
+        /// ddlDegree10 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownYear10From;
+        protected global::System.Web.UI.WebControls.DropDownList ddlDegree10;
         
         /// <summary>
-        /// DropDownMonth10To control.
+        /// UpdatetbUnivName10 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownMonth10To;
+        protected global::System.Web.UI.UpdatePanel UpdatetbUnivName10;
         
         /// <summary>
-        /// DropDownYear10To control.
+        /// tbUnivName10 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownYear10To;
+        protected global::System.Web.UI.WebControls.TextBox tbUnivName10;
         
         /// <summary>
-        /// UpdatetxtMajor control.
+        /// UpdateddlMonth10From control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetxtMajor;
+        protected global::System.Web.UI.UpdatePanel UpdateddlMonth10From;
         
         /// <summary>
-        /// txtMajor control.
+        /// ddlMonth10From control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMajor;
+        protected global::System.Web.UI.WebControls.DropDownList ddlMonth10From;
         
         /// <summary>
-        /// UpdateButtonPlus10 control.
+        /// ddlYear10From control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdateButtonPlus10;
+        protected global::System.Web.UI.WebControls.DropDownList ddlYear10From;
         
         /// <summary>
-        /// ButtonPlus10 control.
+        /// ddlMonth10To control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonPlus10;
+        protected global::System.Web.UI.WebControls.DropDownList ddlMonth10To;
         
         /// <summary>
-        /// UpdateGridView1 control.
+        /// ddlYear10To control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdateGridView1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlYear10To;
         
         /// <summary>
-        /// GridView1 control.
+        /// UpdatetbQualification10 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.UpdatePanel UpdatetbQualification10;
         
         /// <summary>
-        /// Panel3 control.
+        /// tbQualification10 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel3;
+        protected global::System.Web.UI.WebControls.TextBox tbQualification10;
         
         /// <summary>
-        /// UpdatetxtGrad_Univ11 control.
+        /// UpdatetbMajor10 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetxtGrad_Univ11;
+        protected global::System.Web.UI.UpdatePanel UpdatetbMajor10;
         
         /// <summary>
-        /// txtGrad_Univ11 control.
+        /// tbMajor10 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtGrad_Univ11;
+        protected global::System.Web.UI.WebControls.TextBox tbMajor10;
         
         /// <summary>
-        /// UpdatetxtDepart11 control.
+        /// UpdatetbddlCountrySuccess10 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetxtDepart11;
+        protected global::System.Web.UI.UpdatePanel UpdatetbddlCountrySuccess10;
         
         /// <summary>
-        /// txtDepart11 control.
+        /// ddlCountrySuccess10 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDepart11;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCountrySuccess10;
         
         /// <summary>
-        /// UpdatetxtNolicense11 control.
+        /// lbuV3Add control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetxtNolicense11;
+        protected global::System.Web.UI.WebControls.LinkButton lbuV3Add;
         
         /// <summary>
-        /// txtNolicense11 control.
+        /// UpdateGridViewStudy control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNolicense11;
+        protected global::System.Web.UI.UpdatePanel UpdateGridViewStudy;
         
         /// <summary>
-        /// UpdatetxtDateEnable11 control.
+        /// GridViewStudy control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetxtDateEnable11;
+        protected global::System.Web.UI.WebControls.GridView GridViewStudy;
         
         /// <summary>
-        /// txtDateEnable11 control.
+        /// lbuV3Back control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDateEnable11;
+        protected global::System.Web.UI.WebControls.LinkButton lbuV3Back;
         
         /// <summary>
-        /// UpdateButtonPlus11 control.
+        /// lbuV3Next control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdateButtonPlus11;
+        protected global::System.Web.UI.WebControls.LinkButton lbuV3Next;
         
         /// <summary>
-        /// ButtonPlus11 control.
+        /// View4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonPlus11;
+        protected global::System.Web.UI.WebControls.View View4;
         
         /// <summary>
-        /// UpdateGridView2 control.
+        /// UpdateddlCampus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdateGridView2;
+        protected global::System.Web.UI.UpdatePanel UpdateddlCampus;
         
         /// <summary>
-        /// GridView2 control.
+        /// ddlCampus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView2;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCampus;
         
         /// <summary>
-        /// Panel4 control.
+        /// UpdateddlFaculty control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel4;
+        protected global::System.Web.UI.UpdatePanel UpdateddlFaculty;
         
         /// <summary>
-        /// UpdatetxtCourse control.
+        /// ddlFaculty control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetxtCourse;
+        protected global::System.Web.UI.WebControls.DropDownList ddlFaculty;
         
         /// <summary>
-        /// txtCourse control.
+        /// UpdateddlDivision control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCourse;
+        protected global::System.Web.UI.UpdatePanel UpdateddlDivision;
         
         /// <summary>
-        /// UpdateDropDownMonth11From control.
+        /// ddlDivision control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdateDropDownMonth11From;
+        protected global::System.Web.UI.WebControls.DropDownList ddlDivision;
         
         /// <summary>
-        /// DropDownMonth12From control.
+        /// UpdateddlWorkDivision control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownMonth12From;
+        protected global::System.Web.UI.UpdatePanel UpdateddlWorkDivision;
         
         /// <summary>
-        /// DropDownYear12From control.
+        /// ddlWorkDivision control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownYear12From;
+        protected global::System.Web.UI.WebControls.DropDownList ddlWorkDivision;
         
         /// <summary>
-        /// DropDownMonth12To control.
+        /// UpdateddlStaffType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownMonth12To;
+        protected global::System.Web.UI.UpdatePanel UpdateddlStaffType;
         
         /// <summary>
-        /// DropDownYear12To control.
+        /// ddlStaffType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownYear12To;
+        protected global::System.Web.UI.WebControls.DropDownList ddlStaffType;
         
         /// <summary>
-        /// UpdatetxtBranchTrainning control.
+        /// UpdateddlBudget control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetxtBranchTrainning;
+        protected global::System.Web.UI.UpdatePanel UpdateddlBudget;
         
         /// <summary>
-        /// txtBranchTrainning control.
+        /// ddlBudget control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBranchTrainning;
+        protected global::System.Web.UI.WebControls.DropDownList ddlBudget;
         
         /// <summary>
-        /// UpdateButtonPlus12 control.
+        /// UpdateddlAdminPosition control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdateButtonPlus12;
+        protected global::System.Web.UI.UpdatePanel UpdateddlAdminPosition;
         
         /// <summary>
-        /// ButtonPlus12 control.
+        /// ddlAdminPosition control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonPlus12;
+        protected global::System.Web.UI.WebControls.DropDownList ddlAdminPosition;
         
         /// <summary>
-        /// UpdateGridView3 control.
+        /// UpdateddlPositionWork control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdateGridView3;
+        protected global::System.Web.UI.UpdatePanel UpdateddlPositionWork;
         
         /// <summary>
-        /// GridView3 control.
+        /// ddlPositionWork control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView3;
+        protected global::System.Web.UI.WebControls.DropDownList ddlPositionWork;
         
         /// <summary>
-        /// Panel5 control.
+        /// UpdateddlAcademic control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel5;
+        protected global::System.Web.UI.UpdatePanel UpdateddlAcademic;
         
         /// <summary>
-        /// UpdateDropDownYear13 control.
+        /// ddlAcademic control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdateDropDownYear13;
+        protected global::System.Web.UI.WebControls.DropDownList ddlAcademic;
         
         /// <summary>
-        /// DropDownYear13 control.
+        /// UpdatetbDateInwork control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownYear13;
+        protected global::System.Web.UI.UpdatePanel UpdatetbDateInwork;
         
         /// <summary>
-        /// UpdatetxtList13 control.
+        /// tbDateInwork control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetxtList13;
+        protected global::System.Web.UI.WebControls.TextBox tbDateInwork;
         
         /// <summary>
-        /// txtList13 control.
+        /// UpdatetbSpecialWork control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtList13;
+        protected global::System.Web.UI.UpdatePanel UpdatetbSpecialWork;
         
         /// <summary>
-        /// UpdatetxtRefDoc13 control.
+        /// tbSpecialWork control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetxtRefDoc13;
+        protected global::System.Web.UI.WebControls.TextBox tbSpecialWork;
         
         /// <summary>
-        /// txtRefDoc13 control.
+        /// UpdateddlTeachISCED control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRefDoc13;
+        protected global::System.Web.UI.UpdatePanel UpdateddlTeachISCED;
         
         /// <summary>
-        /// UpdateButtonPlus13 control.
+        /// ddlTeachISCED control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdateButtonPlus13;
+        protected global::System.Web.UI.WebControls.DropDownList ddlTeachISCED;
         
         /// <summary>
-        /// ButtonPlus13 control.
+        /// lbuV4Back control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonPlus13;
+        protected global::System.Web.UI.WebControls.LinkButton lbuV4Back;
         
         /// <summary>
-        /// UpdateGridView4 control.
+        /// lbuV4Next control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdateGridView4;
+        protected global::System.Web.UI.WebControls.LinkButton lbuV4Next;
         
         /// <summary>
-        /// GridView4 control.
+        /// View5 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView4;
+        protected global::System.Web.UI.WebControls.View View5;
         
         /// <summary>
-        /// Panel6 control.
+        /// UpdatetbLicenseName11 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel6;
+        protected global::System.Web.UI.UpdatePanel UpdatetbLicenseName11;
         
         /// <summary>
-        /// UpdatetxtDate14 control.
+        /// tbLicenseName11 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetxtDate14;
+        protected global::System.Web.UI.WebControls.TextBox tbLicenseName11;
         
         /// <summary>
-        /// txtDate14 control.
+        /// UpdatetbDepartment11 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDate14;
+        protected global::System.Web.UI.UpdatePanel UpdatetbDepartment11;
         
         /// <summary>
-        /// UpdatetxtPosition14 control.
+        /// tbDepartment11 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetxtPosition14;
+        protected global::System.Web.UI.WebControls.TextBox tbDepartment11;
         
         /// <summary>
-        /// txtPosition14 control.
+        /// UpdatetbLicenseNo11 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPosition14;
+        protected global::System.Web.UI.UpdatePanel UpdatetbLicenseNo11;
         
         /// <summary>
-        /// UpdatetxtNo_Position14 control.
+        /// tbLicenseNo11 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetxtNo_Position14;
+        protected global::System.Web.UI.WebControls.TextBox tbLicenseNo11;
         
         /// <summary>
-        /// txtNo_Position14 control.
+        /// UpdatetbUseDate11 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNo_Position14;
+        protected global::System.Web.UI.UpdatePanel UpdatetbUseDate11;
         
         /// <summary>
-        /// UpdateDropDownType_Position14 control.
+        /// tbUseDate11 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdateDropDownType_Position14;
+        protected global::System.Web.UI.WebControls.TextBox tbUseDate11;
         
         /// <summary>
-        /// DropDownType_Position14 control.
+        /// lbuV5Add control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownType_Position14;
+        protected global::System.Web.UI.WebControls.LinkButton lbuV5Add;
         
         /// <summary>
-        /// UpdatetxtDegree14 control.
+        /// UpdateGridViewLicense control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetxtDegree14;
+        protected global::System.Web.UI.UpdatePanel UpdateGridViewLicense;
         
         /// <summary>
-        /// txtDegree14 control.
+        /// GridViewLicense control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDegree14;
+        protected global::System.Web.UI.WebControls.GridView GridViewLicense;
         
         /// <summary>
-        /// UpdatetxtSalary14 control.
+        /// lbuV5Back control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetxtSalary14;
+        protected global::System.Web.UI.WebControls.LinkButton lbuV5Back;
         
         /// <summary>
-        /// txtSalary14 control.
+        /// lbuV5Next control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSalary14;
+        protected global::System.Web.UI.WebControls.LinkButton lbuV5Next;
         
         /// <summary>
-        /// UpdatetxtSalaryForPosition14 control.
+        /// View6 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetxtSalaryForPosition14;
+        protected global::System.Web.UI.WebControls.View View6;
         
         /// <summary>
-        /// txtSalaryForPosition14 control.
+        /// UpdatetbCourse control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSalaryForPosition14;
+        protected global::System.Web.UI.UpdatePanel UpdatetbCourse;
         
         /// <summary>
-        /// UpdatetxtRefDoc14 control.
+        /// tbCourse control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetxtRefDoc14;
+        protected global::System.Web.UI.WebControls.TextBox tbCourse;
         
         /// <summary>
-        /// txtRefDoc14 control.
+        /// Updatel2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRefDoc14;
+        protected global::System.Web.UI.UpdatePanel Updatel2;
         
         /// <summary>
-        /// UpdateButtonPlus14 control.
+        /// ddlMonth12From control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdateButtonPlus14;
+        protected global::System.Web.UI.WebControls.DropDownList ddlMonth12From;
         
         /// <summary>
-        /// ButtonPlus14 control.
+        /// ddlYear12From control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonPlus14;
+        protected global::System.Web.UI.WebControls.DropDownList ddlYear12From;
         
         /// <summary>
-        /// UpdateGridView5 control.
+        /// ddlMonth12To control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdateGridView5;
+        protected global::System.Web.UI.WebControls.DropDownList ddlMonth12To;
         
         /// <summary>
-        /// GridView5 control.
+        /// ddlYear12To control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView5;
+        protected global::System.Web.UI.WebControls.DropDownList ddlYear12To;
         
         /// <summary>
-        /// PanelButton control.
+        /// UpdatetbDepartment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel PanelButton;
+        protected global::System.Web.UI.UpdatePanel UpdatetbDepartment;
         
         /// <summary>
-        /// btnCancelPerson control.
+        /// tbDepartment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancelPerson;
+        protected global::System.Web.UI.WebControls.TextBox tbDepartment;
         
         /// <summary>
-        /// UpdatebtnSubmitPerson control.
+        /// lbuV6Add control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatebtnSubmitPerson;
+        protected global::System.Web.UI.WebControls.LinkButton lbuV6Add;
         
         /// <summary>
-        /// btnSubmitPerson control.
+        /// UpdateGridViewTraining control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmitPerson;
+        protected global::System.Web.UI.UpdatePanel UpdateGridViewTraining;
+        
+        /// <summary>
+        /// GridViewTraining control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridViewTraining;
+        
+        /// <summary>
+        /// lbuV6Back control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbuV6Back;
+        
+        /// <summary>
+        /// lbuV6Next control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbuV6Next;
+        
+        /// <summary>
+        /// View7 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View View7;
+        
+        /// <summary>
+        /// UpdateddlYear13 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdateddlYear13;
+        
+        /// <summary>
+        /// ddlYear13 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlYear13;
+        
+        /// <summary>
+        /// UpdatetbName13 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatetbName13;
+        
+        /// <summary>
+        /// tbName13 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbName13;
+        
+        /// <summary>
+        /// UpdatetbREF13 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatetbREF13;
+        
+        /// <summary>
+        /// tbREF13 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbREF13;
+        
+        /// <summary>
+        /// lbuV7Add control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbuV7Add;
+        
+        /// <summary>
+        /// UpdateGridViewDDA control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdateGridViewDDA;
+        
+        /// <summary>
+        /// GridViewDDA control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridViewDDA;
+        
+        /// <summary>
+        /// lbuV7Back control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbuV7Back;
+        
+        /// <summary>
+        /// lbuV7Next control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbuV7Next;
+        
+        /// <summary>
+        /// View8 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View View8;
+        
+        /// <summary>
+        /// UpdatetbDate14 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatetbDate14;
+        
+        /// <summary>
+        /// tbDate14 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbDate14;
+        
+        /// <summary>
+        /// UpdatetbPosition14 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatetbPosition14;
+        
+        /// <summary>
+        /// tbPosition14 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbPosition14;
+        
+        /// <summary>
+        /// UpdatetbPositionNo14 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatetbPositionNo14;
+        
+        /// <summary>
+        /// tbPositionNo14 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbPositionNo14;
+        
+        /// <summary>
+        /// UpdateddlPositionType14 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdateddlPositionType14;
+        
+        /// <summary>
+        /// ddlPositionType14 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlPositionType14;
+        
+        /// <summary>
+        /// UpdateddlPositionDegree14 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdateddlPositionDegree14;
+        
+        /// <summary>
+        /// ddlPositionDegree14 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlPositionDegree14;
+        
+        /// <summary>
+        /// UpdatetbSalary14 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatetbSalary14;
+        
+        /// <summary>
+        /// tbSalary14 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbSalary14;
+        
+        /// <summary>
+        /// UpdatetbSalaryPosition14 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatetbSalaryPosition14;
+        
+        /// <summary>
+        /// tbSalaryPosition14 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbSalaryPosition14;
+        
+        /// <summary>
+        /// UpdatetbRef14 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatetbRef14;
+        
+        /// <summary>
+        /// tbRef14 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbRef14;
+        
+        /// <summary>
+        /// lbuV8Add control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbuV8Add;
+        
+        /// <summary>
+        /// UpdateGridViewPAS control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdateGridViewPAS;
+        
+        /// <summary>
+        /// GridViewPAS control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridViewPAS;
+        
+        /// <summary>
+        /// lbuV8Back control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbuV8Back;
+        
+        /// <summary>
+        /// lbSubmit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbSubmit;
     }
 }
