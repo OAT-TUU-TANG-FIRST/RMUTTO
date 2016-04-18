@@ -143,7 +143,7 @@ namespace WEB_PERSONAL
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 LinkButton lb = (LinkButton)e.Row.FindControl("DeleteButton1");
-                lb.Attributes.Add("onclick", "return confirm('คุณต้องการจะลบ " + DataBinder.Eval(e.Row.DataItem, "GRAD_SHORT_NAME") + " ใช่ไหม ?');");
+                lb.Attributes.Add("onclick", "return confirm('คุณต้องการจะลบชื่อประเทศ " + DataBinder.Eval(e.Row.DataItem, "GRAD_SHORT_NAME") + " ใช่ไหม ?');");
             }
         }
         protected void myGridViewGradCountry_PageIndexChanging(object sender, GridViewPageEventArgs e)

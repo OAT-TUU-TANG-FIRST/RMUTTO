@@ -79,7 +79,7 @@
                 <div class="master_sidebar_group">
                     <span class="master_login_logo">ระบบบุคลากร<br />Personnel System</span>
                     </div>
-                
+
                 <div class="master_sidebar_group">
                     <span class="master_sidebar_group_header">ผู้ใช้</span>
                     <div class="profile_div"><img src="Image/no_image.png" class="profile_pic"/></div>
@@ -93,9 +93,8 @@
                 </div>
                 <div class="master_sidebar_group">
                     <span class="master_sidebar_group_header">บุคลากร</span>
-                    <a href="AddPerson.aspx"><img src="Image/Small/person.png" />เพิ่มบุคลากร</a>
-                    <a href="Person-GENERAL.aspx"><img src="Image/Small/table.png" />เพิ่มบุคลากร</a>
-                    <a href="Person-ADMIN.aspx"><img src="Image/Small/table.png" />แก้ไขบุคลากร</a>
+                    <a href="AddPerson.aspx"><img src="Image/Small/table.png" />เพิ่มบุคลากร</a>
+                    <a href="AddPerson-Edit.aspx"><img src="Image/Small/table.png" />แก้ไขบุคลากร</a>
                     <a href="ListPerson-ADMIN.aspx"><img src="Image/Small/table.png" />รายชื่อบุคลากร</a>
                     <a href="SEMINAR-GENERAL.aspx"><img src="Image/Small/table.png" />การเพิ่มพัฒนาบุคลากร</a>
                     <a href="SEMINAR-ADMIN.aspx"><img src="Image/Small/table.png" />การแก้ไขพัฒนาบุคลากร</a>

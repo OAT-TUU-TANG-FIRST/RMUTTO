@@ -10,7 +10,7 @@
 namespace WEB_PERSONAL {
     
     
-    public partial class UNIV_ADMIN {
+    public partial class Division_ADMIN {
         
         /// <summary>
         /// Panel1 control.
@@ -22,31 +22,49 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.Panel Panel1;
         
         /// <summary>
-        /// txtSearchUnivID control.
+        /// txtSearchDivisionID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearchUnivID;
+        protected global::System.Web.UI.WebControls.TextBox txtSearchDivisionID;
         
         /// <summary>
-        /// txtSearchUnivName control.
+        /// txtSearchDivisionName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearchUnivName;
+        protected global::System.Web.UI.WebControls.TextBox txtSearchDivisionName;
         
         /// <summary>
-        /// btnSearchUniv control.
+        /// txtSearchCampusID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSearchUniv;
+        protected global::System.Web.UI.WebControls.TextBox txtSearchCampusID;
+        
+        /// <summary>
+        /// txtSearchFacultyID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSearchFacultyID;
+        
+        /// <summary>
+        /// btnSearchDivision control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSearchDivision;
         
         /// <summary>
         /// btnSearchRefresh control.
@@ -67,40 +85,58 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.Panel Panel2;
         
         /// <summary>
-        /// txtInsertUnivID control.
+        /// txtInsertDivisionID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtInsertUnivID;
+        protected global::System.Web.UI.WebControls.TextBox txtInsertDivisionID;
         
         /// <summary>
-        /// txtInsertUnivName control.
+        /// txtInsertDivisionName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtInsertUnivName;
+        protected global::System.Web.UI.WebControls.TextBox txtInsertDivisionName;
         
         /// <summary>
-        /// btnSubmitUNIVERSITY control.
+        /// txtInsertCampusID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmitUNIVERSITY;
+        protected global::System.Web.UI.WebControls.TextBox txtInsertCampusID;
         
         /// <summary>
-        /// btnCancelUNIVERSITY control.
+        /// txtInsertFacultyID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancelUNIVERSITY;
+        protected global::System.Web.UI.WebControls.TextBox txtInsertFacultyID;
+        
+        /// <summary>
+        /// btnSubmitDivision control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSubmitDivision;
+        
+        /// <summary>
+        /// btnCancelDivision control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCancelDivision;
         
         /// <summary>
         /// ScriptManager1 control.

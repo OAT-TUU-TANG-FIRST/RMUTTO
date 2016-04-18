@@ -7,7 +7,6 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-
 namespace WEB_PERSONAL
 {
     public partial class pre_title_name : System.Web.UI.Page
@@ -132,7 +131,7 @@ namespace WEB_PERSONAL
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 LinkButton lb = (LinkButton)e.Row.FindControl("DeleteButton1");
-                lb.Attributes.Add("onclick", "return confirm('คุณต้องการจะลบรหัสคำนำหน้านาม " + DataBinder.Eval(e.Row.DataItem, "TITLE_ID") + " ใช่ไหม ?');");
+                lb.Attributes.Add("onclick", "return confirm('คุณต้องการจะลบชื่อคำนำหน้านาม " + DataBinder.Eval(e.Row.DataItem, "TITLE_NAME_TH") + " ใช่ไหม ?');");
 
                 if ((e.Row.RowState & DataControlRowState.Edit) > 0)
                 {

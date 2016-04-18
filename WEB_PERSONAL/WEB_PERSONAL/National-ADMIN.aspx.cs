@@ -144,7 +144,7 @@ namespace WEB_PERSONAL
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 LinkButton lb = (LinkButton)e.Row.FindControl("DeleteButton1");
-                lb.Attributes.Add("onclick", "return confirm('คุณต้องการจะลบ " + DataBinder.Eval(e.Row.DataItem, "NATION_ID") + " ใช่ไหม ?');");
+                lb.Attributes.Add("onclick", "return confirm('คุณต้องการจะลบชื่อสัญชาติ " + DataBinder.Eval(e.Row.DataItem, "NATION_ENG") + " ใช่ไหม ?');");
             }
         }
         protected void myGridViewNATIONAL_PageIndexChanging(object sender, GridViewPageEventArgs e)

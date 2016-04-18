@@ -9,17 +9,15 @@ using System.Web.UI.WebControls;
 
 namespace WEB_PERSONAL
 {
-    public partial class UNIV_ADMIN : System.Web.UI.Page
+    public partial class AcademicPosition_ADMIN : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 BindData();
-                txtSearchUnivID.Attributes.Add("onkeypress", "return allowOnlyNumber(this)");
-                txtInsertUnivID.Attributes.Add("onkeypress", "return allowOnlyNumber(this)");
-                GridView1.AllowPaging = true;
-                GridView1.AllowSorting = true;
+                txtSearchAcadID.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
+                txtInsertAcadID.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
             }
         }
 
@@ -28,21 +26,21 @@ namespace WEB_PERSONAL
         private DataTable GetViewState()
         {
             //Gets the ViewState
-            return (DataTable)ViewState["UNIVERSITY"];
+            return (DataTable)ViewState["ACAD"];
         }
 
         private void SetViewState(DataTable data)
         {
             //Sets the ViewState
-            ViewState["UNIVERSITY"] = data;
+            ViewState["ACAD"] = data;
         }
 
         #endregion
 
         void BindData()
         {
-            ClassUniversity u = new ClassUniversity();
-            DataTable dt = u.GetUniversity("", "");
+            ClassAcademicPosition ap = new ClassAcademicPosition();
+            DataTable dt = ap.GetAcademicPosition("", "");
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);
@@ -50,8 +48,8 @@ namespace WEB_PERSONAL
 
         void BindData1()
         {
-            ClassUniversity u = new ClassUniversity();
-            DataTable dt = u.GetUniversitySearch(txtSearchUnivID.Text, txtSearchUnivName.Text);
+            ClassAcademicPosition ap = new ClassAcademicPosition();
+            DataTable dt = ap.GetAcademicPositionSearch(txtSearchAcadID.Text, txtSearchAcadName.Text);
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);
@@ -59,39 +57,38 @@ namespace WEB_PERSONAL
 
         private void ClearData()
         {
-            txtSearchUnivID.Text = "";
-            txtSearchUnivName.Text = "";
-            txtInsertUnivID.Text = "";
-            txtInsertUnivName.Text = "";
+            txtSearchAcadID.Text = "";
+            txtSearchAcadName.Text = "";
+            txtInsertAcadID.Text = "";
+            txtInsertAcadName.Text = "";
         }
 
-        protected void btnSubmitUNIVERSITY_Click(object sender, EventArgs e)
+        protected void btnSubmitAcad_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtInsertUnivID.Text))
+            if (string.IsNullOrEmpty(txtInsertAcadID.Text))
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ รหัสมหาวิทยาลัย')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ รหัสตำแหน่งทางวิชาการ')", true);
                 return;
             }
-
-            if (string.IsNullOrEmpty(txtInsertUnivName.Text))
+            if (string.IsNullOrEmpty(txtInsertAcadName.Text))
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ ชื่อมหาวิทยาลัย')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ ชื่อตำแหน่งทางวิชาการ')", true);
                 return;
             }
-            ClassUniversity u = new ClassUniversity();
-            u.UNIV_ID = txtInsertUnivID.Text;
-            u.UNIV_NAME = txtInsertUnivName.Text;
+            ClassAcademicPosition ap = new ClassAcademicPosition();
+            ap.ACAD_ID = Convert.ToInt32(txtInsertAcadID.Text);
+            ap.ACAD_NAME = txtInsertAcadName.Text;
 
-            if (u.CheckUseUniversityID())
+            if (ap.CheckUseAcademicPositionID())
             {
-                u.InsertUniversity();
+                ap.InsertAcademicPosition();
                 BindData();
                 ClearData();
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('เพิ่มข้อมูลเรียบร้อย')", true);
             }
             else
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('มีรหัสมหาวิทยาลัยนี้ อยู่ในระบบแล้ว !')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('มีรหัสตำแหน่งทางวิชาการนี้ อยู่ในระบบแล้ว !')", true);
             }
         }
 
@@ -108,9 +105,9 @@ namespace WEB_PERSONAL
         protected void modDeleteCommand(Object sender, GridViewDeleteEventArgs e)
         {
             int id = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Value);
-            ClassUniversity y = new ClassUniversity();
-            y.UNIV_SEQ = id;
-            y.DeleteUniversity();
+            ClassAcademicPosition ap = new ClassAcademicPosition();
+            ap.ACAD_ID = id;
+            ap.DeleteAcademicPosition();
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ลบข้อมูลเรียบร้อย')", true);
 
             GridView1.EditIndex = -1;
@@ -118,15 +115,12 @@ namespace WEB_PERSONAL
         }
         protected void modUpdateCommand(Object sender, GridViewUpdateEventArgs e)
         {
-            Label lblUnivSEQ = (Label)GridView1.Rows[e.RowIndex].FindControl("lblUnivSEQ");
-            TextBox txtUnivIDEdit = (TextBox)GridView1.Rows[e.RowIndex].FindControl("txtUnivIDEdit");
-            TextBox txtUnivNameEdit = (TextBox)GridView1.Rows[e.RowIndex].FindControl("txtUnivNameEdit");
+            TextBox txtAcadIDEDIT = (TextBox)GridView1.Rows[e.RowIndex].FindControl("txtAcadIDEDIT");
+            TextBox txtAcadNameEDIT = (TextBox)GridView1.Rows[e.RowIndex].FindControl("txtAcadNameEDIT");
 
-            ClassUniversity u = new ClassUniversity(Convert.ToInt32(lblUnivSEQ.Text)
-                , txtUnivIDEdit.Text
-                , txtUnivNameEdit.Text);
+            ClassAcademicPosition ap = new ClassAcademicPosition(Convert.ToInt32(txtAcadIDEDIT.Text), txtAcadNameEDIT.Text);
 
-            u.UpdateUniversity();
+            ap.UpdateAcademicPosition();
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('อัพเดทข้อมูลเรียบร้อย')", true);
             GridView1.EditIndex = -1;
             BindData1();
@@ -137,43 +131,43 @@ namespace WEB_PERSONAL
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 LinkButton lb = (LinkButton)e.Row.FindControl("DeleteButton1");
-                lb.Attributes.Add("onclick", "return confirm('คุณต้องการจะลบรหัสมหาวิทยาลัย " + DataBinder.Eval(e.Row.DataItem, "UNIV_ID") + " ใช่ไหม ?');");
+                lb.Attributes.Add("onclick", "return confirm('คุณต้องการจะลบชื่อตำแหน่งทางวิชาการ " + DataBinder.Eval(e.Row.DataItem, "ACAD_NAME") + " ใช่ไหม ?');");
 
                 if ((e.Row.RowState & DataControlRowState.Edit) > 0)
                 {
-                    TextBox txt = (TextBox)e.Row.FindControl("txtUnivIDEdit");
+                    TextBox txt = (TextBox)e.Row.FindControl("txtAcadIDEDIT");
                     txt.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
                 }
             }
         }
-        protected void myGridViewUNIVERSITY_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        protected void myGridViewAcad_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             GridView1.PageIndex = e.NewPageIndex;
             GridView1.DataSource = GetViewState();
             GridView1.DataBind();
         }
 
-        protected void btnCancelUNIVERSITY_Click(object sender, EventArgs e)
+        protected void btnCancelAcad_Click(object sender, EventArgs e)
         {
             ClearData();
-            ClassUniversity y = new ClassUniversity();
-            DataTable dt = y.GetUniversity("", "");
+            ClassAcademicPosition ap = new ClassAcademicPosition();
+            DataTable dt = ap.GetAcademicPosition("", "");
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);
         }
 
-        protected void btnSearchUniv_Click(object sender, EventArgs e)
+        protected void btnSearchAcad_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtSearchUnivID.Text) && string.IsNullOrEmpty(txtSearchUnivName.Text))
+            if (string.IsNullOrEmpty(txtSearchAcadID.Text) && string.IsNullOrEmpty(txtSearchAcadName.Text))
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก คำค้นหา')", true);
                 return;
             }
             else
             {
-                ClassUniversity y = new ClassUniversity();
-                DataTable dt = y.GetUniversitySearch(txtSearchUnivID.Text, txtSearchUnivName.Text);
+                ClassAcademicPosition ap = new ClassAcademicPosition();
+                DataTable dt = ap.GetAcademicPositionSearch(txtSearchAcadID.Text, txtSearchAcadName.Text);
                 GridView1.DataSource = dt;
                 GridView1.DataBind();
                 SetViewState(dt);
@@ -183,8 +177,8 @@ namespace WEB_PERSONAL
         protected void btnSearchRefresh_Click(object sender, EventArgs e)
         {
             ClearData();
-            ClassUniversity y = new ClassUniversity();
-            DataTable dt = y.GetUniversity("", "");
+            ClassAcademicPosition ap = new ClassAcademicPosition();
+            DataTable dt = ap.GetAcademicPosition("", "");
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);

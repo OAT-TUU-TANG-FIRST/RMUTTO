@@ -132,7 +132,7 @@ namespace WEB_PERSONAL
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 LinkButton lb = (LinkButton)e.Row.FindControl("DeleteButton1");
-                lb.Attributes.Add("onclick", "return confirm('คุณต้องการจะลบ " + DataBinder.Eval(e.Row.DataItem, "GRAD_LEV_NAME") + " ใช่ไหม ?');");
+                lb.Attributes.Add("onclick", "return confirm('คุณต้องการจะลบชื่อระดับการศึกษาที่จบการศึกษาสูงสุด " + DataBinder.Eval(e.Row.DataItem, "GRAD_LEV_NAME") + " ใช่ไหม ?');");
 
                 if ((e.Row.RowState & DataControlRowState.Edit) > 0)
                 {

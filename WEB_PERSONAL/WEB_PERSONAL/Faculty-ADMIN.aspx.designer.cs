@@ -22,6 +22,15 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.Panel Panel1;
         
         /// <summary>
+        /// txtSearchFacultyID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSearchFacultyID;
+        
+        /// <summary>
         /// txtSearchFacultyName control.
         /// </summary>
         /// <remarks>
@@ -29,15 +38,6 @@ namespace WEB_PERSONAL {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtSearchFacultyName;
-        
-        /// <summary>
-        /// txtSearchFacultyShort control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearchFacultyShort;
         
         /// <summary>
         /// txtSearchCampusID control.
@@ -76,6 +76,15 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.Panel Panel2;
         
         /// <summary>
+        /// txtInsertFacultyID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtInsertFacultyID;
+        
+        /// <summary>
         /// txtInsertFacultyName control.
         /// </summary>
         /// <remarks>
@@ -83,15 +92,6 @@ namespace WEB_PERSONAL {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtInsertFacultyName;
-        
-        /// <summary>
-        /// txtInsertFacultyShort control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtInsertFacultyShort;
         
         /// <summary>
         /// txtInsertCampusID control.

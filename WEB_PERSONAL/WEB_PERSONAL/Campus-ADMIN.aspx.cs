@@ -16,6 +16,8 @@ namespace WEB_PERSONAL
             if (!IsPostBack)
             {
                 BindData();
+                txtSearchCampusID.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
+                txtInsertCampusID.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
             }
         }
 
@@ -38,7 +40,7 @@ namespace WEB_PERSONAL
         void BindData()
         {
             ClassCampus c = new ClassCampus();
-            DataTable dt = c.GetCampus("");
+            DataTable dt = c.GetCampus("", "");
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);
@@ -47,7 +49,7 @@ namespace WEB_PERSONAL
         void BindData1()
         {
             ClassCampus c = new ClassCampus();
-            DataTable dt = c.GetCampusSearch(txtSearchName.Text);
+            DataTable dt = c.GetCampusSearch(txtSearchCampusID.Text, txtSearchCampusName.Text);
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);
@@ -55,23 +57,39 @@ namespace WEB_PERSONAL
 
         private void ClearData()
         {
-            txtSearchName.Text = "";
-            txtInsertName.Text = "";
+            txtSearchCampusID.Text = "";
+            txtSearchCampusName.Text = "";
+            txtInsertCampusID.Text = "";
+            txtInsertCampusName.Text = "";
         }
 
         protected void btnSubmitCampus_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtInsertName.Text))
+            if (string.IsNullOrEmpty(txtInsertCampusID.Text))
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ รหัสวิทยาเขต')", true);
+                return;
+            }
+            if (string.IsNullOrEmpty(txtInsertCampusName.Text))
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ ชื่อวิทยาเขต')", true);
                 return;
             }
             ClassCampus c = new ClassCampus();
-            c.CAMPUS_NAME = txtInsertName.Text;
+            c.CAMPUS_ID = Convert.ToInt32(txtInsertCampusID.Text);
+            c.CAMPUS_NAME = txtInsertCampusName.Text;
 
-            c.InsertCampus();
-            BindData();
-            ClearData();
+            if (c.CheckUseCampusID())
+            {
+                c.InsertCampus();
+                BindData();
+                ClearData();
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('เพิ่มข้อมูลเรียบร้อย')", true);
+            }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('มีรหัสวิทยาเขตนี้ อยู่ในระบบแล้ว !')", true);
+            }
 
         }
 
@@ -98,10 +116,10 @@ namespace WEB_PERSONAL
         }
         protected void modUpdateCommand(Object sender, GridViewUpdateEventArgs e)
         {
-            Label lblCampusID = (Label)GridView1.Rows[e.RowIndex].FindControl("lblCampusID");
+            TextBox txtCampusIDEdit = (TextBox)GridView1.Rows[e.RowIndex].FindControl("txtCampusIDEdit");
             TextBox txtCampusNameEdit = (TextBox)GridView1.Rows[e.RowIndex].FindControl("txtCampusNameEdit");
 
-            ClassCampus c = new ClassCampus(Convert.ToInt32(lblCampusID.Text),
+            ClassCampus c = new ClassCampus(Convert.ToInt32(txtCampusIDEdit.Text),
                 txtCampusNameEdit.Text);
 
             c.UpdateCampus();
@@ -115,7 +133,12 @@ namespace WEB_PERSONAL
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 LinkButton lb = (LinkButton)e.Row.FindControl("DeleteButton1");
-                lb.Attributes.Add("onclick", "return confirm('คุณต้องการจะลบ " + DataBinder.Eval(e.Row.DataItem, "CAMPUS_NAME") + " ใช่ไหม ?');");
+                lb.Attributes.Add("onclick", "return confirm('คุณต้องการจะลบชื่อวิทยาเขต " + DataBinder.Eval(e.Row.DataItem, "CAMPUS_NAME") + " ใช่ไหม ?');");
+                if ((e.Row.RowState & DataControlRowState.Edit) > 0)
+                {
+                    TextBox txt = (TextBox)e.Row.FindControl("txtCampusIDEdit");
+                    txt.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
+                }
             }
         }
         protected void myGridViewCampus_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -129,7 +152,7 @@ namespace WEB_PERSONAL
         {
             ClearData();
             ClassCampus c = new ClassCampus();
-            DataTable dt = c.GetCampus("");
+            DataTable dt = c.GetCampus("", "");
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);
@@ -137,7 +160,7 @@ namespace WEB_PERSONAL
 
         protected void btnSearchCampus_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtSearchName.Text))
+            if (string.IsNullOrEmpty(txtSearchCampusID.Text) && string.IsNullOrEmpty(txtSearchCampusName.Text))
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก คำค้นหา')", true);
                 return;
@@ -145,7 +168,7 @@ namespace WEB_PERSONAL
             else
             {
                 ClassCampus c = new ClassCampus();
-                DataTable dt = c.GetCampusSearch(txtSearchName.Text);
+                DataTable dt = c.GetCampusSearch(txtSearchCampusID.Text, txtSearchCampusName.Text);
                 GridView1.DataSource = dt;
                 GridView1.DataBind();
                 SetViewState(dt);
@@ -156,7 +179,7 @@ namespace WEB_PERSONAL
         {
             ClearData();
             ClassCampus c = new ClassCampus();
-            DataTable dt = c.GetCampus("");
+            DataTable dt = c.GetCampus("", "");
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);

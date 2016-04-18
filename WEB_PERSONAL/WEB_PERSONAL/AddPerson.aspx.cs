@@ -10,11 +10,15 @@ using System.Data;
 using System.Configuration;
 using WEB_PERSONAL.Class;
 
-namespace WEB_PERSONAL {
-    public partial class AddPerson : System.Web.UI.Page {
+namespace WEB_PERSONAL
+{
+    public partial class AddPerson : System.Web.UI.Page
+    {
         public static string strConn = @"Data Source = ORCL_RMUTTO;USER ID=RMUTTO;PASSWORD=Zxcvbnm";
-        protected void Page_Load(object sender, EventArgs e) {
-            if (!IsPostBack) {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
                 BindProvinceList();
                 SQLCampus();
                 SQLddlPositionType14();
@@ -106,10 +110,14 @@ namespace WEB_PERSONAL {
                 GridViewPAS.DataBind();
             }
         }
-        private void BindProvinceList() {
-            try {
-                using (OracleConnection sqlConn = new OracleConnection(strConn)) {
-                    using (OracleCommand sqlCmd = new OracleCommand()) {
+        private void BindProvinceList()
+        {
+            try
+            {
+                using (OracleConnection sqlConn = new OracleConnection(strConn))
+                {
+                    using (OracleCommand sqlCmd = new OracleCommand())
+                    {
                         sqlCmd.CommandText = "select * from TB_PROVINCE";
                         sqlCmd.Connection = sqlConn;
                         sqlConn.Open();
@@ -127,7 +135,8 @@ namespace WEB_PERSONAL {
                         ddlDistrict.Items.Insert(0, new ListItem("--กรุณาเลือก ตำบล--", "0"));
                         tbZipcode.Text = "";
                     }
-                    using (OracleCommand sqlCmd = new OracleCommand()) {
+                    using (OracleCommand sqlCmd = new OracleCommand())
+                    {
                         sqlCmd.CommandText = "select * from TB_PROVINCE";
                         sqlCmd.Connection = sqlConn;
                         sqlConn.Open();
@@ -146,12 +155,17 @@ namespace WEB_PERSONAL {
                         tbZipcode2.Text = "";
                     }
                 }
-            } catch { }
+            }
+            catch { }
         }
-        protected void ddlProvince_SelectedIndexChanged(object sender, EventArgs e) {
-            try {
-                using (OracleConnection sqlConn = new OracleConnection(strConn)) {
-                    using (OracleCommand sqlCmd = new OracleCommand()) {
+        protected void ddlProvince_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                using (OracleConnection sqlConn = new OracleConnection(strConn))
+                {
+                    using (OracleCommand sqlCmd = new OracleCommand())
+                    {
                         sqlCmd.CommandText = "select * from TB_AMPHUR where PROVINCE_ID=:PROVINCE_ID";
                         sqlCmd.Parameters.AddWithValue(":PROVINCE_ID", ddlProvince.SelectedValue);
                         sqlCmd.Connection = sqlConn;
@@ -171,13 +185,18 @@ namespace WEB_PERSONAL {
                         tbZipcode.Text = "";
                     }
                 }
-            } catch { }
+            }
+            catch { }
         }
 
-        protected void ddlAmphur_SelectedIndexChanged(object sender, EventArgs e) {
-            try {
-                using (OracleConnection sqlConn = new OracleConnection(strConn)) {
-                    using (OracleCommand sqlCmd = new OracleCommand()) {
+        protected void ddlAmphur_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                using (OracleConnection sqlConn = new OracleConnection(strConn))
+                {
+                    using (OracleCommand sqlCmd = new OracleCommand())
+                    {
                         sqlCmd.CommandText = "select * from TB_DISTRICT where AMPHUR_ID=:DISTRICT_ID";
                         sqlCmd.Parameters.AddWithValue(":DISTRICT_ID", ddlAmphur.SelectedValue);
                         sqlCmd.Connection = sqlConn;
@@ -196,10 +215,12 @@ namespace WEB_PERSONAL {
 
                     }
                 }
-            } catch { }
+            }
+            catch { }
         }
 
-        protected void ddlDistrict_SelectedIndexChanged(object sender, EventArgs e) {
+        protected void ddlDistrict_SelectedIndexChanged(object sender, EventArgs e)
+        {
             OracleConnection conn = new OracleConnection(ConfigurationManager.ConnectionStrings["ORCL_RMUTTO"].ConnectionString);
             conn.Open();
             string setZIP = "select POST_CODE from TB_DISTRICT where DISTRICT_ID = " + ddlDistrict.SelectedValue + "";
@@ -208,10 +229,14 @@ namespace WEB_PERSONAL {
             tbZipcode.Text = ZIPCODE;
         }
 
-        protected void ddlProvince2_SelectedIndexChanged(object sender, EventArgs e) {
-            try {
-                using (OracleConnection sqlConn = new OracleConnection(strConn)) {
-                    using (OracleCommand sqlCmd = new OracleCommand()) {
+        protected void ddlProvince2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                using (OracleConnection sqlConn = new OracleConnection(strConn))
+                {
+                    using (OracleCommand sqlCmd = new OracleCommand())
+                    {
                         sqlCmd.CommandText = "select * from TB_AMPHUR where PROVINCE_ID=:PROVINCE_ID";
                         sqlCmd.Parameters.AddWithValue(":PROVINCE_ID", ddlProvince2.SelectedValue);
                         sqlCmd.Connection = sqlConn;
@@ -231,13 +256,18 @@ namespace WEB_PERSONAL {
                         tbZipcode2.Text = "";
                     }
                 }
-            } catch { }
+            }
+            catch { }
         }
 
-        protected void ddlAmphur2_SelectedIndexChanged(object sender, EventArgs e) {
-            try {
-                using (OracleConnection sqlConn = new OracleConnection(strConn)) {
-                    using (OracleCommand sqlCmd = new OracleCommand()) {
+        protected void ddlAmphur2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                using (OracleConnection sqlConn = new OracleConnection(strConn))
+                {
+                    using (OracleCommand sqlCmd = new OracleCommand())
+                    {
                         sqlCmd.CommandText = "select * from TB_DISTRICT where AMPHUR_ID=:DISTRICT_ID";
                         sqlCmd.Parameters.AddWithValue(":DISTRICT_ID", ddlAmphur2.SelectedValue);
                         sqlCmd.Connection = sqlConn;
@@ -256,10 +286,12 @@ namespace WEB_PERSONAL {
 
                     }
                 }
-            } catch { }
+            }
+            catch { }
         }
 
-        protected void ddlDistrict2_SelectedIndexChanged(object sender, EventArgs e) {
+        protected void ddlDistrict2_SelectedIndexChanged(object sender, EventArgs e)
+        {
             OracleConnection conn = new OracleConnection(ConfigurationManager.ConnectionStrings["ORCL_RMUTTO"].ConnectionString);
             conn.Open();
             string setZIP2 = "select POST_CODE from TB_DISTRICT where DISTRICT_ID = " + ddlDistrict.SelectedValue + "";
@@ -268,10 +300,14 @@ namespace WEB_PERSONAL {
             tbZipcode2.Text = ZIPCODE2;
         }
 
-        protected void SQLCampus() {
-            try {
-                using (OracleConnection sqlConn = new OracleConnection(strConn)) {
-                    using (OracleCommand sqlCmd = new OracleCommand()) {
+        protected void SQLCampus()
+        {
+            try
+            {
+                using (OracleConnection sqlConn = new OracleConnection(strConn))
+                {
+                    using (OracleCommand sqlCmd = new OracleCommand())
+                    {
                         sqlCmd.CommandText = "select * from TB_CAMPUS";
                         sqlCmd.Connection = sqlConn;
                         sqlConn.Open();
@@ -290,13 +326,18 @@ namespace WEB_PERSONAL {
                         ddlWorkDivision.Items.Insert(0, new ListItem("--กรุณาเลือกงาน / ฝ่าย--", "0"));
                     }
                 }
-            } catch { }
+            }
+            catch { }
         }
 
-        protected void ddlCampus_SelectedIndexChanged(object sender, EventArgs e) {
-            try {
-                using (OracleConnection sqlConn = new OracleConnection(strConn)) {
-                    using (OracleCommand sqlCmd = new OracleCommand()) {
+        protected void ddlCampus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                using (OracleConnection sqlConn = new OracleConnection(strConn))
+                {
+                    using (OracleCommand sqlCmd = new OracleCommand())
+                    {
                         sqlCmd.CommandText = "select * from TB_FACULTY where CAMPUS_ID = " + ddlCampus.SelectedValue;
                         sqlCmd.Connection = sqlConn;
                         sqlConn.Open();
@@ -316,13 +357,18 @@ namespace WEB_PERSONAL {
                         ddlWorkDivision.Items.Insert(0, new ListItem("--กรุณาเลือกงาน / ฝ่าย--", "0"));
                     }
                 }
-            } catch { }
+            }
+            catch { }
         }
 
-        protected void ddlFaculty_SelectedIndexChanged(object sender, EventArgs e) {
-            try {
-                using (OracleConnection sqlConn = new OracleConnection(strConn)) {
-                    using (OracleCommand sqlCmd = new OracleCommand()) {
+        protected void ddlFaculty_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                using (OracleConnection sqlConn = new OracleConnection(strConn))
+                {
+                    using (OracleCommand sqlCmd = new OracleCommand())
+                    {
                         sqlCmd.CommandText = "select * from TB_DIVISION where FACULTY_ID = " + ddlFaculty.SelectedValue;
                         sqlCmd.Connection = sqlConn;
                         sqlConn.Open();
@@ -340,13 +386,18 @@ namespace WEB_PERSONAL {
                         ddlWorkDivision.Items.Insert(0, new ListItem("--กรุณาเลือกงาน / ฝ่าย--", "0"));
                     }
                 }
-            } catch { }
+            }
+            catch { }
         }
 
-        protected void ddlDivision_SelectedIndexChanged(object sender, EventArgs e) {
-            try {
-                using (OracleConnection sqlConn = new OracleConnection(strConn)) {
-                    using (OracleCommand sqlCmd = new OracleCommand()) {
+        protected void ddlDivision_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                using (OracleConnection sqlConn = new OracleConnection(strConn))
+                {
+                    using (OracleCommand sqlCmd = new OracleCommand())
+                    {
                         sqlCmd.CommandText = "select * from TB_WORK_DIVISION where DIVISION_ID = " + ddlDivision.SelectedValue;
                         sqlCmd.Connection = sqlConn;
                         sqlConn.Open();
@@ -362,13 +413,18 @@ namespace WEB_PERSONAL {
                         ddlWorkDivision.Items.Insert(0, new ListItem("--กรุณาเลือกงาน / ฝ่าย--", "0"));
                     }
                 }
-            } catch { }
+            }
+            catch { }
         }
 
-        protected void SQLddlPositionType14() {
-            try {
-                using (OracleConnection sqlConn = new OracleConnection(strConn)) {
-                    using (OracleCommand sqlCmd = new OracleCommand()) {
+        protected void SQLddlPositionType14()
+        {
+            try
+            {
+                using (OracleConnection sqlConn = new OracleConnection(strConn))
+                {
+                    using (OracleCommand sqlCmd = new OracleCommand())
+                    {
                         sqlCmd.CommandText = "select * from TB_STAFF";
                         sqlCmd.Connection = sqlConn;
                         sqlConn.Open();
@@ -385,13 +441,18 @@ namespace WEB_PERSONAL {
                         ddlPositionDegree14.Items.Insert(0, new ListItem("--กรุณาเลือกระดับ--", "0"));
                     }
                 }
-            } catch { }
+            }
+            catch { }
         }
 
-        protected void ddlPositionType14_SelectedIndexChanged(object sender, EventArgs e) {
-            try {
-                using (OracleConnection sqlConn = new OracleConnection(strConn)) {
-                    using (OracleCommand sqlCmd = new OracleCommand()) {
+        protected void ddlPositionType14_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                using (OracleConnection sqlConn = new OracleConnection(strConn))
+                {
+                    using (OracleCommand sqlCmd = new OracleCommand())
+                    {
                         sqlCmd.CommandText = "select * FROM TB_POSITION_GOVERNMENT_OFFICER where ST_ID = " + ddlPositionType14.SelectedValue + "UNION ALL select * FROM TB_POSITION_PERMANENT_EMP where ST_ID = " + ddlPositionType14.SelectedValue;
                         sqlCmd.Connection = sqlConn;
                         sqlConn.Open();
@@ -406,13 +467,17 @@ namespace WEB_PERSONAL {
                         ddlPositionDegree14.Items.Insert(0, new ListItem("--กรุณาเลือกระดับ--", "0"));
                     }
                 }
-            } catch { }
+            }
+            catch { }
         }
 
-        protected void lbuV1Next_Click(object sender, EventArgs e) {
+        protected void lbuV1Next_Click(object sender, EventArgs e)
+        {
             /*  if(tbCitizenID.Text == "" || ddlTitle.SelectedIndex == 0 || tbNameTH.Text == ""|| tbLastNameTH.Text == "" || tbNameEN.Text == "" || tbLastNameEN.Text == "" || ddlGender.SelectedIndex == 0 || tbBirthday.Text == "" || ddlRace.SelectedIndex == 0 || ddlNation.SelectedIndex == 0 || ddlBlood.SelectedIndex == 0 || tbEmail.Text == "" || tbPhone.Text == "" || tbTelephone.Text == "" || ddlReligion.SelectedIndex == 0 || ddlStatus.SelectedIndex == 0 || tbFatherName.Text == "" || tbFatherLastName.Text == "" || tbMotherName.Text == "" || tbMotherLastName.Text == "" || tbMotherOldLastName.Text == "" || tbCoupleName.Text == "" || tbCoupleLastName.Text == "" || tbCoupleOldLastName.Text == "") {
+
                 notification.Attributes["class"] = "alert alert_danger";
                 notification.InnerHtml = "";
+
                 notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>เกิดข้อผิดพลาด !</strong></div>";
                 if (tbCitizenID.Text == "") {
                     notification.InnerHtml += "<div>กรุณากรอก 'บัตรประชาชน'</div>";
@@ -517,16 +582,19 @@ namespace WEB_PERSONAL {
             MultiView1.ActiveViewIndex = 1;
         }
 
-        protected void lbuV2Back_Click(object sender, EventArgs e) {
+        protected void lbuV2Back_Click(object sender, EventArgs e)
+        {
             MultiView1.ActiveViewIndex = 0;
         }
 
-        protected void lbuV2Next_Click(object sender, EventArgs e) {
+        protected void lbuV2Next_Click(object sender, EventArgs e)
+        {
             /* if (tbHomeAdd.Text == "" || tbSoi.Text == "" || tbMoo.Text == "" || tbRoad.Text == "" || ddlProvince.SelectedIndex == 0 || ddlAmphur.SelectedIndex == 0 || ddlDistrict.SelectedIndex == 0 || tbZipcode.Text == "" || ddlCountry.SelectedIndex == 0 || tbState.Text == "" ||
                  tbHomeAdd2.Text == "" || tbSoi2.Text == "" || tbMoo2.Text == "" || tbRoad2.Text == "" || ddlProvince2.SelectedIndex == 0 || ddlAmphur2.SelectedIndex == 0 || ddlDistrict2.SelectedIndex == 0 || tbZipcode2.Text == "" || ddlCountry2.SelectedIndex == 0 || tbState2.Text == "")
              {
                  notification.Attributes["class"] = "alert alert_danger";
                  notification.InnerHtml = "";
+
                  notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong> เกิดข้อผิดพลาด !</strong></div>";
                  if (tbHomeAdd.Text == "" || tbHomeAdd2.Text == "")
                  {
@@ -577,7 +645,8 @@ namespace WEB_PERSONAL {
              */
             MultiView1.ActiveViewIndex = 2;
         }
-        protected void lbuAddressFetch_Click(object sender, EventArgs e) {
+        protected void lbuAddressFetch_Click(object sender, EventArgs e)
+        {
             tbHomeAdd2.Text = tbHomeAdd.Text;
             tbSoi2.Text = tbSoi.Text;
             tbMoo2.Text = tbMoo.Text;
@@ -599,15 +668,18 @@ namespace WEB_PERSONAL {
             ddlCountry2.SelectedIndex = ddlCountry.SelectedIndex;
         }
 
-        protected void lbuV3Back_Click(object sender, EventArgs e) {
+        protected void lbuV3Back_Click(object sender, EventArgs e)
+        {
             MultiView1.ActiveViewIndex = 1;
         }
 
-        protected void lbuV3Next_Click(object sender, EventArgs e) {
+        protected void lbuV3Next_Click(object sender, EventArgs e)
+        {
             /* if (ddlDegree10.SelectedIndex == 0 || tbUnivName10.Text == "" || ddlMonth10From.SelectedIndex == 0 || ddlYear10From.SelectedIndex == 0 || ddlMonth10To.SelectedIndex == 0 || ddlYear10To.SelectedIndex == 0 || tbQualification10.Text == "" || tbMajor10.Text == "" || tbCountrySuccess10.Text == "")
             {
                 notification.Attributes["class"] = "alert alert_danger";
                 notification.InnerHtml = "";
+
                 notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong> เกิดข้อผิดพลาด !</strong></div>";
                 if (ddlDegree10.SelectedIndex == 0)
                 {
@@ -643,15 +715,18 @@ namespace WEB_PERSONAL {
             MultiView1.ActiveViewIndex = 3;
         }
 
-        protected void lbuV4Back_Click(object sender, EventArgs e) {
+        protected void lbuV4Back_Click(object sender, EventArgs e)
+        {
             MultiView1.ActiveViewIndex = 2;
         }
 
-        protected void lbuV4Next_Click(object sender, EventArgs e) {
+        protected void lbuV4Next_Click(object sender, EventArgs e)
+        {
             /*  if (ddlDegree10.SelectedIndex == 0 || ddlCampus.SelectedIndex == 0 || ddlFaculty.SelectedIndex == 0 || ddlDivision.SelectedIndex == 0 || ddlWorkDivision.SelectedIndex == 0 || ddlStaffType.SelectedIndex == 0 || ddlBudget.SelectedIndex == 0 || ddlAdminPosition.SelectedIndex == 0 || ddlPositionWork.SelectedIndex == 0 || ddlAcademic.SelectedIndex == 0 || tbDateInwork.Text == "" || tbSpecialWork.Text == "" || ddlTeachISCED.SelectedIndex == 0)
               {
                   notification.Attributes["class"] = "alert alert_danger";
                   notification.InnerHtml = "";
+
                   notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong> เกิดข้อผิดพลาด !</strong></div>";
                   if (ddlCampus.SelectedIndex == 0)
                   {
@@ -711,15 +786,18 @@ namespace WEB_PERSONAL {
             MultiView1.ActiveViewIndex = 4;
         }
 
-        protected void lbuV5Back_Click(object sender, EventArgs e) {
+        protected void lbuV5Back_Click(object sender, EventArgs e)
+        {
             MultiView1.ActiveViewIndex = 3;
         }
 
-        protected void lbuV5Next_Click(object sender, EventArgs e) {
+        protected void lbuV5Next_Click(object sender, EventArgs e)
+        {
             /*  if (tbLicenseName11.Text == "" || tbLicenseName11.Text == "" || tbDepartment11.Text == "" || tbLicenseNo11.Text == "" || tbUseDate11.Text == "")
               {
                   notification.Attributes["class"] = "alert alert_danger";
                   notification.InnerHtml = "";
+
                   notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong> เกิดข้อผิดพลาด !</strong></div>";
                   if (tbLicenseName11.Text == "")
                   {
@@ -747,15 +825,18 @@ namespace WEB_PERSONAL {
             MultiView1.ActiveViewIndex = 5;
         }
 
-        protected void lbuV6Back_Click(object sender, EventArgs e) {
+        protected void lbuV6Back_Click(object sender, EventArgs e)
+        {
             MultiView1.ActiveViewIndex = 4;
         }
 
-        protected void lbuV6Next_Click(object sender, EventArgs e) {
+        protected void lbuV6Next_Click(object sender, EventArgs e)
+        {
             /*  if (tbCourse.Text == "" || ddlMonth12From.SelectedIndex == 0 || ddlYear12From.SelectedIndex == 0 || ddlMonth12To.SelectedIndex == 0 || ddlYear12To.SelectedIndex == 0 || tbDepartment.Text == "")
             {
                 notification.Attributes["class"] = "alert alert_danger";
                 notification.InnerHtml = "";
+
                 notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong> เกิดข้อผิดพลาด !</strong></div>";
                 if (tbCourse.Text == "")
                 {
@@ -779,15 +860,18 @@ namespace WEB_PERSONAL {
             MultiView1.ActiveViewIndex = 6;
         }
 
-        protected void lbuV7Back_Click(object sender, EventArgs e) {
+        protected void lbuV7Back_Click(object sender, EventArgs e)
+        {
             MultiView1.ActiveViewIndex = 5;
         }
 
-        protected void lbuV7Next_Click(object sender, EventArgs e) {
+        protected void lbuV7Next_Click(object sender, EventArgs e)
+        {
             /*  if (ddlYear13.SelectedIndex == 0 || tbName13.Text == "" || tbREF13.Text == "")
             {
                 notification.Attributes["class"] = "alert alert_danger";
                 notification.InnerHtml = "";
+
                 notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong> เกิดข้อผิดพลาด !</strong></div>";
                 if (ddlYear13.SelectedIndex == 0)
                 {
@@ -811,16 +895,20 @@ namespace WEB_PERSONAL {
             MultiView1.ActiveViewIndex = 7;
         }
 
-        protected void lbuV8Back_Click(object sender, EventArgs e) {
+        protected void lbuV8Back_Click(object sender, EventArgs e)
+        {
             MultiView1.ActiveViewIndex = 6;
         }
 
-        protected void lbSubmit_Click(object sender, EventArgs e) {
+        protected void lbSubmit_Click(object sender, EventArgs e)
+        {
             /*   if (tbDate14.Text == "" || tbPosition14.Text == "" || tbPositionNo14.Text == "" || ddlPositionType14.SelectedIndex == 0 || ddlPositionDegree14.SelectedIndex == 0 || tbSalary14.Text == "" || tbSalaryPosition14.Text == "" || tbRef14.Text == "")
              {
                  notification.Attributes["class"] = "alert alert_danger";
                  notification.InnerHtml = "";
+
                  notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong> เกิดข้อผิดพลาด !</strong></div>";
+
                  if (tbDate14.Text == "")
                  {
                      notification.InnerHtml += "<div>กรุณากรอก 'วัน เดือน ปี'</div>";
@@ -920,8 +1008,7 @@ namespace WEB_PERSONAL {
             P0.PS_WORK_POS_ID = Convert.ToInt32(ddlPositionWork.SelectedValue);
             P0.PS_ACAD_POS_ID = Convert.ToInt32(ddlAcademic.SelectedValue);
             P0.PS_INWORK_DATE = Util.ToDateTime(tbDateInwork.Text);
-
-            P0.PS_RETIRE_DATE = Util.ToDateTime(tbBirthday.Text).AddYears(60);
+            P0.PS_RETIRE_DATE = Util.ToDateTime(tbBirthday.Text);
             P0.PS_RETIRE_LONG = Util.ToThaiWord(tbBirthday.Text);
             P0.PS_SPECIAL_WORK = tbSpecialWork.Text;
             P0.PS_TEACH_ISCED_ID = ddlTeachISCED.SelectedValue;
@@ -932,14 +1019,19 @@ namespace WEB_PERSONAL {
             notification.Attributes["class"] = "alert alert_success";
             notification.InnerHtml = "";
             notification.InnerHtml += "<div><img src='Image/Small/correct.png' /><strong> เพิ่มข้อมูลบุคลากร เรียบร้อย</strong></div>";
-
-            for (int i = 0; i < GridViewStudy.Rows.Count; ++i) {
+            
+            for (int i = 0; i < GridViewStudy.Rows.Count; ++i)
+            {
                 int id = 0;
-                using (OracleConnection conn = Util.OC()) {
-                    using (OracleCommand command = new OracleCommand("INSERT INTO PS_STUDY (PS_CITIZEN_ID,PS_DEGREE_ID,PS_UNIV_NAME,PS_FROM_MONTH,PS_FROM_YEAR,PS_TO_MONTH,PS_TO_YEAR,PS_QUALIFICATION,PS_MAJOR,PS_COUNTRY_ID) VALUES (:PS_CITIZEN_ID,:PS_DEGREE_ID,:PS_UNIV_NAME,:PS_FROM_MONTH,:PS_FROM_YEAR,:PS_TO_MONTH,:PS_TO_YEAR,:PS_QUALIFICATION,:PS_MAJOR,:PS_COUNTRY_ID)", conn)) {
+                using (OracleConnection conn = Util.OC())
+                {
+                    using (OracleCommand command = new OracleCommand("INSERT INTO PS_STUDY (PS_CITIZEN_ID,PS_DEGREE_ID,PS_UNIV_NAME,PS_FROM_MONTH,PS_FROM_YEAR,PS_TO_MONTH,PS_TO_YEAR,PS_QUALIFICATION,PS_MAJOR,PS_COUNTRY_ID) VALUES (:PS_CITIZEN_ID,:PS_DEGREE_ID,:PS_UNIV_NAME,:PS_FROM_MONTH,:PS_FROM_YEAR,:PS_TO_MONTH,:PS_TO_YEAR,:PS_QUALIFICATION,:PS_MAJOR,:PS_COUNTRY_ID)", conn))
+                    {
 
-                        try {
-                            if (conn.State != ConnectionState.Open) {
+                        try
+                        {
+                            if (conn.State != ConnectionState.Open)
+                            {
                                 conn.Open();
                             }
 
@@ -954,9 +1046,14 @@ namespace WEB_PERSONAL {
                             command.Parameters.Add(new OracleParameter("PS_MAJOR", GridViewStudy.Rows[i].Cells[7].Text));
                             command.Parameters.Add(new OracleParameter("PS_COUNTRY_ID", GridViewStudy.Rows[i].Cells[8].Text));
                             id = command.ExecuteNonQuery();
-                        } catch (Exception ex) {
+                        }
+
+                        catch (Exception ex)
+                        {
                             throw ex;
-                        } finally {
+                        }
+                        finally
+                        {
                             command.Dispose();
                             conn.Close();
                         }
@@ -964,17 +1061,23 @@ namespace WEB_PERSONAL {
                 }
             }
 
-            for (int i = 0; i < GridViewLicense.Rows.Count; ++i) {
+            for (int i = 0; i < GridViewLicense.Rows.Count; ++i)
+            {
                 int id = 0;
-                using (OracleConnection conn = Util.OC()) {
-                    using (OracleCommand command = new OracleCommand("INSERT INTO PS_PROFESSIONAL_LICENSE (PS_CITIZEN_ID,PS_LICENSE_NAME,PS_DEPARTMENT,PS_LICENSE_NO,PS_USE_DATE) VALUES (:PS_CITIZEN_ID,:PS_LICENSE_NAME,:PS_DEPARTMENT,:PS_LICENSE_NO,:PS_USE_DATE)", conn)) {
+                using (OracleConnection conn = Util.OC())
+                {
+                    using (OracleCommand command = new OracleCommand("INSERT INTO PS_PROFESSIONAL_LICENSE (PS_CITIZEN_ID,PS_LICENSE_NAME,PS_DEPARTMENT,PS_LICENSE_NO,PS_USE_DATE) VALUES (:PS_CITIZEN_ID,:PS_LICENSE_NAME,:PS_DEPARTMENT,:PS_LICENSE_NO,:PS_USE_DATE)", conn))
+                    {
 
-                        try {
-                            if (conn.State != ConnectionState.Open) {
+                        try
+                        {
+                            if (conn.State != ConnectionState.Open)
+                            {
                                 conn.Open();
                             }
                             string[] ss2 = GridViewLicense.Rows[i].Cells[3].Text.Split(' ');
-                            for (int j = 0; j < ss2.Length; ++j) {
+                            for (int j = 0; j < ss2.Length; ++j)
+                            {
                                 ss2[j] = ss2[j].Trim();
                             }
                             DateTime DATE_11 = new DateTime(Convert.ToInt32(ss2[2]), Util.MonthToNumber(ss2[1]), Convert.ToInt32(ss2[0]));
@@ -986,9 +1089,14 @@ namespace WEB_PERSONAL {
                             command.Parameters.Add(new OracleParameter("PS_USE_DATE", DATE_11));
                             id = command.ExecuteNonQuery();
 
-                        } catch (Exception ex) {
+                        }
+
+                        catch (Exception ex)
+                        {
                             throw ex;
-                        } finally {
+                        }
+                        finally
+                        {
                             command.Dispose();
                             conn.Close();
                         }
@@ -996,13 +1104,18 @@ namespace WEB_PERSONAL {
                 }
             }
 
-            for (int i = 0; i < GridViewTraining.Rows.Count; ++i) {
+            for (int i = 0; i < GridViewTraining.Rows.Count; ++i)
+            {
                 int id = 0;
-                using (OracleConnection conn = Util.OC()) {
-                    using (OracleCommand command = new OracleCommand("INSERT INTO PS_TRAINING (PS_CITIZEN_ID,PS_COURSE,PS_FROM_MONTH,PS_FROM_YEAR,PS_TO_MONTH,PS_TO_YEAR,PS_DEPARTMENT) VALUES (:PS_CITIZEN_ID,:PS_COURSE,:PS_FROM_MONTH,:PS_FROM_YEAR,:PS_TO_MONTH,:PS_TO_YEAR,:PS_DEPARTMENT)", conn)) {
+                using (OracleConnection conn = Util.OC())
+                {
+                    using (OracleCommand command = new OracleCommand("INSERT INTO PS_TRAINING (PS_CITIZEN_ID,PS_COURSE,PS_FROM_MONTH,PS_FROM_YEAR,PS_TO_MONTH,PS_TO_YEAR,PS_DEPARTMENT) VALUES (:PS_CITIZEN_ID,:PS_COURSE,:PS_FROM_MONTH,:PS_FROM_YEAR,:PS_TO_MONTH,:PS_TO_YEAR,:PS_DEPARTMENT)", conn))
+                    {
 
-                        try {
-                            if (conn.State != ConnectionState.Open) {
+                        try
+                        {
+                            if (conn.State != ConnectionState.Open)
+                            {
                                 conn.Open();
                             }
 
@@ -1014,9 +1127,14 @@ namespace WEB_PERSONAL {
                             command.Parameters.Add(new OracleParameter("PS_TO_YEAR", GridViewTraining.Rows[i].Cells[4].Text));
                             command.Parameters.Add(new OracleParameter("PS_DEPARTMENT", GridViewTraining.Rows[i].Cells[5].Text));
                             id = command.ExecuteNonQuery();
-                        } catch (Exception ex) {
+                        }
+
+                        catch (Exception ex)
+                        {
                             throw ex;
-                        } finally {
+                        }
+                        finally
+                        {
                             command.Dispose();
                             conn.Close();
                         }
@@ -1024,13 +1142,18 @@ namespace WEB_PERSONAL {
                 }
             }
 
-            for (int i = 0; i < GridViewDDA.Rows.Count; ++i) {
+            for (int i = 0; i < GridViewDDA.Rows.Count; ++i)
+            {
                 int id = 0;
-                using (OracleConnection conn = Util.OC()) {
-                    using (OracleCommand command = new OracleCommand("INSERT INTO PS_DISCIPLINARY_AND_AMNESTY (PS_CITIZEN_ID,PS_YEAR,PS_DAA_NAME,PS_REF) VALUES (:PS_CITIZEN_ID,:PS_YEAR,:PS_DAA_NAME,:PS_REF)", conn)) {
+                using (OracleConnection conn = Util.OC())
+                {
+                    using (OracleCommand command = new OracleCommand("INSERT INTO PS_DISCIPLINARY_AND_AMNESTY (PS_CITIZEN_ID,PS_YEAR,PS_DAA_NAME,PS_REF) VALUES (:PS_CITIZEN_ID,:PS_YEAR,:PS_DAA_NAME,:PS_REF)", conn))
+                    {
 
-                        try {
-                            if (conn.State != ConnectionState.Open) {
+                        try
+                        {
+                            if (conn.State != ConnectionState.Open)
+                            {
                                 conn.Open();
                             }
 
@@ -1039,9 +1162,14 @@ namespace WEB_PERSONAL {
                             command.Parameters.Add(new OracleParameter("PS_DAA_NAME", GridViewDDA.Rows[i].Cells[1].Text));
                             command.Parameters.Add(new OracleParameter("PS_REF", GridViewDDA.Rows[i].Cells[2].Text));
                             id = command.ExecuteNonQuery();
-                        } catch (Exception ex) {
+                        }
+
+                        catch (Exception ex)
+                        {
                             throw ex;
-                        } finally {
+                        }
+                        finally
+                        {
                             command.Dispose();
                             conn.Close();
                         }
@@ -1049,17 +1177,23 @@ namespace WEB_PERSONAL {
                 }
             }
 
-            for (int i = 0; i < GridViewPAS.Rows.Count; ++i) {
+            for (int i = 0; i < GridViewPAS.Rows.Count; ++i)
+            {
                 int id = 0;
-                using (OracleConnection conn = Util.OC()) {
-                    using (OracleCommand command = new OracleCommand("INSERT INTO PS_POSITION_AND_SALARY (PS_CITIZEN_ID,PS_DATE,PS_POSITION,PS_POSITION_NO,PS_POSITION_TYPE,PS_POSITION_DEGREE,PS_SALARY,PS_SALARY_POSITION,PS_REF) VALUES (:PS_CITIZEN_ID,:PS_DATE,:PS_POSITION,:PS_POSITION_NO,:PS_POSITION_TYPE,:PS_POSITION_DEGREE,:PS_SALARY,:PS_SALARY_POSITION,:PS_REF)", conn)) {
+                using (OracleConnection conn = Util.OC())
+                {
+                    using (OracleCommand command = new OracleCommand("INSERT INTO PS_POSITION_AND_SALARY (PS_CITIZEN_ID,PS_DATE,PS_POSITION,PS_POSITION_NO,PS_POSITION_TYPE,PS_POSITION_DEGREE,PS_SALARY,PS_SALARY_POSITION,PS_REF) VALUES (:PS_CITIZEN_ID,:PS_DATE,:PS_POSITION,:PS_POSITION_NO,:PS_POSITION_TYPE,:PS_POSITION_DEGREE,:PS_SALARY,:PS_SALARY_POSITION,:PS_REF)", conn))
+                    {
 
-                        try {
-                            if (conn.State != ConnectionState.Open) {
+                        try
+                        {
+                            if (conn.State != ConnectionState.Open)
+                            {
                                 conn.Open();
                             }
                             string[] ss5 = GridViewPAS.Rows[i].Cells[0].Text.Split(' ');
-                            for (int j = 0; j < ss5.Length; ++j) {
+                            for (int j = 0; j < ss5.Length; ++j)
+                            {
                                 ss5[j] = ss5[j].Trim();
                             }
                             DateTime DATE_11 = new DateTime(Convert.ToInt32(ss5[2]), Util.MonthToNumber(ss5[1]), Convert.ToInt32(ss5[0]));
@@ -1075,9 +1209,14 @@ namespace WEB_PERSONAL {
                             command.Parameters.Add(new OracleParameter("PS_REF", GridViewPAS.Rows[i].Cells[7].Text));
                             id = command.ExecuteNonQuery();
 
-                        } catch (Exception ex) {
+                        }
+
+                        catch (Exception ex)
+                        {
                             throw ex;
-                        } finally {
+                        }
+                        finally
+                        {
                             command.Dispose();
                             conn.Close();
                         }
@@ -1086,41 +1225,50 @@ namespace WEB_PERSONAL {
             }
         }
 
-        protected void lbuV3Add_Click(object sender, EventArgs e) {
+        protected void lbuV3Add_Click(object sender, EventArgs e)
+        {
             DataRow dr = ((DataTable)(Session["Study"])).NewRow();
             dr[0] = ddlDegree10.SelectedValue;
             dr[1] = tbUnivName10.Text;
             dr[2] = ddlMonth10From.SelectedValue;
             dr[3] = ddlYear10From.SelectedValue;
             dr[4] = ddlMonth10To.SelectedValue;
-            dr[5] = ddlYear10To.SelectedValue;
+            dr[5] = ddlYear10To.SelectedValue; 
             dr[6] = tbQualification10.Text;
             dr[7] = tbMajor10.Text;
             dr[8] = ddlCountrySuccess10.SelectedValue;
-            if (ddlDegree10.SelectedIndex == 0 || tbUnivName10.Text == "" || ddlMonth10From.SelectedIndex == 0 || ddlYear10From.SelectedIndex == 0 || ddlMonth10To.SelectedIndex == 0 || ddlYear10To.SelectedIndex == 0 || tbQualification10.Text == "" || tbMajor10.Text == "" || ddlCountrySuccess10.SelectedIndex == 0) {
+            if (ddlDegree10.SelectedIndex == 0 || tbUnivName10.Text == "" || ddlMonth10From.SelectedIndex == 0 || ddlYear10From.SelectedIndex == 0 || ddlMonth10To.SelectedIndex == 0 || ddlYear10To.SelectedIndex == 0 || tbQualification10.Text == "" || tbMajor10.Text == "" || ddlCountrySuccess10.SelectedIndex == 0)
+            {
                 notification.Attributes["class"] = "alert alert_danger";
                 notification.InnerHtml = "";
 
                 notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong> เกิดข้อผิดพลาด !</strong></div>";
-                if (ddlDegree10.SelectedIndex == 0) {
+                if (ddlDegree10.SelectedIndex == 0)
+                {
                     notification.InnerHtml += "<div>กรุณาเลือก 'ระดับการศึกษา'</div>";
                 }
-                if (tbUnivName10.Text == "") {
+                if (tbUnivName10.Text == "")
+                {
                     notification.InnerHtml += "<div>กรุณากรอก 'สถานศึกษา'</div>";
                 }
-                if (ddlMonth10From.SelectedIndex == 0 || ddlYear10From.SelectedIndex == 0 || ddlMonth10To.SelectedIndex == 0 || ddlYear10To.SelectedIndex == 0) {
+                if (ddlMonth10From.SelectedIndex == 0 || ddlYear10From.SelectedIndex == 0 || ddlMonth10To.SelectedIndex == 0 || ddlYear10To.SelectedIndex == 0)
+                {
                     notification.InnerHtml += "<div>กรุณาเลือก 'ตั้งแต่ - ถึง (เดือน ปี)' ให้ถูกต้อง</div>";
                 }
-                if (tbQualification10.Text == "") {
+                if (tbQualification10.Text == "")
+                {
                     notification.InnerHtml += "<div>กรุณากรอก 'วุฒิ'</div>";
                 }
-                if (tbMajor10.Text == "") {
+                if (tbMajor10.Text == "")
+                {
                     notification.InnerHtml += "<div>กรุณากรอก 'สาขาวิชาเอก'</div>";
                 }
-                if (ddlCountrySuccess10.SelectedIndex == 0) {
+                if (ddlCountrySuccess10.SelectedIndex == 0)
+                {
                     notification.InnerHtml += "<div>กรุณาเลือก 'ประเทศที่จบ'</div>";
                 }
-            } else {
+            }
+            else {
                 ((DataTable)(Session["Study"])).Rows.Add(dr);
                 GridViewStudy.DataSource = ((DataTable)(Session["Study"]));
                 GridViewStudy.DataBind();
@@ -1130,40 +1278,48 @@ namespace WEB_PERSONAL {
             }
         }
 
-        protected void lbuV5Add_Click(object sender, EventArgs e) {
+        protected void lbuV5Add_Click(object sender, EventArgs e)
+        {
             DataRow dr = ((DataTable)(Session["ProLisence"])).NewRow();
             dr[0] = tbLicenseName11.Text;
             dr[1] = tbDepartment11.Text;
             dr[2] = tbLicenseNo11.Text;
             dr[3] = tbUseDate11.Text;
-            if (tbLicenseName11.Text == "" || tbLicenseName11.Text == "" || tbDepartment11.Text == "" || tbLicenseNo11.Text == "" || tbUseDate11.Text == "") {
+            if (tbLicenseName11.Text == "" || tbLicenseName11.Text == "" || tbDepartment11.Text == "" || tbLicenseNo11.Text == "" || tbUseDate11.Text == "")
+            {
                 notification.Attributes["class"] = "alert alert_danger";
                 notification.InnerHtml = "";
 
                 notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong> เกิดข้อผิดพลาด !</strong></div>";
-                if (tbLicenseName11.Text == "") {
+                if (tbLicenseName11.Text == "")
+                {
                     notification.InnerHtml += "<div>กรุณากรอก 'ชื่อใบอนุญาต'</div>";
                 }
-                if (tbDepartment11.Text == "") {
+                if (tbDepartment11.Text == "")
+                {
                     notification.InnerHtml += "<div>กรุณากรอก 'หน่วยงาน'</div>";
                 }
-                if (tbLicenseNo11.Text == "") {
+                if (tbLicenseNo11.Text == "")
+                {
                     notification.InnerHtml += "<div>กรุณากรอก 'เลขที่ใบอนุญาต'</div>";
                 }
-                if (tbUseDate11.Text == "") {
+                if (tbUseDate11.Text == "")
+                {
                     notification.InnerHtml += "<div>กรุณากรอก 'วันที่มีผลบังคับใช้ (วัน เดือน ปี)'</div>";
                 }
-            } else {
-                ((DataTable)(Session["ProLisence"])).Rows.Add(dr);
-                GridViewLicense.DataSource = ((DataTable)(Session["ProLisence"]));
-                GridViewLicense.DataBind();
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('เพิ่มข้อมูลใบประกอบวิชาชีพเรียบร้อย')", true);
-                notification.Attributes["class"] = "none";
-                notification.InnerHtml = "";
+            } 
+                else {
+                    ((DataTable)(Session["ProLisence"])).Rows.Add(dr);
+                    GridViewLicense.DataSource = ((DataTable)(Session["ProLisence"]));
+                    GridViewLicense.DataBind();
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('เพิ่มข้อมูลใบประกอบวิชาชีพเรียบร้อย')", true);
+                    notification.Attributes["class"] = "none";
+                    notification.InnerHtml = "";
+                }
             }
-        }
 
-        protected void lbuV6Add_Click(object sender, EventArgs e) {
+        protected void lbuV6Add_Click(object sender, EventArgs e)
+        {
             DataRow dr = ((DataTable)(Session["Trainning"])).NewRow();
             dr[0] = tbCourse.Text;
             dr[1] = ddlMonth12From.SelectedValue;
@@ -1171,60 +1327,72 @@ namespace WEB_PERSONAL {
             dr[3] = ddlMonth12To.SelectedValue;
             dr[4] = ddlYear12To.SelectedValue;
             dr[5] = tbDepartment.Text;
-            if (tbCourse.Text == "" || ddlMonth12From.SelectedIndex == 0 || ddlYear12From.SelectedIndex == 0 || ddlMonth12To.SelectedIndex == 0 || ddlYear12To.SelectedIndex == 0 || tbDepartment.Text == "") {
+            if (tbCourse.Text == "" || ddlMonth12From.SelectedIndex == 0 || ddlYear12From.SelectedIndex == 0 || ddlMonth12To.SelectedIndex == 0 || ddlYear12To.SelectedIndex == 0 || tbDepartment.Text == "")
+            {
                 notification.Attributes["class"] = "alert alert_danger";
                 notification.InnerHtml = "";
 
                 notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong> เกิดข้อผิดพลาด !</strong></div>";
-                if (tbCourse.Text == "") {
+                if (tbCourse.Text == "")
+                {
                     notification.InnerHtml += "<div>กรุณากรอก 'หลักสูตรฝึกอบรม'</div>";
                 }
-                if (ddlMonth12From.SelectedIndex == 0 || ddlYear12From.SelectedIndex == 0 || ddlMonth12To.SelectedIndex == 0 || ddlYear12To.SelectedIndex == 0) {
+                if (ddlMonth12From.SelectedIndex == 0 || ddlYear12From.SelectedIndex == 0 || ddlMonth12To.SelectedIndex == 0 || ddlYear12To.SelectedIndex == 0)
+                {
                     notification.InnerHtml += "<div>กรุณาเลือก 'ตั้งแต่ - ถึง (เดือน ปี)' ให้ถูกต้อง</div>";
                 }
-                if (tbDepartment.Text == "") {
+                if (tbDepartment.Text == "")
+                {
                     notification.InnerHtml += "<div>กรุณากรอก 'หน่วยงานที่จัดฝึกอบรม'</div>";
                 }
-            } else {
-                ((DataTable)(Session["Trainning"])).Rows.Add(dr);
-                GridViewTraining.DataSource = ((DataTable)(Session["Trainning"]));
-                GridViewTraining.DataBind();
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('เพิ่มข้อมูลประวัติการฝึกอบรมเรียบร้อย')", true);
-                notification.Attributes["class"] = "none";
-                notification.InnerHtml = "";
             }
-        }
+                else {
+                    ((DataTable)(Session["Trainning"])).Rows.Add(dr);
+                    GridViewTraining.DataSource = ((DataTable)(Session["Trainning"]));
+                    GridViewTraining.DataBind();
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('เพิ่มข้อมูลประวัติการฝึกอบรมเรียบร้อย')", true);
+                    notification.Attributes["class"] = "none";
+                    notification.InnerHtml = "";
+                }
+            }
 
-        protected void lbuV7Add_Click(object sender, EventArgs e) {
+        protected void lbuV7Add_Click(object sender, EventArgs e)
+        {
             DataRow dr = ((DataTable)(Session["DDA"])).NewRow();
             dr[0] = ddlYear13.SelectedValue;
             dr[1] = tbName13.Text;
             dr[2] = tbREF13.Text;
-            if (ddlYear13.SelectedIndex == 0 || tbName13.Text == "" || tbREF13.Text == "") {
+            if (ddlYear13.SelectedIndex == 0 || tbName13.Text == "" || tbREF13.Text == "")
+            {
                 notification.Attributes["class"] = "alert alert_danger";
                 notification.InnerHtml = "";
 
                 notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong> เกิดข้อผิดพลาด !</strong></div>";
-                if (ddlYear13.SelectedIndex == 0) {
+                if (ddlYear13.SelectedIndex == 0)
+                {
                     notification.InnerHtml += "<div>กรุณาเลือก 'พ.ศ.'</div>";
                 }
-                if (tbName13.Text == "") {
+                if (tbName13.Text == "")
+                {
                     notification.InnerHtml += "<div>กรุณากรอก 'รายการ'</div>";
                 }
-                if (tbREF13.Text == "") {
+                if (tbREF13.Text == "")
+                {
                     notification.InnerHtml += "<div>กรุณากรอก 'เอกสารอ้างอิง'</div>";
                 }
-            } else {
-                ((DataTable)(Session["DDA"])).Rows.Add(dr);
-                GridViewDDA.DataSource = ((DataTable)(Session["DDA"]));
-                GridViewDDA.DataBind();
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('เพิ่มข้อมูลการได้รับโทษทางวินัยและการนิรโทษกรรมเรียบร้อย')", true);
-                notification.Attributes["class"] = "none";
-                notification.InnerHtml = "";
             }
-        }
+                else {
+                    ((DataTable)(Session["DDA"])).Rows.Add(dr);
+                    GridViewDDA.DataSource = ((DataTable)(Session["DDA"]));
+                    GridViewDDA.DataBind();
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('เพิ่มข้อมูลการได้รับโทษทางวินัยและการนิรโทษกรรมเรียบร้อย')", true);
+                    notification.Attributes["class"] = "none";
+                    notification.InnerHtml = "";
+                }
+            }
 
-        protected void lbuV8Add_Click(object sender, EventArgs e) {
+        protected void lbuV8Add_Click(object sender, EventArgs e)
+        {
             DataRow dr = ((DataTable)(Session["PAS"])).NewRow();
             dr[0] = tbDate14.Text;
             dr[1] = tbPosition14.Text;
@@ -1234,44 +1402,54 @@ namespace WEB_PERSONAL {
             dr[5] = tbSalary14.Text;
             dr[6] = tbSalaryPosition14.Text;
             dr[7] = tbRef14.Text;
-            if (tbDate14.Text == "" || tbPosition14.Text == "" || tbPositionNo14.Text == "" || ddlPositionType14.SelectedIndex == 0 || ddlPositionDegree14.SelectedIndex == 0 || tbSalary14.Text == "" || tbSalaryPosition14.Text == "" || tbRef14.Text == "") {
+            if (tbDate14.Text == "" || tbPosition14.Text == "" || tbPositionNo14.Text == "" || ddlPositionType14.SelectedIndex == 0 || ddlPositionDegree14.SelectedIndex == 0 || tbSalary14.Text == "" || tbSalaryPosition14.Text == "" || tbRef14.Text == "")
+            {
                 notification.Attributes["class"] = "alert alert_danger";
                 notification.InnerHtml = "";
 
                 notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong> เกิดข้อผิดพลาด !</strong></div>";
 
-                if (tbDate14.Text == "") {
+                if (tbDate14.Text == "")
+                {
                     notification.InnerHtml += "<div>กรุณากรอก 'วัน เดือน ปี'</div>";
                 }
-                if (tbPosition14.Text == "") {
+                if (tbPosition14.Text == "")
+                {
                     notification.InnerHtml += "<div>กรุณากรอก 'ตำแหน่ง'</div>";
                 }
-                if (tbPositionNo14.Text == "") {
+                if (tbPositionNo14.Text == "")
+                {
                     notification.InnerHtml += "<div>กรุณากรอก 'เลขที่ตำแหน่ง'</div>";
                 }
-                if (ddlPositionType14.SelectedIndex == 0) {
+                if (ddlPositionType14.SelectedIndex == 0)
+                {
                     notification.InnerHtml += "<div>กรุณาเลือก 'ตำแหน่งประเภท'</div>";
                 }
-                if (ddlPositionDegree14.SelectedIndex == 0) {
+                if (ddlPositionDegree14.SelectedIndex == 0)
+                {
                     notification.InnerHtml += "<div>กรุณาเลือก 'ระดับ'</div>";
                 }
-                if (tbSalary14.Text == "") {
+                if (tbSalary14.Text == "")
+                {
                     notification.InnerHtml += "<div>กรุณากรอก 'เงินเดือน'</div>";
                 }
-                if (tbSalaryPosition14.Text == "") {
+                if (tbSalaryPosition14.Text == "")
+                {
                     notification.InnerHtml += "<div>กรุณากรอก 'เงินประจำตำแหน่ง'</div>";
                 }
-                if (tbRef14.Text == "") {
+                if (tbRef14.Text == "")
+                {
                     notification.InnerHtml += "<div>กรุณากรอก 'เอกสารอ้างอิง'</div>";
                 }
-            } else {
-                ((DataTable)(Session["PAS"])).Rows.Add(dr);
-                GridViewPAS.DataSource = ((DataTable)(Session["PAS"]));
-                GridViewPAS.DataBind();
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('เพิ่มข้อมูลตำแหน่งและเงินเดือนเรียบร้อย')", true);
-                notification.Attributes["class"] = "none";
-                notification.InnerHtml = "";
             }
-        }
+                else {
+                    ((DataTable)(Session["PAS"])).Rows.Add(dr);
+                    GridViewPAS.DataSource = ((DataTable)(Session["PAS"]));
+                    GridViewPAS.DataBind();
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('เพิ่มข้อมูลตำแหน่งและเงินเดือนเรียบร้อย')", true);
+                    notification.Attributes["class"] = "none";
+                    notification.InnerHtml = "";
+                }
+            }
     }
 }
