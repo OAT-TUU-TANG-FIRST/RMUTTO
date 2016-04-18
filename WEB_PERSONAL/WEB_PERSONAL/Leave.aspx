@@ -16,7 +16,7 @@
             vertical-align: top;
             padding-right: 10px;
             color: #808080;
-            height: 28px;
+            height: 28px; 
         }
         .section {
             background-size: auto 400px;
