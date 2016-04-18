@@ -919,102 +919,10 @@ namespace WEB_PERSONAL.Entities
                 command.Parameters.Add(new OracleParameter("PS_REF", PS_REF));
 
                 id = command.ExecuteNonQuery();
-            } catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 throw ex;
-            } finally {
-                command.Dispose();
-                conn.Close();
-            }
-            return id;
-        }
-
-        public bool UPDATE_PS_PROFESSIONAL_LICENSE() {
-            bool result = false;
-            OracleConnection conn = ConnectionDB.GetOracleConnection();
-            string query = "Update PS_PROFESSIONAL_LICENSE Set ";
-            query += " PS_CITIZEN_ID = :PS_CITIZEN_ID ,";
-            query += " PS_LICENSE_NAME = :PS_LICENSE_NAME  ,";
-            query += " PS_DEPARTMENT = :PS_DEPARTMENT ,";
-            query += " PS_LICENSE_NO = :PS_LICENSE_NO ,";
-            query += " PS_USE_DATE = :PS_USE_DATE ";
-            query += " where PS_PL_ID  = :PS_PL_ID";
-
-            OracleCommand command = new OracleCommand(query, conn);
-            try {
-                if (conn.State != ConnectionState.Open) {
-                    conn.Open();
-                }
-                command.Parameters.Add(new OracleParameter("PS_CITIZEN_ID", PS_CITIZEN_ID));
-                command.Parameters.Add(new OracleParameter("PS_LICENSE_NAME", PS_LICENSE_NAME));
-                command.Parameters.Add(new OracleParameter("PS_DEPARTMENT", PS_DEPARTMENT));
-                command.Parameters.Add(new OracleParameter("PS_LICENSE_NO", PS_LICENSE_NO));
-                command.Parameters.Add(new OracleParameter("PS_PL_ID", PS_PL_ID));
-                if (command.ExecuteNonQuery() > 0) {
-                    result = true;
-                }
-            } catch (Exception ex) {
-                throw ex;
-            } finally {
-                command.Dispose();
-                conn.Close();
-            }
-            return result;
-        }
-
-        public bool DELETE_PS_PROFESSIONAL_LICENSE() {
-            bool result = false;
-            OracleConnection conn = ConnectionDB.GetOracleConnection();
-            OracleCommand command = new OracleCommand("Delete PS_PROFESSIONAL_LICENSE where PS_PL_ID = :PS_PL_ID", conn);
-            try {
-                if (conn.State != ConnectionState.Open) {
-                    conn.Open();
-                }
-                command.Parameters.Add(new OracleParameter("PS_PL_ID", PS_PL_ID));
-                if (command.ExecuteNonQuery() >= 0) {
-                    result = true;
-            }
-            } catch (Exception ex) {
-                throw ex;
-            } finally {
-                command.Dispose();
-                conn.Close();
-            }
-            return result;
-        }
-    }
-    /// <summary>
-    /// 
-    /// </summary>
-    public class PS_TRAINING {
-        public int PS_TRAINING_ID { get; set; }
-        public string PS_CITIZEN_ID { get; set; }
-        public string PS_COURSE { get; set; }
-        public int PS_FROM_MONTH { get; set; }
-        public int PS_FROM_YEAR { get; set; }
-        public int PS_TO_MONTH { get; set; }
-        public int PS_TO_YEAR { get; set; }
-        public string PS_DEPARTMENT { get; set; }
-
-        public PS_TRAINING() { }
-        public PS_TRAINING(int PS_TRAINING_ID, string PS_CITIZEN_ID, string PS_COURSE, int PS_FROM_MONTH, int PS_FROM_YEAR, int PS_TO_MONTH, int PS_TO_FROM, string PS_DEPARTMENT) {
-            this.PS_TRAINING_ID = PS_TRAINING_ID;
-            this.PS_CITIZEN_ID = PS_CITIZEN_ID;
-            this.PS_COURSE = PS_COURSE;
-            this.PS_FROM_MONTH = PS_FROM_MONTH;
-            this.PS_FROM_YEAR = PS_FROM_YEAR;
-            this.PS_TO_MONTH = PS_TO_MONTH;
-            this.PS_TO_YEAR = PS_TO_YEAR;
-            this.PS_DEPARTMENT = PS_DEPARTMENT;
-        }
-
-        public int INSERT_PS_TRAINING() {
-            int id = 0;
-            OracleConnection conn = ConnectionDB.GetOracleConnection();
-            OracleCommand command = new OracleCommand("INSERT INTO PS_TRAINING (PS_CITIZEN_ID,PS_COURSE,PS_FROM_MONTH,PS_FROM_YEAR,PS_TO_MONTH,PS_TO_YEAR,PS_DEPARTMENT) VALUES (:PS_CITIZEN_ID,:PS_COURSE,:PS_FROM_MONTH,:PS_FROM_YEAR,:PS_TO_MONTH,:PS_TO_YEAR,:PS_DEPARTMENT)", conn);
-
-            try {
-                if (conn.State != ConnectionState.Open) {
-                    conn.Open();
             }
                 command.Parameters.Add(new OracleParameter("PS_CITIZEN_ID", PS_CITIZEN_ID));
                 command.Parameters.Add(new OracleParameter("PS_COURSE", PS_COURSE));
@@ -1165,6 +1073,37 @@ namespace WEB_PERSONAL.Entities
             }
             return result;
         }
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+    public class PS_POSITION_AND_SALARY
+    {
+        public int PS_PAS_ID { get; set; }
+        public string PS_CITIZEN_ID { get; set; }
+        public DateTime PS_DATE { get; set; }
+        public string PS_POSITION { get; set; }
+        public string PS_POSITION_NO { get; set; }
+        public string PS_POSITION_TYPE { get; set; }
+        public string PS_POSITION_DEGREE { get; set; }
+        public int PS_SALARY { get; set; }
+        public int PS_SALARY_POSITION { get; set; }
+        public string PS_REF { get; set; }
+
+        public PS_POSITION_AND_SALARY() { }
+        public PS_POSITION_AND_SALARY(int PS_PAS_ID, string PS_CITIZEN_ID, DateTime PS_DATE, string PS_POSITION, string PS_POSITION_NO, string PS_POSITION_TYPE, string PS_POSITION_DEGREE, int PS_SALARY, int PS_SALARY_POSITION,string PS_REF)
+        {
+            this.PS_PAS_ID = PS_PAS_ID;
+            this.PS_CITIZEN_ID = PS_CITIZEN_ID;
+            this.PS_DATE = PS_DATE;
+            this.PS_POSITION = PS_POSITION;
+            this.PS_POSITION_NO = PS_POSITION_NO;
+            this.PS_POSITION_TYPE = PS_POSITION_TYPE;
+            this.PS_POSITION_DEGREE = PS_POSITION_DEGREE;
+            this.PS_SALARY = PS_SALARY;
+            this.PS_SALARY_POSITION = PS_SALARY_POSITION;
+            this.PS_REF = PS_REF;
+        }
 
         public int INSERT_PS_POSITION_AND_SALARY()
         {
@@ -1252,22 +1191,6 @@ namespace WEB_PERSONAL.Entities
             return result;
                 }
 
-        public bool DELETE_PS_POSITION_AND_SALARY()
-        {
-            bool result = false;
-            OracleConnection conn = ConnectionDB.GetOracleConnection();
-            OracleCommand command = new OracleCommand("Delete PS_POSITION_AND_SALARY where PS_PAS_ID = :PS_PAS_ID", conn);
-            try
-            {
-                if (conn.State != ConnectionState.Open)
-                {
-                    conn.Open();
-                }
-                command.Parameters.Add(new OracleParameter("PS_PAS_ID", PS_PAS_ID));
-                if (command.ExecuteNonQuery() >= 0)
-                {
-                    result = true;
-                }
             }
             } catch (Exception ex) {
                 throw ex;

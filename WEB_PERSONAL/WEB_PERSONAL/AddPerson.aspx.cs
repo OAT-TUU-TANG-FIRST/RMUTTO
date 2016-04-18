@@ -1014,7 +1014,7 @@ namespace WEB_PERSONAL
             P0.PS_TEACH_ISCED_ID = ddlTeachISCED.SelectedValue;
             P0.PS_PASSWORD = "1234";
             P0.INSERT_PS_PERSON();
-
+             
             Response.Redirect("access.aspx");
             notification.Attributes["class"] = "alert alert_success";
             notification.InnerHtml = "";
