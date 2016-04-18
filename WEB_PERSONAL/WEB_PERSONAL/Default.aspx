@@ -19,7 +19,7 @@
 
     <div class="default_page_style">
 
-        <div style="margin: 20px 0px; font-size: 16px;">ยินดีต้อนรับสู่ระบบบุคลากร</div>
+        <div class="default_header"><img src="Image/Small/home3.png"/>ยินดีต้อนรับสู่ระบบบุคลากร</div>
         <div>
             <table>
                 <tr>

@@ -119,7 +119,7 @@
                     <tr>
                         <td class="col1">ความเห็น</td>
                         <td class="col2">
-                            <asp:TextBox ID="tbF1Comment" runat="server" Height="50px" Width="300px" TextMode="MultiLine"></asp:TextBox>
+                            <asp:TextBox ID="tbF1Comment" runat="server" Height="50px" Width="300px" TextMode="MultiLine" CssClass="textbox textbox_default"></asp:TextBox>
                         </td>
                         <td class="auto-style3"></td>
                     </tr>

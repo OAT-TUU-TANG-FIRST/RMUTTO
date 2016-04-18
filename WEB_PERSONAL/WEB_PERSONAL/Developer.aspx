@@ -59,7 +59,7 @@
             <br />
             <asp:LinkButton ID="lbuTableSQL" runat="server" CssClass="button button_default" OnClick="lbuTableSQL_Click">View Table</asp:LinkButton>
 
-            <asp:GridView ID="GridView1" runat="server"></asp:GridView>
+            <asp:GridView ID="GridView1" runat="server" ShowHeaderWhenEmpty="true"></asp:GridView>
 
         </div>
         <div style="clear: both;"></div>

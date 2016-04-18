@@ -15,42 +15,42 @@
 </head>
 <body>
     <form id="form1" runat="server">
-                    <div class="login_popup">
-                        <div class="login_popup_in">
+        <div class="login_popup">
+            <div class="login_popup_in">
                 <div class="login_popup_in2">
-                            <div class="login_popup_div_sec" id="locsec1">
-                                <div class="login_popup_div_sec_header">
-                        <img class="login_logo" src="Image/RMUTTO.png" />
-                
-                                              
-                                </div>
-                                <div class="login_popup_div_sec_in">
-                        <div class="t1">ระบบบุคลากร</div>
-                        <div class="t2">มหาวิทยาลัยเทคโนโลยีราชมงคลตะวันออก</div>  
-                        <div style="margin: 10px 0;"></div>
-                        <asp:Panel ID="Panel1" runat="server" DefaultButton="lbuLogin">
-                            <asp:TextBox ID="tbUsername" runat="server" CssClass="login_default_textbox" MaxLength="13" placeHolder="รหัสประชาชน"></asp:TextBox>
-                            <div style="margin: 5px 0;"></div>
-                            <asp:TextBox ID="tbPassword" runat="server" TextMode="Password" CssClass="login_default_textbox" placeHolder="รหัสผ่าน"></asp:TextBox>
-                            <div style="margin: 5px 0;"></div>
-                            <asp:LinkButton ID="lbuLogin" runat="server" OnClick="lbuLogin_Click" CssClass="login_button">เข้าสู่ระบบ</asp:LinkButton>
-                            <div style="margin: 5px 0;"></div>
-                                                    <asp:Label ID="Label12X" runat="server" CssClass="cerror"></asp:Label>
+                    <div class="login_popup_div_sec" id="locsec1">
+                        <div class="login_popup_div_sec_header">
+                            <img class="login_logo" src="Image/RMUTTO.png" />
 
-                                    </asp:Panel>
-
-                                </div>
-                            </div>
-                </div>
-
-                                    
 
                         </div>
+                        <div class="login_popup_div_sec_in">
+                            <div class="t1">ระบบบุคลากร</div>
+                            <div class="t2">มหาวิทยาลัยเทคโนโลยีราชมงคลตะวันออก</div>
+                            <div style="margin: 10px 0;"></div>
+                            <asp:Panel ID="Panel1" runat="server" DefaultButton="lbuLogin">
+                                <asp:TextBox ID="tbUsername" runat="server" CssClass="login_default_textbox" MaxLength="13" placeHolder="รหัสประชาชน"></asp:TextBox>
+                                <div style="margin: 5px 0;"></div>
+                                <asp:TextBox ID="tbPassword" runat="server" TextMode="Password" CssClass="login_default_textbox" placeHolder="รหัสผ่าน"></asp:TextBox>
+                                <div style="margin: 5px 0;"></div>
+                                <asp:LinkButton ID="lbuLogin" runat="server" OnClick="lbuLogin_Click" CssClass="login_button"><img src="Image/Small/key.png" class="icon_left"/>เข้าสู่ระบบ</asp:LinkButton>
+                                <div style="margin: 5px 0;"></div>
+                                <asp:Label ID="Label12X" runat="server" CssClass="cerror"></asp:Label>
 
+                            </asp:Panel>
 
-
-
+                        </div>
                     </div>
+                </div>
+
+
+
+            </div>
+
+
+
+
+        </div>
 
 
     </form>

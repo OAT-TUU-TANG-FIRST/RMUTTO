@@ -22,7 +22,7 @@ namespace WEB_PERSONAL {
             Person loginPerson = ps.LoginPerson;
 
             string name = loginPerson.FirstNameAndLastName;
-            LinkButton1.Text = name;
+            LinkButton1.Text = "<img src='Image/Small/person.png'/>" + name;
             LinkButton10.Visible = true;
 
             int v1 = DatabaseManager.GetLeaveRequiredCountByCommanderLow(loginPerson.CitizenID);

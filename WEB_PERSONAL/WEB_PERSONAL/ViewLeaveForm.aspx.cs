@@ -24,7 +24,7 @@ namespace WEB_PERSONAL {
                         using(OleDbCommand com = new OleDbCommand("SELECT LEAVE_ID FROM LEV_MAIN", con)) {
                             using(OleDbDataReader reader = com.ExecuteReader()) {
                                 while(reader.Read()) {
-                                    CreateForm1Display(i1, reader.GetValue(0).ToString());
+                                    CreateForm1Display(reader.GetValue(0).ToString());
                                 }
                                 
                             }
@@ -32,7 +32,7 @@ namespace WEB_PERSONAL {
                     }
                 } else {
 
-                    CreateForm1Display(i1, leaveID);
+                    CreateForm1Display(leaveID);
                 }
                 
             } else {
@@ -41,7 +41,7 @@ namespace WEB_PERSONAL {
             
         }
 
-        public void CreateForm1Display(HtmlGenericControl hgc, string leaveID) {
+        public void CreateForm1Display(string leaveID) {
 
             Form1Package f1 = DatabaseManager.GetForm1Package(leaveID);
             if (f1 != null) {

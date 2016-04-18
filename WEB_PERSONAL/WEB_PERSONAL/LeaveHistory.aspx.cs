@@ -26,7 +26,8 @@ namespace WEB_PERSONAL {
                     for (int i = 0; i < GridView1.Rows.Count; ++i) {
                         string ID = GridView1.Rows[i].Cells[0].Text;
                         TableCell cell = new TableCell();
-                        Button btn = new Button();
+                        LinkButton btn = new LinkButton();
+                        btn.CssClass = "button button_default";
                         btn.Text = "ดูข้อมูล";
                         btn.Click += (e2, e3) => {
                             Response.Redirect("ViewLeaveForm.aspx?Form=1&LeaveID=" + ID);

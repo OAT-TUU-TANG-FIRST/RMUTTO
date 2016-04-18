@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="Image/favicon.ico" type="image/x-icon" />
     <!--link rel="icon" href="Image/favicon.ico" /-->
     <title>ระบบบุคลากร - มหาวิทยาลัยเทคโนโลยีราชมงคลตะวันออก วิทยาเขตบางพระ</title>
-    <link rel="stylesheet" type="text/css" href="CSS/Master.css" />
+    <link href="CSS/Master.css" rel="stylesheet" />
 
     <link href="jQueryCalendarThai/jquery-ui-1.10.3.custom.css" rel="stylesheet" />
     <link href="jQueryCalendarThai/SpecialDateSheet.css" rel="stylesheet" />
@@ -58,6 +58,9 @@
         $.datepicker.setDefaults($.datepicker.regional['th']);
     </script>
 
+ 
+
+
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
 
     <asp:ContentPlaceHolder ID="head" runat="server">
@@ -68,49 +71,36 @@
 
     <form id="form1" runat="server">
 
-
-        <div class="master_login">
-            <div class="master_login_left">
-                <span class="master_login_logo">ระบบบุคลากร (Personnel System)</span>
-            </div>
-
-
-
-
-            <div class="master_login_right">
-                <img src="Image/Small/person.png" />
-                <asp:LinkButton ID="LinkButton1" runat="server" CssClass="master_login_name_link" OnClick="LinkButton1_Click1">LinkButton</asp:LinkButton>
-                <span style="display: inline-block; width: 5px"></span>
-                <asp:LinkButton ID="LinkButton10" runat="server" OnClick="LinkButton10_Click" CssClass="master_logout">ออกจากระบบ</asp:LinkButton>
-            </div>
-
-            <div class="master_top_r2">
-                <asp:Label ID="lbN1" runat="server" Text="-" CssClass="master_top_r2_n1" Visible="false"></asp:Label>
-            </div>
-
-        </div>
-
         <div class="wlogo"></div>
 
         <div class="wrapper">
 
             <div class="master_sidebar">
-
+                <div class="master_sidebar_group">
+                    <span class="master_login_logo">ระบบบุคลากร<br />Personnel System</span>
+                    </div>
+                
+                <div class="master_sidebar_group">
+                    <span class="master_sidebar_group_header">ผู้ใช้</span>
+                    <div class="profile_div"><img src="Image/no_image.png" class="profile_pic"/></div>
+                    <asp:LinkButton ID="LinkButton1" runat="server" CssClass="master_login_name_link" OnClick="LinkButton1_Click1">LinkButton</asp:LinkButton>
+                    <asp:LinkButton ID="LinkButton10" runat="server" OnClick="LinkButton10_Click" CssClass="master_logout"><img src="Image/Small/logout.png" />ออกจากระบบ</asp:LinkButton>
+                </div>
                 <div class="master_sidebar_group">
                     <span class="master_sidebar_group_header">เมนูหลัก</span>
-                    <a href="Default.aspx"><img src="Image/Small/table.png" />หน้าหลัก</a>
+                    <a href="Default.aspx"><img src="Image/Small/home.png" />หน้าหลัก</a>
                     <a href="About.aspx"><img src="Image/Small/table.png" />เกี่ยวกับ</a>
                 </div>
                 <div class="master_sidebar_group">
                     <span class="master_sidebar_group_header">บุคลากร</span>
-                    <a href="AddPerson.aspx"><img src="Image/Small/table.png" />เพิ่มบุคลากร</a>
+                    <a href="AddPerson.aspx"><img src="Image/Small/person.png" />เพิ่มบุคลากร</a>
                     <a href="Person-GENERAL.aspx"><img src="Image/Small/table.png" />เพิ่มบุคลากร</a>
                     <a href="Person-ADMIN.aspx"><img src="Image/Small/table.png" />แก้ไขบุคลากร</a>
                     <a href="ListPerson-ADMIN.aspx"><img src="Image/Small/table.png" />รายชื่อบุคลากร</a>
                     <a href="SEMINAR-GENERAL.aspx"><img src="Image/Small/table.png" />การเพิ่มพัฒนาบุคลากร</a>
                     <a href="SEMINAR-ADMIN.aspx"><img src="Image/Small/table.png" />การแก้ไขพัฒนาบุคลากร</a>
-                    <a href="Report-Custom-Person.aspx"><img src="Image/Small/table.png" />ออกรายงานบุคลากร</a>
-                    <a href="Report-Custom-Person.aspx"><img src="Image/Small/table.png" />ออกรายงานพัฒนาบุคลากร</a>
+                    <a href="Report-Custom-Person.aspx"><img src="Image/Small/report.png" />ออกรายงานบุคลากร</a>
+                    <a href="Report-Custom-Person.aspx"><img src="Image/Small/report.png" />ออกรายงานพัฒนาบุคลากร</a>
                 </div>
                 <div class="master_sidebar_group">
                     <span class="master_sidebar_group_header">การขึ้นเงินเดือน</span>
@@ -125,11 +115,9 @@
                     <a href="LeaveAllow.aspx"><img src="Image/Small/correct.png" />อนุมัติการลา<asp:Label ID="lbLeaveAllowCount" runat="server" Text="ทดสอบ" CssClass="master_text_alert"></asp:Label></a>
                     <a href="LeaveHistory.aspx"><img src="Image/Small/table.png" />ประวัติการลา</a>
                     <a href="LeaveClaim.aspx"><img src="Image/Small/statistic.png" />สิทธิการลา</a>
-                    <a href="WorkingTime.aspx"><img src="Image/Small/add.png" />เพิ่มการเข้างาน</a>
-
-                    <a href="Study-IN.aspx"><img src="Image/Small/table.png" />ศึกษาต่อ</a>
-                    <a href="Leave-Report1.aspx"><img src="Image/Small/table.png" />ออกรายงานการลา</a>
-                    <a href="Study-Report1.aspx"><img src="Image/Small/table.png" />ออกรายงานการลาศึกษาต่อ</a>
+                    <a href="WorkingTime.aspx"><img src="Image/Small/clock.png" />เพิ่มเวลาปฏิบัติงาน</a>
+                    <a href="WorkingTimeHistory.aspx"><img src="Image/Small/table.png" />ประวัติเวลาปฏิบัติงาน</a>
+                    <a href="Leave-Report1.aspx"><img src="Image/Small/report.png" />ออกรายงานการลา</a>
                 </div>
 
                 <div class="master_sidebar_group">
@@ -146,8 +134,9 @@
 
                 <div class="master_sidebar_group">
                     <span class="master_sidebar_group_header">ผู้ดูแลระบบ</span>
-                    <a href="DataManager.aspx"><img src="Image/Small/table.png" />จัดการข้อมูล Drop-down List</a>
+                    <a href="DataManager.aspx"><img src="Image/Small/wrench.png" />จัดการข้อมูล Dropdown</a>
                     <a href="Developer.aspx"><img src="Image/Small/table.png" />DEVELOPER ZONE</a>
+                    <a href="UploadList.aspx"><img src="Image/Small/table.png" />Upload List</a>
                 </div>
 
 

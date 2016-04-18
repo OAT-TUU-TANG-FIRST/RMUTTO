@@ -17,7 +17,7 @@ namespace WEB_PERSONAL {
 
         protected void Page_Load(object sender, EventArgs e) {
             if (!IsPostBack) {
-                DatabaseManager.BindDropDown(ddlLeaveType, "SELECT * FROM LEV_TYPE", "LEAVE_TYPE_NAME", "LEAVE_TYPE_ID", "-- กรุณาเลือกประเภทการลา --");
+                //DatabaseManager.BindDropDown(ddlLeaveType, "SELECT * FROM LEV_TYPE", "LEAVE_TYPE_NAME", "LEAVE_TYPE_ID", "-- กรุณาเลือกประเภทการลา --");
             }
         }
 
@@ -89,7 +89,11 @@ namespace WEB_PERSONAL {
                 lbF1S2Reason.Text = tbF1S1Reason.Text;
                 lbF1S2Contact.Text = tbF1S1Contact.Text;
                 lbF1S2Phone.Text = tbF1S1Phone.Text;
-
+                if(FileUpload1.HasFile) {
+                    lbF1S2DrCer.Text = "มี";
+                } else {
+                    lbF1S2DrCer.Text = "ไม่มี";
+                }
 
 
 
@@ -105,7 +109,12 @@ namespace WEB_PERSONAL {
                 sql2 = string.Format(sql2, "SEQ_LEV_FORM1_ID.NEXTVAL", "{0}", Util.DatabaseToDate(tbF1S1FromDate.Text), Util.DatabaseToDate(tbF1S1ToDate.Text), totalDay, tbF1S1Reason.Text, tbF1S1Contact.Text, tbF1S1Phone.Text, loginPerson.PositionName, loginPerson.AdminPositionName, loginPerson.DepartmentName, Util.DatabaseToDate(lastFromDate), Util.DatabaseToDate(lastToDate), lastTotalDay, loginPerson.TitleName, loginPerson.FirstName, loginPerson.LastName, "1111111111111", cmdLowPerson.PositionName, cmdLowPerson.TitleName, cmdLowPerson.FirstName, cmdLowPerson.LastName, "1111111111112", cmdHighPerson.PositionName, cmdHighPerson.TitleName, cmdHighPerson.FirstName, cmdHighPerson.LastName);
                 hfSql2.Value = sql2;
 
-                TextBox56.Text += sql1 + System.Environment.NewLine + sql2;
+                if(FileUpload1.HasFile) {
+                    FileUpload1.SaveAs(Server.MapPath("Upload/" + FileUpload1.FileName));
+                }
+                
+
+                //TextBox56.Text += sql1 + System.Environment.NewLine + sql2;
 
                 /*string sql = "INSERT INTO LEV_FORM1 (LEAVE_ID, CITIZEN_ID, REQ_DATE, LEAVE_TYPE_ID, FROM_DATE, TO_DATE, TOTAL_DAY, REASON, CONTACT, PHONE, STATE_ID) VALUES (SEQ_LEV_FORM1_ID.NEXTVAL, '{0}', {1}, {2}, {3}, {4}, {5}, '{6}', '{7}', '{8}', {9})";
                 hfSql.Value = string.Format(sql, loginPerson.CitizenID, Util.TodayDatabaseToDate(), ddlLeaveType.SelectedValue, Util.DatabaseToDate(tbF1S1FromDate.Text), Util.DatabaseToDate(tbF1S1ToDate.Text), totalDay, lbF1S2Reason.Text, lbF1S2Contact.Text, lbF1S2Phone.Text, 1);
@@ -499,27 +508,27 @@ namespace WEB_PERSONAL {
                     ChangeNotification("info", "กรุณากรอกข้อมูล");
                     break;
                 case "2":
-                    MultiView1.ActiveViewIndex = 0;
-                    ChangeNotification("info", "กรุณากรอกข้อมูล");
-                    break;
-                case "3":
-                    MultiView1.ActiveViewIndex = 0;
-                    ChangeNotification("info", "กรุณากรอกข้อมูล");
-                    break;
-                case "4":
-                    MultiView1.ActiveViewIndex = 4;
-                    ChangeNotification("info", "กรุณากรอกข้อมูล");
-                    break;
-                case "5":
                     MultiView1.ActiveViewIndex = 2;
                     ChangeNotification("info", "กรุณากรอกข้อมูล");
                     break;
-                case "6":
+                case "3":
+                    MultiView1.ActiveViewIndex = 4;
+                    ChangeNotification("info", "กรุณากรอกข้อมูล");
+                    break;
+                case "4":
                     MultiView1.ActiveViewIndex = 6;
                     ChangeNotification("info", "กรุณากรอกข้อมูล");
                     break;
-                case "7":
+                case "5":
                     MultiView1.ActiveViewIndex = 8;
+                    ChangeNotification("info", "กรุณากรอกข้อมูล");
+                    break;
+                case "6":
+                    MultiView1.ActiveViewIndex = 10;
+                    ChangeNotification("info", "กรุณากรอกข้อมูล");
+                    break;
+                case "7":
+                    MultiView1.ActiveViewIndex = 12;
                     ChangeNotification("info", "กรุณากรอกข้อมูล");
                     break;
                 case "8":
@@ -589,7 +598,74 @@ namespace WEB_PERSONAL {
             F7S1Table2.Style.Add("display", "block");
         }
 
+        protected void lbuVX21Next_Click(object sender, EventArgs e) {
+            if (tbVX21FromDate.Text == "" ||
+                tbVX21ToDate.Text == "" ||
+                tbVX21Reason.Text == "" ||
+                tbVX21Contact.Text == "" ||
+                tbVX21Phone.Text == "" ||
+                !Util.IsDateValid(tbVX21FromDate.Text) ||
+                !Util.IsDateValid(tbVX21ToDate.Text)) {
+                ChangeNotification("danger", "<img src='Image/Small/red_alert.png' style='padding-right: 10px;'></img><strong>เกิดข้อผิดพลาด!</strong><br>");
+                if (tbVX21FromDate.Text == "") {
+                    AddNotification("<div class='hm_tab'></div>- กรุณากรอก <strong>จากวันที่</strong><br>");
+                } else if (!Util.IsDateValid(tbVX21FromDate.Text)) {
+                    AddNotification("<div class='hm_tab'></div>- <strong>จากวันที่</strong> ไม่ถูกต้อง<br>");
+                }
+                if (tbVX21ToDate.Text == "") {
+                    AddNotification("<div class='hm_tab'></div>- กรุณากรอก <strong>ถึงวันที่</strong><br>");
+                } else if (!Util.IsDateValid(tbVX21ToDate.Text)) {
+                    AddNotification("<div class='hm_tab'></div>- <strong>ถึงวันที่</strong> ไม่ถูกต้อง<br>");
+                }
+                if (tbVX21Reason.Text == "") {
+                    AddNotification("<div class='hm_tab'></div>- กรุณากรอก <strong>เหตุผล</strong><br>");
+                }
+                if (tbVX21Contact.Text == "") {
+                    AddNotification("<div class='hm_tab'></div>- กรุณากรอก <strong>ติดต่อได้ที่</strong><br>");
+                }
+                if (tbVX21Phone.Text == "") {
+                    AddNotification("<div class='hm_tab'></div>- กรุณากรอก <strong>เบอร์โทรศัพท์</strong><br>");
+                }
+            } else {
+                MultiView1.ActiveViewIndex = 3;
+                ChangeNotification("info", "กรุณายืนยันข้อมูลอีกครั้ง");
 
+                PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
+                Person loginPerson = ps.LoginPerson;
+
+                lbVX22LeaveType.Text = "ลากิจ";
+
+                lbVX22Name.Text = loginPerson.FullName;
+                lbVX22Position.Text = loginPerson.PositionName;
+                lbVX22Rank.Text = loginPerson.RankName;
+                lbVX22Dept.Text = loginPerson.DepartmentName;
+
+                
+                DateTime dtFromDate = Util.ToDateTime(tbVX21FromDate.Text);
+                DateTime dtToDate = Util.ToDateTime(tbVX21ToDate.Text);
+                
+
+                int totalDay = (int)(dtToDate - dtFromDate).TotalDays + 1;
+                lbVX22Date.Text = tbVX21FromDate.Text + " - " + tbVX21ToDate.Text + " รวม " + totalDay + " วัน";
+
+                lbVX22Reason.Text = tbVX21Reason.Text;
+                lbVX22Contact.Text = tbVX21Contact.Text;
+                lbVX22Phone.Text = tbVX21Phone.Text;
+
+                //string sql = "INSERT INTO LEV_LEAVE (LEAVE_ID, CITIZEN_ID, REQ_DATE, LEAVE_TYPE_ID, FROM_DATE, TO_DATE, TOTAL_DAY, REASON, CONTACT, PHONE, STATE_ID) VALUES (SEQ_LEAVE_ID.NEXTVAL, '{0}', {1}, {2}, {3}, {4}, {5}, '{6}', '{7}', '{8}', {9})";
+                //hfSql.Value = string.Format(sql, loginPerson.CitizenID, Util.TodayDatabaseToDate(), ddlLeaveType.SelectedValue, Util.DatabaseToDate(tbF1S1FromDate.Text), Util.DatabaseToDate(tbF1S1ToDate.Text), totalDay, lbF1S2Reason.Text, lbF1S2Contact.Text, lbF1S2Phone.Text, 1);
+                
+            }
+        }
+
+        protected void lbuVX22Back_Click(object sender, EventArgs e) {
+            MultiView1.ActiveViewIndex = 2;
+            ChangeNotification("info", "กรุณากรอกข้อมูล");
+        }
+
+        protected void lbuVX22Finish_Click(object sender, EventArgs e) {
+
+        }
     }
 
 }
