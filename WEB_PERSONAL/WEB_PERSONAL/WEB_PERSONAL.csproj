@@ -110,6 +110,7 @@
     <Content Include="AAA.aspx" />
     <Content Include="About.aspx" />
     <Content Include="Access.aspx" />
+    <Content Include="AddPerson-Edit.aspx" />
     <Content Include="AddPerson.aspx" />
     <Content Include="AdminPosition-ADMIN.aspx" />
     <Content Include="Amphur-ADMIN.aspx" />
@@ -943,9 +944,7 @@
     <Content Include="Font\THSarabun BoldItalic.ttf" />
     <Content Include="Font\THSarabun Italic.ttf" />
     <Content Include="Font\THSarabun.ttf" />
-    <Content Include="Person-ADMIN.aspx" />
     <Content Include="Person-Detail.aspx" />
-    <Content Include="Person-FormatPrint.aspx" />
     <Content Include="personalDataSet.xsc">
       <DependentUpon>personalDataSet.xsd</DependentUpon>
     </Content>
@@ -969,7 +968,6 @@
     <Content Include="TeachISCED-ADMIN.aspx" />
     <Content Include="TestOutput.aspx" />
     <Content Include="TimeContact-ADMIN.aspx" />
-    <Content Include="UNIVERSITY-ADMIN.aspx" />
     <Content Include="UploadList.aspx" />
     <Content Include="ViewLeaveForm.aspx" />
     <Content Include="WorkingTime.aspx" />
@@ -1044,6 +1042,13 @@
     </Compile>
     <Compile Include="Access.aspx.designer.cs">
       <DependentUpon>Access.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddPerson-Edit.aspx.cs">
+      <DependentUpon>AddPerson-Edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddPerson-Edit.aspx.designer.cs">
+      <DependentUpon>AddPerson-Edit.aspx</DependentUpon>
     </Compile>
     <Compile Include="AddPerson.aspx.cs">
       <DependentUpon>AddPerson.aspx</DependentUpon>
@@ -1144,7 +1149,6 @@
     <Compile Include="Entities\Tuu.cs" />
     <Compile Include="Entities\Ministry.cs" />
     <Compile Include="Entities\Personnel.cs" />
-    <Compile Include="Entities\Person.cs" />
     <Compile Include="Entities\Seminar.cs" />
     <Compile Include="Entities\Manage.cs" />
     <Compile Include="Error-Member.aspx.cs">
@@ -1385,26 +1389,12 @@
     <Compile Include="National-ADMIN.aspx.designer.cs">
       <DependentUpon>National-ADMIN.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Person-ADMIN.aspx.cs">
-      <DependentUpon>Person-ADMIN.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Person-ADMIN.aspx.designer.cs">
-      <DependentUpon>Person-ADMIN.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Person-Detail.aspx.cs">
       <DependentUpon>Person-Detail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Person-Detail.aspx.designer.cs">
       <DependentUpon>Person-Detail.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Person-FormatPrint.aspx.cs">
-      <DependentUpon>Person-FormatPrint.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Person-FormatPrint.aspx.designer.cs">
-      <DependentUpon>Person-FormatPrint.aspx</DependentUpon>
     </Compile>
     <Compile Include="personalDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1600,12 +1590,6 @@
     </Compile>
     <Compile Include="Salary.aspx.designer.cs">
       <DependentUpon>Salary.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UNIVERSITY-ADMIN.aspx.cs">
-      <DependentUpon>UNIVERSITY-ADMIN.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UNIVERSITY-ADMIN.aspx.designer.cs">
-      <DependentUpon>UNIVERSITY-ADMIN.aspx</DependentUpon>
     </Compile>
     <Compile Include="UploadList.aspx.cs">
       <DependentUpon>UploadList.aspx</DependentUpon>
