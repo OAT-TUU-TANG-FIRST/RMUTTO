@@ -1047,7 +1047,7 @@ namespace WEB_PERSONAL
                             command.Parameters.Add(new OracleParameter("PS_COUNTRY_ID", GridViewStudy.Rows[i].Cells[8].Text));
                             id = command.ExecuteNonQuery();
                         }
-
+                         
                         catch (Exception ex)
                         {
                             throw ex;
