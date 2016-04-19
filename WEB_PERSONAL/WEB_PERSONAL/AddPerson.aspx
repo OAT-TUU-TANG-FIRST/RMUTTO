@@ -436,10 +436,18 @@
 
                     <asp:UpdatePanel ID="UpdateGridViewStudy" runat="server">
                         <ContentTemplate>
-                            <asp:GridView ID="GridViewStudy" runat="server" Width="100%"></asp:GridView>
+                            <asp:GridView ID="GridViewStudy" runat="server" Width="100%" Visible="false"></asp:GridView>
                         </ContentTemplate>
                         <Triggers>
                             <asp:AsyncPostBackTrigger ControlID="GridViewStudy" />
+                        </Triggers>
+                    </asp:UpdatePanel>
+                    <asp:UpdatePanel ID="UpdateGridViewStudyShow" runat="server">
+                        <ContentTemplate>
+                            <asp:GridView ID="GridViewStudyShow" runat="server" Width="100%"></asp:GridView>
+                        </ContentTemplate>
+                        <Triggers>
+                            <asp:AsyncPostBackTrigger ControlID="GridViewStudyShow" />
                         </Triggers>
                     </asp:UpdatePanel>
 
@@ -635,10 +643,18 @@
 
                     <asp:UpdatePanel ID="UpdateGridViewTraining" runat="server">
                         <ContentTemplate>
-                            <asp:GridView ID="GridViewTraining" runat="server" Width="70%"></asp:GridView>
+                            <asp:GridView ID="GridViewTraining" runat="server" Width="70%" Visible="false"></asp:GridView>
                         </ContentTemplate>
                         <Triggers>
                             <asp:AsyncPostBackTrigger ControlID="GridViewTraining" />
+                        </Triggers>
+                    </asp:UpdatePanel>
+                    <asp:UpdatePanel ID="UpdateGridViewTrainingShow" runat="server">
+                        <ContentTemplate>
+                            <asp:GridView ID="GridViewTrainingShow" runat="server" Width="70%"></asp:GridView>
+                        </ContentTemplate>
+                        <Triggers>
+                            <asp:AsyncPostBackTrigger ControlID="GridViewTrainingShow" />
                         </Triggers>
                     </asp:UpdatePanel>
 
@@ -752,13 +768,21 @@
 
                         </tr>
                     </table>
-
+                 
                     <asp:UpdatePanel ID="UpdateGridViewPAS" runat="server">
                         <ContentTemplate>
-                            <asp:GridView ID="GridViewPAS" runat="server" Width="100%"></asp:GridView>
+                            <asp:GridView ID="GridViewPAS" runat="server" Width="100%" Visible="false"></asp:GridView>
                         </ContentTemplate>
                         <Triggers>
                             <asp:AsyncPostBackTrigger ControlID="GridViewPAS" />
+                        </Triggers>
+                    </asp:UpdatePanel>
+                    <asp:UpdatePanel ID="UpdateGridViewPASShow" runat="server">
+                        <ContentTemplate>
+                            <asp:GridView ID="GridViewPASShow" runat="server" Width="100%"></asp:GridView>
+                        </ContentTemplate>
+                        <Triggers>
+                            <asp:AsyncPostBackTrigger ControlID="GridViewPASShow" />
                         </Triggers>
                     </asp:UpdatePanel>
                 <div>

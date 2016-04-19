@@ -1057,6 +1057,24 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.GridView GridViewStudy;
         
         /// <summary>
+        /// UpdateGridViewStudyShow control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdateGridViewStudyShow;
+        
+        /// <summary>
+        /// GridViewStudyShow control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridViewStudyShow;
+        
+        /// <summary>
         /// lbuV3Back control.
         /// </summary>
         /// <remarks>
@@ -1561,6 +1579,24 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.GridView GridViewTraining;
         
         /// <summary>
+        /// UpdateGridViewTrainingShow control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdateGridViewTrainingShow;
+        
+        /// <summary>
+        /// GridViewTrainingShow control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridViewTrainingShow;
+        
+        /// <summary>
         /// lbuV6Back control.
         /// </summary>
         /// <remarks>
@@ -1865,6 +1901,24 @@ namespace WEB_PERSONAL {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridViewPAS;
+        
+        /// <summary>
+        /// UpdateGridViewPASShow control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdateGridViewPASShow;
+        
+        /// <summary>
+        /// GridViewPASShow control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridViewPASShow;
         
         /// <summary>
         /// lbuV8Back control.

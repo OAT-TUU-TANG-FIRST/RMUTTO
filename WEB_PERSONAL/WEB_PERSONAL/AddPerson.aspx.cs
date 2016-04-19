@@ -71,6 +71,18 @@ namespace WEB_PERSONAL
                 ((DataTable)(Session["Study"])).Columns.Add("ประเทศที่จบ");
                 GridViewStudy.DataSource = ((DataTable)(Session["Study"]));
                 GridViewStudy.DataBind();
+                Session["StudyShow"] = new DataTable();
+                ((DataTable)(Session["StudyShow"])).Columns.Add("ระดับการศึกษา");
+                ((DataTable)(Session["StudyShow"])).Columns.Add("สถานศึกษา");
+                ((DataTable)(Session["StudyShow"])).Columns.Add("ตั้งแต่ (เดือน)");
+                ((DataTable)(Session["StudyShow"])).Columns.Add("ตั้งแต่ (ปี)");
+                ((DataTable)(Session["StudyShow"])).Columns.Add("ถึง (เดือน)");
+                ((DataTable)(Session["StudyShow"])).Columns.Add("ถึง (ปี)");
+                ((DataTable)(Session["StudyShow"])).Columns.Add("วุฒิ");
+                ((DataTable)(Session["StudyShow"])).Columns.Add("สาขาวิชาเอก");
+                ((DataTable)(Session["StudyShow"])).Columns.Add("ประเทศที่จบ");
+                GridViewStudyShow.DataSource = ((DataTable)(Session["StudyShow"]));
+                GridViewStudyShow.DataBind();
 
                 Session["ProLisence"] = new DataTable();
                 ((DataTable)(Session["ProLisence"])).Columns.Add("ชื่อใบอนุญาต");
@@ -89,6 +101,15 @@ namespace WEB_PERSONAL
                 ((DataTable)(Session["Trainning"])).Columns.Add("หน่วยงานที่จัดฝึกอบรม");
                 GridViewTraining.DataSource = ((DataTable)(Session["Trainning"]));
                 GridViewTraining.DataBind();
+                Session["TrainningShow"] = new DataTable();
+                ((DataTable)(Session["TrainningShow"])).Columns.Add("หลักสูตรฝึกอบรม");
+                ((DataTable)(Session["TrainningShow"])).Columns.Add("ตั้งแต่ (เดือน)");
+                ((DataTable)(Session["TrainningShow"])).Columns.Add("ตั้งแต่ (ปี)");
+                ((DataTable)(Session["TrainningShow"])).Columns.Add("ถึง (เดือน)");
+                ((DataTable)(Session["TrainningShow"])).Columns.Add("ถึง (ปี)");
+                ((DataTable)(Session["TrainningShow"])).Columns.Add("หน่วยงานที่จัดฝึกอบรม");
+                GridViewTrainingShow.DataSource = ((DataTable)(Session["TrainningShow"]));
+                GridViewTrainingShow.DataBind();
 
                 Session["DDA"] = new DataTable();
                 ((DataTable)(Session["DDA"])).Columns.Add("พ.ศ.");
@@ -108,6 +129,17 @@ namespace WEB_PERSONAL
                 ((DataTable)(Session["PAS"])).Columns.Add("เอกสารอ้างอิง");
                 GridViewPAS.DataSource = ((DataTable)(Session["PAS"]));
                 GridViewPAS.DataBind();
+                Session["PASShow"] = new DataTable();
+                ((DataTable)(Session["PASShow"])).Columns.Add("วัน เดือน ปี");
+                ((DataTable)(Session["PASShow"])).Columns.Add("ตำแหน่ง");
+                ((DataTable)(Session["PASShow"])).Columns.Add("เลขที่ตำแหน่ง");
+                ((DataTable)(Session["PASShow"])).Columns.Add("ตำแหน่งประเภท");
+                ((DataTable)(Session["PASShow"])).Columns.Add("ระดับ");
+                ((DataTable)(Session["PASShow"])).Columns.Add("เงินเดือน");
+                ((DataTable)(Session["PASShow"])).Columns.Add("เงินประจำตำแหน่ง");
+                ((DataTable)(Session["PASShow"])).Columns.Add("เอกสารอ้างอิง");
+                GridViewPASShow.DataSource = ((DataTable)(Session["PASShow"]));
+                GridViewPASShow.DataBind();
             }
         }
         private void BindProvinceList()
@@ -580,6 +612,17 @@ namespace WEB_PERSONAL
             }
             */
             MultiView1.ActiveViewIndex = 1;
+            //Util.SendMail();
+           // PS_PERSON P0 = new PS_PERSON();
+            //P0.PS_BIRTHDAY_DATE = Util.DatabaseToDate(tbBirthday.Text);
+            //P0.PS_BIRTHDAY_LONG = Util.ToThaiWordBirthday(tbBirthday.Text);
+
+           // P0.PS_INWORK_DATE = Util.DatabaseToDate(tbDateInwork.Text);
+            //P0.PS_RETIRE_DATE = Util.DatabaseToDate(Util.BirthdayToRetireDate(tbBirthday.Text));
+            //P0.PS_RETIRE_LONG = Util.ToThaiWordRetire(tbBirthday.Text);
+            ////P0.INSERT_PS_PERSON();
+            //tbHomeAdd.Text = P0.PS_BIRTHDAY_LONG;
+            //tbSoi.Text = P0.PS_RETIRE_LONG;
         }
 
         protected void lbuV2Back_Click(object sender, EventArgs e)
@@ -958,8 +1001,8 @@ namespace WEB_PERSONAL
             P0.PS_LN_TH = tbLastNameTH.Text;
             P0.PS_LN_EN = tbLastNameEN.Text;
             P0.PS_GENDER_ID = Convert.ToInt32(ddlGender.SelectedValue);
-            P0.PS_BIRTHDAY_DATE = Util.ToDateTime(tbBirthday.Text);
-            P0.PS_BIRTHDAY_LONG = Util.ToThaiWord(tbBirthday.Text);
+            P0.PS_BIRTHDAY_DATE = Util.ODT(tbBirthday.Text);
+            P0.PS_BIRTHDAY_LONG = Util.ToThaiWordBirthday(tbBirthday.Text);
             P0.PS_RACE_ID = Convert.ToInt32(ddlRace.SelectedValue);
             P0.PS_NATION_ID = ddlNation.SelectedValue;
             P0.PS_BLOOD_ID = Convert.ToInt32(ddlBlood.SelectedValue);
@@ -1007,19 +1050,16 @@ namespace WEB_PERSONAL
             P0.PS_ADMIN_POS_ID = ddlAdminPosition.SelectedValue;
             P0.PS_WORK_POS_ID = Convert.ToInt32(ddlPositionWork.SelectedValue);
             P0.PS_ACAD_POS_ID = Convert.ToInt32(ddlAcademic.SelectedValue);
-            P0.PS_INWORK_DATE = Util.ToDateTime(tbDateInwork.Text);
-            P0.PS_RETIRE_DATE = Util.ToDateTime(tbBirthday.Text);
-            P0.PS_RETIRE_LONG = Util.ToThaiWord(tbBirthday.Text);
+            P0.PS_INWORK_DATE = Util.ODT(tbDateInwork.Text);
+            P0.PS_RETIRE_DATE = Util.ODT(Util.BirthdayToRetireDate(tbBirthday.Text));
+            P0.PS_RETIRE_LONG = Util.ToThaiWordRetire(tbBirthday.Text);
             P0.PS_SPECIAL_WORK = tbSpecialWork.Text;
             P0.PS_TEACH_ISCED_ID = ddlTeachISCED.SelectedValue;
-            P0.PS_PASSWORD = "1234";
+            P0.PS_PASSWORD = Util.RandomPassword(8);
             P0.INSERT_PS_PERSON();
-             
-            Response.Redirect("access.aspx");
-            notification.Attributes["class"] = "alert alert_success";
-            notification.InnerHtml = "";
-            notification.InnerHtml += "<div><img src='Image/Small/correct.png' /><strong> เพิ่มข้อมูลบุคลากร เรียบร้อย</strong></div>";
+
             
+
             for (int i = 0; i < GridViewStudy.Rows.Count; ++i)
             {
                 int id = 0;
@@ -1080,7 +1120,7 @@ namespace WEB_PERSONAL
                             {
                                 ss2[j] = ss2[j].Trim();
                             }
-                            DateTime DATE_11 = new DateTime(Convert.ToInt32(ss2[2]), Util.MonthToNumber(ss2[1]), Convert.ToInt32(ss2[0]));
+                            DateTime DATE_11 = Util.ODT(GridViewLicense.Rows[i].Cells[3].Text);
 
                             command.Parameters.Add(new OracleParameter("PS_CITIZEN_ID", tbCitizenID.Text));
                             command.Parameters.Add(new OracleParameter("PS_LICENSE_NAME", GridViewLicense.Rows[i].Cells[0].Text));
@@ -1196,7 +1236,7 @@ namespace WEB_PERSONAL
                             {
                                 ss5[j] = ss5[j].Trim();
                             }
-                            DateTime DATE_11 = new DateTime(Convert.ToInt32(ss5[2]), Util.MonthToNumber(ss5[1]), Convert.ToInt32(ss5[0]));
+                            DateTime DATE_11 = Util.ODT(GridViewPAS.Rows[i].Cells[0].Text);
 
                             command.Parameters.Add(new OracleParameter("PS_CITIZEN_ID", tbCitizenID.Text));
                             command.Parameters.Add(new OracleParameter("PS_DATE", DATE_11));
@@ -1223,11 +1263,18 @@ namespace WEB_PERSONAL
                     }
                 }
             }
+
+            Util.SendMail(P0.PS_EMAIL, P0.PS_PASSWORD);
+            Response.Redirect("Default.aspx");
+            notification.Attributes["class"] = "alert alert_success";
+            notification.InnerHtml = "";
+            notification.InnerHtml += "<div><img src='Image/Small/correct.png' /><strong> เพิ่มข้อมูลบุคลากร เรียบร้อย</strong></div>";
         }
 
         protected void lbuV3Add_Click(object sender, EventArgs e)
         {
             DataRow dr = ((DataTable)(Session["Study"])).NewRow();
+            DataRow drShow = ((DataTable)(Session["StudyShow"])).NewRow();
             dr[0] = ddlDegree10.SelectedValue;
             dr[1] = tbUnivName10.Text;
             dr[2] = ddlMonth10From.SelectedValue;
@@ -1237,6 +1284,15 @@ namespace WEB_PERSONAL
             dr[6] = tbQualification10.Text;
             dr[7] = tbMajor10.Text;
             dr[8] = ddlCountrySuccess10.SelectedValue;
+            drShow[0] = ddlDegree10.SelectedItem.Text;
+            drShow[1] = tbUnivName10.Text;
+            drShow[2] = ddlMonth10From.SelectedItem.Text;
+            drShow[3] = ddlYear10From.SelectedItem.Text;
+            drShow[4] = ddlMonth10To.SelectedItem.Text;
+            drShow[5] = ddlYear10To.SelectedItem.Text;
+            drShow[6] = tbQualification10.Text;
+            drShow[7] = tbMajor10.Text;
+            drShow[8] = ddlCountrySuccess10.SelectedItem.Text;
             if (ddlDegree10.SelectedIndex == 0 || tbUnivName10.Text == "" || ddlMonth10From.SelectedIndex == 0 || ddlYear10From.SelectedIndex == 0 || ddlMonth10To.SelectedIndex == 0 || ddlYear10To.SelectedIndex == 0 || tbQualification10.Text == "" || tbMajor10.Text == "" || ddlCountrySuccess10.SelectedIndex == 0)
             {
                 notification.Attributes["class"] = "alert alert_danger";
@@ -1270,8 +1326,11 @@ namespace WEB_PERSONAL
             }
             else {
                 ((DataTable)(Session["Study"])).Rows.Add(dr);
+                ((DataTable)(Session["StudyShow"])).Rows.Add(drShow);
                 GridViewStudy.DataSource = ((DataTable)(Session["Study"]));
                 GridViewStudy.DataBind();
+                GridViewStudyShow.DataSource = ((DataTable)(Session["StudyShow"]));
+                GridViewStudyShow.DataBind();
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('เพิ่มข้อมูลประวัติการศึกษาเรียบร้อย')", true);
                 notification.Attributes["class"] = "none";
                 notification.InnerHtml = "";
@@ -1321,12 +1380,19 @@ namespace WEB_PERSONAL
         protected void lbuV6Add_Click(object sender, EventArgs e)
         {
             DataRow dr = ((DataTable)(Session["Trainning"])).NewRow();
+            DataRow drShow = ((DataTable)(Session["TrainningShow"])).NewRow();
             dr[0] = tbCourse.Text;
             dr[1] = ddlMonth12From.SelectedValue;
             dr[2] = ddlYear12From.SelectedValue;
             dr[3] = ddlMonth12To.SelectedValue;
             dr[4] = ddlYear12To.SelectedValue;
             dr[5] = tbDepartment.Text;
+            drShow[0] = tbCourse.Text;
+            drShow[1] = ddlMonth12From.SelectedItem.Text;
+            drShow[2] = ddlYear12From.SelectedItem.Text;
+            drShow[3] = ddlMonth12To.SelectedItem.Text;
+            drShow[4] = ddlYear12To.SelectedItem.Text;
+            drShow[5] = tbDepartment.Text;
             if (tbCourse.Text == "" || ddlMonth12From.SelectedIndex == 0 || ddlYear12From.SelectedIndex == 0 || ddlMonth12To.SelectedIndex == 0 || ddlYear12To.SelectedIndex == 0 || tbDepartment.Text == "")
             {
                 notification.Attributes["class"] = "alert alert_danger";
@@ -1350,6 +1416,9 @@ namespace WEB_PERSONAL
                     ((DataTable)(Session["Trainning"])).Rows.Add(dr);
                     GridViewTraining.DataSource = ((DataTable)(Session["Trainning"]));
                     GridViewTraining.DataBind();
+                    ((DataTable)(Session["TrainningShow"])).Rows.Add(drShow);
+                    GridViewTrainingShow.DataSource = ((DataTable)(Session["TrainningShow"]));
+                    GridViewTrainingShow.DataBind();
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('เพิ่มข้อมูลประวัติการฝึกอบรมเรียบร้อย')", true);
                     notification.Attributes["class"] = "none";
                     notification.InnerHtml = "";
@@ -1394,14 +1463,23 @@ namespace WEB_PERSONAL
         protected void lbuV8Add_Click(object sender, EventArgs e)
         {
             DataRow dr = ((DataTable)(Session["PAS"])).NewRow();
+            DataRow drShow = ((DataTable)(Session["PASShow"])).NewRow();
             dr[0] = tbDate14.Text;
             dr[1] = tbPosition14.Text;
             dr[2] = tbPositionNo14.Text;
             dr[3] = ddlPositionType14.SelectedValue;
-            dr[4] = ddlPositionDegree14.Text;
+            dr[4] = ddlPositionDegree14.SelectedValue;
             dr[5] = tbSalary14.Text;
             dr[6] = tbSalaryPosition14.Text;
             dr[7] = tbRef14.Text;
+            drShow[0] = tbDate14.Text;
+            drShow[1] = tbPosition14.Text;
+            drShow[2] = tbPositionNo14.Text;
+            drShow[3] = ddlPositionType14.SelectedItem.Text;
+            drShow[4] = ddlPositionDegree14.SelectedItem.Text;
+            drShow[5] = tbSalary14.Text;
+            drShow[6] = tbSalaryPosition14.Text;
+            drShow[7] = tbRef14.Text;
             if (tbDate14.Text == "" || tbPosition14.Text == "" || tbPositionNo14.Text == "" || ddlPositionType14.SelectedIndex == 0 || ddlPositionDegree14.SelectedIndex == 0 || tbSalary14.Text == "" || tbSalaryPosition14.Text == "" || tbRef14.Text == "")
             {
                 notification.Attributes["class"] = "alert alert_danger";
@@ -1446,6 +1524,9 @@ namespace WEB_PERSONAL
                     ((DataTable)(Session["PAS"])).Rows.Add(dr);
                     GridViewPAS.DataSource = ((DataTable)(Session["PAS"]));
                     GridViewPAS.DataBind();
+                    ((DataTable)(Session["PASShow"])).Rows.Add(drShow);
+                    GridViewPASShow.DataSource = ((DataTable)(Session["PASShow"]));
+                    GridViewPASShow.DataBind();
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('เพิ่มข้อมูลตำแหน่งและเงินเดือนเรียบร้อย')", true);
                     notification.Attributes["class"] = "none";
                     notification.InnerHtml = "";

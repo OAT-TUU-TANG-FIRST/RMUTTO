@@ -9,6 +9,8 @@ using System.Data.OleDb;
 using WEB_PERSONAL.Class;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
+using System.Net;
+using System.Net.Mail;
 
 namespace WEB_PERSONAL
 {
@@ -65,7 +67,7 @@ namespace WEB_PERSONAL
             }
             string d1 = ss[0] + "/" + ss[1] + "/" + ss[2];
 
-            return DateTime.ParseExact(d1, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            return DateTime.ParseExact(d1, "dd/MM/yyyy", CultureInfo.CurrentCulture);
         }
         public static DateTime ODTT()
         {
@@ -465,6 +467,60 @@ namespace WEB_PERSONAL
                 }
 
             }
+        }
+        public static string BirthdayToRetireDate(string birthday) {
+            string[] ss = birthday.Split(' ');
+            return "30 ก.ย. " + (int.Parse(ss[2]) + 60);
+        }
+        public static string MinusYear543(string date) {
+            string[] ss = date.Split(' ');
+            return ss[0] + " " + ss[1] + " " + (int.Parse(ss[2]) - 543);
+        }
+        public static string ToThaiWordBirthday(string birthday) {
+            return ToThaiWord(MinusYear543(birthday));
+        }
+        public static string ToThaiWordRetire(string birthday) {
+            return ToThaiWord(MinusYear543(BirthdayToRetireDate(birthday)));
+        }
+        
+        public static string RandomPassword(int n) {
+            Random r = new Random();
+            string password = "";
+            for(int i=0; i<n; ++i) {
+                password += r.Next(10);
+            }
+            return password;
+        }
+        public static void SendMail(string toEmail, string password) {
+            var fromAddress = new MailAddress("zplaygiirlz1@hotmail.com", "From Name");
+            var toAddress = new MailAddress(toEmail, "To Name");
+            string fromPassword = "A1a2a3a4a5a6a7a8";
+            string subject = "Your registered successful for this site personnel.rmutto.ac.th";
+            string body = "<div>PASSWORD : " + password + "</div>" +
+                "<div><a href='http://localhost:65308/Default.aspx'>Change Your Password</a></div>" +
+                "<div style='background-color: #00a2e8'; color: #ffffff;>5555+</div>";
+
+            var smtp = new SmtpClient {
+                Host = "smtp.live.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+            };
+            MailMessage ms = new MailMessage(fromAddress, toAddress);
+            ms.IsBodyHtml = true;
+            ms.Subject = subject;
+            ms.Body = body;
+            smtp.Send(ms);
+
+            /*using (var message = new MailMessage(fromAddress, toAddress) {
+                message.IsBodyHtml = true,
+                Subject = subject,
+                Body = body
+            }) {
+                smtp.Send(message);
+            }*/
         }
     }
 

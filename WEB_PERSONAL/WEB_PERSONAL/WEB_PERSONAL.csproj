@@ -741,6 +741,7 @@
     <Content Include="District-ADMIN.aspx" />
     <Content Include="Entities\Virus.mp3" />
     <Content Include="Faculty-ADMIN.aspx" />
+    <Content Include="Global.asax" />
     <Content Include="GradCountry-ADMIN.aspx" />
     <Content Include="GradISCED-ADMIN.aspx" />
     <Content Include="GradLev-ADMIN.aspx" />
@@ -793,6 +794,7 @@
     <Content Include="Image\Small\paper.png" />
     <Content Include="Image\Small\pencil_y.png" />
     <Content Include="Image\Small\red_alert.png" />
+    <Content Include="Image\Small\search.png" />
     <Content Include="Image\Small\statistic.png" />
     <Content Include="Image\Small\table.png" />
     <Content Include="Image\Small\unlock.png" />
@@ -1171,6 +1173,9 @@
     </Compile>
     <Compile Include="Gender-ADMIN.aspx.designer.cs">
       <DependentUpon>Gender-ADMIN.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="GradCountry-ADMIN.aspx.cs">
       <DependentUpon>GradCountry-ADMIN.aspx</DependentUpon>
