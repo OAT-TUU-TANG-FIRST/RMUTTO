@@ -13,12 +13,16 @@ namespace WEB_PERSONAL {
         protected void Page_Load(object sender, EventArgs e) {
             if(!IsPostBack) {
                 
-                if(Request.QueryString["ID"] != null && Request.QueryString["Password"] != null) {
+                if(Request.QueryString["ID"] != null && Request.QueryString["Password"] != null && Request.QueryString["Action"] != null) {
                     if (DatabaseManager.ValidateUser(Request.QueryString["ID"], Request.QueryString["Password"])) {
                         PersonnelSystem ps = new PersonnelSystem();
                         ps.LoginPerson = DatabaseManager.GetPerson(tbUsername.Text);
                         Session["PersonnelSystem"] = ps;
-                        Response.Redirect("Default.aspx");
+                        if(Request.QueryString["Action"] == "1") {
+                            Response.Redirect("ChangePassword.aspx");
+                        } else {
+                            Response.Redirect("Default.aspx");
+                        }
                     } else {
                         Label12X.Text = "รหัสผ่านไม่ถูกต้อง!";
                     }

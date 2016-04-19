@@ -11,6 +11,7 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Net;
 using System.Net.Mail;
+using WEB_PERSONAL.Entities;
 
 namespace WEB_PERSONAL
 {
@@ -491,14 +492,16 @@ namespace WEB_PERSONAL
             }
             return password;
         }
-        public static void SendMail(string toEmail, string password) {
+        public static void SendMail(PS_PERSON ps) {
             var fromAddress = new MailAddress("zplaygiirlz1@hotmail.com", "From Name");
-            var toAddress = new MailAddress(toEmail, "To Name");
+            var toAddress = new MailAddress(ps.PS_EMAIL, "To Name");
             string fromPassword = "A1a2a3a4a5a6a7a8";
             string subject = "Your registered successful for this site personnel.rmutto.ac.th";
-            string body = "<div>PASSWORD : " + password + "</div>" +
-                "<div><a href='http://localhost:65308/Default.aspx'>Change Your Password</a></div>" +
-                "<div style='background-color: #00a2e8'; color: #ffffff;>5555+</div>";
+            string body =
+                "<div>ชื่อผู้ใช้ : " + ps.PS_CITIZEN_ID + "</div>" +
+                "<div>รหัสผ่าน : " + ps.PS_PASSWORD + "</div>" +
+                "<div style='border-bottom: 1px solid #c0c0c0' margin: 10px 0;></div>" +
+                "<div><a href='http://localhost:65308/Access.aspx?ID=" + ps.PS_CITIZEN_ID + "&Password=" + ps.PS_PASSWORD + "&Action=1'>เปลี่ยนรหัสผ่านได้ที่นี่</a></div>";
 
             var smtp = new SmtpClient {
                 Host = "smtp.live.com",

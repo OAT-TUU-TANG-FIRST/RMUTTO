@@ -1264,7 +1264,7 @@ namespace WEB_PERSONAL
                 }
             }
 
-            Util.SendMail(P0.PS_EMAIL, P0.PS_PASSWORD);
+            Util.SendMail(P0);
             Response.Redirect("Default.aspx");
             notification.Attributes["class"] = "alert alert_success";
             notification.InnerHtml = "";

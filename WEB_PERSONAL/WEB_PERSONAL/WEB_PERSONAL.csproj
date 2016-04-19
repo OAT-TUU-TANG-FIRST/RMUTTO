@@ -681,6 +681,7 @@
     <Content Include="Branch-ADMIN.aspx" />
     <Content Include="Budget-ADMIN.aspx" />
     <Content Include="Campus-ADMIN.aspx" />
+    <Content Include="ChangePassword.aspx" />
     <Content Include="CitizenDetails.aspx" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -1093,6 +1094,13 @@
     </Compile>
     <Compile Include="Campus-ADMIN.aspx.designer.cs">
       <DependentUpon>Campus-ADMIN.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ChangePassword.aspx.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ChangePassword.aspx.designer.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
     </Compile>
     <Compile Include="CitizenDetails.aspx.cs">
       <DependentUpon>CitizenDetails.aspx</DependentUpon>
