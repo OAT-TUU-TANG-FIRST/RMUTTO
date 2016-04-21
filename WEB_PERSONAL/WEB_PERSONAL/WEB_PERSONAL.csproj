@@ -742,7 +742,6 @@
     <Content Include="District-ADMIN.aspx" />
     <Content Include="Entities\Virus.mp3" />
     <Content Include="Faculty-ADMIN.aspx" />
-    <Content Include="Form4.6.1.aspx" />
     <Content Include="Global.asax" />
     <Content Include="GradCountry-ADMIN.aspx" />
     <Content Include="GradISCED-ADMIN.aspx" />
@@ -973,6 +972,8 @@
     <Content Include="TestOutput.aspx" />
     <Content Include="TimeContact-ADMIN.aspx" />
     <Content Include="UploadList.aspx" />
+    <Content Include="UpSalary70_30_1.aspx" />
+    <Content Include="UpSalary80_20_1.aspx" />
     <Content Include="ViewLeaveForm.aspx" />
     <Content Include="WorkingTime.aspx" />
     <Content Include="WorkingTimeHistory.aspx" />
@@ -1175,13 +1176,6 @@
     </Compile>
     <Compile Include="Faculty-ADMIN.aspx.designer.cs">
       <DependentUpon>Faculty-ADMIN.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Form4.6.1.aspx.cs">
-      <DependentUpon>Form4.6.1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Form4.6.1.aspx.designer.cs">
-      <DependentUpon>Form4.6.1.aspx</DependentUpon>
     </Compile>
     <Compile Include="Gender-ADMIN.aspx.cs">
       <DependentUpon>Gender-ADMIN.aspx</DependentUpon>
@@ -1618,6 +1612,20 @@
     </Compile>
     <Compile Include="UploadList.aspx.designer.cs">
       <DependentUpon>UploadList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UpSalary70_30_1.aspx.cs">
+      <DependentUpon>UpSalary70_30_1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UpSalary70_30_1.aspx.designer.cs">
+      <DependentUpon>UpSalary70_30_1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UpSalary80_20_1.aspx.cs">
+      <DependentUpon>UpSalary80_20_1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UpSalary80_20_1.aspx.designer.cs">
+      <DependentUpon>UpSalary80_20_1.aspx</DependentUpon>
     </Compile>
     <Compile Include="Util.cs" />
     <Compile Include="ViewLeaveForm.aspx.cs">

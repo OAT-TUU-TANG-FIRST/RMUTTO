@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace WEB_PERSONAL
 {
-    public partial class Form4__6__1 : System.Web.UI.Page
+    public partial class UpSalary70_30_1 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
