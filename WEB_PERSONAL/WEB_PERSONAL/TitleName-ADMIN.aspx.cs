@@ -65,21 +65,15 @@ namespace WEB_PERSONAL
 
         protected void btnSubmitTitle_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtInsertTitleID.Text))
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ รหัสคำนำหน้านาม')", true);
-                return;
-            }
             if (string.IsNullOrEmpty(txtInsertTitleName.Text))
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ ชื่อคำนำหน้านาม')", true);
                 return;
             }
             ClassTitleName t = new ClassTitleName();
-            t.TITLE_ID = Convert.ToInt32(txtInsertTitleID.Text);
             t.TITLE_NAME_TH = txtInsertTitleName.Text;
 
-            if (t.CheckUseTitleID())
+            if (t.CheckUseTitleName())
             {
                 t.InsertTitleName();
                 BindData();
@@ -88,7 +82,7 @@ namespace WEB_PERSONAL
             }
             else
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('มีรหัสคำนำหน้านามนี้ อยู่ในระบบแล้ว !')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('มีชื่อคำนำหน้านามนี้ อยู่ในระบบแล้ว !')", true);
             }
         }
 
@@ -159,7 +153,7 @@ namespace WEB_PERSONAL
 
         protected void btnSearchTitle_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtSearchTitleID.Text) && string.IsNullOrEmpty(txtSearchTitleName.Text))
+            if (string.IsNullOrEmpty(txtSearchTitleName.Text))
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก คำค้นหา')", true);
                 return;
