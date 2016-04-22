@@ -39,6 +39,8 @@
                 </tr>
             </table>
         </div>
-        <asp:GridView ID="GridView1" runat="server"></asp:GridView>
+        <div class="default_separator"></div>
+        <asp:GridView ID="GridView1" runat="server" CssClass="default_gridview"></asp:GridView>
+        <div class="default_separator"></div>
     </div>
 </asp:Content>

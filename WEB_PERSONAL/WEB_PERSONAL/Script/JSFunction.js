@@ -19,3 +19,9 @@ function reFocus(id) {
     }
 
 }
+function openPopup(a) {
+    document.getElementById(a).style.display = 'block';
+}
+function closePopup(a) {
+    document.getElementById(a).style.display = 'none';
+}

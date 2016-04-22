@@ -1,17 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="WEB_PERSONAL.Default" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link href="CSS/Default.css" rel="stylesheet" />
-    <style>
-        .col1 {
-            color: #808080;
-            padding-right: 10px;
-            text-align: right;
-        }
-        .col2 {
-            color: #000000;
-        }
-    </style>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -21,7 +11,10 @@
 
         <div class="default_header"><img src="Image/Small/home3.png"/>ยินดีต้อนรับสู่ระบบบุคลากร</div>
         <div>
-            <table>
+            <table class="default_table">
+                <tr>
+                    <td class="head" colspan="2">ข้อมูลผู้ใช้</td>
+                </tr>
                 <tr>
                     <td class="col1">ชื่อ</td>
                     <td class="col2"><asp:Label ID="lbName" runat="server" Text="-"></asp:Label></td>
@@ -41,12 +34,12 @@
             </table>
             
         </div>
-        <div style="border-bottom: 1px solid #c0c0c0; margin: 20px 0;"></div>
+        <div class="default_separator"></div>
 
         <div class="default_header"><img src="Image/Small/yellow_alert.png" />การแจ้งเตือน</div>
         <div id="notification_area" runat="server"></div>
 
-        <div style="border-bottom: 1px solid #c0c0c0; margin: 20px 0;"></div>
+        <div class="default_separator"></div>
 
     </div>
 </asp:Content>

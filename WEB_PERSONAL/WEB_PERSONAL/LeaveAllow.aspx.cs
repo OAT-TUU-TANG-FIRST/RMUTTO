@@ -34,13 +34,13 @@ namespace WEB_PERSONAL {
 
             if (count > 0) {
 
-                SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEV_MAIN.LEAVE_ID รหัสการลา, (SELECT PERSON_NAME || ' ' || PERSON_LASTNAME FROM TB_PERSON WHERE CITIZEN_ID = LEV_MAIN.CITIZEN_ID) ชื่อผู้ลา, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_MAIN.LEAVE_TYPE_ID) ประเภทการลา, LEV_MAIN.REQ_DATE วันที่ข้อมูล FROM LEV_MAIN, LEV_FORM1 WHERE LEV_MAIN.LEAVE_ID = LEV_FORM1.LEAVE_ID AND LEAVE_STATE = 2 AND CMD_HIGH_ID = '" + loginPerson.CitizenID + "'");
+                SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEV_MAIN.LEAVE_ID รหัสการลา, (SELECT PS_FN_TH || ' ' || PS_LN_TH FROM PS_PERSON WHERE PS_CITIZEN_ID = LEV_MAIN.PS_CITIZEN_ID) ชื่อผู้ลา, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_MAIN.LEAVE_TYPE_ID) ประเภทการลา, LEV_MAIN.REQ_DATE วันที่ข้อมูล FROM LEV_MAIN WHERE LEAVE_STATE = 2 AND CH_ID = '" + loginPerson.CitizenID + "'");
                 GridView1.DataSource = sds;
                 GridView1.DataBind();
 
                 Util.NormalizeGridViewDate(GridView1, 3);
 
-                TableCell newHeader = new TableCell();
+                TableHeaderCell newHeader = new TableHeaderCell();
                 newHeader.Text = "เลือก";
                 GridView1.HeaderRow.Cells.Add(newHeader);
 
@@ -66,10 +66,12 @@ namespace WEB_PERSONAL {
                             lbF1LastFTTDate.Text = f1.LastFromDate + " - " + f1.LastToDate + " / รวม " + f1.LastTotalDay + " วัน";
                         }
                         lbF1FTTDate.Text = f1.FromDate + " - " + f1.ToDate + " / รวม " + f1.TotalDay + " วัน";
+                        lbF1Statistic.Text = "ลามาแล้ว " + f1.CountPast + " วัน / ลาครั้งนี้ " + f1.CountNow + " วัน / รวม " + f1.CountTotal + " วัน";
                         lbF1Reason.Text = f1.Reason;
                         lbF1Contact.Text = f1.Contact;
                         lbF1Phone.Text = f1.Phone;
-
+                        lbF1CLComment.Text = f1.CommanderLowComment;
+                        lbF1CLDate.Text = f1.CommanderLowDate;
                         MultiView1.ActiveViewIndex = 1;
 
                         error_area.Attributes["class"] = "alert alert_info";

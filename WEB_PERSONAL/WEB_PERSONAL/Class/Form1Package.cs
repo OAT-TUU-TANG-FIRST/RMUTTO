@@ -52,5 +52,9 @@ public class Form1Package {
     public string StaffLastName;
     public string LeaveTypeName;
     public string CommanderHighAllowName;
+    public string DoctorCertificate;
+    public string CountPast;
+    public string CountNow;
+    public string CountTotal;
 
 }
