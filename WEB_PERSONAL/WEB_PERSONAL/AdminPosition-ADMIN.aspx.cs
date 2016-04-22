@@ -76,7 +76,7 @@ namespace WEB_PERSONAL
                 return;
             }
             ClassAdminPosition ap = new ClassAdminPosition();
-            ap.ADMIN_POSITION_ID = txtInsertAdminPositionID.Text;
+            ap.ADMIN_POSITION_ID = Convert.ToInt32(txtInsertAdminPositionID.Text);
             ap.ADMIN_POSITION_NAME = txtInsertAdminPositionName.Text;
 
             if (ap.CheckUseAdminPositionID())
@@ -104,7 +104,7 @@ namespace WEB_PERSONAL
         }
         protected void modDeleteCommand(Object sender, GridViewDeleteEventArgs e)
         {
-            string id = GridView1.DataKeys[e.RowIndex].Value.ToString();
+            int id = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Value);
             ClassAdminPosition ap = new ClassAdminPosition();
             ap.ADMIN_POSITION_ID = id;
             ap.DeleteAdminPosition();
@@ -118,7 +118,7 @@ namespace WEB_PERSONAL
             TextBox txtAdminPositionIDEdit = (TextBox)GridView1.Rows[e.RowIndex].FindControl("txtAdminPositionIDEdit");
             TextBox txtAdminPositionNameEdit = (TextBox)GridView1.Rows[e.RowIndex].FindControl("txtAdminPositionNameEdit");
 
-            ClassAdminPosition ap = new ClassAdminPosition(txtAdminPositionIDEdit.Text, txtAdminPositionNameEdit.Text);
+            ClassAdminPosition ap = new ClassAdminPosition(Convert.ToInt32(txtAdminPositionIDEdit.Text), txtAdminPositionNameEdit.Text);
 
             ap.UpdateAdminPosition();
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('อัพเดทข้อมูลเรียบร้อย')", true);
