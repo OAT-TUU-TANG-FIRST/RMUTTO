@@ -762,6 +762,7 @@
     <Content Include="Image\font_icon.png" />
     <Content Include="Image\ImageTUU\maintence.png" />
     <Content Include="Image\office.jpg" />
+    <Content Include="Image\rmutto_clear.jpg" />
     <Content Include="Image\Small\back.png" />
     <Content Include="Image\Small\clock.png" />
     <Content Include="Image\Small\home.png" />
@@ -1566,7 +1567,6 @@
     </Compile>
     <Compile Include="UpSalary70_30_1.aspx.cs">
       <DependentUpon>UpSalary70_30_1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="UpSalary70_30_1.aspx.designer.cs">
       <DependentUpon>UpSalary70_30_1.aspx</DependentUpon>

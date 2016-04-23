@@ -9,11 +9,14 @@
 * {
     margin: 0;
 }
-
+html, body {
+    height: 100%;
+}
 body {
     background-color: #ffffff;
     font-family: Roboto-Regular, Tahoma;
     font-size: 12px;
+
 }
 
 .wlogo {
@@ -26,12 +29,16 @@ body {
 }
 
 .wrapper {
-    position: relative;
+    display: table;
+ 
     min-height: calc(100vh - 100px);
     min-width: 1280px;
 }
 
 .master_content_place_holder {
+    display: table-cell;
+    vertical-align: top;
+
     /*float: left
     margin-left: 10px;
     width: calc(100% - 260px);*/
@@ -80,12 +87,8 @@ body {
     height: auto;
 }
 .master_sidebar {
-    position: relative;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    float: left;
+    display: table-cell;
+
     width: 179px;
     font-size: 12px;
     color: #ffffff;
