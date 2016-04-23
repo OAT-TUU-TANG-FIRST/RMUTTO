@@ -18,38 +18,38 @@
     <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex="0">
         <asp:View ID="View1" runat="server">
             <p align="right" style="font-size:15px"><b> (แบบที่ 1)</b> </p>
-	<p align="center" style="font-size:16px"><b>แบบข้อตกลงการประเมินผลสัมฤทธิ์ของงาน ของข้าราชการพลเรือนในสถาบันอุดมศึกษา หรือพนักงานในสถาบันอุดมศึกษา <br />มหาวิทยาลัยเทคโนโลยีราชมงคลตะวันออก</b></p>
-	<p align="center" style="font-size:16px"><b>ตำแหน่งประเภทผู้บริหาร (ไม่ครองตำแหน่งวิชาการ) (องค์ประกอบที่ 1 ผลสัมฤทธิ์ของงาน 80%)</b></p>
-	<br />
-    <p align="center" style="font-size:15px"><b>รอบการประเมิน
-        <asp:Label ID="Label22" runat="server" Text="Label"></asp:Label>
-        &nbsp;วัน&nbsp;&nbsp;&nbsp;</b><asp:Label ID="Label13" runat="server" Text="Label"></asp:Label>
-        &nbsp; <b>เดือน</b>
-        <asp:Label ID="Label14" runat="server" Text="Label"></asp:Label>
-        &nbsp; <b>ปีพ.ศ.</b>
-        <asp:Label ID="Label15" runat="server" Text="Label"></asp:Label>
+	        <p align="center" style="font-size:16px"><b>แบบข้อตกลงการประเมินผลสัมฤทธิ์ของงาน ของข้าราชการพลเรือนในสถาบันอุดมศึกษา หรือพนักงานในสถาบันอุดมศึกษา <br />มหาวิทยาลัยเทคโนโลยีราชมงคลตะวันออก</b></p>
+	        <p align="center" style="font-size:16px"><b>ตำแหน่งประเภทผู้บริหาร (ไม่ครองตำแหน่งวิชาการ) (องค์ประกอบที่ 1 ผลสัมฤทธิ์ของงาน 80%)</b></p>
+	        <br />
+            <p align="center" style="font-size:15px"><b>รอบการประเมิน
+            <asp:Label ID="Label22" runat="server" Text="Label"></asp:Label>
+            &nbsp;วัน&nbsp;&nbsp;&nbsp;</b><asp:Label ID="Label13" runat="server" Text="Label"></asp:Label>
+            &nbsp; <b>เดือน</b>
+            <asp:Label ID="Label14" runat="server" Text="Label"></asp:Label>
+            &nbsp; <b>ปีพ.ศ.</b>
+            <asp:Label ID="Label15" runat="server" Text="Label"></asp:Label>
             </p>
-	<br />
-        <p align="left" style="font-size:15px"><b>ชื่อผู้รับการประเมิน
-        <asp:Label ID="Label16" runat="server" Text="Label"></asp:Label>
-        &nbsp;ตำแหน่ง
-        <asp:Label ID="Label17" runat="server" Text="Label"></asp:Label>
-        &nbsp;&nbsp;สังกัด </b>
-        <b>
-        <asp:Label ID="Label18" runat="server" Text="Label"></asp:Label>
+	        <br />
+            <p align="left" style="font-size:15px"><b>ชื่อผู้รับการประเมิน
+            <asp:Label ID="Label16" runat="server" Text="Label"></asp:Label>
+            &nbsp;ตำแหน่ง
+            <asp:Label ID="Label17" runat="server" Text="Label"></asp:Label>
+            &nbsp;&nbsp;สังกัด </b>
+            <b>
+            <asp:Label ID="Label18" runat="server" Text="Label"></asp:Label>
             </b></p>
-    <br />
-	<p align="left" style="font-size:15px"><b>ชื่อผู้ประเมิน
-        <asp:Label ID="Label19" runat="server" Text="Label"></asp:Label>
-        &nbsp;ตำแหน่ง
-        <asp:Label ID="Label20" runat="server" Text="Label"></asp:Label>
-        &nbsp;&nbsp;สังกัด </b>
-        <b>
-        <asp:Label ID="Label21" runat="server" Text="Label"></asp:Label>
+            <br />
+	        <p align="left" style="font-size:15px"><b>ชื่อผู้ประเมิน
+            <asp:Label ID="Label19" runat="server" Text="Label"></asp:Label>
+            &nbsp;ตำแหน่ง
+            <asp:Label ID="Label20" runat="server" Text="Label"></asp:Label>
+            &nbsp;&nbsp;สังกัด </b>
+            <b>
+            <asp:Label ID="Label21" runat="server" Text="Label"></asp:Label>
             </b></p>
 	
 	<form >
-		<table align="center" border="2px solid black" height= "auto" >
+		<table border="2px solid black" height= "auto" >
 			<tr>
 				<th align="center" rowspan="2" width="300" style="font-size:15px">(1) กิจกรรม / โครงการ / งาน</th>
 				<th align="center" rowspan="2" width="70" style="font-size:15px">(2)ค่า<br>น้ำหนัก%</th>
@@ -495,19 +495,19 @@
         
         <asp:View ID="View2" runat="server">
         <form >
-		   <table align="center" border="2px solid black" height= "auto" >
+		   <table border="2px solid black" height= "auto" >
               <tr>
 				<td colspan="14" style="font-size:15px"><b>
                     <br />
 					(12)  ผู้ประเมินและผู้รับการประเมินได้ตกลงร่วมกันและเห็นพ้องกันแล้ว  จึงลงลายมือชื่อไว้เป็นหลักฐาน  (ลงนามเมื่อจัดทำข้อตกลง)</b>
                     <br />
-				<br>
+				    <br />
 				    ลายมือชื่อ&nbsp;
                     <asp:Label ID="Label23" runat="server" Text="Label"></asp:Label>
                     &nbsp; (ผู้ประเมิน)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ลายมือชื่อ
                     <asp:Label ID="Label24" runat="server" Text="Label"></asp:Label>
                     &nbsp;(ผู้รับการประเมิน)
-				<br>
+				    <br />
 				    วันที่
                     <asp:Label ID="Label25" runat="server" Text="Label"></asp:Label>
                     &nbsp;เดือน
@@ -520,7 +520,7 @@
                     <asp:Label ID="Label29" runat="server" Text="Label"></asp:Label>
                     &nbsp;พ.ศ.&nbsp;
                     <asp:Label ID="Label30" runat="server" Text="Label"></asp:Label>
-                    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <br />
                     <br />
                 </td>
@@ -539,12 +539,8 @@
 				 2)  ข้อเสนอแนะเกี่ยวกับวิธีส่งเสริมและพัฒนา
 				    <br />
                     <asp:TextBox ID="TextBox22" runat="server" Height="120px" Width="420px"></asp:TextBox>
-				 
 				    <br />
-				 
-				    <br />
-				 
-				</td>
+				 </td>
 			</tr>
 			<tr>
 				<td colspan="14" style="font-size:15px"><b>
