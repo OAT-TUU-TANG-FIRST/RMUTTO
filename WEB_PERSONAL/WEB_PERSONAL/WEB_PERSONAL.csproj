@@ -968,6 +968,7 @@
     <Content Include="UpSalary70_30_1.aspx" />
     <Content Include="UpSalary70_30_2.aspx" />
     <Content Include="UpSalary80_20_1.aspx" />
+    <Content Include="UpSalary80_20_2.aspx" />
     <Content Include="ViewLeaveForm.aspx" />
     <Content Include="WorkingTime.aspx" />
     <Content Include="WorkingTimeHistory.aspx" />
@@ -1578,6 +1579,13 @@
     </Compile>
     <Compile Include="UpSalary80_20_1.aspx.designer.cs">
       <DependentUpon>UpSalary80_20_1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UpSalary80_20_2.aspx.cs">
+      <DependentUpon>UpSalary80_20_2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UpSalary80_20_2.aspx.designer.cs">
+      <DependentUpon>UpSalary80_20_2.aspx</DependentUpon>
     </Compile>
     <Compile Include="Util.cs" />
     <Compile Include="ViewLeaveForm.aspx.cs">
