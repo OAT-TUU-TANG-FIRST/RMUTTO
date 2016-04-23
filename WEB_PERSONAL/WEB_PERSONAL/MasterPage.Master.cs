@@ -115,6 +115,7 @@ namespace WEB_PERSONAL {
             if (!IsPostBack) {
                 DatabaseManager.AddCounter();
             }
+            s_counter.InnerText = "" + DatabaseManager.GetCounter().ToString("#,###");
         }
 
         protected void LinkButton4_Click(object sender, EventArgs e) {

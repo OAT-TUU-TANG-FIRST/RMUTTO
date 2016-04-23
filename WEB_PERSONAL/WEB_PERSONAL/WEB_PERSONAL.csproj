@@ -939,6 +939,7 @@
     <Content Include="LeaveClaim.aspx" />
     <Content Include="LeaveComment.aspx" />
     <Content Include="LeaveHistory.aspx" />
+    <Content Include="LeaveManager.aspx" />
     <Content Include="ListPerson-ADMIN.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Ministry-ADMIN.aspx" />
@@ -978,6 +979,7 @@
     <Content Include="ViewLeaveForm.aspx" />
     <Content Include="WorkingTime.aspx" />
     <Content Include="WorkingTimeHistory.aspx" />
+    <Content Include="WorkingTimeManager.aspx" />
     <Content Include="Year-ADMIN.aspx" />
     <Content Include="Font\WDB_Bangna.ttf" />
     <Content Include="Font\THSARABUNNEW BOLDITALIC_0.TTF" />
@@ -1335,6 +1337,13 @@
     <Compile Include="LeaveHistory.aspx.designer.cs">
       <DependentUpon>LeaveHistory.aspx</DependentUpon>
     </Compile>
+    <Compile Include="LeaveManager.aspx.cs">
+      <DependentUpon>LeaveManager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LeaveManager.aspx.designer.cs">
+      <DependentUpon>LeaveManager.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ListPerson-ADMIN.aspx.cs">
       <DependentUpon>ListPerson-ADMIN.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1567,6 +1576,7 @@
     </Compile>
     <Compile Include="UpSalary70_30_1.aspx.cs">
       <DependentUpon>UpSalary70_30_1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="UpSalary70_30_1.aspx.designer.cs">
       <DependentUpon>UpSalary70_30_1.aspx</DependentUpon>
@@ -1613,6 +1623,13 @@
     </Compile>
     <Compile Include="WorkingTimeHistory.aspx.designer.cs">
       <DependentUpon>WorkingTimeHistory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WorkingTimeManager.aspx.cs">
+      <DependentUpon>WorkingTimeManager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WorkingTimeManager.aspx.designer.cs">
+      <DependentUpon>WorkingTimeManager.aspx</DependentUpon>
     </Compile>
     <Compile Include="Year-ADMIN.aspx.cs">
       <DependentUpon>Year-ADMIN.aspx</DependentUpon>

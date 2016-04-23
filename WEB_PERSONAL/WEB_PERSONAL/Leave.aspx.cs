@@ -106,8 +106,8 @@ namespace WEB_PERSONAL {
                 Person psCH = DatabaseManager.GetPerson("702");
 
 
-                string sql1 = "INSERT INTO LEV_MAIN (LEAVE_ID, LEAVE_TYPE_ID, LEAVE_STATE, PS_CITIZEN_ID, REQ_DATE, FROM_DATE, TO_DATE, TOTAL_DAY, CL_ID, CL_TITLE, CL_FN, CL_LN, CL_POS, CL_COMM, CL_DATE, CH_ID, CH_TITLE, CH_FN, CH_LN, CH_POS, CH_COMM, CH_ALLOW, CH_DATE, PS_TITLE, PS_FN, PS_LN, PS_POS, PS_DEPT) VALUES ({0},{1},{2},'{3}',{4},{5},{6},{7},'{8}','{9}','{10}','{11}','{12}','{13}',{14},'{15}','{16}','{17}','{18}','{19}','{20}',{21},{22},'{23}','{24}','{25}','{26}','{27}')";
-                sql1 = string.Format(sql1, "{0}", ddlLeaveType.SelectedValue, 1, loginPerson.CitizenID, Util.TodayDatabaseToDate(), Util.DatabaseToDate(tbF1S1FromDate.Text), Util.DatabaseToDate(tbF1S1ToDate.Text), totalDay, psCL.CitizenID, psCL.TitleName, psCL.FirstName, psCL.LastName, psCL.PositionName, "", "''", psCH.CitizenID, psCH.TitleName, psCH.FirstName, psCH.LastName, psCH.PositionName, "", "''", "''", loginPerson.TitleName, loginPerson.FirstName, loginPerson.LastName, loginPerson.PositionName, loginPerson.DivisionName);
+                string sql1 = "INSERT INTO LEV_MAIN (LEAVE_ID, LEAVE_TYPE_ID, LEAVE_STATE, PS_CITIZEN_ID, REQ_DATE, FROM_DATE, TO_DATE, TOTAL_DAY, CL_ID, CL_TITLE, CL_FN, CL_LN, CL_POS, CL_COMM, CL_DATE, CH_ID, CH_TITLE, CH_FN, CH_LN, CH_POS, CH_COMM, CH_ALLOW, CH_DATE, PS_TITLE, PS_FN, PS_LN, PS_POS, PS_DEPT, PS_POS_RANK) VALUES ({0},{1},{2},'{3}',{4},{5},{6},{7},'{8}','{9}','{10}','{11}','{12}','{13}',{14},'{15}','{16}','{17}','{18}','{19}','{20}',{21},{22},'{23}','{24}','{25}','{26}','{27}','{28}')";
+                sql1 = string.Format(sql1, "{0}", ddlLeaveType.SelectedValue, 1, loginPerson.CitizenID, Util.TodayDatabaseToDate(), Util.DatabaseToDate(tbF1S1FromDate.Text), Util.DatabaseToDate(tbF1S1ToDate.Text), totalDay, psCL.CitizenID, psCL.TitleName, psCL.FirstName, psCL.LastName, psCL.PositionName, "", "''", psCH.CitizenID, psCH.TitleName, psCH.FirstName, psCH.LastName, psCH.PositionName, "", "''", "''", loginPerson.TitleName, loginPerson.FirstName, loginPerson.LastName, loginPerson.PositionName, loginPerson.DivisionName, loginPerson.AdminPositionName);
                 hfSql.Value = sql1;
 
                 string sql2 = "INSERT INTO LEV_FORM1 (FORM1_ID, LEAVE_ID, REASON, CONTACT, PHONE, LAST_FROM_DATE, LAST_TO_DATE, LAST_TOTAL_DAY, DR_CER_FILE_NAME) VALUES ({0},{1},'{2}','{3}','{4}',{5},{6},{7},'{8}')";
@@ -188,34 +188,57 @@ namespace WEB_PERSONAL {
                     AddNotification("<div class='hm_tab'></div>- กรุณากรอก <strong>เบอร์โทรศัพท์</strong><br>");
                 }
             } else {
-               /* HideAllAndShow(sectionF2S2);
+
+                MultiView1.ActiveViewIndex = 3;
                 ChangeNotification("info", "กรุณายืนยันข้อมูลอีกครั้ง");
 
-                LeaveSystem leaveSystem = ((LeaveSystem)Session["leaveSystem"]);
-                Person loginPerson = leaveSystem.LoginPerson;
-                lbF2S2LeaveTypeName.Text = ddlLeaveType.SelectedItem.Text;
+                PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
+                Person loginPerson = ps.LoginPerson;
 
-                lbF2S2PersonName.Text = loginPerson.FullName;
-                lbF2S2PersonPosition.Text = loginPerson.PositionName;
-                lbF2S2PersonRank.Text = loginPerson.PositionRank;
-                lbF2S2PersonDepartment.Text = loginPerson.DepartmentName;
+                string leavedDate = "ไม่เคยลา";
+                string lastFromDate = "''";
+                string lastToDate = "''";
+                string lastTotalDay = "''";
+                using (OleDbConnection con = new OleDbConnection(DatabaseManager.CONNECTION_STRING)) {
+                    con.Open();
+                    using (OleDbCommand com = new OleDbCommand("SELECT LEV_MAIN.FROM_DATE, LEV_MAIN.TO_DATE, LEV_MAIN.TOTAL_DAY FROM LEV_MAIN WHERE LEV_MAIN.PS_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND LEV_MAIN.LEAVE_TYPE_ID = " + ddlLeaveType.SelectedValue + " AND ROWNUM = 1 ORDER BY LEV_MAIN.LEAVE_ID DESC", con)) {
+                        using (OleDbDataReader reader = com.ExecuteReader()) {
+                            while (reader.Read()) {
+                                lastFromDate = Util.PureDatabaseToThaiDate(reader.GetValue(0).ToString());
+                                lastToDate = Util.PureDatabaseToThaiDate(reader.GetValue(1).ToString());
+                                lastTotalDay = reader.GetValue(2).ToString();
+                                leavedDate = lastFromDate + "&nbsp;&nbsp;ถึง&nbsp;&nbsp;" + lastToDate + "&nbsp;&nbsp;รวม&nbsp;&nbsp;" + lastTotalDay + " วัน ";
+                            }
+                        }
+                    }
+                }
 
-                lbF2S2WifeName.Text = tbF2S1WifeName.Text;
-                lbF2S2WifeLastName.Text = tbF2S1WifeLastName.Text;
-                lbF2S2GiveBirthDate.Text = tbF2S1GiveBirthDate.Text;
-                lbF2S2FromDate.Text = tbF2S1FromDate.Text;
-                lbF2S2ToDate.Text = tbF2S1ToDate.Text;
-                DateTime dtFromDate = Util.ToDateTime(lbF2S2FromDate.Text);
-                DateTime dtToDate = Util.ToDateTime(lbF2S2ToDate.Text);
+                lbVX22PersonName.Text = loginPerson.FullName;
+                lbVX22PersonPosition.Text = loginPerson.PositionName;
+                lbVX22PersonPosRank.Text = loginPerson.AdminPositionName;
+                lbVX22PersonDept.Text = loginPerson.DivisionName;
+                lbVX22LastFTTDate.Text = leavedDate;
+                lbVX22LeaveTypeName.Text = ddlLeaveType.SelectedItem.Text;
+                DateTime dtFromDate = Util.ToDateTime(tbVX21FromDate.Text);
+                DateTime dtToDate = Util.ToDateTime(tbVX21ToDate.Text);
                 int totalDay = (int)(dtToDate - dtFromDate).TotalDays + 1;
-                lbF2S2TotalDay.Text = "" + totalDay + " วัน";
-                lbF2S2Contact.Text = tbF2S1Contact.Text;
-                lbF2S2Phone.Text = tbF2S1Phone.Text;
-                string sql = "INSERT INTO LEV_LEAVE (LEAVE_ID, CITIZEN_ID, REQ_DATE, LEAVE_TYPE_ID, FROM_DATE, TO_DATE, TOTAL_DAY, REASON, CONTACT, PHONE, STATE_ID) VALUES (SEQ_LEAVE_ID.NEXTVAL, '{0}', {1}, {2}, {3}, {4}, {5}, '{6}', '{7}', '{8}', {9})";
-                hfSql.Value = string.Format(sql, loginPerson.CitizenID, Util.TodayDatabaseToDate(), ddlLeaveType.SelectedValue, Util.DatabaseToDate(tbF1S1FromDate.Text), Util.DatabaseToDate(tbF1S1ToDate.Text), totalDay, lbF1S2Reason.Text, lbF1S2Contact.Text, lbF1S2Phone.Text, 1);
+                lbVX22FTTDate.Text = tbF1S1FromDate.Text + "&nbsp;&nbsp;ถึง&nbsp;&nbsp;" + tbF1S1ToDate.Text + "&nbsp;&nbsp;รวม&nbsp;&nbsp;" + totalDay + " วัน";
+                lbVX22Reason.Text = tbF1S1Reason.Text;
+                lbVX22Contact.Text = tbF1S1Contact.Text;
+                lbVX22Phone.Text = tbF1S1Phone.Text;
+
+                Person psCL = DatabaseManager.GetPerson("701");
+                Person psCH = DatabaseManager.GetPerson("702");
 
 
-    */
+                string sql1 = "INSERT INTO LEV_MAIN (LEAVE_ID, LEAVE_TYPE_ID, LEAVE_STATE, PS_CITIZEN_ID, REQ_DATE, FROM_DATE, TO_DATE, TOTAL_DAY, CL_ID, CL_TITLE, CL_FN, CL_LN, CL_POS, CL_COMM, CL_DATE, CH_ID, CH_TITLE, CH_FN, CH_LN, CH_POS, CH_COMM, CH_ALLOW, CH_DATE, PS_TITLE, PS_FN, PS_LN, PS_POS, PS_DEPT, PS_POS_RANK) VALUES ({0},{1},{2},'{3}',{4},{5},{6},{7},'{8}','{9}','{10}','{11}','{12}','{13}',{14},'{15}','{16}','{17}','{18}','{19}','{20}',{21},{22},'{23}','{24}','{25}','{26}','{27}','{28}')";
+                sql1 = string.Format(sql1, "{0}", ddlLeaveType.SelectedValue, 2, loginPerson.CitizenID, Util.TodayDatabaseToDate(), Util.DatabaseToDate(tbF1S1FromDate.Text), Util.DatabaseToDate(tbF1S1ToDate.Text), totalDay, psCL.CitizenID, psCL.TitleName, psCL.FirstName, psCL.LastName, psCL.PositionName, "", "''", psCH.CitizenID, psCH.TitleName, psCH.FirstName, psCH.LastName, psCH.PositionName, "", "''", "''", loginPerson.TitleName, loginPerson.FirstName, loginPerson.LastName, loginPerson.PositionName, loginPerson.DivisionName, loginPerson.AdminPositionName);
+                hfSql.Value = sql1;
+
+                string sql2 = "INSERT INTO LEV_FORM1 (FORM1_ID, LEAVE_ID, REASON, CONTACT, PHONE, LAST_FROM_DATE, LAST_TO_DATE, LAST_TOTAL_DAY, DR_CER_FILE_NAME) VALUES ({0},{1},'{2}','{3}','{4}',{5},{6},{7},'{8}')";
+                sql2 = string.Format(sql2, "SEQ_LEV_FORM1_ID.NEXTVAL", "{0}", tbF1S1Reason.Text, tbF1S1Contact.Text, tbF1S1Phone.Text, Util.DatabaseToDate(lastFromDate), Util.DatabaseToDate(lastToDate), lastTotalDay, "");
+                hfSql2.Value = sql2;
+
             }
         }
         protected void lbuF3S1Check_Click(object sender, EventArgs e) {
@@ -519,6 +542,17 @@ namespace WEB_PERSONAL {
             MultiView1.ActiveViewIndex = 20;
 
         }
+        protected void lbuVX22Finish_Click(object sender, EventArgs e) {
+            int leave_id = DatabaseManager.ExecuteSequence("SEQ_LEV_MAIN_ID");
+            string sql1 = hfSql.Value;
+            sql1 = string.Format(sql1, leave_id);
+            string sql2 = hfSql2.Value;
+            sql2 = string.Format(sql2, leave_id);
+            DatabaseManager.ExecuteNonQuery(sql1);
+            DatabaseManager.ExecuteNonQuery(sql2);
+            ChangeNotification("success", "<strong>ทำการลาสำเร็จ!</strong> คุณสามารถตรวจสอบสถานะการลาได้ที่เมนู การลา -> สถานะ และ ประวัติการลา");
+            MultiView1.ActiveViewIndex = 20;
+        }
         protected void lbuBackMain_Click(object sender, EventArgs e) {
             Response.Redirect("Default.aspx");
         }
@@ -625,62 +659,97 @@ namespace WEB_PERSONAL {
         }
 
         protected void lbuVX21Next_Click(object sender, EventArgs e) {
-            if (tbVX21FromDate.Text == "" ||
-                tbVX21ToDate.Text == "" ||
-                tbVX21Reason.Text == "" ||
-                tbVX21Contact.Text == "" ||
-                tbVX21Phone.Text == "" ||
-                !Util.IsDateValid(tbVX21FromDate.Text) ||
-                !Util.IsDateValid(tbVX21ToDate.Text)) {
-                ChangeNotification("danger", "<img src='Image/Small/red_alert.png' style='padding-right: 10px;'></img><strong>เกิดข้อผิดพลาด!</strong><br>");
-                if (tbVX21FromDate.Text == "") {
+            /*if (tbF2S1WifeName.Text == "" ||
+                tbF2S1WifeLastName.Text == "" ||
+                tbF2S1GiveBirthDate.Text == "" ||
+                !Util.IsDateValid(tbF2S1GiveBirthDate.Text) ||
+                tbF2S1FromDate.Text == "" ||
+                tbF2S1ToDate.Text == "" ||
+                !Util.IsDateValid(tbF2S1FromDate.Text) ||
+                !Util.IsDateValid(tbF2S1ToDate.Text) ||
+                tbF2S1Contact.Text == "" ||
+                tbF2S1Phone.Text == "") {
+                ChangeNotification("danger", "<img src='Image/red_alert.png' style='padding-right: 10px;'></img><strong>เกิดข้อผิดพลาด!</strong><br>");
+
+                if (tbF2S1WifeName.Text == "") {
+                    AddNotification("<div class='hm_tab'></div>- กรุณากรอก <strong>ชื่อภริยา</strong><br>");
+                }
+                if (tbF2S1WifeLastName.Text == "") {
+                    AddNotification("<div class='hm_tab'></div>- กรุณากรอก <strong>นามสกุลภริยา</strong><br>");
+                }
+                if (tbF2S1GiveBirthDate.Text == "") {
+                    AddNotification("<div class='hm_tab'></div>- กรุณากรอก <strong>วันที่คลอดบุตร</strong><br>");
+                } else if (!Util.IsDateValid(tbF2S1GiveBirthDate.Text)) {
+                    AddNotification("<div class='hm_tab'></div>- <strong>วันที่คลอดบุตร</strong> ไม่ถูกต้อง<br>");
+                }
+                if (tbF2S1FromDate.Text == "") {
                     AddNotification("<div class='hm_tab'></div>- กรุณากรอก <strong>จากวันที่</strong><br>");
-                } else if (!Util.IsDateValid(tbVX21FromDate.Text)) {
+                } else if (!Util.IsDateValid(tbF2S1FromDate.Text)) {
                     AddNotification("<div class='hm_tab'></div>- <strong>จากวันที่</strong> ไม่ถูกต้อง<br>");
                 }
-                if (tbVX21ToDate.Text == "") {
+                if (tbF2S1ToDate.Text == "") {
                     AddNotification("<div class='hm_tab'></div>- กรุณากรอก <strong>ถึงวันที่</strong><br>");
-                } else if (!Util.IsDateValid(tbVX21ToDate.Text)) {
+                } else if (!Util.IsDateValid(tbF2S1ToDate.Text)) {
                     AddNotification("<div class='hm_tab'></div>- <strong>ถึงวันที่</strong> ไม่ถูกต้อง<br>");
                 }
-                if (tbVX21Reason.Text == "") {
-                    AddNotification("<div class='hm_tab'></div>- กรุณากรอก <strong>เหตุผล</strong><br>");
-                }
-                if (tbVX21Contact.Text == "") {
+                if (tbF2S1Contact.Text == "") {
                     AddNotification("<div class='hm_tab'></div>- กรุณากรอก <strong>ติดต่อได้ที่</strong><br>");
                 }
-                if (tbVX21Phone.Text == "") {
+                if (tbF2S1Phone.Text == "") {
                     AddNotification("<div class='hm_tab'></div>- กรุณากรอก <strong>เบอร์โทรศัพท์</strong><br>");
                 }
-            } else {
+            } else */{
+
                 MultiView1.ActiveViewIndex = 3;
                 ChangeNotification("info", "กรุณายืนยันข้อมูลอีกครั้ง");
 
                 PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
                 Person loginPerson = ps.LoginPerson;
 
-                lbVX22LeaveType.Text = "ลากิจ";
+                string leavedDate = "ไม่เคยลา";
+                string lastFromDate = "''";
+                string lastToDate = "''";
+                string lastTotalDay = "''";
+                using (OleDbConnection con = new OleDbConnection(DatabaseManager.CONNECTION_STRING)) {
+                    con.Open();
+                    using (OleDbCommand com = new OleDbCommand("SELECT LEV_MAIN.FROM_DATE, LEV_MAIN.TO_DATE, LEV_MAIN.TOTAL_DAY FROM LEV_MAIN WHERE LEV_MAIN.PS_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND LEV_MAIN.LEAVE_TYPE_ID = " + ddlLeaveType.SelectedValue + " AND ROWNUM = 1 ORDER BY LEV_MAIN.LEAVE_ID DESC", con)) {
+                        using (OleDbDataReader reader = com.ExecuteReader()) {
+                            while (reader.Read()) {
+                                lastFromDate = Util.PureDatabaseToThaiDate(reader.GetValue(0).ToString());
+                                lastToDate = Util.PureDatabaseToThaiDate(reader.GetValue(1).ToString());
+                                lastTotalDay = reader.GetValue(2).ToString();
+                                leavedDate = lastFromDate + "&nbsp;&nbsp;ถึง&nbsp;&nbsp;" + lastToDate + "&nbsp;&nbsp;รวม&nbsp;&nbsp;" + lastTotalDay + " วัน ";
+                            }
+                        }
+                    }
+                }
 
-                lbVX22Name.Text = loginPerson.FullName;
-                lbVX22Position.Text = loginPerson.PositionName;
-                lbVX22Rank.Text = loginPerson.RankName;
-                lbVX22Dept.Text = loginPerson.DivisionName;
-
-                
+                lbVX22PersonName.Text = loginPerson.FullName;
+                lbVX22PersonPosition.Text = loginPerson.PositionName;
+                lbVX22PersonPosRank.Text = loginPerson.AdminPositionName;
+                lbVX22PersonDept.Text = loginPerson.DivisionName;
+                lbVX22LastFTTDate.Text = leavedDate;
+                lbVX22LeaveTypeName.Text = ddlLeaveType.SelectedItem.Text;
                 DateTime dtFromDate = Util.ToDateTime(tbVX21FromDate.Text);
                 DateTime dtToDate = Util.ToDateTime(tbVX21ToDate.Text);
-                
-
                 int totalDay = (int)(dtToDate - dtFromDate).TotalDays + 1;
-                lbVX22Date.Text = tbVX21FromDate.Text + " - " + tbVX21ToDate.Text + " รวม " + totalDay + " วัน";
-
+                lbVX22FTTDate.Text = tbVX21FromDate.Text + "&nbsp;&nbsp;ถึง&nbsp;&nbsp;" + tbVX21ToDate.Text + "&nbsp;&nbsp;รวม&nbsp;&nbsp;" + totalDay + " วัน";
                 lbVX22Reason.Text = tbVX21Reason.Text;
                 lbVX22Contact.Text = tbVX21Contact.Text;
                 lbVX22Phone.Text = tbVX21Phone.Text;
 
-                //string sql = "INSERT INTO LEV_LEAVE (LEAVE_ID, CITIZEN_ID, REQ_DATE, LEAVE_TYPE_ID, FROM_DATE, TO_DATE, TOTAL_DAY, REASON, CONTACT, PHONE, STATE_ID) VALUES (SEQ_LEAVE_ID.NEXTVAL, '{0}', {1}, {2}, {3}, {4}, {5}, '{6}', '{7}', '{8}', {9})";
-                //hfSql.Value = string.Format(sql, loginPerson.CitizenID, Util.TodayDatabaseToDate(), ddlLeaveType.SelectedValue, Util.DatabaseToDate(tbF1S1FromDate.Text), Util.DatabaseToDate(tbF1S1ToDate.Text), totalDay, lbF1S2Reason.Text, lbF1S2Contact.Text, lbF1S2Phone.Text, 1);
-                
+                Person psCL = DatabaseManager.GetPerson("701");
+                Person psCH = DatabaseManager.GetPerson("702");
+
+
+                string sql1 = "INSERT INTO LEV_MAIN (LEAVE_ID, LEAVE_TYPE_ID, LEAVE_STATE, PS_CITIZEN_ID, REQ_DATE, FROM_DATE, TO_DATE, TOTAL_DAY, CL_ID, CL_TITLE, CL_FN, CL_LN, CL_POS, CL_COMM, CL_DATE, CH_ID, CH_TITLE, CH_FN, CH_LN, CH_POS, CH_COMM, CH_ALLOW, CH_DATE, PS_TITLE, PS_FN, PS_LN, PS_POS, PS_DEPT, PS_POS_RANK) VALUES ({0},{1},{2},'{3}',{4},{5},{6},{7},'{8}','{9}','{10}','{11}','{12}','{13}',{14},'{15}','{16}','{17}','{18}','{19}','{20}',{21},{22},'{23}','{24}','{25}','{26}','{27}','{28}')";
+                sql1 = string.Format(sql1, "{0}", ddlLeaveType.SelectedValue, 1, loginPerson.CitizenID, Util.TodayDatabaseToDate(), Util.DatabaseToDate(tbVX21FromDate.Text), Util.DatabaseToDate(tbVX21ToDate.Text), totalDay, psCL.CitizenID, psCL.TitleName, psCL.FirstName, psCL.LastName, psCL.PositionName, "", "''", psCH.CitizenID, psCH.TitleName, psCH.FirstName, psCH.LastName, psCH.PositionName, "", "''", "''", loginPerson.TitleName, loginPerson.FirstName, loginPerson.LastName, loginPerson.PositionName, loginPerson.DivisionName, loginPerson.AdminPositionName);
+                hfSql.Value = sql1;
+
+                string sql2 = "INSERT INTO LEV_FORM1 (FORM1_ID, LEAVE_ID, REASON, CONTACT, PHONE, LAST_FROM_DATE, LAST_TO_DATE, LAST_TOTAL_DAY, DR_CER_FILE_NAME) VALUES ({0},{1},'{2}','{3}','{4}',{5},{6},{7},'{8}')";
+                sql2 = string.Format(sql2, "SEQ_LEV_FORM1_ID.NEXTVAL", "{0}", tbVX21Reason.Text, tbVX21Contact.Text, tbVX21Phone.Text, Util.DatabaseToDate(lastFromDate), Util.DatabaseToDate(lastToDate), lastTotalDay, "");
+                hfSql2.Value = sql2;
+
             }
         }
 
@@ -689,9 +758,7 @@ namespace WEB_PERSONAL {
             ChangeNotification("info", "กรุณากรอกข้อมูล");
         }
 
-        protected void lbuVX22Finish_Click(object sender, EventArgs e) {
-
-        }
+        
     }
 
 }

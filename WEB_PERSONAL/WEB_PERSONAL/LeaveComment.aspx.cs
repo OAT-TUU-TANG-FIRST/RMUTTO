@@ -72,6 +72,9 @@ namespace WEB_PERSONAL {
                         lbF1Reason.Text = f1.Reason;
                         lbF1Contact.Text = f1.Contact;
                         lbF1Phone.Text = f1.Phone;
+                        if(f1.DoctorCertificate != "") {
+                            divDrCer.InnerHtml = "<a href='Upload/Drcer/" + f1.DoctorCertificate + "'><img src='Upload/DrCer/" + f1.DoctorCertificate + "' style='width: 200px;' /></a>";
+                        }
 
                         MultiView1.ActiveViewIndex = 1;
 

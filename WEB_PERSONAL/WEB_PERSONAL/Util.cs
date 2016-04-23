@@ -385,11 +385,50 @@ namespace WEB_PERSONAL {
             return dt;
 
         }
+        public static string ToThaiMonthShort(string monthNum) {
+            switch (int.Parse(monthNum)) {
+                case 1: return "ม.ค.";
+                case 2: return "ก.พ.";
+                case 3: return "มี.ค.";
+                case 4: return "เม.ย.";
+                case 5: return "พ.ค.";
+                case 6: return "มี.ค.";
+                case 7: return "ก.ค.";
+                case 8: return "ส.ค.";
+                case 9: return "ก.ย.";
+                case 10: return "ต.ค.";
+                case 11: return "พ.ศ.";
+                case 12: return "ธ.ค.";
+                default: return "[error]";
+            }
+        }
         public static void NormalizeGridViewDate(GridView gw, int rowIndex) {
             for (int i = 0; i < gw.Rows.Count; ++i) {
                 string s = gw.Rows[i].Cells[rowIndex].Text;
                 string[] ss = s.Split('/');
                 gw.Rows[i].Cells[rowIndex].Text = PureDatabaseToThaiDate(s);
+            }
+        }
+        public static void NormalizeGridViewDate7D(GridView gw, int rowIndex) {
+            for (int i = 0; i < gw.Rows.Count; ++i) {
+                string s = gw.Rows[i].Cells[rowIndex].Text;
+                string[] ss1 = s.Split(' ');
+                string[] ss2 = ss1[0].Split('-');
+                string year = ss2[0];
+                string month = ToThaiMonthShort(ss2[1]);
+                string day = ss2[2];
+                string day7 = ss1[2];
+                switch(day7) {
+                    case "1": day7 = "อาทิตย์"; break;
+                    case "2": day7 = "จันทร์"; break;
+                    case "3": day7 = "อังคาร"; break;
+                    case "4": day7 = "พุธ"; break;
+                    case "5": day7 = "พฤหัสบดี"; break;
+                    case "6": day7 = "ศุกร์"; break;
+                    case "7": day7 = "เสาร์"; break;
+                    default: day = "[error]"; break;
+                }
+                gw.Rows[i].Cells[rowIndex].Text = day + " " + month + " " + year + " " + day7;
             }
         }
         public static void NormalizeGridViewDate(GridView gw, int[] rowIndex) {

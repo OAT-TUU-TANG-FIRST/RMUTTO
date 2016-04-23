@@ -38,18 +38,18 @@ public class Form1Package {
     public string CommanderHighComment;
     public string CommanderHighDate;
     public string CommanderHighAllow;
-    public string StaffID;
+    /*public string StaffID;
     public string StaffPosition;
-    public string StaffDate;
+    public string StaffDate;*/
     public string CommanderLowPrefix;
     public string CommanderLowFirstName;
     public string CommanderLowLastName;
     public string CommanderHighPrefix;
     public string CommanderHighFirstName;
     public string CommanderHighLastName;
-    public string StaffPrefix;
+    /*public string StaffPrefix;
     public string StaffFirstName;
-    public string StaffLastName;
+    public string StaffLastName;*/
     public string LeaveTypeName;
     public string CommanderHighAllowName;
     public string DoctorCertificate;

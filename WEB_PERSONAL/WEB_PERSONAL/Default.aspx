@@ -9,9 +9,9 @@
 
     <div class="default_page_style">
 
-        <div class="default_header"><img src="Image/Small/home3.png"/>ยินดีต้อนรับสู่ระบบบุคลากร</div>
+        <div class="ps-header"><img src="Image/Small/home3.png"/>ยินดีต้อนรับสู่ระบบบุคลากร</div>
         <div>
-            <table class="default_table">
+            <table class="ps-table">
                 <tr>
                     <td class="head" colspan="2">ข้อมูลผู้ใช้</td>
                 </tr>
@@ -34,12 +34,12 @@
             </table>
             
         </div>
-        <div class="default_separator"></div>
+        <div class="ps-separator"></div>
 
-        <div class="default_header"><img src="Image/Small/yellow_alert.png" />การแจ้งเตือน</div>
+        <div class="ps-header"><img src="Image/Small/yellow_alert.png" />การแจ้งเตือน</div>
         <div id="notification_area" runat="server"></div>
 
-        <div class="default_separator"></div>
+        <div class="ps-separator"></div>
 
     </div>
 </asp:Content>
