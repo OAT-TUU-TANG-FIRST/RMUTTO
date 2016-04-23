@@ -108,8 +108,8 @@
                 
                 <div class="master_sidebar_group">
                     <span class="master_sidebar_group_header">การเลื่อนขั้นเงินเดือน</span>
-                    <a href="Salary.aspx"><img src="Image/Small/money.png" />ขอเลื่อนขั้นเงินเดือน 80:20</a>
-                    <a href="SalarybyID.aspx"><img src="Image/Small/money.png" />ขอเลื่อนขั้นเงินเดือน 70:30</a>
+                    <a href="UpSalary70_30_1.aspx"><img src="Image/Small/money.png" />ขอเลื่อนขั้นเงินเดือน 70:30</a>
+                    <a href="UpSalary80_20_1.aspx"><img src="Image/Small/money.png" />ขอเลื่อนขั้นเงินเดือน 80:20</a>
                 </div>
                 
                 <div class="master_sidebar_group">
@@ -147,7 +147,7 @@
 
                 <div class="master_sidebar_group">
                     <span class="master_sidebar_group_header">ข้อมูลระบบ</span>
-                    <span style="margin-left: 10px;">เวอร์ชั่น : v1.0.0</span>
+                    <span style="margin-left: 10px;">เวอร์ชั่น : v1.0.2</span>
                 </div>
 
                 <div style="height: 20px;"></div>
