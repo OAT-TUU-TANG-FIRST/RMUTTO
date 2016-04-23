@@ -32,14 +32,18 @@ namespace WEB_PERSONAL.Class {
         public string CoupleOldLastName;
         public string MinistryID;
         public string MinistryName;
-        public string DepartmentName;
+        public string DivisionID;
+        public string DivisionName;
         public string Password;
         public string SystemStatusID;
         public string SystemStatusName;
         public string GenderID;
         public string GenderName;
+        public string RaceID;
+        public string RaceName;
         public string NationID;
         public string NationName;
+
         public string HomeAdd;
         public string Moo;
         public string Street;
@@ -49,7 +53,19 @@ namespace WEB_PERSONAL.Class {
         public string AmphurName;
         public string ProvinceID;
         public string ProvinceName;
-        public string ZipCodeID;
+        public string ZipCode;
+
+        public string HomeAddNow;
+        public string MooNow;
+        public string StreetNow;
+        public string DistrictIDNow;
+        public string DistrictNameNow;
+        public string AmphurIDNow;
+        public string AmphurNameNow;
+        public string ProvinceIDNow;
+        public string ProvinceNameNow;
+        public string ZipCodeNow;
+
         public string Telephone;
         public string TimeContactID;
         public string TimeContactName;

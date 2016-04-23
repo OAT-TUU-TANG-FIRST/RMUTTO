@@ -21,6 +21,9 @@ namespace WEB_PERSONAL {
                         }
                     }
                 }
+                SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT PS_CITIZEN_ID, PS_FN_TH, PS_LN_TH FROM PS_PERSON");
+                GridView2.DataSource = sds;
+                GridView2.DataBind();
             }
             
         }
@@ -65,6 +68,23 @@ namespace WEB_PERSONAL {
 
             //Session["dev_t1"] = Table1;
 
+        }
+
+        protected void LinkButton1_Click(object sender, EventArgs e) {
+            TextBox1.Text = "" + new Random().Next();
+            ScriptManager.RegisterStartupScript(this, typeof(Page), "UpdateMsg", "openPopup('popup1');", true);
+        }
+
+        protected void lbuSearchCitizenID_Click(object sender, EventArgs e) {
+            if(TextBox1.Text == "") {
+                SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT * FROM PS_PERSON ORDER BY PS_CITIZEN_ID ASC");
+                GridView2.DataSource = sds;
+            } else {
+                SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT * FROM PS_PERSON WHERE PS_CITIZEN_ID LIKE '%" + TextBox1.Text + "%' ORDER BY PS_CITIZEN_ID ASC");
+                GridView2.DataSource = sds;
+            }
+            GridView2.DataBind();
+            ScriptManager.RegisterStartupScript(this, typeof(Page), "UpdateMsg", "openPopup('popup1');", true);
         }
     }
 }

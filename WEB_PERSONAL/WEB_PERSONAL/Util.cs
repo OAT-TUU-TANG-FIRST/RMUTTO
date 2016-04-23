@@ -13,15 +13,12 @@ using System.Net;
 using System.Net.Mail;
 using WEB_PERSONAL.Entities;
 
-namespace WEB_PERSONAL
-{
+namespace WEB_PERSONAL {
 
-    public class Util
-    {
+    public class Util {
 
         public static readonly string CONNECTION_STRING = @"Provider=OraOLEDB.Oracle; Data Source = 203.158.140.67:1521/orcl;USER ID=rmutto;PASSWORD=Zxcvbnm";
-        public static string ToOracleDate2(string date)
-        {
+        public static string ToOracleDate2(string date) {
             string[] s = date.Split('/');
             return s[0] + " " + ToOracleMonth(s[1]) + " " + (Convert.ToInt32(s[2]) - 543);
         }
@@ -29,30 +26,24 @@ namespace WEB_PERSONAL
         /*public static string YearDown543(DateTime date) {
 
         }*/
-        public static string ToOracleDate(string date)
-        {
+        public static string ToOracleDate(string date) {
             string[] s = date.Split('/');
             return s[0] + " " + ToOracleMonth(s[1]) + " " + s[2];
         }
-        public static string ToOracleDate(DateTime date)
-        {
+        public static string ToOracleDate(DateTime date) {
             return date.Day.ToString("00") + " " + ToOracleMonth(date.Month) + " " + date.Year.ToString("0000");
         }
-        public static DateTime toOracleDateTime(string date)
-        {
+        public static DateTime toOracleDateTime(string date) {
             return DateTime.ParseExact(date, "dd/MM/yyyy", CultureInfo.InvariantCulture);
         }
-        public static DateTime toOracleDateTime(DateTime date)
-        {
+        public static DateTime toOracleDateTime(DateTime date) {
             return DateTime.ParseExact(date.ToString("dd/MM/yyyy"), "dd/MM/yyyy", CultureInfo.InvariantCulture);
         }
-        public static DateTime ODT(string date)
-        {
+        public static DateTime ODT(string date) {
 
             string[] ss = date.Split(' ');
 
-            switch (ss[1])
-            {
+            switch (ss[1]) {
                 case "ม.ค.": ss[1] = "01"; break;
                 case "ก.พ.": ss[1] = "02"; break;
                 case "มี.ค.": ss[1] = "03"; break;
@@ -70,33 +61,25 @@ namespace WEB_PERSONAL
 
             return DateTime.ParseExact(d1, "dd/MM/yyyy", CultureInfo.CurrentCulture);
         }
-        public static DateTime ODTT()
-        {
+        public static DateTime ODTT() {
             return DateTime.ParseExact(DateTime.Today.ToString("dd/MM/yyyy"), "dd/MM/yyyy", CultureInfo.InvariantCulture);
         }
-        public static DateTime ODTN()
-        {
+        public static DateTime ODTN() {
             return DateTime.ParseExact(DateTime.Now.ToString("dd/MM/yyyy"), "dd/MM/yyyy", CultureInfo.InvariantCulture);
         }
-        public static string NDT(string date)
-        {
+        public static string NDT(string date) {
             string[] ss = date.Split(' ');
-            if (ss.Length == 3)
-            {
+            if (ss.Length == 3) {
                 return ss[0] + " " + ss[1] + " " + ss[2];
-            }
-            else {
+            } else {
                 return ss[0] + " " + ss[1] + " " + ss[3];
             }
         }
-        public static string ToOracleMonth(string month)
-        {
+        public static string ToOracleMonth(string month) {
             return ToOracleMonth(Int32.Parse(month));
         }
-        public static string ToOracleMonth(int month)
-        {
-            switch (month)
-            {
+        public static string ToOracleMonth(int month) {
+            switch (month) {
                 case 1:
                 default:
                     return "ม.ค.";
@@ -124,19 +107,16 @@ namespace WEB_PERSONAL
                     return "ธ.ค.";
             }
         }
-        public static string ToThaiWord(string s)
-        {
+        public static string ToThaiWord(string s) {
             string[] ss = s.Split(' ');
             string s_day = ss[0];
             string s_month = ss[1];
             string s_year = ss[2];
             return "วันที่" + NormalizeThaiWord(NumberToThaiWord(s_day)) + "เดือน" + shortToLong(s_month) + "ปี" + NormalizeThaiWord(NumberToThaiWord(s_year));
         }
-        public static string ToThaiMonth(string s)
-        {
+        public static string ToThaiMonth(string s) {
             int month = Int32.Parse(s.Trim());
-            switch (month)
-            {
+            switch (month) {
                 case 1: return "มกราคม";
                 case 2: return "กุมภาพันธ์";
                 case 3: return "มีนาคม";
@@ -152,10 +132,8 @@ namespace WEB_PERSONAL
                 default: return "[ERROR]";
             }
         }
-        public static string shortToLong(string s)
-        {
-            switch (s)
-            {
+        public static string shortToLong(string s) {
+            switch (s) {
                 case "ม.ค.": return "มกราคม";
                 case "ก.พ.": return "กุมภาพันธ์";
                 case "มี.ค.": return "มีนาคม";
@@ -171,11 +149,9 @@ namespace WEB_PERSONAL
                 default: return "[ERROR]";
             }
         }
-        public static int MonthToNumber(string s)
-        {
+        public static int MonthToNumber(string s) {
 
-            switch (s)
-            {
+            switch (s) {
                 case "ม.ค.": return 1;
                 case "ก.พ.": return 2;
                 case "มี.ค.": return 3;
@@ -191,27 +167,22 @@ namespace WEB_PERSONAL
                 default: return -1;
             }
         }
-        public static string NormalizeThaiWord(string s)
-        {
+        public static string NormalizeThaiWord(string s) {
             s = s.Replace("หนึ่งสิบ", "สิบ");
             s = s.Replace("สองสิบ", "ยี่สิบ");
             s = s.Replace("สิบหนึ่ง", "สิบเอ็ด");
             return s;
         }
-        public static string NumberToThaiWord(string s)
-        {
+        public static string NumberToThaiWord(string s) {
             string sout = "";
-            for (int i = 0; i < s.Length; ++i)
-            {
+            for (int i = 0; i < s.Length; ++i) {
                 if (s[i] != '0')
                     sout += SingleNumberToThaiWord(s[i]) + ColumnNumberToThaiWord(s.Length - i - 1);
             }
             return sout;
         }
-        public static string SingleNumberToThaiWord(char c)
-        {
-            switch (c)
-            {
+        public static string SingleNumberToThaiWord(char c) {
+            switch (c) {
                 case '0': return "ศูนย์";
                 case '1': return "หนึ่ง";
                 case '2': return "สอง";
@@ -225,17 +196,13 @@ namespace WEB_PERSONAL
                 default: return "[ERROR]";
             }
         }
-        public static string ColumnNumberToThaiWord(int column)
-        {
-            if (column == 0)
-            {
+        public static string ColumnNumberToThaiWord(int column) {
+            if (column == 0) {
                 return "";
-            }
-            else {
+            } else {
                 column = column % 6;
             }
-            switch (column)
-            {
+            switch (column) {
                 case 0: return "ล้าน";
                 case 1: return "สิบ";
                 case 2: return "ร้อย";
@@ -245,34 +212,28 @@ namespace WEB_PERSONAL
                 default: return "[ERROR]";
             }
         }
-        public static OracleConnection OC()
-        {
+        public static OracleConnection OC() {
             OracleConnection con = new OracleConnection("DATA SOURCE=ORCL_RMUTTO;USER ID=RMUTTO;PASSWORD=Zxcvbnm;");
             con.Open();
             return con;
         }
-        public static string CS()
-        {
+        public static string CS() {
             return "DATA SOURCE=ORCL_RMUTTO;USER ID=RMUTTO;PASSWORD=Zxcvbnm;";
         }
-        public static void Alert(Control control, string message)
-        {
+        public static void Alert(Control control, string message) {
             string script2 = "alert('" + message + "');";
             ScriptManager.RegisterStartupScript(control, control.GetType(), "ServerControlScript", script2, true);
         }
-        public static void RunScript(Control control, string script)
-        {
+        public static void RunScript(Control control, string script) {
             ScriptManager.RegisterClientScriptBlock(control, control.GetType(), "ServerControlScript", script, true);
         }
 
         //-------------------
 
-        public static string ToOracleDateTime(DateTime dt)
-        {
+        public static string ToOracleDateTime(DateTime dt) {
             string s = dt.ToString("dd/MM/yyyy");
             string[] s2 = s.Split('/');
-            switch (s2[1])
-            {
+            switch (s2[1]) {
                 case "01": s2[1] = "ม.ค."; break;
                 case "02": s2[1] = "ก.พ."; break;
                 case "03": s2[1] = "มี.ค."; break;
@@ -289,17 +250,14 @@ namespace WEB_PERSONAL
             return s2[0] + " " + s2[1] + " " + s2[2];
             //return s;
         }
-        public static string DatabaseToDate(string s)
-        {
-            if (s == null)
-            {
+        public static string DatabaseToDate(string s) {
+            if (s == null) {
                 return "''";
             }
             string[] ss = s.Split(' ');
             if (ss.Length != 3)
                 return "''";
-            switch (ss[1])
-            {
+            switch (ss[1]) {
                 case "ม.ค.": ss[1] = "01"; break;
                 case "ก.พ.": ss[1] = "02"; break;
                 case "มี.ค.": ss[1] = "03"; break;
@@ -315,18 +273,13 @@ namespace WEB_PERSONAL
             }
             return "TO_DATE('" + ss[0] + "/" + ss[1] + "/" + (int.Parse(ss[2]) - 543) + "', 'DD/MM/YYYY')";
         }
-        public static string TodayDatabaseToDate()
-        {
+        public static string TodayDatabaseToDate() {
             string s = "-";
-            using (OleDbConnection con = new OleDbConnection(DatabaseManager.CONNECTION_STRING))
-            {
+            using (OleDbConnection con = new OleDbConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
-                using (OleDbCommand com = new OleDbCommand("SELECT TO_CHAR(CURRENT_DATE, 'DD/MM/YYYY') FROM DUAL", con))
-                {
-                    using (OleDbDataReader reader = com.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
+                using (OleDbCommand com = new OleDbCommand("SELECT TO_CHAR(CURRENT_DATE, 'DD/MM/YYYY') FROM DUAL", con)) {
+                    using (OleDbDataReader reader = com.ExecuteReader()) {
+                        while (reader.Read()) {
                             s = reader.GetValue(0).ToString();
                         }
                     }
@@ -336,17 +289,14 @@ namespace WEB_PERSONAL
             //s = ss[0] + " " + ss[1] + " " + (int.Parse(ss[2]) - 543);
             return "TO_DATE('" + s + "', 'DD/MM/YYYY')";
         }
-        public static string PureDatabaseToThaiDate(string s)
-        {
-            if (s == null)
-            {
+        public static string PureDatabaseToThaiDate(string s) {
+            if (s == null) {
                 return "";
             }
             string[] ss = s.Split('/');
             if (ss.Length != 3)
                 return "";
-            switch (int.Parse(ss[1]))
-            {
+            switch (int.Parse(ss[1])) {
                 case 1: ss[1] = "ม.ค."; break;
                 case 2: ss[1] = "ก.พ."; break;
                 case 3: ss[1] = "มี.ค."; break;
@@ -362,22 +312,17 @@ namespace WEB_PERSONAL
             }
             return int.Parse(ss[0]).ToString("00") + " " + ss[1] + " " + ss[2].Substring(0, 4);
         }
-        public static void alertF(Page page, string message)
-        {
+        public static void alertF(Page page, string message) {
             page.Page.ClientScript.RegisterStartupScript(page.GetType(), "ALERT", "alert('" + message + "')", true);
         }
-        public static void alertF(MasterPage page, string message)
-        {
+        public static void alertF(MasterPage page, string message) {
             page.Page.ClientScript.RegisterStartupScript(page.GetType(), "ALERT", "alert('" + message + "')", true);
         }
-        public static bool IsDateValid(string date)
-        {
-            try
-            {
+        public static bool IsDateValid(string date) {
+            try {
                 string[] split = date.Split(' ');
 
-                if (split.Length != 3)
-                {
+                if (split.Length != 3) {
                     return false;
                 }
 
@@ -386,12 +331,10 @@ namespace WEB_PERSONAL
                 string year = split[2];
 
                 int iDay = int.Parse(day);
-                if (iDay < 1 || iDay > 31)
-                {
+                if (iDay < 1 || iDay > 31) {
                     return false;
                 }
-                switch (month)
-                {
+                switch (month) {
                     case "ม.ค.":
                     case "ก.พ.":
                     case "มี.ค.":
@@ -408,28 +351,23 @@ namespace WEB_PERSONAL
                     default: return false;
                 }
                 int iYear = int.Parse(year);
-                if (iYear < 0 || iYear > 9999)
-                {
+                if (iYear < 0 || iYear > 9999) {
                     return false;
                 }
 
 
                 return true;
-            }
-            catch
-            {
+            } catch {
                 return false;
             }
         }
-        public static DateTime ToDateTime(string date)
-        {
+        public static DateTime ToDateTime(string date) {
             string[] split = date.Split(' ');
             string day = split[0];
             string month = split[1];
             string year = split[2];
             string sMonth = "";
-            switch (month)
-            {
+            switch (month) {
                 case "ม.ค.": sMonth = "01"; break;
                 case "ก.พ.": sMonth = "02"; break;
                 case "มี.ค.": sMonth = "03"; break;
@@ -447,21 +385,16 @@ namespace WEB_PERSONAL
             return dt;
 
         }
-        public static void NormalizeGridViewDate(GridView gw, int rowIndex)
-        {
-            for (int i = 0; i < gw.Rows.Count; ++i)
-            {
+        public static void NormalizeGridViewDate(GridView gw, int rowIndex) {
+            for (int i = 0; i < gw.Rows.Count; ++i) {
                 string s = gw.Rows[i].Cells[rowIndex].Text;
                 string[] ss = s.Split('/');
                 gw.Rows[i].Cells[rowIndex].Text = PureDatabaseToThaiDate(s);
             }
         }
-        public static void NormalizeGridViewDate(GridView gw, int[] rowIndex)
-        {
-            for (int i = 0; i < gw.Rows.Count; ++i)
-            {
-                for (int j = 0; j < rowIndex.Length; ++j)
-                {
+        public static void NormalizeGridViewDate(GridView gw, int[] rowIndex) {
+            for (int i = 0; i < gw.Rows.Count; ++i) {
+                for (int j = 0; j < rowIndex.Length; ++j) {
                     string s = gw.Rows[i].Cells[rowIndex[j]].Text;
                     string[] ss = s.Split('/');
                     gw.Rows[i].Cells[rowIndex[j]].Text = PureDatabaseToThaiDate(s);
@@ -483,11 +416,11 @@ namespace WEB_PERSONAL
         public static string ToThaiWordRetire(string birthday) {
             return ToThaiWord(MinusYear543(BirthdayToRetireDate(birthday)));
         }
-        
+
         public static string RandomPassword(int n) {
             Random r = new Random();
             string password = "";
-            for(int i=0; i<n; ++i) {
+            for (int i = 0; i < n; ++i) {
                 password += r.Next(10);
             }
             return password;
@@ -524,6 +457,155 @@ namespace WEB_PERSONAL
             }) {
                 smtp.Send(message);
             }*/
+        }
+
+        public static string RandomString(int length) {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            var random = new Random();
+            return new string(Enumerable.Repeat(chars, length)
+              .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+        public static string RandomFileName() {
+            const string chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+            var random = new Random();
+            return new string(Enumerable.Repeat(chars, 24)
+              .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+
+        public void Insig() {
+
+            string ประเภทบุคลากร = "";
+            string ตำแหน่งประเภท = "";
+            string ระดับ = "";
+            int เงินเดือน = 0;
+            int ปี = 0;
+            int เครื่องราชที่จะขอ = 0;
+            int เงินเดือนขั้นต่ำชำนาญงาน = 0;
+            int เงินเดือนขั้นต่ำชำนาญงานพิเศษ = 0;
+            int ปีทช = 0;
+            int ปีปม = 0;
+            int ปีปช = 0;
+            int ปีมวม = 0;
+
+            if (ประเภทบุคลากร == "ข้าราชการ") {
+                if(ตำแหน่งประเภท == "ระดับทั่วไป") {
+                    if (ระดับ == "ระดับปฏิบัติงาน") {
+                        if (เครื่องราชที่จะขอ == 12) { //บม
+                            if (ปี >= 5) {
+                                //ขอได้
+                            }
+                        }
+                        if (เครื่องราชที่จะขอ == 11) { //บช
+                            if (ปี >= 10 && เงินเดือน < เงินเดือนขั้นต่ำชำนาญงาน) {
+                                //ขอได้
+                            }
+                        }
+                        if (เครื่องราชที่จะขอ == 10) { //จม
+                            if (ปี >= 10 && เงินเดือน > เงินเดือนขั้นต่ำชำนาญงาน) {
+                                //ขอได้
+                            }
+                        }
+                        if (เครื่องราชที่จะขอ == 9) { //จช
+                            if (ปี >= 10 && เงินเดือน > เงินเดือนขั้นต่ำชำนาญงาน) {
+                                //ขอได้
+                            }
+                        }
+                    }
+                    if (ระดับ == "ระดับชำนาญงาน") {
+                        if (เครื่องราชที่จะขอ == 8) { //ตม
+                            if (ปี >= 5) {
+                                //ขอได้
+                            }
+                        }
+                        if (เครื่องราชที่จะขอ == 7) { //ตช
+                            if (ปี >= 5) {
+                                //ขอได้
+                            }
+                        }
+                    }
+                    if (ระดับ == "ระดับอาวุโส") {
+                        if (เครื่องราชที่จะขอ == 6) { //ทม
+                            if (ปี >= 5) {
+                                //ขอได้
+                            }
+                        }
+                        if (เครื่องราชที่จะขอ == 5) { //ทช
+                            if (ปี >= 5) {
+                                //ขอได้
+                            }
+                        }
+                    }
+                }
+                if (ตำแหน่งประเภท == "ประเภทวิชาการ") {
+                    if (ระดับ == "ระดับวิชาการ") {
+                        if (เครื่องราชที่จะขอ == 8) { //ทม
+                            if (ปี >= 5) {
+                                //ขอได้
+                            }
+                        }
+                    }
+                    if (ระดับ == "ระดับชำนาญการ") {
+                        if (เครื่องราชที่จะขอ == 7) { //ตช
+                            if (ปี >= 5) {
+                                //ขอได้
+                            }
+                        }
+                        if (เครื่องราชที่จะขอ == 6) { //ทม
+                            if (ปี >= 5 && เงินเดือน > เงินเดือนขั้นต่ำชำนาญงานพิเศษ) {
+                                //ขอได้
+                            }
+                        }
+                        if (เครื่องราชที่จะขอ == 5) { //ทช
+                            if (ปี >= 5 && เงินเดือน > เงินเดือนขั้นต่ำชำนาญงานพิเศษ) {
+                                //ขอได้
+                            }
+                        }
+                    }
+                    if (ระดับ == "ระดับชำนาญการพิเศษ") {
+                        if (เครื่องราชที่จะขอ == 5) { //ทช
+                            if (ปี >= 5) {
+                                //ขอได้
+                            }
+                        }
+                        if (เครื่องราชที่จะขอ == 4) { //ปม
+                            if (ปี >= 5 && ปีทช >= 5 && เงินเดือน > เงินเดือนขั้นต่ำชำนาญงานพิเศษ /*และได้รับเงินเดือนขั้นสูง*/) {
+                                //ขอได้
+                            }
+                        }
+                    }
+                    if (ระดับ == "ระดับเชี่ยวชาญ") {
+                        if (เครื่องราชที่จะขอ == 2) { //มวม
+                            if (ปี >= 5 && ปีทช >= 3 && ปีปม >= 3 && ปีปช >= 3) {
+                                //ขอได้
+                            }
+                        }
+                    }
+                    if (ระดับ == "ระดับทรงคุณวุฒิ" && เงินเดือน == 13000) {
+                        if (เครื่องราชที่จะขอ == 1) { //มปช
+                            if (ปี >= 5 && ปีปม >= 3 && ปีปช >= 3 && ปีมวม >= 5) {
+                                //ขอได้
+                            }
+                        }
+                    }
+                    if (ระดับ == "ระดับทรงคุณวุฒิ" && เงินเดือน == 15600) {
+                        if (เครื่องราชที่จะขอ == 1) { //มปช
+                            if (ปี >= 5 && ปีปม >= 3 && ปีปช >= 3 && ปีมวม >= 3) {
+                                //ขอได้
+                            }
+                        }
+                    }
+                }
+                if (ตำแหน่งประเภท == "ประเภทอำนวยการ") {
+
+                }
+                
+
+            }
+
+
+
+
+
         }
     }
 

@@ -11,6 +11,7 @@ using System.Drawing;
 using System.Web.UI.HtmlControls;
 using WEB_PERSONAL.Class;
 using System.Data.OleDb;
+using System.IO;
 
 namespace WEB_PERSONAL {
     public partial class Leave : System.Web.UI.Page {
@@ -52,6 +53,7 @@ namespace WEB_PERSONAL {
                     AddNotification("<div class='hm_tab'></div>- กรุณากรอก <strong>เบอร์โทรศัพท์</strong><br>");
                 }
             } else {
+                Session["LeaveF1FileUpload1"] = FileUpload1;
                 MultiView1.ActiveViewIndex = 1;
                 ChangeNotification("info", "กรุณายืนยันข้อมูลอีกครั้ง");
 
@@ -64,7 +66,7 @@ namespace WEB_PERSONAL {
                 string lastTotalDay = "''";
                 using (OleDbConnection con = new OleDbConnection(DatabaseManager.CONNECTION_STRING)) {
                     con.Open();
-                    using (OleDbCommand com = new OleDbCommand("SELECT LEV_FORM1.FROM_DATE, LEV_FORM1.TO_DATE, LEV_FORM1.TOTAL_DAY FROM LEV_MAIN, LEV_FORM1 WHERE LEV_MAIN.CITIZEN_ID = '" + loginPerson.CitizenID + "' AND LEV_MAIN.LEAVE_TYPE_ID = " + ddlLeaveType.SelectedValue + " AND LEV_MAIN.LEAVE_ID = LEV_FORM1.LEAVE_ID AND ROWNUM = 1 ORDER BY LEV_MAIN.LEAVE_ID DESC", con)) {
+                    using (OleDbCommand com = new OleDbCommand("SELECT LEV_MAIN.FROM_DATE, LEV_MAIN.TO_DATE, LEV_MAIN.TOTAL_DAY FROM LEV_MAIN WHERE LEV_MAIN.PS_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND LEV_MAIN.LEAVE_TYPE_ID = " + ddlLeaveType.SelectedValue + " AND ROWNUM = 1 ORDER BY LEV_MAIN.LEAVE_ID DESC", con)) {
                         using (OleDbDataReader reader = com.ExecuteReader()) {
                             while (reader.Read()) {
                                 lastFromDate = Util.PureDatabaseToThaiDate(reader.GetValue(0).ToString());
@@ -79,7 +81,7 @@ namespace WEB_PERSONAL {
                 lbF1S2PersonName.Text = loginPerson.FullName;
                 lbF1S2PersonPosition.Text = loginPerson.PositionName;
                 lbF1S2PersonRank.Text = loginPerson.AdminPositionName;
-                lbF1S2PersonDepartment.Text = loginPerson.DepartmentName;
+                lbF1S2PersonDepartment.Text = loginPerson.DivisionName;
                 lbF1S2LastFTTDate.Text = leavedDate;
                 lbF1S2LeaveTypeName.Text = ddlLeaveType.SelectedItem.Text;
                 DateTime dtFromDate = Util.ToDateTime(tbF1S1FromDate.Text);
@@ -89,36 +91,56 @@ namespace WEB_PERSONAL {
                 lbF1S2Reason.Text = tbF1S1Reason.Text;
                 lbF1S2Contact.Text = tbF1S1Contact.Text;
                 lbF1S2Phone.Text = tbF1S1Phone.Text;
-                if(FileUpload1.HasFile) {
+                string drCer;
+                if (FileUpload1.HasFile) {
                     lbF1S2DrCer.Text = "มี";
+                    FileInfo fi = new FileInfo(FileUpload1.FileName);
+                    drCer = Util.RandomFileName() + fi.Extension;
                 } else {
                     lbF1S2DrCer.Text = "ไม่มี";
+                    drCer = "''";
                 }
+                
+
+                Person psCL = DatabaseManager.GetPerson("701");
+                Person psCH = DatabaseManager.GetPerson("702");
 
 
-
-
-                string sql1 = "INSERT INTO LEV_MAIN (LEAVE_ID, LEAVE_TYPE_ID, LEAVE_STATE, CITIZEN_ID, REQ_DATE) VALUES ({0},{1},{2},'{3}',{4})";
-                sql1 = string.Format(sql1, "{0}", ddlLeaveType.SelectedValue, 1, loginPerson.CitizenID, Util.TodayDatabaseToDate());
+                string sql1 = "INSERT INTO LEV_MAIN (LEAVE_ID, LEAVE_TYPE_ID, LEAVE_STATE, PS_CITIZEN_ID, REQ_DATE, FROM_DATE, TO_DATE, TOTAL_DAY, CL_ID, CL_TITLE, CL_FN, CL_LN, CL_POS, CL_COMM, CL_DATE, CH_ID, CH_TITLE, CH_FN, CH_LN, CH_POS, CH_COMM, CH_ALLOW, CH_DATE, PS_TITLE, PS_FN, PS_LN, PS_POS, PS_DEPT) VALUES ({0},{1},{2},'{3}',{4},{5},{6},{7},'{8}','{9}','{10}','{11}','{12}','{13}',{14},'{15}','{16}','{17}','{18}','{19}','{20}',{21},{22},'{23}','{24}','{25}','{26}','{27}')";
+                sql1 = string.Format(sql1, "{0}", ddlLeaveType.SelectedValue, 1, loginPerson.CitizenID, Util.TodayDatabaseToDate(), Util.DatabaseToDate(tbF1S1FromDate.Text), Util.DatabaseToDate(tbF1S1ToDate.Text), totalDay, psCL.CitizenID, psCL.TitleName, psCL.FirstName, psCL.LastName, psCL.PositionName, "", "''", psCH.CitizenID, psCH.TitleName, psCH.FirstName, psCH.LastName, psCH.PositionName, "", "''", "''", loginPerson.TitleName, loginPerson.FirstName, loginPerson.LastName, loginPerson.PositionName, loginPerson.DivisionName);
                 hfSql.Value = sql1;
 
-                Person cmdLowPerson = DatabaseManager.GetPerson("1111111111111");
-                Person cmdHighPerson = DatabaseManager.GetPerson("1111111111112");
+                string sql2 = "INSERT INTO LEV_FORM1 (FORM1_ID, LEAVE_ID, REASON, CONTACT, PHONE, LAST_FROM_DATE, LAST_TO_DATE, LAST_TOTAL_DAY, DR_CER_FILE_NAME) VALUES ({0},{1},'{2}','{3}','{4}',{5},{6},{7},'{8}')";
+                sql2 = string.Format(sql2, "SEQ_LEV_FORM1_ID.NEXTVAL", "{0}", tbF1S1Reason.Text, tbF1S1Contact.Text, tbF1S1Phone.Text, Util.DatabaseToDate(lastFromDate), Util.DatabaseToDate(lastToDate), lastTotalDay, drCer);
+                hfSql2.Value = sql2;
 
-                string sql2 = "INSERT INTO LEV_FORM1 (FORM1_ID, LEAVE_ID, FROM_DATE, TO_DATE, TOTAL_DAY, REASON, CONTACT, PHONE, PERSON_POSITION, PERSON_RANK, PERSON_DEPARTMENT, LAST_FROM_DATE, LAST_TO_DATE, LAST_TOTAL_DAY, PERSON_PREFIX, PERSON_FIRST_NAME, PERSON_LAST_NAME, CMD_LOW_ID, CMD_LOW_POS, CMD_LOW_PREFIX, CMD_LOW_FIRST_NAME, CMD_LOW_LAST_NAME, CMD_HIGH_ID, CMD_HIGH_POS, CMD_HIGH_PREFIX, CMD_HIGH_FIRST_NAME, CMD_HIGH_LAST_NAME) VALUES ({0},{1},{2},{3},'{4}','{5}','{6}','{7}','{8}','{9}','{10}',{11},{12},{13},'{14}','{15}','{16}','{17}','{18}','{19}','{20}','{21}','{22}','{23}','{24}','{25}','{26}')";
-                sql2 = string.Format(sql2, "SEQ_LEV_FORM1_ID.NEXTVAL", "{0}", Util.DatabaseToDate(tbF1S1FromDate.Text), Util.DatabaseToDate(tbF1S1ToDate.Text), totalDay, tbF1S1Reason.Text, tbF1S1Contact.Text, tbF1S1Phone.Text, loginPerson.PositionName, loginPerson.AdminPositionName, loginPerson.DepartmentName, Util.DatabaseToDate(lastFromDate), Util.DatabaseToDate(lastToDate), lastTotalDay, loginPerson.TitleName, loginPerson.FirstName, loginPerson.LastName, "1111111111111", cmdLowPerson.PositionName, cmdLowPerson.TitleName, cmdLowPerson.FirstName, cmdLowPerson.LastName, "1111111111112", cmdHighPerson.PositionName, cmdHighPerson.TitleName, cmdHighPerson.FirstName, cmdHighPerson.LastName);
+                hfFileUploadName.Value = drCer;
+
+                //Person cmdLowPerson = DatabaseManager.GetPerson("1111111111111");
+                //Person cmdHighPerson = DatabaseManager.GetPerson("1111111111112");
+
+
+
+                /*string sql2 = "INSERT INTO LEV_FORM1 (FORM1_ID, LEAVE_ID, FROM_DATE, TO_DATE, TOTAL_DAY, REASON, CONTACT, PHONE, PERSON_POSITION, PERSON_RANK, PERSON_DEPARTMENT, LAST_FROM_DATE, LAST_TO_DATE, LAST_TOTAL_DAY, PERSON_PREFIX, PERSON_FIRST_NAME, PERSON_LAST_NAME, CMD_LOW_ID, CMD_LOW_POS, CMD_LOW_PREFIX, CMD_LOW_FIRST_NAME, CMD_LOW_LAST_NAME, CMD_HIGH_ID, CMD_HIGH_POS, CMD_HIGH_PREFIX, CMD_HIGH_FIRST_NAME, CMD_HIGH_LAST_NAME) VALUES ({0},{1},{2},{3},'{4}','{5}','{6}','{7}','{8}','{9}','{10}',{11},{12},{13},'{14}','{15}','{16}','{17}','{18}','{19}','{20}','{21}','{22}','{23}','{24}','{25}','{26}')";
+                sql2 = string.Format(sql2, "SEQ_LEV_FORM1_ID.NEXTVAL", "{0}", Util.DatabaseToDate(tbF1S1FromDate.Text), Util.DatabaseToDate(tbF1S1ToDate.Text), totalDay, tbF1S1Reason.Text, tbF1S1Contact.Text, tbF1S1Phone.Text, loginPerson.PositionName, loginPerson.AdminPositionName, loginPerson.DivisionName, Util.DatabaseToDate(lastFromDate), Util.DatabaseToDate(lastToDate), lastTotalDay, loginPerson.TitleName, loginPerson.FirstName, loginPerson.LastName, "1111111111111", cmdLowPerson.PositionName, cmdLowPerson.TitleName, cmdLowPerson.FirstName, cmdLowPerson.LastName, "1111111111112", cmdHighPerson.PositionName, cmdHighPerson.TitleName, cmdHighPerson.FirstName, cmdHighPerson.LastName);
                 hfSql2.Value = sql2;
 
                 if(FileUpload1.HasFile) {
                     FileUpload1.SaveAs(Server.MapPath("Upload/" + FileUpload1.FileName));
-                }
-                
+                }*/
+
 
                 //TextBox56.Text += sql1 + System.Environment.NewLine + sql2;
 
                 /*string sql = "INSERT INTO LEV_FORM1 (LEAVE_ID, CITIZEN_ID, REQ_DATE, LEAVE_TYPE_ID, FROM_DATE, TO_DATE, TOTAL_DAY, REASON, CONTACT, PHONE, STATE_ID) VALUES (SEQ_LEV_FORM1_ID.NEXTVAL, '{0}', {1}, {2}, {3}, {4}, {5}, '{6}', '{7}', '{8}', {9})";
                 hfSql.Value = string.Format(sql, loginPerson.CitizenID, Util.TodayDatabaseToDate(), ddlLeaveType.SelectedValue, Util.DatabaseToDate(tbF1S1FromDate.Text), Util.DatabaseToDate(tbF1S1ToDate.Text), totalDay, lbF1S2Reason.Text, lbF1S2Contact.Text, lbF1S2Phone.Text, 1);
                 */
+
+                /*if(FileUpload1.HasFile) {
+                    FileInfo fi = new FileInfo(FileUpload1.FileName);
+                    string ext = fi.Extension;
+                    FileUpload1.SaveAs(Server.MapPath("Upload/DrCer/" + Util.RandomFileName() + ext));
+                }*/
 
 
             }
@@ -488,6 +510,10 @@ namespace WEB_PERSONAL {
 
             DatabaseManager.ExecuteNonQuery(sql1);
             DatabaseManager.ExecuteNonQuery(sql2);
+            FileUpload fu = (FileUpload)Session["LeaveF1FileUpload1"];
+            if (fu.HasFile) {
+                fu.SaveAs(Server.MapPath("Upload/DrCer/" + hfFileUploadName.Value));
+            }
 
             ChangeNotification("success", "<strong>ทำการลาสำเร็จ!</strong> คุณสามารถตรวจสอบสถานะการลาได้ที่เมนู การลา -> สถานะ และ ประวัติการลา");
             MultiView1.ActiveViewIndex = 20;
@@ -638,7 +664,7 @@ namespace WEB_PERSONAL {
                 lbVX22Name.Text = loginPerson.FullName;
                 lbVX22Position.Text = loginPerson.PositionName;
                 lbVX22Rank.Text = loginPerson.RankName;
-                lbVX22Dept.Text = loginPerson.DepartmentName;
+                lbVX22Dept.Text = loginPerson.DivisionName;
 
                 
                 DateTime dtFromDate = Util.ToDateTime(tbVX21FromDate.Text);

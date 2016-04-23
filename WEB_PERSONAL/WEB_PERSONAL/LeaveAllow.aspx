@@ -10,19 +10,8 @@
 
         <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex="0">
             <asp:View ID="View1" runat="server">
-                <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
-                    <AlternatingRowStyle BackColor="White" />
-                    <EditRowStyle BackColor="#2461BF" />
-                    <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-                    <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-                    <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
-                    <RowStyle BackColor="#EFF3FB" />
-                    <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
-                    <SortedAscendingCellStyle BackColor="#F5F7FB" />
-                    <SortedAscendingHeaderStyle BackColor="#6D95E1" />
-                    <SortedDescendingCellStyle BackColor="#E9EBEF" />
-                    <SortedDescendingHeaderStyle BackColor="#4870BE" />
-                </asp:GridView>
+                <asp:GridView ID="GridView1" runat="server" CssClass="default_gridview"></asp:GridView>
+                <div class="default_separator"></div>
             </asp:View>
             <asp:View ID="View2" runat="server">
                 <table>
@@ -90,6 +79,13 @@
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
+                    <td class="col1">สถิติการลา</td>
+                    <td class="col2">
+                        <asp:Label ID="lbF1Statistic" runat="server"></asp:Label>
+                    </td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
                     <td class="col1">เหตุผล</td>
                     <td class="col2">
                         <asp:Label ID="lbF1Reason" runat="server"></asp:Label>
@@ -107,6 +103,20 @@
                     <td class="col1">เบอร์โทรศัพท์</td>
                     <td class="col2">
                         <asp:Label ID="lbF1Phone" runat="server"></asp:Label>
+                    </td>
+                    <td>&nbsp;</td>
+                </tr>
+                    <tr>
+                    <td class="col1">ความเห็นจากผู้บังคับบัญชาระดับต่ำ</td>
+                    <td class="col2">
+                        <asp:Label ID="lbF1CLComment" runat="server"></asp:Label>
+                    </td>
+                    <td>&nbsp;</td>
+                </tr>
+                    <tr>
+                    <td class="col1">วันที่ลงความเห็น</td>
+                    <td class="col2">
+                        <asp:Label ID="lbF1CLDate" runat="server"></asp:Label>
                     </td>
                     <td>&nbsp;</td>
                 </tr>
@@ -131,20 +141,10 @@
                         </td>
                         <td>&nbsp;</td>
                     </tr>
-                    <tr>
-                        <td class="col1">&nbsp;</td>
-                        <td class="col2">&nbsp;</td>
-                        <td>&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td class="col1">&nbsp;</td>
-                        <td class="col2">
-                            <asp:LinkButton ID="lbuBack" runat="server" CssClass="button button_default" OnClick="lbuBack_Click"><img src="Image/Small/back.png" class="icon_left"/>ย้อนกลับ</asp:LinkButton>
-                            <asp:LinkButton ID="lbuAddComment" runat="server" CssClass="button button_default" OnClick="lbuAddComment_Click">ยืนยันการอนุมัติ<img src="Image/Small/forward.png" class="icon_right"/></asp:LinkButton>
-                        </td>
-                        <td>&nbsp;</td>
-                    </tr>
                 </table>
+                <div class="default_separator"></div>
+                <asp:LinkButton ID="lbuBack" runat="server" CssClass="button button_default" OnClick="lbuBack_Click"><img src="Image/Small/back.png" class="icon_left"/>ย้อนกลับ</asp:LinkButton>
+                            <asp:LinkButton ID="lbuAddComment" runat="server" CssClass="button button_default" OnClick="lbuAddComment_Click">ยืนยันการอนุมัติ<img src="Image/Small/next.png" class="icon_right"/></asp:LinkButton>
             </asp:View>
             <asp:View ID="View3" runat="server">
                 <asp:LinkButton ID="lbu1" runat="server" CssClass="hm_button_primary" OnClick="lbu1_Click">กลับหน้าหลัก</asp:LinkButton>

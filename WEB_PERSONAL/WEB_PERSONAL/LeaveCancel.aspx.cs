@@ -73,7 +73,7 @@ namespace WEB_PERSONAL {
                 lbF1S2PersonName.Text = loginPerson.FullName;
                 lbF1S2PersonPosition.Text = loginPerson.PositionName;
                 lbF1S2PersonRank.Text = loginPerson.AdminPositionName;
-                lbF1S2PersonDepartment.Text = loginPerson.DepartmentName;
+                lbF1S2PersonDepartment.Text = loginPerson.DivisionName;
                 lbF1S2LastFTTDate.Text = leavedDate;
                 //lbF1S2LeaveTypeName.Text = ddlLeaveType.SelectedItem.Text;
                 DateTime dtFromDate = Util.ToDateTime(tbF1S1FromDate.Text);

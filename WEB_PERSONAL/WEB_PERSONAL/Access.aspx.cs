@@ -30,7 +30,7 @@ namespace WEB_PERSONAL {
             }
         }
         protected void lbuLogin_Click(object sender, EventArgs e) {      
-            int count = DatabaseManager.ExecuteInt("SELECT count(*) FROM TB_PERSON WHERE CITIZEN_ID = '" + tbUsername.Text + "'");
+            int count = DatabaseManager.ExecuteInt("SELECT count(*) FROM PS_PERSON WHERE PS_CITIZEN_ID = '" + tbUsername.Text + "'");
             if(count == 0) {
                 Label12X.Text = "ไม่พบผู้ใช้งาน!";
             } else {
