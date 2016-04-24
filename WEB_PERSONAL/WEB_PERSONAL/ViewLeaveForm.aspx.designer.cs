@@ -256,33 +256,6 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.Label lbCmdHighAllow;
         
         /// <summary>
-        /// lbStaffName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbStaffName;
-        
-        /// <summary>
-        /// lbStaffPosition control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbStaffPosition;
-        
-        /// <summary>
-        /// lbStaffDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbStaffDate;
-        
-        /// <summary>
         /// lbuPrint control.
         /// </summary>
         /// <remarks>

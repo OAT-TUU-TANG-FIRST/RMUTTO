@@ -14,12 +14,12 @@ namespace WEB_PERSONAL {
             PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
             Person loginPerson = ps.LoginPerson;
             {
-                SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEV_MAIN.LEAVE_ID รหัสการลา, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_MAIN.LEAVE_TYPE_ID) ประเภทการลา, LEV_MAIN.REQ_DATE วันที่ข้อมูล FROM LEV_MAIN WHERE LEAVE_STATE not in(100,101) AND CITIZEN_ID = '" + loginPerson.CitizenID + "'");
+                SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEV_MAIN.LEAVE_ID รหัสการลา, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_MAIN.LEAVE_TYPE_ID) ประเภทการลา, LEV_MAIN.REQ_DATE วันที่ข้อมูล FROM LEV_MAIN WHERE LEAVE_STATE not in(100,101) AND PS_CITIZEN_ID = '" + loginPerson.CitizenID + "'");
                 GridView1.DataSource = sds;
                 GridView1.DataBind();
 
                 if(GridView1.Rows.Count > 0) {
-                    TableCell headerCell = new TableCell();
+                    TableHeaderCell headerCell = new TableHeaderCell();
                     headerCell.Text = "ดูข้อมูล";
                     GridView1.HeaderRow.Cells.Add(headerCell);
 
@@ -27,8 +27,8 @@ namespace WEB_PERSONAL {
                         string ID = GridView1.Rows[i].Cells[0].Text;
                         TableCell cell = new TableCell();
                         LinkButton btn = new LinkButton();
-                        btn.CssClass = "button button_default";
-                        btn.Text = "ดูข้อมูล";
+                        btn.CssClass = "ps-button";
+                        btn.Text = "<img src='Image/Small/search.png'></img>";
                         btn.Click += (e2, e3) => {
                             Response.Redirect("ViewLeaveForm.aspx?Form=1&LeaveID=" + ID);
                         };
@@ -41,12 +41,12 @@ namespace WEB_PERSONAL {
                 
             }
             {
-                SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEV_MAIN.LEAVE_ID รหัสการลา, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_MAIN.LEAVE_TYPE_ID) ประเภทการลา, LEV_MAIN.REQ_DATE วันที่ข้อมูล FROM LEV_MAIN WHERE LEAVE_STATE = 100 AND CITIZEN_ID = '" + loginPerson.CitizenID + "'");
+                SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEV_MAIN.LEAVE_ID รหัสการลา, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_MAIN.LEAVE_TYPE_ID) ประเภทการลา, LEV_MAIN.REQ_DATE วันที่ข้อมูล FROM LEV_MAIN WHERE LEAVE_STATE = 100 AND PS_CITIZEN_ID = '" + loginPerson.CitizenID + "'");
                 GridView2.DataSource = sds;
                 GridView2.DataBind();
 
                 if(GridView2.Rows.Count > 0) {
-                    TableCell headerCell = new TableCell();
+                    TableHeaderCell headerCell = new TableHeaderCell();
                     headerCell.Text = "ดูข้อมูล";
                     GridView2.HeaderRow.Cells.Add(headerCell);
 

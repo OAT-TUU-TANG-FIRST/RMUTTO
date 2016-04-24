@@ -310,67 +310,67 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.View VX2_2;
         
         /// <summary>
-        /// lbVX22LeaveType control.
+        /// lbVX22LeaveTypeName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbVX22LeaveType;
+        protected global::System.Web.UI.WebControls.Label lbVX22LeaveTypeName;
         
         /// <summary>
-        /// lbVX22Name control.
+        /// lbVX22PersonName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbVX22Name;
+        protected global::System.Web.UI.WebControls.Label lbVX22PersonName;
         
         /// <summary>
-        /// lbVX22Position control.
+        /// lbVX22PersonPosition control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbVX22Position;
+        protected global::System.Web.UI.WebControls.Label lbVX22PersonPosition;
         
         /// <summary>
-        /// lbVX22Rank control.
+        /// lbVX22PersonPosRank control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbVX22Rank;
+        protected global::System.Web.UI.WebControls.Label lbVX22PersonPosRank;
         
         /// <summary>
-        /// lbVX22Dept control.
+        /// lbVX22PersonDept control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbVX22Dept;
+        protected global::System.Web.UI.WebControls.Label lbVX22PersonDept;
         
         /// <summary>
-        /// lbVX22LastDate control.
+        /// lbVX22LastFTTDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbVX22LastDate;
+        protected global::System.Web.UI.WebControls.Label lbVX22LastFTTDate;
         
         /// <summary>
-        /// lbVX22Date control.
+        /// lbVX22FTTDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbVX22Date;
+        protected global::System.Web.UI.WebControls.Label lbVX22FTTDate;
         
         /// <summary>
         /// lbVX22Reason control.

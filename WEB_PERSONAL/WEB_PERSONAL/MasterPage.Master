@@ -71,32 +71,29 @@
 
     <form id="form1" runat="server">
 
-        <div class="wlogo"></div>
+        <div class="ps-ms-wrapper">
 
-        <div class="wrapper">
+            <div class="ps-ms-side">
 
-            <div class="master_sidebar">
-
-                <div class="master_sidebar_group">
+                <div class="ps-ms-side-group">
                     <img src="Image/RMUTTO.png" class="rmutto"/>
-                    <span class="master_login_logo">ระบบบุคลากร<br />Personnel System</span>
+                    <span class="ps-ms-rmutto">ระบบบุคลากร<br />Personnel System</span>
                     </div>
-                <div class="default_separator"></div>
-                <div class="master_sidebar_group">
-                    <span class="master_sidebar_group_header">ผู้ใช้</span>
-                    <div class="profile_div"><img src="Image/no_image.png" class="profile_pic" id="profile_pic" runat="server"/></div>
-                    <asp:LinkButton ID="LinkButton1" runat="server" CssClass="master_login_name_link" OnClick="LinkButton1_Click1">LinkButton</asp:LinkButton>
-                    <asp:LinkButton ID="LinkButton10" runat="server" OnClick="LinkButton10_Click" CssClass="master_logout"><img src="Image/Small/logout.png" />ออกจากระบบ</asp:LinkButton>
+                <div class="ps-separator"></div>
+                <div class="ps-ms-side-group">
+                    <span class="ps-ms-side-group-header">ผู้ใช้</span>
+                    <div class="ps-ms-profile-div"><img src="Image/no_image.png" class="ps-ms-profile-pic" id="profile_pic" runat="server"/></div>
+                    <asp:LinkButton ID="LinkButton1" runat="server" CssClass="ps-ms-user" OnClick="LinkButton1_Click1">LinkButton</asp:LinkButton>
+                    <asp:LinkButton ID="LinkButton10" runat="server" CssClass="ps-ms-logout" OnClick="LinkButton10_Click" ><img src="Image/Small/logout.png" />ออกจากระบบ</asp:LinkButton>
                 </div>
                 
-                <div class="master_sidebar_group">
-                    <span class="master_sidebar_group_header">เมนูหลัก</span>
+                <div class="ps-ms-side-group">
+                    <span class="ps-ms-side-group-header">เมนูหลัก</span>
                     <a href="Default.aspx"><img src="Image/Small/home3.png" />หน้าหลัก</a>
-                    <a href="About.aspx"><img src="Image/Small/table.png" />เกี่ยวกับ</a>
                 </div>
                 
-                <div class="master_sidebar_group">
-                    <span class="master_sidebar_group_header">บุคลากร</span>
+                <div class="ps-ms-side-group">
+                    <span class="ps-ms-side-group-header">บุคลากร</span>
                     <a href="AddPerson.aspx" id="LinkAddPerson" runat="server"><img src="Image/Small/person2.png" />เพิ่มบุคลากร</a>
                     <a href="AddPerson-Edit.aspx" id="LinkEditPerson" runat="server"><img src="Image/Small/person2.png" />แก้ไขบุคลากร</a>
                     <a href="ListPerson-ADMIN.aspx"><img src="Image/Small/person2.png" />รายชื่อบุคลากร</a>
@@ -106,14 +103,14 @@
                     <a href="Report-Custom-Person.aspx"><img src="Image/Small/report.png" />ออกรายงานพัฒนาบุคลากร</a>
                 </div>
                 
-                <div class="master_sidebar_group">
-                    <span class="master_sidebar_group_header">การเลื่อนขั้นเงินเดือน</span>
+                <div class="ps-ms-side-group">
+                    <span class="ps-ms-side-group-header">การเลื่อนขั้นเงินเดือน</span>
                     <a href="UpSalary70_30_1.aspx"><img src="Image/Small/money.png" />ขอเลื่อนขั้นเงินเดือน 70:30</a>
                     <a href="UpSalary80_20_1.aspx"><img src="Image/Small/money.png" />ขอเลื่อนขั้นเงินเดือน 80:20</a>
                 </div>
                 
-                <div class="master_sidebar_group">
-                    <span class="master_sidebar_group_header">การลา</span>
+                <div class="ps-ms-side-group">
+                    <span class="ps-ms-side-group-header">การลา</span>
                     <a href="Leave.aspx"><img src="Image/Small/add.png" />ทำการลา</a>
                     <a href="LeaveCancel.aspx"><img src="Image/Small/delete.png" />ยกเลิกการลา</a>
                     <a href="LeaveComment.aspx"><img src="Image/Small/pencil_y.png" />ลงความเห็นการลา<asp:Label ID="lbLeaveCommentCount" runat="server" Text="ทดสอบ" CssClass="master_text_alert"></asp:Label></a>
@@ -123,10 +120,12 @@
                     <a href="WorkingTime.aspx" id="LinkWorkingTime" runat="server"><img src="Image/Small/clock.png" />เพิ่มเวลาปฏิบัติงาน</a>
                     <a href="WorkingTimeHistory.aspx"><img src="Image/Small/table.png" />ประวัติเวลาปฏิบัติงาน</a>
                     <a href="Leave-Report1.aspx"><img src="Image/Small/report.png" />ออกรายงานการลา</a>
+                    <a href="LeaveManager.aspx"><img src="Image/Small/wrench.png" />จัดการข้อมูลการลา</a>
+                    <a href="WorkingTimeManager.aspx"><img src="Image/Small/wrench.png" />จัดการข้อมูลเวลาปฏิบัติงาน</a>
                 </div>
                 
-                <div class="master_sidebar_group">
-                    <span class="master_sidebar_group_header">เครื่องราชอิสริยาภรณ์</span>
+                <div class="ps-ms-side-group">
+                    <span class="ps-ms-side-group-header">เครื่องราชอิสริยาภรณ์</span>
                     <a href="INS_Request_admin.aspx"><img src="Image/Small/medal.png" />คนที่เข้าเกณฑ์การรับเครื่องราช</a>
                     <a href="insignia_from_view.aspx"><img src="Image/Small/medal.png" />ประวัติการขอเครื่องราชฯ</a>
                     <a href="insignia_recordnote2.aspx"><img src="Image/Small/medal.png" />ประวัติการรับเครื่องราชฯ</a>
@@ -138,16 +137,17 @@
                                     <a href="insignia_maintence.aspx">บัญชีรายชื่อผู้ส่งคืนเครื่องราชอิสริยาภรณ์<!--/a-->
                 </div>
                 
-                <div class="master_sidebar_group">
-                    <span class="master_sidebar_group_header">ผู้ดูแลระบบ</span>
-                    <a href="DataManager.aspx" id="LinkDropDown" runat="server"><img src="Image/Small/wrench.png" />จัดการข้อมูล Dropdown</a>
+                <div class="ps-ms-side-group">
+                    <span class="ps-ms-side-group-header">จัดการข้อมูล</span>
+                    <a href="DataManager.aspx" id="LinkDropDown" runat="server"><img src="Image/Small/wrench.png" />แก้ไข Dropdown</a>
                     <a href="Developer.aspx" id="LinkDeveloper" runat="server"><img src="Image/Small/wrench.png" />DEVELOPER ZONE</a>
                     <a href="UploadList.aspx" id="LinkUpload" runat="server"><img src="Image/Small/wrench.png" />Upload List</a>
                 </div>
 
-                <div class="master_sidebar_group">
-                    <span class="master_sidebar_group_header">ข้อมูลระบบ</span>
-                    <span style="margin-left: 10px;">เวอร์ชั่น : v1.0.2</span>
+                <div class="ps-ms-side-group">
+                    <span class="ps-ms-side-group-header">ข้อมูลระบบ</span>
+                    <div style="margin-left: 10px;">เวอร์ชั่น : v1.0.3</div>
+                    <div style="margin-left: 10px;">ตัวนับ : <span id="s_counter" runat="server"></span></div>
                 </div>
 
                 <div style="height: 20px;"></div>
@@ -155,7 +155,7 @@
 
             </div>
 
-            <div class="master_content_place_holder">
+            <div class="ps-ms-main">
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                 </asp:ContentPlaceHolder>
             </div>

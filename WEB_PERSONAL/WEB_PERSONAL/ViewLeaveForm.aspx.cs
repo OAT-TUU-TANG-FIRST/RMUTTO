@@ -77,9 +77,6 @@ namespace WEB_PERSONAL {
                 lbCmdHighComment.Text = f1.CommanderHighComment;
                 lbCmdHighDate.Text = f1.CommanderHighDate;
                 lbCmdHighAllow.Text = f1.CommanderHighAllowName;
-                lbStaffName.Text = f1.StaffPrefix + f1.StaffFirstName + " " + f1.StaffLastName;
-                lbStaffPosition.Text = f1.StaffPosition;
-                lbStaffDate.Text = f1.StaffDate;
             }
 
         }
