@@ -5,10 +5,10 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data.OracleClient;
 using System.Data;
 using System.Configuration;
 using WEB_PERSONAL.Class;
+using Oracle.DataAccess.Client;
 
 namespace WEB_PERSONAL
 {
@@ -199,7 +199,7 @@ namespace WEB_PERSONAL
                     using (OracleCommand sqlCmd = new OracleCommand())
                     {
                         sqlCmd.CommandText = "select * from TB_AMPHUR where PROVINCE_ID=:PROVINCE_ID";
-                        sqlCmd.Parameters.AddWithValue(":PROVINCE_ID", ddlProvince.SelectedValue);
+                        sqlCmd.Parameters.Add(":PROVINCE_ID", ddlProvince.SelectedValue);
                         sqlCmd.Connection = sqlConn;
                         sqlConn.Open();
                         OracleDataAdapter da = new OracleDataAdapter(sqlCmd);
@@ -230,7 +230,7 @@ namespace WEB_PERSONAL
                     using (OracleCommand sqlCmd = new OracleCommand())
                     {
                         sqlCmd.CommandText = "select * from TB_DISTRICT where AMPHUR_ID=:DISTRICT_ID";
-                        sqlCmd.Parameters.AddWithValue(":DISTRICT_ID", ddlAmphur.SelectedValue);
+                        sqlCmd.Parameters.Add(":DISTRICT_ID", ddlAmphur.SelectedValue);
                         sqlCmd.Connection = sqlConn;
                         sqlConn.Open();
                         OracleDataAdapter da = new OracleDataAdapter(sqlCmd);
@@ -270,7 +270,7 @@ namespace WEB_PERSONAL
                     using (OracleCommand sqlCmd = new OracleCommand())
                     {
                         sqlCmd.CommandText = "select * from TB_AMPHUR where PROVINCE_ID=:PROVINCE_ID";
-                        sqlCmd.Parameters.AddWithValue(":PROVINCE_ID", ddlProvince2.SelectedValue);
+                        sqlCmd.Parameters.Add(":PROVINCE_ID", ddlProvince2.SelectedValue);
                         sqlCmd.Connection = sqlConn;
                         sqlConn.Open();
                         OracleDataAdapter da = new OracleDataAdapter(sqlCmd);
@@ -301,7 +301,7 @@ namespace WEB_PERSONAL
                     using (OracleCommand sqlCmd = new OracleCommand())
                     {
                         sqlCmd.CommandText = "select * from TB_DISTRICT where AMPHUR_ID=:DISTRICT_ID";
-                        sqlCmd.Parameters.AddWithValue(":DISTRICT_ID", ddlAmphur2.SelectedValue);
+                        sqlCmd.Parameters.Add(":DISTRICT_ID", ddlAmphur2.SelectedValue);
                         sqlCmd.Connection = sqlConn;
                         sqlConn.Open();
                         OracleDataAdapter da = new OracleDataAdapter(sqlCmd);

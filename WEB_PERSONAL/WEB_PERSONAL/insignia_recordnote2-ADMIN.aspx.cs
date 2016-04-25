@@ -5,10 +5,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data.OracleClient;
+using Oracle.DataAccess.Client;
 using System.Data;
 using System.Configuration;
-using System.Data.OracleClient;
 
 namespace WEB_PERSONAL
 {

@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using WEB_PERSONAL.Class;
-using System.Data.OleDb;
+using Oracle.DataAccess.Client;
 
 namespace WEB_PERSONAL {
     public partial class LeaveAllow : System.Web.UI.Page {
@@ -51,7 +51,7 @@ namespace WEB_PERSONAL {
 
                     LinkButton lbu = new LinkButton();
                     lbu.Text = "เลือก";
-                    lbu.CssClass = "button button_default";
+                    lbu.CssClass = "ps-button";
                     lbu.Click += (e2, e3) => {
                         lbF1LeaveID.Text = id;
                         lbF1LeaverName.Text = f1.PersonPrefix + f1.PersonFirstName + " " + f1.PersonLastName;
@@ -166,8 +166,7 @@ namespace WEB_PERSONAL {
                 }
                 //DatabaseManager.ExecuteNonQuery("UPDATE LEV_FORM1 SET CMD_HIGH_COMMENT = '" + tbComment.Text + "', CMD_HIGH_DATE = " + Util.TodayDatabaseToDate() + ", CMD_HIGH_ALLOW = " + allow + ", STATE_ID = 4 WHERE LEAVE_ID = " + lbF1LeaveID.Text);
 
-                DatabaseManager.ExecuteNonQuery("UPDATE LEV_MAIN SET LEAVE_STATE = 3 WHERE LEAVE_ID = '" + lbF1LeaveID.Text + "'");
-                DatabaseManager.ExecuteNonQuery("UPDATE LEV_FORM1 SET CMD_HIGH_COMMENT = '" + tbF1Comment.Text + "', CMD_HIGH_ALLOW = " + allow + ", CMD_HIGH_DATE = " + Util.TodayDatabaseToDate() + " WHERE LEAVE_ID = '" + lbF1LeaveID.Text + "'");
+                DatabaseManager.ExecuteNonQuery("UPDATE LEV_MAIN SET LEAVE_STATE = 3, CH_COMM = '" + tbF1Comment.Text + "', CH_ALLOW = " + allow + ", CH_DATE = " +  Util.TodayDatabaseToDate() + " WHERE LEAVE_ID = '" + lbF1LeaveID.Text + "'");
             }
         }
 
@@ -184,10 +183,10 @@ namespace WEB_PERSONAL {
             Person loginPerson = ps.LoginPerson;
 
             int count = 0;
-            using (OleDbConnection con = new OleDbConnection(DatabaseManager.CONNECTION_STRING)) {
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
-                using (OleDbCommand com = new OleDbCommand("SELECT COUNT(LEAVE_ID) FROM LEV_LEAVE WHERE CMD_HIGH_ID = '" + loginPerson.CitizenID + "' AND LEV_LEAVE.STATE_ID = 3", con)) {
-                    using (OleDbDataReader reader = com.ExecuteReader()) {
+                using (OracleCommand com = new OracleCommand("SELECT COUNT(LEAVE_ID) FROM LEV_LEAVE WHERE CMD_HIGH_ID = '" + loginPerson.CitizenID + "' AND LEV_LEAVE.STATE_ID = 3", con)) {
+                    using (OracleDataReader reader = com.ExecuteReader()) {
                         while (reader.Read()) {
                             count = int.Parse(reader.GetValue(0).ToString());
                         }

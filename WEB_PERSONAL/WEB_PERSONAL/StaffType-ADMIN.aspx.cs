@@ -16,8 +16,6 @@ namespace WEB_PERSONAL
             if (!IsPostBack)
             {
                 BindData();
-                txtSearchStaffTypeID.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
-                txtInsertStaffTypeID.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
             }
         }
 
@@ -40,7 +38,7 @@ namespace WEB_PERSONAL
         void BindData()
         {
             ClassStaffType s = new ClassStaffType();
-            DataTable dt = s.GetStaffType("", "");
+            DataTable dt = s.GetStaffType("");
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);
@@ -49,7 +47,7 @@ namespace WEB_PERSONAL
         void BindData1()
         {
             ClassStaffType s = new ClassStaffType();
-            DataTable dt = s.GetStaffTypeSearch(txtSearchStaffTypeID.Text, txtSearchStaffTypeName.Text);
+            DataTable dt = s.GetStaffType(txtSearchStaffTypeName.Text);
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);
@@ -57,29 +55,21 @@ namespace WEB_PERSONAL
 
         private void ClearData()
         {
-            txtSearchStaffTypeID.Text = "";
             txtSearchStaffTypeName.Text = "";
-            txtInsertStaffTypeID.Text = "";
             txtInsertStaffTypeName.Text = "";
         }
 
         protected void btnSubmitStaffType_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtInsertStaffTypeID.Text))
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ รหัสประเภทข้าราชการ')", true);
-                return;
-            }
             if (string.IsNullOrEmpty(txtInsertStaffTypeName.Text))
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ ชื่อประเภทข้าราชการ')", true);
                 return;
             }
             ClassStaffType s = new ClassStaffType();
-            s.STAFFTYPE_ID = Convert.ToInt32(txtInsertStaffTypeID.Text);
             s.STAFFTYPE_NAME = txtInsertStaffTypeName.Text;
 
-            if (s.CheckUseStaffTypeID())
+            if (s.CheckUseStaffTypeName())
             {
                 s.InsertStaffType();
                 BindData();
@@ -88,7 +78,7 @@ namespace WEB_PERSONAL
             }
             else
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('มีรหัสประเภทข้าราชการนี้ อยู่ในระบบแล้ว !')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ข้อมูลที่จะเพิ่ม มีอยู่ในระบบแล้ว !')", true);
             }
         }
 
@@ -115,16 +105,23 @@ namespace WEB_PERSONAL
         }
         protected void modUpdateCommand(Object sender, GridViewUpdateEventArgs e)
         {
-            TextBox txtStaffTypeIDEdit = (TextBox)GridView1.Rows[e.RowIndex].FindControl("txtStaffTypeIDEdit");
+            Label lblStaffTypeIDEdit = (Label)GridView1.Rows[e.RowIndex].FindControl("lblStaffTypeIDEdit");
             TextBox txtStaffTypeNameEdit = (TextBox)GridView1.Rows[e.RowIndex].FindControl("txtStaffTypeNameEdit");
 
-            ClassStaffType s = new ClassStaffType(Convert.ToInt32(txtStaffTypeIDEdit.Text)
+            ClassStaffType s = new ClassStaffType(Convert.ToInt32(lblStaffTypeIDEdit.Text)
                 , txtStaffTypeNameEdit.Text);
 
-            s.UpdateStaffType();
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('อัพเดทข้อมูลเรียบร้อย')", true);
-            GridView1.EditIndex = -1;
-            BindData1();
+            if (s.CheckUseStaffTypeName())
+            {
+                s.UpdateStaffType();
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('อัพเดทข้อมูลเรียบร้อย')", true);
+                GridView1.EditIndex = -1;
+                BindData1();
+            }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ข้อมูลที่จะอัพเดท มีอยู่ในระบบแล้ว !')", true);
+            }
         }
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -133,11 +130,24 @@ namespace WEB_PERSONAL
             {
                 LinkButton lb = (LinkButton)e.Row.FindControl("DeleteButton1");
                 lb.Attributes.Add("onclick", "return confirm('คุณต้องการจะลบชื่อประเภทข้าราชการ " + DataBinder.Eval(e.Row.DataItem, "STAFFTYPE_NAME") + " ใช่ไหม ?');");
-
-                if ((e.Row.RowState & DataControlRowState.Edit) > 0)
+            }
+            e.Row.Attributes.Add("style", "cursor:help;");
+            if (e.Row.RowType == DataControlRowType.DataRow && e.Row.RowState == DataControlRowState.Alternate)
+            {
+                if (e.Row.RowType == DataControlRowType.DataRow)
                 {
-                    TextBox txt = (TextBox)e.Row.FindControl("txtStaffTypeIDEdit");
-                    txt.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
+                    e.Row.Attributes.Add("onmouseover", "this.style.backgroundColor='#ffb3b3'");
+                    e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor='#ffe6e6'");
+                    e.Row.BackColor = System.Drawing.Color.FromName("#ffe6e6");
+                }
+            }
+            else
+            {
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    e.Row.Attributes.Add("onmouseover", "this.style.backgroundColor='#ffcc80'");
+                    e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor='#ffebcc'");
+                    e.Row.BackColor = System.Drawing.Color.FromName("#ffebcc");
                 }
             }
         }
@@ -152,7 +162,7 @@ namespace WEB_PERSONAL
         {
             ClearData();
             ClassStaffType s = new ClassStaffType();
-            DataTable dt = s.GetStaffType("", "");
+            DataTable dt = s.GetStaffType("");
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);
@@ -160,7 +170,7 @@ namespace WEB_PERSONAL
 
         protected void btnSearchStaffType_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtSearchStaffTypeID.Text) && string.IsNullOrEmpty(txtSearchStaffTypeName.Text))
+            if (string.IsNullOrEmpty(txtSearchStaffTypeName.Text))
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก คำค้นหา')", true);
                 return;
@@ -168,7 +178,7 @@ namespace WEB_PERSONAL
             else
             {
                 ClassStaffType s = new ClassStaffType();
-                DataTable dt = s.GetStaffTypeSearch(txtSearchStaffTypeID.Text, txtSearchStaffTypeName.Text);
+                DataTable dt = s.GetStaffType(txtSearchStaffTypeName.Text);
                 GridView1.DataSource = dt;
                 GridView1.DataBind();
                 SetViewState(dt);
@@ -179,7 +189,7 @@ namespace WEB_PERSONAL
         {
             ClearData();
             ClassStaffType s = new ClassStaffType();
-            DataTable dt = s.GetStaffType("", "");
+            DataTable dt = s.GetStaffType("");
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);

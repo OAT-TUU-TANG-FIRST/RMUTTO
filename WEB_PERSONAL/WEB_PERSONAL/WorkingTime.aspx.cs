@@ -4,8 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data.OleDb;
 using WEB_PERSONAL.Class;
+using Oracle.DataAccess.Client;
 
 namespace WEB_PERSONAL {
     public partial class WorkingTime : System.Web.UI.Page {
@@ -21,10 +21,10 @@ namespace WEB_PERSONAL {
                 lbVX1WorkTimeDes.Text = "";
                 return;
             }
-            using(OleDbConnection con = new OleDbConnection(DatabaseManager.CONNECTION_STRING)) {
+            using(OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
-                using(OleDbCommand com = new OleDbCommand("SELECT * FROM LEV_WORKTIME_SEC WHERE WORKTIME_SEC_ID = " + ddlVX1WorktimeSec.SelectedValue, con)) {
-                    using(OleDbDataReader reader = com.ExecuteReader()) {
+                using(OracleCommand com = new OracleCommand("SELECT * FROM LEV_WORKTIME_SEC WHERE WORKTIME_SEC_ID = " + ddlVX1WorktimeSec.SelectedValue, con)) {
+                    using(OracleDataReader reader = com.ExecuteReader()) {
                         while(reader.Read()) {
                             string shi = int.Parse(reader.GetValue(1).ToString()).ToString("00");
                             string smi = int.Parse(reader.GetValue(2).ToString()).ToString("00");
@@ -113,10 +113,10 @@ namespace WEB_PERSONAL {
             lbVX1MinuteOutVD.Visible = false;
 
             MultiView1.ActiveViewIndex = 1;
-            using (OleDbConnection con = new OleDbConnection(DatabaseManager.CONNECTION_STRING)) {
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
-                using (OleDbCommand com = new OleDbCommand("SELECT PS_FN_TH || ' ' || PS_LN_TH FROM PS_PERSON WHERE PS_CITIZEN_ID = '" + tbVX1CitizenID.Text + "'", con)) {
-                    using (OleDbDataReader reader = com.ExecuteReader()) {
+                using (OracleCommand com = new OracleCommand("SELECT PS_FN_TH || ' ' || PS_LN_TH FROM PS_PERSON WHERE PS_CITIZEN_ID = '" + tbVX1CitizenID.Text + "'", con)) {
+                    using (OracleDataReader reader = com.ExecuteReader()) {
                         while (reader.Read()) {
                             lbVX2Name.Text = reader.GetValue(0).ToString();
                         }
@@ -137,7 +137,7 @@ namespace WEB_PERSONAL {
                 string sql = "INSERT INTO LEV_WORKTIME(WORKTIME_ID, CITIZEN_ID, TODAY, WORKTIME_SEC_ID, HOUR_IN, MINUTE_IN, HOUR_OUT, MINUTE_OUT, ABSENT, \"COMMENT\", LATE_IN, LATE_OUT) VALUES({0},'{1}',{2},{3},{4},{5},{6},{7},{8},'{9}',{10},{11})";
                 sql = string.Format(sql, "SEQ_WORKTIME_ID.NEXTVAL", tbVX1CitizenID.Text, Util.DatabaseToDate(tbVX1Date.Text), ddlVX1WorktimeSec.SelectedValue, "''", "''", "''", "''", 1, tbVX1Comment.Text, "''", "''");
                 hfSql.Value = sql;
-                tbTest.Text = sql;
+                //tbTest.Text = sql;
 
             } else {
                 lbVX2Late.Visible = true;
@@ -186,7 +186,7 @@ namespace WEB_PERSONAL {
                 string sql = "INSERT INTO LEV_WORKTIME(WORKTIME_ID, CITIZEN_ID, TODAY, WORKTIME_SEC_ID, HOUR_IN, MINUTE_IN, HOUR_OUT, MINUTE_OUT, ABSENT, \"COMMENT\", LATE_IN, LATE_OUT) VALUES({0},'{1}',{2},{3},{4},{5},{6},{7},{8},'{9}',{10},{11})";
                 sql = string.Format(sql, "SEQ_WORKTIME_ID.NEXTVAL", tbVX1CitizenID.Text, Util.DatabaseToDate(tbVX1Date.Text), ddlVX1WorktimeSec.SelectedValue, tbVX1HourIn.Text, tbVX1MinuteIn.Text, tbVX1HourOut.Text, tbVX1MinuteOut.Text, 0, tbVX1Comment.Text, vi, vo);
                 hfSql.Value = sql;
-                tbTest.Text = sql;
+                //tbTest.Text = sql;
             }
 
             

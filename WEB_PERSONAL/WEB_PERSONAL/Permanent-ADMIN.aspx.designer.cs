@@ -22,15 +22,6 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.Panel Panel1;
         
         /// <summary>
-        /// txtSearchPermaPositionID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearchPermaPositionID;
-        
-        /// <summary>
         /// txtSearchPermaPositionName control.
         /// </summary>
         /// <remarks>
@@ -40,13 +31,13 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.TextBox txtSearchPermaPositionName;
         
         /// <summary>
-        /// txtSearchSubStaffID control.
+        /// ddlSearchPermaSTID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearchSubStaffID;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSearchPermaSTID;
         
         /// <summary>
         /// btnSearchPermaPosition control.
@@ -76,15 +67,6 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.Panel Panel2;
         
         /// <summary>
-        /// txtInsertPermaPositionID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtInsertPermaPositionID;
-        
-        /// <summary>
         /// txtInsertPermaPositionName control.
         /// </summary>
         /// <remarks>
@@ -94,13 +76,13 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.TextBox txtInsertPermaPositionName;
         
         /// <summary>
-        /// txtInsertSubStaffID control.
+        /// ddlInsertPermaSTID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtInsertSubStaffID;
+        protected global::System.Web.UI.WebControls.DropDownList ddlInsertPermaSTID;
         
         /// <summary>
         /// btnSubmitPermaPosition control.

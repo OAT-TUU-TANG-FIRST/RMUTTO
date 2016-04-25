@@ -146,7 +146,7 @@
 
                 <div class="ps-ms-side-group">
                     <span class="ps-ms-side-group-header">ข้อมูลระบบ</span>
-                    <div style="margin-left: 10px;">เวอร์ชั่น : v1.0.3</div>
+                    <div style="margin-left: 10px;">เวอร์ชั่น : v1.0.4</div>
                     <div style="margin-left: 10px;">ตัวนับ : <span id="s_counter" runat="server"></span></div>
                 </div>
 

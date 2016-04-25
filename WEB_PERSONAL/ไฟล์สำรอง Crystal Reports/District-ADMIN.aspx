@@ -28,6 +28,9 @@
             border-radius: 10px;
             resize: none;
         }
+        .center1 { 
+               display:inline-block; 
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -36,9 +39,8 @@
             <fieldset>
                 <legend>ค้นหาข้อมูล</legend>
                 <div>
-                    <table>
+                    <table class="center1">
                         <tr>
-                            <td style="text-align: left; width: 150px"></td>
                             <td style="margin-left: auto; margin-right: auto; text-align: center">รหัสตำบล :</td>
                             <td style="text-align: left; width: 50px;">
                                 <asp:TextBox ID="txtSearchDistrictID" runat="server" CssClass="tb5" MaxLength="4" Width="50px"></asp:TextBox></td>
@@ -47,13 +49,11 @@
                                 <asp:TextBox ID="txtSearchDistrictTH" runat="server" CssClass="tb5" MaxLength="100" Width="150px"></asp:TextBox></td>
                             <td style="margin-left: auto; margin-right: auto; text-align: center">ชื่อตำบลภาษาอังกฤษ :</td>
                             <td style="text-align: left; width: 80px;">
-                                <asp:TextBox ID="txtSearchDistrictEN" runat="server" CssClass="tb5" MaxLength="100" Width="150px"></asp:TextBox></td>
-                            
+                                <asp:TextBox ID="txtSearchDistrictEN" runat="server" CssClass="tb5" MaxLength="100" Width="150px"></asp:TextBox></td> 
                         </tr>
                     </table>
-                    <table>
+                    <table class="center1">
                         <tr>
-                            <td style="text-align: left; width: 100px"></td>
                             <td style="margin-left: auto; margin-right: auto; text-align: center">รหัสอำเภอ :</td>
                             <td style="text-align: left; width: 50px;">
                                 <asp:TextBox ID="txtSearchAmphurID" runat="server" CssClass="tb5" MaxLength="3" Width="50px"></asp:TextBox></td>
@@ -82,9 +82,8 @@
             <fieldset>
                 <legend>เพิ่มข้อมูล</legend>
                 <div>
-                    <table>
+                    <table class="center1">
                         <tr>
-                            <td style="text-align: left; width: 150px"></td>
                             <td style="margin-left: auto; margin-right: auto; text-align: center">รหัสตำบล :</td>
                             <td style="text-align: left; width: 50px;">
                                 <asp:TextBox ID="txtInsertDistrictID" runat="server" CssClass="tb5" MaxLength="4" Width="50px"></asp:TextBox></td>
@@ -97,9 +96,8 @@
                             
                         </tr>
                     </table>
-                    <table>
+                    <table class="center1">
                         <tr>
-                            <td style="text-align: left; width: 100px"></td>
                             <td style="margin-left: auto; margin-right: auto; text-align: center">รหัสอำเภอ :</td>
                             <td style="text-align: left; width: 50px;">
                                 <asp:TextBox ID="txtInsertAmphurID" runat="server" CssClass="tb5" MaxLength="3" Width="50px"></asp:TextBox></td>

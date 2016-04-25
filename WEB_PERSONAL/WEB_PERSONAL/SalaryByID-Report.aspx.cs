@@ -2,10 +2,10 @@
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.IO;
-using System.Data.OracleClient;
 using System.Data;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
+using Oracle.DataAccess.Client;
 
 namespace WEB_PERSONAL
 {

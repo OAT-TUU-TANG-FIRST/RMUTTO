@@ -184,6 +184,15 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.Label lbF1S2FTTDate;
         
         /// <summary>
+        /// lbF1S2Statistic control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbF1S2Statistic;
+        
+        /// <summary>
         /// lbF1S2Reason control.
         /// </summary>
         /// <remarks>

@@ -156,7 +156,6 @@
                 <div class="ps-separator"></div>
                 <asp:LinkButton ID="lbuVX2Back" runat="server" CssClass="ps-button" OnClick="lbuVX2Back_Click"><img src="Image/Small/back.png" class="icon_left"/>ย้อนกลับ</asp:LinkButton>
                             <asp:LinkButton ID="lbuVX2Finish" runat="server" CssClass="ps-button" OnClick="lbuVX2Finish_Click">ตกลง<img src="Image/Small/add.png" class="icon_right"/></asp:LinkButton>
-                <asp:TextBox ID="tbTest" runat="server" TextMode="MultiLine"></asp:TextBox>
             </asp:View>
             <asp:View ID="View3" runat="server">
                 <div>

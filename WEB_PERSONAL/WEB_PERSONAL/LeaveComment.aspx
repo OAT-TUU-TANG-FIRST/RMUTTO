@@ -133,7 +133,7 @@
             <asp:View ID="View3" runat="server">
 
             <asp:LinkButton ID="lbu1" runat="server" CssClass="ps-button" OnClick="lbu1_Click"><img src="Image/Small/back.png" class="icon_left"/>กลับหน้าหลัก</asp:LinkButton>
-            <asp:LinkButton ID="lbu2" runat="server" CssClass="ps-button" OnClick="lbu2_Click">ลงความเห็นต่อ<img src="Image/Small/forward.png" class="icon_right"/></asp:LinkButton>
+            <asp:LinkButton ID="lbu2" runat="server" CssClass="ps-button" OnClick="lbu2_Click">ลงความเห็นต่อ<img src="Image/Small/next.png" class="icon_right"/></asp:LinkButton>
   
             </asp:View>
         </asp:MultiView>

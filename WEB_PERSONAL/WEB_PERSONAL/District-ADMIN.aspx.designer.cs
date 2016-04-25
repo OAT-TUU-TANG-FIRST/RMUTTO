@@ -22,15 +22,6 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.Panel Panel1;
         
         /// <summary>
-        /// txtSearchDistrictID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearchDistrictID;
-        
-        /// <summary>
         /// txtSearchDistrictTH control.
         /// </summary>
         /// <remarks>
@@ -49,22 +40,22 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.TextBox txtSearchDistrictEN;
         
         /// <summary>
-        /// txtSearchAmphurID control.
+        /// ddlSearchAmphur control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearchAmphurID;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSearchAmphur;
         
         /// <summary>
-        /// txtSearchProvinceID control.
+        /// ddlSearchProvince control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearchProvinceID;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSearchProvince;
         
         /// <summary>
         /// txtSearchPostCode control.
@@ -112,15 +103,6 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.Panel Panel2;
         
         /// <summary>
-        /// txtInsertDistrictID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtInsertDistrictID;
-        
-        /// <summary>
         /// txtInsertDistrictTH control.
         /// </summary>
         /// <remarks>
@@ -139,22 +121,22 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.TextBox txtInsertDistrictEN;
         
         /// <summary>
-        /// txtInsertAmphurID control.
+        /// ddlInsertAmphur control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtInsertAmphurID;
+        protected global::System.Web.UI.WebControls.DropDownList ddlInsertAmphur;
         
         /// <summary>
-        /// txtInsertProvinceID control.
+        /// ddlInsertProvince control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtInsertProvinceID;
+        protected global::System.Web.UI.WebControls.DropDownList ddlInsertProvince;
         
         /// <summary>
         /// txtInsertPostCode control.

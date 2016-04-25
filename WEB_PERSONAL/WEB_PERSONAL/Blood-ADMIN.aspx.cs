@@ -16,8 +16,6 @@ namespace WEB_PERSONAL
             if (!IsPostBack)
             {
                 BindData();
-                txtSearchBloodID.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
-                txtInsertBloodID.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
             }
         }
 
@@ -40,7 +38,7 @@ namespace WEB_PERSONAL
         void BindData()
         {
             ClassBlood b = new ClassBlood();
-            DataTable dt = b.GetBlood("", "");
+            DataTable dt = b.GetBlood("");
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);
@@ -49,7 +47,7 @@ namespace WEB_PERSONAL
         void BindData1()
         {
             ClassBlood b = new ClassBlood();
-            DataTable dt = b.GetBloodSearch(txtSearchBloodID.Text, txtSearchBloodName.Text);
+            DataTable dt = b.GetBlood(txtSearchBloodName.Text);
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);
@@ -57,29 +55,21 @@ namespace WEB_PERSONAL
 
         private void ClearData()
         {
-            txtSearchBloodID.Text = "";
             txtSearchBloodName.Text = "";
-            txtInsertBloodID.Text = "";
             txtInsertBloodName.Text = "";
         }
 
         protected void btnSubmitBlood_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtInsertBloodID.Text))
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ รหัสกรุ๊ปเลือด')", true);
-                return;
-            }
             if (string.IsNullOrEmpty(txtInsertBloodName.Text))
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ ชื่อกรุ๊ปเลือด')", true);
                 return;
             }
             ClassBlood b = new ClassBlood();
-            b.BLOOD_ID = Convert.ToInt32(txtInsertBloodID.Text);
             b.BLOOD_NAME = txtInsertBloodName.Text;
 
-            if (b.CheckUseBloodID())
+            if (b.CheckUseBloodName())
             {
                 b.InsertBlood();
                 BindData();
@@ -88,7 +78,7 @@ namespace WEB_PERSONAL
             }
             else
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('มีรหัสกรุ๊ปเลือดนี้นี้ อยู่ในระบบแล้ว !')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ข้อมูลที่จะเพิ่ม มีอยู่ในระบบแล้ว !')", true);
             }
         }
 
@@ -115,15 +105,22 @@ namespace WEB_PERSONAL
         }
         protected void modUpdateCommand(Object sender, GridViewUpdateEventArgs e)
         {
-            TextBox txtBloodIDEDIT = (TextBox)GridView1.Rows[e.RowIndex].FindControl("txtBloodIDEDIT");
+            Label lblBloodIDEDIT = (Label)GridView1.Rows[e.RowIndex].FindControl("lblBloodIDEDIT");
             TextBox txtBloodNameEDIT = (TextBox)GridView1.Rows[e.RowIndex].FindControl("txtBloodNameEDIT");
 
-            ClassBlood b = new ClassBlood(Convert.ToInt32(txtBloodIDEDIT.Text), txtBloodNameEDIT.Text);
+            ClassBlood b = new ClassBlood(Convert.ToInt32(lblBloodIDEDIT.Text), txtBloodNameEDIT.Text);
 
-            b.UpdateBlood();
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('อัพเดทข้อมูลเรียบร้อย')", true);
-            GridView1.EditIndex = -1;
-            BindData1();
+            if (b.CheckUseBloodName())
+            {
+                b.UpdateBlood();
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('อัพเดทข้อมูลเรียบร้อย')", true);
+                GridView1.EditIndex = -1;
+                BindData1();
+            }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ข้อมูลที่จะอัพเดท มีอยู่ในระบบแล้ว !')", true);
+            }
         }
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -132,11 +129,24 @@ namespace WEB_PERSONAL
             {
                 LinkButton lb = (LinkButton)e.Row.FindControl("DeleteButton1");
                 lb.Attributes.Add("onclick", "return confirm('คุณต้องการจะลบชื่อกรุ๊ปเลือด " + DataBinder.Eval(e.Row.DataItem, "BLOOD_NAME") + " ใช่ไหม ?');");
-
-                if ((e.Row.RowState & DataControlRowState.Edit) > 0)
+            }
+            e.Row.Attributes.Add("style", "cursor:help;");
+            if (e.Row.RowType == DataControlRowType.DataRow && e.Row.RowState == DataControlRowState.Alternate)
+            {
+                if (e.Row.RowType == DataControlRowType.DataRow)
                 {
-                    TextBox txt = (TextBox)e.Row.FindControl("txtBloodIDEDIT");
-                    txt.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
+                    e.Row.Attributes.Add("onmouseover", "this.style.backgroundColor='#ffb3b3'");
+                    e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor='#ffe6e6'");
+                    e.Row.BackColor = System.Drawing.Color.FromName("#ffe6e6");
+                }
+            }
+            else
+            {
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    e.Row.Attributes.Add("onmouseover", "this.style.backgroundColor='#ffcc80'");
+                    e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor='#ffebcc'");
+                    e.Row.BackColor = System.Drawing.Color.FromName("#ffebcc");
                 }
             }
         }
@@ -151,7 +161,7 @@ namespace WEB_PERSONAL
         {
             ClearData();
             ClassBlood b = new ClassBlood();
-            DataTable dt = b.GetBlood("", "");
+            DataTable dt = b.GetBlood("");
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);
@@ -159,7 +169,7 @@ namespace WEB_PERSONAL
 
         protected void btnSearchBlood_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtSearchBloodID.Text) && string.IsNullOrEmpty(txtSearchBloodName.Text))
+            if (string.IsNullOrEmpty(txtSearchBloodName.Text))
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก คำค้นหา')", true);
                 return;
@@ -167,7 +177,7 @@ namespace WEB_PERSONAL
             else
             {
                 ClassBlood b = new ClassBlood();
-                DataTable dt = b.GetBloodSearch(txtSearchBloodID.Text, txtSearchBloodName.Text);
+                DataTable dt = b.GetBlood(txtSearchBloodName.Text);
                 GridView1.DataSource = dt;
                 GridView1.DataBind();
                 SetViewState(dt);
@@ -178,7 +188,7 @@ namespace WEB_PERSONAL
         {
             ClearData();
             ClassBlood b = new ClassBlood();
-            DataTable dt = b.GetBlood("", "");
+            DataTable dt = b.GetBlood("");
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);

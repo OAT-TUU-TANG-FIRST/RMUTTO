@@ -6,13 +6,6 @@
     <style type="text/css">
 
 
-        .auto-style1 {
-            text-align: right;
-            vertical-align: top;
-            padding-right: 10px;
-            color: #808080;
-            height: 28px; 
-        }
         .section {
             background-size: auto 400px;
             background-position: top right;
@@ -184,6 +177,12 @@
                         <asp:Label ID="lbF1S2FTTDate" runat="server"></asp:Label>
                                         </td>
                 </tr>
+                    <tr>
+                        <td class="col1">สถิติการลา</td>
+                        <td class="col2">
+                            <asp:Label ID="lbF1S2Statistic" runat="server"></asp:Label>
+                        </td>
+                    </tr>
                 <tr>
                     <td class="col1">เหตุผล</td>
                     <td class="col2">

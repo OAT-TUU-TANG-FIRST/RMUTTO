@@ -49,7 +49,7 @@ namespace WEB_PERSONAL
         void BindData1()
         {
             ClassTeachISCED ti = new ClassTeachISCED();
-            DataTable dt = ti.GetTeachISCEDSearch(txtSearchISCED_ID.Text, txtSearchISCED_ID_OLD.Text, txtSearchISCED_NAME_TH.Text, txtSearchISCED_NAME_ENG.Text);
+            DataTable dt = ti.GetTeachISCED(txtSearchISCED_ID.Text, txtSearchISCED_ID_OLD.Text, txtSearchISCED_NAME_TH.Text, txtSearchISCED_NAME_ENG.Text);
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);
@@ -159,6 +159,25 @@ namespace WEB_PERSONAL
                     txt.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
                 }
             }
+            e.Row.Attributes.Add("style", "cursor:help;");
+            if (e.Row.RowType == DataControlRowType.DataRow && e.Row.RowState == DataControlRowState.Alternate)
+            {
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    e.Row.Attributes.Add("onmouseover", "this.style.backgroundColor='#ffb3b3'");
+                    e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor='#ffe6e6'");
+                    e.Row.BackColor = System.Drawing.Color.FromName("#ffe6e6");
+                }
+            }
+            else
+            {
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    e.Row.Attributes.Add("onmouseover", "this.style.backgroundColor='#ffcc80'");
+                    e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor='#ffebcc'");
+                    e.Row.BackColor = System.Drawing.Color.FromName("#ffebcc");
+                }
+            }
         }
         protected void myGridViewTeachISCED_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
@@ -189,7 +208,7 @@ namespace WEB_PERSONAL
             else
             {
                 ClassTeachISCED ti = new ClassTeachISCED();
-                DataTable dt = ti.GetTeachISCEDSearch(txtSearchISCED_ID.Text, txtSearchISCED_ID_OLD.Text, txtSearchISCED_NAME_TH.Text, txtSearchISCED_NAME_ENG.Text);
+                DataTable dt = ti.GetTeachISCED(txtSearchISCED_ID.Text, txtSearchISCED_ID_OLD.Text, txtSearchISCED_NAME_TH.Text, txtSearchISCED_NAME_ENG.Text);
                 GridView1.DataSource = dt;
                 GridView1.DataBind();
                 SetViewState(dt);
@@ -200,7 +219,7 @@ namespace WEB_PERSONAL
         {
             ClearData();
             ClassTeachISCED ti = new ClassTeachISCED();
-            DataTable dt = ti.GetTeachISCED("","","","");
+            DataTable dt = ti.GetTeachISCED("", "", "", "");
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);

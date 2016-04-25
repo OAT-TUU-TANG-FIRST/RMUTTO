@@ -29,6 +29,9 @@
             border-radius: 10px;
             resize: none;
         }
+        .center1 { 
+               display:inline-block; 
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -37,7 +40,8 @@
             <fieldset>
                 <legend>ค้นหาข้อมูล</legend>
                 <div>
-                    ชื่อศาสนา :&nbsp;<asp:TextBox ID="txtSearchName" runat="server" CssClass="tb5" Width="230px" MaxLength="100"></asp:TextBox>
+                    รหัสศาสนา :&nbsp<asp:TextBox ID="txtSearchReligionID" runat="server" CssClass="tb5" Width="230px" MaxLength="4"></asp:TextBox>
+                    ชื่อศาสนา :&nbsp;<asp:TextBox ID="txtSearchReligionName" runat="server" CssClass="tb5" Width="230px" MaxLength="100"></asp:TextBox>
                     <asp:Button ID="btnSearchReligion" Text="Search" runat="server" CssClass="master_OAT_button" OnClick="btnSearchReligion_Click" />
                     <asp:Button ID="btnSearchRefresh" Text="Refresh" runat="server" CssClass="master_OAT_button" OnClick="btnSearchRefresh_Click" />
                 </div>
@@ -49,12 +53,14 @@
             <fieldset>
                 <legend>เพิ่มข้อมูล</legend>
                 <div>
-                    <table>
+                    <table class="center1">
                         <tr>
-                            <td style="text-align: left; width: 267px"></td>
+                            <td style="margin-left: auto; margin-right: auto; text-align: center">รหัสศาสนา :</td>
+                            <td style="text-align: left; width: 230px;">
+                                <asp:TextBox ID="txtInsertReligionID" runat="server" CssClass="tb5" MaxLength="4" Width="230px"></asp:TextBox></td>
                             <td style="margin-left: auto; margin-right: auto; text-align: center">ชื่อศาสนา :</td>
                             <td style="text-align: left; width: 120px;">
-                                <asp:TextBox ID="txtInsertName" runat="server" CssClass="tb5" MaxLength="70"></asp:TextBox></td>
+                                <asp:TextBox ID="txtInsertReligionName" runat="server" CssClass="tb5" MaxLength="70"></asp:TextBox></td>
                             <td style="text-align: left;">
                                 <asp:Button ID="btnSubmitReligion" Text="OK" runat="server" CssClass="master_OAT_button" OnClick="btnSubmitReligion_Click" /></td>
                             <td style="text-align: left;">
@@ -81,17 +87,20 @@
                             OnRowDataBound="GridView1_RowDataBound"
                             OnPageIndexChanging="myGridViewReligion_PageIndexChanging" PageSize="15" BackColor="White" BorderColor="#999999">
                             <Columns>
-                                <asp:TemplateField HeaderText="ID" Visible="false">
+                                <asp:TemplateField HeaderText="รหัสศาสนา" ControlStyle-Width="180" HeaderStyle-BackColor="#0099FF" HeaderStyle-ForeColor="Aqua">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblReligionID" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.Religion_ID") %>'></asp:Label>
+                                        <asp:Label ID="lblReligionIDEdit" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.Religion_ID") %>'></asp:Label>
                                     </ItemTemplate>
+                                    <EditItemTemplate>
+                                        <asp:TextBox ID="txtReligionIDEdit" Enabled="false" MaxLength="4" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.Religion_ID") %>'></asp:TextBox>
+                                    </EditItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="ชื่อศาสนา" ControlStyle-Width="820" HeaderStyle-BackColor="#0099FF" HeaderStyle-ForeColor="Aqua">
+                                <asp:TemplateField HeaderText="ชื่อศาสนา" ControlStyle-Width="640" HeaderStyle-BackColor="#0099FF" HeaderStyle-ForeColor="Aqua">
                                     <ItemTemplate>
                                         <asp:Label ID="lblReligionNameEdit" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.Religion_NAME") %>'></asp:Label>
                                     </ItemTemplate>
                                     <EditItemTemplate>
-                                        <asp:TextBox ID="txtReligionNameEdit" MaxLength="70" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.Religion_NAME") %>'></asp:TextBox>
+                                        <asp:TextBox ID="txtReligionNameEdit" MaxLength="100" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.Religion_NAME") %>'></asp:TextBox>
                                     </EditItemTemplate>
                                 </asp:TemplateField>
                                 <asp:CommandField ShowEditButton="True" CancelText="Cancel" DeleteText="Delete" EditText="Edit" UpdateText="Update" HeaderText="แก้ไข" HeaderStyle-BackColor="#0099FF" HeaderStyle-ForeColor="Aqua" />

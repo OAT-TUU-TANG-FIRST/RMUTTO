@@ -301,15 +301,6 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.LinkButton lbuVX2Finish;
         
         /// <summary>
-        /// tbTest control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbTest;
-        
-        /// <summary>
         /// View3 control.
         /// </summary>
         /// <remarks>

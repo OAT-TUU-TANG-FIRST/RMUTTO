@@ -7,7 +7,6 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-
 namespace WEB_PERSONAL
 {
     public partial class StatusPerson_ADMIN : System.Web.UI.Page
@@ -17,8 +16,6 @@ namespace WEB_PERSONAL
             if (!IsPostBack)
             {
                 BindData();
-                txtSearchStatusPersonID.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
-                txtInsertStatusPersonID.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
             }
         }
 
@@ -41,7 +38,7 @@ namespace WEB_PERSONAL
         void BindData()
         {
             ClassStatusPerson sp = new ClassStatusPerson();
-            DataTable dt = sp.GetStatusPerson("", "");
+            DataTable dt = sp.GetStatusPerson("");
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);
@@ -50,7 +47,7 @@ namespace WEB_PERSONAL
         void BindData1()
         {
             ClassStatusPerson sp = new ClassStatusPerson();
-            DataTable dt = sp.GetStatusPersonSearch(txtSearchStatusPersonID.Text, txtSearchStatusPersonName.Text);
+            DataTable dt = sp.GetStatusPerson(txtSearchStatusPersonName.Text);
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);
@@ -58,29 +55,21 @@ namespace WEB_PERSONAL
 
         private void ClearData()
         {
-            txtSearchStatusPersonID.Text = "";
             txtSearchStatusPersonName.Text = "";
-            txtInsertStatusPersonID.Text = "";
             txtInsertStatusPersonName.Text = "";
         }
 
         protected void btnSubmitStatusPerson_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtInsertStatusPersonID.Text))
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ รหัสสถานภาพ')", true);
-                return;
-            }
             if (string.IsNullOrEmpty(txtInsertStatusPersonName.Text))
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ ชื่อสถานภาพ')", true);
                 return;
             }
             ClassStatusPerson sp = new ClassStatusPerson();
-            sp.STATUS_ID = Convert.ToInt32(txtInsertStatusPersonID.Text);
             sp.STATUS_NAME = txtInsertStatusPersonName.Text;
 
-            if (sp.CheckUseStatusPersonID())
+            if (sp.CheckUseStatusPersonName())
             {
                 sp.InsertStatusPerson();
                 BindData();
@@ -89,7 +78,7 @@ namespace WEB_PERSONAL
             }
             else
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('มีรหัสสถานภาพนี้ อยู่ในระบบแล้ว !')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ข้อมูลที่จะเพิ่ม มีอยู่ในระบบแล้ว !')", true);
             }
         }
 
@@ -116,15 +105,22 @@ namespace WEB_PERSONAL
         }
         protected void modUpdateCommand(Object sender, GridViewUpdateEventArgs e)
         {
-            TextBox txtStatusPersonIDEDIT = (TextBox)GridView1.Rows[e.RowIndex].FindControl("txtStatusPersonIDEDIT");
+            Label lblStatusPersonIDEDIT = (Label)GridView1.Rows[e.RowIndex].FindControl("lblStatusPersonIDEDIT");
             TextBox txtStatusPersonNameEDIT = (TextBox)GridView1.Rows[e.RowIndex].FindControl("txtStatusPersonNameEDIT");
 
-            ClassStatusPerson sp = new ClassStatusPerson(Convert.ToInt32(txtStatusPersonIDEDIT.Text), txtStatusPersonNameEDIT.Text);
+            ClassStatusPerson sp = new ClassStatusPerson(Convert.ToInt32(lblStatusPersonIDEDIT.Text), txtStatusPersonNameEDIT.Text);
 
-            sp.UpdateStatusPerson();
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('อัพเดทข้อมูลเรียบร้อย')", true);
-            GridView1.EditIndex = -1;
-            BindData1();
+            if (sp.CheckUseStatusPersonName())
+            {
+                sp.UpdateStatusPerson();
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('อัพเดทข้อมูลเรียบร้อย')", true);
+                GridView1.EditIndex = -1;
+                BindData1();
+            }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ข้อมูลที่จะอัพเดท มีอยู่ในระบบแล้ว !')", true);
+            }
         }
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -133,11 +129,24 @@ namespace WEB_PERSONAL
             {
                 LinkButton lb = (LinkButton)e.Row.FindControl("DeleteButton1");
                 lb.Attributes.Add("onclick", "return confirm('คุณต้องการจะลบรหัสสถานภาพ " + DataBinder.Eval(e.Row.DataItem, "STATUS_ID") + " ใช่ไหม ?');");
-
-                if ((e.Row.RowState & DataControlRowState.Edit) > 0)
+            }
+            e.Row.Attributes.Add("style", "cursor:help;");
+            if (e.Row.RowType == DataControlRowType.DataRow && e.Row.RowState == DataControlRowState.Alternate)
+            {
+                if (e.Row.RowType == DataControlRowType.DataRow)
                 {
-                    TextBox txt = (TextBox)e.Row.FindControl("txtStatusPersonIDEDIT");
-                    txt.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
+                    e.Row.Attributes.Add("onmouseover", "this.style.backgroundColor='#ffb3b3'");
+                    e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor='#ffe6e6'");
+                    e.Row.BackColor = System.Drawing.Color.FromName("#ffe6e6");
+                }
+            }
+            else
+            {
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    e.Row.Attributes.Add("onmouseover", "this.style.backgroundColor='#ffcc80'");
+                    e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor='#ffebcc'");
+                    e.Row.BackColor = System.Drawing.Color.FromName("#ffebcc");
                 }
             }
         }
@@ -152,7 +161,7 @@ namespace WEB_PERSONAL
         {
             ClearData();
             ClassStatusPerson sp = new ClassStatusPerson();
-            DataTable dt = sp.GetStatusPerson("", "");
+            DataTable dt = sp.GetStatusPerson("");
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);
@@ -160,7 +169,7 @@ namespace WEB_PERSONAL
 
         protected void btnSearchStatusPerson_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtSearchStatusPersonID.Text) && string.IsNullOrEmpty(txtSearchStatusPersonName.Text))
+            if (string.IsNullOrEmpty(txtSearchStatusPersonName.Text))
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก คำค้นหา')", true);
                 return;
@@ -168,7 +177,7 @@ namespace WEB_PERSONAL
             else
             {
                 ClassStatusPerson sp = new ClassStatusPerson();
-                DataTable dt = sp.GetStatusPersonSearch(txtSearchStatusPersonID.Text, txtSearchStatusPersonName.Text);
+                DataTable dt = sp.GetStatusPerson(txtSearchStatusPersonName.Text);
                 GridView1.DataSource = dt;
                 GridView1.DataBind();
                 SetViewState(dt);
@@ -179,7 +188,7 @@ namespace WEB_PERSONAL
         {
             ClearData();
             ClassStatusPerson sp = new ClassStatusPerson();
-            DataTable dt = sp.GetStatusPerson("", "");
+            DataTable dt = sp.GetStatusPerson("");
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);

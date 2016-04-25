@@ -10,6 +10,11 @@
     <div class="ps-separator"></div>
 
     <div class="ps-header"><img src="Image/Small/table.png" />รายการที่เสร็จ</div>
+    <asp:GridView ID="GridView3" runat="server" CssClass="ps-gridview"></asp:GridView>
+
+    <div class="ps-separator"></div>
+
+    <div class="ps-header"><img src="Image/Small/table.png" />รายการที่ผ่าน / ไม่ผ่านการอนุมัติ</div>
     <asp:GridView ID="GridView2" runat="server" CssClass="ps-gridview"></asp:GridView>
 
     <div class="ps-separator"></div>

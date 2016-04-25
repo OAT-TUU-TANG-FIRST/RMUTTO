@@ -16,8 +16,6 @@ namespace WEB_PERSONAL
             if (!IsPostBack)
             {
                 BindData();
-                txtSearchAdminPositionID.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
-                txtInsertAdminPositionID.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
             }
         }
 
@@ -40,7 +38,7 @@ namespace WEB_PERSONAL
         void BindData()
         {
             ClassAdminPosition ap = new ClassAdminPosition();
-            DataTable dt = ap.GetAdminPosition("", "");
+            DataTable dt = ap.GetAdminPosition("");
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);
@@ -49,7 +47,7 @@ namespace WEB_PERSONAL
         void BindData1()
         {
             ClassAdminPosition ap = new ClassAdminPosition();
-            DataTable dt = ap.GetAdminPositionSearch(txtSearchAdminPositionID.Text, txtSearchAdminPositionName.Text);
+            DataTable dt = ap.GetAdminPosition(txtSearchAdminPositionName.Text);
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);
@@ -57,29 +55,21 @@ namespace WEB_PERSONAL
 
         private void ClearData()
         {
-            txtSearchAdminPositionID.Text = "";
             txtSearchAdminPositionName.Text = "";
-            txtInsertAdminPositionID.Text = "";
             txtInsertAdminPositionName.Text = "";
         }
 
         protected void btnSubmitAdminPosition_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtInsertAdminPositionID.Text))
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ รหัสตำแหน่งทางบริหาร')", true);
-                return;
-            }
             if (string.IsNullOrEmpty(txtInsertAdminPositionName.Text))
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ ชื่อตำแหน่งทางบริหาร')", true);
                 return;
             }
             ClassAdminPosition ap = new ClassAdminPosition();
-            ap.ADMIN_POSITION_ID = Convert.ToInt32(txtInsertAdminPositionID.Text);
             ap.ADMIN_POSITION_NAME = txtInsertAdminPositionName.Text;
 
-            if (ap.CheckUseAdminPositionID())
+            if (ap.CheckUseAdminPositionName())
             {
                 ap.InsertAdminPosition();
                 BindData();
@@ -88,7 +78,7 @@ namespace WEB_PERSONAL
             }
             else
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('มีรหัสตำแหน่งทางบริหารนี้ อยู่ในระบบแล้ว !')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ข้อมูลที่จะเพิ่ม มีอยู่ในระบบแล้ว !')", true);
             }
         }
 
@@ -115,15 +105,22 @@ namespace WEB_PERSONAL
         }
         protected void modUpdateCommand(Object sender, GridViewUpdateEventArgs e)
         {
-            TextBox txtAdminPositionIDEdit = (TextBox)GridView1.Rows[e.RowIndex].FindControl("txtAdminPositionIDEdit");
+            Label lblAdminPositionIDEdit = (Label)GridView1.Rows[e.RowIndex].FindControl("lblAdminPositionIDEdit");
             TextBox txtAdminPositionNameEdit = (TextBox)GridView1.Rows[e.RowIndex].FindControl("txtAdminPositionNameEdit");
 
-            ClassAdminPosition ap = new ClassAdminPosition(Convert.ToInt32(txtAdminPositionIDEdit.Text), txtAdminPositionNameEdit.Text);
+            ClassAdminPosition ap = new ClassAdminPosition(Convert.ToInt32(lblAdminPositionIDEdit.Text), txtAdminPositionNameEdit.Text);
 
-            ap.UpdateAdminPosition();
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('อัพเดทข้อมูลเรียบร้อย')", true);
-            GridView1.EditIndex = -1;
-            BindData1();
+            if (ap.CheckUseAdminPositionName())
+            {
+                ap.UpdateAdminPosition();
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('อัพเดทข้อมูลเรียบร้อย')", true);
+                GridView1.EditIndex = -1;
+                BindData1();
+            }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ข้อมูลที่จะอัพเดท มีอยู่ในระบบแล้ว !')", true);
+            }
         }
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -132,11 +129,24 @@ namespace WEB_PERSONAL
             {
                 LinkButton lb = (LinkButton)e.Row.FindControl("DeleteButton1");
                 lb.Attributes.Add("onclick", "return confirm('คุณต้องการจะลบชื่อตำแหน่งทางบริหาร " + DataBinder.Eval(e.Row.DataItem, "ADMIN_POSITION_NAME") + " ใช่ไหม ?');");
-
-                if ((e.Row.RowState & DataControlRowState.Edit) > 0)
+            }
+            e.Row.Attributes.Add("style", "cursor:help;");
+            if (e.Row.RowType == DataControlRowType.DataRow && e.Row.RowState == DataControlRowState.Alternate)
+            {
+                if (e.Row.RowType == DataControlRowType.DataRow)
                 {
-                    TextBox txt = (TextBox)e.Row.FindControl("txtAdminPositionIDEdit");
-                    txt.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
+                    e.Row.Attributes.Add("onmouseover", "this.style.backgroundColor='#ffb3b3'");
+                    e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor='#ffe6e6'");
+                    e.Row.BackColor = System.Drawing.Color.FromName("#ffe6e6");
+                }
+            }
+            else
+            {
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    e.Row.Attributes.Add("onmouseover", "this.style.backgroundColor='#ffcc80'");
+                    e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor='#ffebcc'");
+                    e.Row.BackColor = System.Drawing.Color.FromName("#ffebcc");
                 }
             }
         }
@@ -151,7 +161,7 @@ namespace WEB_PERSONAL
         {
             ClearData();
             ClassAdminPosition ap = new ClassAdminPosition();
-            DataTable dt = ap.GetAdminPosition("", "");
+            DataTable dt = ap.GetAdminPosition("");
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);
@@ -159,7 +169,7 @@ namespace WEB_PERSONAL
 
         protected void btnSearchAdminPosition_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtSearchAdminPositionID.Text) && string.IsNullOrEmpty(txtSearchAdminPositionName.Text))
+            if (string.IsNullOrEmpty(txtSearchAdminPositionName.Text))
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก คำค้นหา')", true);
                 return;
@@ -167,7 +177,7 @@ namespace WEB_PERSONAL
             else
             {
                 ClassAdminPosition ap = new ClassAdminPosition();
-                DataTable dt = ap.GetAdminPositionSearch(txtSearchAdminPositionID.Text, txtSearchAdminPositionName.Text);
+                DataTable dt = ap.GetAdminPosition(txtSearchAdminPositionName.Text);
                 GridView1.DataSource = dt;
                 GridView1.DataBind();
                 SetViewState(dt);
@@ -178,7 +188,7 @@ namespace WEB_PERSONAL
         {
             ClearData();
             ClassAdminPosition ap = new ClassAdminPosition();
-            DataTable dt = ap.GetAdminPosition("", "");
+            DataTable dt = ap.GetAdminPosition("");
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);
