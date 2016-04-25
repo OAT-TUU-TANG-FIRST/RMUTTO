@@ -1,5 +1,4 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Position-ADMIN.aspx.cs" Inherits="WEB_PERSONAL.Position_ADMIN" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
         .divpan {
@@ -29,6 +28,9 @@
             border-radius: 10px;
             resize: none;
         }
+        .center1 { 
+               display:inline-block; 
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -51,9 +53,8 @@
             <fieldset>
                 <legend>Insert</legend>
                 <div>
-                    <table>
+                    <table class="center1">
                         <tr>
-                            <td style="text-align: left; width: 120px"></td>
                             <td style="margin-left: auto; margin-right: auto; text-align: center">รหัสระดับ :</td>
                             <td style="text-align: left; width: 80px;">
                                 <asp:TextBox ID="txtInsertPositionID" runat="server" CssClass="tb5" MaxLength="4"></asp:TextBox></td>

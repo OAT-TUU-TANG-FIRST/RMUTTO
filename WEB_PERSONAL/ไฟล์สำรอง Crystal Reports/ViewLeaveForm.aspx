@@ -254,6 +254,6 @@
         </asp:View>
     </asp:MultiView>
     <div>
-        <div id="i1" runat="server"></div>
+        <asp:LinkButton ID="lbuPrint" runat="server" CssClass="button button_default"><img src="Image/Small/printer.png" class="icon_left" />พิมพ์</asp:LinkButton>
     </div>
 </asp:Content>

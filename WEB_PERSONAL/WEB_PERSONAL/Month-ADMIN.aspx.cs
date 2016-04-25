@@ -16,8 +16,6 @@ namespace WEB_PERSONAL
             if (!IsPostBack)
             {
                 BindData();
-                txtSearchMonthID.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
-                txtInsertMonthID.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
             }
         }
 
@@ -40,7 +38,7 @@ namespace WEB_PERSONAL
         void BindData()
         {
             ClassMonth m = new ClassMonth();
-            DataTable dt = m.GetMonth("", "", "");
+            DataTable dt = m.GetMonth("", "");
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);
@@ -49,7 +47,7 @@ namespace WEB_PERSONAL
         void BindData1()
         {
             ClassMonth m = new ClassMonth();
-            DataTable dt = m.GetMonthSearch(txtSearchMonthID.Text, txtSearchMonthNameSmall.Text, txtSearchMonthNameFull.Text);
+            DataTable dt = m.GetMonth(txtSearchMonthNameSmall.Text, txtSearchMonthNameFull.Text);
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);
@@ -57,21 +55,14 @@ namespace WEB_PERSONAL
 
         private void ClearData()
         {
-            txtSearchMonthID.Text = "";
             txtSearchMonthNameSmall.Text = "";
             txtSearchMonthNameFull.Text = "";
-            txtInsertMonthID.Text = "";
             txtInsertMonthNameSmall.Text = "";
             txtInsertMonthNameFull.Text = "";
         }
 
         protected void btnSubmitMonth_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtInsertMonthID.Text))
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ รหัสเดือน')", true);
-                return;
-            }
             if (string.IsNullOrEmpty(txtInsertMonthNameSmall.Text))
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ ชื่อเดือนย่อ')", true);
@@ -83,14 +74,20 @@ namespace WEB_PERSONAL
                 return;
             }
             ClassMonth m = new ClassMonth();
-            m.MONTH_ID = Convert.ToInt32(txtInsertMonthID.Text);
             m.MONTH_SHORT = txtInsertMonthNameSmall.Text;
             m.MONTH_LONG = txtInsertMonthNameFull.Text;
 
-            m.InsertMonth();
-            BindData();
-            ClearData();
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('เพิ่มข้อมูลเรียบร้อย')", true);
+            if (m.CheckUseMonthNameInsert())
+            {
+                m.InsertMonth();
+                BindData();
+                ClearData();
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('เพิ่มข้อมูลเรียบร้อย')", true);
+            }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ข้อมูลที่จะเพิ่ม มีอยู่ในระบบแล้ว !')", true);
+            }
 
         }
 
@@ -117,18 +114,25 @@ namespace WEB_PERSONAL
         }
         protected void modUpdateCommand(Object sender, GridViewUpdateEventArgs e)
         {
-            TextBox txtMonthIDEdit = (TextBox)GridView1.Rows[e.RowIndex].FindControl("txtMonthIDEdit");
+            Label lblMonthIDEdit = (Label)GridView1.Rows[e.RowIndex].FindControl("lblMonthIDEdit");
             TextBox txtMonthNameSmallEdit = (TextBox)GridView1.Rows[e.RowIndex].FindControl("txtMonthNameSmallEdit");
             TextBox txtMonthNameFullEdit = (TextBox)GridView1.Rows[e.RowIndex].FindControl("txtMonthNameFullEdit");
 
-            ClassMonth m = new ClassMonth(Convert.ToInt32(txtMonthIDEdit.Text)
+            ClassMonth m = new ClassMonth(Convert.ToInt32(lblMonthIDEdit.Text)
                 , txtMonthNameSmallEdit.Text
                 , txtMonthNameFullEdit.Text);
 
-            m.UpdateMonth();
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('อัพเดทข้อมูลเรียบร้อย')", true);
-            GridView1.EditIndex = -1;
-            BindData1();
+            if (m.CheckUseMonthNameUpdate())
+            {
+                m.UpdateMonth();
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('อัพเดทข้อมูลเรียบร้อย')", true);
+                GridView1.EditIndex = -1;
+                BindData1();
+            }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ข้อมูลที่จะอัพเดท มีอยู่ในระบบแล้ว !')", true);
+            }
         }
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -138,10 +142,24 @@ namespace WEB_PERSONAL
                 LinkButton lb = (LinkButton)e.Row.FindControl("DeleteButton1");
                 lb.Attributes.Add("onclick", "return confirm('คุณต้องการจะลบชื่อเดือน " + DataBinder.Eval(e.Row.DataItem, "MONTH_LONG") + " ใช่ไหม ?');");
             }
-            if ((e.Row.RowState & DataControlRowState.Edit) > 0)
+            e.Row.Attributes.Add("style", "cursor:help;");
+            if (e.Row.RowType == DataControlRowType.DataRow && e.Row.RowState == DataControlRowState.Alternate)
             {
-                TextBox txt = (TextBox)e.Row.FindControl("txtMonthIDEdit");
-                txt.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    e.Row.Attributes.Add("onmouseover", "this.style.backgroundColor='#ffb3b3'");
+                    e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor='#ffe6e6'");
+                    e.Row.BackColor = System.Drawing.Color.FromName("#ffe6e6");
+                }
+            }
+            else
+            {
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    e.Row.Attributes.Add("onmouseover", "this.style.backgroundColor='#ffcc80'");
+                    e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor='#ffebcc'");
+                    e.Row.BackColor = System.Drawing.Color.FromName("#ffebcc");
+                }
             }
         }
         protected void myGridViewMonth_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -155,7 +173,7 @@ namespace WEB_PERSONAL
         {
             ClearData();
             ClassMonth m = new ClassMonth();
-            DataTable dt = m.GetMonth("", "", "");
+            DataTable dt = m.GetMonth("", "");
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);
@@ -163,7 +181,7 @@ namespace WEB_PERSONAL
 
         protected void btnSearchMonth_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtSearchMonthID.Text) && string.IsNullOrEmpty(txtSearchMonthNameSmall.Text) && string.IsNullOrEmpty(txtSearchMonthNameFull.Text))
+            if (string.IsNullOrEmpty(txtSearchMonthNameSmall.Text) && string.IsNullOrEmpty(txtSearchMonthNameFull.Text))
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก คำค้นหา')", true);
                 return;
@@ -171,7 +189,7 @@ namespace WEB_PERSONAL
             else
             {
                 ClassMonth m = new ClassMonth();
-                DataTable dt = m.GetMonthSearch(txtSearchMonthID.Text, txtSearchMonthNameSmall.Text, txtSearchMonthNameFull.Text);
+                DataTable dt = m.GetMonth(txtSearchMonthNameSmall.Text, txtSearchMonthNameFull.Text);
                 GridView1.DataSource = dt;
                 GridView1.DataBind();
                 SetViewState(dt);
@@ -182,7 +200,7 @@ namespace WEB_PERSONAL
         {
             ClearData();
             ClassMonth m = new ClassMonth();
-            DataTable dt = m.GetMonth("", "", "");
+            DataTable dt = m.GetMonth("", "");
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);

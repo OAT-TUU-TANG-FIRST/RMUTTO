@@ -22,15 +22,6 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.Panel Panel1;
         
         /// <summary>
-        /// txtSearchAdminPositionID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearchAdminPositionID;
-        
-        /// <summary>
         /// txtSearchAdminPositionName control.
         /// </summary>
         /// <remarks>
@@ -65,15 +56,6 @@ namespace WEB_PERSONAL {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel Panel2;
-        
-        /// <summary>
-        /// txtInsertAdminPositionID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtInsertAdminPositionID;
         
         /// <summary>
         /// txtInsertAdminPositionName control.

@@ -29,6 +29,9 @@
             border-radius: 10px;
             resize: none;
         }
+        .center1 { 
+               display:inline-block; 
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -51,9 +54,8 @@
             <fieldset>
                 <legend>เพิ่มข้อมูล</legend>
                 <div>
-                    <table>
+                    <table class="center1">
                         <tr>
-                            <td style="text-align: left; width: 60px"></td>
                             <td style="margin-left: auto; margin-right: auto; text-align: center">รหัสสัญชาติ :</td>
                             <td style="text-align: left; width: 50px;">
                                 <asp:TextBox ID="txtInsertNationID" runat="server" CssClass="tb5" MaxLength="2" Width="50px"></asp:TextBox></td>
@@ -99,7 +101,7 @@
                                         <asp:Label ID="lblNationIDEdit" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.NATION_ID") %>'></asp:Label>
                                     </ItemTemplate>
                                     <EditItemTemplate>
-                                        <asp:TextBox ID="txtNationIDEdit" MaxLength="2" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.NATION_ID") %>' Enabled="False"></asp:TextBox>
+                                        <asp:TextBox ID="txtNationIDEdit" MaxLength="2" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.NATION_ID") %>'></asp:TextBox>
                                     </EditItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="ชื่อสัญชาติภาษาอังกฤษ" ControlStyle-Width="380" HeaderStyle-BackColor="#0099FF" HeaderStyle-ForeColor="Aqua">

@@ -16,8 +16,6 @@ namespace WEB_PERSONAL
             if (!IsPostBack)
             {
                 BindData();
-                txtSearchBudgetID.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
-                txtInsertBudgetID.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
             }
         }
 
@@ -40,7 +38,7 @@ namespace WEB_PERSONAL
         void BindData()
         {
             ClassBudget b = new ClassBudget();
-            DataTable dt = b.GetBudget("", "");
+            DataTable dt = b.GetBudget("");
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);
@@ -49,7 +47,7 @@ namespace WEB_PERSONAL
         void BindData1()
         {
             ClassBudget b = new ClassBudget();
-            DataTable dt = b.GetBudgetSearch(txtSearchBudgetID.Text, txtSearchBudgetName.Text);
+            DataTable dt = b.GetBudget(txtSearchBudgetName.Text);
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);
@@ -57,29 +55,21 @@ namespace WEB_PERSONAL
 
         private void ClearData()
         {
-            txtSearchBudgetID.Text = "";
             txtSearchBudgetName.Text = "";
             txtInsertBudgetName.Text = "";
-            txtInsertBudgetID.Text = "";
         }
 
         protected void btnSubmitBudget_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtInsertBudgetID.Text))
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ รหัสประเภทเงินจ้าง')", true);
-                return;
-            }
             if (string.IsNullOrEmpty(txtInsertBudgetName.Text))
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ ชื่อประเภทเงินจ้าง')", true);
                 return;
             }
             ClassBudget b = new ClassBudget();
-            b.BUDGET_ID = Convert.ToInt32(txtInsertBudgetID.Text);
             b.BUDGET_NAME = txtInsertBudgetName.Text;
 
-            if (b.CheckUseBudgetID())
+            if (b.CheckUseBudgetName())
             {
                 b.InsertBudget();
                 BindData();
@@ -88,7 +78,7 @@ namespace WEB_PERSONAL
             }
             else
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('มีรหัสประเภทเงินจ้างนี้ อยู่ในระบบแล้ว !')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ข้อมูลที่จะเพิ่ม มีอยู่ในระบบแล้ว !')", true);
             }
         }
 
@@ -116,16 +106,23 @@ namespace WEB_PERSONAL
         }
         protected void modUpdateCommand(Object sender, GridViewUpdateEventArgs e)
         {
-            TextBox txtBudgetIDEdit = (TextBox)GridView1.Rows[e.RowIndex].FindControl("txtBudgetIDEdit");
+            Label lblBudgetIDEdit = (Label)GridView1.Rows[e.RowIndex].FindControl("lblBudgetIDEdit");
             TextBox txtBudgetNameEdit = (TextBox)GridView1.Rows[e.RowIndex].FindControl("txtBudgetNameEdit");
 
-            ClassBudget b = new ClassBudget(Convert.ToInt32(txtBudgetIDEdit.Text)
+            ClassBudget b = new ClassBudget(Convert.ToInt32(lblBudgetIDEdit.Text)
                 , txtBudgetNameEdit.Text);
 
-            b.UpdateBudget();
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('อัพเดทข้อมูลเรียบร้อย')", true);
-            GridView1.EditIndex = -1;
-            BindData1();
+            if (b.CheckUseBudgetName())
+            {
+                b.UpdateBudget();
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('อัพเดทข้อมูลเรียบร้อย')", true);
+                GridView1.EditIndex = -1;
+                BindData1();
+            }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ข้อมูลที่จะอัพเดท มีอยู่ในระบบแล้ว !')", true);
+            }
         }
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -134,11 +131,24 @@ namespace WEB_PERSONAL
             {
                 LinkButton lb = (LinkButton)e.Row.FindControl("DeleteButton1");
                 lb.Attributes.Add("onclick", "return confirm('คุณต้องการจะลบชื่อประเภทเงินจ้าง " + DataBinder.Eval(e.Row.DataItem, "BUDGET_NAME") + " ใช่ไหม ?');");
-
-                if ((e.Row.RowState & DataControlRowState.Edit) > 0)
+            }
+            e.Row.Attributes.Add("style", "cursor:help;");
+            if (e.Row.RowType == DataControlRowType.DataRow && e.Row.RowState == DataControlRowState.Alternate)
+            {
+                if (e.Row.RowType == DataControlRowType.DataRow)
                 {
-                    TextBox txt = (TextBox)e.Row.FindControl("txtBudgetIDEdit");
-                    txt.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
+                    e.Row.Attributes.Add("onmouseover", "this.style.backgroundColor='#ffb3b3'");
+                    e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor='#ffe6e6'");
+                    e.Row.BackColor = System.Drawing.Color.FromName("#ffe6e6");
+                }
+            }
+            else
+            {
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    e.Row.Attributes.Add("onmouseover", "this.style.backgroundColor='#ffcc80'");
+                    e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor='#ffebcc'");
+                    e.Row.BackColor = System.Drawing.Color.FromName("#ffebcc");
                 }
             }
         }
@@ -153,7 +163,7 @@ namespace WEB_PERSONAL
         {
             ClearData();
             ClassBudget b = new ClassBudget();
-            DataTable dt = b.GetBudget("", "");
+            DataTable dt = b.GetBudget("");
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);
@@ -161,7 +171,7 @@ namespace WEB_PERSONAL
 
         protected void btnSearchBudgetName_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtSearchBudgetID.Text) && string.IsNullOrEmpty(txtSearchBudgetName.Text))
+            if (string.IsNullOrEmpty(txtSearchBudgetName.Text))
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก คำค้นหา')", true);
                 return;
@@ -169,7 +179,7 @@ namespace WEB_PERSONAL
             else
             {
                 ClassBudget b = new ClassBudget();
-                DataTable dt = b.GetBudgetSearch(txtSearchBudgetID.Text, txtSearchBudgetName.Text);
+                DataTable dt = b.GetBudget(txtSearchBudgetName.Text);
                 GridView1.DataSource = dt;
                 GridView1.DataBind();
                 SetViewState(dt);
@@ -180,7 +190,7 @@ namespace WEB_PERSONAL
         {
             ClearData();
             ClassBudget b = new ClassBudget();
-            DataTable dt = b.GetBudget("", "");
+            DataTable dt = b.GetBudget("");
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);

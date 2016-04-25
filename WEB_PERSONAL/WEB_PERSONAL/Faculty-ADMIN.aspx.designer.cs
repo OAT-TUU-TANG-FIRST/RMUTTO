@@ -22,15 +22,6 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.Panel Panel1;
         
         /// <summary>
-        /// txtSearchFacultyID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearchFacultyID;
-        
-        /// <summary>
         /// txtSearchFacultyName control.
         /// </summary>
         /// <remarks>
@@ -40,13 +31,13 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.TextBox txtSearchFacultyName;
         
         /// <summary>
-        /// txtSearchCampusID control.
+        /// ddlSearchCampus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearchCampusID;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSearchCampus;
         
         /// <summary>
         /// btnSearchFaculty control.
@@ -76,15 +67,6 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.Panel Panel2;
         
         /// <summary>
-        /// txtInsertFacultyID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtInsertFacultyID;
-        
-        /// <summary>
         /// txtInsertFacultyName control.
         /// </summary>
         /// <remarks>
@@ -94,13 +76,13 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.TextBox txtInsertFacultyName;
         
         /// <summary>
-        /// txtInsertCampusID control.
+        /// ddlInsertCampus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtInsertCampusID;
+        protected global::System.Web.UI.WebControls.DropDownList ddlInsertCampus;
         
         /// <summary>
         /// btnSubmitFaculty control.

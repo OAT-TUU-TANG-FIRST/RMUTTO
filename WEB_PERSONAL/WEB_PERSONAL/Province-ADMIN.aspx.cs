@@ -16,8 +16,6 @@ namespace WEB_PERSONAL
             if (!IsPostBack)
             {
                 BindData();
-                txtSearchProvinceID.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
-                txtInsertProvinceID.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
             }
         }
 
@@ -40,7 +38,7 @@ namespace WEB_PERSONAL
         void BindData()
         {
             ClassProvince p = new ClassProvince();
-            DataTable dt = p.GetProvince("", "", "");
+            DataTable dt = p.GetProvince("", "");
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);
@@ -49,7 +47,7 @@ namespace WEB_PERSONAL
         void BindData1()
         {
             ClassProvince p = new ClassProvince();
-            DataTable dt = p.GetProvinceSearch(txtSearchProvinceID.Text, txtSearchProvinceTH.Text, txtSearchProvinceEN.Text);
+            DataTable dt = p.GetProvince(txtSearchProvinceTH.Text, txtSearchProvinceEN.Text);
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);
@@ -57,22 +55,14 @@ namespace WEB_PERSONAL
 
         private void ClearData()
         {
-            txtSearchProvinceID.Text = "";
             txtSearchProvinceTH.Text = "";
             txtSearchProvinceEN.Text = "";
-            txtInsertProvinceID.Text = "";
             txtInsertProvinceTH.Text = "";
             txtInsertProvinceEN.Text = "";
         }
 
         protected void btnSubmitProvince_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtInsertProvinceID.Text))
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ รหัสจังหวัด')", true);
-                return;
-            }
-
             if (string.IsNullOrEmpty(txtInsertProvinceTH.Text))
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ ชื่อจังหวัดภาษาไทย')", true);
@@ -85,11 +75,10 @@ namespace WEB_PERSONAL
                 return;
             }
             ClassProvince p = new ClassProvince();
-            p.PROVINCE_ID = Convert.ToInt32(txtInsertProvinceID.Text);
             p.PROVINCE_TH = txtInsertProvinceTH.Text;
             p.PROVINCE_EN = txtInsertProvinceEN.Text;
 
-            if (p.CheckUseProvinceID())
+            if (p.CheckUseProvinceNameInsert())
             {
                 p.InsertProvince();
                 BindData();
@@ -98,7 +87,7 @@ namespace WEB_PERSONAL
             }
             else
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('มีรหัสรหัสจังหวัดนี้ อยู่ในระบบแล้ว !')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ข้อมูลที่จะเพิ่ม มีอยู่ในระบบแล้ว !')", true);
             }
         }
 
@@ -126,18 +115,25 @@ namespace WEB_PERSONAL
         protected void modUpdateCommand(Object sender, GridViewUpdateEventArgs e)
         {
 
-            TextBox txtProvinceIDEdit = (TextBox)GridView1.Rows[e.RowIndex].FindControl("txtProvinceIDEdit");
+            Label lblProvinceIDEdit = (Label)GridView1.Rows[e.RowIndex].FindControl("lblProvinceIDEdit");
             TextBox txtProvinceTHEdit = (TextBox)GridView1.Rows[e.RowIndex].FindControl("txtProvinceTHEdit");
             TextBox txtProvinceENEdit = (TextBox)GridView1.Rows[e.RowIndex].FindControl("txtProvinceENEdit");
 
-            ClassProvince p = new ClassProvince(Convert.ToInt32(txtProvinceIDEdit.Text)
+            ClassProvince p = new ClassProvince(Convert.ToInt32(lblProvinceIDEdit.Text)
                 , txtProvinceTHEdit.Text
                 , txtProvinceENEdit.Text);
 
-            p.UpdateProvince();
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('อัพเดทข้อมูลเรียบร้อย')", true);
-            GridView1.EditIndex = -1;
-            BindData1();
+            if (p.CheckUseProvinceNameUpdate())
+            {
+                p.UpdateProvince();
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('อัพเดทข้อมูลเรียบร้อย')", true);
+                GridView1.EditIndex = -1;
+                BindData1();
+            }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ข้อมูลที่จะอัพเดท มีอยู่ในระบบแล้ว !')", true);
+            }
         }
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -145,11 +141,24 @@ namespace WEB_PERSONAL
             {
                 LinkButton lb = (LinkButton)e.Row.FindControl("DeleteButton1");
                 lb.Attributes.Add("onclick", "return confirm('คุณต้องการจะลบชื่อจังหวัด " + DataBinder.Eval(e.Row.DataItem, "PROVINCE_TH") + " ใช่ไหม ?');");
-
-                if ((e.Row.RowState & DataControlRowState.Edit) > 0)
+            }
+            e.Row.Attributes.Add("style", "cursor:help;");
+            if (e.Row.RowType == DataControlRowType.DataRow && e.Row.RowState == DataControlRowState.Alternate)
+            {
+                if (e.Row.RowType == DataControlRowType.DataRow)
                 {
-                    TextBox txt = (TextBox)e.Row.FindControl("txtProvinceIDEdit");
-                    txt.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
+                    e.Row.Attributes.Add("onmouseover", "this.style.backgroundColor='#ffb3b3'");
+                    e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor='#ffe6e6'");
+                    e.Row.BackColor = System.Drawing.Color.FromName("#ffe6e6");
+                }
+            }
+            else
+            {
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    e.Row.Attributes.Add("onmouseover", "this.style.backgroundColor='#ffcc80'");
+                    e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor='#ffebcc'");
+                    e.Row.BackColor = System.Drawing.Color.FromName("#ffebcc");
                 }
             }
         }
@@ -164,7 +173,7 @@ namespace WEB_PERSONAL
         {
             ClearData();
             ClassProvince p = new ClassProvince();
-            DataTable dt = p.GetProvince("", "", "");
+            DataTable dt = p.GetProvince("", "");
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);
@@ -173,7 +182,7 @@ namespace WEB_PERSONAL
         protected void btnSearchProvince_Click(object sender, EventArgs e)
         {
 
-            if (string.IsNullOrEmpty(txtSearchProvinceID.Text) && string.IsNullOrEmpty(txtSearchProvinceTH.Text) && string.IsNullOrEmpty(txtSearchProvinceEN.Text))
+            if (string.IsNullOrEmpty(txtSearchProvinceTH.Text) && string.IsNullOrEmpty(txtSearchProvinceEN.Text))
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก คำค้นหา')", true);
 
@@ -182,7 +191,7 @@ namespace WEB_PERSONAL
             else
             {
                 ClassProvince p = new ClassProvince();
-                DataTable dt = p.GetProvinceSearch(txtSearchProvinceID.Text, txtSearchProvinceTH.Text, txtSearchProvinceEN.Text);
+                DataTable dt = p.GetProvince(txtSearchProvinceTH.Text, txtSearchProvinceEN.Text);
                 GridView1.DataSource = dt;
                 GridView1.DataBind();
                 SetViewState(dt);
@@ -193,7 +202,7 @@ namespace WEB_PERSONAL
         {
             ClearData();
             ClassProvince p = new ClassProvince();
-            DataTable dt = p.GetProvince("", "", "");
+            DataTable dt = p.GetProvince("", "");
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);

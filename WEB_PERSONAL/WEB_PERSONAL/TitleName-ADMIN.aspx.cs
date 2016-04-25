@@ -16,8 +16,6 @@ namespace WEB_PERSONAL
             if (!IsPostBack)
             {
                 BindData();
-                txtSearchTitleID.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
-                txtInsertTitleID.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
             }
         }
 
@@ -40,7 +38,7 @@ namespace WEB_PERSONAL
         void BindData()
         {
             ClassTitleName t = new ClassTitleName();
-            DataTable dt = t.GetTitleName("", "");
+            DataTable dt = t.GetTitleName("");
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);
@@ -49,7 +47,7 @@ namespace WEB_PERSONAL
         void BindData1()
         {
             ClassTitleName t = new ClassTitleName();
-            DataTable dt = t.GetTitleNameSearch(txtSearchTitleID.Text, txtSearchTitleName.Text);
+            DataTable dt = t.GetTitleName(txtSearchTitleName.Text);
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);
@@ -57,9 +55,7 @@ namespace WEB_PERSONAL
 
         private void ClearData()
         {
-            txtSearchTitleID.Text = "";
             txtSearchTitleName.Text = "";
-            txtInsertTitleID.Text = "";
             txtInsertTitleName.Text = "";
         }
 
@@ -82,7 +78,7 @@ namespace WEB_PERSONAL
             }
             else
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('มีชื่อคำนำหน้านามนี้ อยู่ในระบบแล้ว !')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ข้อมูลที่จะเพิ่ม มีอยู่ในระบบแล้ว !')", true);
             }
         }
 
@@ -109,15 +105,22 @@ namespace WEB_PERSONAL
         }
         protected void modUpdateCommand(Object sender, GridViewUpdateEventArgs e)
         {
-            TextBox txtTitleIDEDIT = (TextBox)GridView1.Rows[e.RowIndex].FindControl("txtTitleIDEDIT");
+            Label lblTitleIDEDIT = (Label)GridView1.Rows[e.RowIndex].FindControl("lblTitleIDEDIT");
             TextBox txtTitleNameEDIT = (TextBox)GridView1.Rows[e.RowIndex].FindControl("txtTitleNameEDIT");
 
-            ClassTitleName t = new ClassTitleName(Convert.ToInt32(txtTitleIDEDIT.Text), txtTitleNameEDIT.Text);
+            ClassTitleName t = new ClassTitleName(Convert.ToInt32(lblTitleIDEDIT.Text), txtTitleNameEDIT.Text);
 
-            t.UpdateTitleName();
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('อัพเดทข้อมูลเรียบร้อย')", true);
-            GridView1.EditIndex = -1;
-            BindData1();
+            if (t.CheckUseTitleName())
+            {
+                t.UpdateTitleName();
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('อัพเดทข้อมูลเรียบร้อย')", true);
+                GridView1.EditIndex = -1;
+                BindData1();
+            }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ข้อมูลที่จะอัพเดท มีอยู่ในระบบแล้ว !')", true);
+            }
         }
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -126,11 +129,24 @@ namespace WEB_PERSONAL
             {
                 LinkButton lb = (LinkButton)e.Row.FindControl("DeleteButton1");
                 lb.Attributes.Add("onclick", "return confirm('คุณต้องการจะลบชื่อคำนำหน้านาม " + DataBinder.Eval(e.Row.DataItem, "TITLE_NAME_TH") + " ใช่ไหม ?');");
-
-                if ((e.Row.RowState & DataControlRowState.Edit) > 0)
+            }
+            e.Row.Attributes.Add("style", "cursor:help;");
+            if (e.Row.RowType == DataControlRowType.DataRow && e.Row.RowState == DataControlRowState.Alternate)
+            {
+                if (e.Row.RowType == DataControlRowType.DataRow)
                 {
-                    TextBox txt = (TextBox)e.Row.FindControl("txtTitleIDEDIT");
-                    txt.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
+                    e.Row.Attributes.Add("onmouseover", "this.style.backgroundColor='#ffb3b3'");
+                    e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor='#ffe6e6'");
+                    e.Row.BackColor = System.Drawing.Color.FromName("#ffe6e6");
+                }
+            }
+            else
+            {
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    e.Row.Attributes.Add("onmouseover", "this.style.backgroundColor='#ffcc80'");
+                    e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor='#ffebcc'");
+                    e.Row.BackColor = System.Drawing.Color.FromName("#ffebcc");
                 }
             }
         }
@@ -145,7 +161,7 @@ namespace WEB_PERSONAL
         {
             ClearData();
             ClassTitleName t = new ClassTitleName();
-            DataTable dt = t.GetTitleName("", "");
+            DataTable dt = t.GetTitleName("");
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);
@@ -161,7 +177,7 @@ namespace WEB_PERSONAL
             else
             {
                 ClassTitleName t = new ClassTitleName();
-                DataTable dt = t.GetTitleNameSearch(txtSearchTitleID.Text, txtSearchTitleName.Text);
+                DataTable dt = t.GetTitleName(txtSearchTitleName.Text);
                 GridView1.DataSource = dt;
                 GridView1.DataBind();
                 SetViewState(dt);
@@ -172,7 +188,7 @@ namespace WEB_PERSONAL
         {
             ClearData();
             ClassTitleName t = new ClassTitleName();
-            DataTable dt = t.GetTitleName("", "");
+            DataTable dt = t.GetTitleName("");
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);

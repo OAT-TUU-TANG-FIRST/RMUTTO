@@ -6,20 +6,20 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data.OracleClient;
 
 namespace WEB_PERSONAL
 {
     public partial class Faculty_ADMIN : System.Web.UI.Page
     {
+        public static string strConn = @"Data Source = ORCL_RMUTTO;USER ID=RMUTTO;PASSWORD=Zxcvbnm";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 BindData();
-                txtSearchFacultyID.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
-                txtInsertFacultyID.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
-                txtSearchCampusID.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
-                txtInsertCampusID.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
+                ddlShowSearchCampus();
+                ddlShowInsertCampus();
             }
         }
 
@@ -42,7 +42,7 @@ namespace WEB_PERSONAL
         void BindData()
         {
             ClassFaculty f = new ClassFaculty();
-            DataTable dt = f.GetFaculty("", "", "");
+            DataTable dt = f.GetFaculty("", "");
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);
@@ -50,47 +50,106 @@ namespace WEB_PERSONAL
 
         void BindData1()
         {
-            ClassFaculty f = new ClassFaculty();
-            DataTable dt = f.GetFacultySearch(txtSearchFacultyID.Text, txtSearchFacultyName.Text, txtSearchCampusID.Text);
-            GridView1.DataSource = dt;
-            GridView1.DataBind();
-            SetViewState(dt);
+            if (!string.IsNullOrEmpty(txtSearchFacultyName.Text))
+            {
+                ClassFaculty f1 = new ClassFaculty();
+                DataTable dt1 = f1.GetFaculty(txtSearchFacultyName.Text, "");
+                GridView1.DataSource = dt1;
+                GridView1.DataBind();
+                SetViewState(dt1);
+            }
+            if (ddlSearchCampus.SelectedIndex != 0)
+            {
+                ClassFaculty f2 = new ClassFaculty();
+                DataTable dt2 = f2.GetFaculty("", ddlSearchCampus.SelectedValue);
+                GridView1.DataSource = dt2;
+                GridView1.DataBind();
+                SetViewState(dt2);
+            }
+        }
+
+        private void ddlShowSearchCampus()
+        {
+            try
+            {
+                using (OracleConnection sqlConn = new OracleConnection(strConn))
+                {
+                    using (OracleCommand sqlCmd = new OracleCommand())
+                    {
+                        sqlCmd.CommandText = "select * from TB_CAMPUS";
+                        sqlCmd.Connection = sqlConn;
+                        sqlConn.Open();
+                        OracleDataAdapter da = new OracleDataAdapter(sqlCmd);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        ddlSearchCampus.DataSource = dt;
+                        ddlSearchCampus.DataValueField = "CAMPUS_ID";
+                        ddlSearchCampus.DataTextField = "CAMPUS_NAME";
+                        ddlSearchCampus.DataBind();
+                        sqlConn.Close();
+
+                        ddlSearchCampus.Items.Insert(0, new ListItem("--วิทยาเขต--", "0"));
+
+                    }
+                }
+            }
+            catch { }
+        }
+
+        private void ddlShowInsertCampus()
+        {
+            try
+            {
+                using (OracleConnection sqlConn = new OracleConnection(strConn))
+                {
+                    using (OracleCommand sqlCmd = new OracleCommand())
+                    {
+                        sqlCmd.CommandText = "select * from TB_CAMPUS";
+                        sqlCmd.Connection = sqlConn;
+                        sqlConn.Open();
+                        OracleDataAdapter da = new OracleDataAdapter(sqlCmd);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        ddlInsertCampus.DataSource = dt;
+                        ddlInsertCampus.DataValueField = "CAMPUS_ID";
+                        ddlInsertCampus.DataTextField = "CAMPUS_NAME";
+                        ddlInsertCampus.DataBind();
+                        sqlConn.Close();
+
+                        ddlInsertCampus.Items.Insert(0, new ListItem("--วิทยาเขต--", "0"));
+
+                    }
+                }
+            }
+            catch { }
         }
 
         private void ClearData()
         {
-            txtSearchFacultyID.Text = "";
             txtSearchFacultyName.Text = "";
-            txtSearchCampusID.Text = "";
-            txtInsertFacultyID.Text = "";
+            ddlSearchCampus.SelectedIndex = 0;
             txtInsertFacultyName.Text = "";
-            txtInsertCampusID.Text = "";
+            ddlInsertCampus.SelectedIndex = 0;
         }
 
         protected void btnSubmitFaculty_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtInsertFacultyID.Text))
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ รหัสสำนัก / สถาบัน / คณะ')", true);
-                return;
-            }
             if (string.IsNullOrEmpty(txtInsertFacultyName.Text))
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ ชื่อสำนัก / สถาบัน / คณะ')", true);
                 return;
             }
 
-            if (string.IsNullOrEmpty(txtInsertCampusID.Text))
+            if (ddlInsertCampus.SelectedIndex == 0)
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ รหัสวิทยาเขต')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาเลือก วิทยาเขต')", true);
                 return;
             }
             ClassFaculty f = new ClassFaculty();
-            f.FACULTY_ID = Convert.ToInt32(txtInsertFacultyID.Text);
             f.FACULTY_NAME = txtInsertFacultyName.Text;
-            f.CAMPUS_ID = Convert.ToInt32(txtInsertCampusID.Text);
+            f.CAMPUS_ID = Convert.ToInt32(ddlInsertCampus.SelectedValue);
 
-            if (f.CheckUseFacultyID())
+            if (f.CheckUseFacultyName())
             {
                 f.InsertFaculty();
                 BindData();
@@ -99,19 +158,35 @@ namespace WEB_PERSONAL
             }
             else
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('มีรหัสสำนัก / สถาบัน / คณะ นี้อยู่ในระบบแล้ว !')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ข้อมูลที่จะเพิ่ม มีอยู่ในระบบแล้ว !')", true);
             }
         }
 
         protected void modEditCommand(Object sender, GridViewEditEventArgs e)
         {
-            GridView1.EditIndex = e.NewEditIndex;
-            BindData1();
+            if (txtSearchFacultyName.Text != "" || ddlSearchCampus.SelectedIndex != 0)
+            {
+                GridView1.EditIndex = e.NewEditIndex; ;
+                BindData1();
+            }
+            else
+            {
+                GridView1.EditIndex = e.NewEditIndex; ;
+                BindData();
+            }
         }
         protected void modCancelCommand(Object sender, GridViewCancelEditEventArgs e)
         {
-            GridView1.EditIndex = -1;
-            BindData1();
+            if (txtSearchFacultyName.Text != "" || ddlSearchCampus.SelectedIndex != 0)
+            {
+                GridView1.EditIndex = -1;
+                BindData1();
+            }
+            else
+            {
+                GridView1.EditIndex = -1;
+                BindData();
+            }
         }
         protected void modDeleteCommand(Object sender, GridViewDeleteEventArgs e)
         {
@@ -121,23 +196,38 @@ namespace WEB_PERSONAL
             f.DeleteFaculty();
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ลบข้อมูลเรียบร้อย')", true);
 
-            GridView1.EditIndex = -1;
-            BindData1();
+            if (txtSearchFacultyName.Text != "" || ddlSearchCampus.SelectedIndex != 0)
+            {
+                GridView1.EditIndex = -1;
+                BindData1();
+            }
+            else
+            {
+                GridView1.EditIndex = -1;
+                BindData();
+            }
         }
         protected void modUpdateCommand(Object sender, GridViewUpdateEventArgs e)
         {
-            TextBox txtFacultyIDEdit = (TextBox)GridView1.Rows[e.RowIndex].FindControl("txtFacultyIDEdit");
+            Label lblFacultyIDEdit = (Label)GridView1.Rows[e.RowIndex].FindControl("lblFacultyIDEdit");
             TextBox txtFacultyNameEdit = (TextBox)GridView1.Rows[e.RowIndex].FindControl("txtFacultyNameEdit");
-            TextBox txtCampusIDEdit = (TextBox)GridView1.Rows[e.RowIndex].FindControl("txtCampusIDEdit");
+            DropDownList ddlCampusIDEdit = (DropDownList)GridView1.Rows[e.RowIndex].FindControl("ddlCampusIDEdit");
 
-            ClassFaculty f = new ClassFaculty(Convert.ToInt32(txtFacultyIDEdit.Text)
+            ClassFaculty f = new ClassFaculty(Convert.ToInt32(lblFacultyIDEdit.Text)
                 , txtFacultyNameEdit.Text
-                , Convert.ToInt32(txtCampusIDEdit.Text));
+                , Convert.ToInt32(ddlCampusIDEdit.SelectedValue));
 
-            f.UpdateFaculty();
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('อัพเดทข้อมูลเรียบร้อย')", true);
-            GridView1.EditIndex = -1;
-            BindData1();
+            if (f.CheckUseFacultyName())
+            {
+                f.UpdateFaculty();
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('อัพเดทข้อมูลเรียบร้อย')", true);
+                GridView1.EditIndex = -1;
+                BindData1();
+            }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ข้อมูลที่จะอัพเดท มีอยู่ในระบบแล้ว !')", true);
+            }
         }
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -148,10 +238,48 @@ namespace WEB_PERSONAL
 
                 if ((e.Row.RowState & DataControlRowState.Edit) > 0)
                 {
-                    TextBox txt1 = (TextBox)e.Row.FindControl("txtFacultyIDEdit");
-                    txt1.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
-                    TextBox txt2 = (TextBox)e.Row.FindControl("txtCampusIDEdit");
-                    txt2.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
+                    using (OracleConnection sqlConn1 = new OracleConnection(strConn))
+                    {
+                        using (OracleCommand sqlCmd1 = new OracleCommand())
+                        {
+                            DropDownList ddlCampusIDEdit = (DropDownList)e.Row.FindControl("ddlCampusIDEdit");
+
+                            sqlCmd1.CommandText = "select * from TB_CAMPUS";
+                            sqlCmd1.Connection = sqlConn1;
+                            sqlConn1.Open();
+                            OracleDataAdapter da1 = new OracleDataAdapter(sqlCmd1);
+                            DataTable dt = new DataTable();
+                            da1.Fill(dt);
+                            ddlCampusIDEdit.DataSource = dt;
+                            ddlCampusIDEdit.SelectedValue = DataBinder.Eval(e.Row.DataItem, "CAMPUS_ID").ToString();
+                            ddlCampusIDEdit.DataValueField = "CAMPUS_ID";
+                            ddlCampusIDEdit.DataTextField = "CAMPUS_NAME";
+                            ddlCampusIDEdit.DataBind();
+                            sqlConn1.Close();
+
+                            ddlCampusIDEdit.Items.Insert(0, new ListItem("--วิทยาเขต--", "0"));
+                            DataRowView dr1 = e.Row.DataItem as DataRowView;
+                        }
+                    }
+                }
+            }
+            e.Row.Attributes.Add("style", "cursor:help;");
+            if (e.Row.RowType == DataControlRowType.DataRow && e.Row.RowState == DataControlRowState.Alternate)
+            {
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    e.Row.Attributes.Add("onmouseover", "this.style.backgroundColor='#ffb3b3'");
+                    e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor='#ffe6e6'");
+                    e.Row.BackColor = System.Drawing.Color.FromName("#ffe6e6");
+                }
+            }
+            else
+            {
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    e.Row.Attributes.Add("onmouseover", "this.style.backgroundColor='#ffcc80'");
+                    e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor='#ffebcc'");
+                    e.Row.BackColor = System.Drawing.Color.FromName("#ffebcc");
                 }
             }
         }
@@ -166,7 +294,7 @@ namespace WEB_PERSONAL
         {
             ClearData();
             ClassFaculty f = new ClassFaculty();
-            DataTable dt = f.GetFaculty("", "", "");
+            DataTable dt = f.GetFaculty("", "");
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);
@@ -175,7 +303,7 @@ namespace WEB_PERSONAL
         protected void btnSearchFaculty_Click(object sender, EventArgs e)
         {
 
-            if (string.IsNullOrEmpty(txtSearchFacultyID.Text) && string.IsNullOrEmpty(txtSearchFacultyName.Text) && string.IsNullOrEmpty(txtSearchCampusID.Text))
+            if (string.IsNullOrEmpty(txtSearchFacultyName.Text) && ddlSearchCampus.SelectedIndex == 0)
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก คำค้นหา')", true);
 
@@ -183,11 +311,22 @@ namespace WEB_PERSONAL
             }
             else
             {
-                ClassFaculty f = new ClassFaculty();
-                DataTable dt = f.GetFacultySearch(txtSearchFacultyID.Text, txtSearchFacultyName.Text, txtSearchCampusID.Text);
-                GridView1.DataSource = dt;
-                GridView1.DataBind();
-                SetViewState(dt);
+                if (!string.IsNullOrEmpty(txtSearchFacultyName.Text))
+                {
+                    ClassFaculty f1 = new ClassFaculty();
+                    DataTable dt1 = f1.GetFaculty(txtSearchFacultyName.Text, "");
+                    GridView1.DataSource = dt1;
+                    GridView1.DataBind();
+                    SetViewState(dt1);
+                }
+                if (ddlSearchCampus.SelectedIndex != 0)
+                {
+                    ClassFaculty f2 = new ClassFaculty();
+                    DataTable dt2 = f2.GetFaculty("", ddlSearchCampus.SelectedValue);
+                    GridView1.DataSource = dt2;
+                    GridView1.DataBind();
+                    SetViewState(dt2);
+                }
             }
         }
 
@@ -195,7 +334,7 @@ namespace WEB_PERSONAL
         {
             ClearData();
             ClassFaculty f = new ClassFaculty();
-            DataTable dt = f.GetFaculty("", "", "");
+            DataTable dt = f.GetFaculty("", "");
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);

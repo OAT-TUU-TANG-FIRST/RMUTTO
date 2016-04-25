@@ -22,15 +22,6 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.Panel Panel1;
         
         /// <summary>
-        /// txtSearchGoverPositionID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearchGoverPositionID;
-        
-        /// <summary>
         /// txtSearchGoverPositionName control.
         /// </summary>
         /// <remarks>
@@ -40,13 +31,13 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.TextBox txtSearchGoverPositionName;
         
         /// <summary>
-        /// txtSearchSubStaffID control.
+        /// ddlSearchGoverSTID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearchSubStaffID;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSearchGoverSTID;
         
         /// <summary>
         /// btnSearchGoverPosition control.
@@ -76,15 +67,6 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.Panel Panel2;
         
         /// <summary>
-        /// txtInsertGoverPositionID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtInsertGoverPositionID;
-        
-        /// <summary>
         /// txtInsertGoverPositionName control.
         /// </summary>
         /// <remarks>
@@ -94,13 +76,13 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.TextBox txtInsertGoverPositionName;
         
         /// <summary>
-        /// txtInsertSubStaffID control.
+        /// ddlInsertGoverSTID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtInsertSubStaffID;
+        protected global::System.Web.UI.WebControls.DropDownList ddlInsertGoverSTID;
         
         /// <summary>
         /// btnSubmitGoverPosition control.

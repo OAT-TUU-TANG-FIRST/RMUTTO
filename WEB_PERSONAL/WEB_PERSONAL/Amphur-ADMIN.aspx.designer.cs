@@ -22,15 +22,6 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.Panel Panel1;
         
         /// <summary>
-        /// txtSearchAmphurID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearchAmphurID;
-        
-        /// <summary>
         /// txtSearchAmphurTH control.
         /// </summary>
         /// <remarks>
@@ -49,13 +40,13 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.TextBox txtSearchAmphurEN;
         
         /// <summary>
-        /// txtSearchProvinceID control.
+        /// ddlSearchProvince control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearchProvinceID;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSearchProvince;
         
         /// <summary>
         /// btnSearchAmphur control.
@@ -85,15 +76,6 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.Panel Panel2;
         
         /// <summary>
-        /// txtInsertAmphurID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtInsertAmphurID;
-        
-        /// <summary>
         /// txtInsertAmphurTH control.
         /// </summary>
         /// <remarks>
@@ -112,13 +94,13 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.TextBox txtInsertAmphurEN;
         
         /// <summary>
-        /// txtInsertProvinceID control.
+        /// ddlInsertProvince control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtInsertProvinceID;
+        protected global::System.Web.UI.WebControls.DropDownList ddlInsertProvince;
         
         /// <summary>
         /// btnSubmitAmphur control.

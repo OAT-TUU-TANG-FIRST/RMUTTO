@@ -1387,7 +1387,6 @@
     </Compile>
     <Compile Include="Position-ADMIN.aspx.cs">
       <DependentUpon>Position-ADMIN.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Position-ADMIN.aspx.designer.cs">
       <DependentUpon>Position-ADMIN.aspx</DependentUpon>

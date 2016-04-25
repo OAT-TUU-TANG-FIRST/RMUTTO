@@ -24,18 +24,14 @@ namespace WEB_PERSONAL.Entities
             this.TITLE_NAME_TH = TITLE_NAME_TH;
         }
 
-        public DataTable GetTitleName(string TITLE_ID, string TITLE_NAME_TH)
+        public DataTable GetTitleName(string TITLE_NAME_TH)
         {
             DataTable dt = new DataTable();
             OracleConnection conn = ConnectionDB.GetOracleConnection();
             string query = "SELECT * FROM TB_TITLENAME ";
-            if (!string.IsNullOrEmpty(TITLE_ID) || !string.IsNullOrEmpty(TITLE_NAME_TH))
+            if (!string.IsNullOrEmpty(TITLE_NAME_TH))
             {
                 query += " where 1=1 ";
-                if (!string.IsNullOrEmpty(TITLE_ID))
-                {
-                    query += " and TITLE_ID like :TITLE_ID ";
-                }
                 if (!string.IsNullOrEmpty(TITLE_NAME_TH))
                 {
                     query += " and TITLE_NAME_TH like :TITLE_NAME_TH ";
@@ -48,62 +44,6 @@ namespace WEB_PERSONAL.Entities
                 if (conn.State != ConnectionState.Open)
                 {
                     conn.Open();
-                }
-
-                if (!string.IsNullOrEmpty(TITLE_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("TITLE_ID", TITLE_ID + "%"));
-                }
-                if (!string.IsNullOrEmpty(TITLE_NAME_TH))
-                {
-                    command.Parameters.Add(new OracleParameter("TITLE_NAME_TH", TITLE_NAME_TH + "%"));
-                }
-                OracleDataAdapter sd = new OracleDataAdapter(command);
-                sd.Fill(dt);
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-            finally
-            {
-                command.Dispose();
-                conn.Close();
-            }
-
-            return dt;
-        }
-
-        public DataTable GetTitleNameSearch(string TITLE_ID, string TITLE_NAME_TH)
-        {
-            DataTable dt = new DataTable();
-            OracleConnection conn = ConnectionDB.GetOracleConnection();
-            string query = "SELECT * FROM TB_TITLENAME ";
-            if (!string.IsNullOrEmpty(TITLE_ID) || !string.IsNullOrEmpty(TITLE_NAME_TH))
-            {
-                query += " where 1=1 ";
-                if (!string.IsNullOrEmpty(TITLE_ID))
-                {
-                    query += " and TITLE_ID like :TITLE_ID ";
-                }
-                if (!string.IsNullOrEmpty(TITLE_NAME_TH))
-                {
-                    query += " and TITLE_NAME_TH like :TITLE_NAME_TH ";
-                }
-            }
-            OracleCommand command = new OracleCommand(query, conn);
-            // Create the command
-            try
-            {
-                if (conn.State != ConnectionState.Open)
-                {
-                    conn.Open();
-                }
-
-                if (!string.IsNullOrEmpty(TITLE_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("TITLE_ID", TITLE_ID + "%"));
                 }
                 if (!string.IsNullOrEmpty(TITLE_NAME_TH))
                 {
@@ -266,18 +206,14 @@ namespace WEB_PERSONAL.Entities
             this.Gender_Name = Gender_Name;
         }
 
-        public DataTable GetGender(string Gender_ID, string Gender_Name)
+        public DataTable GetGender(string Gender_Name)
         {
             DataTable dt = new DataTable();
             OracleConnection conn = ConnectionDB.GetOracleConnection();
             string query = "SELECT * FROM TB_GENDER ";
-            if (!string.IsNullOrEmpty(Gender_ID) || !string.IsNullOrEmpty(Gender_Name))
+            if (!string.IsNullOrEmpty(Gender_Name))
             {
                 query += " where 1=1 ";
-                if (!string.IsNullOrEmpty(Gender_ID))
-                {
-                    query += " and Gender_ID like :Gender_ID ";
-                }
                 if (!string.IsNullOrEmpty(Gender_Name))
                 {
                     query += " and Gender_Name like :Gender_Name ";
@@ -291,62 +227,9 @@ namespace WEB_PERSONAL.Entities
                 {
                     conn.Open();
                 }
-                if (!string.IsNullOrEmpty(Gender_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("Gender_ID", Gender_ID + "%"));
-                }
                 if (!string.IsNullOrEmpty(Gender_Name))
                 {
-                    command.Parameters.Add(new OracleParameter("Gender_Name", "%" + Gender_Name + "%"));
-                }
-                OracleDataAdapter sd = new OracleDataAdapter(command);
-                sd.Fill(dt);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                command.Dispose();
-                conn.Close();
-            }
-
-            return dt;
-        }
-
-        public DataTable GetGenderSearch(string Gender_ID, string Gender_Name)
-        {
-            DataTable dt = new DataTable();
-            OracleConnection conn = ConnectionDB.GetOracleConnection();
-            string query = "SELECT * FROM TB_GENDER";
-            if (!string.IsNullOrEmpty(Gender_ID) || !string.IsNullOrEmpty(Gender_Name))
-            {
-                query += " where 1=1 ";
-                if (!string.IsNullOrEmpty(Gender_ID))
-                {
-                    query += " and Gender_ID like :Gender_ID ";
-                }
-                if (!string.IsNullOrEmpty(Gender_Name))
-                {
-                    query += " and Gender_Name like :Gender_Name ";
-                }
-            }
-            OracleCommand command = new OracleCommand(query, conn);
-            // Create the command
-            try
-            {
-                if (conn.State != ConnectionState.Open)
-                {
-                    conn.Open();
-                }
-                if (!string.IsNullOrEmpty(Gender_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("Gender_ID", Gender_ID + "%"));
-                }
-                if (!string.IsNullOrEmpty(Gender_Name))
-                {
-                    command.Parameters.Add(new OracleParameter("Gender_Name", "%" + Gender_Name + "%"));
+                    command.Parameters.Add(new OracleParameter("Gender_Name", Gender_Name + "%"));
                 }
                 OracleDataAdapter sd = new OracleDataAdapter(command);
                 sd.Fill(dt);
@@ -454,16 +337,16 @@ namespace WEB_PERSONAL.Entities
             return result;
         }
 
-        public bool CheckUseGenderID()
+        public bool CheckUseGenderName()
         {
             bool result = true;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
 
             // Create the command
-            OracleCommand command = new OracleCommand("SELECT count(Gender_ID) FROM TB_GENDER WHERE Gender_ID = :Gender_ID ", conn);
+            OracleCommand command = new OracleCommand("SELECT count(Gender_Name) FROM TB_GENDER WHERE Gender_Name = :Gender_Name ", conn);
 
             // Add the parameters.
-            command.Parameters.Add(new OracleParameter("Gender_ID", Gender_ID));
+            command.Parameters.Add(new OracleParameter("Gender_Name", Gender_Name));
             try
             {
                 if (conn.State != ConnectionState.Open)
@@ -545,70 +428,11 @@ namespace WEB_PERSONAL.Entities
                 }
                 if (!string.IsNullOrEmpty(NATION_ENG))
                 {
-                    command.Parameters.Add(new OracleParameter("NATION_ENG", "%" + NATION_ENG + "%"));
+                    command.Parameters.Add(new OracleParameter("NATION_ENG", NATION_ENG + "%"));
                 }
                 if (!string.IsNullOrEmpty(NATION_THA))
                 {
-                    command.Parameters.Add(new OracleParameter("NATION_THA", "%" + NATION_THA + "%"));
-                }
-                OracleDataAdapter sd = new OracleDataAdapter(command);
-                sd.Fill(dt);
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-            finally
-            {
-                command.Dispose();
-                conn.Close();
-            }
-
-            return dt;
-        }
-
-        public DataTable GetNationalSearch(string NATION_ID, string NATION_ENG, string NATION_THA)
-        {
-            DataTable dt = new DataTable();
-            OracleConnection conn = ConnectionDB.GetOracleConnection();
-            string query = "SELECT * FROM TB_NATIONAL ";
-            if (!string.IsNullOrEmpty(NATION_ID) || !string.IsNullOrEmpty(NATION_ENG) || !string.IsNullOrEmpty(NATION_THA))
-            {
-                query += " where 1=1 ";
-                if (!string.IsNullOrEmpty(NATION_ID))
-                {
-                    query += " and lower(NATION_ID) like lower (:NATION_ID) ";
-                }
-                if (!string.IsNullOrEmpty(NATION_ENG))
-                {
-                    query += " and lower(NATION_ENG) like lower (:NATION_ENG) ";
-                }
-                if (!string.IsNullOrEmpty(NATION_THA))
-                {
-                    query += " and NATION_THA like :NATION_THA ";
-                }
-            }
-            OracleCommand command = new OracleCommand(query, conn);
-            // Create the command
-            try
-            {
-                if (conn.State != ConnectionState.Open)
-                {
-                    conn.Open();
-                }
-
-                if (!string.IsNullOrEmpty(NATION_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("NATION_ID", NATION_ID + "%"));
-                }
-                if (!string.IsNullOrEmpty(NATION_ENG))
-                {
-                    command.Parameters.Add(new OracleParameter("NATION_ENG", "%" + NATION_ENG + "%"));
-                }
-                if (!string.IsNullOrEmpty(NATION_THA))
-                {
-                    command.Parameters.Add(new OracleParameter("NATION_THA", "%" + NATION_THA + "%"));
+                    command.Parameters.Add(new OracleParameter("NATION_THA", NATION_THA + "%"));
                 }
                 OracleDataAdapter sd = new OracleDataAdapter(command);
                 sd.Fill(dt);
@@ -721,16 +545,55 @@ namespace WEB_PERSONAL.Entities
             return result;
         }
 
-        public bool CheckUseNationID()
+        public bool CheckUseNationNameInsert()
         {
             bool result = true;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
 
             // Create the command
-            OracleCommand command = new OracleCommand("SELECT count(NATION_ID) FROM TB_NATIONAL WHERE NATION_ID = :NATION_ID ", conn);
+            OracleCommand command = new OracleCommand("SELECT count(NATION_ID) FROM TB_NATIONAL WHERE NATION_ID = :NATION_ID or NATION_ENG = :NATION_ENG or NATION_THA = :NATION_THA", conn);
 
             // Add the parameters.
             command.Parameters.Add(new OracleParameter("NATION_ID", NATION_ID));
+            command.Parameters.Add(new OracleParameter("NATION_ENG", NATION_ENG));
+            command.Parameters.Add(new OracleParameter("NATION_THA", NATION_THA));
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                int count = (int)(decimal)command.ExecuteScalar();
+                if (count >= 1)
+                {
+                    result = false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return result;
+        }
+
+        public bool CheckUseNationNameUpdate()
+        {
+            bool result = true;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+
+            // Create the command
+            OracleCommand command = new OracleCommand("SELECT count(NATION_ID) FROM TB_NATIONAL WHERE NATION_ID = :NATION_ID and NATION_ENG = :NATION_ENG and NATION_THA = :NATION_THA", conn);
+
+            // Add the parameters.
+            command.Parameters.Add(new OracleParameter("NATION_ID", NATION_ID));
+            command.Parameters.Add(new OracleParameter("NATION_ENG", NATION_ENG));
+            command.Parameters.Add(new OracleParameter("NATION_THA", NATION_THA));
             try
             {
                 if (conn.State != ConnectionState.Open)
@@ -771,18 +634,14 @@ namespace WEB_PERSONAL.Entities
             this.BLOOD_NAME = BLOOD_NAME;
         }
 
-        public DataTable GetBlood(string BLOOD_ID, string BLOOD_NAME)
+        public DataTable GetBlood(string BLOOD_NAME)
         {
             DataTable dt = new DataTable();
             OracleConnection conn = ConnectionDB.GetOracleConnection();
             string query = "SELECT * FROM TB_BLOOD ";
-            if (!string.IsNullOrEmpty(BLOOD_ID) || !string.IsNullOrEmpty(BLOOD_NAME))
+            if (!string.IsNullOrEmpty(BLOOD_NAME))
             {
                 query += " where 1=1 ";
-                if (!string.IsNullOrEmpty(BLOOD_ID))
-                {
-                    query += " and BLOOD_ID like :BLOOD_ID ";
-                }
                 if (!string.IsNullOrEmpty(BLOOD_NAME))
                 {
                     query += " and BLOOD_NAME like :BLOOD_NAME ";
@@ -795,59 +654,6 @@ namespace WEB_PERSONAL.Entities
                 if (conn.State != ConnectionState.Open)
                 {
                     conn.Open();
-                }
-                if (!string.IsNullOrEmpty(BLOOD_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("BLOOD_ID", BLOOD_ID + "%"));
-                }
-                if (!string.IsNullOrEmpty(BLOOD_NAME))
-                {
-                    command.Parameters.Add(new OracleParameter("BLOOD_NAME", "%" + BLOOD_NAME + "%"));
-                }
-                OracleDataAdapter sd = new OracleDataAdapter(command);
-                sd.Fill(dt);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                command.Dispose();
-                conn.Close();
-            }
-
-            return dt;
-        }
-
-        public DataTable GetBloodSearch(string BLOOD_ID, string BLOOD_NAME)
-        {
-            DataTable dt = new DataTable();
-            OracleConnection conn = ConnectionDB.GetOracleConnection();
-            string query = "SELECT * FROM TB_BLOOD";
-            if (!string.IsNullOrEmpty(BLOOD_ID) || !string.IsNullOrEmpty(BLOOD_NAME))
-            {
-                query += " where 1=1 ";
-                if (!string.IsNullOrEmpty(BLOOD_ID))
-                {
-                    query += " and BLOOD_ID like :BLOOD_ID ";
-                }
-                if (!string.IsNullOrEmpty(BLOOD_NAME))
-                {
-                    query += " and BLOOD_NAME like :BLOOD_NAME ";
-                }
-            }
-            OracleCommand command = new OracleCommand(query, conn);
-            // Create the command
-            try
-            {
-                if (conn.State != ConnectionState.Open)
-                {
-                    conn.Open();
-                }
-                if (!string.IsNullOrEmpty(BLOOD_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("BLOOD_ID", BLOOD_ID + "%"));
                 }
                 if (!string.IsNullOrEmpty(BLOOD_NAME))
                 {
@@ -959,16 +765,16 @@ namespace WEB_PERSONAL.Entities
             return result;
         }
 
-        public bool CheckUseBloodID()
+        public bool CheckUseBloodName()
         {
             bool result = true;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
 
             // Create the command
-            OracleCommand command = new OracleCommand("SELECT count(BLOOD_ID) FROM TB_BLOOD WHERE BLOOD_ID = :BLOOD_ID ", conn);
+            OracleCommand command = new OracleCommand("SELECT count(BLOOD_NAME) FROM TB_BLOOD WHERE BLOOD_NAME = :BLOOD_NAME ", conn);
 
             // Add the parameters.
-            command.Parameters.Add(new OracleParameter("BLOOD_ID", BLOOD_ID));
+            command.Parameters.Add(new OracleParameter("BLOOD_NAME", BLOOD_NAME));
             try
             {
                 if (conn.State != ConnectionState.Open)
@@ -1010,18 +816,14 @@ namespace WEB_PERSONAL.Entities
             this.RELIGION_NAME = RELIGION_NAME;
         }
 
-        public DataTable GetReligion(string RELIGION_ID, string RELIGION_NAME)
+        public DataTable GetReligion(string RELIGION_NAME)
         {
             DataTable dt = new DataTable();
             OracleConnection conn = ConnectionDB.GetOracleConnection();
             string query = "SELECT * FROM TB_RELIGION ";
-            if (!string.IsNullOrEmpty(RELIGION_ID) || !string.IsNullOrEmpty(RELIGION_NAME))
+            if (!string.IsNullOrEmpty(RELIGION_NAME))
             {
                 query += " where 1=1 ";
-                if (!string.IsNullOrEmpty(RELIGION_ID))
-                {
-                    query += " and RELIGION_ID like :RELIGION_ID ";
-                }
                 if (!string.IsNullOrEmpty(RELIGION_NAME))
                 {
                     query += " and RELIGION_NAME like :RELIGION_NAME ";
@@ -1034,60 +836,6 @@ namespace WEB_PERSONAL.Entities
                 if (conn.State != ConnectionState.Open)
                 {
                     conn.Open();
-                }
-                if (!string.IsNullOrEmpty(RELIGION_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("RELIGION_ID", RELIGION_ID + "%"));
-                }
-                if (!string.IsNullOrEmpty(RELIGION_NAME))
-                {
-                    command.Parameters.Add(new OracleParameter("RELIGION_NAME", RELIGION_NAME + "%"));
-                }
-                OracleDataAdapter sd = new OracleDataAdapter(command);
-                sd.Fill(dt);
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-            finally
-            {
-                command.Dispose();
-                conn.Close();
-            }
-
-            return dt;
-        }
-
-        public DataTable GetReligionSearch(string RELIGION_ID, string RELIGION_NAME)
-        {
-            DataTable dt = new DataTable();
-            OracleConnection conn = ConnectionDB.GetOracleConnection();
-            string query = "SELECT * FROM TB_RELIGION ";
-            if (!string.IsNullOrEmpty(RELIGION_ID) || !string.IsNullOrEmpty(RELIGION_NAME))
-            {
-                query += " where 1=1 ";
-                if (!string.IsNullOrEmpty(RELIGION_ID))
-                {
-                    query += " and RELIGION_ID like :RELIGION_ID ";
-                }
-                if (!string.IsNullOrEmpty(RELIGION_NAME))
-                {
-                    query += " and RELIGION_NAME like :RELIGION_NAME ";
-                }
-            }
-            OracleCommand command = new OracleCommand(query, conn);
-            // Create the command
-            try
-            {
-                if (conn.State != ConnectionState.Open)
-                {
-                    conn.Open();
-                }
-                if (!string.IsNullOrEmpty(RELIGION_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("RELIGION_ID", RELIGION_ID + "%"));
                 }
                 if (!string.IsNullOrEmpty(RELIGION_NAME))
                 {
@@ -1199,16 +947,16 @@ namespace WEB_PERSONAL.Entities
             return result;
         }
 
-        public bool CheckUseReligionID()
+        public bool CheckUseReligionName()
         {
             bool result = true;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
 
             // Create the command
-            OracleCommand command = new OracleCommand("SELECT count(RELIGION_ID) FROM TB_RELIGION WHERE RELIGION_ID = :RELIGION_ID ", conn);
+            OracleCommand command = new OracleCommand("SELECT count(RELIGION_NAME) FROM TB_RELIGION WHERE RELIGION_NAME = :RELIGION_NAME ", conn);
 
             // Add the parameters.
-            command.Parameters.Add(new OracleParameter("RELIGION_ID", RELIGION_ID));
+            command.Parameters.Add(new OracleParameter("RELIGION_NAME", RELIGION_NAME));
             try
             {
                 if (conn.State != ConnectionState.Open)
@@ -1250,7 +998,7 @@ namespace WEB_PERSONAL.Entities
             this.STATUS_NAME = STATUS_NAME;
         }
 
-        public DataTable GetStatusPerson(string STATUS_ID, string STATUS_NAME)
+        public DataTable GetStatusPerson(string STATUS_NAME)
         {
             DataTable dt = new DataTable();
             OracleConnection conn = ConnectionDB.GetOracleConnection();
@@ -1258,10 +1006,6 @@ namespace WEB_PERSONAL.Entities
             if (!string.IsNullOrEmpty(STATUS_NAME))
             {
                 query += " where 1=1 ";
-                if (!string.IsNullOrEmpty(STATUS_ID))
-                {
-                    query += " and STATUS_ID like :STATUS_ID ";
-                }
                 if (!string.IsNullOrEmpty(STATUS_NAME))
                 {
                     query += " and STATUS_NAME like :STATUS_NAME ";
@@ -1274,60 +1018,6 @@ namespace WEB_PERSONAL.Entities
                 if (conn.State != ConnectionState.Open)
                 {
                     conn.Open();
-                }
-                if (!string.IsNullOrEmpty(STATUS_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("STATUS_ID", STATUS_ID + "%"));
-                }
-                if (!string.IsNullOrEmpty(STATUS_NAME))
-                {
-                    command.Parameters.Add(new OracleParameter("STATUS_NAME", STATUS_NAME + "%"));
-                }
-                OracleDataAdapter sd = new OracleDataAdapter(command);
-                sd.Fill(dt);
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-            finally
-            {
-                command.Dispose();
-                conn.Close();
-            }
-
-            return dt;
-        }
-
-        public DataTable GetStatusPersonSearch(string STATUS_ID, string STATUS_NAME)
-        {
-            DataTable dt = new DataTable();
-            OracleConnection conn = ConnectionDB.GetOracleConnection();
-            string query = "SELECT * FROM TB_STATUS_PERSON ";
-            if (!string.IsNullOrEmpty(STATUS_NAME))
-            {
-                query += " where 1=1 ";
-                if (!string.IsNullOrEmpty(STATUS_ID))
-                {
-                    query += " and STATUS_ID like :STATUS_ID ";
-                }
-                if (!string.IsNullOrEmpty(STATUS_NAME))
-                {
-                    query += " and STATUS_NAME like :STATUS_NAME ";
-                }
-            }
-            OracleCommand command = new OracleCommand(query, conn);
-            // Create the command
-            try
-            {
-                if (conn.State != ConnectionState.Open)
-                {
-                    conn.Open();
-                }
-                if (!string.IsNullOrEmpty(STATUS_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("STATUS_ID", STATUS_ID + "%"));
                 }
                 if (!string.IsNullOrEmpty(STATUS_NAME))
                 {
@@ -1439,16 +1129,16 @@ namespace WEB_PERSONAL.Entities
             return result;
         }
 
-        public bool CheckUseStatusPersonID()
+        public bool CheckUseStatusPersonName()
         {
             bool result = true;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
 
             // Create the command
-            OracleCommand command = new OracleCommand("SELECT count(STATUS_ID) FROM TB_STATUS_PERSON WHERE STATUS_ID = :STATUS_ID ", conn);
+            OracleCommand command = new OracleCommand("SELECT count(STATUS_NAME) FROM TB_STATUS_PERSON WHERE STATUS_NAME = :STATUS_NAME ", conn);
 
             // Add the parameters.
-            command.Parameters.Add(new OracleParameter("STATUS_ID", STATUS_ID));
+            command.Parameters.Add(new OracleParameter("STATUS_NAME", STATUS_NAME));
             try
             {
                 if (conn.State != ConnectionState.Open)
@@ -1492,18 +1182,14 @@ namespace WEB_PERSONAL.Entities
             this.PROVINCE_EN = PROVINCE_EN;
         }
 
-        public DataTable GetProvince(string PROVINCE_ID, string PROVINCE_TH, string PROVINCE_EN)
+        public DataTable GetProvince(string PROVINCE_TH, string PROVINCE_EN)
         {
             DataTable dt = new DataTable();
             OracleConnection conn = ConnectionDB.GetOracleConnection();
             string query = "SELECT * FROM TB_PROVINCE ";
-            if (!string.IsNullOrEmpty(PROVINCE_ID) || !string.IsNullOrEmpty(PROVINCE_TH) || !string.IsNullOrEmpty(PROVINCE_EN))
+            if (!string.IsNullOrEmpty(PROVINCE_TH) || !string.IsNullOrEmpty(PROVINCE_EN))
             {
                 query += " where 1=1 ";
-                if (!string.IsNullOrEmpty(PROVINCE_ID))
-                {
-                    query += " and PROVINCE_ID like :PROVINCE_ID ";
-                }
                 if (!string.IsNullOrEmpty(PROVINCE_TH))
                 {
                     query += " and PROVINCE_TH like :PROVINCE_TH ";
@@ -1520,70 +1206,6 @@ namespace WEB_PERSONAL.Entities
                 if (conn.State != ConnectionState.Open)
                 {
                     conn.Open();
-                }
-
-                if (!string.IsNullOrEmpty(PROVINCE_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("PROVINCE_ID", PROVINCE_ID + "%"));
-                }
-                if (!string.IsNullOrEmpty(PROVINCE_TH))
-                {
-                    command.Parameters.Add(new OracleParameter("PROVINCE_TH", "%" + PROVINCE_TH + "%"));
-                }
-                if (!string.IsNullOrEmpty(PROVINCE_EN))
-                {
-                    command.Parameters.Add(new OracleParameter("PROVINCE_EN", "%" + PROVINCE_EN + "%"));
-                }
-                OracleDataAdapter sd = new OracleDataAdapter(command);
-                sd.Fill(dt);
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-            finally
-            {
-                command.Dispose();
-                conn.Close();
-            }
-
-            return dt;
-        }
-
-        public DataTable GetProvinceSearch(string PROVINCE_ID, string PROVINCE_TH, string PROVINCE_EN)
-        {
-            DataTable dt = new DataTable();
-            OracleConnection conn = ConnectionDB.GetOracleConnection();
-            string query = "SELECT * FROM TB_PROVINCE ";
-            if (!string.IsNullOrEmpty(PROVINCE_ID) || !string.IsNullOrEmpty(PROVINCE_TH) || !string.IsNullOrEmpty(PROVINCE_EN))
-            {
-                query += " where 1=1 ";
-                if (!string.IsNullOrEmpty(PROVINCE_ID))
-                {
-                    query += " and PROVINCE_ID like :PROVINCE_ID ";
-                }
-                if (!string.IsNullOrEmpty(PROVINCE_TH))
-                {
-                    query += " and PROVINCE_TH like :PROVINCE_TH ";
-                }
-                if (!string.IsNullOrEmpty(PROVINCE_EN))
-                {
-                    query += " and lower(PROVINCE_EN) like lower (:PROVINCE_EN) ";
-                }
-            }
-            OracleCommand command = new OracleCommand(query, conn);
-            // Create the command
-            try
-            {
-                if (conn.State != ConnectionState.Open)
-                {
-                    conn.Open();
-                }
-
-                if (!string.IsNullOrEmpty(PROVINCE_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("PROVINCE_ID", PROVINCE_ID + "%"));
                 }
                 if (!string.IsNullOrEmpty(PROVINCE_TH))
                 {
@@ -1614,14 +1236,13 @@ namespace WEB_PERSONAL.Entities
         {
             int id = 0;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
-            OracleCommand command = new OracleCommand("INSERT INTO TB_PROVINCE (PROVINCE_ID,PROVINCE_TH,PROVINCE_EN) VALUES (:PROVINCE_ID,:PROVINCE_TH,:PROVINCE_EN)", conn);
+            OracleCommand command = new OracleCommand("INSERT INTO TB_PROVINCE (PROVINCE_TH,PROVINCE_EN) VALUES (:PROVINCE_TH,:PROVINCE_EN)", conn);
             try
             {
                 if (conn.State != ConnectionState.Open)
                 {
                     conn.Open();
                 }
-                command.Parameters.Add(new OracleParameter("PROVINCE_ID", PROVINCE_ID));
                 command.Parameters.Add(new OracleParameter("PROVINCE_TH", PROVINCE_TH));
                 command.Parameters.Add(new OracleParameter("PROVINCE_EN", PROVINCE_EN));
                 id = command.ExecuteNonQuery();
@@ -1704,16 +1325,53 @@ namespace WEB_PERSONAL.Entities
             return result;
         }
 
-        public bool CheckUseProvinceID()
+        public bool CheckUseProvinceNameInsert()
         {
             bool result = true;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
 
             // Create the command
-            OracleCommand command = new OracleCommand("SELECT count(PROVINCE_ID) FROM TB_PROVINCE WHERE PROVINCE_ID = :PROVINCE_ID ", conn);
+            OracleCommand command = new OracleCommand("SELECT count(PROVINCE_TH) FROM TB_PROVINCE WHERE PROVINCE_TH = :PROVINCE_TH or PROVINCE_EN = :PROVINCE_EN", conn);
 
             // Add the parameters.
-            command.Parameters.Add(new OracleParameter("PROVINCE_ID", PROVINCE_ID));
+            command.Parameters.Add(new OracleParameter("PROVINCE_TH", PROVINCE_TH));
+            command.Parameters.Add(new OracleParameter("PROVINCE_EN", PROVINCE_EN));
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                int count = (int)(decimal)command.ExecuteScalar();
+                if (count >= 1)
+                {
+                    result = false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return result;
+        }
+
+        public bool CheckUseProvinceNameUpdate()
+        {
+            bool result = true;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+
+            // Create the command
+            OracleCommand command = new OracleCommand("SELECT count(PROVINCE_TH) FROM TB_PROVINCE WHERE PROVINCE_TH = :PROVINCE_TH and PROVINCE_EN = :PROVINCE_EN", conn);
+
+            // Add the parameters.
+            command.Parameters.Add(new OracleParameter("PROVINCE_TH", PROVINCE_TH));
+            command.Parameters.Add(new OracleParameter("PROVINCE_EN", PROVINCE_EN));
             try
             {
                 if (conn.State != ConnectionState.Open)
@@ -1759,18 +1417,14 @@ namespace WEB_PERSONAL.Entities
             this.PROVINCE_ID = PROVINCE_ID;
         }
 
-        public DataTable GetAmphur(string AMPHUR_ID, string AMPHUR_TH, string AMPHUR_EN, string PROVINCE_ID)
+        public DataTable GetAmphur(string AMPHUR_TH, string AMPHUR_EN, string PROVINCE_ID)
         {
             DataTable dt = new DataTable();
             OracleConnection conn = ConnectionDB.GetOracleConnection();
             string query = "SELECT * FROM TB_AMPHUR ";
-            if (!string.IsNullOrEmpty(AMPHUR_ID) || !string.IsNullOrEmpty(AMPHUR_TH) || !string.IsNullOrEmpty(AMPHUR_EN) || !string.IsNullOrEmpty(PROVINCE_ID))
+            if (!string.IsNullOrEmpty(AMPHUR_TH) || !string.IsNullOrEmpty(AMPHUR_EN) || !string.IsNullOrEmpty(PROVINCE_ID))
             {
                 query += " where 1=1 ";
-                if (!string.IsNullOrEmpty(AMPHUR_ID))
-                {
-                    query += " and AMPHUR_ID like :AMPHUR_ID ";
-                }
                 if (!string.IsNullOrEmpty(AMPHUR_TH))
                 {
                     query += " and AMPHUR_TH like :AMPHUR_TH ";
@@ -1792,11 +1446,6 @@ namespace WEB_PERSONAL.Entities
                 {
                     conn.Open();
                 }
-
-                if (!string.IsNullOrEmpty(AMPHUR_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("AMPHUR_ID", AMPHUR_ID + "%"));
-                }
                 if (!string.IsNullOrEmpty(AMPHUR_TH))
                 {
                     command.Parameters.Add(new OracleParameter("AMPHUR_TH", "%" + AMPHUR_TH + "%"));
@@ -1807,74 +1456,7 @@ namespace WEB_PERSONAL.Entities
                 }
                 if (!string.IsNullOrEmpty(PROVINCE_ID))
                 {
-                    command.Parameters.Add(new OracleParameter("PROVINCE_ID", PROVINCE_ID + "%"));
-                }
-                OracleDataAdapter sd = new OracleDataAdapter(command);
-                sd.Fill(dt);
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-            finally
-            {
-                command.Dispose();
-                conn.Close();
-            }
-
-            return dt;
-        }
-
-        public DataTable GetAmphurSearch(string AMPHUR_ID, string AMPHUR_TH, string AMPHUR_EN, string PROVINCE_ID)
-        {
-            DataTable dt = new DataTable();
-            OracleConnection conn = ConnectionDB.GetOracleConnection();
-            string query = "SELECT * FROM TB_AMPHUR ";
-            if (!string.IsNullOrEmpty(AMPHUR_ID) || !string.IsNullOrEmpty(AMPHUR_TH) || !string.IsNullOrEmpty(AMPHUR_EN) || !string.IsNullOrEmpty(PROVINCE_ID))
-            {
-                query += " where 1=1 ";
-                if (!string.IsNullOrEmpty(AMPHUR_ID))
-                {
-                    query += " and AMPHUR_ID like :AMPHUR_ID ";
-                }
-                if (!string.IsNullOrEmpty(AMPHUR_TH))
-                {
-                    query += " and AMPHUR_TH like :AMPHUR_TH ";
-                }
-                if (!string.IsNullOrEmpty(AMPHUR_EN))
-                {
-                    query += " and lower(AMPHUR_EN) like lower (:AMPHUR_EN) ";
-                }
-                if (!string.IsNullOrEmpty(PROVINCE_ID))
-                {
-                    query += " and PROVINCE_ID like :PROVINCE_ID ";
-                }
-            }
-            OracleCommand command = new OracleCommand(query, conn);
-            // Create the command
-            try
-            {
-                if (conn.State != ConnectionState.Open)
-                {
-                    conn.Open();
-                }
-
-                if (!string.IsNullOrEmpty(AMPHUR_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("AMPHUR_ID", AMPHUR_ID + "%"));
-                }
-                if (!string.IsNullOrEmpty(AMPHUR_TH))
-                {
-                    command.Parameters.Add(new OracleParameter("AMPHUR_TH", "%" + AMPHUR_TH + "%"));
-                }
-                if (!string.IsNullOrEmpty(AMPHUR_EN))
-                {
-                    command.Parameters.Add(new OracleParameter("AMPHUR_EN", "%" + AMPHUR_EN + "%"));
-                }
-                if (!string.IsNullOrEmpty(PROVINCE_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("PROVINCE_ID", PROVINCE_ID + "%"));
+                    command.Parameters.Add(new OracleParameter("PROVINCE_ID", PROVINCE_ID ));
                 }
                 OracleDataAdapter sd = new OracleDataAdapter(command);
                 sd.Fill(dt);
@@ -1897,14 +1479,13 @@ namespace WEB_PERSONAL.Entities
         {
             int id = 0;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
-            OracleCommand command = new OracleCommand("INSERT INTO TB_AMPHUR (AMPHUR_ID,AMPHUR_TH,AMPHUR_EN,PROVINCE_ID) VALUES (:AMPHUR_ID,:AMPHUR_TH,:AMPHUR_EN,:PROVINCE_ID)", conn);
+            OracleCommand command = new OracleCommand("INSERT INTO TB_AMPHUR (AMPHUR_TH,AMPHUR_EN,PROVINCE_ID) VALUES (:AMPHUR_TH,:AMPHUR_EN,:PROVINCE_ID)", conn);
             try
             {
                 if (conn.State != ConnectionState.Open)
                 {
                     conn.Open();
                 }
-                command.Parameters.Add(new OracleParameter("AMPHUR_ID", AMPHUR_ID));
                 command.Parameters.Add(new OracleParameter("AMPHUR_TH", AMPHUR_TH));
                 command.Parameters.Add(new OracleParameter("AMPHUR_EN", AMPHUR_EN));
                 command.Parameters.Add(new OracleParameter("PROVINCE_ID", PROVINCE_ID));
@@ -1990,16 +1571,18 @@ namespace WEB_PERSONAL.Entities
             return result;
         }
 
-        public bool CheckUseAmphurID()
+        public bool CheckUseAmphurName()
         {
             bool result = true;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
 
             // Create the command
-            OracleCommand command = new OracleCommand("SELECT count(AMPHUR_ID) FROM TB_AMPHUR WHERE AMPHUR_ID = :AMPHUR_ID ", conn);
+            OracleCommand command = new OracleCommand("SELECT count(AMPHUR_TH) FROM TB_AMPHUR WHERE AMPHUR_TH = :AMPHUR_TH and AMPHUR_EN = :AMPHUR_EN and PROVINCE_ID = :PROVINCE_ID", conn);
 
             // Add the parameters.
-            command.Parameters.Add(new OracleParameter("AMPHUR_ID", AMPHUR_ID));
+            command.Parameters.Add(new OracleParameter("AMPHUR_TH", AMPHUR_TH));
+            command.Parameters.Add(new OracleParameter("AMPHUR_EN", AMPHUR_EN));
+            command.Parameters.Add(new OracleParameter("PROVINCE_ID", PROVINCE_ID));
             try
             {
                 if (conn.State != ConnectionState.Open)
@@ -2051,18 +1634,14 @@ namespace WEB_PERSONAL.Entities
             this.NOTE = NOTE;
         }
 
-        public DataTable GetDistrict(string DISTRICT_ID, string DISTRICT_TH, string DISTRICT_EN, string AMPHUR_ID, string PROVINCE_ID, string POST_CODE, string NOTE)
+        public DataTable GetDistrict(string DISTRICT_TH, string DISTRICT_EN, string AMPHUR_ID, string PROVINCE_ID, string POST_CODE, string NOTE)
         {
             DataTable dt = new DataTable();
             OracleConnection conn = ConnectionDB.GetOracleConnection();
             string query = "SELECT * FROM TB_DISTRICT ";
-            if (!string.IsNullOrEmpty(DISTRICT_ID) || !string.IsNullOrEmpty(DISTRICT_TH) || !string.IsNullOrEmpty(DISTRICT_EN) || !string.IsNullOrEmpty(AMPHUR_ID) || !string.IsNullOrEmpty(PROVINCE_ID) || !string.IsNullOrEmpty(POST_CODE) || !string.IsNullOrEmpty(NOTE))
+            if (!string.IsNullOrEmpty(DISTRICT_TH) || !string.IsNullOrEmpty(DISTRICT_EN) || !string.IsNullOrEmpty(AMPHUR_ID) || !string.IsNullOrEmpty(PROVINCE_ID) || !string.IsNullOrEmpty(POST_CODE) || !string.IsNullOrEmpty(NOTE))
             {
                 query += " where 1=1 ";
-                if (!string.IsNullOrEmpty(DISTRICT_ID))
-                {
-                    query += " and DISTRICT_ID like :DISTRICT_ID ";
-                }
                 if (!string.IsNullOrEmpty(DISTRICT_TH))
                 {
                     query += " and DISTRICT_TH like :DISTRICT_TH ";
@@ -2096,11 +1675,6 @@ namespace WEB_PERSONAL.Entities
                 {
                     conn.Open();
                 }
-
-                if (!string.IsNullOrEmpty(DISTRICT_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("DISTRICT_ID", DISTRICT_ID + "%"));
-                }
                 if (!string.IsNullOrEmpty(DISTRICT_TH))
                 {
                     command.Parameters.Add(new OracleParameter("DISTRICT_TH", "%" + DISTRICT_TH + "%"));
@@ -2111,102 +1685,11 @@ namespace WEB_PERSONAL.Entities
                 }
                 if (!string.IsNullOrEmpty(AMPHUR_ID))
                 {
-                    command.Parameters.Add(new OracleParameter("AMPHUR_ID", AMPHUR_ID + "%"));
+                    command.Parameters.Add(new OracleParameter("AMPHUR_ID", AMPHUR_ID ));
                 }
                 if (!string.IsNullOrEmpty(PROVINCE_ID))
                 {
-                    command.Parameters.Add(new OracleParameter("PROVINCE_ID", PROVINCE_ID + "%"));
-                }
-                if (!string.IsNullOrEmpty(POST_CODE))
-                {
-                    command.Parameters.Add(new OracleParameter("POST_CODE", POST_CODE + "%"));
-                }
-                if (!string.IsNullOrEmpty(NOTE))
-                {
-                    command.Parameters.Add(new OracleParameter("NOTE", "%" + NOTE + "%"));
-                }
-                OracleDataAdapter sd = new OracleDataAdapter(command);
-                sd.Fill(dt);
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-            finally
-            {
-                command.Dispose();
-                conn.Close();
-            }
-
-            return dt;
-        }
-
-        public DataTable GetDistrictSearch(string DISTRICT_ID, string DISTRICT_TH, string DISTRICT_EN, string AMPHUR_ID, string PROVINCE_ID, string POST_CODE, string NOTE)
-        {
-            DataTable dt = new DataTable();
-            OracleConnection conn = ConnectionDB.GetOracleConnection();
-            string query = "SELECT * FROM TB_DISTRICT ";
-            if (!string.IsNullOrEmpty(DISTRICT_ID) || !string.IsNullOrEmpty(DISTRICT_TH) || !string.IsNullOrEmpty(DISTRICT_EN) || !string.IsNullOrEmpty(AMPHUR_ID) || !string.IsNullOrEmpty(PROVINCE_ID) || !string.IsNullOrEmpty(POST_CODE) || !string.IsNullOrEmpty(NOTE))
-            {
-                query += " where 1=1 ";
-                if (!string.IsNullOrEmpty(DISTRICT_ID))
-                {
-                    query += " and DISTRICT_ID like :DISTRICT_ID ";
-                }
-                if (!string.IsNullOrEmpty(DISTRICT_TH))
-                {
-                    query += " and DISTRICT_TH like :DISTRICT_TH ";
-                }
-                if (!string.IsNullOrEmpty(DISTRICT_EN))
-                {
-                    query += " and lower(DISTRICT_EN) like lower (:DISTRICT_EN) ";
-                }
-                if (!string.IsNullOrEmpty(AMPHUR_ID))
-                {
-                    query += " and AMPHUR_ID like :AMPHUR_ID ";
-                }
-                if (!string.IsNullOrEmpty(PROVINCE_ID))
-                {
-                    query += " and PROVINCE_ID like :PROVINCE_ID ";
-                }
-                if (!string.IsNullOrEmpty(POST_CODE))
-                {
-                    query += " and POST_CODE like :POST_CODE ";
-                }
-                if (!string.IsNullOrEmpty(NOTE))
-                {
-                    query += " and NOTE like :NOTE ";
-                }
-            }
-            OracleCommand command = new OracleCommand(query, conn);
-            // Create the command
-            try
-            {
-                if (conn.State != ConnectionState.Open)
-                {
-                    conn.Open();
-                }
-
-                if (!string.IsNullOrEmpty(DISTRICT_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("DISTRICT_ID", DISTRICT_ID + "%"));
-                }
-                if (!string.IsNullOrEmpty(DISTRICT_TH))
-                {
-                    command.Parameters.Add(new OracleParameter("DISTRICT_TH", "%" + DISTRICT_TH + "%"));
-                }
-                if (!string.IsNullOrEmpty(DISTRICT_EN))
-                {
-                    command.Parameters.Add(new OracleParameter("DISTRICT_EN", "%" + DISTRICT_EN + "%"));
-                }
-                if (!string.IsNullOrEmpty(AMPHUR_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("AMPHUR_ID", AMPHUR_ID + "%"));
-                }
-                if (!string.IsNullOrEmpty(PROVINCE_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("PROVINCE_ID", PROVINCE_ID + "%"));
+                    command.Parameters.Add(new OracleParameter("PROVINCE_ID", PROVINCE_ID ));
                 }
                 if (!string.IsNullOrEmpty(POST_CODE))
                 {
@@ -2237,14 +1720,13 @@ namespace WEB_PERSONAL.Entities
         {
             int id = 0;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
-            OracleCommand command = new OracleCommand("INSERT INTO TB_DISTRICT (DISTRICT_ID,DISTRICT_TH,DISTRICT_EN,AMPHUR_ID,PROVINCE_ID,POST_CODE,NOTE) VALUES (:DISTRICT_ID,:DISTRICT_TH,:DISTRICT_EN,:AMPHUR_ID,:PROVINCE_ID,:POST_CODE,:NOTE)", conn);
+            OracleCommand command = new OracleCommand("INSERT INTO TB_DISTRICT (DISTRICT_TH,DISTRICT_EN,AMPHUR_ID,PROVINCE_ID,POST_CODE,NOTE) VALUES (:DISTRICT_TH,:DISTRICT_EN,:AMPHUR_ID,:PROVINCE_ID,:POST_CODE,:NOTE)", conn);
             try
             {
                 if (conn.State != ConnectionState.Open)
                 {
                     conn.Open();
                 }
-                command.Parameters.Add(new OracleParameter("DISTRICT_ID", DISTRICT_ID));
                 command.Parameters.Add(new OracleParameter("DISTRICT_TH", DISTRICT_TH));
                 command.Parameters.Add(new OracleParameter("DISTRICT_EN", DISTRICT_EN));
                 command.Parameters.Add(new OracleParameter("AMPHUR_ID", AMPHUR_ID));
@@ -2339,16 +1821,19 @@ namespace WEB_PERSONAL.Entities
             return result;
         }
 
-        public bool CheckUseDistrictID()
+        public bool CheckUseDistrictName()
         {
             bool result = true;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
 
             // Create the command
-            OracleCommand command = new OracleCommand("SELECT count(DISTRICT_ID) FROM TB_DISTRICT WHERE DISTRICT_ID = :DISTRICT_ID ", conn);
+            OracleCommand command = new OracleCommand("SELECT count(DISTRICT_TH) FROM TB_DISTRICT WHERE DISTRICT_TH = :DISTRICT_TH and DISTRICT_EN = :DISTRICT_EN and AMPHUR_ID = :AMPHUR_ID and PROVINCE_ID = :PROVINCE_ID", conn);
 
             // Add the parameters.
-            command.Parameters.Add(new OracleParameter("DISTRICT_ID", DISTRICT_ID));
+            command.Parameters.Add(new OracleParameter("DISTRICT_TH", DISTRICT_TH));
+            command.Parameters.Add(new OracleParameter("DISTRICT_EN", DISTRICT_EN));
+            command.Parameters.Add(new OracleParameter("AMPHUR_ID", AMPHUR_ID));
+            command.Parameters.Add(new OracleParameter("PROVINCE_ID", PROVINCE_ID));
             try
             {
                 if (conn.State != ConnectionState.Open)
@@ -2430,11 +1915,11 @@ namespace WEB_PERSONAL.Entities
                 }
                 if (!string.IsNullOrEmpty(GRAD_SHORT_NAME))
                 {
-                    command.Parameters.Add(new OracleParameter("GRAD_SHORT_NAME", "%" + GRAD_SHORT_NAME + "%"));
+                    command.Parameters.Add(new OracleParameter("GRAD_SHORT_NAME", GRAD_SHORT_NAME + "%"));
                 }
                 if (!string.IsNullOrEmpty(GRAD_LONG_NAME))
                 {
-                    command.Parameters.Add(new OracleParameter("GRAD_LONG_NAME", "%" + GRAD_LONG_NAME + "%"));
+                    command.Parameters.Add(new OracleParameter("GRAD_LONG_NAME", GRAD_LONG_NAME + "%"));
                 }
                 OracleDataAdapter sd = new OracleDataAdapter(command);
                 sd.Fill(dt);
@@ -2489,11 +1974,11 @@ namespace WEB_PERSONAL.Entities
                 }
                 if (!string.IsNullOrEmpty(GRAD_SHORT_NAME))
                 {
-                    command.Parameters.Add(new OracleParameter("GRAD_SHORT_NAME", "%" + GRAD_SHORT_NAME + "%"));
+                    command.Parameters.Add(new OracleParameter("GRAD_SHORT_NAME", GRAD_SHORT_NAME + "%"));
                 }
                 if (!string.IsNullOrEmpty(GRAD_LONG_NAME))
                 {
-                    command.Parameters.Add(new OracleParameter("GRAD_LONG_NAME", "%" + GRAD_LONG_NAME + "%"));
+                    command.Parameters.Add(new OracleParameter("GRAD_LONG_NAME", GRAD_LONG_NAME + "%"));
                 }
                 OracleDataAdapter sd = new OracleDataAdapter(command);
                 sd.Fill(dt);
@@ -2606,16 +2091,55 @@ namespace WEB_PERSONAL.Entities
             return result;
         }
 
-        public bool CheckUseGradCountryID()
+        public bool CheckUseGradCountryNameInsert()
         {
             bool result = true;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
 
             // Create the command
-            OracleCommand command = new OracleCommand("SELECT count(GRAD_ISO2) FROM TB_GRAD_COUNTRY WHERE GRAD_ISO2 = :GRAD_ISO2 ", conn);
+            OracleCommand command = new OracleCommand("SELECT count(GRAD_ISO2) FROM TB_GRAD_COUNTRY WHERE GRAD_ISO2 = :GRAD_ISO2 or GRAD_SHORT_NAME = :GRAD_SHORT_NAME or GRAD_LONG_NAME = :GRAD_LONG_NAME ", conn);
 
             // Add the parameters.
             command.Parameters.Add(new OracleParameter("GRAD_ISO2", GRAD_ISO2));
+            command.Parameters.Add(new OracleParameter("GRAD_SHORT_NAME", GRAD_SHORT_NAME));
+            command.Parameters.Add(new OracleParameter("GRAD_LONG_NAME", GRAD_LONG_NAME));
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                int count = (int)(decimal)command.ExecuteScalar();
+                if (count >= 1)
+                {
+                    result = false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return result;
+        }
+
+        public bool CheckUseGradCountryNameUpdate()
+        {
+            bool result = true;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+
+            // Create the command
+            OracleCommand command = new OracleCommand("SELECT count(GRAD_ISO2) FROM TB_GRAD_COUNTRY WHERE GRAD_ISO2 = :GRAD_ISO2 and GRAD_SHORT_NAME = :GRAD_SHORT_NAME and GRAD_LONG_NAME = :GRAD_LONG_NAME ", conn);
+
+            // Add the parameters.
+            command.Parameters.Add(new OracleParameter("GRAD_ISO2", GRAD_ISO2));
+            command.Parameters.Add(new OracleParameter("GRAD_SHORT_NAME", GRAD_SHORT_NAME));
+            command.Parameters.Add(new OracleParameter("GRAD_LONG_NAME", GRAD_LONG_NAME));
             try
             {
                 if (conn.State != ConnectionState.Open)
@@ -2656,18 +2180,14 @@ namespace WEB_PERSONAL.Entities
             this.GRAD_LEV_NAME = GRAD_LEV_NAME;
         }
 
-        public DataTable GetGradLev(string GRAD_LEV_ID, string GRAD_LEV_NAME)
+        public DataTable GetGradLev(string GRAD_LEV_NAME)
         {
             DataTable dt = new DataTable();
             OracleConnection conn = ConnectionDB.GetOracleConnection();
-            string query = "SELECT * FROM TB_GRAD_LEV ";
-            if (!string.IsNullOrEmpty(GRAD_LEV_ID) || !string.IsNullOrEmpty(GRAD_LEV_NAME))
+            string query = "SELECT * FROM TB_GRADE_LEV ";
+            if (!string.IsNullOrEmpty(GRAD_LEV_NAME))
             {
                 query += " where 1=1 ";
-                if (!string.IsNullOrEmpty(GRAD_LEV_ID))
-                {
-                    query += " and GRAD_LEV_ID like :GRAD_LEV_ID ";
-                }
                 if (!string.IsNullOrEmpty(GRAD_LEV_NAME))
                 {
                     query += " and GRAD_LEV_NAME like :GRAD_LEV_NAME ";
@@ -2681,62 +2201,9 @@ namespace WEB_PERSONAL.Entities
                 {
                     conn.Open();
                 }
-                if (!string.IsNullOrEmpty(GRAD_LEV_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("GRAD_LEV_ID", GRAD_LEV_ID + "%"));
-                }
                 if (!string.IsNullOrEmpty(GRAD_LEV_NAME))
                 {
-                    command.Parameters.Add(new OracleParameter("GRAD_LEV_NAME", "%" + GRAD_LEV_NAME + "%"));
-                }
-                OracleDataAdapter sd = new OracleDataAdapter(command);
-                sd.Fill(dt);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                command.Dispose();
-                conn.Close();
-            }
-
-            return dt;
-        }
-
-        public DataTable GetGradLevSearch(string GRAD_LEV_ID, string GRAD_LEV_NAME)
-        {
-            DataTable dt = new DataTable();
-            OracleConnection conn = ConnectionDB.GetOracleConnection();
-            string query = "SELECT * FROM TB_GRAD_LEV ";
-            if (!string.IsNullOrEmpty(GRAD_LEV_ID) || !string.IsNullOrEmpty(GRAD_LEV_NAME))
-            {
-                query += " where 1=1 ";
-                if (!string.IsNullOrEmpty(GRAD_LEV_ID))
-                {
-                    query += " and GRAD_LEV_ID like :GRAD_LEV_ID ";
-                }
-                if (!string.IsNullOrEmpty(GRAD_LEV_NAME))
-                {
-                    query += " and GRAD_LEV_NAME like :GRAD_LEV_NAME ";
-                }
-            }
-            OracleCommand command = new OracleCommand(query, conn);
-            // Create the command
-            try
-            {
-                if (conn.State != ConnectionState.Open)
-                {
-                    conn.Open();
-                }
-                if (!string.IsNullOrEmpty(GRAD_LEV_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("GRAD_LEV_ID", GRAD_LEV_ID + "%"));
-                }
-                if (!string.IsNullOrEmpty(GRAD_LEV_NAME))
-                {
-                    command.Parameters.Add(new OracleParameter("GRAD_LEV_NAME", "%" + GRAD_LEV_NAME + "%"));
+                    command.Parameters.Add(new OracleParameter("GRAD_LEV_NAME", GRAD_LEV_NAME + "%"));
                 }
                 OracleDataAdapter sd = new OracleDataAdapter(command);
                 sd.Fill(dt);
@@ -2758,14 +2225,13 @@ namespace WEB_PERSONAL.Entities
         {
             int id = 0;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
-            OracleCommand command = new OracleCommand("INSERT INTO TB_GRAD_LEV (GRAD_LEV_NAME) VALUES (:GRAD_LEV_NAME)", conn);
+            OracleCommand command = new OracleCommand("INSERT INTO TB_GRADE_LEV (GRAD_LEV_NAME) VALUES (:GRAD_LEV_NAME)", conn);
             try
             {
                 if (conn.State != ConnectionState.Open)
                 {
                     conn.Open();
                 }
-                command.Parameters.Add(new OracleParameter("GRAD_LEV_ID", GRAD_LEV_ID));
                 command.Parameters.Add(new OracleParameter("GRAD_LEV_NAME", GRAD_LEV_NAME));
                 id = command.ExecuteNonQuery();
             }
@@ -2785,7 +2251,7 @@ namespace WEB_PERSONAL.Entities
         {
             bool result = false;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
-            string query = "Update TB_GRAD_LEV Set ";
+            string query = "Update TB_GRADE_LEV Set ";
             query += " GRAD_LEV_ID = :GRAD_LEV_ID,";
             query += " GRAD_LEV_NAME = :GRAD_LEV_NAME";
             query += " where GRAD_LEV_ID = :GRAD_LEV_ID";
@@ -2820,7 +2286,7 @@ namespace WEB_PERSONAL.Entities
         {
             bool result = false;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
-            OracleCommand command = new OracleCommand("Delete TB_GRAD_LEV where GRAD_LEV_ID = :GRAD_LEV_ID", conn);
+            OracleCommand command = new OracleCommand("Delete TB_GRADE_LEV where GRAD_LEV_ID = :GRAD_LEV_ID", conn);
             try
             {
                 if (conn.State != ConnectionState.Open)
@@ -2845,16 +2311,16 @@ namespace WEB_PERSONAL.Entities
             return result;
         }
 
-        public bool CheckUseGradLevID()
+        public bool CheckUseGradLevName()
         {
             bool result = true;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
 
             // Create the command
-            OracleCommand command = new OracleCommand("SELECT count(GRAD_LEV_ID) FROM TB_GRAD_LEV WHERE GRAD_LEV_ID = :GRAD_LEV_ID ", conn);
+            OracleCommand command = new OracleCommand("SELECT count(GRAD_LEV_NAME) FROM TB_GRADE_LEV WHERE GRAD_LEV_NAME = :GRAD_LEV_NAME ", conn);
 
             // Add the parameters.
-            command.Parameters.Add(new OracleParameter("GRAD_LEV_ID", GRAD_LEV_ID));
+            command.Parameters.Add(new OracleParameter("GRAD_LEV_NAME", GRAD_LEV_NAME));
             try
             {
                 if (conn.State != ConnectionState.Open)
@@ -2897,18 +2363,14 @@ namespace WEB_PERSONAL.Entities
             this.MONTH_LONG = MONTH_LONG;
         }
 
-        public DataTable GetMonth(string MONTH_ID, string MONTH_SHORT, string MONTH_LONG)
+        public DataTable GetMonth(string MONTH_SHORT, string MONTH_LONG)
         {
             DataTable dt = new DataTable();
             OracleConnection conn = ConnectionDB.GetOracleConnection();
             string query = "SELECT * FROM TB_MONTH ";
-            if (!string.IsNullOrEmpty(MONTH_ID) || !string.IsNullOrEmpty(MONTH_SHORT) || !string.IsNullOrEmpty(MONTH_LONG))
+            if (!string.IsNullOrEmpty(MONTH_SHORT) || !string.IsNullOrEmpty(MONTH_LONG))
             {
                 query += " where 1=1 ";
-                if (!string.IsNullOrEmpty(MONTH_ID))
-                {
-                    query += " and MONTH_ID like :MONTH_ID ";
-                }
                 if (!string.IsNullOrEmpty(MONTH_SHORT))
                 {
                     query += " and MONTH_SHORT like :MONTH_SHORT ";
@@ -2926,74 +2388,13 @@ namespace WEB_PERSONAL.Entities
                 {
                     conn.Open();
                 }
-                if (!string.IsNullOrEmpty(MONTH_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("MONTH_ID", MONTH_ID + "%"));
-                }
                 if (!string.IsNullOrEmpty(MONTH_SHORT))
                 {
                     command.Parameters.Add(new OracleParameter("MONTH_SHORT", MONTH_SHORT + "%"));
                 }
                 if (!string.IsNullOrEmpty(MONTH_LONG))
                 {
-                    command.Parameters.Add(new OracleParameter("MONTH_LONG", "%" + MONTH_LONG + "%"));
-                }
-                OracleDataAdapter sd = new OracleDataAdapter(command);
-                sd.Fill(dt);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                command.Dispose();
-                conn.Close();
-            }
-
-            return dt;
-        }
-
-        public DataTable GetMonthSearch(string MONTH_ID, string MONTH_SHORT, string MONTH_LONG)
-        {
-            DataTable dt = new DataTable();
-            OracleConnection conn = ConnectionDB.GetOracleConnection();
-            string query = "SELECT * FROM TB_MONTH ";
-            if (!string.IsNullOrEmpty(MONTH_ID) || !string.IsNullOrEmpty(MONTH_SHORT) || !string.IsNullOrEmpty(MONTH_LONG))
-            {
-                query += " where 1=1 ";
-                if (!string.IsNullOrEmpty(MONTH_ID))
-                {
-                    query += " and MONTH_ID like :MONTH_ID ";
-                }
-                if (!string.IsNullOrEmpty(MONTH_SHORT))
-                {
-                    query += " and MONTH_SHORT like :MONTH_SHORT ";
-                }
-                if (!string.IsNullOrEmpty(MONTH_LONG))
-                {
-                    query += " and MONTH_LONG like :MONTH_LONG ";
-                }
-            }
-            OracleCommand command = new OracleCommand(query, conn);
-            // Create the command
-            try
-            {
-                if (conn.State != ConnectionState.Open)
-                {
-                    conn.Open();
-                }
-                if (!string.IsNullOrEmpty(MONTH_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("MONTH_ID", MONTH_ID + "%"));
-                }
-                if (!string.IsNullOrEmpty(MONTH_SHORT))
-                {
-                    command.Parameters.Add(new OracleParameter("MONTH_SHORT", MONTH_SHORT + "%"));
-                }
-                if (!string.IsNullOrEmpty(MONTH_LONG))
-                {
-                    command.Parameters.Add(new OracleParameter("MONTH_LONG", "%" + MONTH_LONG + "%"));
+                    command.Parameters.Add(new OracleParameter("MONTH_LONG", MONTH_LONG + "%"));
                 }
                 OracleDataAdapter sd = new OracleDataAdapter(command);
                 sd.Fill(dt);
@@ -3090,6 +2491,78 @@ namespace WEB_PERSONAL.Entities
                 {
                     result = true;
                 }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return result;
+        }
+
+        public bool CheckUseMonthNameInsert()
+        {
+            bool result = true;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+
+            // Create the command
+            OracleCommand command = new OracleCommand("SELECT count(MONTH_SHORT) FROM TB_MONTH WHERE MONTH_SHORT = :MONTH_SHORT or MONTH_LONG = :MONTH_LONG", conn);
+
+            // Add the parameters.
+            command.Parameters.Add(new OracleParameter("MONTH_SHORT", MONTH_SHORT));
+            command.Parameters.Add(new OracleParameter("MONTH_LONG", MONTH_LONG));
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                int count = (int)(decimal)command.ExecuteScalar();
+                if (count >= 1)
+                {
+                    result = false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return result;
+        }
+
+        public bool CheckUseMonthNameUpdate()
+        {
+            bool result = true;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+
+            // Create the command
+            OracleCommand command = new OracleCommand("SELECT count(MONTH_SHORT) FROM TB_MONTH WHERE MONTH_SHORT = :MONTH_SHORT and MONTH_LONG = :MONTH_LONG", conn);
+
+            // Add the parameters.
+            command.Parameters.Add(new OracleParameter("MONTH_SHORT", MONTH_SHORT));
+            command.Parameters.Add(new OracleParameter("MONTH_LONG", MONTH_LONG));
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                int count = (int)(decimal)command.ExecuteScalar();
+                if (count >= 1)
+                {
+                    result = false;
+                }
+
             }
             catch (Exception ex)
             {
@@ -3339,18 +2812,14 @@ namespace WEB_PERSONAL.Entities
             this.CAMPUS_NAME = CAMPUS_NAME;
         }
 
-        public DataTable GetCampus(string CAMPUS_ID, string CAMPUS_NAME)
+        public DataTable GetCampus(string CAMPUS_NAME)
         {
             DataTable dt = new DataTable();
             OracleConnection conn = ConnectionDB.GetOracleConnection();
             string query = "SELECT * FROM TB_CAMPUS ";
-            if (!string.IsNullOrEmpty(CAMPUS_ID) || !string.IsNullOrEmpty(CAMPUS_NAME))
+            if (!string.IsNullOrEmpty(CAMPUS_NAME))
             {
                 query += " where 1=1 ";
-                if (!string.IsNullOrEmpty(CAMPUS_ID))
-                {
-                    query += " and CAMPUS_ID like :CAMPUS_ID ";
-                }
                 if (!string.IsNullOrEmpty(CAMPUS_NAME))
                 {
                     query += " and CAMPUS_NAME like :CAMPUS_NAME ";
@@ -3364,65 +2833,9 @@ namespace WEB_PERSONAL.Entities
                 {
                     conn.Open();
                 }
-
-                if (!string.IsNullOrEmpty(CAMPUS_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("CAMPUS_ID", CAMPUS_ID + "%"));
-                }
                 if (!string.IsNullOrEmpty(CAMPUS_NAME))
                 {
-                    command.Parameters.Add(new OracleParameter("CAMPUS_NAME", "%" + CAMPUS_NAME + "%"));
-                }
-                OracleDataAdapter sd = new OracleDataAdapter(command);
-                sd.Fill(dt);
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-            finally
-            {
-                command.Dispose();
-                conn.Close();
-            }
-
-            return dt;
-        }
-
-        public DataTable GetCampusSearch(string CAMPUS_ID, string CAMPUS_NAME)
-        {
-            DataTable dt = new DataTable();
-            OracleConnection conn = ConnectionDB.GetOracleConnection();
-            string query = "SELECT * FROM TB_CAMPUS ";
-            if (!string.IsNullOrEmpty(CAMPUS_ID) || !string.IsNullOrEmpty(CAMPUS_NAME))
-            {
-                query += " where 1=1 ";
-                if (!string.IsNullOrEmpty(CAMPUS_ID))
-                {
-                    query += " and CAMPUS_ID like :CAMPUS_ID ";
-                }
-                if (!string.IsNullOrEmpty(CAMPUS_NAME))
-                {
-                    query += " and CAMPUS_NAME like :CAMPUS_NAME ";
-                }
-            }
-            OracleCommand command = new OracleCommand(query, conn);
-            // Create the command
-            try
-            {
-                if (conn.State != ConnectionState.Open)
-                {
-                    conn.Open();
-                }
-
-                if (!string.IsNullOrEmpty(CAMPUS_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("CAMPUS_ID", CAMPUS_ID + "%"));
-                }
-                if (!string.IsNullOrEmpty(CAMPUS_NAME))
-                {
-                    command.Parameters.Add(new OracleParameter("CAMPUS_NAME", "%" + CAMPUS_NAME + "%"));
+                    command.Parameters.Add(new OracleParameter("CAMPUS_NAME", CAMPUS_NAME + "%"));
                 }
                 OracleDataAdapter sd = new OracleDataAdapter(command);
                 sd.Fill(dt);
@@ -3529,16 +2942,16 @@ namespace WEB_PERSONAL.Entities
             }
             return result;
         }
-        public bool CheckUseCampusID()
+        public bool CheckUseCampusName()
         {
             bool result = true;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
 
             // Create the command
-            OracleCommand command = new OracleCommand("SELECT count(CAMPUS_ID) FROM TB_CAMPUS WHERE CAMPUS_ID = :CAMPUS_ID ", conn);
+            OracleCommand command = new OracleCommand("SELECT count(CAMPUS_NAME) FROM TB_CAMPUS WHERE CAMPUS_NAME = :CAMPUS_NAME ", conn);
 
             // Add the parameters.
-            command.Parameters.Add(new OracleParameter("CAMPUS_ID", CAMPUS_ID));
+            command.Parameters.Add(new OracleParameter("CAMPUS_NAME", CAMPUS_NAME));
             try
             {
                 if (conn.State != ConnectionState.Open)
@@ -3582,18 +2995,14 @@ namespace WEB_PERSONAL.Entities
             this.CAMPUS_ID = CAMPUS_ID;
         }
 
-        public DataTable GetFaculty(string FACULTY_ID, string FACULTY_NAME, string CAMPUS_ID)
+        public DataTable GetFaculty(string FACULTY_NAME, string CAMPUS_ID)
         {
             DataTable dt = new DataTable();
             OracleConnection conn = ConnectionDB.GetOracleConnection();
             string query = "SELECT * FROM TB_FACULTY ";
-            if (!string.IsNullOrEmpty(FACULTY_ID) || !string.IsNullOrEmpty(FACULTY_NAME) || !string.IsNullOrEmpty(CAMPUS_ID))
+            if (!string.IsNullOrEmpty(FACULTY_NAME) || !string.IsNullOrEmpty(CAMPUS_ID))
             {
                 query += " where 1=1 ";
-                if (!string.IsNullOrEmpty(FACULTY_ID))
-                {
-                    query += " and FACULTY_ID like :FACULTY_ID ";
-                }
                 if (!string.IsNullOrEmpty(FACULTY_NAME))
                 {
                     query += " and FACULTY_NAME like :FACULTY_NAME ";
@@ -3611,75 +3020,13 @@ namespace WEB_PERSONAL.Entities
                 {
                     conn.Open();
                 }
-                if (!string.IsNullOrEmpty(FACULTY_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("FACULTY_ID", "%" + FACULTY_ID + "%"));
-                }
                 if (!string.IsNullOrEmpty(FACULTY_NAME))
                 {
-                    command.Parameters.Add(new OracleParameter("FACULTY_NAME", "%" + FACULTY_NAME + "%"));
+                    command.Parameters.Add(new OracleParameter("FACULTY_NAME", FACULTY_NAME + "%"));
                 }
                 if (!string.IsNullOrEmpty(CAMPUS_ID))
                 {
-                    command.Parameters.Add(new OracleParameter("CAMPUS_ID", CAMPUS_ID + "%"));
-                }
-                OracleDataAdapter sd = new OracleDataAdapter(command);
-                sd.Fill(dt);
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-            finally
-            {
-                command.Dispose();
-                conn.Close();
-            }
-
-            return dt;
-        }
-
-        public DataTable GetFacultySearch(string FACULTY_ID, string FACULTY_NAME, string CAMPUS_ID)
-        {
-            DataTable dt = new DataTable();
-            OracleConnection conn = ConnectionDB.GetOracleConnection();
-            string query = "SELECT * FROM TB_FACULTY ";
-            if (!string.IsNullOrEmpty(FACULTY_ID) || !string.IsNullOrEmpty(FACULTY_NAME) || !string.IsNullOrEmpty(CAMPUS_ID))
-            {
-                query += " where 1=1 ";
-                if (!string.IsNullOrEmpty(FACULTY_ID))
-                {
-                    query += " and FACULTY_ID like :FACULTY_ID ";
-                }
-                if (!string.IsNullOrEmpty(FACULTY_NAME))
-                {
-                    query += " and FACULTY_NAME like :FACULTY_NAME ";
-                }
-                if (!string.IsNullOrEmpty(CAMPUS_ID))
-                {
-                    query += " and CAMPUS_ID like :CAMPUS_ID ";
-                }
-            }
-            OracleCommand command = new OracleCommand(query, conn);
-            // Create the command
-            try
-            {
-                if (conn.State != ConnectionState.Open)
-                {
-                    conn.Open();
-                }
-                if (!string.IsNullOrEmpty(FACULTY_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("FACULTY_ID", "%" + FACULTY_ID + "%"));
-                }
-                if (!string.IsNullOrEmpty(FACULTY_NAME))
-                {
-                    command.Parameters.Add(new OracleParameter("FACULTY_NAME", "%" + FACULTY_NAME + "%"));
-                }
-                if (!string.IsNullOrEmpty(CAMPUS_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("CAMPUS_ID", CAMPUS_ID + "%"));
+                    command.Parameters.Add(new OracleParameter("CAMPUS_ID", CAMPUS_ID ));
                 }
                 OracleDataAdapter sd = new OracleDataAdapter(command);
                 sd.Fill(dt);
@@ -3745,7 +3092,6 @@ namespace WEB_PERSONAL.Entities
                 command.Parameters.Add(new OracleParameter("FACULTY_ID", FACULTY_ID));
                 command.Parameters.Add(new OracleParameter("FACULTY_NAME", FACULTY_NAME));
                 command.Parameters.Add(new OracleParameter("CAMPUS_ID", CAMPUS_ID));
-                command.Parameters.Add(new OracleParameter("FACULTY_ID", FACULTY_ID));
                 if (command.ExecuteNonQuery() > 0)
                 {
                     result = true;
@@ -3790,16 +3136,17 @@ namespace WEB_PERSONAL.Entities
             }
             return result;
         }
-        public bool CheckUseFacultyID()
+        public bool CheckUseFacultyName()
         {
             bool result = true;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
 
             // Create the command
-            OracleCommand command = new OracleCommand("SELECT count(FACULTY_ID) FROM TB_FACULTY WHERE FACULTY_ID = :FACULTY_ID ", conn);
+            OracleCommand command = new OracleCommand("SELECT count(FACULTY_NAME) FROM TB_FACULTY WHERE FACULTY_NAME = :FACULTY_NAME and CAMPUS_ID = :CAMPUS_ID ", conn);
 
             // Add the parameters.
-            command.Parameters.Add(new OracleParameter("FACULTY_ID", FACULTY_ID));
+            command.Parameters.Add(new OracleParameter("FACULTY_NAME", FACULTY_NAME));
+            command.Parameters.Add(new OracleParameter("CAMPUS_ID", CAMPUS_ID));
             try
             {
                 if (conn.State != ConnectionState.Open)
@@ -3844,18 +3191,14 @@ namespace WEB_PERSONAL.Entities
             this.FACULTY_ID = FACULTY_ID;
         }
 
-        public DataTable GetDivision(string DIVISION_ID, string DIVISION_NAME, string CAMPUS_ID, string FACULTY_ID)
+        public DataTable GetDivision(string DIVISION_NAME, string CAMPUS_ID, string FACULTY_ID)
         {
             DataTable dt = new DataTable();
             OracleConnection conn = ConnectionDB.GetOracleConnection();
             string query = "SELECT * FROM TB_DIVISION ";
-            if (!string.IsNullOrEmpty(DIVISION_ID) || !string.IsNullOrEmpty(DIVISION_NAME) || !string.IsNullOrEmpty(CAMPUS_ID) || !string.IsNullOrEmpty(FACULTY_ID))
+            if (!string.IsNullOrEmpty(DIVISION_NAME) || !string.IsNullOrEmpty(CAMPUS_ID) || !string.IsNullOrEmpty(FACULTY_ID))
             {
                 query += " where 1=1 ";
-                if (!string.IsNullOrEmpty(DIVISION_ID))
-                {
-                    query += " and DIVISION_ID like :DIVISION_ID ";
-                }
                 if (!string.IsNullOrEmpty(DIVISION_NAME))
                 {
                     query += " and DIVISION_NAME like :DIVISION_NAME ";
@@ -3877,87 +3220,17 @@ namespace WEB_PERSONAL.Entities
                 {
                     conn.Open();
                 }
-                if (!string.IsNullOrEmpty(DIVISION_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("DIVISION_ID", DIVISION_ID + "%"));
-                }
                 if (!string.IsNullOrEmpty(DIVISION_NAME))
                 {
-                    command.Parameters.Add(new OracleParameter("DIVISION_NAME", "%" + DIVISION_NAME + "%"));
+                    command.Parameters.Add(new OracleParameter("DIVISION_NAME", DIVISION_NAME + "%"));
                 }
                 if (!string.IsNullOrEmpty(CAMPUS_ID))
                 {
-                    command.Parameters.Add(new OracleParameter("CAMPUS_ID", "%" + CAMPUS_ID + "%"));
+                    command.Parameters.Add(new OracleParameter("CAMPUS_ID", CAMPUS_ID ));
                 }
                 if (!string.IsNullOrEmpty(FACULTY_ID))
                 {
-                    command.Parameters.Add(new OracleParameter("FACULTY_ID", "%" + FACULTY_ID + "%"));
-                }
-                OracleDataAdapter sd = new OracleDataAdapter(command);
-                sd.Fill(dt);
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-            finally
-            {
-                command.Dispose();
-                conn.Close();
-            }
-
-            return dt;
-        }
-
-        public DataTable GetDivisionSearch(string DIVISION_ID, string DIVISION_NAME, string CAMPUS_ID, string FACULTY_ID)
-        {
-            DataTable dt = new DataTable();
-            OracleConnection conn = ConnectionDB.GetOracleConnection();
-            string query = "SELECT * FROM TB_DIVISION ";
-            if (!string.IsNullOrEmpty(DIVISION_ID) || !string.IsNullOrEmpty(DIVISION_NAME) || !string.IsNullOrEmpty(CAMPUS_ID) || !string.IsNullOrEmpty(FACULTY_ID))
-            {
-                query += " where 1=1 ";
-                if (!string.IsNullOrEmpty(DIVISION_ID))
-                {
-                    query += " and DIVISION_ID like :DIVISION_ID ";
-                }
-                if (!string.IsNullOrEmpty(DIVISION_NAME))
-                {
-                    query += " and DIVISION_NAME like :DIVISION_NAME ";
-                }
-                if (!string.IsNullOrEmpty(CAMPUS_ID))
-                {
-                    query += " and CAMPUS_ID like :CAMPUS_ID ";
-                }
-                if (!string.IsNullOrEmpty(FACULTY_ID))
-                {
-                    query += " and FACULTY_ID like :FACULTY_ID ";
-                }
-            }
-            OracleCommand command = new OracleCommand(query, conn);
-            // Create the command
-            try
-            {
-                if (conn.State != ConnectionState.Open)
-                {
-                    conn.Open();
-                }
-                if (!string.IsNullOrEmpty(DIVISION_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("DIVISION_ID", DIVISION_ID + "%"));
-                }
-                if (!string.IsNullOrEmpty(DIVISION_NAME))
-                {
-                    command.Parameters.Add(new OracleParameter("DIVISION_NAME", "%" + DIVISION_NAME + "%"));
-                }
-                if (!string.IsNullOrEmpty(CAMPUS_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("CAMPUS_ID", "%" + CAMPUS_ID + "%"));
-                }
-                if (!string.IsNullOrEmpty(FACULTY_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("FACULTY_ID", "%" + FACULTY_ID + "%"));
+                    command.Parameters.Add(new OracleParameter("FACULTY_ID", FACULTY_ID ));
                 }
                 OracleDataAdapter sd = new OracleDataAdapter(command);
                 sd.Fill(dt);
@@ -4070,16 +3343,17 @@ namespace WEB_PERSONAL.Entities
             return result;
         }
 
-        public bool CheckUseDivisionID()
+        public bool CheckUseDivisionName()
         {
             bool result = true;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
 
             // Create the command
-            OracleCommand command = new OracleCommand("SELECT count(DIVISION_ID) FROM TB_DIVISION WHERE DIVISION_ID = :DIVISION_ID ", conn);
+            OracleCommand command = new OracleCommand("SELECT count(DIVISION_NAME) FROM TB_DIVISION WHERE DIVISION_NAME = :DIVISION_NAME and CAMPUS_ID = :CAMPUS_ID", conn);
 
             // Add the parameters.
-            command.Parameters.Add(new OracleParameter("DIVISION_ID", DIVISION_ID));
+            command.Parameters.Add(new OracleParameter("DIVISION_NAME", DIVISION_NAME));
+            command.Parameters.Add(new OracleParameter("CAMPUS_ID", CAMPUS_ID));
             try
             {
                 if (conn.State != ConnectionState.Open)
@@ -4126,18 +3400,14 @@ namespace WEB_PERSONAL.Entities
             this.DIVISION_ID = DIVISION_ID;
         }
 
-        public DataTable GetWorkDivision(string WORK_ID, string WORK_NAME, string CAMPUS_ID, string FACULTY_ID, string DIVISION_ID)
+        public DataTable GetWorkDivision(string WORK_NAME, string CAMPUS_ID, string FACULTY_ID, string DIVISION_ID)
         {
             DataTable dt = new DataTable();
             OracleConnection conn = ConnectionDB.GetOracleConnection();
             string query = "SELECT * FROM TB_WORK_DIVISION ";
-            if (!string.IsNullOrEmpty(WORK_ID) || !string.IsNullOrEmpty(WORK_NAME) || !string.IsNullOrEmpty(CAMPUS_ID) || !string.IsNullOrEmpty(FACULTY_ID) || !string.IsNullOrEmpty(DIVISION_ID))
+            if (!string.IsNullOrEmpty(WORK_NAME) || !string.IsNullOrEmpty(CAMPUS_ID) || !string.IsNullOrEmpty(FACULTY_ID) || !string.IsNullOrEmpty(DIVISION_ID))
             {
                 query += " where 1=1 ";
-                if (!string.IsNullOrEmpty(WORK_ID))
-                {
-                    query += " and WORK_ID like :WORK_ID ";
-                }
                 if (!string.IsNullOrEmpty(WORK_NAME))
                 {
                     query += " and WORK_NAME like :WORK_NAME ";
@@ -4163,99 +3433,21 @@ namespace WEB_PERSONAL.Entities
                 {
                     conn.Open();
                 }
-                if (!string.IsNullOrEmpty(WORK_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("WORK_ID", WORK_ID + "%"));
-                }
                 if (!string.IsNullOrEmpty(WORK_NAME))
                 {
-                    command.Parameters.Add(new OracleParameter("WORK_NAME", "%" + WORK_NAME + "%"));
+                    command.Parameters.Add(new OracleParameter("WORK_NAME", WORK_NAME + "%"));
                 }
                 if (!string.IsNullOrEmpty(CAMPUS_ID))
                 {
-                    command.Parameters.Add(new OracleParameter("CAMPUS_ID", CAMPUS_ID + "%"));
+                    command.Parameters.Add(new OracleParameter("CAMPUS_ID", CAMPUS_ID ));
                 }
                 if (!string.IsNullOrEmpty(FACULTY_ID))
                 {
-                    command.Parameters.Add(new OracleParameter("FACULTY_ID", FACULTY_ID + "%"));
+                    command.Parameters.Add(new OracleParameter("FACULTY_ID", FACULTY_ID ));
                 }
                 if (!string.IsNullOrEmpty(DIVISION_ID))
                 {
-                    command.Parameters.Add(new OracleParameter("DIVISION_ID", DIVISION_ID + "%"));
-                }
-                OracleDataAdapter sd = new OracleDataAdapter(command);
-                sd.Fill(dt);
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-            finally
-            {
-                command.Dispose();
-                conn.Close();
-            }
-
-            return dt;
-        }
-
-        public DataTable GetWorkDivisionSearch(string WORK_ID, string WORK_NAME, string CAMPUS_ID, string FACULTY_ID, string DIVISION_ID)
-        {
-            DataTable dt = new DataTable();
-            OracleConnection conn = ConnectionDB.GetOracleConnection();
-            string query = "SELECT * FROM TB_WORK_DIVISION ";
-            if (!string.IsNullOrEmpty(WORK_ID) || !string.IsNullOrEmpty(WORK_NAME) || !string.IsNullOrEmpty(CAMPUS_ID) || !string.IsNullOrEmpty(FACULTY_ID) || !string.IsNullOrEmpty(DIVISION_ID))
-            {
-                query += " where 1=1 ";
-                if (!string.IsNullOrEmpty(WORK_ID))
-                {
-                    query += " and WORK_ID like :WORK_ID ";
-                }
-                if (!string.IsNullOrEmpty(WORK_NAME))
-                {
-                    query += " and WORK_NAME like :WORK_NAME ";
-                }
-                if (!string.IsNullOrEmpty(CAMPUS_ID))
-                {
-                    query += " and CAMPUS_ID like :CAMPUS_ID ";
-                }
-                if (!string.IsNullOrEmpty(FACULTY_ID))
-                {
-                    query += " and FACULTY_ID like :FACULTY_ID ";
-                }
-                if (!string.IsNullOrEmpty(DIVISION_ID))
-                {
-                    query += " and DIVISION_ID like :DIVISION_ID ";
-                }
-            }
-            OracleCommand command = new OracleCommand(query, conn);
-            // Create the command
-            try
-            {
-                if (conn.State != ConnectionState.Open)
-                {
-                    conn.Open();
-                }
-                if (!string.IsNullOrEmpty(WORK_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("WORK_ID", WORK_ID + "%"));
-                }
-                if (!string.IsNullOrEmpty(WORK_NAME))
-                {
-                    command.Parameters.Add(new OracleParameter("WORK_NAME", "%" + WORK_NAME + "%"));
-                }
-                if (!string.IsNullOrEmpty(CAMPUS_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("CAMPUS_ID", CAMPUS_ID + "%"));
-                }
-                if (!string.IsNullOrEmpty(FACULTY_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("FACULTY_ID", FACULTY_ID + "%"));
-                }
-                if (!string.IsNullOrEmpty(DIVISION_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("DIVISION_ID", DIVISION_ID + "%"));
+                    command.Parameters.Add(new OracleParameter("DIVISION_ID", DIVISION_ID ));
                 }
                 OracleDataAdapter sd = new OracleDataAdapter(command);
                 sd.Fill(dt);
@@ -4372,16 +3564,19 @@ namespace WEB_PERSONAL.Entities
             return result;
         }
 
-        public bool CheckUseWorkDivisionID()
+        public bool CheckUseWorkDivisionName()
         {
             bool result = true;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
 
             // Create the command
-            OracleCommand command = new OracleCommand("SELECT count(WORK_ID) FROM TB_WORK_DIVISION WHERE WORK_ID = :WORK_ID ", conn);
+            OracleCommand command = new OracleCommand("SELECT count(WORK_NAME) FROM TB_WORK_DIVISION WHERE WORK_NAME = :WORK_NAME and CAMPUS_ID = :CAMPUS_ID and FACULTY_ID = :FACULTY_ID and DIVISION_ID = :DIVISION_ID", conn);
 
             // Add the parameters.
-            command.Parameters.Add(new OracleParameter("WORK_ID", WORK_ID));
+            command.Parameters.Add(new OracleParameter("WORK_NAME", WORK_NAME));
+            command.Parameters.Add(new OracleParameter("CAMPUS_ID", CAMPUS_ID));
+            command.Parameters.Add(new OracleParameter("FACULTY_ID", FACULTY_ID));
+            command.Parameters.Add(new OracleParameter("DIVISION_ID", DIVISION_ID));
             try
             {
                 if (conn.State != ConnectionState.Open)
@@ -4422,18 +3617,14 @@ namespace WEB_PERSONAL.Entities
             this.STAFFTYPE_NAME = STAFFTYPE_NAME;
         }
 
-        public DataTable GetStaffType(string STAFFTYPE_ID, string STAFFTYPE_NAME)
+        public DataTable GetStaffType(string STAFFTYPE_NAME)
         {
             DataTable dt = new DataTable();
             OracleConnection conn = ConnectionDB.GetOracleConnection();
             string query = "SELECT * FROM TB_STAFFTYPE ";
-            if (!string.IsNullOrEmpty(STAFFTYPE_ID) || !string.IsNullOrEmpty(STAFFTYPE_NAME))
+            if (!string.IsNullOrEmpty(STAFFTYPE_NAME))
             {
                 query += " where 1=1 ";
-                if (!string.IsNullOrEmpty(STAFFTYPE_ID))
-                {
-                    query += " and STAFFTYPE_ID like :STAFFTYPE_ID ";
-                }
                 if (!string.IsNullOrEmpty(STAFFTYPE_NAME))
                 {
                     query += " and STAFFTYPE_NAME like :STAFFTYPE_NAME ";
@@ -4447,62 +3638,9 @@ namespace WEB_PERSONAL.Entities
                 {
                     conn.Open();
                 }
-                if (!string.IsNullOrEmpty(STAFFTYPE_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("STAFFTYPE_ID", STAFFTYPE_ID + "%"));
-                }
                 if (!string.IsNullOrEmpty(STAFFTYPE_NAME))
                 {
-                    command.Parameters.Add(new OracleParameter("STAFFTYPE_NAME", "%" + STAFFTYPE_NAME + "%"));
-                }
-                OracleDataAdapter sd = new OracleDataAdapter(command);
-                sd.Fill(dt);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                command.Dispose();
-                conn.Close();
-            }
-
-            return dt;
-        }
-
-        public DataTable GetStaffTypeSearch(string STAFFTYPE_ID, string STAFFTYPE_NAME)
-        {
-            DataTable dt = new DataTable();
-            OracleConnection conn = ConnectionDB.GetOracleConnection();
-            string query = "SELECT * FROM TB_STAFFTYPE ";
-            if (!string.IsNullOrEmpty(STAFFTYPE_ID) || !string.IsNullOrEmpty(STAFFTYPE_NAME))
-            {
-                query += " where 1=1 ";
-                if (!string.IsNullOrEmpty(STAFFTYPE_ID))
-                {
-                    query += " and STAFFTYPE_ID like :STAFFTYPE_ID ";
-                }
-                if (!string.IsNullOrEmpty(STAFFTYPE_NAME))
-                {
-                    query += " and STAFFTYPE_NAME like :STAFFTYPE_NAME ";
-                }
-            }
-            OracleCommand command = new OracleCommand(query, conn);
-            // Create the command
-            try
-            {
-                if (conn.State != ConnectionState.Open)
-                {
-                    conn.Open();
-                }
-                if (!string.IsNullOrEmpty(STAFFTYPE_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("STAFFTYPE_ID", STAFFTYPE_ID + "%"));
-                }
-                if (!string.IsNullOrEmpty(STAFFTYPE_NAME))
-                {
-                    command.Parameters.Add(new OracleParameter("STAFFTYPE_NAME", "%" + STAFFTYPE_NAME + "%"));
+                    command.Parameters.Add(new OracleParameter("STAFFTYPE_NAME", STAFFTYPE_NAME + "%"));
                 }
                 OracleDataAdapter sd = new OracleDataAdapter(command);
                 sd.Fill(dt);
@@ -4610,16 +3748,16 @@ namespace WEB_PERSONAL.Entities
             return result;
         }
 
-        public bool CheckUseStaffTypeID()
+        public bool CheckUseStaffTypeName()
         {
             bool result = true;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
 
             // Create the command
-            OracleCommand command = new OracleCommand("SELECT count(STAFFTYPE_ID) FROM TB_STAFFTYPE WHERE STAFFTYPE_ID = :STAFFTYPE_ID ", conn);
+            OracleCommand command = new OracleCommand("SELECT count(STAFFTYPE_NAME) FROM TB_STAFFTYPE WHERE STAFFTYPE_NAME = :STAFFTYPE_NAME ", conn);
 
             // Add the parameters.
-            command.Parameters.Add(new OracleParameter("STAFFTYPE_ID", STAFFTYPE_ID));
+            command.Parameters.Add(new OracleParameter("STAFFTYPE_NAME", STAFFTYPE_NAME));
             try
             {
                 if (conn.State != ConnectionState.Open)
@@ -4660,18 +3798,14 @@ namespace WEB_PERSONAL.Entities
             this.BUDGET_NAME = BUDGET_NAME;
         }
 
-        public DataTable GetBudget(string BUDGET_ID, string BUDGET_NAME)
+        public DataTable GetBudget(string BUDGET_NAME)
         {
             DataTable dt = new DataTable();
             OracleConnection conn = ConnectionDB.GetOracleConnection();
             string query = "SELECT * FROM TB_BUDGET ";
-            if (!string.IsNullOrEmpty(BUDGET_ID) || !string.IsNullOrEmpty(BUDGET_NAME))
+            if (!string.IsNullOrEmpty(BUDGET_NAME))
             {
                 query += " where 1=1 ";
-                if (!string.IsNullOrEmpty(BUDGET_ID))
-                {
-                    query += " and BUDGET_ID like :BUDGET_ID ";
-                }
                 if (!string.IsNullOrEmpty(BUDGET_NAME))
                 {
                     query += " and BUDGET_NAME like :BUDGET_NAME ";
@@ -4685,62 +3819,9 @@ namespace WEB_PERSONAL.Entities
                 {
                     conn.Open();
                 }
-                if (!string.IsNullOrEmpty(BUDGET_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("BUDGET_ID", BUDGET_ID + "%"));
-                }
                 if (!string.IsNullOrEmpty(BUDGET_NAME))
                 {
-                    command.Parameters.Add(new OracleParameter("BUDGET_NAME", "%" + BUDGET_NAME + "%"));
-                }
-                OracleDataAdapter sd = new OracleDataAdapter(command);
-                sd.Fill(dt);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                command.Dispose();
-                conn.Close();
-            }
-
-            return dt;
-        }
-
-        public DataTable GetBudgetSearch(string BUDGET_ID, string BUDGET_NAME)
-        {
-            DataTable dt = new DataTable();
-            OracleConnection conn = ConnectionDB.GetOracleConnection();
-            string query = "SELECT * FROM TB_BUDGET";
-            if (!string.IsNullOrEmpty(BUDGET_ID) || !string.IsNullOrEmpty(BUDGET_NAME))
-            {
-                query += " where 1=1 ";
-                if (!string.IsNullOrEmpty(BUDGET_ID))
-                {
-                    query += " and BUDGET_ID like :BUDGET_ID ";
-                }
-                if (!string.IsNullOrEmpty(BUDGET_NAME))
-                {
-                    query += " and BUDGET_NAME like :BUDGET_NAME ";
-                }
-            }
-            OracleCommand command = new OracleCommand(query, conn);
-            // Create the command
-            try
-            {
-                if (conn.State != ConnectionState.Open)
-                {
-                    conn.Open();
-                }
-                if (!string.IsNullOrEmpty(BUDGET_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("BUDGET_ID", BUDGET_ID + "%"));
-                }
-                if (!string.IsNullOrEmpty(BUDGET_NAME))
-                {
-                    command.Parameters.Add(new OracleParameter("BUDGET_NAME", "%" + BUDGET_NAME + "%"));
+                    command.Parameters.Add(new OracleParameter("BUDGET_NAME", BUDGET_NAME + "%"));
                 }
                 OracleDataAdapter sd = new OracleDataAdapter(command);
                 sd.Fill(dt);
@@ -4848,16 +3929,16 @@ namespace WEB_PERSONAL.Entities
             return result;
         }
 
-        public bool CheckUseBudgetID()
+        public bool CheckUseBudgetName()
         {
             bool result = true;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
 
             // Create the command
-            OracleCommand command = new OracleCommand("SELECT count(BUDGET_ID) FROM TB_BUDGET WHERE BUDGET_ID = :BUDGET_ID ", conn);
+            OracleCommand command = new OracleCommand("SELECT count(BUDGET_NAME) FROM TB_BUDGET WHERE BUDGET_NAME = :BUDGET_NAME ", conn);
 
             // Add the parameters.
-            command.Parameters.Add(new OracleParameter("BUDGET_ID", BUDGET_ID));
+            command.Parameters.Add(new OracleParameter("BUDGET_NAME", BUDGET_NAME));
             try
             {
                 if (conn.State != ConnectionState.Open)
@@ -4898,18 +3979,14 @@ namespace WEB_PERSONAL.Entities
             this.ADMIN_POSITION_NAME = ADMIN_POSITION_NAME;
         }
 
-        public DataTable GetAdminPosition(string ADMIN_POSITION_ID, string ADMIN_POSITION_NAME)
+        public DataTable GetAdminPosition(string ADMIN_POSITION_NAME)
         {
             DataTable dt = new DataTable();
             OracleConnection conn = ConnectionDB.GetOracleConnection();
             string query = "SELECT * FROM TB_ADMIN_POSITION ";
-            if (!string.IsNullOrEmpty(ADMIN_POSITION_ID) || !string.IsNullOrEmpty(ADMIN_POSITION_NAME))
+            if (!string.IsNullOrEmpty(ADMIN_POSITION_NAME))
             {
                 query += " where 1=1 ";
-                if (!string.IsNullOrEmpty(ADMIN_POSITION_ID))
-                {
-                    query += " and ADMIN_POSITION_ID like :ADMIN_POSITION_ID ";
-                }
                 if (!string.IsNullOrEmpty(ADMIN_POSITION_NAME))
                 {
                     query += " and ADMIN_POSITION_NAME like :ADMIN_POSITION_NAME ";
@@ -4923,62 +4000,9 @@ namespace WEB_PERSONAL.Entities
                 {
                     conn.Open();
                 }
-                if (!string.IsNullOrEmpty(ADMIN_POSITION_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("ADMIN_POSITION_ID", ADMIN_POSITION_ID + "%"));
-                }
                 if (!string.IsNullOrEmpty(ADMIN_POSITION_NAME))
                 {
-                    command.Parameters.Add(new OracleParameter("ADMIN_POSITION_NAME", "%" + ADMIN_POSITION_NAME + "%"));
-                }
-                OracleDataAdapter sd = new OracleDataAdapter(command);
-                sd.Fill(dt);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                command.Dispose();
-                conn.Close();
-            }
-
-            return dt;
-        }
-
-        public DataTable GetAdminPositionSearch(string ADMIN_POSITION_ID, string ADMIN_POSITION_NAME)
-        {
-            DataTable dt = new DataTable();
-            OracleConnection conn = ConnectionDB.GetOracleConnection();
-            string query = "SELECT * FROM TB_ADMIN_POSITION";
-            if (!string.IsNullOrEmpty(ADMIN_POSITION_ID) || !string.IsNullOrEmpty(ADMIN_POSITION_NAME))
-            {
-                query += " where 1=1 ";
-                if (!string.IsNullOrEmpty(ADMIN_POSITION_ID))
-                {
-                    query += " and ADMIN_POSITION_ID like :ADMIN_POSITION_ID ";
-                }
-                if (!string.IsNullOrEmpty(ADMIN_POSITION_NAME))
-                {
-                    query += " and ADMIN_POSITION_NAME like :ADMIN_POSITION_NAME ";
-                }
-            }
-            OracleCommand command = new OracleCommand(query, conn);
-            // Create the command
-            try
-            {
-                if (conn.State != ConnectionState.Open)
-                {
-                    conn.Open();
-                }
-                if (!string.IsNullOrEmpty(ADMIN_POSITION_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("ADMIN_POSITION_ID", ADMIN_POSITION_ID + "%"));
-                }
-                if (!string.IsNullOrEmpty(ADMIN_POSITION_NAME))
-                {
-                    command.Parameters.Add(new OracleParameter("ADMIN_POSITION_NAME", "%" + ADMIN_POSITION_NAME + "%"));
+                    command.Parameters.Add(new OracleParameter("ADMIN_POSITION_NAME", ADMIN_POSITION_NAME + "%"));
                 }
                 OracleDataAdapter sd = new OracleDataAdapter(command);
                 sd.Fill(dt);
@@ -5086,16 +4110,16 @@ namespace WEB_PERSONAL.Entities
             return result;
         }
 
-        public bool CheckUseAdminPositionID()
+        public bool CheckUseAdminPositionName()
         {
             bool result = true;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
 
             // Create the command
-            OracleCommand command = new OracleCommand("SELECT count(ADMIN_POSITION_ID) FROM TB_ADMIN_POSITION WHERE ADMIN_POSITION_ID = :ADMIN_POSITION_ID ", conn);
+            OracleCommand command = new OracleCommand("SELECT count(ADMIN_POSITION_NAME) FROM TB_ADMIN_POSITION WHERE ADMIN_POSITION_NAME = :ADMIN_POSITION_NAME ", conn);
 
             // Add the parameters.
-            command.Parameters.Add(new OracleParameter("ADMIN_POSITION_ID", ADMIN_POSITION_ID));
+            command.Parameters.Add(new OracleParameter("ADMIN_POSITION_NAME", ADMIN_POSITION_NAME));
             try
             {
                 if (conn.State != ConnectionState.Open)
@@ -5136,18 +4160,14 @@ namespace WEB_PERSONAL.Entities
             this.POSITION_WORK_NAME = POSITION_WORK_NAME;
         }
 
-        public DataTable GetPositionWork(string POSITION_WORK_ID, string POSITION_WORK_NAME)
+        public DataTable GetPositionWork(string POSITION_WORK_NAME)
         {
             DataTable dt = new DataTable();
             OracleConnection conn = ConnectionDB.GetOracleConnection();
             string query = "SELECT * FROM TB_POSITION_WORK ";
-            if (!string.IsNullOrEmpty(POSITION_WORK_ID) || !string.IsNullOrEmpty(POSITION_WORK_NAME))
+            if (!string.IsNullOrEmpty(POSITION_WORK_NAME))
             {
                 query += " where 1=1 ";
-                if (!string.IsNullOrEmpty(POSITION_WORK_ID))
-                {
-                    query += " and POSITION_WORK_ID like :POSITION_WORK_ID ";
-                }
                 if (!string.IsNullOrEmpty(POSITION_WORK_NAME))
                 {
                     query += " and POSITION_WORK_NAME like :POSITION_WORK_NAME ";
@@ -5161,62 +4181,9 @@ namespace WEB_PERSONAL.Entities
                 {
                     conn.Open();
                 }
-                if (!string.IsNullOrEmpty(POSITION_WORK_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("POSITION_WORK_ID", POSITION_WORK_ID + "%"));
-                }
                 if (!string.IsNullOrEmpty(POSITION_WORK_NAME))
                 {
-                    command.Parameters.Add(new OracleParameter("POSITION_WORK_NAME", "%" + POSITION_WORK_NAME + "%"));
-                }
-                OracleDataAdapter sd = new OracleDataAdapter(command);
-                sd.Fill(dt);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                command.Dispose();
-                conn.Close();
-            }
-
-            return dt;
-        }
-
-        public DataTable GetPositionWorkSearch(string POSITION_WORK_ID, string POSITION_WORK_NAME)
-        {
-            DataTable dt = new DataTable();
-            OracleConnection conn = ConnectionDB.GetOracleConnection();
-            string query = "SELECT * FROM TB_POSITION_WORK";
-            if (!string.IsNullOrEmpty(POSITION_WORK_ID) || !string.IsNullOrEmpty(POSITION_WORK_NAME))
-            {
-                query += " where 1=1 ";
-                if (!string.IsNullOrEmpty(POSITION_WORK_ID))
-                {
-                    query += " and POSITION_WORK_ID like :POSITION_WORK_ID ";
-                }
-                if (!string.IsNullOrEmpty(POSITION_WORK_NAME))
-                {
-                    query += " and POSITION_WORK_NAME like :POSITION_WORK_NAME ";
-                }
-            }
-            OracleCommand command = new OracleCommand(query, conn);
-            // Create the command
-            try
-            {
-                if (conn.State != ConnectionState.Open)
-                {
-                    conn.Open();
-                }
-                if (!string.IsNullOrEmpty(POSITION_WORK_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("POSITION_WORK_ID", POSITION_WORK_ID + "%"));
-                }
-                if (!string.IsNullOrEmpty(POSITION_WORK_NAME))
-                {
-                    command.Parameters.Add(new OracleParameter("POSITION_WORK_NAME", "%" + POSITION_WORK_NAME + "%"));
+                    command.Parameters.Add(new OracleParameter("POSITION_WORK_NAME", POSITION_WORK_NAME + "%"));
                 }
                 OracleDataAdapter sd = new OracleDataAdapter(command);
                 sd.Fill(dt);
@@ -5324,16 +4291,16 @@ namespace WEB_PERSONAL.Entities
             return result;
         }
 
-        public bool CheckUsePositionWorkID()
+        public bool CheckUsePositionWorkName()
         {
             bool result = true;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
 
             // Create the command
-            OracleCommand command = new OracleCommand("SELECT count(POSITION_WORK_ID) FROM TB_POSITION_WORK WHERE POSITION_WORK_ID = :POSITION_WORK_ID ", conn);
+            OracleCommand command = new OracleCommand("SELECT count(POSITION_WORK_NAME) FROM TB_POSITION_WORK WHERE POSITION_WORK_NAME = :POSITION_WORK_NAME ", conn);
 
             // Add the parameters.
-            command.Parameters.Add(new OracleParameter("POSITION_WORK_ID", POSITION_WORK_ID));
+            command.Parameters.Add(new OracleParameter("POSITION_WORK_NAME", POSITION_WORK_NAME));
             try
             {
                 if (conn.State != ConnectionState.Open)
@@ -5375,18 +4342,14 @@ namespace WEB_PERSONAL.Entities
             this.ACAD_NAME = ACAD_NAME;
         }
 
-        public DataTable GetAcademicPosition(string ACAD_ID, string ACAD_NAME)
+        public DataTable GetAcademicPosition(string ACAD_NAME)
         {
             DataTable dt = new DataTable();
             OracleConnection conn = ConnectionDB.GetOracleConnection();
             string query = "SELECT * FROM TB_ACADEMIC_POSITION ";
-            if (!string.IsNullOrEmpty(ACAD_ID) || !string.IsNullOrEmpty(ACAD_NAME))
+            if (!string.IsNullOrEmpty(ACAD_NAME))
             {
                 query += " where 1=1 ";
-                if (!string.IsNullOrEmpty(ACAD_ID))
-                {
-                    query += " and ACAD_ID like :ACAD_ID ";
-                }
                 if (!string.IsNullOrEmpty(ACAD_NAME))
                 {
                     query += " and ACAD_NAME like :ACAD_NAME ";
@@ -5400,63 +4363,9 @@ namespace WEB_PERSONAL.Entities
                 {
                     conn.Open();
                 }
-                if (!string.IsNullOrEmpty(ACAD_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("ACAD_ID", ACAD_ID + "%"));
-                }
                 if (!string.IsNullOrEmpty(ACAD_NAME))
                 {
-                    command.Parameters.Add(new OracleParameter("ACAD_NAME", "%" + ACAD_NAME + "%"));
-                }
-                OracleDataAdapter sd = new OracleDataAdapter(command);
-                sd.Fill(dt);
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-            finally
-            {
-                command.Dispose();
-                conn.Close();
-            }
-
-            return dt;
-        }
-
-        public DataTable GetAcademicPositionSearch(string ACAD_ID, string ACAD_NAME)
-        {
-            DataTable dt = new DataTable();
-            OracleConnection conn = ConnectionDB.GetOracleConnection();
-            string query = "SELECT * FROM TB_ACADEMIC_POSITION ";
-            if (!string.IsNullOrEmpty(ACAD_ID) || !string.IsNullOrEmpty(ACAD_NAME))
-            {
-                query += " where 1=1 ";
-                if (!string.IsNullOrEmpty(ACAD_ID))
-                {
-                    query += " and ACAD_ID like :ACAD_ID ";
-                }
-                if (!string.IsNullOrEmpty(ACAD_NAME))
-                {
-                    query += " and ACAD_NAME like :ACAD_NAME ";
-                }
-            }
-            OracleCommand command = new OracleCommand(query, conn);
-            // Create the command
-            try
-            {
-                if (conn.State != ConnectionState.Open)
-                {
-                    conn.Open();
-                }
-                if (!string.IsNullOrEmpty(ACAD_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("ACAD_ID", ACAD_ID + "%"));
-                }
-                if (!string.IsNullOrEmpty(ACAD_NAME))
-                {
-                    command.Parameters.Add(new OracleParameter("ACAD_NAME", "%" + ACAD_NAME + "%"));
+                    command.Parameters.Add(new OracleParameter("ACAD_NAME", ACAD_NAME + "%"));
                 }
                 OracleDataAdapter sd = new OracleDataAdapter(command);
                 sd.Fill(dt);
@@ -5563,16 +4472,16 @@ namespace WEB_PERSONAL.Entities
             return result;
         }
 
-        public bool CheckUseAcademicPositionID()
+        public bool CheckUseAcademicPositionName()
         {
             bool result = true;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
 
             // Create the command
-            OracleCommand command = new OracleCommand("SELECT count(ACAD_ID) FROM TB_ACADEMIC_POSITION WHERE ACAD_ID = :ACAD_ID ", conn);
+            OracleCommand command = new OracleCommand("SELECT count(ACAD_NAME) FROM TB_ACADEMIC_POSITION WHERE ACAD_NAME = :ACAD_NAME ", conn);
 
             // Add the parameters.
-            command.Parameters.Add(new OracleParameter("ACAD_ID", ACAD_ID));
+            command.Parameters.Add(new OracleParameter("ACAD_NAME", ACAD_NAME));
             try
             {
                 if (conn.State != ConnectionState.Open)
@@ -5657,88 +4566,19 @@ namespace WEB_PERSONAL.Entities
 
                 if (!string.IsNullOrEmpty(TEACH_ISCED_ID))
                 {
-                    command.Parameters.Add(new OracleParameter("TEACH_ISCED_ID", "%" + TEACH_ISCED_ID + "%"));
+                    command.Parameters.Add(new OracleParameter("TEACH_ISCED_ID", TEACH_ISCED_ID + "%"));
                 }
                 if (!string.IsNullOrEmpty(TEACH_ISCED_ID_OLD))
                 {
-                    command.Parameters.Add(new OracleParameter("TEACH_ISCED_ID_OLD", "%" + TEACH_ISCED_ID_OLD + "%"));
+                    command.Parameters.Add(new OracleParameter("TEACH_ISCED_ID_OLD", TEACH_ISCED_ID_OLD + "%"));
                 }
                 if (!string.IsNullOrEmpty(TEACH_ISCED_NAME_TH))
                 {
-                    command.Parameters.Add(new OracleParameter("TEACH_ISCED_NAME_TH", "%" + TEACH_ISCED_NAME_TH + "%"));
+                    command.Parameters.Add(new OracleParameter("TEACH_ISCED_NAME_TH", TEACH_ISCED_NAME_TH + "%"));
                 }
                 if (!string.IsNullOrEmpty(TEACH_ISCED_NAME_ENG))
                 {
-                    command.Parameters.Add(new OracleParameter("TEACH_ISCED_NAME_ENG", "%" + TEACH_ISCED_NAME_ENG + "%"));
-                }
-
-                OracleDataAdapter sd = new OracleDataAdapter(command);
-                sd.Fill(dt);
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-            finally
-            {
-                command.Dispose();
-                conn.Close();
-            }
-
-            return dt;
-        }
-
-        public DataTable GetTeachISCEDSearch(string TEACH_ISCED_ID, string TEACH_ISCED_ID_OLD, string TEACH_ISCED_NAME_TH, string TEACH_ISCED_NAME_ENG)
-        {
-            DataTable dt = new DataTable();
-            OracleConnection conn = ConnectionDB.GetOracleConnection();
-            string query = "SELECT * FROM TB_TEACH_ISCED ";
-            if (!string.IsNullOrEmpty(TEACH_ISCED_ID) || !string.IsNullOrEmpty(TEACH_ISCED_ID_OLD) || !string.IsNullOrEmpty(TEACH_ISCED_NAME_TH) || !string.IsNullOrEmpty(TEACH_ISCED_NAME_ENG))
-            {
-                query += " where 1=1 ";
-                if (!string.IsNullOrEmpty(TEACH_ISCED_ID))
-                {
-                    query += " and TEACH_ISCED_ID like :TEACH_ISCED_ID ";
-                }
-                if (!string.IsNullOrEmpty(TEACH_ISCED_ID_OLD))
-                {
-                    query += " and TEACH_ISCED_ID_OLD like :TEACH_ISCED_ID_OLD ";
-                }
-                if (!string.IsNullOrEmpty(TEACH_ISCED_NAME_TH))
-                {
-                    query += " and TEACH_ISCED_NAME_TH like :TEACH_ISCED_NAME_TH ";
-                }
-                if (!string.IsNullOrEmpty(TEACH_ISCED_NAME_ENG))
-                {
-                    query += " and lower(TEACH_ISCED_NAME_ENG) like lower (:TEACH_ISCED_NAME_ENG) ";
-                }
-
-            }
-            OracleCommand command = new OracleCommand(query, conn);
-            // Create the command
-            try
-            {
-                if (conn.State != ConnectionState.Open)
-                {
-                    conn.Open();
-                }
-
-                if (!string.IsNullOrEmpty(TEACH_ISCED_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("TEACH_ISCED_ID", "%" + TEACH_ISCED_ID + "%"));
-                }
-                if (!string.IsNullOrEmpty(TEACH_ISCED_ID_OLD))
-                {
-                    command.Parameters.Add(new OracleParameter("TEACH_ISCED_ID_OLD", "%" + TEACH_ISCED_ID_OLD + "%"));
-                }
-                if (!string.IsNullOrEmpty(TEACH_ISCED_NAME_TH))
-                {
-                    command.Parameters.Add(new OracleParameter("TEACH_ISCED_NAME_TH", "%" + TEACH_ISCED_NAME_TH + "%"));
-                }
-                if (!string.IsNullOrEmpty(TEACH_ISCED_NAME_ENG))
-                {
-                    command.Parameters.Add(new OracleParameter("TEACH_ISCED_NAME_ENG", "%" + TEACH_ISCED_NAME_ENG + "%"));
+                    command.Parameters.Add(new OracleParameter("TEACH_ISCED_NAME_ENG", TEACH_ISCED_NAME_ENG + "%"));
                 }
 
                 OracleDataAdapter sd = new OracleDataAdapter(command);
@@ -5870,18 +4710,14 @@ namespace WEB_PERSONAL.Entities
             this.ST_NAME = ST_NAME;
         }
 
-        public DataTable GetStaff(string ST_ID, string ST_NAME)
+        public DataTable GetStaff(string ST_NAME)
         {
             DataTable dt = new DataTable();
             OracleConnection conn = ConnectionDB.GetOracleConnection();
             string query = "SELECT * FROM TB_STAFF ";
-            if (!string.IsNullOrEmpty(ST_ID) || !string.IsNullOrEmpty(ST_NAME))
+            if (!string.IsNullOrEmpty(ST_NAME))
             {
                 query += " where 1=1 ";
-                if (!string.IsNullOrEmpty(ST_ID))
-                {
-                    query += " and ST_ID like :ST_ID ";
-                }
                 if (!string.IsNullOrEmpty(ST_NAME))
                 {
                     query += " and ST_NAME like :ST_NAME ";
@@ -5894,59 +4730,6 @@ namespace WEB_PERSONAL.Entities
                 if (conn.State != ConnectionState.Open)
                 {
                     conn.Open();
-                }
-                if (!string.IsNullOrEmpty(ST_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("ST_ID", ST_ID + "%"));
-                }
-                if (!string.IsNullOrEmpty(ST_NAME))
-                {
-                    command.Parameters.Add(new OracleParameter("ST_NAME", "%" + ST_NAME + "%"));
-                }
-                OracleDataAdapter sd = new OracleDataAdapter(command);
-                sd.Fill(dt);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                command.Dispose();
-                conn.Close();
-            }
-
-            return dt;
-        }
-
-        public DataTable GetStaffSearch(string ST_ID, string ST_NAME)
-        {
-            DataTable dt = new DataTable();
-            OracleConnection conn = ConnectionDB.GetOracleConnection();
-            string query = "SELECT * FROM TB_STAFF ";
-            if (!string.IsNullOrEmpty(ST_ID) || !string.IsNullOrEmpty(ST_NAME))
-            {
-                query += " where 1=1 ";
-                if (!string.IsNullOrEmpty(ST_ID))
-                {
-                    query += " and ST_ID like :ST_ID ";
-                }
-                if (!string.IsNullOrEmpty(ST_NAME))
-                {
-                    query += " and ST_NAME like :ST_NAME ";
-                }
-            }
-            OracleCommand command = new OracleCommand(query, conn);
-            // Create the command
-            try
-            {
-                if (conn.State != ConnectionState.Open)
-                {
-                    conn.Open();
-                }
-                if (!string.IsNullOrEmpty(ST_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("ST_ID", ST_ID + "%"));
                 }
                 if (!string.IsNullOrEmpty(ST_NAME))
                 {
@@ -6058,16 +4841,16 @@ namespace WEB_PERSONAL.Entities
             return result;
         }
 
-        public bool CheckUseStaffID()
+        public bool CheckUseStaffName()
         {
             bool result = true;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
 
             // Create the command
-            OracleCommand command = new OracleCommand("SELECT count(ST_ID) FROM TB_STAFF WHERE ST_ID = :ST_ID ", conn);
+            OracleCommand command = new OracleCommand("SELECT count(ST_NAME) FROM TB_STAFF WHERE ST_NAME = :ST_NAME ", conn);
 
             // Add the parameters.
-            command.Parameters.Add(new OracleParameter("ST_ID", ST_ID));
+            command.Parameters.Add(new OracleParameter("ST_NAME", ST_NAME));
             try
             {
                 if (conn.State != ConnectionState.Open)
@@ -6110,18 +4893,14 @@ namespace WEB_PERSONAL.Entities
             this.ST_ID = ST_ID;
         }
 
-        public DataTable GetPositionGoverment(string ID, string NAME, string ST_ID)
+        public DataTable GetPositionGoverment(string NAME, string ST_ID)
         {
             DataTable dt = new DataTable();
             OracleConnection conn = ConnectionDB.GetOracleConnection();
             string query = "SELECT * FROM TB_POSITION_GOVERNMENT_OFFICER ";
-            if (!string.IsNullOrEmpty(ID) || !string.IsNullOrEmpty(NAME) || !string.IsNullOrEmpty(ST_ID))
+            if (!string.IsNullOrEmpty(NAME) || !string.IsNullOrEmpty(ST_ID))
             {
                 query += " where 1=1 ";
-                if (!string.IsNullOrEmpty(ID))
-                {
-                    query += " and ID like :ID ";
-                }
                 if (!string.IsNullOrEmpty(NAME))
                 {
                     query += " and NAME like :NAME ";
@@ -6139,74 +4918,13 @@ namespace WEB_PERSONAL.Entities
                 {
                     conn.Open();
                 }
-                if (!string.IsNullOrEmpty(ID))
-                {
-                    command.Parameters.Add(new OracleParameter("ID", ID + "%"));
-                }
                 if (!string.IsNullOrEmpty(NAME))
                 {
-                    command.Parameters.Add(new OracleParameter("NAME", "%" + NAME + "%"));
+                    command.Parameters.Add(new OracleParameter("NAME", NAME + "%"));
                 }
                 if (!string.IsNullOrEmpty(ST_ID))
                 {
-                    command.Parameters.Add(new OracleParameter("ST_ID", ST_ID + "%"));
-                }
-                OracleDataAdapter sd = new OracleDataAdapter(command);
-                sd.Fill(dt);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                command.Dispose();
-                conn.Close();
-            }
-
-            return dt;
-        }
-
-        public DataTable GetPositionGovermentSearch(string ID, string NAME, string ST_ID)
-        {
-            DataTable dt = new DataTable();
-            OracleConnection conn = ConnectionDB.GetOracleConnection();
-            string query = "SELECT * FROM TB_POSITION_GOVERNMENT_OFFICER ";
-            if (!string.IsNullOrEmpty(ID) || !string.IsNullOrEmpty(NAME) || !string.IsNullOrEmpty(ST_ID))
-            {
-                query += " where 1=1 ";
-                if (!string.IsNullOrEmpty(ID))
-                {
-                    query += " and ID like :ID ";
-                }
-                if (!string.IsNullOrEmpty(NAME))
-                {
-                    query += " and NAME like :NAME ";
-                }
-                if (!string.IsNullOrEmpty(ST_ID))
-                {
-                    query += " and ST_ID like :ST_ID ";
-                }
-            }
-            OracleCommand command = new OracleCommand(query, conn);
-            // Create the command
-            try
-            {
-                if (conn.State != ConnectionState.Open)
-                {
-                    conn.Open();
-                }
-                if (!string.IsNullOrEmpty(ID))
-                {
-                    command.Parameters.Add(new OracleParameter("ID", ID + "%"));
-                }
-                if (!string.IsNullOrEmpty(NAME))
-                {
-                    command.Parameters.Add(new OracleParameter("NAME", "%" + NAME + "%"));
-                }
-                if (!string.IsNullOrEmpty(ST_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("ST_ID", ST_ID + "%"));
+                    command.Parameters.Add(new OracleParameter("ST_ID", ST_ID ));
                 }
                 OracleDataAdapter sd = new OracleDataAdapter(command);
                 sd.Fill(dt);
@@ -6315,16 +5033,17 @@ namespace WEB_PERSONAL.Entities
             }
             return result;
         }
-        public bool CheckUsePositionGovermentID()
+        public bool CheckUsePositionGovermentName()
         {
             bool result = true;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
 
             // Create the command
-            OracleCommand command = new OracleCommand("SELECT count(ID) FROM TB_POSITION_GOVERNMENT_OFFICER WHERE ID = :ID ", conn);
+            OracleCommand command = new OracleCommand("SELECT count(NAME) FROM TB_POSITION_GOVERNMENT_OFFICER WHERE NAME = :NAME and ST_ID = :ST_ID ", conn);
 
             // Add the parameters.
-            command.Parameters.Add(new OracleParameter("ID", ID));
+            command.Parameters.Add(new OracleParameter("NAME", NAME));
+            command.Parameters.Add(new OracleParameter("ST_ID", ST_ID));
             try
             {
                 if (conn.State != ConnectionState.Open)
@@ -6367,18 +5086,14 @@ namespace WEB_PERSONAL.Entities
             this.ST_ID = ST_ID;
         }
 
-        public DataTable GetPositionPermanent(string ID, string NAME, string ST_ID)
+        public DataTable GetPositionPermanent(string NAME, string ST_ID)
         {
             DataTable dt = new DataTable();
             OracleConnection conn = ConnectionDB.GetOracleConnection();
-            string query = "SELECT * FROM TB_POSITION_GOVERNMENT_OFFICER ";
-            if (!string.IsNullOrEmpty(ID) || !string.IsNullOrEmpty(NAME) || !string.IsNullOrEmpty(ST_ID))
+            string query = "SELECT * FROM TB_POSITION_PERMANENT_EMP ";
+            if (!string.IsNullOrEmpty(NAME) || !string.IsNullOrEmpty(ST_ID))
             {
                 query += " where 1=1 ";
-                if (!string.IsNullOrEmpty(ID))
-                {
-                    query += " and ID like :ID ";
-                }
                 if (!string.IsNullOrEmpty(NAME))
                 {
                     query += " and NAME like :NAME ";
@@ -6396,74 +5111,13 @@ namespace WEB_PERSONAL.Entities
                 {
                     conn.Open();
                 }
-                if (!string.IsNullOrEmpty(ID))
-                {
-                    command.Parameters.Add(new OracleParameter("ID", ID + "%"));
-                }
                 if (!string.IsNullOrEmpty(NAME))
                 {
-                    command.Parameters.Add(new OracleParameter("NAME", "%" + NAME + "%"));
+                    command.Parameters.Add(new OracleParameter("NAME", NAME + "%"));
                 }
                 if (!string.IsNullOrEmpty(ST_ID))
                 {
-                    command.Parameters.Add(new OracleParameter("ST_ID", ST_ID + "%"));
-                }
-                OracleDataAdapter sd = new OracleDataAdapter(command);
-                sd.Fill(dt);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                command.Dispose();
-                conn.Close();
-            }
-
-            return dt;
-        }
-
-        public DataTable GetPositionPermanentSearch(string ID, string NAME, string ST_ID)
-        {
-            DataTable dt = new DataTable();
-            OracleConnection conn = ConnectionDB.GetOracleConnection();
-            string query = "SELECT * FROM TB_POSITION_GOVERNMENT_OFFICER ";
-            if (!string.IsNullOrEmpty(ID) || !string.IsNullOrEmpty(NAME) || !string.IsNullOrEmpty(ST_ID))
-            {
-                query += " where 1=1 ";
-                if (!string.IsNullOrEmpty(ID))
-                {
-                    query += " and ID like :ID ";
-                }
-                if (!string.IsNullOrEmpty(NAME))
-                {
-                    query += " and NAME like :NAME ";
-                }
-                if (!string.IsNullOrEmpty(ST_ID))
-                {
-                    query += " and ST_ID like :ST_ID ";
-                }
-            }
-            OracleCommand command = new OracleCommand(query, conn);
-            // Create the command
-            try
-            {
-                if (conn.State != ConnectionState.Open)
-                {
-                    conn.Open();
-                }
-                if (!string.IsNullOrEmpty(ID))
-                {
-                    command.Parameters.Add(new OracleParameter("ID", ID + "%"));
-                }
-                if (!string.IsNullOrEmpty(NAME))
-                {
-                    command.Parameters.Add(new OracleParameter("NAME", "%" + NAME + "%"));
-                }
-                if (!string.IsNullOrEmpty(ST_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("ST_ID", ST_ID + "%"));
+                    command.Parameters.Add(new OracleParameter("ST_ID", ST_ID ));
                 }
                 OracleDataAdapter sd = new OracleDataAdapter(command);
                 sd.Fill(dt);
@@ -6485,7 +5139,7 @@ namespace WEB_PERSONAL.Entities
         {
             int id = 0;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
-            OracleCommand command = new OracleCommand("INSERT INTO TB_POSITION_GOVERNMENT_OFFICER (NAME,ST_ID) VALUES (:NAME,:ST_ID)", conn);
+            OracleCommand command = new OracleCommand("INSERT INTO TB_POSITION_PERMANENT_EMP (NAME,ST_ID) VALUES (:NAME,:ST_ID)", conn);
             try
             {
                 if (conn.State != ConnectionState.Open)
@@ -6512,7 +5166,7 @@ namespace WEB_PERSONAL.Entities
         {
             bool result = false;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
-            string query = "Update TB_POSITION_GOVERNMENT_OFFICER Set ";
+            string query = "Update TB_POSITION_PERMANENT_EMP Set ";
             query += " NAME = :NAME,";
             query += " ST_ID = :ST_ID";
             query += " where ID = :ID";
@@ -6548,7 +5202,7 @@ namespace WEB_PERSONAL.Entities
         {
             bool result = false;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
-            OracleCommand command = new OracleCommand("Delete TB_POSITION_GOVERNMENT_OFFICER where ID = :ID", conn);
+            OracleCommand command = new OracleCommand("Delete TB_POSITION_PERMANENT_EMP where ID = :ID", conn);
             try
             {
                 if (conn.State != ConnectionState.Open)
@@ -6572,16 +5226,17 @@ namespace WEB_PERSONAL.Entities
             }
             return result;
         }
-        public bool CheckUsePositionPermanentID()
+        public bool CheckUsePositionPermanentName()
         {
             bool result = true;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
 
             // Create the command
-            OracleCommand command = new OracleCommand("SELECT count(ID) FROM TB_POSITION_GOVERNMENT_OFFICER WHERE ID = :ID ", conn);
+            OracleCommand command = new OracleCommand("SELECT count(NAME) FROM TB_POSITION_PERMANENT_EMP WHERE NAME = :NAME and ST_ID = :ST_ID ", conn);
 
             // Add the parameters.
-            command.Parameters.Add(new OracleParameter("ID", ID));
+            command.Parameters.Add(new OracleParameter("NAME", NAME));
+            command.Parameters.Add(new OracleParameter("ST_ID", ST_ID));
             try
             {
                 if (conn.State != ConnectionState.Open)
@@ -6607,270 +5262,5 @@ namespace WEB_PERSONAL.Entities
             return result;
         }
     }
-
-    public class ClassPosition
-    {
-        public string ID { get; set; }
-        public string NAME { get; set; }
-        public string ST_ID { get; set; }
-
-
-        public ClassPosition() { }
-        public ClassPosition(string ID, string NAME, string ST_ID)
-        {
-            this.ID = ID;
-            this.NAME = NAME;
-            this.ST_ID = ST_ID;
-
-        }
-
-        public DataTable GetPosition(string ID, string NAME, string ST_ID)
-        {
-            DataTable dt = new DataTable();
-            OracleConnection conn = ConnectionDB.GetOracleConnection();
-            string query = "SELECT * FROM TB_POSITION ";
-            if (!string.IsNullOrEmpty(ID) || !string.IsNullOrEmpty(NAME) || !string.IsNullOrEmpty(ST_ID))
-            {
-                query += " where 1=1 ";
-                if (!string.IsNullOrEmpty(ID))
-                {
-                    query += " and ID like :ID ";
-                }
-                if (!string.IsNullOrEmpty(NAME))
-                {
-                    query += " and NAME like :NAME ";
-                }
-                if (!string.IsNullOrEmpty(ST_ID))
-                {
-                    query += " and ST_ID like :ST_ID ";
-                }
-
-            }
-            OracleCommand command = new OracleCommand(query, conn);
-            // Create the command
-            try
-            {
-                if (conn.State != ConnectionState.Open)
-                {
-                    conn.Open();
-                }
-                if (!string.IsNullOrEmpty(ID))
-                {
-                    command.Parameters.Add(new OracleParameter("ID", ID + "%"));
-                }
-                if (!string.IsNullOrEmpty(NAME))
-                {
-                    command.Parameters.Add(new OracleParameter("NAME", NAME + "%"));
-                }
-                if (!string.IsNullOrEmpty(ST_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("ST_ID", "%" + ST_ID + "%"));
-                }
-
-                OracleDataAdapter sd = new OracleDataAdapter(command);
-                sd.Fill(dt);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                command.Dispose();
-                conn.Close();
-            }
-
-            return dt;
-        }
-
-        public DataTable GetPositionSearch(string ID, string NAME, string ST_ID)
-        {
-            DataTable dt = new DataTable();
-            OracleConnection conn = ConnectionDB.GetOracleConnection();
-            string query = "SELECT * FROM TB_POSITION ";
-            if (!string.IsNullOrEmpty(ID) || !string.IsNullOrEmpty(NAME) || !string.IsNullOrEmpty(ST_ID))
-            {
-                query += " where 1=1 ";
-                if (!string.IsNullOrEmpty(ID))
-                {
-                    query += " and ID like :ID ";
-                }
-                if (!string.IsNullOrEmpty(NAME))
-                {
-                    query += " and NAME like :NAME ";
-                }
-                if (!string.IsNullOrEmpty(ST_ID))
-                {
-                    query += " and ST_ID like :ST_ID ";
-                }
-
-            }
-            OracleCommand command = new OracleCommand(query, conn);
-            // Create the command
-            try
-            {
-                if (conn.State != ConnectionState.Open)
-                {
-                    conn.Open();
-                }
-                if (!string.IsNullOrEmpty(ID))
-                {
-                    command.Parameters.Add(new OracleParameter("ID", ID + "%"));
-                }
-                if (!string.IsNullOrEmpty(NAME))
-                {
-                    command.Parameters.Add(new OracleParameter("NAME", NAME + "%"));
-                }
-                if (!string.IsNullOrEmpty(ST_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("ST_ID", "%" + ST_ID + "%"));
-                }
-
-                OracleDataAdapter sd = new OracleDataAdapter(command);
-                sd.Fill(dt);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                command.Dispose();
-                conn.Close();
-            }
-
-            return dt;
-        }
-
-        public int InsertPosition()
-        {
-            int id = 0;
-            OracleConnection conn = ConnectionDB.GetOracleConnection();
-            OracleCommand command = new OracleCommand("INSERT INTO TB_POSITION (ID,NAME,ST_ID) VALUES (:ID,:NAME,:ST_ID)", conn);
-            try
-            {
-                if (conn.State != ConnectionState.Open)
-                {
-                    conn.Open();
-                }
-                command.Parameters.Add(new OracleParameter("ID", ID));
-                command.Parameters.Add(new OracleParameter("NAME", NAME));
-                command.Parameters.Add(new OracleParameter("ST_ID", ST_ID));
-                id = command.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                command.Dispose();
-                conn.Close();
-            }
-            return id;
-        }
-
-        public bool UpdatePosition()
-        {
-            bool result = false;
-            OracleConnection conn = ConnectionDB.GetOracleConnection();
-            string query = "Update TB_POSITION Set ";
-            query += " ID = :ID,";
-            query += " NAME = :NAME,";
-            query += " ST_ID = :ST_ID";
-            query += " where ID = :ID";
-
-            OracleCommand command = new OracleCommand(query, conn);
-            try
-            {
-                if (conn.State != ConnectionState.Open)
-                {
-                    conn.Open();
-                }
-                command.Parameters.Add(new OracleParameter("ID", ID));
-                command.Parameters.Add(new OracleParameter("NAME", NAME));
-                command.Parameters.Add(new OracleParameter("ST_ID", ST_ID));
-
-                if (command.ExecuteNonQuery() > 0)
-                {
-                    result = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                command.Dispose();
-            }
-            return result;
-        }
-
-        public bool DeletePosition()
-        {
-            bool result = false;
-            OracleConnection conn = ConnectionDB.GetOracleConnection();
-            OracleCommand command = new OracleCommand("Delete TB_POSITION where ID = :ID", conn);
-            try
-            {
-                if (conn.State != ConnectionState.Open)
-                {
-                    conn.Open();
-                }
-                command.Parameters.Add(new OracleParameter("ID", ID));
-                if (command.ExecuteNonQuery() >= 0)
-                {
-                    result = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                command.Dispose();
-                conn.Close();
-            }
-            return result;
-        }
-
-        public bool CheckUsePositionID()
-        {
-            bool result = true;
-            OracleConnection conn = ConnectionDB.GetOracleConnection();
-
-            // Create the command
-            OracleCommand command = new OracleCommand("SELECT count(ID) FROM TB_POSITION WHERE ID = :ID ", conn);
-
-            // Add the parameters.
-            command.Parameters.Add(new OracleParameter("ID", ID));
-            try
-            {
-                if (conn.State != ConnectionState.Open)
-                {
-                    conn.Open();
-                }
-                int count = (int)(decimal)command.ExecuteScalar();
-                if (count >= 1)
-                {
-                    result = false;
-                }
-
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                command.Dispose();
-                conn.Close();
-            }
-            return result;
-        }
-    }
-
 
 }
