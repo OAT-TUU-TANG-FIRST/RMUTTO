@@ -18,10 +18,21 @@
             <asp:Label ID="Label42" runat="server" Text="Label"></asp:Label></b>
             </p>
 	        <br />
-            <p align="left" style="font-size:15px"><b>ชื่อผู้รับการประเมิน...........................&nbsp;ตำแหน่ง...........................
-	        &nbsp;สังกัด...........................</b></p>
-	        <p style="font-size:15px"><b>ชื่อผู้ประเมิน...........................&nbsp;ตำแหน่ง...........................
-	        &nbsp;สังกัด...........................</b></p>
+            <p align="left" style="font-size:15px"><b>ชื่อผู้รับการประเมิน</b>
+                <asp:Label ID="Label71" runat="server" Text="Label"></asp:Label>
+                <b>&nbsp;ตำแหน่ง</b>
+                <asp:Label ID="Label72" runat="server" Text="Label"></asp:Label>
+                <b>&nbsp;&nbsp;สังกัด </b>
+                <asp:Label ID="Label73" runat="server" Text="Label"></asp:Label>
+            </p>
+            <br />
+	        <p style="font-size:15px"><b>ชื่อผู้ประเมิน</b>
+                <asp:Label ID="Label74" runat="server" Text="Label"></asp:Label>
+                <b>&nbsp;ตำแหน่ง</b>
+                <asp:Label ID="Label75" runat="server" Text="Label"></asp:Label>
+                <b>&nbsp;&nbsp;สังกัด </b>
+                <asp:Label ID="Label76" runat="server" Text="Label"></asp:Label>
+            </p>
 	        <br />
     <table border="2px solid black" height= "auto" >
 			<tr bgcolor="grey" style="font-size:15px">
@@ -124,17 +135,17 @@
 			</tr>
 			<tr>
 				<td colspan="4" align="right" style="font-size:15px"><b>(6) คะแนนที่ได้รับ = ผลรวม(4)/5 = </b></td>
-				<td style="font-size:15px" align="center"><b>
-                    <asp:Label ID="Label48" runat="server" Text="Label"></asp:Label></b>
+				<td style="font-size:15px" align="center">
+                    <asp:Label ID="Label48" runat="server" Text="Label"></asp:Label>
                 </td>
-				<td bgcolor="grey">
+				<td bgcolor="grey" align="center" style="font-size:15px">
                     <asp:Label ID="Label70" runat="server" Text="Label"></asp:Label>
                 </td>
 				
 			</tr>
 			<tr>
-				<td colspan="5" align="right"><b>(7) ค่าคะแนนที่ได้  =  ผลรวม(5)/5) = </b></td>
-				<td><b></b>
+				<td colspan="5" align="right" style="font-size:15px"><b>(7) ค่าคะแนนที่ได้  =  ผลรวม(5)/5) = </b></td>
+				<td align="center" style="font-size:15px"><b></b>
                     <asp:Label ID="Label49" runat="server" Text="Label"></asp:Label>
                 </td>
 			</tr>
@@ -144,27 +155,27 @@
 					2.ผู้ประเมินและผู้รับการประเมิน ได้ตกลงร่วมกันและเห็นพ้องกันแล้ว จึงลงลายมือชื่อไว้เป็นหลักฐาน (ลงนามเมื่อจัดทำข้อตกลง) </b>
                     <br />
 				    <br /><b>
-				    ลายมือชื่อ&nbsp;
-                    <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label></b>
+				    ลายมือชื่อ&nbsp;</b>
+                    <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
                     &nbsp;<b>
-                    (ผู้ประเมิน)</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                    (ผู้ประเมิน)</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
                     <b>&nbsp;ลายมือชื่อ
                     <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label></b>
                     &nbsp;<b>(ผู้รับการประเมิน)</b>
 				    <br />
-				    <b>วันที่
-                    <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label></b>
-                    &nbsp;<b>เดือน
-                    <asp:Label ID="Label4" runat="server" Text="Label"></asp:Label></b>
-                    &nbsp;<b>พ.ศ.
-                    <asp:Label ID="Label5" runat="server" Text="Label"></asp:Label></b>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <b>&nbsp;&nbsp; วันที่
-                    <asp:Label ID="Label6" runat="server" Text="Label"></asp:Label></b>
-                    &nbsp;<b>เดือน
-                    <asp:Label ID="Label7" runat="server" Text="Label"></asp:Label></b>
-                    &nbsp;<b>พ.ศ.&nbsp;
-                    <asp:Label ID="Label8" runat="server" Text="Label"></asp:Label></b>
+				    <b>วันที่</b>
+                    <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
+                    &nbsp;<b>เดือน</b>
+                    <asp:Label ID="Label4" runat="server" Text="Label"></asp:Label>
+                    &nbsp;<b>พ.ศ.</b>
+                    <asp:Label ID="Label5" runat="server" Text="Label"></asp:Label>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <b>วันที่</b>
+                    <asp:Label ID="Label6" runat="server" Text="Label"></asp:Label>
+                    &nbsp;<b>เดือน</b>
+                    <asp:Label ID="Label7" runat="server" Text="Label"></asp:Label>
+                    &nbsp;<b>พ.ศ.&nbsp;</b>
+                    <asp:Label ID="Label8" runat="server" Text="Label"></asp:Label>
                     <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <br />
                     <br />

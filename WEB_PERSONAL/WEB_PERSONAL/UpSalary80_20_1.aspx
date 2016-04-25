@@ -21,9 +21,9 @@
 	        <p align="center" style="font-size:16px"><b>แบบข้อตกลงการประเมินผลสัมฤทธิ์ของงาน ของข้าราชการพลเรือนในสถาบันอุดมศึกษา หรือพนักงานในสถาบันอุดมศึกษา <br />มหาวิทยาลัยเทคโนโลยีราชมงคลตะวันออก</b></p>
 	        <p align="center" style="font-size:16px"><b>ตำแหน่งประเภทผู้บริหาร (ไม่ครองตำแหน่งวิชาการ) (องค์ประกอบที่ 1 ผลสัมฤทธิ์ของงาน 80%)</b></p>
 	        <br />
-            <p align="center" style="font-size:15px"><b>รอบการประเมิน
+            <p align="center" style="font-size:15px"><b>รอบการประเมิน</b>
             <asp:Label ID="Label22" runat="server" Text="Label"></asp:Label>
-            &nbsp;วัน&nbsp;&nbsp;&nbsp;</b><asp:Label ID="Label13" runat="server" Text="Label"></asp:Label>
+            &nbsp;<b>วัน&nbsp;&nbsp;&nbsp;</b><asp:Label ID="Label13" runat="server" Text="Label"></asp:Label>
             &nbsp; <b>เดือน</b>
             <asp:Label ID="Label14" runat="server" Text="Label"></asp:Label>
             &nbsp; <b>ปีพ.ศ.</b>
@@ -494,7 +494,7 @@
         </asp:View>
         
         <asp:View ID="View2" runat="server">
-        <form >
+        
 		   <table border="2px solid black" height= "auto" >
               <tr>
 				<td colspan="14" style="font-size:15px"><b>
@@ -502,23 +502,25 @@
 					(12)  ผู้ประเมินและผู้รับการประเมินได้ตกลงร่วมกันและเห็นพ้องกันแล้ว  จึงลงลายมือชื่อไว้เป็นหลักฐาน  (ลงนามเมื่อจัดทำข้อตกลง)</b>
                     <br />
 				    <br />
-				    ลายมือชื่อ&nbsp;
+				    <b>ลายมือชื่อ&nbsp;</b>
                     <asp:Label ID="Label23" runat="server" Text="Label"></asp:Label>
-                    &nbsp; (ผู้ประเมิน)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ลายมือชื่อ
+                    &nbsp;<b>&nbsp;(ผู้ประเมิน)</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <b>ลายมือชื่อ&nbsp;</b>
                     <asp:Label ID="Label24" runat="server" Text="Label"></asp:Label>
-                    &nbsp;(ผู้รับการประเมิน)
+                    &nbsp;<b>(ผู้รับการประเมิน)</b>
 				    <br />
-				    วันที่
+				    <b>วันที่</b>
                     <asp:Label ID="Label25" runat="server" Text="Label"></asp:Label>
-                    &nbsp;เดือน
+                    <b>&nbsp;เดือน</b>
                     <asp:Label ID="Label26" runat="server" Text="Label"></asp:Label>
-                    &nbsp;พ.ศ.
+                    <b>&nbsp;พ.ศ.</b>
                     <asp:Label ID="Label27" runat="server" Text="Label"></asp:Label>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; วันที่
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                    <b>วันที่</b>
                     <asp:Label ID="Label28" runat="server" Text="Label"></asp:Label>
-                    &nbsp;เดือน
+                    <b>&nbsp;เดือน</b>
                     <asp:Label ID="Label29" runat="server" Text="Label"></asp:Label>
-                    &nbsp;พ.ศ.&nbsp;
+                    <b>&nbsp;พ.ศ.&nbsp;</b>
                     <asp:Label ID="Label30" runat="server" Text="Label"></asp:Label>
                     <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <br />
@@ -548,40 +550,42 @@
 					(14)  ผู้ประเมินและผู้รับการประเมินได้เห็นชอบผลการประเมินแล้ว  จึงลงลายมือชื่อไว้เป็นหลักฐาน (ลงนามเมื่อสิ้นรอบการประเมิน)</b>
                     <br />
 				    <br /><b>
-				    ลายมือชื่อ&nbsp;
-                    <asp:Label ID="Label31" runat="server" Text="Label"></asp:Label></b>
+				    ลายมือชื่อ&nbsp;</b>
+                    <asp:Label ID="Label31" runat="server" Text="Label"></asp:Label>
                     &nbsp; <b>(ผู้ประเมิน)</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <b>ลายมือชื่อ&nbsp;
-                    <asp:Label ID="Label32" runat="server" Text="Label"></asp:Label></b>
+                    <b>ลายมือชื่อ&nbsp;</b>
+                    <asp:Label ID="Label32" runat="server" Text="Label"></asp:Label>
                     &nbsp; <b>(ผู้รับการประเมิน)</b>
-				    <br /><b>วันที่&nbsp;
-                    <asp:Label ID="Label33" runat="server" Text="Label"></asp:Label></b>
-                    &nbsp;<b>เดือน&nbsp;
-                    <asp:Label ID="Label34" runat="server" Text="Label"></asp:Label></b>
-                    &nbsp; <b>พ.ศ.
-                    <asp:Label ID="Label35" runat="server" Text="Label"></asp:Label></b>
+				    <br /><b>วันที่&nbsp;</b>
+                    <asp:Label ID="Label33" runat="server" Text="Label"></asp:Label>
+                    &nbsp;<b>เดือน&nbsp;</b>
+                    <asp:Label ID="Label34" runat="server" Text="Label"></asp:Label>
+                    &nbsp; <b>พ.ศ.</b>
+                    <asp:Label ID="Label35" runat="server" Text="Label"></asp:Label>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                    <b>วันที่&nbsp;
-                    <asp:Label ID="Label36" runat="server" Text="Label"></asp:Label></b>
-                    &nbsp;<b> เดือน&nbsp;
-                    <asp:Label ID="Label37" runat="server" Text="Label"></asp:Label></b>
-                    &nbsp;<b> พ.ศ.
-                    <asp:Label ID="Label38" runat="server" Text="Label"></asp:Label></b>
-                    <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                    <b>วันที่&nbsp;</b>
+                    <asp:Label ID="Label36" runat="server" Text="Label"></asp:Label>
+                    &nbsp;<b> เดือน&nbsp;</b>
+                    <asp:Label ID="Label37" runat="server" Text="Label"></asp:Label>
+                    &nbsp;<b> พ.ศ.</b>
+                    <asp:Label ID="Label38" runat="server" Text="Label"></asp:Label>
+                    <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
                     <br />
-                    
-				</td>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <asp:Button ID="Button4" runat="server" Text="ยืนยัน" Width="100px" Font-Bold="True" />
+                    &nbsp;&nbsp;
+                    <asp:Button ID="Button5" runat="server" Text="ส่งกลับ" Font-Bold="True" Width="100px" />
+                    &nbsp;&nbsp;
+                    <asp:Button ID="Button6" runat="server" Font-Bold="True" Text="บันทึก" Width="100px" />
+                    &nbsp;
+                    <asp:Button ID="Button7" runat="server" Font-Bold="True" Text="ต่อไป" Width="100px" />
+                    <br />
+                 </td>
 			</tr>
 		</table>
-	</form>
-
-
-
+	
         </asp:View>
 
-
     </asp:MultiView>
-
-    
-    
+ 
 </asp:Content>

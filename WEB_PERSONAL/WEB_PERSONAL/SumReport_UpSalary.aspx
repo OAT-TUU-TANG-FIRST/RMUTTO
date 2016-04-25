@@ -48,7 +48,7 @@
     </p>
     <br />
     <br />
-	<form >
+	
 	<table style="font-size:15px" border="1px solid black" border-collapse= "collapse" height= "auto" width="595">
 		<tr>
 			<td>
@@ -64,7 +64,7 @@
 			</td>
 		</tr>
 	</table>
-	</form>
+	
 	<br />
 	<p style="text-align:left" style="font-size:16px"><u><b>ส่วนที่&nbsp;2:&nbsp;การสรุปผลการประเมิน</b></u></p>
     <br />
@@ -181,9 +181,9 @@
 			<tr>
 				<td style="font-size:15px" valign="top" class="auto-style1">
 					<p ><b>ผู้รับการประเมิน&nbsp;:</b></p>
-
-					<p >
-                        &nbsp;&nbsp;<asp:CheckBox ID="CheckBox3" runat="server" Text="ได้รับทราบผลการประเมินและแผนพัฒนาการปฏิบัติราชการรายบุคคลแล้ว" />
+                    <br />
+                    <p >
+                        <asp:CheckBox ID="CheckBox3" runat="server" Text="ได้รับทราบผลการประเมินและแผนพัฒนาการปฏิบัติราชการรายบุคคลแล้ว" />
                     </p>
 				</td>
 				<td style="font-size:15px" valign="top">
@@ -198,7 +198,8 @@
 			<tr>
 				<td style="font-size:15px" valign="top">
 					<p><b>ผู้ประเมิน&nbsp;:</b></p>
-					<p>
+					<br />
+                    <p>
                         <asp:CheckBox ID="CheckBox2" runat="server" Text="ได้แจ้งผลการประเมินและผู้รับการประเมินได้ลงนามรับทราบ" />
                     </p>
 					<p><asp:CheckBox ID="CheckBox1" runat="server" Text="ได้แจ้งผลการประเมินเมื่อวันที่..............แต่ผู้รับการประเมินไม่ลงนามรับทราบผลการประเมิน โดยมี.......................................เป็นพยาน" /></p>
@@ -226,43 +227,53 @@
 		</table>
 	
 	<br />
-	<p style="font-size:15px" valign="top"><b><u>ส่วนที่&nbsp;5&nbsp;:ความเห็นของผู้ประเมิน/ผู้บังคับบัญชาเหนือขึ้นไป</u></b></p>
-	
+	<p style="font-size:16px" valign="top"><b><u>ส่วนที่&nbsp;5&nbsp;:ความเห็นของผู้ประเมิน/ผู้บังคับบัญชาเหนือขึ้นไป</u></b></p>
+	<br />
 		<table align="center" border="1px solid black" height="auto" width="595">
 		<tr>
-			<td>
+			<td style="font-size:15px" valign="top">
 				<p><b>ความเห็นของผู้ประเมิน&nbsp;:</b></p>
+                <br />
 				<p><b><u>ความคิดเห็นและข้อเสนอแนะ</u></b></p>
-				<br>
+				<br />
 				<asp:Label ID="Label31" runat="server" Text="Label"></asp:Label>
-				<br>
-				<br>
-      			<br>
-      			<br>
+				<br />
+				<br />
+      			<br />
+      			<br />
 			</td>
-			<td>
-				<p>ลงชื่อ&nbsp;:&nbsp;...................................</p>
-				<p>ตำแหน่ง&nbsp;:&nbsp;..............................</p>
-				<p>วันที่&nbsp;:&nbsp;.....................................</p>
+			<td style="font-size:15px" valign="top">
+				<p>ลงชื่อ&nbsp;:&nbsp;<asp:Label ID="Label33" runat="server" Text="Label"></asp:Label>
+                </p>
+				<p>ตำแหน่ง&nbsp;:&nbsp;<asp:Label ID="Label34" runat="server" Text="Label"></asp:Label>
+                </p>
+				<p>วันที่&nbsp;:&nbsp;<asp:Label ID="Label35" runat="server" Text="Label"></asp:Label>
+                </p>
 			</td>
 		</tr>
 		<tr>
-			<td>
+			<td style="font-size:15px" valign="top">
 				<p><b>ผู้บังคับบัญชาเหนือขึ้นไป&nbsp;(ถ้ามี)&nbsp;:</b></p>
-				<p><b><input type="radio" name="assessment_4" value="Yes">&nbsp;&nbsp;เห็นด้วยกับผลการประเมิน</b></p>
-				<p><b><input type="radio" name="assessment_4" value="No">&nbsp;&nbsp;มีความเห็นต่าง ดังนี้
-      			</b></p>
+                <br />
+				<p><b>&nbsp;<asp:RadioButton ID="RadioButton6" runat="server" Text="เห็นด้วยกับผลการประเมิน" />
+                    &nbsp;</b></p>
+				<p><b>&nbsp;<asp:RadioButton ID="RadioButton7" runat="server" Text="มีความเห็นต่าง ดังนี้ " />
+                    &nbsp;</b></p>
       			<br />
+      			<asp:Label ID="Label32" runat="server" Text="Label"></asp:Label>
       			<br />
       			<br />
       			<br />
       			<br />
       		
 			</td>
-			<td>
-				<p>ลงชื่อ&nbsp;:&nbsp;...................................</p>
-				<p>ตำแหน่ง&nbsp;:&nbsp;..............................</p>
-				<p>วันที่&nbsp;:&nbsp;.....................................</p>
+			<td style="font-size:15px" valign="top">
+				<p>ลงชื่อ&nbsp;:&nbsp;<asp:Label ID="Label36" runat="server" Text="Label"></asp:Label>
+                </p>
+				<p>ตำแหน่ง&nbsp;:&nbsp;<asp:Label ID="Label37" runat="server" Text="Label"></asp:Label>
+                </p>
+				<p>วันที่&nbsp;:&nbsp;<asp:Label ID="Label38" runat="server" Text="Label"></asp:Label>
+                </p>
 			</td>
 		</tr>
 	</table>
