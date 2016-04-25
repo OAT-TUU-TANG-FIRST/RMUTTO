@@ -768,6 +768,7 @@
     <Content Include="Image\font_icon.png" />
     <Content Include="Image\ImageTUU\maintence.png" />
     <Content Include="Image\office.jpg" />
+    <Content Include="Image\rmutto_clear.jpg" />
     <Content Include="Image\Small\back.png" />
     <Content Include="Image\Small\clock.png" />
     <Content Include="Image\Small\home.png" />
@@ -943,6 +944,7 @@
     <Content Include="LeaveClaim.aspx" />
     <Content Include="LeaveComment.aspx" />
     <Content Include="LeaveHistory.aspx" />
+    <Content Include="LeaveManager.aspx" />
     <Content Include="ListPerson-ADMIN.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Ministry-ADMIN.aspx" />
@@ -976,10 +978,14 @@
     <Content Include="TeachISCED-ADMIN.aspx" />
     <Content Include="TestOutput.aspx" />
     <Content Include="UploadList.aspx" />
+    <Content Include="UpSalary70_30_1.aspx" />
+    <Content Include="UpSalary70_30_2.aspx" />
+    <Content Include="UpSalary80_20_1.aspx" />
     <Content Include="ViewLeaveForm.aspx" />
     <Content Include="WorkDivision-ADMIN.aspx" />
     <Content Include="WorkingTime.aspx" />
     <Content Include="WorkingTimeHistory.aspx" />
+    <Content Include="WorkingTimeManager.aspx" />
     <Content Include="Year-ADMIN.aspx" />
     <Content Include="Font\WDB_Bangna.ttf" />
     <Content Include="Font\THSARABUNNEW BOLDITALIC_0.TTF" />
@@ -1365,6 +1371,13 @@
     <Compile Include="LeaveHistory.aspx.designer.cs">
       <DependentUpon>LeaveHistory.aspx</DependentUpon>
     </Compile>
+    <Compile Include="LeaveManager.aspx.cs">
+      <DependentUpon>LeaveManager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LeaveManager.aspx.designer.cs">
+      <DependentUpon>LeaveManager.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ListPerson-ADMIN.aspx.cs">
       <DependentUpon>ListPerson-ADMIN.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1602,6 +1615,34 @@
     <Compile Include="UploadList.aspx.designer.cs">
       <DependentUpon>UploadList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="UpSalary70_30_1.aspx.cs">
+      <DependentUpon>UpSalary70_30_1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UpSalary70_30_1.aspx.designer.cs">
+      <DependentUpon>UpSalary70_30_1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UpSalary70_30_2.aspx.cs">
+      <DependentUpon>UpSalary70_30_2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UpSalary70_30_2.aspx.designer.cs">
+      <DependentUpon>UpSalary70_30_2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UpSalary80_20_1.aspx.cs">
+      <DependentUpon>UpSalary80_20_1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UpSalary80_20_1.aspx.designer.cs">
+      <DependentUpon>UpSalary80_20_1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UpSalary80_20_2.aspx.cs">
+      <DependentUpon>UpSalary80_20_2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UpSalary80_20_2.aspx.designer.cs">
+      <DependentUpon>UpSalary80_20_2.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Util.cs" />
     <Compile Include="ViewLeaveForm.aspx.cs">
       <DependentUpon>ViewLeaveForm.aspx</DependentUpon>
@@ -1630,6 +1671,13 @@
     </Compile>
     <Compile Include="WorkingTimeHistory.aspx.designer.cs">
       <DependentUpon>WorkingTimeHistory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WorkingTimeManager.aspx.cs">
+      <DependentUpon>WorkingTimeManager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WorkingTimeManager.aspx.designer.cs">
+      <DependentUpon>WorkingTimeManager.aspx</DependentUpon>
     </Compile>
     <Compile Include="Year-ADMIN.aspx.cs">
       <DependentUpon>Year-ADMIN.aspx</DependentUpon>

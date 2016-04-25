@@ -43,19 +43,19 @@ namespace WEB_PERSONAL {
                 if (count_cmd_low != 0) {
                     notification_area.InnerHtml += "<div class='comment_left' style='margin-bottom: 20px;'></div>";
                     notification_area.InnerHtml += "<div class='comment_center'><img src='Image/Small/pencil_y.png' class='icon_left'/>คุณมี <strong>" + count_cmd_low + "</strong> รายการที่ต้องลงความเห็นการลา<br>";
-                    notification_area.InnerHtml += "<a href='LeaveComment.aspx' class='button button_default'>ไปหน้าการลงความเห็น<img src='Image/Small/next.png' class='icon_right' /></a>";
+                    notification_area.InnerHtml += "<a href='LeaveComment.aspx' class='ps-button'>ไปหน้าการลงความเห็น<img src='Image/Small/next.png' class='icon_right' /></a>";
                     notification_area.InnerHtml += "</div>";
                 }
                 if (count_cmd_high != 0) {
                     notification_area.InnerHtml += "<div class='allow_left' style='margin-bottom: 20px;'></div>";
                     notification_area.InnerHtml += "<div class='allow_center'><img src='Image/Small/correct.png' class='icon_left'/>คุณมี " + count_cmd_high + " รายการที่ต้องอนุมัติการลา<br>";
-                    notification_area.InnerHtml += "<a href='LeaveAllow.aspx' class='button button_default'>ไปหน้าการอนุมัติ<img src='Image/Small/next.png' class='icon_right' /></a>";
+                    notification_area.InnerHtml += "<a href='LeaveAllow.aspx' class='ps-button'>ไปหน้าการอนุมัติ<img src='Image/Small/next.png' class='icon_right' /></a>";
                     notification_area.InnerHtml += "</div>";
                 }
                 if (count_finish != 0) {
                     notification_area.InnerHtml += "<div class='complete_left' style='margin-bottom: 20px;'></div>";
                     notification_area.InnerHtml += "<div class='complete_center'>คุณมี " + count_finish + " รายการที่สำเร็จ<br>";
-                    notification_area.InnerHtml += "<a href='LeaveHistory.aspx' class='button button_default'>ไปหน้าสถานะ และ ประวัติการลา<img src='Image/Small/next.png' class='icon_right' /></a>";
+                    notification_area.InnerHtml += "<a href='LeaveHistory.aspx' class='ps-button'>ไปหน้าสถานะ และ ประวัติการลา<img src='Image/Small/next.png' class='icon_right' /></a>";
                     notification_area.InnerHtml += "</div>";
                 }
 

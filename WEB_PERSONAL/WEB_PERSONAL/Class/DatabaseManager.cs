@@ -67,6 +67,11 @@ namespace WEB_PERSONAL.Class {
             ddl.DataBind();
             ddl.Items.Insert(0, new ListItem(first, "0"));
         }
+        public static void BindGridView(GridView gv, string sql) {
+            SqlDataSource sds = CreateSQLDataSource(sql);
+            gv.DataSource = sds;
+            gv.DataBind();
+        }
         public static SqlDataSource CreateSQLDataSource(string sql) {
             return new SqlDataSource("System.Data.OleDb", CONNECTION_STRING, sql);
         }
@@ -305,6 +310,7 @@ namespace WEB_PERSONAL.Class {
                             form1Package.PersonLastName = reader.GetValue(i++).ToString();
                             form1Package.PersonPosition = reader.GetValue(i++).ToString();
                             form1Package.PersonDepartment = reader.GetValue(i++).ToString();
+                            form1Package.PersonRank = reader.GetValue(i++).ToString();
                             form1Package.FormID = reader.GetValue(i++).ToString();
                             i++;
                             form1Package.Reason = reader.GetValue(i++).ToString();
@@ -358,6 +364,9 @@ namespace WEB_PERSONAL.Class {
         }
         public static void AddCounter() {
             ExecuteNonQuery("UPDATE TB_WEB SET COUNTER = COUNTER+1 WHERE ID = 1");
+        }
+        public static int GetCounter() {
+            return ExecuteInt("SELECT COUNTER FROM TB_WEB WHERE ID = 1");
         }
         public static string GetPersonImageFileName(string citizenID) {
             string fileName = "";
