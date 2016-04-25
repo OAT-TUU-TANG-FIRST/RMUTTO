@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data.OracleClient;
 using WEB_PERSONAL.Class;
 using System.Threading;
 

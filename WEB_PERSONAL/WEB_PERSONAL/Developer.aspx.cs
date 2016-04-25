@@ -5,16 +5,16 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using WEB_PERSONAL.Class;
-using System.Data.OleDb;
+using Oracle.DataAccess.Client;
 
 namespace WEB_PERSONAL {
     public partial class Developer : System.Web.UI.Page {
         protected void Page_Load(object sender, EventArgs e) {
             if(!IsPostBack) {
-                using (OleDbConnection con = new OleDbConnection(DatabaseManager.CONNECTION_STRING)) {
+                using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                     con.Open();
-                    using (OleDbCommand com = new OleDbCommand("SELECT OWNER, TABLE_NAME FROM DBA_TABLES WHERE OWNER = 'RMUTTO' ORDER BY TABLE_NAME ASC", con)) {
-                        using (OleDbDataReader reader = com.ExecuteReader()) {
+                    using (OracleCommand com = new OracleCommand("SELECT OWNER, TABLE_NAME FROM DBA_TABLES WHERE OWNER = 'RMUTTO' ORDER BY TABLE_NAME ASC", con)) {
+                        using (OracleDataReader reader = com.ExecuteReader()) {
                             while (reader.Read()) {
                                 ListBox1.Items.Add(new ListItem(reader.GetValue(1).ToString()));
                             }

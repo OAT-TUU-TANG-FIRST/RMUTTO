@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
-using System.Data.OleDb;
 using System.IO;
 using WEB_PERSONAL.Class;
+using Oracle.DataAccess.Client;
 
 namespace WEB_PERSONAL {
     public partial class Default : System.Web.UI.Page {
@@ -23,10 +23,10 @@ namespace WEB_PERSONAL {
             int count_cmd_low = DatabaseManager.GetLeaveRequiredCountByCommanderLow(loginPerson.CitizenID);
             int count_cmd_high = DatabaseManager.GetLeaveRequiredCountByCommanderHigh(loginPerson.CitizenID);
             int count_finish = 0;
-            using (OleDbConnection con = new OleDbConnection(DatabaseManager.CONNECTION_STRING)) {
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
-                using (OleDbCommand com = new OleDbCommand("SELECT COUNT(LEAVE_ID) FROM LEV_LEAVE WHERE CITIZEN_ID = '" + loginPerson.CitizenID + "' AND LEV_LEAVE.STATE_ID = 5", con)) {
-                    using (OleDbDataReader reader = com.ExecuteReader()) {
+                using (OracleCommand com = new OracleCommand("SELECT COUNT(LEAVE_ID) FROM LEV_LEAVE WHERE CITIZEN_ID = '" + loginPerson.CitizenID + "' AND LEV_LEAVE.STATE_ID = 5", con)) {
+                    using (OracleDataReader reader = com.ExecuteReader()) {
                         while (reader.Read()) {
                             count_finish = int.Parse(reader.GetValue(0).ToString());
                         }

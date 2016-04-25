@@ -147,8 +147,8 @@
                             <asp:LinkButton ID="lbuAddComment" runat="server" CssClass="ps-button" OnClick="lbuAddComment_Click">ยืนยันการอนุมัติ<img src="Image/Small/next.png" class="icon_right"/></asp:LinkButton>
             </asp:View>
             <asp:View ID="View3" runat="server">
-                <asp:LinkButton ID="lbu1" runat="server" CssClass="hm_button_primary" OnClick="lbu1_Click">กลับหน้าหลัก</asp:LinkButton>
-                <asp:LinkButton ID="lbu2" runat="server" CssClass="hm_button_primary" OnClick="lbu2_Click">อนุมัติการลาต่อ</asp:LinkButton>
+                <asp:LinkButton ID="lbu1" runat="server" CssClass="ps-button" OnClick="lbu1_Click"><img src="Image/Small/back.png" class="icon_left"/>กลับหน้าหลัก</asp:LinkButton>
+                <asp:LinkButton ID="lbu2" runat="server" CssClass="ps-button" OnClick="lbu2_Click">อนุมัติการลาต่อ<img src="Image/Small/next.png" class="icon_right"/></asp:LinkButton>
             </asp:View>
         </asp:MultiView>
 

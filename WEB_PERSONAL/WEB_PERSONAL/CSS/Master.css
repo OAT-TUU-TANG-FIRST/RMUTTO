@@ -935,6 +935,36 @@ ault_page_header {
     border-bottom: 1px solid #d0d0d0;
     border-top: 1px solid #b0b0b0;
 }
+.ps-button-img {
+    display: inline-block;
+    font-family: Roboto-Regular, Tahoma;
+    font-weight: normal;
+    font-size: 12px;
+    text-decoration: none;
+    padding: 3px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: color ease 0.25s, background-color ease 0.25s, border-color ease 0.25s;
+
+    color: #000000;
+    background-color: #ffffff;
+    border: 1px solid #c0c0c0;
+    border-top: 1px solid #d0d0d0;
+    border-bottom: 1px solid #b0b0b0;
+    padding: 3px 5px;
+
+    outline: none;
+}
+.ps-button-img:hover {
+    color: #000000;
+    background-color: #f0f0f0;
+    border: 1px solid #c0c0c0;
+    border-bottom: 1px solid #d0d0d0;
+    border-top: 1px solid #b0b0b0;
+}
+.ps-button-img img {
+    margin-top: 2px;
+}
 .ps-textbox {
     display: inline-block;
     font-family: Roboto-Regular, Tahoma;
@@ -1117,7 +1147,9 @@ ault_page_header {
     border: 1px solid #c0c0c0;
     height: 18px;*/
 }
-
+.ps-gridview-manager-top {
+    margin-bottom: 5px;
+}
 .label_success {
     color: #138800;
 }
@@ -1127,9 +1159,11 @@ ault_page_header {
 
 .tImage {
     display: inline-block;
-    margin-right: 1px;
-    margin-bottom: 1px;
 
+    border: 1px solid transparent;
+}
+.tImage:hover {
+    border: 1px solid #00a2e8;
 }
 .tImage img {
     vertical-align: top;

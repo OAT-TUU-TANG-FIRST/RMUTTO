@@ -2,22 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Data.OracleClient;
 using System.Web.UI;
 using System.Globalization;
-using System.Data.OleDb;
 using WEB_PERSONAL.Class;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Net;
 using System.Net.Mail;
 using WEB_PERSONAL.Entities;
+using Oracle.DataAccess.Client;
 
 namespace WEB_PERSONAL {
 
     public class Util {
 
-        public static readonly string CONNECTION_STRING = @"Provider=OraOLEDB.Oracle; Data Source = 203.158.140.67:1521/orcl;USER ID=rmutto;PASSWORD=Zxcvbnm";
         public static string ToOracleDate2(string date) {
             string[] s = date.Split('/');
             return s[0] + " " + ToOracleMonth(s[1]) + " " + (Convert.ToInt32(s[2]) - 543);
@@ -213,7 +211,7 @@ namespace WEB_PERSONAL {
             }
         }
         public static OracleConnection OC() {
-            OracleConnection con = new OracleConnection("DATA SOURCE=ORCL_RMUTTO;USER ID=RMUTTO;PASSWORD=Zxcvbnm;");
+            OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING);
             con.Open();
             return con;
         }
@@ -275,10 +273,10 @@ namespace WEB_PERSONAL {
         }
         public static string TodayDatabaseToDate() {
             string s = "-";
-            using (OleDbConnection con = new OleDbConnection(DatabaseManager.CONNECTION_STRING)) {
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
-                using (OleDbCommand com = new OleDbCommand("SELECT TO_CHAR(CURRENT_DATE, 'DD/MM/YYYY') FROM DUAL", con)) {
-                    using (OleDbDataReader reader = com.ExecuteReader()) {
+                using (OracleCommand com = new OracleCommand("SELECT TO_CHAR(CURRENT_DATE, 'DD/MM/YYYY') FROM DUAL", con)) {
+                    using (OracleDataReader reader = com.ExecuteReader()) {
                         while (reader.Read()) {
                             s = reader.GetValue(0).ToString();
                         }
@@ -402,16 +400,16 @@ namespace WEB_PERSONAL {
                 default: return "[error]";
             }
         }
-        public static void NormalizeGridViewDate(GridView gw, int rowIndex) {
-            for (int i = 0; i < gw.Rows.Count; ++i) {
-                string s = gw.Rows[i].Cells[rowIndex].Text;
+        public static void NormalizeGridViewDate(GridView gv, int rowIndex) {
+            for (int i = 0; i < gv.Rows.Count; ++i) {
+                string s = gv.Rows[i].Cells[rowIndex].Text;
                 string[] ss = s.Split('/');
-                gw.Rows[i].Cells[rowIndex].Text = PureDatabaseToThaiDate(s);
+                gv.Rows[i].Cells[rowIndex].Text = PureDatabaseToThaiDate(s);
             }
         }
-        public static void NormalizeGridViewDate7D(GridView gw, int rowIndex) {
-            for (int i = 0; i < gw.Rows.Count; ++i) {
-                string s = gw.Rows[i].Cells[rowIndex].Text;
+        public static void NormalizeGridViewDate7D(GridView gv, int rowIndex) {
+            for (int i = 0; i < gv.Rows.Count; ++i) {
+                string s = gv.Rows[i].Cells[rowIndex].Text;
                 string[] ss1 = s.Split(' ');
                 string[] ss2 = ss1[0].Split('-');
                 string year = ss2[0];
@@ -428,19 +426,34 @@ namespace WEB_PERSONAL {
                     case "7": day7 = "เสาร์"; break;
                     default: day = "[error]"; break;
                 }
-                gw.Rows[i].Cells[rowIndex].Text = day + " " + month + " " + year + " " + day7;
+                gv.Rows[i].Cells[rowIndex].Text = day + " " + month + " " + year + " " + day7;
             }
         }
-        public static void NormalizeGridViewDate(GridView gw, int[] rowIndex) {
-            for (int i = 0; i < gw.Rows.Count; ++i) {
+        public static void NormalizeGridViewDate(GridView gv, int[] rowIndex) {
+            for (int i = 0; i < gv.Rows.Count; ++i) {
                 for (int j = 0; j < rowIndex.Length; ++j) {
-                    string s = gw.Rows[i].Cells[rowIndex[j]].Text;
+                    string s = gv.Rows[i].Cells[rowIndex[j]].Text;
                     string[] ss = s.Split('/');
-                    gw.Rows[i].Cells[rowIndex[j]].Text = PureDatabaseToThaiDate(s);
+                    gv.Rows[i].Cells[rowIndex[j]].Text = PureDatabaseToThaiDate(s);
                 }
 
             }
         }
+        public static void GridViewAddCheckBox(GridView gv) {
+            TableHeaderCell headerFrontCell = new TableHeaderCell();
+            headerFrontCell.Text = "เลือก";
+            gv.HeaderRow.Cells.AddAt(0, headerFrontCell);
+
+            for (int i = 0; i < gv.Rows.Count; ++i) {
+                TableCell frontCell = new TableCell();
+                CheckBox cb = new CheckBox();
+                frontCell.Controls.Add(cb);
+                gv.Rows[i].Cells.AddAt(0, frontCell);
+            }
+
+
+        }
+     
         public static string BirthdayToRetireDate(string birthday) {
             string[] ss = birthday.Split(' ');
             return "30 ก.ย. " + (int.Parse(ss[2]) + 60);
@@ -509,6 +522,14 @@ namespace WEB_PERSONAL {
             var random = new Random();
             return new string(Enumerable.Repeat(chars, 24)
               .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+        public static bool StringEqual(string source, string[] target) {
+            for(int i=0; i<target.Length; ++i) {
+                if(source == target[i]) {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public void Insig() {

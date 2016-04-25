@@ -5,13 +5,12 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
-using System.Data.OracleClient;
 using System.Globalization;
 using System.Drawing;
 using System.Web.UI.HtmlControls;
 using WEB_PERSONAL.Class;
-using System.Data.OleDb;
 using System.IO;
+using Oracle.DataAccess.Client;
 
 namespace WEB_PERSONAL {
     public partial class Leave : System.Web.UI.Page {
@@ -64,10 +63,13 @@ namespace WEB_PERSONAL {
                 string lastFromDate = "''";
                 string lastToDate = "''";
                 string lastTotalDay = "''";
-                using (OleDbConnection con = new OleDbConnection(DatabaseManager.CONNECTION_STRING)) {
+
+                int pastTotalDay = DatabaseManager.ExecuteInt("SELECT NVL(SUM(TOTAL_DAY),0) FROM LEV_MAIN WHERE PS_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND EXTRACT(YEAR FROM FROM_DATE) = 2016");
+
+                using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                     con.Open();
-                    using (OleDbCommand com = new OleDbCommand("SELECT LEV_MAIN.FROM_DATE, LEV_MAIN.TO_DATE, LEV_MAIN.TOTAL_DAY FROM LEV_MAIN WHERE LEV_MAIN.PS_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND LEV_MAIN.LEAVE_TYPE_ID = " + ddlLeaveType.SelectedValue + " AND ROWNUM = 1 ORDER BY LEV_MAIN.LEAVE_ID DESC", con)) {
-                        using (OleDbDataReader reader = com.ExecuteReader()) {
+                    using (OracleCommand com = new OracleCommand("SELECT LEV_MAIN.FROM_DATE, LEV_MAIN.TO_DATE, LEV_MAIN.TOTAL_DAY FROM LEV_MAIN WHERE LEV_MAIN.PS_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND LEV_MAIN.LEAVE_TYPE_ID = " + ddlLeaveType.SelectedValue + " AND ROWNUM = 1 ORDER BY LEV_MAIN.LEAVE_ID DESC", con)) {
+                        using (OracleDataReader reader = com.ExecuteReader()) {
                             while (reader.Read()) {
                                 lastFromDate = Util.PureDatabaseToThaiDate(reader.GetValue(0).ToString());
                                 lastToDate = Util.PureDatabaseToThaiDate(reader.GetValue(1).ToString());
@@ -76,6 +78,7 @@ namespace WEB_PERSONAL {
                             }
                         }
                     }
+   
                 }
 
                 lbF1S2PersonName.Text = loginPerson.FullName;
@@ -88,6 +91,7 @@ namespace WEB_PERSONAL {
                 DateTime dtToDate = Util.ToDateTime(tbF1S1ToDate.Text);
                 int totalDay = (int)(dtToDate - dtFromDate).TotalDays + 1;
                 lbF1S2FTTDate.Text = tbF1S1FromDate.Text + "&nbsp;&nbsp;ถึง&nbsp;&nbsp;" + tbF1S1ToDate.Text + "&nbsp;&nbsp;รวม&nbsp;&nbsp;" + totalDay + " วัน";
+                lbF1S2Statistic.Text = "ลามาแล้ว " + pastTotalDay + " วัน / ลาครั้งนี้ " + totalDay + " วัน / รวม " + (pastTotalDay + totalDay) + " วัน";
                 lbF1S2Reason.Text = tbF1S1Reason.Text;
                 lbF1S2Contact.Text = tbF1S1Contact.Text;
                 lbF1S2Phone.Text = tbF1S1Phone.Text;
@@ -110,8 +114,8 @@ namespace WEB_PERSONAL {
                 sql1 = string.Format(sql1, "{0}", ddlLeaveType.SelectedValue, 1, loginPerson.CitizenID, Util.TodayDatabaseToDate(), Util.DatabaseToDate(tbF1S1FromDate.Text), Util.DatabaseToDate(tbF1S1ToDate.Text), totalDay, psCL.CitizenID, psCL.TitleName, psCL.FirstName, psCL.LastName, psCL.PositionName, "", "''", psCH.CitizenID, psCH.TitleName, psCH.FirstName, psCH.LastName, psCH.PositionName, "", "''", "''", loginPerson.TitleName, loginPerson.FirstName, loginPerson.LastName, loginPerson.PositionName, loginPerson.DivisionName, loginPerson.AdminPositionName);
                 hfSql.Value = sql1;
 
-                string sql2 = "INSERT INTO LEV_FORM1 (FORM1_ID, LEAVE_ID, REASON, CONTACT, PHONE, LAST_FROM_DATE, LAST_TO_DATE, LAST_TOTAL_DAY, DR_CER_FILE_NAME) VALUES ({0},{1},'{2}','{3}','{4}',{5},{6},{7},'{8}')";
-                sql2 = string.Format(sql2, "SEQ_LEV_FORM1_ID.NEXTVAL", "{0}", tbF1S1Reason.Text, tbF1S1Contact.Text, tbF1S1Phone.Text, Util.DatabaseToDate(lastFromDate), Util.DatabaseToDate(lastToDate), lastTotalDay, drCer);
+                string sql2 = "INSERT INTO LEV_FORM1 (FORM1_ID, LEAVE_ID, REASON, CONTACT, PHONE, LAST_FROM_DATE, LAST_TO_DATE, LAST_TOTAL_DAY, DR_CER_FILE_NAME, COUNT_PAST, COUNT_NOW, COUNT_TOTAL) VALUES ({0},{1},'{2}','{3}','{4}',{5},{6},{7},'{8}',{9},{10},{11})";
+                sql2 = string.Format(sql2, "SEQ_LEV_FORM1_ID.NEXTVAL", "{0}", tbF1S1Reason.Text, tbF1S1Contact.Text, tbF1S1Phone.Text, Util.DatabaseToDate(lastFromDate), Util.DatabaseToDate(lastToDate), lastTotalDay, drCer, pastTotalDay, totalDay, pastTotalDay + totalDay);
                 hfSql2.Value = sql2;
 
                 hfFileUploadName.Value = drCer;
@@ -199,10 +203,10 @@ namespace WEB_PERSONAL {
                 string lastFromDate = "''";
                 string lastToDate = "''";
                 string lastTotalDay = "''";
-                using (OleDbConnection con = new OleDbConnection(DatabaseManager.CONNECTION_STRING)) {
+                using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                     con.Open();
-                    using (OleDbCommand com = new OleDbCommand("SELECT LEV_MAIN.FROM_DATE, LEV_MAIN.TO_DATE, LEV_MAIN.TOTAL_DAY FROM LEV_MAIN WHERE LEV_MAIN.PS_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND LEV_MAIN.LEAVE_TYPE_ID = " + ddlLeaveType.SelectedValue + " AND ROWNUM = 1 ORDER BY LEV_MAIN.LEAVE_ID DESC", con)) {
-                        using (OleDbDataReader reader = com.ExecuteReader()) {
+                    using (OracleCommand com = new OracleCommand("SELECT LEV_MAIN.FROM_DATE, LEV_MAIN.TO_DATE, LEV_MAIN.TOTAL_DAY FROM LEV_MAIN WHERE LEV_MAIN.PS_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND LEV_MAIN.LEAVE_TYPE_ID = " + ddlLeaveType.SelectedValue + " AND ROWNUM = 1 ORDER BY LEV_MAIN.LEAVE_ID DESC", con)) {
+                        using (OracleDataReader reader = com.ExecuteReader()) {
                             while (reader.Read()) {
                                 lastFromDate = Util.PureDatabaseToThaiDate(reader.GetValue(0).ToString());
                                 lastToDate = Util.PureDatabaseToThaiDate(reader.GetValue(1).ToString());
@@ -538,8 +542,8 @@ namespace WEB_PERSONAL {
                 fu.SaveAs(Server.MapPath("Upload/DrCer/" + hfFileUploadName.Value));
             }
 
-            ChangeNotification("success", "<strong>ทำการลาสำเร็จ!</strong> คุณสามารถตรวจสอบสถานะการลาได้ที่เมนู การลา -> สถานะ และ ประวัติการลา");
-            MultiView1.ActiveViewIndex = 20;
+            ChangeNotification("success", "<strong>ทำการลาสำเร็จ!</strong> คุณสามารถตรวจสอบสถานะการลาได้ที่เมนู การลา -> ประวัติการลา");
+            MultiView1.ActiveViewIndex = 24;
 
         }
         protected void lbuVX22Finish_Click(object sender, EventArgs e) {
@@ -710,10 +714,10 @@ namespace WEB_PERSONAL {
                 string lastFromDate = "''";
                 string lastToDate = "''";
                 string lastTotalDay = "''";
-                using (OleDbConnection con = new OleDbConnection(DatabaseManager.CONNECTION_STRING)) {
+                using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                     con.Open();
-                    using (OleDbCommand com = new OleDbCommand("SELECT LEV_MAIN.FROM_DATE, LEV_MAIN.TO_DATE, LEV_MAIN.TOTAL_DAY FROM LEV_MAIN WHERE LEV_MAIN.PS_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND LEV_MAIN.LEAVE_TYPE_ID = " + ddlLeaveType.SelectedValue + " AND ROWNUM = 1 ORDER BY LEV_MAIN.LEAVE_ID DESC", con)) {
-                        using (OleDbDataReader reader = com.ExecuteReader()) {
+                    using (OracleCommand com = new OracleCommand("SELECT LEV_MAIN.FROM_DATE, LEV_MAIN.TO_DATE, LEV_MAIN.TOTAL_DAY FROM LEV_MAIN WHERE LEV_MAIN.PS_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND LEV_MAIN.LEAVE_TYPE_ID = " + ddlLeaveType.SelectedValue + " AND ROWNUM = 1 ORDER BY LEV_MAIN.LEAVE_ID DESC", con)) {
+                        using (OracleDataReader reader = com.ExecuteReader()) {
                             while (reader.Read()) {
                                 lastFromDate = Util.PureDatabaseToThaiDate(reader.GetValue(0).ToString());
                                 lastToDate = Util.PureDatabaseToThaiDate(reader.GetValue(1).ToString());

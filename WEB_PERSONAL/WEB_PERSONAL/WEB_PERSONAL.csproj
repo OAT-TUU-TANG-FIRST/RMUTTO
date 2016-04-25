@@ -73,6 +73,7 @@
       <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Oracle.DataAccess, Version=2.121.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86" />
     <Reference Include="System.Data.OracleClient" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -764,6 +765,7 @@
     <Content Include="Image\office.jpg" />
     <Content Include="Image\rmutto_clear.jpg" />
     <Content Include="Image\Small\back.png" />
+    <Content Include="Image\Small\bin.png" />
     <Content Include="Image\Small\clock.png" />
     <Content Include="Image\Small\home.png" />
     <Content Include="Image\Small\home3.png" />
@@ -802,6 +804,7 @@
     <Content Include="Image\Small\statistic.png" />
     <Content Include="Image\Small\table.png" />
     <Content Include="Image\Small\unlock.png" />
+    <Content Include="Image\Small\upload.png" />
     <Content Include="Image\Small\wrench.png" />
     <Content Include="Image\Small\yellow_alert.png" />
     <Content Include="Image\stickman.png" />
@@ -941,7 +944,6 @@
     <Content Include="LeaveHistory.aspx" />
     <Content Include="LeaveManager.aspx" />
     <Content Include="ListPerson-ADMIN.aspx" />
-    <Content Include="Login.aspx" />
     <Content Include="Ministry-ADMIN.aspx" />
     <Content Include="Month-ADMIN.aspx" />
     <Content Include="National-ADMIN.aspx" />
@@ -968,7 +970,6 @@
     <Content Include="Profile.aspx" />
     <Content Include="Staff-ADMIN.aspx" />
     <Content Include="StaffType-ADMIN.aspx" />
-    <Content Include="Study-Report1.aspx" />
     <Content Include="TeachISCED-ADMIN.aspx" />
     <Content Include="TestOutput.aspx" />
     <Content Include="UploadList.aspx" />
@@ -1014,7 +1015,6 @@
     <Content Include="Script\JSFunction.js" />
     <Content Include="SEMINAR-ADMIN.aspx" />
     <Content Include="SEMINAR-GENERAL.aspx" />
-    <Content Include="Study-IN.aspx" />
     <Content Include="TitleName-ADMIN.aspx" />
     <Content Include="Salary.aspx" />
     <Content Include="CSS\Master.css" />
@@ -1107,16 +1107,10 @@
     <Compile Include="CitizenDetails.aspx.designer.cs">
       <DependentUpon>CitizenDetails.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Class\BaseSalary.cs" />
     <Compile Include="Class\DatabaseManager.cs" />
-    <Compile Include="Class\DisciplinaryAndAmnesty.cs" />
     <Compile Include="Class\Form1Package.cs" />
-    <Compile Include="Class\JobLicense.cs" />
     <Compile Include="Class\Person.cs" />
     <Compile Include="Class\PersonnelSystem.cs" />
-    <Compile Include="Class\PositionAndSalary.cs" />
-    <Compile Include="Class\StudyHistory.cs" />
-    <Compile Include="Class\TrainingHistory.cs" />
     <Compile Include="Connection\ConnectionDB.cs" />
     <Compile Include="DataManager.aspx.cs">
       <DependentUpon>DataManager.aspx</DependentUpon>
@@ -1351,13 +1345,6 @@
     <Compile Include="ListPerson-ADMIN.aspx.designer.cs">
       <DependentUpon>ListPerson-ADMIN.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Login.aspx.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Login.aspx.designer.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
-    </Compile>
     <Compile Include="MasterPage.Master.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1523,20 +1510,6 @@
     </Compile>
     <Compile Include="StaffType-ADMIN.aspx.designer.cs">
       <DependentUpon>StaffType-ADMIN.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Study-IN.aspx.cs">
-      <DependentUpon>Study-IN.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Study-IN.aspx.designer.cs">
-      <DependentUpon>Study-IN.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Study-Report1.aspx.cs">
-      <DependentUpon>Study-Report1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Study-Report1.aspx.designer.cs">
-      <DependentUpon>Study-Report1.aspx</DependentUpon>
     </Compile>
     <Compile Include="TeachISCED-ADMIN.aspx.cs">
       <DependentUpon>TeachISCED-ADMIN.aspx</DependentUpon>

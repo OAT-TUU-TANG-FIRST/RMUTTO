@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web.UI.WebControls;
-using System.Data.OracleClient;
 using System.Data;
+using Oracle.DataAccess.Client;
 
 namespace WEB_PERSONAL
 {
@@ -29,11 +29,11 @@ namespace WEB_PERSONAL
                         sql = String.Format(sql, DropDownList1.SelectedValue, TextBox1.Text, TextBox2.Text, TextBox3.Text, TextBox4.Text);
                         using (OracleCommand command = new OracleCommand(sql, conn))
                         {
-                            command.Parameters.AddWithValue("1", DropDownList1.SelectedValue);
-                            command.Parameters.AddWithValue("2", TextBox1.Text);
-                            command.Parameters.AddWithValue("3", TextBox2.Text);
-                            command.Parameters.AddWithValue("4", TextBox3.Text);
-                            command.Parameters.AddWithValue("5", TextBox4.Text);
+                            command.Parameters.Add("1", DropDownList1.SelectedValue);
+                            command.Parameters.Add("2", TextBox1.Text);
+                            command.Parameters.Add("3", TextBox2.Text);
+                            command.Parameters.Add("4", TextBox3.Text);
+                            command.Parameters.Add("5", TextBox4.Text);
                             command.ExecuteNonQuery();
                             Session.Remove("base_id");
                         }
@@ -45,12 +45,12 @@ namespace WEB_PERSONAL
                         sql = String.Format(sql, DropDownList1.SelectedValue, TextBox1.Text, TextBox2.Text, TextBox3.Text, TextBox4.Text);
                         using (OracleCommand command = new OracleCommand(sql, conn))
                         {
-                            command.Parameters.AddWithValue("0", Session["base_id"].ToString());
-                            command.Parameters.AddWithValue("1", DropDownList1.SelectedValue);
-                            command.Parameters.AddWithValue("2", TextBox1.Text);
-                            command.Parameters.AddWithValue("3", TextBox2.Text);
-                            command.Parameters.AddWithValue("4", TextBox3.Text);
-                            command.Parameters.AddWithValue("5", TextBox4.Text);
+                            command.Parameters.Add("0", Session["base_id"].ToString());
+                            command.Parameters.Add("1", DropDownList1.SelectedValue);
+                            command.Parameters.Add("2", TextBox1.Text);
+                            command.Parameters.Add("3", TextBox2.Text);
+                            command.Parameters.Add("4", TextBox3.Text);
+                            command.Parameters.Add("5", TextBox4.Text);
                             command.ExecuteNonQuery();
                             Session.Remove("base_id");
                         }
@@ -114,11 +114,11 @@ namespace WEB_PERSONAL
                         sql = String.Format(sql, TextBox5.Text, TextBox6.Text, TextBox7.Text, TextBox8.Text, Session["Per_EMP"].ToString());
                         using (OracleCommand command = new OracleCommand(sql, conn))
                         {
-                            command.Parameters.AddWithValue("1", TextBox5.Text);
-                            command.Parameters.AddWithValue("2", TextBox6.Text);
-                            command.Parameters.AddWithValue("3", TextBox7.Text);
-                            command.Parameters.AddWithValue("4", TextBox8.Text);
-                            command.Parameters.AddWithValue("5", Session["Per_EMP"].ToString());
+                            command.Parameters.Add("1", TextBox5.Text);
+                            command.Parameters.Add("2", TextBox6.Text);
+                            command.Parameters.Add("3", TextBox7.Text);
+                            command.Parameters.Add("4", TextBox8.Text);
+                            command.Parameters.Add("5", Session["Per_EMP"].ToString());
                             command.ExecuteNonQuery();
                             Session.Remove("Per_EMP");
                             Session.Remove("Per_EMP_ID");
@@ -131,12 +131,12 @@ namespace WEB_PERSONAL
                         sql = String.Format(sql, TextBox5.Text, TextBox6.Text, TextBox7.Text, TextBox8.Text, Session["Per_EMP"].ToString());
                         using (OracleCommand command = new OracleCommand(sql, conn))
                         {
-                            command.Parameters.AddWithValue("0", Session["Per_EMP_ID"].ToString());
-                            command.Parameters.AddWithValue("1", TextBox5.Text);
-                            command.Parameters.AddWithValue("2", TextBox6.Text);
-                            command.Parameters.AddWithValue("3", TextBox7.Text);
-                            command.Parameters.AddWithValue("4", TextBox8.Text);
-                            command.Parameters.AddWithValue("5", Session["Per_EMP"].ToString());
+                            command.Parameters.Add("0", Session["Per_EMP_ID"].ToString());
+                            command.Parameters.Add("1", TextBox5.Text);
+                            command.Parameters.Add("2", TextBox6.Text);
+                            command.Parameters.Add("3", TextBox7.Text);
+                            command.Parameters.Add("4", TextBox8.Text);
+                            command.Parameters.Add("5", Session["Per_EMP"].ToString());
                             command.ExecuteNonQuery();
                             Session.Remove("Per_EMP");
                             Session.Remove("Per_EMP_ID");
