@@ -10,11 +10,17 @@
 
         <div id="error_area" runat="server"></div>
 
-        <asp:GridView ID="GridView1" runat="server"></asp:GridView>
-
-        <div id="i1" runat="server"></div> 
-        <div id="i2" runat="server">
-            <table>
+        <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex="0">
+            <asp:View ID="View1" runat="server">
+                <asp:GridView ID="GridView1" runat="server" CssClass="default_gridview"></asp:GridView>
+                <div class="default_separator"></div>
+            </asp:View>
+            <asp:View ID="View2" runat="server">
+                
+            <table class="default_table">
+                <tr>
+                    <td colspan="2" class="head">ข้อมูลการลา</td>
+                </tr>
                 <tr>
                     <td class="col1">รหัสการลา</td>
                     <td class="col2">
@@ -79,6 +85,13 @@
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
+                    <td class="col1">สถิติการลา</td>
+                    <td class="col2">
+                        <asp:Label ID="lbF1Statistic" runat="server"></asp:Label>
+                    </td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
                     <td class="col1">เหตุผล</td>
                     <td class="col2">
                         <asp:Label ID="lbF1Reason" runat="server"></asp:Label>
@@ -112,24 +125,22 @@
                     </td>
                     <td>&nbsp;</td>
                 </tr>
-                <tr>
-                    <td class="col1">&nbsp;</td>
-                    <td class="col2">&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td class="col1">&nbsp;</td>
-                    <td class="col2">
-                        <asp:LinkButton ID="lbuF1Back" runat="server" CssClass="button button_default" OnClick="lbuF1Back_Click"><img src="Image/Small/back.png" class="icon_left"/>ย้อนกลับ</asp:LinkButton>
-                        <asp:LinkButton ID="lbuF1Add" runat="server" CssClass="button button_default" OnClick="lbuF1Add_Click">ยืนยันการลงความเห็น<img src="Image/Small/forward.png" class="icon_right"/></asp:LinkButton>
-                    </td>
-                    <td>&nbsp;</td>
-                </tr>
             </table>
-        </div>
-        <div id="i3" runat="server">
+            <div class="default_separator"></div>
+                <asp:LinkButton ID="lbuF1Back" runat="server" CssClass="button button_default" OnClick="lbuF1Back_Click"><img src="Image/Small/back.png" class="icon_left"/>ย้อนกลับ</asp:LinkButton>
+                        <asp:LinkButton ID="lbuF1Add" runat="server" CssClass="button button_default" OnClick="lbuF1Add_Click">ยืนยันการลงความเห็น<img src="Image/Small/next.png" class="icon_right"/></asp:LinkButton>
+            </asp:View>
+            <asp:View ID="View3" runat="server">
+
             <asp:LinkButton ID="lbu1" runat="server" CssClass="button button_default" OnClick="lbu1_Click"><img src="Image/Small/back.png" class="icon_left"/>กลับหน้าหลัก</asp:LinkButton>
             <asp:LinkButton ID="lbu2" runat="server" CssClass="button button_default" OnClick="lbu2_Click">ลงความเห็นต่อ<img src="Image/Small/forward.png" class="icon_right"/></asp:LinkButton>
-        </div>
+  
+            </asp:View>
+        </asp:MultiView>
+        
+
+        
+        
+        
     </div>
 </asp:Content>

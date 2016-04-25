@@ -22,15 +22,6 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.Panel Panel1;
         
         /// <summary>
-        /// txtSearchWorkDivisionID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearchWorkDivisionID;
-        
-        /// <summary>
         /// txtSearchWorkDivisionName control.
         /// </summary>
         /// <remarks>
@@ -40,31 +31,31 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.TextBox txtSearchWorkDivisionName;
         
         /// <summary>
-        /// txtSearchCampusID control.
+        /// ddlSearchCampus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearchCampusID;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSearchCampus;
         
         /// <summary>
-        /// txtSearchFacultyID control.
+        /// ddlSearchFaculty control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearchFacultyID;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSearchFaculty;
         
         /// <summary>
-        /// txtSearchDivisionID control.
+        /// ddlSearchDivision control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearchDivisionID;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSearchDivision;
         
         /// <summary>
         /// btnSearchWorkDivision control.
@@ -94,15 +85,6 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.Panel Panel2;
         
         /// <summary>
-        /// txtInsertWorkDivisionID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtInsertWorkDivisionID;
-        
-        /// <summary>
         /// txtInsertWorkDivisionName control.
         /// </summary>
         /// <remarks>
@@ -112,31 +94,31 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.TextBox txtInsertWorkDivisionName;
         
         /// <summary>
-        /// txtInsertCampusID control.
+        /// ddlInsertCampus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtInsertCampusID;
+        protected global::System.Web.UI.WebControls.DropDownList ddlInsertCampus;
         
         /// <summary>
-        /// txtInsertFacultyID control.
+        /// ddlInsertFaculty control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtInsertFacultyID;
+        protected global::System.Web.UI.WebControls.DropDownList ddlInsertFaculty;
         
         /// <summary>
-        /// txtInsertDivisionID control.
+        /// ddlInsertDivision control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtInsertDivisionID;
+        protected global::System.Web.UI.WebControls.DropDownList ddlInsertDivision;
         
         /// <summary>
         /// btnSubmitWorkDivision control.

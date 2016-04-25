@@ -109,6 +109,7 @@
     <Content Include="404.aspx" />
     <Content Include="AAA.aspx" />
     <Content Include="About.aspx" />
+    <Content Include="AcademicPosition-ADMIN.aspx" />
     <Content Include="Access.aspx" />
     <Content Include="AddPerson-Edit.aspx" />
     <Content Include="AddPerson.aspx" />
@@ -678,6 +679,7 @@
     <Content Include="aspnet_client\system_web\4_0_30319\crystalreportviewers13\prompting\js\promptengine_strings_zh_TW.js" />
     <Content Include="aspnet_client\system_web\4_0_30319\crystalreportviewers13\urlreporting\activexviewer.js" />
     <Content Include="aspnet_client\system_web\4_0_30319\crystalreportviewers13\urlreporting\appletviewer.js" />
+    <Content Include="Blood-ADMIN.aspx" />
     <Content Include="Budget-ADMIN.aspx" />
     <Content Include="Campus-ADMIN.aspx" />
     <Content Include="ChangePassword.aspx" />
@@ -739,13 +741,17 @@
     <Content Include="DataManager.aspx" />
     <Content Include="Developer.aspx" />
     <Content Include="District-ADMIN.aspx" />
+    <Content Include="Division-ADMIN.aspx" />
     <Content Include="Entities\Virus.mp3" />
     <Content Include="Faculty-ADMIN.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="GoverPosition-ADMIN.aspx" />
     <Content Include="GradCountry-ADMIN.aspx" />
     <Content Include="GradLev-ADMIN.aspx" />
     <Content Include="images\icon\Before_Print.gif" />
     <Content Include="images\icon\Icon1.png" />
+    <Content Include="Image\444.jpg" />
+    <Content Include="Image\444.png" />
     <Content Include="Image\anime_p1.png" />
     <Content Include="Image\anime_p2.png" />
     <Content Include="Image\Bar\header_bar.png" />
@@ -827,7 +833,6 @@
     <Content Include="Entities\bnn.mp3" />
     <Content Include="Error-Member.aspx" />
     <Content Include="Gender-ADMIN.aspx" />
-    <Content Include="Image\444.png" />
     <Content Include="Image\555.jpg" />
     <Content Include="Image\bg5.jpg" />
     <Content Include="Image\books.jpg" />
@@ -948,13 +953,13 @@
     <Content Include="Font\THSarabun BoldItalic.ttf" />
     <Content Include="Font\THSarabun Italic.ttf" />
     <Content Include="Font\THSarabun.ttf" />
+    <Content Include="Permanent-ADMIN.aspx" />
     <Content Include="Person-Detail.aspx" />
     <Content Include="personalDataSet.xsc">
       <DependentUpon>personalDataSet.xsd</DependentUpon>
     </Content>
     <Content Include="Plugins\EPPlus.dll" />
     <Content Include="Plugins\EPPlus.XML" />
-    <Content Include="Position-ADMIN.aspx" />
     <Content Include="PositionWork-ADMIN.aspx" />
     <Content Include="jquery.mCustomScrollbar\jquery.mCustomScrollbar.concat.min.js" />
     <Content Include="Province-ADMIN.aspx" />
@@ -966,13 +971,13 @@
     <Content Include="Profile.aspx" />
     <Content Include="Staff-ADMIN.aspx" />
     <Content Include="StaffType-ADMIN.aspx" />
+    <Content Include="StatusPerson-ADMIN.aspx" />
     <Content Include="Study-Report1.aspx" />
     <Content Include="TeachISCED-ADMIN.aspx" />
     <Content Include="TestOutput.aspx" />
     <Content Include="UploadList.aspx" />
-    <Content Include="UpSalary70_30_1.aspx" />
-    <Content Include="UpSalary80_20_1.aspx" />
     <Content Include="ViewLeaveForm.aspx" />
+    <Content Include="WorkDivision-ADMIN.aspx" />
     <Content Include="WorkingTime.aspx" />
     <Content Include="WorkingTimeHistory.aspx" />
     <Content Include="Year-ADMIN.aspx" />
@@ -1039,6 +1044,13 @@
     <Compile Include="About.aspx.designer.cs">
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AcademicPosition-ADMIN.aspx.cs">
+      <DependentUpon>AcademicPosition-ADMIN.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AcademicPosition-ADMIN.aspx.designer.cs">
+      <DependentUpon>AcademicPosition-ADMIN.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Access.aspx.cs">
       <DependentUpon>Access.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1073,6 +1085,13 @@
     </Compile>
     <Compile Include="Amphur-ADMIN.aspx.designer.cs">
       <DependentUpon>Amphur-ADMIN.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Blood-ADMIN.aspx.cs">
+      <DependentUpon>Blood-ADMIN.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Blood-ADMIN.aspx.designer.cs">
+      <DependentUpon>Blood-ADMIN.aspx</DependentUpon>
     </Compile>
     <Compile Include="Budget-ADMIN.aspx.cs">
       <DependentUpon>Budget-ADMIN.aspx</DependentUpon>
@@ -1141,6 +1160,13 @@
     <Compile Include="District-ADMIN.aspx.designer.cs">
       <DependentUpon>District-ADMIN.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Division-ADMIN.aspx.cs">
+      <DependentUpon>Division-ADMIN.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Division-ADMIN.aspx.designer.cs">
+      <DependentUpon>Division-ADMIN.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Report.cs" />
     <Compile Include="Entities\Tuu.cs" />
     <Compile Include="Entities\Ministry.cs" />
@@ -1170,6 +1196,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="GoverPosition-ADMIN.aspx.cs">
+      <DependentUpon>GoverPosition-ADMIN.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GoverPosition-ADMIN.aspx.designer.cs">
+      <DependentUpon>GoverPosition-ADMIN.aspx</DependentUpon>
     </Compile>
     <Compile Include="GradCountry-ADMIN.aspx.cs">
       <DependentUpon>GradCountry-ADMIN.aspx</DependentUpon>
@@ -1374,6 +1407,13 @@
     <Compile Include="National-ADMIN.aspx.designer.cs">
       <DependentUpon>National-ADMIN.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Permanent-ADMIN.aspx.cs">
+      <DependentUpon>Permanent-ADMIN.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Permanent-ADMIN.aspx.designer.cs">
+      <DependentUpon>Permanent-ADMIN.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Person-Detail.aspx.cs">
       <DependentUpon>Person-Detail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1385,13 +1425,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>personalDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Position-ADMIN.aspx.cs">
-      <DependentUpon>Position-ADMIN.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Position-ADMIN.aspx.designer.cs">
-      <DependentUpon>Position-ADMIN.aspx</DependentUpon>
     </Compile>
     <Compile Include="PositionWork-ADMIN.aspx.cs">
       <DependentUpon>PositionWork-ADMIN.aspx</DependentUpon>
@@ -1512,6 +1545,13 @@
     <Compile Include="StaffType-ADMIN.aspx.designer.cs">
       <DependentUpon>StaffType-ADMIN.aspx</DependentUpon>
     </Compile>
+    <Compile Include="StatusPerson-ADMIN.aspx.cs">
+      <DependentUpon>StatusPerson-ADMIN.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StatusPerson-ADMIN.aspx.designer.cs">
+      <DependentUpon>StatusPerson-ADMIN.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Study-IN.aspx.cs">
       <DependentUpon>Study-IN.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1562,20 +1602,6 @@
     <Compile Include="UploadList.aspx.designer.cs">
       <DependentUpon>UploadList.aspx</DependentUpon>
     </Compile>
-    <Compile Include="UpSalary70_30_1.aspx.cs">
-      <DependentUpon>UpSalary70_30_1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UpSalary70_30_1.aspx.designer.cs">
-      <DependentUpon>UpSalary70_30_1.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UpSalary80_20_1.aspx.cs">
-      <DependentUpon>UpSalary80_20_1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UpSalary80_20_1.aspx.designer.cs">
-      <DependentUpon>UpSalary80_20_1.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Util.cs" />
     <Compile Include="ViewLeaveForm.aspx.cs">
       <DependentUpon>ViewLeaveForm.aspx</DependentUpon>
@@ -1583,6 +1609,13 @@
     </Compile>
     <Compile Include="ViewLeaveForm.aspx.designer.cs">
       <DependentUpon>ViewLeaveForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WorkDivision-ADMIN.aspx.cs">
+      <DependentUpon>WorkDivision-ADMIN.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WorkDivision-ADMIN.aspx.designer.cs">
+      <DependentUpon>WorkDivision-ADMIN.aspx</DependentUpon>
     </Compile>
     <Compile Include="WorkingTime.aspx.cs">
       <DependentUpon>WorkingTime.aspx</DependentUpon>

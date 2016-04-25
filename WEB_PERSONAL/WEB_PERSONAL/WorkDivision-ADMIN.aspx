@@ -3,8 +3,11 @@
     <style type="text/css">
         .divpan {
             text-align: center;
+            color: blue;
         }
-
+        div{
+            color:#003380;
+        }
         .panin {
             border: 1px solid black;
             margin: 20px;
@@ -13,13 +16,13 @@
         }
 
         body {
-            background-image: url("Image/444.png");
+            background-color : white;
         }
 
         .tb5 {
             background-repeat: repeat-x;
-            border: 1px solid #d1c7ac;
-            width: 130px;
+            border: 1px solid #ff9900;
+            width: 150px;
             color: #333333;
             padding: 3px;
             margin-right: 4px;
@@ -27,23 +30,36 @@
             font-family: tahoma, arial, sans-serif;
             border-radius: 10px;
             resize: none;
+            
         }
         .center1 { 
                display:inline-block; 
         }
+        legend{
+            padding: 3px;
+            margin-right: 4px;
+            margin-bottom: 8px;
+            font-family: tahoma, arial, sans-serif;
+            border-radius: 10px;
+            resize: none;
+            text-align: center;
+            font-size:medium;
+            color:royalblue;
+        }
+        fieldset{
+            border: 3px solid #99e6ff;
+            color: black;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:Panel ID="Panel1" runat="server" CssClass="divpan" BackColor="White" ForeColor="#6699FF" BorderColor="Aqua" DefaultButton="btnSearchWorkDivision">
+    <asp:Panel ID="Panel1" runat="server" CssClass="divpan" BackColor="White" ForeColor="#6699FF" BorderColor="Tomato" DefaultButton="btnSearchWorkDivision">
         <div>
             <fieldset>
                 <legend>ค้นหาข้อมูล</legend>
                 <div>
                     <table class="center1">
                         <tr>
-                            <td style="margin-left: auto; margin-right: auto; text-align: center">รหัสงาน / ฝ่าย :</td>
-                            <td style="text-align: left; width: 50px;">
-                                <asp:TextBox ID="txtSearchWorkDivisionID" runat="server" CssClass="tb5" MaxLength="4" Width="50px"></asp:TextBox></td>
                             <td style="margin-left: auto; margin-right: auto; text-align: center">ชื่องาน / ฝ่าย :</td>
                             <td style="text-align: left; width: 50px;">
                                 <asp:TextBox ID="txtSearchWorkDivisionName" runat="server" CssClass="tb5" MaxLength="100" Width="150px"></asp:TextBox></td>
@@ -51,16 +67,15 @@
                     </table>
                     <table class="center1">
                         <tr>
-                           <td style="margin-left: auto; margin-right: auto; text-align: center">รหัสวิทยาเขต :</td>
+                           <td style="margin-left: auto; margin-right: auto; text-align: center">วิทยาเขต :</td>
                             <td style="text-align: left; width: 40px;">
-                                <asp:TextBox ID="txtSearchCampusID" runat="server" CssClass="tb5" MaxLength="2" Width="50px"></asp:TextBox></td>
-                            <td style="margin-left: auto; margin-right: auto; text-align: center">รหัสสำนัก / สถาบัน / คณะ :</td>
+                                <asp:DropDownList ID="ddlSearchCampus" runat="server" CssClass="tb5" Width="150px"></asp:DropDownList></td>
+                            <td style="margin-left: auto; margin-right: auto; text-align: center">สำนัก / สถาบัน / คณะ :</td>
                             <td style="text-align: left; width: 50px;">
-                                <asp:TextBox ID="txtSearchFacultyID" runat="server" CssClass="tb5" MaxLength="4" Width="50px"></asp:TextBox></td>
-                            <td style="margin-left: auto; margin-right: auto; text-align: center">รหัสกอง / สำนักงานเลขา / ภาควิชา :</td>
+                                <asp:DropDownList ID="ddlSearchFaculty" runat="server" CssClass="tb5" Width="150px"></asp:DropDownList></td>
+                            <td style="margin-left: auto; margin-right: auto; text-align: center">กอง / สำนักงานเลขา / ภาควิชา :</td>
                             <td style="text-align: left; width: 50px;">
-                                <asp:TextBox ID="txtSearchDivisionID" runat="server" CssClass="tb5" MaxLength="4" Width="50px"></asp:TextBox></td>
-
+                                <asp:DropDownList ID="ddlSearchDivision" runat="server" CssClass="tb5" Width="150px"></asp:DropDownList></td>
                             <td style="text-align: left;">
                                 <asp:Button ID="btnSearchWorkDivision" Text="Search" runat="server" CssClass="master_OAT_button" OnClick="btnSearchWorkDivision_Click" /></td>
                             <td style="text-align: left;">
@@ -71,16 +86,13 @@
             </fieldset>
         </div>
     </asp:Panel>
-    <asp:Panel ID="Panel2" runat="server" ScrollBars="Horizontal" CssClass="divpan" BackColor="White" ForeColor="#6699FF" BorderColor="Aqua" DefaultButton="btnSubmitWorkDivision">
+    <asp:Panel ID="Panel2" runat="server" ScrollBars="Horizontal" CssClass="divpan" BackColor="White" ForeColor="#6699FF" BorderColor="Tomato" DefaultButton="btnSubmitWorkDivision">
         <div>
             <fieldset>
                 <legend>เพิ่มข้อมูล</legend>
                 <div>
                     <table class="center1">
                         <tr>
-                            <td style="margin-left: auto; margin-right: auto; text-align: center">รหัสงาน / ฝ่าย :</td>
-                            <td style="text-align: left; width: 50px;">
-                                <asp:TextBox ID="txtInsertWorkDivisionID" runat="server" CssClass="tb5" MaxLength="4" Width="50px"></asp:TextBox></td>
                             <td style="margin-left: auto; margin-right: auto; text-align: center">ชื่องาน / ฝ่าย :</td>
                             <td style="text-align: left; width: 50px;">
                                 <asp:TextBox ID="txtInsertWorkDivisionName" runat="server" CssClass="tb5" MaxLength="100" Width="150px"></asp:TextBox></td>
@@ -88,16 +100,15 @@
                     </table>
                     <table class="center1">
                         <tr>
-                            <td style="margin-left: auto; margin-right: auto; text-align: center">รหัสวิทยาเขต :</td>
+                            <td style="margin-left: auto; margin-right: auto; text-align: center">วิทยาเขต :</td>
                             <td style="text-align: left; width: 40px;">
-                                <asp:TextBox ID="txtInsertCampusID" runat="server" CssClass="tb5" MaxLength="2" Width="50px"></asp:TextBox></td>
-                            <td style="margin-left: auto; margin-right: auto; text-align: center">รหัสสำนัก / สถาบัน / คณะ :</td>
+                                <asp:DropDownList ID="ddlInsertCampus" runat="server" CssClass="tb5" Width="150px"></asp:DropDownList></td>
+                            <td style="margin-left: auto; margin-right: auto; text-align: center">สำนัก / สถาบัน / คณะ :</td>
                             <td style="text-align: left; width: 50px;">
-                                <asp:TextBox ID="txtInsertFacultyID" runat="server" CssClass="tb5" MaxLength="4" Width="50px"></asp:TextBox></td>
-                            <td style="margin-left: auto; margin-right: auto; text-align: center">รหัสกอง / สำนักงานเลขา / ภาควิชา :</td>
+                                <asp:DropDownList ID="ddlInsertFaculty" runat="server" CssClass="tb5" Width="150px"></asp:DropDownList></td>
+                            <td style="margin-left: auto; margin-right: auto; text-align: center">กอง / สำนักงานเลขา / ภาควิชา :</td>
                             <td style="text-align: left; width: 50px;">
-                                <asp:TextBox ID="txtInsertDivisionID" runat="server" CssClass="tb5" MaxLength="4" Width="50px"></asp:TextBox></td>
-
+                                <asp:DropDownList ID="ddlInsertDivision" runat="server" CssClass="tb5" Width="150px"></asp:DropDownList></td>
                             <td style="text-align: left;">
                                 <asp:Button ID="btnSubmitWorkDivision" Text="OK" runat="server" CssClass="master_OAT_button" OnClick="btnSubmitWorkDivision_Click" /></td>
                             <td style="text-align: left;">
@@ -124,15 +135,12 @@
                             OnRowDataBound="GridView1_RowDataBound"
                             OnPageIndexChanging="myGridViewWorkDivision_PageIndexChanging" PageSize="15" BackColor="White" BorderColor="#999999">
                             <Columns>
-                                <asp:TemplateField HeaderText="รหัสงาน / ฝ่าย" ControlStyle-Width="100" HeaderStyle-BackColor="#0099FF" HeaderStyle-ForeColor="Aqua">
+                                <asp:TemplateField Visible="false" HeaderText="รหัสงาน / ฝ่าย" ControlStyle-Width="100" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Tomato">
                                     <ItemTemplate>
                                         <asp:Label ID="lblWorkDivisionIDEdit" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.WORK_ID") %>'></asp:Label>
                                     </ItemTemplate>
-                                    <EditItemTemplate>
-                                        <asp:TextBox ID="txtWorkDivisionIDEdit" Enabled="false" MaxLength="4" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.WORK_ID") %>'></asp:TextBox>
-                                    </EditItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="ชื่องาน / ฝ่าย" ControlStyle-Width="380" HeaderStyle-BackColor="#0099FF" HeaderStyle-ForeColor="Aqua">
+                                <asp:TemplateField HeaderText="ชื่องาน / ฝ่าย" ControlStyle-Width="380" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Tomato">
                                     <ItemTemplate>
                                         <asp:Label ID="lblWorkDivisionNameEdit" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.WORK_NAME") %>'></asp:Label>
                                     </ItemTemplate>
@@ -140,32 +148,32 @@
                                         <asp:TextBox ID="txtWorkDivisionNameEdit" MaxLength="100" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.WORK_NAME") %>'></asp:TextBox>
                                     </EditItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="รหัสวิทยาเขต" ControlStyle-Width="120" HeaderStyle-BackColor="#0099FF" HeaderStyle-ForeColor="Aqua">
+                                <asp:TemplateField HeaderText="วิทยาเขต" ControlStyle-Width="120" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Tomato">
                                     <ItemTemplate>
                                         <asp:Label ID="lblCampusIDEdit" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.CAMPUS_ID") %>'></asp:Label>
                                     </ItemTemplate>
                                     <EditItemTemplate>
-                                        <asp:TextBox ID="txtCampusIDEdit" MaxLength="2" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.CAMPUS_ID") %>'></asp:TextBox>
+                                        <asp:DropDownList ID="ddlCampusIDEdit" runat="server"></asp:DropDownList>
                                     </EditItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="รหัสสำนัก / สถาบัน / คณะ" ControlStyle-Width="100" HeaderStyle-BackColor="#0099FF" HeaderStyle-ForeColor="Aqua">
+                                <asp:TemplateField HeaderText="สำนัก / สถาบัน / คณะ" ControlStyle-Width="100" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Tomato">
                                     <ItemTemplate>
                                         <asp:Label ID="lblFacultyIDEdit" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.FACULTY_ID") %>'></asp:Label>
                                     </ItemTemplate>
                                     <EditItemTemplate>
-                                        <asp:TextBox ID="txtFacultyIDEdit" MaxLength="4" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.FACULTY_ID") %>'></asp:TextBox>
+                                        <asp:DropDownList ID="ddlFacultyIDEdit" runat="server"></asp:DropDownList>
                                     </EditItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="รหัสกอง / สำนักงานเลขา / ภาควิชา" ControlStyle-Width="100" HeaderStyle-BackColor="#0099FF" HeaderStyle-ForeColor="Aqua">
+                                <asp:TemplateField HeaderText="กอง / สำนักงานเลขา / ภาควิชา" ControlStyle-Width="100" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Tomato">
                                     <ItemTemplate>
                                         <asp:Label ID="lblDivisionIDEdit" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.DIVISION_ID") %>'></asp:Label>
                                     </ItemTemplate>
                                     <EditItemTemplate>
-                                        <asp:TextBox ID="txtDivisionIDEdit" MaxLength="4" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.DIVISION_ID") %>'></asp:TextBox>
+                                        <asp:DropDownList ID="ddlDivisionIDEdit" runat="server"></asp:DropDownList>
                                     </EditItemTemplate>
                                 </asp:TemplateField>
-                                <asp:CommandField ShowEditButton="True" CancelText="Cancel" DeleteText="Delete" EditText="Edit" UpdateText="Update" HeaderText="แก้ไข" HeaderStyle-BackColor="#0099FF" HeaderStyle-ForeColor="Aqua" />
-                                <asp:TemplateField HeaderText="ลบ" HeaderStyle-BackColor="#0099FF" HeaderStyle-ForeColor="Aqua">
+                                <asp:CommandField ShowEditButton="True" CancelText="Cancel" DeleteText="Delete" EditText="Edit" UpdateText="Update" HeaderText="แก้ไข" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Tomato" />
+                                <asp:TemplateField HeaderText="ลบ" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Tomato">
                                     <ItemTemplate>
                                         <asp:LinkButton ID="DeleteButton1" runat="server" CausesValidation="false" CommandName="Delete" Text="Delete"></asp:LinkButton>
                                     </ItemTemplate>

@@ -1,5 +1,4 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="TitleName-ADMIN.aspx.cs" Inherits="WEB_PERSONAL.pre_title_name" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
         .divpan {
@@ -41,6 +40,9 @@
             border-radius: 10px;
             resize: none;
         }
+        .center1 { 
+               display:inline-block; 
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -62,12 +64,11 @@
             <fieldset>
                 <legend>เพิ่มข้อมูล</legend>
                 <div>
-                    <table>
+                    <table class="center1">
                         <tr>
-                            <td style="text-align: left; width: 55px"></td>
                             <td style="margin-left: auto; margin-right: auto; text-align: center">รหัสคำนำหน้านาม :</td>
                             <td style="text-align: left; width: 230px;">
-                                <asp:TextBox ID="txtInsertTitleID" runat="server" CssClass="tb6" MaxLength="4" Width="230px"></asp:TextBox></td>
+                                <asp:TextBox ID="txtInsertTitleID" runat="server" CssClass="tb5" MaxLength="4" Width="230px"></asp:TextBox></td>
                             <td style="margin-left: auto; margin-right: auto; text-align: center">ชื่อคำนำหน้านาม :</td>
                             <td style="text-align: left; width: 230px;">
                                 <asp:TextBox ID="txtInsertTitleName" runat="server" CssClass="tb5" MaxLength="100" Width="230px"></asp:TextBox></td>
@@ -102,7 +103,7 @@
                                         <asp:Label ID="lblTitleIDEDIT" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.TITLE_ID") %>'></asp:Label>
                                     </ItemTemplate>
                                     <EditItemTemplate>
-                                        <asp:TextBox ID="txtTitleIDEDIT" MaxLength="10" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.TITLE_ID") %>'></asp:TextBox>
+                                        <asp:TextBox ID="txtTitleIDEDIT" Enabled="false" MaxLength="10" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.TITLE_ID") %>'></asp:TextBox>
                                     </EditItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="ชื่อคำนำหน้านาม" ControlStyle-Width="640" HeaderStyle-BackColor="#0099FF" HeaderStyle-ForeColor="Aqua">

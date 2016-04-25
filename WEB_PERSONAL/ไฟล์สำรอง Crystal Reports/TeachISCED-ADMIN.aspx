@@ -41,6 +41,9 @@
             border-radius: 10px;
             resize: none;
         }
+        .center1 { 
+               display:inline-block; 
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -49,9 +52,8 @@
             <fieldset>
                 <legend>ค้นหาข้อมูล</legend>
                 <div>
-                    <table>
+                    <table class="center1">
                         <tr>
-                            <td style="text-align: left; width: 70px;"></td>
                             <td style="text-align: right; margin-right: 5px;">รหัสกลุ่มสาขาวิชาที่สอน :&nbsp;</td>
                             <td style="text-align: left; width: 120px;">
                                 <asp:TextBox ID="txtSearchISCED_ID" runat="server" CssClass="tb5" MaxLength="8"></asp:TextBox>
@@ -64,7 +66,6 @@
                             <asp:Button ID="btnSearchTeachISCED" Text="Search" runat="server" CssClass="master_OAT_button" OnClick = "btnSearchTeachISCED_Click" /></td>
                         </tr>
                         <tr>
-                            <td style="text-align: left; width: 10px;"></td>
                             <td style="text-align: right; margin-right: 5px;">ชื่อกลุ่มสาขาวิชาที่สอนภาษาไทย :&nbsp;</td>
                             <td style="text-align: left; width: 120px;">
                                 <asp:TextBox ID="txtSearchISCED_NAME_TH" runat="server" CssClass="tb5" MaxLength="250"></asp:TextBox>
@@ -86,9 +87,8 @@
             <fieldset>
                 <legend>เพิ่มข้อมูล</legend>
                 <div>
-                    <table>
+                    <table class="center1">
                         <tr>
-                            <td style="text-align: left; width: 70px;"></td>
                             <td style="text-align: right; margin-right: 5px;">รหัสกลุ่มสาขาวิชาที่สอน :&nbsp;</td>
                             <td style="text-align: left; width: 120px;">
                                 <asp:TextBox ID="txtInsertISCED_ID" runat="server" CssClass="tb5" MaxLength="8"></asp:TextBox>
@@ -101,7 +101,6 @@
                              <asp:Button ID="btnSubmitTeachISCED" Text="OK" runat="server" CssClass="master_OAT_button" OnClick = "btnSubmitTeachISCED_Click" /></td>
                         </tr>
                         <tr>
-                            <td style="text-align: left; width: 10px;"></td>
                             <td style="text-align: right; margin-right: 5px;">ชื่อกลุ่มสาขาวิชาที่สอนภาษาไทย :&nbsp;</td>
                             <td style="text-align: left; width: 120px;">
                                 <asp:TextBox ID="txtInsertISCED_NAME_TH" runat="server" CssClass="tb5" MaxLength="250"></asp:TextBox>

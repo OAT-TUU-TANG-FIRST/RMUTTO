@@ -28,6 +28,9 @@
             border-radius: 10px;
             resize: none;
         }
+        .center1 { 
+               display:inline-block; 
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -50,7 +53,7 @@
             <fieldset>
                 <legend>เพิ่มข้อมูล</legend>
                 <div>
-                    <table>
+                    <table class="center1">
                         <tr>
                             <td style="margin-left: auto; margin-right: auto; text-align: center">รหัสประเทศ 2 ตัวอักษร(ENG) :</td>
                             <td style="text-align: left; width: 50px;">
@@ -97,7 +100,7 @@
                                         <asp:Label ID="lblGradCountry2Edit" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.GRAD_ISO2") %>'></asp:Label>
                                     </ItemTemplate>
                                     <EditItemTemplate>
-                                        <asp:TextBox ID="txtGradCountry2Edit" MaxLength="2" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.GRAD_ISO2") %>' Enabled="False"></asp:TextBox>
+                                        <asp:TextBox ID="txtGradCountry2Edit" MaxLength="2" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.GRAD_ISO2") %>'></asp:TextBox>
                                     </EditItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="ชื่อย่อของประเทศ(ENG)" ControlStyle-Width="380" HeaderStyle-BackColor="#0099FF" HeaderStyle-ForeColor="Aqua">

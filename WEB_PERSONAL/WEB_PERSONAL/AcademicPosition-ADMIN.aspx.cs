@@ -16,8 +16,6 @@ namespace WEB_PERSONAL
             if (!IsPostBack)
             {
                 BindData();
-                txtSearchAcadID.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
-                txtInsertAcadID.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
             }
         }
 
@@ -40,7 +38,7 @@ namespace WEB_PERSONAL
         void BindData()
         {
             ClassAcademicPosition ap = new ClassAcademicPosition();
-            DataTable dt = ap.GetAcademicPosition("", "");
+            DataTable dt = ap.GetAcademicPosition("");
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);
@@ -49,7 +47,7 @@ namespace WEB_PERSONAL
         void BindData1()
         {
             ClassAcademicPosition ap = new ClassAcademicPosition();
-            DataTable dt = ap.GetAcademicPositionSearch(txtSearchAcadID.Text, txtSearchAcadName.Text);
+            DataTable dt = ap.GetAcademicPosition(txtSearchAcadName.Text);
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);
@@ -57,29 +55,21 @@ namespace WEB_PERSONAL
 
         private void ClearData()
         {
-            txtSearchAcadID.Text = "";
             txtSearchAcadName.Text = "";
-            txtInsertAcadID.Text = "";
             txtInsertAcadName.Text = "";
         }
 
         protected void btnSubmitAcad_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtInsertAcadID.Text))
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ รหัสตำแหน่งทางวิชาการ')", true);
-                return;
-            }
             if (string.IsNullOrEmpty(txtInsertAcadName.Text))
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ ชื่อตำแหน่งทางวิชาการ')", true);
                 return;
             }
             ClassAcademicPosition ap = new ClassAcademicPosition();
-            ap.ACAD_ID = Convert.ToInt32(txtInsertAcadID.Text);
             ap.ACAD_NAME = txtInsertAcadName.Text;
 
-            if (ap.CheckUseAcademicPositionID())
+            if (ap.CheckUseAcademicPositionName())
             {
                 ap.InsertAcademicPosition();
                 BindData();
@@ -88,7 +78,7 @@ namespace WEB_PERSONAL
             }
             else
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('มีรหัสตำแหน่งทางวิชาการนี้ อยู่ในระบบแล้ว !')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ข้อมูลที่จะเพิ่ม มีอยู่ในระบบแล้ว !')", true);
             }
         }
 
@@ -115,15 +105,22 @@ namespace WEB_PERSONAL
         }
         protected void modUpdateCommand(Object sender, GridViewUpdateEventArgs e)
         {
-            TextBox txtAcadIDEDIT = (TextBox)GridView1.Rows[e.RowIndex].FindControl("txtAcadIDEDIT");
+            Label lblAcadIDEDIT = (Label)GridView1.Rows[e.RowIndex].FindControl("lblAcadIDEDIT");
             TextBox txtAcadNameEDIT = (TextBox)GridView1.Rows[e.RowIndex].FindControl("txtAcadNameEDIT");
 
-            ClassAcademicPosition ap = new ClassAcademicPosition(Convert.ToInt32(txtAcadIDEDIT.Text), txtAcadNameEDIT.Text);
+            ClassAcademicPosition ap = new ClassAcademicPosition(Convert.ToInt32(lblAcadIDEDIT.Text), txtAcadNameEDIT.Text);
 
-            ap.UpdateAcademicPosition();
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('อัพเดทข้อมูลเรียบร้อย')", true);
-            GridView1.EditIndex = -1;
-            BindData1();
+            if (ap.CheckUseAcademicPositionName())
+            {
+                ap.UpdateAcademicPosition();
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('อัพเดทข้อมูลเรียบร้อย')", true);
+                GridView1.EditIndex = -1;
+                BindData1();
+            }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ข้อมูลที่จะอัพเดท มีอยู่ในระบบแล้ว !')", true);
+            }
         }
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -132,11 +129,24 @@ namespace WEB_PERSONAL
             {
                 LinkButton lb = (LinkButton)e.Row.FindControl("DeleteButton1");
                 lb.Attributes.Add("onclick", "return confirm('คุณต้องการจะลบชื่อตำแหน่งทางวิชาการ " + DataBinder.Eval(e.Row.DataItem, "ACAD_NAME") + " ใช่ไหม ?');");
-
-                if ((e.Row.RowState & DataControlRowState.Edit) > 0)
+            }
+            e.Row.Attributes.Add("style", "cursor:help;");
+            if (e.Row.RowType == DataControlRowType.DataRow && e.Row.RowState == DataControlRowState.Alternate)
+            {
+                if (e.Row.RowType == DataControlRowType.DataRow)
                 {
-                    TextBox txt = (TextBox)e.Row.FindControl("txtAcadIDEDIT");
-                    txt.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
+                    e.Row.Attributes.Add("onmouseover", "this.style.backgroundColor='#ffb3b3'");
+                    e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor='#ffe6e6'");
+                    e.Row.BackColor = System.Drawing.Color.FromName("#ffe6e6");
+                }
+            }
+            else
+            {
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    e.Row.Attributes.Add("onmouseover", "this.style.backgroundColor='#ffcc80'");
+                    e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor='#ffebcc'");
+                    e.Row.BackColor = System.Drawing.Color.FromName("#ffebcc");
                 }
             }
         }
@@ -151,7 +161,7 @@ namespace WEB_PERSONAL
         {
             ClearData();
             ClassAcademicPosition ap = new ClassAcademicPosition();
-            DataTable dt = ap.GetAcademicPosition("", "");
+            DataTable dt = ap.GetAcademicPosition("");
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);
@@ -159,7 +169,7 @@ namespace WEB_PERSONAL
 
         protected void btnSearchAcad_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtSearchAcadID.Text) && string.IsNullOrEmpty(txtSearchAcadName.Text))
+            if (string.IsNullOrEmpty(txtSearchAcadName.Text))
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก คำค้นหา')", true);
                 return;
@@ -167,7 +177,7 @@ namespace WEB_PERSONAL
             else
             {
                 ClassAcademicPosition ap = new ClassAcademicPosition();
-                DataTable dt = ap.GetAcademicPositionSearch(txtSearchAcadID.Text, txtSearchAcadName.Text);
+                DataTable dt = ap.GetAcademicPosition(txtSearchAcadName.Text);
                 GridView1.DataSource = dt;
                 GridView1.DataBind();
                 SetViewState(dt);
@@ -178,7 +188,7 @@ namespace WEB_PERSONAL
         {
             ClearData();
             ClassAcademicPosition ap = new ClassAcademicPosition();
-            DataTable dt = ap.GetAcademicPosition("", "");
+            DataTable dt = ap.GetAcademicPosition("");
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);

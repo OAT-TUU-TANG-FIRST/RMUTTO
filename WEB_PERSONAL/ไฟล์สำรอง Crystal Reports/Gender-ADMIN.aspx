@@ -29,6 +29,9 @@
             border-radius: 10px;
             resize: none;
         }
+        .center1 { 
+               display:inline-block; 
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -50,9 +53,8 @@
             <fieldset>
                 <legend>เพิ่มข้อมูล</legend>
                 <div>
-                    <table>
+                    <table class="center1">
                         <tr>
-                            <td style="text-align: left; width: 123px"></td>
                             <td style="margin-left: auto; margin-right: auto; text-align: center">รหัสเพศ :</td>
                             <td style="text-align: left; width: 120px;">
                                 <asp:TextBox ID="txtInsertGenderID" runat="server" CssClass="tb5" MaxLength="4"></asp:TextBox></td>
@@ -90,7 +92,7 @@
                                         <asp:Label ID="lblGenderIDEdit" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.GENDER_ID") %>'></asp:Label>
                                     </ItemTemplate>
                                     <EditItemTemplate>
-                                        <asp:TextBox ID="txtGenderIDEdit" MaxLength="4" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.GENDER_ID") %>' Enabled="False"></asp:TextBox>
+                                        <asp:TextBox ID="txtGenderIDEdit" Enabled="false" MaxLength="4" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.GENDER_ID") %>'></asp:TextBox>
                                     </EditItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="ชื่อเพศ" ControlStyle-Width="600" HeaderStyle-BackColor="#0099FF" HeaderStyle-ForeColor="Aqua">

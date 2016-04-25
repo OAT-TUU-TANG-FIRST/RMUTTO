@@ -29,6 +29,9 @@
             border-radius: 10px;
             resize: none;
         }
+        .center1 { 
+               display:inline-block; 
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -50,9 +53,8 @@
             <fieldset>
                 <legend>เพิ่มข้อมูล</legend>
                 <div>
-                    <table> 
+                    <table class="center1"> 
                         <tr>
-                            <td style="text-align: left; width: 70px"></td>
                             <td style="margin-left: auto; margin-right: auto; text-align: center">รหัสประเภทเงินจ้าง :</td>
                             <td style="text-align: left; width: 120px;">
                                 <asp:TextBox ID="txtInsertBudgetID" runat="server" CssClass="tb5" MaxLength="4"></asp:TextBox></td>
