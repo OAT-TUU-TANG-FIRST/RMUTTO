@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace WEB_PERSONAL
 {
-    public partial class SumReport : System.Web.UI.Page
+    public partial class SumReport_UpSalary : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

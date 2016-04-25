@@ -73,7 +73,7 @@
       <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Oracle.DataAccess, Version=2.121.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86" />
+    <Reference Include="Oracle.DataAccess, Version=2.121.2.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86" />
     <Reference Include="System.Data.OracleClient" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -958,7 +958,6 @@
     </Content>
     <Content Include="Plugins\EPPlus.dll" />
     <Content Include="Plugins\EPPlus.XML" />
-    <Content Include="Position-ADMIN.aspx" />
     <Content Include="PositionWork-ADMIN.aspx" />
     <Content Include="jquery.mCustomScrollbar\jquery.mCustomScrollbar.concat.min.js" />
     <Content Include="Province-ADMIN.aspx" />
@@ -970,6 +969,7 @@
     <Content Include="Profile.aspx" />
     <Content Include="Staff-ADMIN.aspx" />
     <Content Include="StaffType-ADMIN.aspx" />
+    <Content Include="SumReport_UpSalary.aspx" />
     <Content Include="TeachISCED-ADMIN.aspx" />
     <Content Include="TestOutput.aspx" />
     <Content Include="UploadList.aspx" />
@@ -1385,12 +1385,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>personalDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Position-ADMIN.aspx.cs">
-      <DependentUpon>Position-ADMIN.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Position-ADMIN.aspx.designer.cs">
-      <DependentUpon>Position-ADMIN.aspx</DependentUpon>
-    </Compile>
     <Compile Include="PositionWork-ADMIN.aspx.cs">
       <DependentUpon>PositionWork-ADMIN.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1510,26 +1504,12 @@
     <Compile Include="StaffType-ADMIN.aspx.designer.cs">
       <DependentUpon>StaffType-ADMIN.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Study-IN.aspx.cs">
-      <DependentUpon>Study-IN.aspx</DependentUpon>
+    <Compile Include="SumReport_UpSalary.aspx.cs">
+      <DependentUpon>SumReport_UpSalary.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Study-IN.aspx.designer.cs">
-      <DependentUpon>Study-IN.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Study-Report1.aspx.cs">
-      <DependentUpon>Study-Report1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Study-Report1.aspx.designer.cs">
-      <DependentUpon>Study-Report1.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SumReport.aspx.cs">
-      <DependentUpon>SumReport.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SumReport.aspx.designer.cs">
-      <DependentUpon>SumReport.aspx</DependentUpon>
+    <Compile Include="SumReport_UpSalary.aspx.designer.cs">
+      <DependentUpon>SumReport_UpSalary.aspx</DependentUpon>
     </Compile>
     <Compile Include="TeachISCED-ADMIN.aspx.cs">
       <DependentUpon>TeachISCED-ADMIN.aspx</DependentUpon>
