@@ -10,7 +10,7 @@
 namespace WEB_PERSONAL {
     
     
-    public partial class GoverPosition_ADMIN {
+    public partial class nent_ADMIN {
         
         /// <summary>
         /// Panel1 control.
@@ -22,31 +22,40 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.Panel Panel1;
         
         /// <summary>
-        /// txtSearchGoverPositionName control.
+        /// txtSearchPositionID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearchGoverPositionName;
+        protected global::System.Web.UI.WebControls.TextBox txtSearchPositionID;
         
         /// <summary>
-        /// ddlSearchGoverSTID control.
+        /// txtSearchPositionName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSearchGoverSTID;
+        protected global::System.Web.UI.WebControls.TextBox txtSearchPositionName;
         
         /// <summary>
-        /// btnSearchGoverPosition control.
+        /// ddlSearchPositionSTID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSearchGoverPosition;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSearchPositionSTID;
+        
+        /// <summary>
+        /// btnSearchPosition control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSearchPosition;
         
         /// <summary>
         /// btnSearchRefresh control.
@@ -67,58 +76,49 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.Panel Panel2;
         
         /// <summary>
-        /// txtInsertGoverPositionName control.
+        /// txtInsertPositionID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtInsertGoverPositionName;
+        protected global::System.Web.UI.WebControls.TextBox txtInsertPositionID;
         
         /// <summary>
-        /// ddlInsertGoverSTID control.
+        /// txtInsertPositionName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlInsertGoverSTID;
+        protected global::System.Web.UI.WebControls.TextBox txtInsertPositionName;
         
         /// <summary>
-        /// btnSubmitGoverPosition control.
+        /// ddlInsertPositionSTID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmitGoverPosition;
+        protected global::System.Web.UI.WebControls.DropDownList ddlInsertPositionSTID;
         
         /// <summary>
-        /// btnCancelGoverPosition control.
+        /// btnSubmitPosition control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancelGoverPosition;
+        protected global::System.Web.UI.WebControls.Button btnSubmitPosition;
         
         /// <summary>
-        /// ScriptManager1 control.
+        /// btnCancelPosition control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
-        
-        /// <summary>
-        /// UpdatePanel1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        protected global::System.Web.UI.WebControls.Button btnCancelPosition;
         
         /// <summary>
         /// GridView1 control.

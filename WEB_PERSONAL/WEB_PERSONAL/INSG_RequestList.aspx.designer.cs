@@ -10,123 +10,105 @@
 namespace WEB_PERSONAL {
     
     
-    public partial class Permanent_ADMIN {
+    public partial class INSG_RequestList {
         
         /// <summary>
-        /// Panel1 control.
+        /// MultiView1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel1;
+        protected global::System.Web.UI.WebControls.MultiView MultiView1;
         
         /// <summary>
-        /// txtSearchPermaPositionName control.
+        /// View1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearchPermaPositionName;
+        protected global::System.Web.UI.WebControls.View View1;
         
         /// <summary>
-        /// ddlSearchPermaSTID control.
+        /// gv1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSearchPermaSTID;
+        protected global::System.Web.UI.WebControls.GridView gv1;
         
         /// <summary>
-        /// btnSearchPermaPosition control.
+        /// View2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSearchPermaPosition;
+        protected global::System.Web.UI.WebControls.View View2;
         
         /// <summary>
-        /// btnSearchRefresh control.
+        /// lbReqDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSearchRefresh;
+        protected global::System.Web.UI.WebControls.Label lbReqDate;
         
         /// <summary>
-        /// Panel2 control.
+        /// lbCitizenName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel2;
+        protected global::System.Web.UI.WebControls.Label lbCitizenName;
         
         /// <summary>
-        /// txtInsertPermaPositionName control.
+        /// lbInsignia control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtInsertPermaPositionName;
+        protected global::System.Web.UI.WebControls.Label lbInsignia;
         
         /// <summary>
-        /// ddlInsertPermaSTID control.
+        /// lbState control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlInsertPermaSTID;
+        protected global::System.Web.UI.WebControls.Label lbState;
         
         /// <summary>
-        /// btnSubmitPermaPosition control.
+        /// lbuBack control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmitPermaPosition;
+        protected global::System.Web.UI.WebControls.LinkButton lbuBack;
         
         /// <summary>
-        /// btnCancelPermaPosition control.
+        /// lbuPrint control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancelPermaPosition;
+        protected global::System.Web.UI.WebControls.LinkButton lbuPrint;
         
         /// <summary>
-        /// ScriptManager1 control.
+        /// lbuAccept control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
-        
-        /// <summary>
-        /// UpdatePanel1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
-        
-        /// <summary>
-        /// GridView1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.LinkButton lbuAccept;
     }
 }

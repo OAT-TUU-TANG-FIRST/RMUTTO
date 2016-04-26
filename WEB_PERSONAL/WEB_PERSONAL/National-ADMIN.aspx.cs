@@ -68,19 +68,19 @@ namespace WEB_PERSONAL
         {
             if (string.IsNullOrEmpty(txtInsertNationID.Text))
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ รหัสสัญชาติ')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ อักษรย่อสัญชาติ/เชื้อชาติ 2 ตัวอักษร')", true);
                 return;
             }
 
             if (string.IsNullOrEmpty(txtInsertNationENG.Text))
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ ชื่อสัญชาติภาษาอังกฤษ')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ ชื่อสัญชาติ/เชื้อชาติภาษาอังกฤษ')", true);
                 return;
             }
 
             if (string.IsNullOrEmpty(txtInsertNationTHA.Text))
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ ชื่อสัญชาติภาษาไทย')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ ชื่อสัญชาติ/เชื้อชาติภาษาไทย')", true);
                 return;
             }
             ClassNational n = new ClassNational();
@@ -143,7 +143,7 @@ namespace WEB_PERSONAL
             }
             else
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('มีข้อมูลรหัสสัญชาตินี้ อยู่ในระบบแล้ว !')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ข้อมูลที่จะอัพเดท มีอยู่ในระบบแล้ว !')", true);
             }
         }
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)

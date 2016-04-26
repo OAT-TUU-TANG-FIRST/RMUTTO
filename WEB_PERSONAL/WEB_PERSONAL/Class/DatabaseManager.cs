@@ -44,6 +44,20 @@ namespace WEB_PERSONAL.Class {
             }
             return output;
         }
+        public static string ExecuteString(string sql) {
+            string output = null;
+            using (OracleConnection con = new OracleConnection(CONNECTION_STRING)) {
+                con.Open();
+                using (OracleCommand com = new OracleCommand(sql, con)) {
+                    using (OracleDataReader reader = com.ExecuteReader()) {
+                        while (reader.Read()) {
+                            output = reader.GetValue(0).ToString();
+                        }
+                    }
+                }
+            }
+            return output;
+        }
         public static int ExecuteSequence(string seq_name) {
             int seq;
             using (OracleConnection con = new OracleConnection(CONNECTION_STRING)) {

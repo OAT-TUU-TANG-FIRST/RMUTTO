@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Permanent-ADMIN.aspx.cs" Inherits="WEB_PERSONAL.Permanent_ADMIN" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Position-ADMIN.aspx.cs" Inherits="WEB_PERSONAL.nent_ADMIN" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
         .divpan {
@@ -53,36 +53,40 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:Panel ID="Panel1" runat="server" CssClass="divpan" BackColor="White" ForeColor="#6699FF" BorderColor="Tomato" DefaultButton="btnSearchPermaPosition">
+    <asp:Panel ID="Panel1" runat="server" CssClass="divpan" BackColor="White" ForeColor="#6699FF" BorderColor="Tomato" DefaultButton="btnSearchPosition">
         <div>
             <fieldset>
-                <legend>Search</legend>
+                <legend>ค้นหาข้อมูล</legend>
                 <div>
-                    ชื่อระดับลูกจ้าง   :&nbsp<asp:TextBox ID="txtSearchPermaPositionName" runat="server" CssClass="tb5" Width="230px" MaxLength="100"></asp:TextBox>
-                    ตำแหน่งประเภท  :&nbsp<asp:DropDownList ID="ddlSearchPermaSTID" runat="server" CssClass="tb5" Width="150px"></asp:DropDownList></asp:TextBox>
-                    <asp:Button ID="btnSearchPermaPosition" Text="Search" runat="server" CssClass="master_OAT_button" OnClick="btnSearchPermaPosition_Click" />
+                    รหัสระดับ   :&nbsp<asp:TextBox ID="txtSearchPositionID" runat="server" CssClass="tb5" Width="130px" MaxLength="5"></asp:TextBox>
+                    ชื่อระดับ   :&nbsp<asp:TextBox ID="txtSearchPositionName" runat="server" CssClass="tb5" Width="230px" MaxLength="100"></asp:TextBox>
+                    ตำแหน่งประเภท  :&nbsp<asp:DropDownList ID="ddlSearchPositionSTID" runat="server" CssClass="tb5" Width="150px"></asp:DropDownList>
+                    <asp:Button ID="btnSearchPosition" Text="Search" runat="server" CssClass="master_OAT_button" OnClick="btnSearchPosition_Click" />
                     <asp:Button ID="btnSearchRefresh" Text="Refresh" runat="server" CssClass="master_OAT_button" OnClick="btnSearchRefresh_Click" />
                 </div>
             </fieldset>
         </div>
     </asp:Panel>
-    <asp:Panel ID="Panel2" runat="server" ScrollBars="Horizontal" CssClass="divpan" BackColor="White" ForeColor="#6699FF" BorderColor="Tomato" DefaultButton="btnSubmitPermaPosition">
+    <asp:Panel ID="Panel2" runat="server" ScrollBars="Horizontal" CssClass="divpan" BackColor="White" ForeColor="#6699FF" BorderColor="Tomato" DefaultButton="btnSubmitPosition">
         <div>
             <fieldset>
-                <legend>Insert</legend>
+                <legend>เพิ่มข้อมูล</legend>
                 <div>
                     <table class="center1">
                         <tr>
-                            <td style="margin-left: auto; margin-right: auto; text-align: center">ชื่อระดับลูกจ้าง :</td>
+                            <td style="margin-left: auto; margin-right: auto; text-align: center">รหัสระดับ :</td>
                             <td style="text-align: left; width: 80px;">
-                                <asp:TextBox ID="txtInsertPermaPositionName" Width="230px" runat="server" CssClass="tb5" MaxLength="100"></asp:TextBox></td>
+                                <asp:TextBox ID="txtInsertPositionID" Width="130px" runat="server" CssClass="tb5" MaxLength="5"></asp:TextBox></td>
+                            <td style="margin-left: auto; margin-right: auto; text-align: center">ชื่อระดับ :</td>
+                            <td style="text-align: left; width: 80px;">
+                                <asp:TextBox ID="txtInsertPositionName" Width="230px" runat="server" CssClass="tb5" MaxLength="100"></asp:TextBox></td>
                             <td style="margin-left: auto; margin-right: auto; text-align: center">ตำแหน่งประเภท :</td>
                             <td style="text-align: left; width: 80px;">
-                                <asp:DropDownList ID="ddlInsertPermaSTID" runat="server" CssClass="tb5" Width="150px"></asp:DropDownList></td>
+                                <asp:DropDownList ID="ddlInsertPositionSTID" runat="server" CssClass="tb5" Width="150px"></asp:DropDownList></td>
                             <td style="text-align: left;">
-                                <asp:Button ID="btnSubmitPermaPosition" Text="OK" runat="server" CssClass="master_OAT_button" OnClick="btnSubmitPermaPosition_Click" /></td>
+                                <asp:Button ID="btnSubmitPosition" Text="OK" runat="server" CssClass="master_OAT_button" OnClick="btnSubmitPosition_Click" /></td>
                             <td style="text-align: left;">
-                                <asp:Button ID="btnCancelPermaPosition" Text="Cancel" runat="server" CssClass="master_OAT_button" OnClick="btnCancelPermaPosition_Click" /></td>
+                                <asp:Button ID="btnCancelPosition" Text="Cancel" runat="server" CssClass="master_OAT_button" OnClick="btnCancelPosition_Click" /></td>
                         </tr>
                     </table>
                 </div>
@@ -90,10 +94,8 @@
         </div>
         <div>
             <fieldset>
-                <legend>Data</legend>
-                <asp:ScriptManager ID="ScriptManager1" runat="server" />
-                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                    <ContentTemplate>
+                <legend>ข้อมูล</legend>
+
                         <asp:GridView ID="GridView1" runat="server" Style="margin-left: auto; margin-right: auto; text-align: center; width: 100%"
                             AutoGenerateColumns="false"
                             AllowPaging="true"
@@ -103,19 +105,22 @@
                             OnRowUpdating="modUpdateCommand"
                             OnRowDeleting="modDeleteCommand"
                             OnRowDataBound="GridView1_RowDataBound"
-                            OnPageIndexChanging="myGridViewPermaPosition_PageIndexChanging" PageSize="15" BackColor="White" BorderColor="#999999">
+                            OnPageIndexChanging="myGridViewPosition_PageIndexChanging" PageSize="15" BackColor="White" BorderColor="#999999">
                             <Columns>
-                                <asp:TemplateField Visible="false" HeaderText="รหัสระดับลูกจ้าง" ControlStyle-Width="150" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Tomato">
+                                <asp:TemplateField HeaderText="รหัสระดับ" ControlStyle-Width="130" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Tomato">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblPermaPositionIDEdit" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.ID") %>'></asp:Label>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="ชื่อระดับลูกจ้าง" ControlStyle-Width="500" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Tomato">
-                                    <ItemTemplate>
-                                        <asp:Label ID="lblPermaPositionNameEdit" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.NAME") %>'></asp:Label>
+                                        <asp:Label ID="lblPositionIDEdit" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.ID") %>'></asp:Label>
                                     </ItemTemplate>
                                     <EditItemTemplate>
-                                        <asp:TextBox ID="txtPermaPositionNameEdit" MaxLength="100" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.NAME") %>'></asp:TextBox>
+                                        <asp:TextBox ID="txtPositionIDEdit" MaxLength="5" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.ID") %>'></asp:TextBox>
+                                    </EditItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="ชื่อระดับ" ControlStyle-Width="500" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Tomato">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblPositionNameEdit" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.NAME") %>'></asp:Label>
+                                    </ItemTemplate>
+                                    <EditItemTemplate>
+                                        <asp:TextBox ID="txtPositionNameEdit" MaxLength="100" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.NAME") %>'></asp:TextBox>
                                     </EditItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="ตำแหน่งประเภท" ControlStyle-Width="150" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Tomato">
@@ -123,7 +128,7 @@
                                         <asp:Label ID="lblSubStaffIDEdit" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.ST_ID") %>'></asp:Label>
                                     </ItemTemplate>
                                     <EditItemTemplate>
-                                        <asp:DropDownList ID="ddlPermaSTIDEdit" runat="server"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlSTIDEdit" runat="server"></asp:DropDownList>
                                     </EditItemTemplate>
                                 </asp:TemplateField>
                                 <asp:CommandField ShowEditButton="True" CancelText="Cancel" DeleteText="Delete" EditText="Edit" UpdateText="Update" HeaderText="แก้ไข" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Tomato" />
@@ -134,11 +139,7 @@
                                 </asp:TemplateField>
                             </Columns>
                         </asp:GridView>
-                    </ContentTemplate>
-                    <Triggers>
-                        <asp:AsyncPostBackTrigger ControlID="Gridview1" />
-                    </Triggers>
-                </asp:UpdatePanel>
+              
 
             </fieldset>
         </div>

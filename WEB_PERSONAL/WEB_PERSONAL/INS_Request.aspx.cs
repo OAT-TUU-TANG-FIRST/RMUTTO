@@ -17,7 +17,7 @@ namespace WEB_PERSONAL
         public static string strConn = @"Data Source = ORCL_RMUTTO;USER ID=RMUTTO;PASSWORD=Zxcvbnm";
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            /*if (!IsPostBack)
             {
                 BindData();
                 using (OracleConnection conn = Util.OC())
@@ -52,17 +52,17 @@ namespace WEB_PERSONAL
                 DDLTitle();
                 DDLGender();
                 DDLPositionWork();
-            }
+            }*/
         }
 
 
         void BindData()
         {
-            if (Session["login_id"] == null)
+           /* if (Session["login_id"] == null)
             {
                 Response.Redirect("Access.aspx");
                 return;
-            }
+            }*/
         }
 
         private void DDLCOMMAND()
