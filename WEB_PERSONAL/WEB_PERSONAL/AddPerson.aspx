@@ -211,7 +211,7 @@
                                 </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbCoupleOldLastName" /></Triggers></asp:UpdatePanel></td>
                     </tr>
                 </table>
-                <asp:LinkButton ID="lbuV1Next" runat="server" OnClick="lbuV1Next_Click" CssClass="button button_default">ถัดไป</asp:LinkButton>
+                <asp:LinkButton ID="lbuV1Next" runat="server" OnClick="lbuV1Next_Click" CssClass="ps-button">ถัดไป</asp:LinkButton>
                 </fieldset>
             </asp:View>
             <asp:View ID="View2" runat="server">
@@ -373,14 +373,14 @@
                     </table>
                 </div>
                 <div style="clear: both;">
-                    <asp:LinkButton ID="lbuV2Back" runat="server" OnClick="lbuV2Back_Click" CssClass="button button_default">ย้อนกลับ</asp:LinkButton>
-                    <asp:LinkButton ID="lbuV2Next" runat="server" CssClass="button button_default" OnClick="lbuV2Next_Click">ถัดไป</asp:LinkButton>
+                    <asp:LinkButton ID="lbuV2Back" runat="server" OnClick="lbuV2Back_Click" CssClass="ps-button">ย้อนกลับ</asp:LinkButton>
+                    <asp:LinkButton ID="lbuV2Next" runat="server" CssClass="ps-button" OnClick="lbuV2Next_Click">ถัดไป</asp:LinkButton>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <asp:LinkButton ID="lbuAddressFetch" runat="server" CssClass="button button_default" OnClick="lbuAddressFetch_Click">ดึงข้อมูลที่อยู่ตามทะเบียนบ้าน</asp:LinkButton>
+                    <asp:LinkButton ID="lbuAddressFetch" runat="server" CssClass="ps-button" OnClick="lbuAddressFetch_Click">ดึงข้อมูลที่อยู่ตามทะเบียนบ้าน</asp:LinkButton>
                 </div>
                 </fieldset>
             </asp:View>
@@ -429,7 +429,7 @@
                                 </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="ddlCountrySuccess10" /></Triggers></asp:UpdatePanel></td>
                             <td style="text-align: right; margin-right: 5px;">
 
-                                <asp:LinkButton ID="lbuV3Add" runat="server" OnClick="lbuV3Add_Click" CssClass="button button_default">+</asp:LinkButton></td>
+                                <asp:LinkButton ID="lbuV3Add" runat="server" OnClick="lbuV3Add_Click" CssClass="ps-button">+</asp:LinkButton></td>
                                 
                         </tr>
                     </table>
@@ -452,8 +452,8 @@
                     </asp:UpdatePanel>
 
                 <div>
-                    <asp:LinkButton ID="lbuV3Back" runat="server" CssClass="button button_default" OnClick="lbuV3Back_Click">ย้อนกลับ</asp:LinkButton>
-                    <asp:LinkButton ID="lbuV3Next" runat="server" CssClass="button button_default" OnClick="lbuV3Next_Click">ถัดไป</asp:LinkButton>
+                    <asp:LinkButton ID="lbuV3Back" runat="server" CssClass="ps-button" OnClick="lbuV3Back_Click">ย้อนกลับ</asp:LinkButton>
+                    <asp:LinkButton ID="lbuV3Next" runat="server" CssClass="ps-button" OnClick="lbuV3Next_Click">ถัดไป</asp:LinkButton>
                 </div>
                 </fieldset>
             </asp:View>
@@ -507,6 +507,20 @@
                                 </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="ddlBudget" /></Triggers></asp:UpdatePanel></td>
                     </tr>
                     <tr>
+                        <td class="col1">ตำแหน่ง</td>
+                        <td class="col2">
+                            <asp:UpdatePanel ID="UpdateddlBudget0" runat="server">
+                                <ContentTemplate>
+                                    <asp:DropDownList ID="ddlPosition" runat="server">
+                                    </asp:DropDownList>
+                                </ContentTemplate>
+                                <Triggers>
+                                    <asp:AsyncPostBackTrigger ControlID="ddlBudget" />
+                                </Triggers>
+                            </asp:UpdatePanel>
+                        </td>
+                    </tr>
+                    <tr>
                         <td class="col1">ตำแหน่งบริหาร</td>
                         <td class="col2">
                                 <asp:UpdatePanel ID="UpdateddlAdminPosition" runat="server"><ContentTemplate>
@@ -550,8 +564,8 @@
                     </tr>
                 </table>
                 <div>
-                        <asp:LinkButton ID="lbuV4Back" runat="server" CssClass="button button_default" OnClick="lbuV4Back_Click">ย้อนกลับ</asp:LinkButton>
-                    <asp:LinkButton ID="lbuV4Next" runat="server" CssClass="button button_default" OnClick="lbuV4Next_Click">ถัดไป</asp:LinkButton>
+                        <asp:LinkButton ID="lbuV4Back" runat="server" CssClass="ps-button" OnClick="lbuV4Back_Click">ย้อนกลับ</asp:LinkButton>
+                    <asp:LinkButton ID="lbuV4Next" runat="server" CssClass="ps-button" OnClick="lbuV4Next_Click">ถัดไป</asp:LinkButton>
                 </div>
                 </fieldset>
             </asp:View>
@@ -588,7 +602,7 @@
                                 </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbUseDate11" /></Triggers></asp:UpdatePanel></td>
                             <td style="text-align: right; margin-right: 5px;">
                                 
-                                <asp:LinkButton ID="lbuV5Add" runat="server" OnClick="lbuV5Add_Click" CssClass="button button_default">+</asp:LinkButton></td>
+                                <asp:LinkButton ID="lbuV5Add" runat="server" OnClick="lbuV5Add_Click" CssClass="ps-button">+</asp:LinkButton></td>
 
                         </tr>
                     </table>
@@ -602,8 +616,8 @@
                         </Triggers>
                     </asp:UpdatePanel>
                 <div>
-                    <asp:LinkButton ID="lbuV5Back" runat="server" CssClass="button button_default" OnClick="lbuV5Back_Click">ย้อนกลับ</asp:LinkButton>
-                    <asp:LinkButton ID="lbuV5Next" runat="server" CssClass="button button_default" OnClick="lbuV5Next_Click">ถัดไป</asp:LinkButton>
+                    <asp:LinkButton ID="lbuV5Back" runat="server" CssClass="ps-button" OnClick="lbuV5Back_Click">ย้อนกลับ</asp:LinkButton>
+                    <asp:LinkButton ID="lbuV5Next" runat="server" CssClass="ps-button" OnClick="lbuV5Next_Click">ถัดไป</asp:LinkButton>
                 </div>
                 </fieldset>
             </asp:View>
@@ -637,7 +651,7 @@
                                 </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbDepartment" /></Triggers></asp:UpdatePanel></td>
                             <td style="text-align: right; margin-right: 5px;">
                                 
-                                <asp:LinkButton ID="lbuV6Add" runat="server" OnClick="lbuV6Add_Click" CssClass="button button_default">+</asp:LinkButton></td>
+                                <asp:LinkButton ID="lbuV6Add" runat="server" OnClick="lbuV6Add_Click" CssClass="ps-button">+</asp:LinkButton></td>
                         </tr>
                     </table>
 
@@ -659,8 +673,8 @@
                     </asp:UpdatePanel>
 
                 <div>
-                    <asp:LinkButton ID="lbuV6Back" runat="server" CssClass="button button_default" OnClick="lbuV6Back_Click">ย้อนกลับ</asp:LinkButton>
-                    <asp:LinkButton ID="lbuV6Next" runat="server" CssClass="button button_default" OnClick="lbuV6Next_Click">ถัดไป</asp:LinkButton>
+                    <asp:LinkButton ID="lbuV6Back" runat="server" CssClass="ps-button" OnClick="lbuV6Back_Click">ย้อนกลับ</asp:LinkButton>
+                    <asp:LinkButton ID="lbuV6Next" runat="server" CssClass="ps-button" OnClick="lbuV6Next_Click">ถัดไป</asp:LinkButton>
                 </div>
                 </fieldset>
             </asp:View>
@@ -691,7 +705,7 @@
                                 </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbREF13" /></Triggers></asp:UpdatePanel></td>
                             <td style="text-align: right; margin-right: 5px;">
 
-                                <asp:LinkButton ID="lbuV7Add" runat="server" OnClick="lbuV7Add_Click" CssClass="button button_default">+</asp:LinkButton></td>
+                                <asp:LinkButton ID="lbuV7Add" runat="server" OnClick="lbuV7Add_Click" CssClass="ps-button">+</asp:LinkButton></td>
 
                         </tr>
                     </table>
@@ -706,8 +720,8 @@
                     </asp:UpdatePanel>
 
                 <div>
-                    <asp:LinkButton ID="lbuV7Back" runat="server" CssClass="button button_default" OnClick="lbuV7Back_Click">ย้อนกลับ</asp:LinkButton>
-                    <asp:LinkButton ID="lbuV7Next" runat="server" CssClass="button button_default" OnClick="lbuV7Next_Click">ถัดไป</asp:LinkButton>
+                    <asp:LinkButton ID="lbuV7Back" runat="server" CssClass="ps-button" OnClick="lbuV7Back_Click">ย้อนกลับ</asp:LinkButton>
+                    <asp:LinkButton ID="lbuV7Next" runat="server" CssClass="ps-button" OnClick="lbuV7Next_Click">ถัดไป</asp:LinkButton>
                 </div>
                 </fieldset>
             </asp:View>
@@ -764,7 +778,7 @@
                                 </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbRef14" /></Triggers></asp:UpdatePanel></td>
                             <td style="text-align: right; margin-right: 5px;"> 
 
-                                <asp:LinkButton ID="lbuV8Add" runat="server" OnClick="lbuV8Add_Click" CssClass="button button_default">+</asp:LinkButton></td>
+                                <asp:LinkButton ID="lbuV8Add" runat="server" OnClick="lbuV8Add_Click" CssClass="ps-button">+</asp:LinkButton></td>
 
                         </tr>
                     </table>
@@ -786,8 +800,8 @@
                         </Triggers>
                     </asp:UpdatePanel>
                 <div>
-                    <asp:LinkButton ID="lbuV8Back" runat="server" CssClass="button button_default" OnClick="lbuV8Back_Click">ย้อนกลับ</asp:LinkButton>
-                        <asp:LinkButton ID="lbSubmit" runat="server" CssClass="button button_default" OnClick="lbSubmit_Click">ยืนยันการเพิ่มข้อมูลบุคลากร</asp:LinkButton>
+                    <asp:LinkButton ID="lbuV8Back" runat="server" CssClass="ps-button" OnClick="lbuV8Back_Click">ย้อนกลับ</asp:LinkButton>
+                        <asp:LinkButton ID="lbSubmit" runat="server" CssClass="ps-button" OnClick="lbSubmit_Click">ยืนยันการเพิ่มข้อมูลบุคลากร</asp:LinkButton>
                 </div>
                 </fieldset>
             </asp:View>

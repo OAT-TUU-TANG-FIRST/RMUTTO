@@ -126,11 +126,14 @@
                 
                 <div class="ps-ms-side-group">
                     <span class="ps-ms-side-group-header">เครื่องราชอิสริยาภรณ์</span>
-                    <a href="INS_Request_admin.aspx"><img src="Image/Small/medal.png" />คนที่เข้าเกณฑ์การรับเครื่องราช</a>
-                    <a href="insignia_from_view.aspx"><img src="Image/Small/medal.png" />ประวัติการขอเครื่องราชฯ</a>
+                    <a href="INSG_Request.aspx"><img src="Image/Small/medal.png" />ขอเครื่องราชฯ</a>
+                    <a href="INSG_Qualified.aspx"><img src="Image/Small/medal.png" />คนที่เข้าเกณฑ์การรับเครื่องราชฯ</a>
+                    <a href="INSG_RequestList.aspx"><img src="Image/Small/medal.png" />รายชื่อการขอเครื่องราชฯ</a>
+                    
+                    <!--a href="insignia_from_view.aspx"><img src="Image/Small/medal.png" />ประวัติการขอเครื่องราชฯ</!--a>
                     <a href="insignia_recordnote2.aspx"><img src="Image/Small/medal.png" />ประวัติการรับเครื่องราชฯ</a>
                     <a href="insignia_from_add.aspx"><img src="Image/Small/medal.png" />เพิ่มข้อมูลเครื่องราชฯ</a>
-                    <a href="insignia_recordnote2-ADMIN.aspx"><img src="Image/Small/medal.png" />เพิ่มประวัติการรับเครื่องราชฯ</a>
+                    <a href="insignia_recordnote2-ADMIN.aspx"><img src="Image/Small/medal.png" />เพิ่มประวัติการรับเครื่องราชฯ</a-->
                     <!--a href="insignia_maintence.aspx">บัญชีรายชื่อผู้ขอรับภาพถ่ายเข้าเฝ้า(ชั้นสายสะพาย)</!--a>
                                     <a href="insignia_maintence.aspx">แบบคำขอยืมเครื่องราชอิสริยาภรณ์</a>
                                     <a href="insignia_maintence.aspx">หลักฐานการส่งคืน/ชดใช้ราคาเครื่องราชอิสริยาภรณ์</a>
@@ -146,7 +149,7 @@
 
                 <div class="ps-ms-side-group">
                     <span class="ps-ms-side-group-header">ข้อมูลระบบ</span>
-                    <div style="margin-left: 10px;">เวอร์ชั่น : v1.0.4</div>
+                    <div style="margin-left: 10px;">เวอร์ชั่น : v1.0.5</div>
                     <div style="margin-left: 10px;">ตัวนับ : <span id="s_counter" runat="server"></span></div>
                 </div>
 

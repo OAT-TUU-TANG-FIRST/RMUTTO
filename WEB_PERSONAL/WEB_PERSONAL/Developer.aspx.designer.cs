@@ -13,6 +13,42 @@ namespace WEB_PERSONAL {
     public partial class Developer {
         
         /// <summary>
+        /// lbo1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListBox lbo1;
+        
+        /// <summary>
+        /// tbc1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbc1;
+        
+        /// <summary>
+        /// tbc2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbc2;
+        
+        /// <summary>
+        /// lbc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbc;
+        
+        /// <summary>
         /// Table1 control.
         /// </summary>
         /// <remarks>

@@ -1250,7 +1250,8 @@ ault_page_header {
 .ps-separator {
     height: 1px;
     margin: 10px 0;
-    background: linear-gradient(to right, rgba(240,240,240,0), rgba(192,192,192,0.9), rgba(192,192,192,1), rgba(192,192,192,0.9), rgba(240,240,240,0));
+    /*background: linear-gradient(to right, rgba(240,240,240,0), rgba(192,192,192,0.9), rgba(192,192,192,1), rgba(192,192,192,0.9), rgba(240,240,240,0));*/
+    background-color: #e0e0e0;
 }
 .ps-vs {
     display: inline-block;

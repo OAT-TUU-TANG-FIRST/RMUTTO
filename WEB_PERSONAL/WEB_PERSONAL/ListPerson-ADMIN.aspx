@@ -3,8 +3,11 @@
     <style type="text/css">
         .divpan {
             text-align: center;
+            color: blue;
         }
-
+        div{
+            color:#003380;
+        }
         .panin {
             border: 1px solid black;
             margin: 20px;
@@ -13,12 +16,12 @@
         }
 
         body {
-            background-image: url("Image/444.png");
+            background-color : white;
         }
 
         .tb5 {
             background-repeat: repeat-x;
-            border: 1px solid #d1c7ac;
+            border: 1px solid #ff9900;
             width: 150px;
             color: #333333;
             padding: 3px;
@@ -27,18 +30,25 @@
             font-family: tahoma, arial, sans-serif;
             border-radius: 10px;
             resize: none;
+            
         }
-
-        .tb6 {
-            background-repeat: repeat-x;
-            border: 1px solid #d1c7ac;
-            color: #333333;
+        .center1 { 
+               display:inline-block; 
+        }
+        legend{
             padding: 3px;
             margin-right: 4px;
             margin-bottom: 8px;
             font-family: tahoma, arial, sans-serif;
             border-radius: 10px;
             resize: none;
+            text-align: center;
+            font-size:medium;
+            color:royalblue;
+        }
+        fieldset{
+            border: 3px solid #99e6ff;
+            color: black;
         }
     </style>
 </asp:Content>

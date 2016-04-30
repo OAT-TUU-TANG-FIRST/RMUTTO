@@ -49,6 +49,7 @@ namespace WEB_PERSONAL
                 DatabaseManager.BindDropDown(ddlPositionWork, "SELECT * FROM TB_POSITION_WORK", "POSITION_WORK_NAME", "POSITION_WORK_ID", "--กรุณาเลือกตำแหน่งในสายงาน--");
                 DatabaseManager.BindDropDown(ddlAcademic, "SELECT * FROM TB_ACADEMIC_POSITION", "ACAD_NAME", "ACAD_ID", "--กรุณาเลือกตำแหน่งทางวิชาการ--");
                 DatabaseManager.BindDropDown(ddlTeachISCED, "SELECT * FROM TB_TEACH_ISCED", "TEACH_ISCED_NAME_TH", "TEACH_ISCED_ID", "--กรุณาเลือกกลุ่มสาขาวิชาที่สอน--");
+                DatabaseManager.BindDropDown(ddlPosition, "SELECT * FROM TB_POSITION", "NAME", "ID", "--กรุณาเลือกตำแหน่ง--");
                 //view5
                 //view6
                 DatabaseManager.BindDropDown(ddlMonth12From, "SELECT * FROM TB_MONTH", "MONTH_SHORT", "MONTH_ID", "--เดือน--");
@@ -58,7 +59,7 @@ namespace WEB_PERSONAL
                 //view7
                 DatabaseManager.BindDropDown(ddlYear13, "SELECT * FROM TB_DATE_YEAR", "YEAR_ID", "YEAR_ID", "--ปี--");
                 //view8
-
+                
                 Session["Study"] = new DataTable();
                 ((DataTable)(Session["Study"])).Columns.Add("ระดับการศึกษา");
                 ((DataTable)(Session["Study"])).Columns.Add("สถานศึกษา");
@@ -1056,6 +1057,7 @@ namespace WEB_PERSONAL
             P0.PS_SPECIAL_WORK = tbSpecialWork.Text;
             P0.PS_TEACH_ISCED_ID = ddlTeachISCED.SelectedValue;
             P0.PS_PASSWORD = Util.RandomPassword(8);
+            P0.PS_POSITION_ID = ddlPosition.SelectedValue;
             P0.INSERT_PS_PERSON();
 
             

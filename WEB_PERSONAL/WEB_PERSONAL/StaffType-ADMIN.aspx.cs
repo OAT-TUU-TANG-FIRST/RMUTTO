@@ -63,7 +63,7 @@ namespace WEB_PERSONAL
         {
             if (string.IsNullOrEmpty(txtInsertStaffTypeName.Text))
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ ชื่อประเภทข้าราชการ')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ ชื่อประเภทบุคลากร')", true);
                 return;
             }
             ClassStaffType s = new ClassStaffType();
@@ -129,7 +129,7 @@ namespace WEB_PERSONAL
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 LinkButton lb = (LinkButton)e.Row.FindControl("DeleteButton1");
-                lb.Attributes.Add("onclick", "return confirm('คุณต้องการจะลบชื่อประเภทข้าราชการ " + DataBinder.Eval(e.Row.DataItem, "STAFFTYPE_NAME") + " ใช่ไหม ?');");
+                lb.Attributes.Add("onclick", "return confirm('คุณต้องการจะลบชื่อประเภทบุคลากร " + DataBinder.Eval(e.Row.DataItem, "STAFFTYPE_NAME") + " ใช่ไหม ?');");
             }
             e.Row.Attributes.Add("style", "cursor:help;");
             if (e.Row.RowType == DataControlRowType.DataRow && e.Row.RowState == DataControlRowState.Alternate)

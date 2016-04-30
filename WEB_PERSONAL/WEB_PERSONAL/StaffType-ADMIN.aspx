@@ -59,7 +59,7 @@
             <fieldset>
                 <legend>ค้นหาข้อมูล</legend>
                 <div>
-                    ชื่อประเภทข้าราชการ :&nbsp;<asp:TextBox ID="txtSearchStaffTypeName" runat="server" CssClass="tb5" Width="230px" MaxLength="100"></asp:TextBox>
+                    ชื่อประเภทบุคลากร :&nbsp;<asp:TextBox ID="txtSearchStaffTypeName" runat="server" CssClass="tb5" Width="230px" MaxLength="100"></asp:TextBox>
                     <asp:Button ID="btnSearchStaffType" Text="Search" runat="server" CssClass="master_OAT_button" OnClick="btnSearchStaffType_Click" />
                     <asp:Button ID="btnSearchRefresh" Text="Refresh" runat="server" CssClass="master_OAT_button" OnClick="btnSearchRefresh_Click" />
                 </div>
@@ -73,7 +73,7 @@
                 <div>
                     <table class="center1">
                         <tr>
-                            <td style="margin-left: auto; margin-right: auto; text-align: center">ชื่อประเภทข้าราชการ :</td>
+                            <td style="margin-left: auto; margin-right: auto; text-align: center">ชื่อประเภทบุคลากร :</td>
                             <td style="text-align: left; width: 120px;">
                                 <asp:TextBox ID="txtInsertStaffTypeName" runat="server" CssClass="tb5" Width="230px" MaxLength="100"></asp:TextBox></td>
                             <td style="text-align: left;">
@@ -102,12 +102,12 @@
                             OnRowDataBound="GridView1_RowDataBound"
                             OnPageIndexChanging="myGridViewSTAFFTYPE_PageIndexChanging" PageSize="15" BackColor="White" BorderColor="#999999">
                             <Columns>
-                                <asp:TemplateField Visible="false" HeaderText="รหัสประเภทข้าราชการ" ControlStyle-Width="230" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Tomato">
+                                <asp:TemplateField Visible="false" HeaderText="รหัสประเภทบุคลากร" ControlStyle-Width="230" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Tomato">
                                     <ItemTemplate>
                                         <asp:Label ID="lblStaffTypeIDEdit" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.STAFFTYPE_ID") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="ชื่อประเภทข้าราชการ" ControlStyle-Width="600" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Tomato">
+                                <asp:TemplateField HeaderText="ชื่อประเภทบุคลากร" ControlStyle-Width="600" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Tomato">
                                     <ItemTemplate>
                                         <asp:Label ID="lblStaffTypeNameEdit" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.STAFFTYPE_NAME") %>'></asp:Label>
                                     </ItemTemplate>

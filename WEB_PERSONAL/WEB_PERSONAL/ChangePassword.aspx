@@ -8,25 +8,31 @@
             <tr>
                 <td class="col1">รหัสผ่านเก่า</td>
                 <td class="col2">
-                    <asp:TextBox ID="tbOld" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
+                    <asp:TextBox ID="tbOld" runat="server" CssClass="ps-textbox" TextMode="Password"></asp:TextBox>
                 </td>
             </tr>
             <tr>
                 <td class="col1">รหัสผ่านใหม่</td>
                 <td class="col2">
-                    <asp:TextBox ID="tbNew" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
+                    <asp:TextBox ID="tbNew" runat="server" CssClass="ps-textbox" TextMode="Password"></asp:TextBox>
                 </td>
             </tr>
             <tr>
                 <td class="col1">ยืนยันรหัสผ่านใหม่</td>
                 <td class="col2">
-                    <asp:TextBox ID="tbNew2" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
+                    <asp:TextBox ID="tbNew2" runat="server" CssClass="ps-textbox" TextMode="Password"></asp:TextBox>
                 </td>
             </tr>
             <tr>
                 <td class="col1"></td>
                 <td class="col2">
-                    <asp:LinkButton ID="lbuFinish" runat="server" CssClass="button button_default" OnClick="lbuFinish_Click">เปลี่ยนรหัสผ่าน</asp:LinkButton>
+                    <asp:LinkButton ID="lbuFinish" runat="server" CssClass="ps-button" OnClick="lbuFinish_Click">เปลี่ยนรหัสผ่าน</asp:LinkButton>
+                </td>
+            </tr>
+            <tr>
+                <td class="col1"></td>
+                <td class="col2">
+                    <asp:Label ID="lbResult" runat="server" Text=""></asp:Label>
                 </td>
             </tr>
         </table>

@@ -108,8 +108,8 @@ namespace WEB_PERSONAL.Class {
         public string PositionID;
         public string PositionName;
 
-
-        
+        public int WorkYear;
+        public int Salary;
         
         public int NotificationCount;
 

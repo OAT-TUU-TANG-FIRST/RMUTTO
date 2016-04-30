@@ -10,7 +10,7 @@ using System.Data.OracleClient;
 
 namespace WEB_PERSONAL
 {
-    public partial class Permanent_ADMIN : System.Web.UI.Page
+    public partial class nent_ADMIN : System.Web.UI.Page
     {
         public static string strConn = @"Data Source = ORCL_RMUTTO;USER ID=RMUTTO;PASSWORD=Zxcvbnm";
         protected void Page_Load(object sender, EventArgs e)
@@ -18,8 +18,10 @@ namespace WEB_PERSONAL
             if (!IsPostBack)
             {
                 BindData();
-                ddlShowSearchPermaSTID();
-                ddlShowInsertPermaSTID();
+                txtSearchPositionID.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
+                txtInsertPositionID.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
+                ddlShowSearchPositionSTID();
+                ddlShowInsertPositionSTID();
             }
         }
 
@@ -28,21 +30,21 @@ namespace WEB_PERSONAL
         private DataTable GetViewState()
         {
             //Gets the ViewState
-            return (DataTable)ViewState["PERMAPOSITION"];
+            return (DataTable)ViewState["POSITION"];
         }
 
         private void SetViewState(DataTable data)
         {
             //Sets the ViewState
-            ViewState["PERMAPOSITION"] = data;
+            ViewState["POSITION"] = data;
         }
 
         #endregion
 
         void BindData()
         {
-            ClassPositionPermanent pg = new ClassPositionPermanent();
-            DataTable dt = pg.GetPositionPermanent("", "");
+            ClassPosition pg = new ClassPosition();
+            DataTable dt = pg.GetPosition("", "", "");
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);
@@ -50,18 +52,25 @@ namespace WEB_PERSONAL
 
         void BindData1()
         {
-            if (!string.IsNullOrEmpty(txtSearchPermaPositionName.Text))
-            {
-                ClassPositionPermanent pg = new ClassPositionPermanent();
-                DataTable dt = pg.GetPositionPermanent(txtSearchPermaPositionName.Text, "");
+            if (!string.IsNullOrEmpty(txtSearchPositionID.Text)) {
+                ClassPosition pg = new ClassPosition();
+                DataTable dt = pg.GetPosition(txtSearchPositionID.Text, "", "");
                 GridView1.DataSource = dt;
                 GridView1.DataBind();
                 SetViewState(dt);
             }
-            if (ddlSearchPermaSTID.SelectedIndex != 0)
+            if (!string.IsNullOrEmpty(txtSearchPositionName.Text))
             {
-                ClassPositionPermanent pg = new ClassPositionPermanent();
-                DataTable dt = pg.GetPositionPermanent("", ddlSearchPermaSTID.SelectedValue);
+                ClassPosition pg = new ClassPosition();
+                DataTable dt = pg.GetPosition("", txtSearchPositionName.Text, "");
+                GridView1.DataSource = dt;
+                GridView1.DataBind();
+                SetViewState(dt);
+            }
+            if (ddlSearchPositionSTID.SelectedIndex != 0)
+            {
+                ClassPosition pg = new ClassPosition();
+                DataTable dt = pg.GetPosition("" ,"", ddlSearchPositionSTID.SelectedValue);
                 GridView1.DataSource = dt;
                 GridView1.DataBind();
                 SetViewState(dt);
@@ -70,13 +79,15 @@ namespace WEB_PERSONAL
 
         private void ClearData()
         {
-            txtSearchPermaPositionName.Text = "";
-            ddlSearchPermaSTID.SelectedIndex = 0;
-            txtInsertPermaPositionName.Text = "";
-            ddlInsertPermaSTID.SelectedIndex = 0;
+            txtSearchPositionID.Text = "";
+            txtSearchPositionName.Text = "";
+            ddlSearchPositionSTID.SelectedIndex = 0;
+            txtInsertPositionID.Text = "";
+            txtInsertPositionName.Text = "";
+            ddlInsertPositionSTID.SelectedIndex = 0;
         }
 
-        private void ddlShowSearchPermaSTID()
+        private void ddlShowSearchPositionSTID()
         {
             try
             {
@@ -90,13 +101,13 @@ namespace WEB_PERSONAL
                         OracleDataAdapter da = new OracleDataAdapter(sqlCmd);
                         DataTable dt = new DataTable();
                         da.Fill(dt);
-                        ddlSearchPermaSTID.DataSource = dt;
-                        ddlSearchPermaSTID.DataValueField = "ST_ID";
-                        ddlSearchPermaSTID.DataTextField = "ST_NAME";
-                        ddlSearchPermaSTID.DataBind();
+                        ddlSearchPositionSTID.DataSource = dt;
+                        ddlSearchPositionSTID.DataValueField = "ST_ID";
+                        ddlSearchPositionSTID.DataTextField = "ST_NAME";
+                        ddlSearchPositionSTID.DataBind();
                         sqlConn.Close();
 
-                        ddlSearchPermaSTID.Items.Insert(0, new ListItem("--ตำแหน่งประเภท--", "0"));
+                        ddlSearchPositionSTID.Items.Insert(0, new ListItem("--ตำแหน่งประเภท--", "0"));
 
                     }
                 }
@@ -104,7 +115,7 @@ namespace WEB_PERSONAL
             catch { }
         }
 
-        private void ddlShowInsertPermaSTID()
+        private void ddlShowInsertPositionSTID()
         {
             try
             {
@@ -118,13 +129,13 @@ namespace WEB_PERSONAL
                         OracleDataAdapter da = new OracleDataAdapter(sqlCmd);
                         DataTable dt = new DataTable();
                         da.Fill(dt);
-                        ddlInsertPermaSTID.DataSource = dt;
-                        ddlInsertPermaSTID.DataValueField = "ST_ID";
-                        ddlInsertPermaSTID.DataTextField = "ST_NAME";
-                        ddlInsertPermaSTID.DataBind();
+                        ddlInsertPositionSTID.DataSource = dt;
+                        ddlInsertPositionSTID.DataValueField = "ST_ID";
+                        ddlInsertPositionSTID.DataTextField = "ST_NAME";
+                        ddlInsertPositionSTID.DataBind();
                         sqlConn.Close();
 
-                        ddlInsertPermaSTID.Items.Insert(0, new ListItem("--ตำแหน่งประเภท--", "0"));
+                        ddlInsertPositionSTID.Items.Insert(0, new ListItem("--ตำแหน่งประเภท--", "0"));
 
                     }
                 }
@@ -132,25 +143,30 @@ namespace WEB_PERSONAL
             catch { }
         }
 
-        protected void btnSubmitPermaPosition_Click(object sender, EventArgs e)
+        protected void btnSubmitPosition_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtInsertPermaPositionName.Text))
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ ชื่อระดับลูกจ้าง')", true);
+            if (string.IsNullOrEmpty(txtInsertPositionID.Text)) {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ รหัสระดับ')", true);
                 return;
             }
-            if (ddlInsertPermaSTID.SelectedIndex == 0)
+            if (string.IsNullOrEmpty(txtInsertPositionName.Text))
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ ชื่อระดับ')", true);
+                return;
+            }
+            if (ddlInsertPositionSTID.SelectedIndex == 0)
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาเลือก ประเภทตำแหน่ง')", true);
                 return;
             }
-            ClassPositionPermanent pg = new ClassPositionPermanent();
-            pg.NAME = txtInsertPermaPositionName.Text;
-            pg.ST_ID = ddlInsertPermaSTID.SelectedValue;
+            ClassPosition pg = new ClassPosition();
+            pg.ID = txtInsertPositionID.Text;
+            pg.NAME = txtInsertPositionName.Text;
+            pg.ST_ID = ddlInsertPositionSTID.SelectedValue;
 
-            if (pg.CheckUsePositionPermanentName())
+            if (pg.CheckUsePositionID())
             {
-                pg.InsertPositionPermanent();
+                pg.InsertPosition();
                 BindData();
                 ClearData();
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('เพิ่มข้อมูลเรียบร้อย')", true);
@@ -163,7 +179,7 @@ namespace WEB_PERSONAL
 
         protected void modEditCommand(Object sender, GridViewEditEventArgs e)
         {
-            if (txtSearchPermaPositionName.Text != "" || ddlSearchPermaSTID.SelectedIndex != 0)
+            if (txtSearchPositionID.Text != "" || txtSearchPositionName.Text != "" || ddlSearchPositionSTID.SelectedIndex != 0)
             {
                 GridView1.EditIndex = e.NewEditIndex; ;
                 BindData1();
@@ -176,7 +192,7 @@ namespace WEB_PERSONAL
         }
         protected void modCancelCommand(Object sender, GridViewCancelEditEventArgs e)
         {
-            if (txtSearchPermaPositionName.Text != "" || ddlSearchPermaSTID.SelectedIndex != 0)
+            if (txtSearchPositionID.Text != "" || txtSearchPositionName.Text != "" || ddlSearchPositionSTID.SelectedIndex != 0)
             {
                 GridView1.EditIndex = -1;
                 BindData1();
@@ -189,13 +205,13 @@ namespace WEB_PERSONAL
         }
         protected void modDeleteCommand(Object sender, GridViewDeleteEventArgs e)
         {
-            int id = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Value);
-            ClassPositionPermanent pg = new ClassPositionPermanent();
+            string id = GridView1.DataKeys[e.RowIndex].Value.ToString();
+            ClassPosition pg = new ClassPosition();
             pg.ID = id;
-            pg.DeletePositionPermanent();
+            pg.DeletePosition();
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ลบข้อมูลเรียบร้อย')", true);
 
-            if (txtSearchPermaPositionName.Text != "" || ddlSearchPermaSTID.SelectedIndex != 0)
+            if (txtSearchPositionID.Text != "" || txtSearchPositionName.Text != "" || ddlSearchPositionSTID.SelectedIndex != 0)
             {
                 GridView1.EditIndex = -1;
                 BindData1();
@@ -208,15 +224,15 @@ namespace WEB_PERSONAL
         }
         protected void modUpdateCommand(Object sender, GridViewUpdateEventArgs e)
         {
-            Label lblPermaPositionIDEdit = (Label)GridView1.Rows[e.RowIndex].FindControl("lblPermaPositionIDEdit");
-            TextBox txtPermaPositionNameEdit = (TextBox)GridView1.Rows[e.RowIndex].FindControl("txtPermaPositionNameEdit");
-            DropDownList ddlPermaSTIDEdit = (DropDownList)GridView1.Rows[e.RowIndex].FindControl("ddlPermaSTIDEdit");
+            TextBox txtPositionIDEdit = (TextBox)GridView1.Rows[e.RowIndex].FindControl("txtPositionIDEdit");
+            TextBox txtPositionNameEdit = (TextBox)GridView1.Rows[e.RowIndex].FindControl("txtPositionNameEdit");
+            DropDownList ddlSTIDEdit = (DropDownList)GridView1.Rows[e.RowIndex].FindControl("ddlSTIDEdit");
 
-            ClassPositionPermanent pg = new ClassPositionPermanent(Convert.ToInt32(lblPermaPositionIDEdit.Text), txtPermaPositionNameEdit.Text, ddlPermaSTIDEdit.SelectedValue);
+            ClassPosition pg = new ClassPosition(txtPositionIDEdit.Text, txtPositionNameEdit.Text, ddlSTIDEdit.SelectedValue);
 
-            if (pg.CheckUsePositionPermanentName())
+            if (pg.CheckUsePositionID())
             {
-                pg.UpdatePositionPermanent();
+                pg.UpdatePosition();
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('อัพเดทข้อมูลเรียบร้อย')", true);
                 GridView1.EditIndex = -1;
                 BindData1();
@@ -232,15 +248,19 @@ namespace WEB_PERSONAL
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 LinkButton lb = (LinkButton)e.Row.FindControl("DeleteButton1");
-                lb.Attributes.Add("onclick", "return confirm('คุณต้องการจะลบชื่อระดับลูกจ้าง " + DataBinder.Eval(e.Row.DataItem, "NAME") + " ใช่ไหม ?');");
+                lb.Attributes.Add("onclick", "return confirm('คุณต้องการจะลบชื่อระดับ " + DataBinder.Eval(e.Row.DataItem, "NAME") + " ใช่ไหม ?');");
 
+                if ((e.Row.RowState & DataControlRowState.Edit) > 0) {
+                    TextBox txt = (TextBox)e.Row.FindControl("txtPositionIDEdit");
+                    txt.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
+                }
                 if ((e.Row.RowState & DataControlRowState.Edit) > 0)
                 {
                     using (OracleConnection sqlConn1 = new OracleConnection(strConn))
                     {
                         using (OracleCommand sqlCmd1 = new OracleCommand())
                         {
-                            DropDownList ddlPermaSTIDEdit = (DropDownList)e.Row.FindControl("ddlPermaSTIDEdit");
+                            DropDownList ddlSTIDEdit = (DropDownList)e.Row.FindControl("ddlSTIDEdit");
 
                             sqlCmd1.CommandText = "select * from TB_STAFF";
                             sqlCmd1.Connection = sqlConn1;
@@ -248,14 +268,14 @@ namespace WEB_PERSONAL
                             OracleDataAdapter da1 = new OracleDataAdapter(sqlCmd1);
                             DataTable dt = new DataTable();
                             da1.Fill(dt);
-                            ddlPermaSTIDEdit.DataSource = dt;
-                            ddlPermaSTIDEdit.SelectedValue = DataBinder.Eval(e.Row.DataItem, "ST_ID").ToString();
-                            ddlPermaSTIDEdit.DataValueField = "ST_ID";
-                            ddlPermaSTIDEdit.DataTextField = "ST_NAME";
-                            ddlPermaSTIDEdit.DataBind();
+                            ddlSTIDEdit.DataSource = dt;
+                            ddlSTIDEdit.SelectedValue = DataBinder.Eval(e.Row.DataItem, "ST_ID").ToString();
+                            ddlSTIDEdit.DataValueField = "ST_ID";
+                            ddlSTIDEdit.DataTextField = "ST_NAME";
+                            ddlSTIDEdit.DataBind();
                             sqlConn1.Close();
 
-                            ddlPermaSTIDEdit.Items.Insert(0, new ListItem("--ตำแหน่งประเภท--", "0"));
+                            ddlSTIDEdit.Items.Insert(0, new ListItem("--ตำแหน่งประเภท--", "0"));
                             DataRowView dr1 = e.Row.DataItem as DataRowView;
                         }
                     }
@@ -281,44 +301,49 @@ namespace WEB_PERSONAL
                 }
             }
         }
-        protected void myGridViewPermaPosition_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        protected void myGridViewPosition_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             GridView1.PageIndex = e.NewPageIndex;
             GridView1.DataSource = GetViewState();
             GridView1.DataBind();
         }
 
-        protected void btnCancelPermaPosition_Click(object sender, EventArgs e)
+        protected void btnCancelPosition_Click(object sender, EventArgs e)
         {
             ClearData();
-            ClassPositionPermanent pg = new ClassPositionPermanent();
-            DataTable dt = pg.GetPositionPermanent("", "");
+            ClassPosition pg = new ClassPosition();
+            DataTable dt = pg.GetPosition("", "", "");
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);
         }
 
-        protected void btnSearchPermaPosition_Click(object sender, EventArgs e)
+        protected void btnSearchPosition_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtSearchPermaPositionName.Text) && ddlSearchPermaSTID.SelectedIndex == 0)
+            if (string.IsNullOrEmpty(txtSearchPositionID.Text) && string.IsNullOrEmpty(txtSearchPositionName.Text) && ddlSearchPositionSTID.SelectedIndex == 0)
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก คำค้นหา')", true);
                 return;
             }
             else
             {
-                if (!string.IsNullOrEmpty(txtSearchPermaPositionName.Text))
-                {
-                    ClassPositionPermanent pg = new ClassPositionPermanent();
-                    DataTable dt = pg.GetPositionPermanent(txtSearchPermaPositionName.Text, "");
+                if (!string.IsNullOrEmpty(txtSearchPositionID.Text)) {
+                    ClassPosition pg = new ClassPosition();
+                    DataTable dt = pg.GetPosition(txtSearchPositionID.Text, "", "");
                     GridView1.DataSource = dt;
                     GridView1.DataBind();
                     SetViewState(dt);
                 }
-                if (ddlSearchPermaSTID.SelectedIndex != 0)
-                {
-                    ClassPositionPermanent pg = new ClassPositionPermanent();
-                    DataTable dt = pg.GetPositionPermanent("", ddlSearchPermaSTID.SelectedValue);
+                if (!string.IsNullOrEmpty(txtSearchPositionName.Text)) {
+                    ClassPosition pg = new ClassPosition();
+                    DataTable dt = pg.GetPosition("", txtSearchPositionName.Text, "");
+                    GridView1.DataSource = dt;
+                    GridView1.DataBind();
+                    SetViewState(dt);
+                }
+                if (ddlSearchPositionSTID.SelectedIndex != 0) {
+                    ClassPosition pg = new ClassPosition();
+                    DataTable dt = pg.GetPosition("", "", ddlSearchPositionSTID.SelectedValue);
                     GridView1.DataSource = dt;
                     GridView1.DataBind();
                     SetViewState(dt);
@@ -329,8 +354,8 @@ namespace WEB_PERSONAL
         protected void btnSearchRefresh_Click(object sender, EventArgs e)
         {
             ClearData();
-            ClassPositionPermanent pg = new ClassPositionPermanent();
-            DataTable dt = pg.GetPositionPermanent("", "");
+            ClassPosition pg = new ClassPosition();
+            DataTable dt = pg.GetPosition("", "", "");
             GridView1.DataSource = dt;
             GridView1.DataBind();
             SetViewState(dt);

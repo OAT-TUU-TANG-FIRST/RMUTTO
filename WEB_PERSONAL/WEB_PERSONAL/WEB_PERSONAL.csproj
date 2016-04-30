@@ -110,6 +110,7 @@
     <Content Include="404.aspx" />
     <Content Include="AAA.aspx" />
     <Content Include="About.aspx" />
+    <Content Include="AcademicPosition-ADMIN.aspx" />
     <Content Include="Access.aspx" />
     <Content Include="AddPerson-Edit.aspx" />
     <Content Include="AddPerson.aspx" />
@@ -679,6 +680,7 @@
     <Content Include="aspnet_client\system_web\4_0_30319\crystalreportviewers13\prompting\js\promptengine_strings_zh_TW.js" />
     <Content Include="aspnet_client\system_web\4_0_30319\crystalreportviewers13\urlreporting\activexviewer.js" />
     <Content Include="aspnet_client\system_web\4_0_30319\crystalreportviewers13\urlreporting\appletviewer.js" />
+    <Content Include="Blood-ADMIN.aspx" />
     <Content Include="Budget-ADMIN.aspx" />
     <Content Include="Campus-ADMIN.aspx" />
     <Content Include="ChangePassword.aspx" />
@@ -740,6 +742,7 @@
     <Content Include="DataManager.aspx" />
     <Content Include="Developer.aspx" />
     <Content Include="District-ADMIN.aspx" />
+    <Content Include="Division-ADMIN.aspx" />
     <Content Include="Entities\Virus.mp3" />
     <Content Include="Faculty-ADMIN.aspx" />
     <Content Include="Global.asax" />
@@ -816,6 +819,9 @@
     <Content Include="Image\TUUbg5.jpg" />
     <Content Include="Image\white1.png" />
     <Content Include="Image\มทร.ตะวันออก.jpg" />
+    <Content Include="INSG_Qualified.aspx" />
+    <Content Include="INSG_Request.aspx" />
+    <Content Include="INSG_RequestList.aspx" />
     <Content Include="insignia_from_add.aspx" />
     <Content Include="insignia_from_view.aspx" />
     <Content Include="insignia_maintence.aspx" />
@@ -952,6 +958,7 @@
     <Content Include="Font\THSarabun BoldItalic.ttf" />
     <Content Include="Font\THSarabun Italic.ttf" />
     <Content Include="Font\THSarabun.ttf" />
+    <Content Include="Position-ADMIN.aspx" />
     <Content Include="Person-Detail.aspx" />
     <Content Include="personalDataSet.xsc">
       <DependentUpon>personalDataSet.xsd</DependentUpon>
@@ -969,6 +976,7 @@
     <Content Include="Profile.aspx" />
     <Content Include="Staff-ADMIN.aspx" />
     <Content Include="StaffType-ADMIN.aspx" />
+    <Content Include="StatusPerson-ADMIN.aspx" />
     <Content Include="SumReport_UpSalary.aspx" />
     <Content Include="TeachISCED-ADMIN.aspx" />
     <Content Include="TestOutput.aspx" />
@@ -979,6 +987,7 @@
     <Content Include="UpSalary80_20_2.aspx" />
     <Content Include="UpSalaryForm.aspx" />
     <Content Include="ViewLeaveForm.aspx" />
+    <Content Include="WorkDivision-ADMIN.aspx" />
     <Content Include="WorkingTime.aspx" />
     <Content Include="WorkingTimeHistory.aspx" />
     <Content Include="WorkingTimeManager.aspx" />
@@ -1045,6 +1054,13 @@
     <Compile Include="About.aspx.designer.cs">
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AcademicPosition-ADMIN.aspx.cs">
+      <DependentUpon>AcademicPosition-ADMIN.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AcademicPosition-ADMIN.aspx.designer.cs">
+      <DependentUpon>AcademicPosition-ADMIN.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Access.aspx.cs">
       <DependentUpon>Access.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1079,6 +1095,13 @@
     </Compile>
     <Compile Include="Amphur-ADMIN.aspx.designer.cs">
       <DependentUpon>Amphur-ADMIN.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Blood-ADMIN.aspx.cs">
+      <DependentUpon>Blood-ADMIN.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Blood-ADMIN.aspx.designer.cs">
+      <DependentUpon>Blood-ADMIN.aspx</DependentUpon>
     </Compile>
     <Compile Include="Budget-ADMIN.aspx.cs">
       <DependentUpon>Budget-ADMIN.aspx</DependentUpon>
@@ -1141,6 +1164,13 @@
     <Compile Include="District-ADMIN.aspx.designer.cs">
       <DependentUpon>District-ADMIN.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Division-ADMIN.aspx.cs">
+      <DependentUpon>Division-ADMIN.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Division-ADMIN.aspx.designer.cs">
+      <DependentUpon>Division-ADMIN.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Report.cs" />
     <Compile Include="Entities\Tuu.cs" />
     <Compile Include="Entities\Ministry.cs" />
@@ -1184,6 +1214,27 @@
     </Compile>
     <Compile Include="GradLev-ADMIN.aspx.designer.cs">
       <DependentUpon>GradLev-ADMIN.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="INSG_Qualified.aspx.cs">
+      <DependentUpon>INSG_Qualified.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="INSG_Qualified.aspx.designer.cs">
+      <DependentUpon>INSG_Qualified.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="INSG_Request.aspx.cs">
+      <DependentUpon>INSG_Request.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="INSG_Request.aspx.designer.cs">
+      <DependentUpon>INSG_Request.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="INSG_RequestList.aspx.cs">
+      <DependentUpon>INSG_RequestList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="INSG_RequestList.aspx.designer.cs">
+      <DependentUpon>INSG_RequestList.aspx</DependentUpon>
     </Compile>
     <Compile Include="insignia_from_add.aspx.cs">
       <DependentUpon>insignia_from_add.aspx</DependentUpon>
@@ -1374,6 +1425,13 @@
     <Compile Include="National-ADMIN.aspx.designer.cs">
       <DependentUpon>National-ADMIN.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Position-ADMIN.aspx.cs">
+      <DependentUpon>Position-ADMIN.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Position-ADMIN.aspx.designer.cs">
+      <DependentUpon>Position-ADMIN.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Person-Detail.aspx.cs">
       <DependentUpon>Person-Detail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1426,7 +1484,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CrystalReport1.rpt</DependentUpon>
       <SubType>Component</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Salary-report.aspx.cs">
       <DependentUpon>Salary-report.aspx</DependentUpon>
@@ -1512,6 +1569,13 @@
     <Compile Include="SumReport_UpSalary.aspx.designer.cs">
       <DependentUpon>SumReport_UpSalary.aspx</DependentUpon>
     </Compile>
+    <Compile Include="StatusPerson-ADMIN.aspx.cs">
+      <DependentUpon>StatusPerson-ADMIN.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StatusPerson-ADMIN.aspx.designer.cs">
+      <DependentUpon>StatusPerson-ADMIN.aspx</DependentUpon>
+    </Compile>
     <Compile Include="TeachISCED-ADMIN.aspx.cs">
       <DependentUpon>TeachISCED-ADMIN.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1591,6 +1655,13 @@
     <Compile Include="ViewLeaveForm.aspx.designer.cs">
       <DependentUpon>ViewLeaveForm.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WorkDivision-ADMIN.aspx.cs">
+      <DependentUpon>WorkDivision-ADMIN.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WorkDivision-ADMIN.aspx.designer.cs">
+      <DependentUpon>WorkDivision-ADMIN.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WorkingTime.aspx.cs">
       <DependentUpon>WorkingTime.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1641,11 +1712,10 @@
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Reports\CrystalReport1.rpt">
+    <EmbeddedResource Include="Reports\CrystalReport1.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CrystalReport1.cs</LastGenOutput>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
