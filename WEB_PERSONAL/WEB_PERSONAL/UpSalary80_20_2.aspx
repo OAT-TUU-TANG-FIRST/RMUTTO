@@ -80,7 +80,7 @@
                 </td>
 			</tr>
 			<tr>
-				<td ><b>3.การสั่งสมความเชี่ยวชาญ ในงานอาชีพ</b></td>
+				<td style="font-size:15px"><b>3.การสั่งสมความเชี่ยวชาญ ในงานอาชีพ</b></td>
 				<td style="font-size:15px" align="center">
                     <asp:Label ID="Label45" runat="server" Text="Label"></asp:Label>
                 </td>
@@ -98,7 +98,7 @@
                 </td>
 			</tr>
 			<tr>
-				<td><b>4.จริยธรรม</b></td>
+				<td style="font-size:15px"><b>4.จริยธรรม</b></td>
 				<td style="font-size:15px" align="center">
                     <asp:Label ID="Label46" runat="server" Text="Label"></asp:Label>
                 </td>
@@ -116,7 +116,7 @@
                 </td>
 			</tr>
 			<tr>
-				<td><b>5.ความร่วมแรงร่วมใจ</b></td>
+				<td style="font-size:15px"><b>5.ความร่วมแรงร่วมใจ</b></td>
 				<td style="font-size:15px" align="center">
                     <asp:Label ID="Label47" runat="server" Text="Label"></asp:Label>
                 </td>
@@ -169,7 +169,7 @@
                     <asp:Label ID="Label4" runat="server" Text="Label"></asp:Label>
                     &nbsp;<b>พ.ศ.</b>
                     <asp:Label ID="Label5" runat="server" Text="Label"></asp:Label>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <b>วันที่</b>
                     <asp:Label ID="Label6" runat="server" Text="Label"></asp:Label>
                     &nbsp;<b>เดือน</b>
