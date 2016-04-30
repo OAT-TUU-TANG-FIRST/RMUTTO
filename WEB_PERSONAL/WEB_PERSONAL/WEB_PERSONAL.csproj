@@ -73,7 +73,7 @@
       <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Oracle.DataAccess, Version=2.121.2.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86" />
+    <Reference Include="Oracle.DataAccess, Version=2.121.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86" />
     <Reference Include="System.Data.OracleClient" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -769,9 +769,15 @@
     <Content Include="Image\rmutto_clear.jpg" />
     <Content Include="Image\Small\back.png" />
     <Content Include="Image\Small\bin.png" />
+    <Content Include="Image\Small\clock-history.png" />
     <Content Include="Image\Small\clock.png" />
+    <Content Include="Image\Small\document-accept.png" />
+    <Content Include="Image\Small\document-create.png" />
+    <Content Include="Image\Small\document-delete.png" />
+    <Content Include="Image\Small\document-edit.png" />
     <Content Include="Image\Small\home.png" />
     <Content Include="Image\Small\home3.png" />
+    <Content Include="Image\Small\info.png" />
     <Content Include="Image\Small\key.png" />
     <Content Include="Image\Small\lock.png" />
     <Content Include="Image\Small\logout.png" />
@@ -804,6 +810,7 @@
     <Content Include="Image\Small\pencil_y.png" />
     <Content Include="Image\Small\red_alert.png" />
     <Content Include="Image\Small\search.png" />
+    <Content Include="Image\Small\send-email.png" />
     <Content Include="Image\Small\statistic.png" />
     <Content Include="Image\Small\table.png" />
     <Content Include="Image\Small\unlock.png" />
@@ -819,9 +826,11 @@
     <Content Include="Image\TUUbg5.jpg" />
     <Content Include="Image\white1.png" />
     <Content Include="Image\มทร.ตะวันออก.jpg" />
+    <Content Include="INSG_Borrow.aspx" />
     <Content Include="INSG_Qualified.aspx" />
     <Content Include="INSG_Request.aspx" />
     <Content Include="INSG_RequestList.aspx" />
+    <Content Include="INSG_Return.aspx" />
     <Content Include="insignia_from_add.aspx" />
     <Content Include="insignia_from_view.aspx" />
     <Content Include="insignia_maintence.aspx" />
@@ -958,6 +967,7 @@
     <Content Include="Font\THSarabun BoldItalic.ttf" />
     <Content Include="Font\THSarabun Italic.ttf" />
     <Content Include="Font\THSarabun.ttf" />
+    <Content Include="Permission.aspx" />
     <Content Include="Position-ADMIN.aspx" />
     <Content Include="Person-Detail.aspx" />
     <Content Include="personalDataSet.xsc">
@@ -983,6 +993,7 @@
     <Content Include="UploadList.aspx" />
     <Content Include="UpSalary70_30_1.aspx" />
     <Content Include="UpSalary70_30_2.aspx" />
+    <Content Include="UpSalary70_30_Evaluation.aspx" />
     <Content Include="UpSalary80_20_1.aspx" />
     <Content Include="UpSalary80_20_2.aspx" />
     <Content Include="ViewLeaveForm.aspx" />
@@ -1214,6 +1225,13 @@
     <Compile Include="GradLev-ADMIN.aspx.designer.cs">
       <DependentUpon>GradLev-ADMIN.aspx</DependentUpon>
     </Compile>
+    <Compile Include="INSG_Borrow.aspx.cs">
+      <DependentUpon>INSG_Borrow.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="INSG_Borrow.aspx.designer.cs">
+      <DependentUpon>INSG_Borrow.aspx</DependentUpon>
+    </Compile>
     <Compile Include="INSG_Qualified.aspx.cs">
       <DependentUpon>INSG_Qualified.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1234,6 +1252,13 @@
     </Compile>
     <Compile Include="INSG_RequestList.aspx.designer.cs">
       <DependentUpon>INSG_RequestList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="INSG_Return.aspx.cs">
+      <DependentUpon>INSG_Return.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="INSG_Return.aspx.designer.cs">
+      <DependentUpon>INSG_Return.aspx</DependentUpon>
     </Compile>
     <Compile Include="insignia_from_add.aspx.cs">
       <DependentUpon>insignia_from_add.aspx</DependentUpon>
@@ -1423,6 +1448,13 @@
     </Compile>
     <Compile Include="National-ADMIN.aspx.designer.cs">
       <DependentUpon>National-ADMIN.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Permission.aspx.cs">
+      <DependentUpon>Permission.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Permission.aspx.designer.cs">
+      <DependentUpon>Permission.aspx</DependentUpon>
     </Compile>
     <Compile Include="Position-ADMIN.aspx.cs">
       <DependentUpon>Position-ADMIN.aspx</DependentUpon>
@@ -1624,6 +1656,13 @@
     </Compile>
     <Compile Include="UpSalary70_30_2.aspx.designer.cs">
       <DependentUpon>UpSalary70_30_2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UpSalary70_30_Evaluation.aspx.cs">
+      <DependentUpon>UpSalary70_30_Evaluation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UpSalary70_30_Evaluation.aspx.designer.cs">
+      <DependentUpon>UpSalary70_30_Evaluation.aspx</DependentUpon>
     </Compile>
     <Compile Include="UpSalary80_20_1.aspx.cs">
       <DependentUpon>UpSalary80_20_1.aspx</DependentUpon>

@@ -7,6 +7,14 @@
     <div class="default_page_style">
 
         <div>
+            <asp:LinkButton ID="LinkButton3" runat="server" OnClick="LinkButton3_Click">POPUP</asp:LinkButton>
+        </div>
+
+        <div>
+            <asp:LinkButton ID="LinkButton2" runat="server" OnClick="LinkButton2_Click">Test Date</asp:LinkButton>
+        </div>
+
+        <div>
             <div>
                 <asp:listbox runat="server" id="lbo1"></asp:listbox>
             </div>

@@ -125,6 +125,9 @@ namespace WEB_PERSONAL.Class {
         public string MotherFirstNameAndLastName {
             get { return MotherFirstName + " " + MotherLastName; }
         }
+        public string CoupleFirstNameAndLastName {
+            get { return CoupleFirstName + " " + CoupleLastName; }
+        }
 
     }
 

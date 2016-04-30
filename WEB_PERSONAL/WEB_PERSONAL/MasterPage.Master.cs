@@ -48,6 +48,15 @@ namespace WEB_PERSONAL {
                 lbLeaveAllowCount.Visible = false;
             }
 
+            int v3 = 0;// DatabaseManager.GetLeaveRequiredCountByCommanderHigh(loginPerson.CitizenID);
+            if (v3 != 0) {
+                lbUpSal7030Count.Text = "" + v3;
+                lbUpSal7030Count.Visible = true;
+            } else {
+                lbUpSal7030Count.Text = "";
+                lbUpSal7030Count.Visible = false;
+            }
+
             /*if(v1 + v2 == 0) {
                 lbN1.Text = "ไม่มีการแจ้งเตือนการลา";
             } else {
@@ -109,8 +118,8 @@ namespace WEB_PERSONAL {
                 }
             }
             */
-            
-            
+
+
 
             if (!IsPostBack) {
                 DatabaseManager.AddCounter();

@@ -19,6 +19,7 @@ namespace WEB_PERSONAL {
                 GridView1.DataBind();
 
                 if(GridView1.Rows.Count > 0) {
+                    lbGS1.Visible = false;
                     TableHeaderCell headerCell = new TableHeaderCell();
                     headerCell.Text = "ดูข้อมูล";
                     GridView1.HeaderRow.Cells.Add(headerCell);
@@ -59,6 +60,8 @@ namespace WEB_PERSONAL {
                     }
 
                     Util.NormalizeGridViewDate(GridView1, 2);
+                } else {
+                    lbGS1.Visible = true;
                 }
                 
             }
@@ -68,6 +71,7 @@ namespace WEB_PERSONAL {
                 GridView3.DataBind();
 
                 if (GridView3.Rows.Count > 0) {
+                    lbGS3.Visible = false;
                     TableHeaderCell headerCell = new TableHeaderCell();
                     headerCell.Text = "ตกลง";
                     GridView3.HeaderRow.Cells.Add(headerCell);
@@ -108,6 +112,8 @@ namespace WEB_PERSONAL {
                     }
 
                     Util.NormalizeGridViewDate(GridView3, 2);
+                } else {
+                    lbGS3.Visible = true;
                 }
 
 
@@ -118,6 +124,7 @@ namespace WEB_PERSONAL {
                 GridView2.DataBind();
 
                 if(GridView2.Rows.Count > 0) {
+                    lbGS2.Visible = false;
                     TableHeaderCell headerCell = new TableHeaderCell();
                     headerCell.Text = "ดูข้อมูล";
                     GridView2.HeaderRow.Cells.Add(headerCell);
@@ -157,6 +164,8 @@ namespace WEB_PERSONAL {
                     }
 
                     Util.NormalizeGridViewDate(GridView2, 2);
+                } else {
+                    lbGS2.Visible = true;
                 }
                 
                 
