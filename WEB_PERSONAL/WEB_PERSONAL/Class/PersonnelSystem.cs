@@ -11,8 +11,9 @@ namespace WEB_PERSONAL.Class {
         public Person LoginPerson;
         public string Redirect;
 
-        public PersonnelSystem() {
 
+        public PersonnelSystem() {
+                  
         }
 
         public static PersonnelSystem GetPersonnelSystem(Control control) {
