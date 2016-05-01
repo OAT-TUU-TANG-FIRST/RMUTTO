@@ -6,6 +6,8 @@
 	}
 	#cen{
 		text-align: center;
+        text-size-adjust:auto;
+
 	}
 	
 </style>
