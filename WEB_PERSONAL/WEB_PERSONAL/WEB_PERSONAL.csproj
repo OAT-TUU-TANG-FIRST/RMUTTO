@@ -73,7 +73,7 @@
       <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Oracle.DataAccess, Version=2.121.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86" />
+    <Reference Include="Oracle.DataAccess, Version=4.121.2.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86" />
     <Reference Include="System.Data.OracleClient" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -743,7 +743,6 @@
     <Content Include="Developer.aspx" />
     <Content Include="District-ADMIN.aspx" />
     <Content Include="Division-ADMIN.aspx" />
-    <Content Include="Entities\Virus.mp3" />
     <Content Include="Faculty-ADMIN.aspx" />
     <Content Include="Global.asax" />
     <Content Include="GradCountry-ADMIN.aspx" />
@@ -775,6 +774,7 @@
     <Content Include="Image\Small\document-create.png" />
     <Content Include="Image\Small\document-delete.png" />
     <Content Include="Image\Small\document-edit.png" />
+    <Content Include="Image\Small\edit.png" />
     <Content Include="Image\Small\home.png" />
     <Content Include="Image\Small\home3.png" />
     <Content Include="Image\Small\info.png" />
@@ -843,7 +843,6 @@
     <Content Include="INS_Test_Code.aspx" />
     <Content Include="jquery.mCustomScrollbar\jquery.mCustomScrollbar.css" />
     <Content Include="Default.aspx" />
-    <Content Include="Entities\bnn.mp3" />
     <Content Include="Error-Member.aspx" />
     <Content Include="Gender-ADMIN.aspx" />
     <Content Include="Image\444.png" />
@@ -959,7 +958,6 @@
     <Content Include="LeaveHistory.aspx" />
     <Content Include="LeaveManager.aspx" />
     <Content Include="ListPerson-ADMIN.aspx" />
-    <Content Include="Ministry-ADMIN.aspx" />
     <Content Include="Month-ADMIN.aspx" />
     <Content Include="National-ADMIN.aspx" />
     <Content Include="packages.config" />
@@ -991,7 +989,6 @@
     <Content Include="TeachISCED-ADMIN.aspx" />
     <Content Include="TestOutput.aspx" />
     <Content Include="UploadList.aspx" />
-    <Content Include="UpSalary70_30_1.aspx" />
     <Content Include="UpSalary70_30_2.aspx" />
     <Content Include="UpSalary70_30_Evaluation.aspx" />
     <Content Include="UpSalary80_20_1.aspx" />
@@ -1184,7 +1181,6 @@
     </Compile>
     <Compile Include="Entities\Report.cs" />
     <Compile Include="Entities\Tuu.cs" />
-    <Compile Include="Entities\Ministry.cs" />
     <Compile Include="Entities\Personnel.cs" />
     <Compile Include="Entities\Seminar.cs" />
     <Compile Include="Entities\Manage.cs" />
@@ -1429,13 +1425,6 @@
     <Compile Include="MasterPage.Master.designer.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
     </Compile>
-    <Compile Include="Ministry-ADMIN.aspx.cs">
-      <DependentUpon>Ministry-ADMIN.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Ministry-ADMIN.aspx.designer.cs">
-      <DependentUpon>Ministry-ADMIN.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Month-ADMIN.aspx.cs">
       <DependentUpon>Month-ADMIN.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1643,13 +1632,6 @@
     </Compile>
     <Compile Include="UploadList.aspx.designer.cs">
       <DependentUpon>UploadList.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UpSalary70_30_1.aspx.cs">
-      <DependentUpon>UpSalary70_30_1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UpSalary70_30_1.aspx.designer.cs">
-      <DependentUpon>UpSalary70_30_1.aspx</DependentUpon>
     </Compile>
     <Compile Include="UpSalary70_30_2.aspx.cs">
       <DependentUpon>UpSalary70_30_2.aspx</DependentUpon>

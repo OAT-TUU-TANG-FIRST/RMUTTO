@@ -486,7 +486,7 @@ namespace WEB_PERSONAL
                 {
                     using (OracleCommand sqlCmd = new OracleCommand())
                     {
-                        sqlCmd.CommandText = "select * FROM TB_POSITION_GOVERNMENT_OFFICER where ST_ID = " + ddlPositionType14.SelectedValue + "UNION ALL select * FROM TB_POSITION_PERMANENT_EMP where ST_ID = " + ddlPositionType14.SelectedValue;
+                        sqlCmd.CommandText = "select * FROM TB_POSITION where ST_ID = " + ddlPositionType14.SelectedValue ;
                         sqlCmd.Connection = sqlConn;
                         sqlConn.Open();
                         OracleDataAdapter da = new OracleDataAdapter(sqlCmd);
@@ -1534,5 +1534,29 @@ namespace WEB_PERSONAL
                     notification.InnerHtml = "";
                 }
             }
+
+        protected void ddlCountry_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(ddlCountry.SelectedIndex != 1)
+            {
+                tbState.Enabled = true;
+            }
+            else
+            {
+                tbState.Enabled = false;
+            }
+        }
+
+        protected void ddlCountry2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlCountry.SelectedIndex != 1)
+            {
+                tbState2.Enabled = true;
+            }
+            else
+            {
+                tbState2.Enabled = false;
+            }
+        }
     }
 }

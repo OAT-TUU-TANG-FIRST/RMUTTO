@@ -106,7 +106,7 @@
                 <div class="ps-ms-side-group">
                     <span class="ps-ms-side-group-header">บุคลากร</span>
                     <a href="AddPerson.aspx" id="LinkAddPerson" runat="server"><img src="Image/Small/person2.png" />เพิ่มบุคลากร</a>
-                    <a href="AddPerson-Edit.aspx" id="LinkEditPerson" runat="server"><img src="Image/Small/person2.png" />แก้ไขบุคลากร</a>
+                    <a href="AddPerson-Edit.aspx" id="LinkEditPerson" runat="server"><img src="Image/Small/edit.png" />แก้ไขบุคลากร</a>
                     <a href="ListPerson-ADMIN.aspx"><img src="Image/Small/person2.png" />รายชื่อบุคลากร</a>
                     <a href="SEMINAR-GENERAL.aspx"><img src="Image/Small/person2.png" />การเพิ่มพัฒนาบุคลากร</a>
                     <a href="SEMINAR-ADMIN.aspx"><img src="Image/Small/person2.png" />การแก้ไขพัฒนาบุคลากร</a>

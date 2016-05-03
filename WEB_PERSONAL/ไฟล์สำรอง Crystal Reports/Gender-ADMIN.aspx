@@ -4,8 +4,11 @@
     <style type="text/css">
         .divpan {
             text-align: center;
+            color: blue;
         }
-
+        div{
+            color:#003380;
+        }
         .panin {
             border: 1px solid black;
             margin: 20px;
@@ -14,13 +17,13 @@
         }
 
         body {
-            background-image: url("Image/444.png");
+            background-color : white;
         }
 
         .tb5 {
             background-repeat: repeat-x;
-            border: 1px solid #d1c7ac;
-            width: 230px;
+            border: 1px solid #ff9900;
+            width: 150px;
             color: #333333;
             padding: 3px;
             margin-right: 4px;
@@ -28,19 +31,34 @@
             font-family: tahoma, arial, sans-serif;
             border-radius: 10px;
             resize: none;
+            
         }
         .center1 { 
                display:inline-block; 
         }
+        legend{
+            padding: 3px;
+            margin-right: 4px;
+            margin-bottom: 8px;
+            font-family: tahoma, arial, sans-serif;
+            border-radius: 10px;
+            resize: none;
+            text-align: center;
+            font-size:medium;
+            color:royalblue;
+        }
+        fieldset{
+            border: 3px solid #99e6ff;
+            color: black;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:Panel ID="Panel1" runat="server" CssClass="divpan" BackColor="White" ForeColor="#6699FF" BorderColor="Aqua" DefaultButton="btnSearchGender">
+    <asp:Panel ID="Panel1" runat="server" CssClass="divpan" BackColor="White" ForeColor="#6699FF" BorderColor="Tomato" DefaultButton="btnSearchGender">
         <div>
             <fieldset>
                 <legend>ค้นหาข้อมูล</legend>
                 <div>
-                    รหัสเพศ :&nbsp<asp:TextBox ID="txtSearchGenderID" runat="server" CssClass="tb5" Width="230px" MaxLength="4"></asp:TextBox>
                     ชื่อเพศ :&nbsp<asp:TextBox ID="txtSearchGenderName" runat="server" CssClass="tb5" Width="230px" MaxLength="20"></asp:TextBox>
                     <asp:Button ID="btnSearchGender" Text="Search" runat="server" CssClass="master_OAT_button" OnClick="btnSearchGender_Click" />
                     <asp:Button ID="btnSearchRefresh" Text="Refresh" runat="server" CssClass="master_OAT_button" OnClick="btnSearchRefresh_Click" />
@@ -48,19 +66,16 @@
             </fieldset>
         </div>
     </asp:Panel>
-    <asp:Panel ID="Panel2" runat="server" ScrollBars="Horizontal" CssClass="divpan" BackColor="White" ForeColor="#6699FF" BorderColor="Aqua" DefaultButton="btnSubmitGender">
+    <asp:Panel ID="Panel2" runat="server" ScrollBars="Horizontal" CssClass="divpan" BackColor="White" ForeColor="#6699FF" BorderColor="Tomato" DefaultButton="btnSubmitGender">
         <div>
             <fieldset>
                 <legend>เพิ่มข้อมูล</legend>
                 <div>
                     <table class="center1">
                         <tr>
-                            <td style="margin-left: auto; margin-right: auto; text-align: center">รหัสเพศ :</td>
-                            <td style="text-align: left; width: 120px;">
-                                <asp:TextBox ID="txtInsertGenderID" runat="server" CssClass="tb5" MaxLength="4"></asp:TextBox></td>
                             <td style="margin-left: auto; margin-right: auto; text-align: center">ชื่อเพศ :</td>
                             <td style="text-align: left; width: 120px;">
-                                <asp:TextBox ID="txtInsertGenderName" runat="server" CssClass="tb5" MaxLength="20"></asp:TextBox></td>
+                                <asp:TextBox ID="txtInsertGenderName" runat="server" CssClass="tb5" Width="230px" MaxLength="20"></asp:TextBox></td>
                             <td style="text-align: left;">
                                 <asp:Button ID="btnSubmitGender" Text="OK" runat="server" CssClass="master_OAT_button" OnClick="btnSubmitGender_Click" /></td>
                             <td style="text-align: left;">
@@ -87,15 +102,12 @@
                             OnRowDataBound="GridView1_RowDataBound"
                             OnPageIndexChanging="myGridViewGENDER_PageIndexChanging" PageSize="15" BackColor="White" BorderColor="#999999">
                             <Columns>
-                                <asp:TemplateField HeaderText="รหัสเพศ" ControlStyle-Width="230" HeaderStyle-BackColor="#0099FF" HeaderStyle-ForeColor="Aqua">
+                                <asp:TemplateField Visible="false" HeaderText="รหัสเพศ" ControlStyle-Width="230" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Tomato">
                                     <ItemTemplate>
                                         <asp:Label ID="lblGenderIDEdit" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.GENDER_ID") %>'></asp:Label>
                                     </ItemTemplate>
-                                    <EditItemTemplate>
-                                        <asp:TextBox ID="txtGenderIDEdit" Enabled="false" MaxLength="4" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.GENDER_ID") %>'></asp:TextBox>
-                                    </EditItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="ชื่อเพศ" ControlStyle-Width="600" HeaderStyle-BackColor="#0099FF" HeaderStyle-ForeColor="Aqua">
+                                <asp:TemplateField HeaderText="ชื่อเพศ" ControlStyle-Width="600" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Tomato">
                                     <ItemTemplate>
                                         <asp:Label ID="lblGenderNameEdit" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.GENDER_NAME") %>'></asp:Label>
                                     </ItemTemplate>
@@ -103,8 +115,8 @@
                                         <asp:TextBox ID="txtGenderNameEdit" MaxLength="20" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.GENDER_NAME") %>'></asp:TextBox>
                                     </EditItemTemplate>
                                 </asp:TemplateField>
-                                <asp:CommandField ShowEditButton="True" CancelText="Cancel" DeleteText="Delete" EditText="Edit" UpdateText="Update" HeaderText="แก้ไข" HeaderStyle-BackColor="#0099FF" HeaderStyle-ForeColor="Aqua" />
-                                <asp:TemplateField HeaderText="ลบ" HeaderStyle-BackColor="#0099FF" HeaderStyle-ForeColor="Aqua">
+                                <asp:CommandField ShowEditButton="True" CancelText="Cancel" DeleteText="Delete" EditText="Edit" UpdateText="Update" HeaderText="แก้ไข" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Tomato" />
+                                <asp:TemplateField HeaderText="ลบ" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Tomato">
                                     <ItemTemplate>
                                         <asp:LinkButton ID="DeleteButton1" runat="server" CausesValidation="false" CommandName="Delete" Text="Delete"></asp:LinkButton>
                                     </ItemTemplate>

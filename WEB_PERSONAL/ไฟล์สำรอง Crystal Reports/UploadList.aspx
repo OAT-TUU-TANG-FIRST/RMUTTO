@@ -3,9 +3,11 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="default_page_style">
-        <div class="default_header">Upload Files</div>
+        <div class="ps-header"><img src="Image/Small/upload.png" />Upload Files</div>
         <asp:Panel ID="PanelImage" runat="server"></asp:Panel>
-        <div style="display: block; margin: 20px 0; border-bottom: 1px solid #c0c0c0;"></div>
+        <div class="ps-separator"></div>
         <asp:Panel ID="PanelFile" runat="server"></asp:Panel>
+        <div class="ps-separator"></div>
+        <asp:Panel ID="PanelDrCer" runat="server"></asp:Panel>
     </div>
 </asp:Content>

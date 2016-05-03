@@ -6,9 +6,6 @@
             text-align: center;
             color: blue;
         }
-        div{
-            color:#003380;
-        }
         .panin {
             border: 1px solid black;
             margin: 20px;

@@ -6,7 +6,7 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="icon" href="Image/favicon.ico" />
-    <title>ระบบบุคลากร - มหาวิทยาลัยเทคโนโลยีราชมงคลตะวันออก วิทยาเขตบางพระ</title>
+    <title>ระบบบุคลากร - มหาวิทยาลัยเทคโนโลยีราชมงคลตะวันออก</title>
     <link rel="stylesheet" type="text/css" href="CSS/Master.css" />
     <link href="CSS/Access.css" rel="stylesheet" />
     <script src="jQueryCalendarThai/jquery-ui-1.10.3.custom.js"></script>
