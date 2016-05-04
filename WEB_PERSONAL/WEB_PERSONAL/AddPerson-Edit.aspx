@@ -35,7 +35,7 @@
         .tb5 {
             background-repeat: repeat-x;
             border: 1px solid #ff9900;
-            width: 500px;
+            width: 300px;
             color: #333333;
             padding: 3px;
             margin-right: 4px;
@@ -321,7 +321,7 @@
                             <td class="col1">รัฐ</td>
                             <td class="col2">
                                     <asp:UpdatePanel ID="UpdatetbState" runat="server"><ContentTemplate>
-                                <asp:TextBox ID="tbState" runat="server" CssClass="tb5" Enabled="false"></asp:TextBox>
+                                <asp:TextBox ID="tbState" runat="server" CssClass="tb5"></asp:TextBox>
                                     </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbState" /></Triggers></asp:UpdatePanel></td>
                         </tr>
                     </table>
@@ -392,14 +392,14 @@
                             <td class="col1">ประเทศ</td>
                             <td class="col2">
                                     <asp:UpdatePanel ID="UpdateddlCountry2" runat="server"><ContentTemplate>
-                                    <asp:DropDownList ID="ddlCountry2" runat="server" CssClass="tb5" OnSelectedIndexChanged="ddlCountry2_SelectedIndexChanged"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlCountry2" runat="server" CssClass="tb5"></asp:DropDownList>
                                     </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="ddlCountry2" /></Triggers></asp:UpdatePanel></td>
                         </tr>
                         <tr>
                             <td class="col1">รัฐ</td>
                             <td class="col2">
                                     <asp:UpdatePanel ID="UpdatetbState2" runat="server"><ContentTemplate>
-                                <asp:TextBox ID="tbState2" runat="server" CssClass="tb5" Enabled="false"></asp:TextBox>
+                                <asp:TextBox ID="tbState2" runat="server" CssClass="tb5"></asp:TextBox>
                                     </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbState2" /></Triggers></asp:UpdatePanel></td>
                         </tr>
                     </table>
@@ -887,7 +887,7 @@
                                             <asp:DropDownList ID="ddlPersonTrainingToMonth" runat="server"></asp:DropDownList>
                                         </EditItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="ถึง(ปี)" ControlStyle-Width="60" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="tomato">
+                                     <asp:TemplateField HeaderText="ถึง(ปี)" ControlStyle-Width="60" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="tomato">
                                         <ItemTemplate>
                                             <asp:Label ID="lblPersonTrainingToYear" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_TO_YEAR") %>'></asp:Label>
                                         </ItemTemplate>

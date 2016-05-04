@@ -15,12 +15,6 @@
             height: 18px;
         }
 
-        .c1 {
-            border-bottom: 1px solid #c0c0c0;
-            margin: 20px 0px;
-            padding-bottom: 20px;
-        }
-
             .c1 table {
                 vertical-align: top;
                 display: inline-block;
@@ -32,7 +26,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex="0">
         <asp:View ID="View1" runat="server">
-
+            <div class="ps-header"><img src="Image/Small/table.png" />ข้อมูลการลาป่วย</div>
             <div class="c1">
                 <table>
                     <tr>
@@ -81,6 +75,7 @@
                 </table>
             </div>
 
+            <div class="ps-separator"></div>
 
             <div class="c1">
                 <table>
@@ -159,6 +154,8 @@
                 </table>
             </div>
 
+            <div class="ps-separator"></div>
+
             <div class="c1">
                 <table>
                     <tr>
@@ -227,33 +224,13 @@
                         </td>
                     </tr>
                 </table>
-                <table>
-                    <tr>
-                        <td class="col1">ชื่อผู้ตรวจสอบ
-                        </td>
-                        <td class="col2">
-                            <asp:Label ID="lbStaffName" runat="server"></asp:Label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col1">ตำแหน่ง
-                        </td>
-                        <td class="col2">
-                            <asp:Label ID="lbStaffPosition" runat="server"></asp:Label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col1">วันที่
-                        </td>
-                        <td class="col2">
-                            <asp:Label ID="lbStaffDate" runat="server"></asp:Label>
-                        </td>
-                    </tr>
-                </table>
             </div>
+
+            <div class="ps-separator"></div>
+
         </asp:View>
     </asp:MultiView>
     <div>
-        <div id="i1" runat="server"></div>
+        <asp:LinkButton ID="lbuPrint" runat="server" CssClass="ps-button"><img src="Image/Small/printer.png" class="icon_left" />พิมพ์</asp:LinkButton>
     </div>
 </asp:Content>

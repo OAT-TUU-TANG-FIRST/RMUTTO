@@ -4,25 +4,14 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="default_page_style">
-        <div class="default_header">
+        <div class="ps-header">
             <img src="Image/Small/correct.png" />อนุมัติการลา</div>
         <div id="error_area" runat="server"></div>
 
         <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex="0">
             <asp:View ID="View1" runat="server">
-                <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
-                    <AlternatingRowStyle BackColor="White" />
-                    <EditRowStyle BackColor="#2461BF" />
-                    <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-                    <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-                    <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
-                    <RowStyle BackColor="#EFF3FB" />
-                    <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
-                    <SortedAscendingCellStyle BackColor="#F5F7FB" />
-                    <SortedAscendingHeaderStyle BackColor="#6D95E1" />
-                    <SortedDescendingCellStyle BackColor="#E9EBEF" />
-                    <SortedDescendingHeaderStyle BackColor="#4870BE" />
-                </asp:GridView>
+                <asp:GridView ID="GridView1" runat="server" CssClass="ps-gridview"></asp:GridView>
+                <div class="ps-separator"></div>
             </asp:View>
             <asp:View ID="View2" runat="server">
                 <table>
@@ -90,6 +79,13 @@
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
+                    <td class="col1">สถิติการลา</td>
+                    <td class="col2">
+                        <asp:Label ID="lbF1Statistic" runat="server"></asp:Label>
+                    </td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
                     <td class="col1">เหตุผล</td>
                     <td class="col2">
                         <asp:Label ID="lbF1Reason" runat="server"></asp:Label>
@@ -110,16 +106,30 @@
                     </td>
                     <td>&nbsp;</td>
                 </tr>
-                <tr>
-                    <td class="col1">&nbsp;</td>
+                    <tr>
+                    <td class="col1">เอกสารแนบ</td>
                     <td class="col2">
-                        &nbsp;</td>
+                        <div id="divDrCer" runat="server"></div></td>
+                    <td>&nbsp;</td>
+                </tr>
+                    <tr>
+                    <td class="col1">ความเห็นจากผู้บังคับบัญชาระดับต่ำ</td>
+                    <td class="col2">
+                        <asp:Label ID="lbF1CLComment" runat="server"></asp:Label>
+                    </td>
+                    <td>&nbsp;</td>
+                </tr>
+                    <tr>
+                    <td class="col1">วันที่ลงความเห็น</td>
+                    <td class="col2">
+                        <asp:Label ID="lbF1CLDate" runat="server"></asp:Label>
+                    </td>
                     <td>&nbsp;</td>
                 </tr>
                     <tr>
                         <td class="col1">ความเห็น</td>
                         <td class="col2">
-                            <asp:TextBox ID="tbF1Comment" runat="server" Height="50px" Width="300px" TextMode="MultiLine"></asp:TextBox>
+                            <asp:TextBox ID="tbF1Comment" runat="server" Height="50px" Width="300px" TextMode="MultiLine" CssClass="ps-textbox"></asp:TextBox>
                         </td>
                         <td class="auto-style3"></td>
                     </tr>
@@ -131,24 +141,14 @@
                         </td>
                         <td>&nbsp;</td>
                     </tr>
-                    <tr>
-                        <td class="col1">&nbsp;</td>
-                        <td class="col2">&nbsp;</td>
-                        <td>&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td class="col1">&nbsp;</td>
-                        <td class="col2">
-                            <asp:LinkButton ID="lbuBack" runat="server" CssClass="button button_default" OnClick="lbuBack_Click"><img src="Image/Small/back.png" class="icon_left"/>ย้อนกลับ</asp:LinkButton>
-                            <asp:LinkButton ID="lbuAddComment" runat="server" CssClass="button button_default" OnClick="lbuAddComment_Click">ยืนยันการอนุมัติ<img src="Image/Small/forward.png" class="icon_right"/></asp:LinkButton>
-                        </td>
-                        <td>&nbsp;</td>
-                    </tr>
                 </table>
+                <div class="ps-separator"></div>
+                <asp:LinkButton ID="lbuBack" runat="server" CssClass="ps-button" OnClick="lbuBack_Click"><img src="Image/Small/back.png" class="icon_left"/>ย้อนกลับ</asp:LinkButton>
+                            <asp:LinkButton ID="lbuAddComment" runat="server" CssClass="ps-button" OnClick="lbuAddComment_Click">ยืนยันการอนุมัติ<img src="Image/Small/next.png" class="icon_right"/></asp:LinkButton>
             </asp:View>
             <asp:View ID="View3" runat="server">
-                <asp:LinkButton ID="lbu1" runat="server" CssClass="hm_button_primary" OnClick="lbu1_Click">กลับหน้าหลัก</asp:LinkButton>
-                <asp:LinkButton ID="lbu2" runat="server" CssClass="hm_button_primary" OnClick="lbu2_Click">อนุมัติการลาต่อ</asp:LinkButton>
+                <asp:LinkButton ID="lbu1" runat="server" CssClass="ps-button" OnClick="lbu1_Click"><img src="Image/Small/back.png" class="icon_left"/>กลับหน้าหลัก</asp:LinkButton>
+                <asp:LinkButton ID="lbu2" runat="server" CssClass="ps-button" OnClick="lbu2_Click">อนุมัติการลาต่อ<img src="Image/Small/next.png" class="icon_right"/></asp:LinkButton>
             </asp:View>
         </asp:MultiView>
 

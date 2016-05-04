@@ -791,11 +791,10 @@ namespace WEB_PERSONAL
                             ddlPersonTrainingFromMonth.DataBind();
                             sqlConn.Close();
 
-                            ddlPersonTrainingFromMonth.Items.Insert(0, new ListItem("--เดือน--", "0"));
+                            ddlPersonTrainingFromMonth.Items.Insert(0, new ListItem("--ปี--", "0"));
                             DataRowView dr = e.Row.DataItem as DataRowView;
                         }
                     }
-
                     using (OracleConnection sqlConn = new OracleConnection(strConn))
                     {
                         using (OracleCommand sqlCmd = new OracleCommand())
@@ -805,9 +804,9 @@ namespace WEB_PERSONAL
                             sqlCmd.CommandText = "select * from TB_DATE_YEAR";
                             sqlCmd.Connection = sqlConn;
                             sqlConn.Open();
-                            OracleDataAdapter da2 = new OracleDataAdapter(sqlCmd);
+                            OracleDataAdapter da1 = new OracleDataAdapter(sqlCmd);
                             DataTable dt = new DataTable();
-                            da2.Fill(dt);
+                            da1.Fill(dt);
                             ddlPersonTrainingFromYear.DataSource = dt;
                             ddlPersonTrainingFromYear.SelectedValue = DataBinder.Eval(e.Row.DataItem, "PS_FROM_YEAR").ToString();
                             ddlPersonTrainingFromYear.DataValueField = "YEAR_ID";
@@ -819,7 +818,6 @@ namespace WEB_PERSONAL
                             DataRowView dr = e.Row.DataItem as DataRowView;
                         }
                     }
-
                     using (OracleConnection sqlConn = new OracleConnection(strConn))
                     {
                         using (OracleCommand sqlCmd = new OracleCommand())
@@ -829,9 +827,9 @@ namespace WEB_PERSONAL
                             sqlCmd.CommandText = "select * from TB_MONTH";
                             sqlCmd.Connection = sqlConn;
                             sqlConn.Open();
-                            OracleDataAdapter da3 = new OracleDataAdapter(sqlCmd);
+                            OracleDataAdapter da1 = new OracleDataAdapter(sqlCmd);
                             DataTable dt = new DataTable();
-                            da3.Fill(dt);
+                            da1.Fill(dt);
                             ddlPersonTrainingToMonth.DataSource = dt;
                             ddlPersonTrainingToMonth.SelectedValue = DataBinder.Eval(e.Row.DataItem, "PS_TO_MONTH").ToString();
                             ddlPersonTrainingToMonth.DataValueField = "MONTH_ID";
@@ -839,11 +837,10 @@ namespace WEB_PERSONAL
                             ddlPersonTrainingToMonth.DataBind();
                             sqlConn.Close();
 
-                            ddlPersonTrainingToMonth.Items.Insert(0, new ListItem("--เดือน--", "0"));
+                            ddlPersonTrainingToMonth.Items.Insert(0, new ListItem("--ปี--", "0"));
                             DataRowView dr = e.Row.DataItem as DataRowView;
                         }
                     }
-
                     using (OracleConnection sqlConn = new OracleConnection(strConn))
                     {
                         using (OracleCommand sqlCmd = new OracleCommand())
@@ -853,9 +850,9 @@ namespace WEB_PERSONAL
                             sqlCmd.CommandText = "select * from TB_DATE_YEAR";
                             sqlCmd.Connection = sqlConn;
                             sqlConn.Open();
-                            OracleDataAdapter da4 = new OracleDataAdapter(sqlCmd);
+                            OracleDataAdapter da1 = new OracleDataAdapter(sqlCmd);
                             DataTable dt = new DataTable();
-                            da4.Fill(dt);
+                            da1.Fill(dt);
                             ddlPersonTrainingToYear.DataSource = dt;
                             ddlPersonTrainingToYear.SelectedValue = DataBinder.Eval(e.Row.DataItem, "PS_TO_YEAR").ToString();
                             ddlPersonTrainingToYear.DataValueField = "YEAR_ID";
@@ -2442,18 +2439,6 @@ namespace WEB_PERSONAL
             }
         }
 
-        protected void ddlCountry2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (ddlCountry.SelectedIndex != 1)
-            {
-                tbState2.Enabled = true;
-            }
-            else
-            {
-                tbState2.Enabled = false;
-            }
-        }
-
         protected void btnSearchPerson_Click(object sender, EventArgs e)
         {
             PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
@@ -2499,10 +2484,17 @@ namespace WEB_PERSONAL
                             tbMoo.Text = reader.IsDBNull(26) ? "" : reader.GetString(26);
                             tbRoad.Text = reader.IsDBNull(27) ? "" : reader.GetString(27);
                             ddlProvince.SelectedValue = reader.IsDBNull(28) ? "0" : reader.GetInt32(28).ToString();
+
                             ddlAmphur.Items.Clear();
-                            ddlAmphur.SelectedValue = reader.IsDBNull(29) ? "0" : reader.GetInt32(29).ToString();
+                            string s1 = reader.IsDBNull(29) ? "0" : reader.GetInt32(29).ToString();
+                            DatabaseManager.BindDropDown(ddlAmphur, "SELECT * FROM TB_AMPHUR WHERE PROVINCE_ID = " + ddlProvince.SelectedValue , "AMPHUR_TH", "AMPHUR_ID","--กรุณาเลือกอำเภอ--");
+                            ddlAmphur.SelectedValue = s1;
+
                             ddlDistrict.Items.Clear();
-                            ddlDistrict.SelectedValue = reader.IsDBNull(30) ? "0" : reader.GetInt32(30).ToString();
+                            string s2 = reader.IsDBNull(30) ? "0" : reader.GetInt32(30).ToString();
+                            DatabaseManager.BindDropDown(ddlDistrict, "SELECT * FROM TB_DISTRICT WHERE AMPHUR_ID = " + ddlAmphur.SelectedValue, "DISTRICT_TH", "DISTRICT_ID", "--กรุณาเลือกตำบล--");
+                            ddlDistrict.SelectedValue = s2;
+
                             tbZipcode.Text = reader.IsDBNull(31) ? "" : reader.GetString(31);
                             ddlCountry.SelectedValue = reader.IsDBNull(32) ? "0" : reader.GetInt32(32).ToString();
                             tbState.Text = reader.IsDBNull(33) ? "" : reader.GetString(33);
@@ -2511,10 +2503,17 @@ namespace WEB_PERSONAL
                             tbMoo2.Text = reader.IsDBNull(36) ? "" : reader.GetString(36);
                             tbRoad2.Text = reader.IsDBNull(37) ? "" : reader.GetString(37);
                             ddlProvince2.SelectedValue = reader.IsDBNull(38) ? "0" : reader.GetInt32(38).ToString();
+
                             ddlAmphur2.Items.Clear();
-                            ddlAmphur2.SelectedValue = reader.IsDBNull(39) ? "0" : reader.GetInt32(39).ToString();
+                            string s3 = reader.IsDBNull(39) ? "0" : reader.GetInt32(39).ToString();
+                            DatabaseManager.BindDropDown(ddlAmphur2, "SELECT * FROM TB_AMPHUR WHERE PROVINCE_ID = " + ddlProvince2.SelectedValue, "AMPHUR_TH", "AMPHUR_ID", "--กรุณาเลือกอำเภอ--");
+                            ddlAmphur2.SelectedValue = s3;
+
                             ddlDistrict2.Items.Clear();
-                            ddlDistrict2.SelectedValue = reader.IsDBNull(40) ? "0" : reader.GetInt32(40).ToString();
+                            string s4 = reader.IsDBNull(40) ? "0" : reader.GetInt32(40).ToString();
+                            DatabaseManager.BindDropDown(ddlDistrict2, "SELECT * FROM TB_DISTRICT WHERE AMPHUR_ID = " + ddlAmphur2.SelectedValue, "DISTRICT_TH", "DISTRICT_ID", "--กรุณาเลือกตำบล--");
+                            ddlDistrict2.SelectedValue = s4;
+
                             tbZipcode2.Text = reader.IsDBNull(41) ? "" : reader.GetString(41);
                             ddlCountry2.SelectedValue = reader.IsDBNull(42) ? "0" : reader.GetInt32(42).ToString();
                             tbState2.Text = reader.IsDBNull(43) ? "" : reader.GetString(43);
@@ -2537,12 +2536,22 @@ namespace WEB_PERSONAL
                             }
                             //view4
                             ddlCampus.SelectedValue = reader.IsDBNull(44) ? "0" : reader.GetInt32(44).ToString();
+
                             ddlFaculty.Items.Clear();
-                            ddlFaculty.SelectedValue = reader.IsDBNull(45) ? "0" : reader.GetInt32(45).ToString();
+                            string f1 = reader.IsDBNull(45) ? "0" : reader.GetInt32(45).ToString();
+                            DatabaseManager.BindDropDown(ddlFaculty, "SELECT * FROM TB_FACULTY WHERE CAMPUS_ID = " + ddlCampus.SelectedValue, "FACULTY_NAME", "FACULTY_ID", "--กรุณาเลือกสำนัก / สถาบัน / คณะ--");
+                            ddlFaculty.SelectedValue = f1;
+
                             ddlDivision.Items.Clear();
-                            ddlDivision.SelectedValue = reader.IsDBNull(46) ? "0" : reader.GetInt32(46).ToString();
+                            string f2 = reader.IsDBNull(46) ? "0" : reader.GetInt32(46).ToString();
+                            DatabaseManager.BindDropDown(ddlDivision, "SELECT * FROM TB_DIVISION WHERE FACULTY_ID = " + ddlFaculty.SelectedValue, "DIVISION_NAME", "DIVISION_ID", "--กรุณาเลือกกอง / สำนักงานเลขา / ภาควิชา--");
+                            ddlDivision.SelectedValue = f2;
+
                             ddlWorkDivision.Items.Clear();
-                            ddlWorkDivision.SelectedValue = reader.IsDBNull(47) ? "0" : reader.GetInt32(47).ToString();
+                            string f3 = reader.IsDBNull(47) ? "0" : reader.GetInt32(47).ToString();
+                            DatabaseManager.BindDropDown(ddlWorkDivision, "SELECT * FROM TB_WORK_DIVISION WHERE DIVISION_ID = " + ddlDivision.SelectedValue, "WORK_NAME", "WORK_ID", "--กรุณาเลือกงาน / ฝ่าย--");
+                            ddlWorkDivision.SelectedValue = f3;
+
                             ddlStaffType.SelectedValue = reader.IsDBNull(48) ? "0" : reader.GetInt32(48).ToString();
                             ddlBudget.SelectedValue = reader.IsDBNull(49) ? "0" : reader.GetInt32(49).ToString();
                             ddlPosition.SelectedValue = reader.IsDBNull(50) ? "0" : reader.GetString(50).ToString();
