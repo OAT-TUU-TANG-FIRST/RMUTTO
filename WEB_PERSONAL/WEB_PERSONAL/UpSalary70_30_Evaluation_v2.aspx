@@ -35,7 +35,15 @@
                 </tr>
                 <tr>
                     <td colspan="15">
-                        <asp:DropDownList runat="server"></asp:DropDownList>
+                        <asp:DropDownList runat="server" AutoPostBack="True">
+                            <asp:ListItem Selected="True">Please select</asp:ListItem>
+                            <asp:ListItem>การเรียนการสอน</asp:ListItem>
+                            <asp:ListItem>การทำนุบำรุงศิลปวัฒนธรรม</asp:ListItem>
+                            <asp:ListItem>งานบริหาร/งานอื่น ๆ ตามยุทธศาสตร์ นโยบาย ของมหาวิทยาลัย/คณะ/วิทยาลัย</asp:ListItem>
+                            <asp:ListItem>การวิจัยหรือตำราหรือหนังสือหรือผลงานทางวิชาการ</asp:ListItem>
+                            <asp:ListItem>การบริการวิชาการ</asp:ListItem>
+                            <asp:ListItem>Other</asp:ListItem>
+                        </asp:DropDownList>
                     </td>
                 </tr>
             </table>
