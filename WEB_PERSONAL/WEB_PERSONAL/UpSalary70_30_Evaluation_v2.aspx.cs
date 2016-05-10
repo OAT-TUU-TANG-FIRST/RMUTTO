@@ -14,7 +14,7 @@ namespace WEB_PERSONAL
 
         }
 
-        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+        /*protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (DropDownList1.SelectedIndex)
             {
@@ -30,6 +30,6 @@ namespace WEB_PERSONAL
                     MultiView1.SetActiveView(View2);
                     break;
             }
-        }
+        }*/
     }
 }
