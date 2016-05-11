@@ -4150,11 +4150,11 @@ namespace WEB_PERSONAL.Entities
     /// </summary>
     public class ClassPositionWork
     {
-        public string POSITION_WORK_ID { get; set; }
+        public int POSITION_WORK_ID { get; set; }
         public string POSITION_WORK_NAME { get; set; }
 
         public ClassPositionWork() { }
-        public ClassPositionWork(string POSITION_WORK_ID, string POSITION_WORK_NAME)
+        public ClassPositionWork(int POSITION_WORK_ID, string POSITION_WORK_NAME)
         {
             this.POSITION_WORK_ID = POSITION_WORK_ID;
             this.POSITION_WORK_NAME = POSITION_WORK_NAME;

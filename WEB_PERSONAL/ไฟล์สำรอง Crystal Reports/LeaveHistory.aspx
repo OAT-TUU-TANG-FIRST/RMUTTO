@@ -4,34 +4,34 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <div class="default_header"><img src="Image/Small/table.png" />รายการที่อยู่ระหว่างการดำเนินงาน</div>
-    <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
-        <AlternatingRowStyle BackColor="White" />
-        <EditRowStyle BackColor="#2461BF" />
-        <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-        <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-        <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
-        <RowStyle BackColor="#EFF3FB" />
-        <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
-        <SortedAscendingCellStyle BackColor="#F5F7FB" />
-        <SortedAscendingHeaderStyle BackColor="#6D95E1" />
-        <SortedDescendingCellStyle BackColor="#E9EBEF" />
-        <SortedDescendingHeaderStyle BackColor="#4870BE" />
-    </asp:GridView>
+    <div class="ps-header"><img src="Image/Small/table.png" />รายการที่อยู่ระหว่างการดำเนินงาน</div>
+    <div>
+        <asp:Linkbutton ID="lbuShow1" runat="server" CssClass="ps-button"><img src="Image/Small/search.png" class="icon_left"/>แสดงทั้งหมด</asp:Linkbutton>
+        <asp:GridView ID="GridView1" runat="server" CssClass="ps-gridview"></asp:GridView>
+        <asp:Label ID="lbGS1" runat="server" Text="ไม่มีข้อมูล"></asp:Label>
+    </div>
+    
 
-    <div class="default_header"><img src="Image/Small/table.png" />รายการที่เสร็จ</div>
-    <asp:GridView ID="GridView2" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
-        <AlternatingRowStyle BackColor="White" />
-        <EditRowStyle BackColor="#2461BF" />
-        <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-        <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-        <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
-        <RowStyle BackColor="#EFF3FB" />
-        <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
-        <SortedAscendingCellStyle BackColor="#F5F7FB" />
-        <SortedAscendingHeaderStyle BackColor="#6D95E1" />
-        <SortedDescendingCellStyle BackColor="#E9EBEF" />
-        <SortedDescendingHeaderStyle BackColor="#4870BE" />
-    </asp:GridView>
+    <div class="ps-separator"></div>
+
+    <div class="ps-header"><img src="Image/Small/table.png" />รายการที่เสร็จ</div>
+    <div>
+        <asp:Linkbutton ID="lbuShow3" runat="server" CssClass="ps-button"><img src="Image/Small/search.png" class="icon_left"/>แสดงทั้งหมด</asp:Linkbutton>
+        <asp:GridView ID="GridView3" runat="server" CssClass="ps-gridview"></asp:GridView>
+        <asp:Label ID="lbGS3" runat="server" Text="ไม่มีข้อมูล"></asp:Label>
+    </div>
+    
+
+    <div class="ps-separator"></div>
+
+    <div class="ps-header"><img src="Image/Small/table.png" />รายการที่ผ่าน / ไม่ผ่านการอนุมัติ</div>
+    <div>
+        <asp:Linkbutton ID="lbuShow2" runat="server" CssClass="ps-button"><img src="Image/Small/search.png" class="icon_left"/>แสดงทั้งหมด</asp:Linkbutton>
+        <asp:GridView ID="GridView2" runat="server" CssClass="ps-gridview"></asp:GridView>
+        <asp:Label ID="lbGS2" runat="server" Text="ไม่มีข้อมูล"></asp:Label>
+    </div>
+    
+
+    <div class="ps-separator"></div>
     
 </asp:Content>

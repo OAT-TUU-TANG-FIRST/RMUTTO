@@ -4,7 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="default_page_style">
-        <div class="default_header"><img src="Image/Small/pencil_y.png" />ลงความเห็นการลา</div>
+        <div class="ps-header"><img src="Image/Small/pencil_y.png" />ลงความเห็นการลา</div>
 
         
 
@@ -12,12 +12,12 @@
 
         <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex="0">
             <asp:View ID="View1" runat="server">
-                <asp:GridView ID="GridView1" runat="server" CssClass="default_gridview"></asp:GridView>
-                <div class="default_separator"></div>
+                <asp:GridView ID="GridView1" runat="server" CssClass="ps-gridview"></asp:GridView>
+                <div class="ps-separator"></div>
             </asp:View>
             <asp:View ID="View2" runat="server">
                 
-            <table class="default_table">
+            <table class="ps-table">
                 <tr>
                     <td colspan="2" class="head">ข้อมูลการลา</td>
                 </tr>
@@ -113,27 +113,27 @@
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="col1">&nbsp;</td>
+                    <td class="col1">เอกสารแนบ</td>
                     <td class="col2">
-                        &nbsp;</td>
+                        <div id="divDrCer" runat="server"></div></td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td class="col1">ความเห็น</td>
                     <td class="col2">
-                        <asp:TextBox ID="tbF1Comment" runat="server" Height="50px" Width="300px" TextMode="MultiLine" CssClass="textbox textbox_default"></asp:TextBox>
+                        <asp:TextBox ID="tbF1Comment" runat="server" Height="50px" Width="300px" TextMode="MultiLine" CssClass="ps-textbox"></asp:TextBox>
                     </td>
                     <td>&nbsp;</td>
                 </tr>
             </table>
-            <div class="default_separator"></div>
-                <asp:LinkButton ID="lbuF1Back" runat="server" CssClass="button button_default" OnClick="lbuF1Back_Click"><img src="Image/Small/back.png" class="icon_left"/>ย้อนกลับ</asp:LinkButton>
-                        <asp:LinkButton ID="lbuF1Add" runat="server" CssClass="button button_default" OnClick="lbuF1Add_Click">ยืนยันการลงความเห็น<img src="Image/Small/next.png" class="icon_right"/></asp:LinkButton>
+            <div class="ps-separator"></div>
+                <asp:LinkButton ID="lbuF1Back" runat="server" CssClass="ps-button" OnClick="lbuF1Back_Click"><img src="Image/Small/back.png" class="icon_left"/>ย้อนกลับ</asp:LinkButton>
+                        <asp:LinkButton ID="lbuF1Add" runat="server" CssClass="ps-button" OnClick="lbuF1Add_Click">ยืนยันการลงความเห็น<img src="Image/Small/next.png" class="icon_right"/></asp:LinkButton>
             </asp:View>
             <asp:View ID="View3" runat="server">
 
-            <asp:LinkButton ID="lbu1" runat="server" CssClass="button button_default" OnClick="lbu1_Click"><img src="Image/Small/back.png" class="icon_left"/>กลับหน้าหลัก</asp:LinkButton>
-            <asp:LinkButton ID="lbu2" runat="server" CssClass="button button_default" OnClick="lbu2_Click">ลงความเห็นต่อ<img src="Image/Small/forward.png" class="icon_right"/></asp:LinkButton>
+            <asp:LinkButton ID="lbu1" runat="server" CssClass="ps-button" OnClick="lbu1_Click"><img src="Image/Small/back.png" class="icon_left"/>กลับหน้าหลัก</asp:LinkButton>
+            <asp:LinkButton ID="lbu2" runat="server" CssClass="ps-button" OnClick="lbu2_Click">ลงความเห็นต่อ<img src="Image/Small/next.png" class="icon_right"/></asp:LinkButton>
   
             </asp:View>
         </asp:MultiView>
