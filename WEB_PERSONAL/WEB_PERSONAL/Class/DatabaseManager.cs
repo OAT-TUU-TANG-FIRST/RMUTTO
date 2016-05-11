@@ -292,7 +292,7 @@ namespace WEB_PERSONAL.Class {
             }
             using (OracleConnection con = new OracleConnection(CONNECTION_STRING)) {
                 con.Open();
-                using (OracleCommand com = new OracleCommand("SELECT LEV_MAIN.*, LEV_FORM1.*, (SELECT LEAVE_TYPE_NAME FROM LEV_MAIN, LEV_TYPE WHERE LEV_MAIN.LEAVE_TYPE_ID = LEV_TYPE.LEAVE_TYPE_ID AND LEV_MAIN.LEAVE_ID = " + leaveID + ") LEAVE_TYPE_NAME, (SELECT LEAVE_ALLOW_NAME FROM LEV_MAIN, LEV_ALLOW WHERE CH_ALLOW = LEAVE_ALLOW_ID AND LEV_FORM1.LEAVE_ID = " + leaveID + ") LEAVE_ALLOW_NAME FROM LEV_MAIN, LEV_FORM1 WHERE LEV_MAIN.LEAVE_ID = LEV_FORM1.LEAVE_ID AND LEV_MAIN.LEAVE_ID = " + leaveID, con)) {
+                using (OracleCommand com = new OracleCommand("SELECT LEV_MAIN.*, LEV_FORM1.*, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_MAIN.LEAVE_TYPE_ID = LEV_TYPE.LEAVE_TYPE_ID) LEAVE_TYPE_NAME, (SELECT LEAVE_ALLOW_NAME FROM LEV_ALLOW WHERE CH_ALLOW = LEAVE_ALLOW_ID) LEAVE_ALLOW_NAME FROM LEV_MAIN, LEV_FORM1 WHERE LEV_MAIN.LEAVE_ID = LEV_FORM1.LEAVE_ID AND LEV_MAIN.LEAVE_ID = " + leaveID, con)) {
                     using (OracleDataReader reader = com.ExecuteReader()) {
                         while (reader.Read()) {
                             Form1Package form1Package = new Form1Package();

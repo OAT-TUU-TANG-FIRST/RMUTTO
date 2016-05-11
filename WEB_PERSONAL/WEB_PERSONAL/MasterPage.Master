@@ -88,7 +88,7 @@
 
                 <div class="ps-ms-side-group">
                     <img src="Image/RMUTTO.png" class="rmutto"/>
-                    <span class="ps-ms-rmutto">ระบบบุคลากร<br />Personnel System</span>
+                    <span class="ps-ms-rmutto"><span style="font-family: THSB; font-size: 28px;">ระบบบุคลากร</span><br />Personnel System</span>
                     </div>
                 <div class="ps-ms-side-separator"></div>
                 <div class="ps-ms-side-group">
@@ -131,7 +131,8 @@
                     <a href="LeaveComment.aspx"><img src="Image/Small/document-edit.png" />ลงความเห็นการลา<asp:Label ID="lbLeaveCommentCount" runat="server" Text="ทดสอบ" CssClass="master_text_alert"></asp:Label></a>
                     <a href="LeaveAllow.aspx"><img src="Image/Small/document-accept.png" />อนุมัติการลา<asp:Label ID="lbLeaveAllowCount" runat="server" Text="ทดสอบ" CssClass="master_text_alert"></asp:Label></a>
                     <a href="LeaveHistory.aspx"><img src="Image/Small/clock-history.png" />ประวัติการลา</a>
-                    <a href="LeaveClaim.aspx"><img src="Image/Small/info.png" />สิทธิการลา</a>
+                    <!--a href="LeaveClaim.aspx"><img src="Image/Small/info.png" />สิทธิการลา</!--a-->
+                    <a href="LeavePermission.aspx"><img src="Image/Small/info.png" />ตารางสิทธิการอนุญาต</a>
                     <a href="WorkingTime.aspx" id="LinkWorkingTime" runat="server"><img src="Image/Small/clock.png" />เพิ่มเวลาปฏิบัติงาน</a>
                     <a href="WorkingTimeHistory.aspx"><img src="Image/Small/clock-history.png" />ประวัติเวลาปฏิบัติงาน</a>
                     <a href="Leave-Report1.aspx"><img src="Image/Small/report.png" />ออกรายงานการลา</a>
@@ -166,7 +167,7 @@
 
                 <div class="ps-ms-side-group">
                     <span class="ps-ms-side-group-header">ข้อมูลระบบ</span>
-                    <div style="margin-left: 10px;">เวอร์ชั่น : v1.0.6</div>
+                    <div style="margin-left: 10px;">เวอร์ชั่น : v1.0.7</div>
                     <div style="margin-left: 10px;">ตัวนับ : <span id="s_counter" runat="server"></span></div>
                 </div>
 

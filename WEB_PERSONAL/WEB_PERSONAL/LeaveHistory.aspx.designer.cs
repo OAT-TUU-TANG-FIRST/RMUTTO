@@ -13,13 +13,40 @@ namespace WEB_PERSONAL {
     public partial class LeaveHistory {
         
         /// <summary>
-        /// lbuShow1 control.
+        /// lbuVS1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbuShow1;
+        protected global::System.Web.UI.WebControls.LinkButton lbuVS1;
+        
+        /// <summary>
+        /// lbuVS2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbuVS2;
+        
+        /// <summary>
+        /// MultiView1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.MultiView MultiView1;
+        
+        /// <summary>
+        /// View1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View View1;
         
         /// <summary>
         /// GridView1 control.
@@ -40,15 +67,6 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.Label lbGS1;
         
         /// <summary>
-        /// lbuShow3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbuShow3;
-        
-        /// <summary>
         /// GridView3 control.
         /// </summary>
         /// <remarks>
@@ -67,15 +85,6 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.Label lbGS3;
         
         /// <summary>
-        /// lbuShow2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbuShow2;
-        
-        /// <summary>
         /// GridView2 control.
         /// </summary>
         /// <remarks>
@@ -92,5 +101,23 @@ namespace WEB_PERSONAL {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbGS2;
+        
+        /// <summary>
+        /// View2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View View2;
+        
+        /// <summary>
+        /// Table1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Table Table1;
     }
 }

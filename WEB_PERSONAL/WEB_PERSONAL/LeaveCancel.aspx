@@ -4,15 +4,16 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="default_page_style">
-        <div class="default_header">
-            <img src="Image/Small/table.png" />ยกเลิกการลา
-        </div>
+        <div class="ps-header"><img src="Image/Small/document-delete.png" />ยกเลิกการลา</div>
 
         <div id="notification" runat="server"></div>
 
         <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex="0">
             <asp:View ID="View1" runat="server">
-                <table>
+                <table class="ps-table">
+                    <tr>
+                        <td class="head" colspan="2">ข้อมูลการยกเลิกการลา</td>
+                    </tr>
                     <tr>
                         <td class="col1">&nbsp;</td>
                         <td class="col2">วันที่ขอลา</td>
@@ -58,7 +59,7 @@
                     <tr>
                         <td class="col1">&nbsp;</td>
                         <td class="col2">
-                            <asp:LinkButton ID="lbuF1S1Check" runat="server" CssClass="button button_default" OnClick="lbuF1S1Check_Click">ตรวจสอบ<img src="Image/Small/forward.png" class="icon_right"/></asp:LinkButton>
+                            <asp:LinkButton ID="lbuF1S1Check" runat="server" CssClass="ps-button" OnClick="lbuF1S1Check_Click">ตรวจสอบ<img src="Image/Small/forward.png" class="icon_right"/></asp:LinkButton>
                         </td>
                     </tr>
                 </table>
@@ -143,8 +144,8 @@
                     <tr>
                         <td class="col1">&nbsp;</td>
                         <td class="col_res">
-                            <asp:LinkButton ID="lbuF1S2Back" runat="server" CssClass="button button_default" OnClick="lbuF1S2Back_Click"><img src="Image/Small/back.png" class="icon_left"/>ย้อนกลับ</asp:LinkButton>
-                            <asp:LinkButton ID="lbuF1S2Add" runat="server" CssClass="button button_default" OnClick="lbuF1S2Add_Click"><img src="Image/Small/add.png" class="icon_left"/>ยืนคำขอลา</asp:LinkButton>
+                            <asp:LinkButton ID="lbuF1S2Back" runat="server" CssClass="ps-button" OnClick="lbuF1S2Back_Click"><img src="Image/Small/back.png" class="icon_left"/>ย้อนกลับ</asp:LinkButton>
+                            <asp:LinkButton ID="lbuF1S2Add" runat="server" CssClass="ps-button" OnClick="lbuF1S2Add_Click"><img src="Image/Small/add.png" class="icon_left"/>ยืนคำขอลา</asp:LinkButton>
                         </td>
                     </tr>
                 </table>

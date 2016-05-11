@@ -14,132 +14,117 @@
                 <div class="ps-separator"></div>
             </asp:View>
             <asp:View ID="View2" runat="server">
-                <table>
+                <table class="ps-table">
+                    <tr>
+                        <td class="head" colspan="2">ข้อมูลการลา</td>
+                    </tr>
                     <tr>
                     <td class="col1">รหัสการลา</td>
                     <td class="col2">
                         <asp:Label ID="lbF1LeaveID" runat="server"></asp:Label>
                     </td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="col1">ผู้ลา</td>
+                    <td class="col1"><img src="Image/Small/person2.png" class="icon_left"/>ผู้ลา</td>
                     <td class="col2">
                         <asp:Label ID="lbF1LeaverName" runat="server"></asp:Label>
                     </td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td class="col1">ตำแหน่ง</td>
                     <td class="col2">
                         <asp:Label ID="lbF1PersonPosition" runat="server"></asp:Label>
                     </td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td class="col1">ระดับ</td>
                     <td class="col2">
                         <asp:Label ID="lbF1PersonRank" runat="server"></asp:Label>
                     </td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td class="col1">สังกัด</td>
                     <td class="col2">
                         <asp:Label ID="lbF1PersonDepartment" runat="server"></asp:Label>
                     </td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="col1">วันที่ยื่นเรื่อง</td>
+                    <td class="col1"><img src="Image/Small/calendar.png" class="icon_left"/>วันที่ยื่นเรื่อง</td>
                     <td class="col2">
                         <asp:Label ID="lbF1ReqDate" runat="server"></asp:Label>
                     </td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td class="col1">ประเภทการลา</td>
                     <td class="col2">
                         <asp:Label ID="lbF1LeaveTypeName" runat="server"></asp:Label>
                     </td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="col1">ลาครั้งล่าสุด</td>
+                    <td class="col1"><img src="Image/Small/calendar.png" class="icon_left"/>ลาครั้งล่าสุด</td>
                     <td class="col2">
                         <asp:Label ID="lbF1LastFTTDate" runat="server"></asp:Label>
                     </td>
-                    <td class="auto-style3"></td>
                 </tr>
                 <tr>
-                    <td class="col1">ลาครั้งนี้</td>
+                    <td class="col1"><img src="Image/Small/calendar.png" class="icon_left"/>ลาครั้งนี้</td>
                     <td class="col2">
                         <asp:Label ID="lbF1FTTDate" runat="server"></asp:Label>
                     </td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="col1">สถิติการลา</td>
+                    <td class="col1"><img src="Image/Small/calendar.png" class="icon_left"/>สถิติการลา</td>
                     <td class="col2">
                         <asp:Label ID="lbF1Statistic" runat="server"></asp:Label>
                     </td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="col1">เหตุผล</td>
+                    <td class="col1"><img src="Image/Small/a.png" class="icon_left"/>เหตุผล</td>
                     <td class="col2">
                         <asp:Label ID="lbF1Reason" runat="server"></asp:Label>
                     </td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="col1">ติดต่อได้ที่</td>
+                    <td class="col1"><img src="Image/Small/a.png" class="icon_left"/>ติดต่อได้ที่</td>
                     <td class="col2">
                         <asp:Label ID="lbF1Contact" runat="server"></asp:Label>
                     </td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="col1">เบอร์โทรศัพท์</td>
+                    <td class="col1"><img src="Image/Small/phone.png" class="icon_left"/>เบอร์โทรศัพท์</td>
                     <td class="col2">
                         <asp:Label ID="lbF1Phone" runat="server"></asp:Label>
                     </td>
-                    <td>&nbsp;</td>
                 </tr>
                     <tr>
-                    <td class="col1">เอกสารแนบ</td>
+                    <td class="col1"><img src="Image/Small/clip.png" class="icon_left"/>เอกสารแนบ</td>
                     <td class="col2">
                         <div id="divDrCer" runat="server"></div></td>
-                    <td>&nbsp;</td>
                 </tr>
                     <tr>
-                    <td class="col1">ความเห็นจากผู้บังคับบัญชาระดับต่ำ</td>
+                    <td class="col1"><img src="Image/Small/comment.png" class="icon_left"/>ความเห็นจากผู้บังคับบัญชาระดับต่ำ</td>
                     <td class="col2">
                         <asp:Label ID="lbF1CLComment" runat="server"></asp:Label>
                     </td>
-                    <td>&nbsp;</td>
                 </tr>
                     <tr>
-                    <td class="col1">วันที่ลงความเห็น</td>
+                    <td class="col1"><img src="Image/Small/calendar.png" class="icon_left"/>วันที่ลงความเห็น</td>
                     <td class="col2">
                         <asp:Label ID="lbF1CLDate" runat="server"></asp:Label>
                     </td>
-                    <td>&nbsp;</td>
                 </tr>
                     <tr>
-                        <td class="col1">ความเห็น</td>
+                        <td class="col1"><img src="Image/Small/comment.png" class="icon_left"/>ความเห็น</td>
                         <td class="col2">
                             <asp:TextBox ID="tbF1Comment" runat="server" Height="50px" Width="300px" TextMode="MultiLine" CssClass="ps-textbox"></asp:TextBox>
                         </td>
-                        <td class="auto-style3"></td>
                     </tr>
                     <tr>
-                        <td class="col1">การอนุมัติ</td>
+                        <td class="col1"><img src="Image/Small/correct.png" class="icon_left"/>การอนุมัติ</td>
                         <td class="col2">
                             <asp:RadioButton ID="rbAllow" runat="server" GroupName="allow" Text="อนุญาต" />
                             <asp:RadioButton ID="rbNotAllow" runat="server" GroupName="allow" Text="ไม่อนุญาต" />
                         </td>
-                        <td>&nbsp;</td>
                     </tr>
                 </table>
                 <div class="ps-separator"></div>
