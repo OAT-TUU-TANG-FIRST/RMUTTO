@@ -4,7 +4,33 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <div>
+    <div class="default_page_style">
+
+        <div>
+            <asp:LinkButton ID="LinkButton3" runat="server" OnClick="LinkButton3_Click">POPUP</asp:LinkButton>
+        </div>
+
+        <div>
+            <asp:LinkButton ID="LinkButton2" runat="server" OnClick="LinkButton2_Click">Test Date</asp:LinkButton>
+        </div>
+
+        <div>
+            <div>
+                <asp:listbox runat="server" id="lbo1"></asp:listbox>
+            </div>
+            <div>
+                <asp:textbox runat="server" id="tbc1" cssclass="ps-textbox"></asp:textbox>
+            </div>
+            <div>
+                <asp:textbox runat="server" id="tbc2" TextMode="MultiLine" cssclass="ps-textbox"></asp:textbox>
+            </div>
+            <div>
+                <asp:linkbutton runat="server" id="lbc" cssclass="ps-button" OnClick="lbc_Click">Send</asp:linkbutton>
+            </div>
+            
+            
+        </div>
+        
 
         <asp:Table ID="Table1" runat="server">
             <asp:TableHeaderRow>
@@ -96,7 +122,7 @@
             <br />
             <asp:LinkButton ID="lbuTableSQL" runat="server" CssClass="button button_default" OnClick="lbuTableSQL_Click">View Table</asp:LinkButton>
 
-            <asp:GridView ID="GridView1" runat="server" ShowHeaderWhenEmpty="true"></asp:GridView>
+            <asp:GridView ID="GridView1" runat="server" ShowHeaderWhenEmpty="true" CssClass="ps-gridview"></asp:GridView>
 
         </div>
         <div style="clear: both;"></div>

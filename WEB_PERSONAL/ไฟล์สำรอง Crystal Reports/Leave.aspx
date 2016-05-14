@@ -6,13 +6,6 @@
     <style type="text/css">
 
 
-        .auto-style1 {
-            text-align: right;
-            vertical-align: top;
-            padding-right: 10px;
-            color: #808080;
-            height: 28px; 
-        }
         .section {
             background-size: auto 400px;
             background-position: top right;
@@ -66,13 +59,13 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <div class="default_page_style">
-        <div class="default_header">
+        <div class="ps-header">
             <img src="Image/Small/table.png" />ทำการลา
                     </div>
 
         <div class="sectionSelectLeaveType">
             เลือกประเภทการลา&nbsp;
-            <asp:DropDownList ID="ddlLeaveType" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlLeaveType_SelectedIndexChanged" CssClass="dropdown dropdown_default">
+            <asp:DropDownList ID="ddlLeaveType" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlLeaveType_SelectedIndexChanged" CssClass="ps-dropdown">
                 <asp:ListItem Value="0" Text="-- กรุณาเลือกประเภทการลา --"></asp:ListItem>
                 <asp:ListItem Value="1" Text="ลาป่วย"></asp:ListItem>
                 <asp:ListItem Value="2" Text="ลากิจ"></asp:ListItem>
@@ -84,44 +77,44 @@
             </asp:DropDownList>
                         </div>
 
-        <div class="default_separator"></div>
+        <div class="ps-separator"></div>
 
         <div id="notification" runat="server"></div>
 
         <asp:MultiView ID="MultiView1" runat="server">
             <asp:View ID="VX1_1" runat="server">
-                <table class="default_table">
+                <table class="ps-table">
                    <tr>
                        <td colspan="2" class="head">ข้อมูลการลาป่วย</td>
                    </tr>
                 <tr>
                     <td class="col1">จากวันที่</td>
                     <td class="col2">
-                        <asp:TextBox ID="tbF1S1FromDate" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
+                        <asp:TextBox ID="tbF1S1FromDate" runat="server" CssClass="ps-textbox"></asp:TextBox>
                                         </td>
                 </tr>
                 <tr>
                     <td class="col1">ถึงวันที่</td>
                     <td class="col2">
-                        <asp:TextBox ID="tbF1S1ToDate" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
+                        <asp:TextBox ID="tbF1S1ToDate" runat="server" CssClass="ps-textbox"></asp:TextBox>
                                         </td>
                                     </tr>
                 <tr>
                     <td class="col1">เหตุผล</td>
                     <td class="col2">
-                        <asp:TextBox ID="tbF1S1Reason" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
+                        <asp:TextBox ID="tbF1S1Reason" runat="server" CssClass="ps-textbox"></asp:TextBox>
                                         </td>
                 </tr>
                 <tr>
                     <td class="col1">ติดต่อได้ที่</td>
                     <td class="col2">
-                        <asp:TextBox ID="tbF1S1Contact" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
+                        <asp:TextBox ID="tbF1S1Contact" runat="server" CssClass="ps-textbox"></asp:TextBox>
                                         </td>
                                     </tr>
                                     <tr>
                     <td class="col1">เบอร์โทรศัพท์</td>
                     <td class="col2">
-                        <asp:TextBox ID="tbF1S1Phone" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
+                        <asp:TextBox ID="tbF1S1Phone" runat="server" CssClass="ps-textbox"></asp:TextBox>
                                         </td>
                 </tr>
                 <tr>
@@ -132,12 +125,12 @@
                 </tr>
                               
             </table>
-                <div class="default_separator"></div>
-                <asp:LinkButton ID="lbuF1S1Check" runat="server" CssClass="button button_default" OnClick="lbuF1S1Check_Click">ต่อไป<img src="Image/Small/next.png" class="icon_right"/></asp:LinkButton>
+                <div class="ps-separator"></div>
+                <asp:LinkButton ID="lbuF1S1Check" runat="server" CssClass="ps-button" OnClick="lbuF1S1Check_Click">ต่อไป<img src="Image/Small/next.png" class="icon_right"/></asp:LinkButton>
             </asp:View>
             
             <asp:View ID="VX1_2" runat="server">
-                <table class="default_table">
+                <table class="ps-table">
                     <tr>
                        <td colspan="2" class="head">ข้อมูลการลาป่วย</td>
                    </tr>
@@ -184,6 +177,12 @@
                         <asp:Label ID="lbF1S2FTTDate" runat="server"></asp:Label>
                                         </td>
                 </tr>
+                    <tr>
+                        <td class="col1">สถิติการลา</td>
+                        <td class="col2">
+                            <asp:Label ID="lbF1S2Statistic" runat="server"></asp:Label>
+                        </td>
+                    </tr>
                 <tr>
                     <td class="col1">เหตุผล</td>
                     <td class="col2">
@@ -209,169 +208,168 @@
                     </td>
                 </tr>
                                 </table>
-                <div class="default_separator"></div>
+                <div class="ps-separator"></div>
                 <div>
-                    <asp:LinkButton ID="lbuF1S2Back" runat="server" CssClass="button button_default" OnClick="lbuF1S2Back_Click"><img src="Image/Small/back.png" class="icon_left"/>ย้อนกลับ</asp:LinkButton>
-                        <asp:LinkButton ID="lbuF1S2Add" runat="server" CssClass="button button_default" OnClick="lbuF1S2Add_Click"><img src="Image/Small/add.png" class="icon_left"/>ยืนคำขอลา</asp:LinkButton>
+                    <asp:LinkButton ID="lbuF1S2Back" runat="server" CssClass="ps-button" OnClick="lbuF1S2Back_Click"><img src="Image/Small/back.png" class="icon_left"/>ย้อนกลับ</asp:LinkButton>
+                        <asp:LinkButton ID="lbuF1S2Add" runat="server" CssClass="ps-button" OnClick="lbuF1S2Add_Click"><img src="Image/Small/add.png" class="icon_left"/>ยืนคำขอลา</asp:LinkButton>
                 </div>
             </asp:View>
 
             <asp:View ID="VX2_1" runat="server">
-                <table class="default_table">
+                <table class="ps-table">
                    <tr>
                        <td colspan="2" class="head">ข้อมูลการลากิจ</td>
                    </tr>
                 <tr>
-                    <td class="col1">จากวันที่ : </td>
+                    <td class="col1">จากวันที่</td>
                     <td class="col2">
-                        <asp:TextBox ID="tbVX21FromDate" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
+                        <asp:TextBox ID="tbVX21FromDate" runat="server" CssClass="ps-textbox"></asp:TextBox>
                                         </td>
                 </tr>
                 <tr>
-                    <td class="col1">ถึงวันที่ : </td>
+                    <td class="col1">ถึงวันที่</td>
                     <td class="col2">
-                        <asp:TextBox ID="tbVX21ToDate" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
+                        <asp:TextBox ID="tbVX21ToDate" runat="server" CssClass="ps-textbox"></asp:TextBox>
                                         </td>
                                     </tr>
                 <tr>
-                    <td class="col1">เหตุผล : </td>
+                    <td class="col1">เหตุผล</td>
                     <td class="col2">
-                        <asp:TextBox ID="tbVX21Reason" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
+                        <asp:TextBox ID="tbVX21Reason" runat="server" CssClass="ps-textbox"></asp:TextBox>
                                         </td>
                 </tr>
                 <tr>
-                    <td class="col1">ติดต่อได้ที่ : </td>
+                    <td class="col1">ติดต่อได้ที่</td>
                     <td class="col2">
-                        <asp:TextBox ID="tbVX21Contact" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
+                        <asp:TextBox ID="tbVX21Contact" runat="server" CssClass="ps-textbox"></asp:TextBox>
                                         </td>
                                     </tr>
                                     <tr>
-                    <td class="col1">เบอร์โทรศัพท์ : </td>
+                    <td class="col1">เบอร์โทรศัพท์</td>
                     <td class="col2">
-                        <asp:TextBox ID="tbVX21Phone" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
+                        <asp:TextBox ID="tbVX21Phone" runat="server" CssClass="ps-textbox"></asp:TextBox>
                                         </td>
                 </tr>
                                     
             </table>
-                <div class="default_separator"></div>
-                <asp:LinkButton ID="lbuVX21Next" runat="server" CssClass="button button_default" OnClick="lbuVX21Next_Click">ต่อไป<img src="Image/Small/forward.png" class="icon_right"/></asp:LinkButton>
+                <div class="ps-separator"></div>
+                <asp:LinkButton ID="lbuVX21Next" runat="server" CssClass="ps-button" OnClick="lbuVX21Next_Click">ต่อไป<img src="Image/Small/forward.png" class="icon_right"/></asp:LinkButton>
             </asp:View>
             <asp:View ID="VX2_2" runat="server">
-                <table class="default_table">
+                <table class="ps-table">
                     <tr>
                        <td colspan="2" class="head">ข้อมูลการลากิจ</td>
                    </tr>
                                     <tr>
-                    <td class="col1">ประเภทการลา : </td>
+                    <td class="col1">ประเภทการลา</td>
                     <td class="col2">
-                        <asp:Label ID="lbVX22LeaveType" runat="server"></asp:Label>
+                        <asp:Label ID="lbVX22LeaveTypeName" runat="server"></asp:Label>
                                         </td>
                 </tr>
                 <tr>
-                    <td class="col1">ชื่อ : </td>
+                    <td class="col1">ชื่อ</td>
                     <td class="col2">
-                        <asp:Label ID="lbVX22Name" runat="server"></asp:Label>
+                        <asp:Label ID="lbVX22PersonName" runat="server"></asp:Label>
                         &nbsp;
                                         </td>
                                     </tr>
                                     <tr>
-                    <td class="col1">ตำแหน่ง : </td>
+                    <td class="col1">ตำแหน่ง</td>
                     <td class="col2">
-                        <asp:Label ID="lbVX22Position" runat="server"></asp:Label>
+                        <asp:Label ID="lbVX22PersonPosition" runat="server"></asp:Label>
                                         </td>
                 </tr>
                 <tr>
-                    <td class="col1">ระดับ : </td>
+                    <td class="col1">ระดับ</td>
                     <td class="col2">
-                        <asp:Label ID="lbVX22Rank" runat="server"></asp:Label>
+                        <asp:Label ID="lbVX22PersonPosRank" runat="server"></asp:Label>
                                         </td>
                                     </tr>
                                     <tr>
-                    <td class="col1">สังกัด : </td>
+                    <td class="col1">สังกัด</td>
                     <td class="col2">
-                        <asp:Label ID="lbVX22Dept" runat="server"></asp:Label>
+                        <asp:Label ID="lbVX22PersonDept" runat="server"></asp:Label>
                                         </td>
                 </tr>
                 <tr>
-                    <td class="col1">ลาล่าสุด : </td>
+                    <td class="col1">ลาล่าสุด</td>
                     <td class="col2">
-                        <asp:Label ID="lbVX22LastDate" runat="server"></asp:Label>
+                        <asp:Label ID="lbVX22LastFTTDate" runat="server"></asp:Label>
                                         </td>
                                     </tr>
                                     <tr>
-                    <td class="col1">วันที่ลา : </td>
+                    <td class="col1">วันที่ลา</td>
                     <td class="col2">
-                        <asp:Label ID="lbVX22Date" runat="server"></asp:Label>
+                        <asp:Label ID="lbVX22FTTDate" runat="server"></asp:Label>
                                         </td>
                 </tr>
                 <tr>
-                    <td class="col1">เหตุผล : </td>
+                    <td class="col1">เหตุผล</td>
                     <td class="col2">
                         <asp:Label ID="lbVX22Reason" runat="server"></asp:Label>
                                         </td>
                                     </tr>
                                     <tr>
-                    <td class="col1">ติดต่อได้ที่ : </td>
+                    <td class="col1">ติดต่อได้ที่</td>
                     <td class="col2">
                         <asp:Label ID="lbVX22Contact" runat="server"></asp:Label>
                                         </td>
                                     </tr>
                 <tr>
-                    <td class="col1">เบอร์โทรศัพท์ : </td>
+                    <td class="col1">เบอร์โทรศัพท์</td>
                     <td class="col2">
                         <asp:Label ID="lbVX22Phone" runat="server"></asp:Label>
                     </td>
                 </tr>
-              
                                 </table>
-                <div class="default_separator"></div>
-                <asp:LinkButton ID="lbuVX22Back" runat="server" CssClass="button button_default" OnClick="lbuVX22Back_Click"><img src="Image/Small/back.png" class="icon_left"/>ย้อนกลับ</asp:LinkButton>
-                        <asp:LinkButton ID="lbuVX22Finish" runat="server" CssClass="button button_default" OnClick="lbuVX22Finish_Click"><img src="Image/Small/add.png" class="icon_left"/>ยืนคำขอลา</asp:LinkButton>
+                <div class="ps-separator"></div>
+                <asp:LinkButton ID="lbuVX22Back" runat="server" CssClass="ps-button" OnClick="lbuVX22Back_Click"><img src="Image/Small/back.png" class="icon_left"/>ย้อนกลับ</asp:LinkButton>
+                        <asp:LinkButton ID="lbuVX22Finish" runat="server" CssClass="ps-button" OnClick="lbuVX22Finish_Click"><img src="Image/Small/add.png" class="icon_left"/>ยืนคำขอลา</asp:LinkButton>
             </asp:View>
 
             <asp:View ID="VX3_1" runat="server">
-                <table class="default_table">
+                <table class="ps-table">
                    <tr>
                        <td colspan="2" class="head">ข้อมูลการลาคลอดบุตร</td>
                    </tr>
                 <tr>
                     <td class="col1">จากวันที่ : </td>
                     <td class="col2">
-                        <asp:TextBox ID="TextBox59" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
+                        <asp:TextBox ID="TextBox59" runat="server" CssClass="ps-textbox"></asp:TextBox>
                                         </td>
                 </tr>
                 <tr>
                     <td class="col1">ถึงวันที่ : </td>
                     <td class="col2">
-                        <asp:TextBox ID="TextBox60" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
+                        <asp:TextBox ID="TextBox60" runat="server" CssClass="ps-textbox"></asp:TextBox>
                                         </td>
                                     </tr>
                 <tr>
                     <td class="col1">เหตุผล : </td>
                     <td class="col2">
-                        <asp:TextBox ID="TextBox61" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
+                        <asp:TextBox ID="TextBox61" runat="server" CssClass="ps-textbox"></asp:TextBox>
                                         </td>
                 </tr>
                 <tr>
                     <td class="col1">ติดต่อได้ที่ : </td>
                     <td class="col2">
-                        <asp:TextBox ID="TextBox62" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
+                        <asp:TextBox ID="TextBox62" runat="server" CssClass="ps-textbox"></asp:TextBox>
                                         </td>
                                     </tr>
                                     <tr>
                     <td class="col1">เบอร์โทรศัพท์ : </td>
                     <td class="col2">
-                        <asp:TextBox ID="TextBox63" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
+                        <asp:TextBox ID="TextBox63" runat="server" CssClass="ps-textbox"></asp:TextBox>
                                         </td>
                 </tr>
                                    
             </table>
-                <div class="default_separator"></div>
-                <asp:LinkButton ID="LinkButton10" runat="server" CssClass="button button_default" OnClick="lbuF1S1Check_Click">ต่อไป<img src="Image/Small/forward.png" class="icon_right"/></asp:LinkButton>
+                <div class="ps-separator"></div>
+                <asp:LinkButton ID="LinkButton10" runat="server" CssClass="ps-button" OnClick="lbuF1S1Check_Click">ต่อไป<img src="Image/Small/forward.png" class="icon_right"/></asp:LinkButton>
 
             </asp:View>
             <asp:View ID="VX3_2" runat="server">
-                <table class="default_table">
+                <table class="ps-table">
                     <tr>
                        <td colspan="2" class="head">ข้อมูลการลาคลอดบุตร</td>
                    </tr>
@@ -437,46 +435,46 @@
                     </td>
                 </tr>
                                 </table>
-                <div class="default_separator"></div>
-                <asp:LinkButton ID="LinkButton11" runat="server" CssClass="button button_default" OnClick="lbuF1S2Back_Click"><img src="Image/Small/back.png" class="icon_left"/>ย้อนกลับ</asp:LinkButton>
-                        <asp:LinkButton ID="LinkButton12" runat="server" CssClass="button button_default" OnClick="lbuF1S2Add_Click"><img src="Image/Small/add.png" class="icon_left"/>ยืนคำขอลา</asp:LinkButton>
+                <div class="ps-separator"></div>
+                <asp:LinkButton ID="LinkButton11" runat="server" CssClass="ps-button" OnClick="lbuF1S2Back_Click"><img src="Image/Small/back.png" class="icon_left"/>ย้อนกลับ</asp:LinkButton>
+                        <asp:LinkButton ID="LinkButton12" runat="server" CssClass="ps-button" OnClick="lbuF1S2Add_Click"><img src="Image/Small/add.png" class="icon_left"/>ยืนคำขอลา</asp:LinkButton>
             </asp:View>
 
             <asp:View ID="VX4_1" runat="server">
-                <table class="default_table">
+                <table class="ps-table">
                     <tr>
                         <td colspan="2" class="head">ข้อมูลการลาพักผ่อน</td>
                     </tr>
                 <tr>
                     <td class="col1">จากวันที่ : </td>
                     <td class="col2">
-                        <asp:TextBox ID="tbF3S1FromDate" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
+                        <asp:TextBox ID="tbF3S1FromDate" runat="server" CssClass="ps-textbox"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">ถึงวันที่ : </td>
                     <td class="col2">
-                        <asp:TextBox ID="tbF3S1ToDate" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
+                        <asp:TextBox ID="tbF3S1ToDate" runat="server" CssClass="ps-textbox"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">ติดต่อได้ที่ : </td>
                     <td class="col2">
-                        <asp:TextBox ID="tbF3S1Contact" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
+                        <asp:TextBox ID="tbF3S1Contact" runat="server" CssClass="ps-textbox"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">เบอร์โทรศัพท์ : </td>
                     <td class="col2">
-                        <asp:TextBox ID="tbF3S1Phone" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
+                        <asp:TextBox ID="tbF3S1Phone" runat="server" CssClass="ps-textbox"></asp:TextBox>
                     </td>
                 </tr>
             </table>
-                <div class="default_separator"></div>
-                <asp:LinkButton ID="lbuF3S1Check" runat="server" CssClass="button button_default" OnClick="lbuF3S1Check_Click">ตรวจสอบ<img src="Image/Small/forward.png" class="icon_right"/></asp:LinkButton>
+                <div class="ps-separator"></div>
+                <asp:LinkButton ID="lbuF3S1Check" runat="server" CssClass="ps-button" OnClick="lbuF3S1Check_Click">ตรวจสอบ<img src="Image/Small/forward.png" class="icon_right"/></asp:LinkButton>
             </asp:View>
             <asp:View ID="VX4_2" runat="server">
-                <table class="default_table">
+                <table class="ps-table">
                     <tr>
                         <td colspan="2" class="head">ข้อมูลการลาพักผ่อน</td>
                     </tr>
@@ -560,64 +558,64 @@
                     </td>
                 </tr>
             </table>
-                <div class="default_separator"></div>
-                <asp:LinkButton ID="lbuF3S2Back" runat="server" CssClass="button button_default" OnClick="lbuF3S2Back_Click"><img src="Image/Small/back.png" class="icon_left"/>ย้อนกลับ</asp:LinkButton>
-                        <asp:LinkButton ID="lbuF3S2Add" runat="server" CssClass="button button_default" OnClick="lbuF1S2Add_Click">ยืนคำขอลา</asp:LinkButton>
+                <div class="ps-separator"></div>
+                <asp:LinkButton ID="lbuF3S2Back" runat="server" CssClass="ps-button" OnClick="lbuF3S2Back_Click"><img src="Image/Small/back.png" class="icon_left"/>ย้อนกลับ</asp:LinkButton>
+                        <asp:LinkButton ID="lbuF3S2Add" runat="server" CssClass="ps-button" OnClick="lbuF1S2Add_Click">ยืนคำขอลา</asp:LinkButton>
             </asp:View>
 
             <asp:View ID="VX5_1" runat="server">
-                <table class="default_table">
+                <table class="ps-table">
                     <tr>
                         <td colspan="2" class="head">ข้อมูลการลาไปช่วยเหลือภริยาที่คลอดบุตร</td>
                     </tr>
                 <tr>
                     <td class="col1">ชื่อภริยา : </td>
                     <td class="col2">
-                        <asp:TextBox ID="tbF2S1WifeName" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
+                        <asp:TextBox ID="tbF2S1WifeName" runat="server" CssClass="ps-textbox"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">นามสกุลภริยา : </td>
                     <td class="col2">
-                        <asp:TextBox ID="tbF2S1WifeLastName" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
+                        <asp:TextBox ID="tbF2S1WifeLastName" runat="server" CssClass="ps-textbox"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">คลอดบุตรวันที่ : </td>
                     <td class="col2">
-                        <asp:TextBox ID="tbF2S1GiveBirthDate" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
+                        <asp:TextBox ID="tbF2S1GiveBirthDate" runat="server" CssClass="ps-textbox"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">จากวันที่ : </td>
                     <td class="col2">
-                        <asp:TextBox ID="tbF2S1FromDate" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
+                        <asp:TextBox ID="tbF2S1FromDate" runat="server" CssClass="ps-textbox"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">ถึงวันที่ : </td>
                     <td class="col2">
-                        <asp:TextBox ID="tbF2S1ToDate" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
+                        <asp:TextBox ID="tbF2S1ToDate" runat="server" CssClass="ps-textbox"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">ติดต่อได้ที่ : </td>
                     <td class="col2">
-                        <asp:TextBox ID="tbF2S1Contact" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
+                        <asp:TextBox ID="tbF2S1Contact" runat="server" CssClass="ps-textbox"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">เบอร์โทรศัพท์ : </td>
                     <td class="col2">
-                        <asp:TextBox ID="tbF2S1Phone" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
+                        <asp:TextBox ID="tbF2S1Phone" runat="server" CssClass="ps-textbox"></asp:TextBox>
                     </td>
                 </tr>
             </table>
-                <div class="default_separator"></div>
-                <asp:LinkButton ID="lbuF2S1Check" runat="server" CssClass="button button_default" OnClick="lbuF2S1Check_Click">ตรวจสอบ<img src="Image/Small/forward.png" class="icon_right"/></asp:LinkButton>
+                <div class="ps-separator"></div>
+                <asp:LinkButton ID="lbuF2S1Check" runat="server" CssClass="ps-button" OnClick="lbuF2S1Check_Click">ตรวจสอบ<img src="Image/Small/forward.png" class="icon_right"/></asp:LinkButton>
             </asp:View>
             <asp:View ID="VX5_2" runat="server">
-                 <table class="default_table">
+                 <table class="ps-table">
                      <tr>
                         <td colspan="2" class="head">ข้อมูลการลาไปช่วยเหลือภริยาที่คลอดบุตร</td>
                     </tr>
@@ -701,13 +699,13 @@
                     </td>
                 </tr>
             </table>
-                <div class="default_separator"></div>
-                <asp:LinkButton ID="lbuF2S2Back" runat="server" CssClass="button button_default" OnClick="lbuF2S2Back_Click"><img src="Image/Small/back.png" class="icon_left"/>ย้อนกลับ</asp:LinkButton>
-                        <asp:LinkButton ID="lbuF2S2Add" runat="server" CssClass="button button_default" OnClick="lbuF1S2Add_Click">ยืนคำขอลา</asp:LinkButton>
+                <div class="ps-separator"></div>
+                <asp:LinkButton ID="lbuF2S2Back" runat="server" CssClass="ps-button" OnClick="lbuF2S2Back_Click"><img src="Image/Small/back.png" class="icon_left"/>ย้อนกลับ</asp:LinkButton>
+                        <asp:LinkButton ID="lbuF2S2Add" runat="server" CssClass="ps-button" OnClick="lbuF1S2Add_Click">ยืนคำขอลา</asp:LinkButton>
             </asp:View>
             
             <asp:View ID="VX6_1" runat="server">
-                <table class="default_table">
+                <table class="ps-table">
                     <tr>
                         <td colspan="2" class="head">ข้อมูลการลาไปอุปสมบท</td>
                     </tr>
@@ -721,40 +719,40 @@
                                     <tr>
                     <td class="col1">ชื่อวัด</td>
                     <td class="col2">
-                        <asp:TextBox ID="tbF4S1TempleName" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
+                        <asp:TextBox ID="tbF4S1TempleName" runat="server" CssClass="ps-textbox"></asp:TextBox>
                                         </td>
                 </tr>
                 <tr>
                     <td class="col1">สถานที่</td>
                     <td class="col2">
-                        <asp:TextBox ID="tbF4S1TempleLocation" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
+                        <asp:TextBox ID="tbF4S1TempleLocation" runat="server" CssClass="ps-textbox"></asp:TextBox>
                                         </td>
                                     </tr>
                                     <tr>
                     <td class="col1">อุปสมบทวันที่</td>
                     <td class="col2">
-                        <asp:TextBox ID="tbF4S1OrdainDate" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
+                        <asp:TextBox ID="tbF4S1OrdainDate" runat="server" CssClass="ps-textbox"></asp:TextBox>
                                         </td>
                 </tr>
                 <tr>
                     <td class="col1">จากวันที่</td>
                     <td class="col2">
-                        <asp:TextBox ID="tbF4S1FromDate" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
+                        <asp:TextBox ID="tbF4S1FromDate" runat="server" CssClass="ps-textbox"></asp:TextBox>
                                         </td>
                                     </tr>
                                     <tr>
                     <td class="col1">ถึงวันที่</td>
                     <td class="col2">
-                        <asp:TextBox ID="tbF4S1ToDate" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
+                        <asp:TextBox ID="tbF4S1ToDate" runat="server" CssClass="ps-textbox"></asp:TextBox>
                                         </td>
                 </tr>
 
             </table>
-                <div class="default_separator"></div>
-                <asp:LinkButton ID="lbuF4S1Check" runat="server" CssClass="button button_default" OnClick="lbuF4S1Check_Click">ตรวจสอบ<img src="Image/Small/forward.png" class="icon_right"/></asp:LinkButton>
+                <div class="ps-separator"></div>
+                <asp:LinkButton ID="lbuF4S1Check" runat="server" CssClass="ps-button" OnClick="lbuF4S1Check_Click">ตรวจสอบ<img src="Image/Small/forward.png" class="icon_right"/></asp:LinkButton>
             </asp:View>
             <asp:View ID="VX6_2" runat="server">
-                <table class="default_table">
+                <table class="ps-table">
                     <tr>
                         <td colspan="2" class="head">ข้อมูลการลาไปอุปสมบท</td>
                     </tr>
@@ -844,13 +842,13 @@
                     </td>
                 </tr>
                                 </table>
-                <div class="default_separator"></div>
-                <asp:LinkButton ID="lbuF4S2Back" runat="server" CssClass="button button_default" OnClick="lbuF4S2Back_Click"><img src="Image/Small/back.png" class="icon_left"/>ย้อนกลับ</asp:LinkButton>
-                        <asp:LinkButton ID="lbuF4S2Confirm" runat="server" CssClass="button button_default" OnClick="lbuF1S2Add_Click">ยืนคำขอลา</asp:LinkButton>
+                <div class="ps-separator"></div>
+                <asp:LinkButton ID="lbuF4S2Back" runat="server" CssClass="ps-button" OnClick="lbuF4S2Back_Click"><img src="Image/Small/back.png" class="icon_left"/>ย้อนกลับ</asp:LinkButton>
+                        <asp:LinkButton ID="lbuF4S2Confirm" runat="server" CssClass="ps-button" OnClick="lbuF1S2Add_Click">ยืนคำขอลา</asp:LinkButton>
 
             </asp:View>
             <asp:View ID="VX7_1" runat="server">
-                <table class="default_table">
+                <table class="ps-table">
                     <tr>
                         <td colspan="2" class="head">ข้อมูลการลาไปประกอบพิธีฮัจย์</td>
                     </tr>
@@ -869,21 +867,21 @@
                 <tr>
                     <td class="col1">จากวันที่</td>
                     <td class="col2">
-                        <asp:TextBox ID="tbF5S1FromDate" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
+                        <asp:TextBox ID="tbF5S1FromDate" runat="server" CssClass="ps-textbox"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">ถึงวันที่</td>
                     <td class="col2">
-                        <asp:TextBox ID="tbF5S1ToDate" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
+                        <asp:TextBox ID="tbF5S1ToDate" runat="server" CssClass="ps-textbox"></asp:TextBox>
                     </td>
                 </tr>
             </table>
-                <div class="default_separator"></div>
-                <asp:LinkButton ID="lbuF5S1Check" runat="server" CssClass="button button_default" OnClick="lbuF5S1Check_Click">ตรวจสอบ<img src="Image/Small/forward.png" class="icon_right"/></asp:LinkButton>
+                <div class="ps-separator"></div>
+                <asp:LinkButton ID="lbuF5S1Check" runat="server" CssClass="ps-button" OnClick="lbuF5S1Check_Click">ตรวจสอบ<img src="Image/Small/forward.png" class="icon_right"/></asp:LinkButton>
             </asp:View>
             <asp:View ID="VX7_2" runat="server">
-                <table class="default_table">
+                <table class="ps-table">
                     <tr>
                         <td colspan="2" class="head">ข้อมูลการลาไปประกอบพิธีฮัจย์</td>
                     </tr>
@@ -949,52 +947,52 @@
                     </td>
                 </tr>
             </table>
-                <div class="default_separator"></div>
-                <asp:LinkButton ID="lbuF5S2Back" runat="server" CssClass="button button_default" OnClick="lbuF5S2Back_Click"><img src="Image/Small/back.png" class="icon_left"/>ย้อนกลับ</asp:LinkButton>
-                        <asp:LinkButton ID="LinkButton3" runat="server" CssClass="button button_default" OnClick="lbuF1S2Add_Click">ยืนคำขอลา</asp:LinkButton>
+                <div class="ps-separator"></div>
+                <asp:LinkButton ID="lbuF5S2Back" runat="server" CssClass="ps-button" OnClick="lbuF5S2Back_Click"><img src="Image/Small/back.png" class="icon_left"/>ย้อนกลับ</asp:LinkButton>
+                        <asp:LinkButton ID="LinkButton3" runat="server" CssClass="ps-button" OnClick="lbuF1S2Add_Click">ยืนคำขอลา</asp:LinkButton>
             </asp:View>
             <asp:View ID="View11" runat="server">
                 <table>
                 <tr>
                     <td class="col1">ได้รับหมายเรียกของ</td>
                     <td class="col2">
-                        <asp:TextBox ID="tbF6S1GotFrom" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
+                        <asp:TextBox ID="tbF6S1GotFrom" runat="server" CssClass="ps-textbox"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">ที่</td>
                     <td class="col2">
-                        <asp:TextBox ID="tbF6S1GotAt" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
+                        <asp:TextBox ID="tbF6S1GotAt" runat="server" CssClass="ps-textbox"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">ลงวันที่</td>
                     <td class="col2">
-                        <asp:TextBox ID="tbF6S1GotDate" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
+                        <asp:TextBox ID="tbF6S1GotDate" runat="server" CssClass="ps-textbox"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">ให้เข้ารับการ</td>
                     <td class="col2">
-                        <asp:TextBox ID="tbF6S1ToDo" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
+                        <asp:TextBox ID="tbF6S1ToDo" runat="server" CssClass="ps-textbox"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">ณ ที่</td>
                     <td class="col2">
-                        <asp:TextBox ID="tbF6S1ToDoAt" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
+                        <asp:TextBox ID="tbF6S1ToDoAt" runat="server" CssClass="ps-textbox"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">ตั้งแต่วันที่</td>
                     <td class="col2">
-                        <asp:TextBox ID="tbF6S1FromDate" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
+                        <asp:TextBox ID="tbF6S1FromDate" runat="server" CssClass="ps-textbox"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">ถึงวันที่</td>
                     <td class="col2">
-                        <asp:TextBox ID="tbF6S1ToDate" runat="server" CssClass="textbox textbox_default"></asp:TextBox>
+                        <asp:TextBox ID="tbF6S1ToDate" runat="server" CssClass="ps-textbox"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
@@ -1004,7 +1002,7 @@
                 <tr>
                     <td class="col1">&nbsp;</td>
                     <td class="col2">
-                        <asp:LinkButton ID="lbuF6S1Check" runat="server" CssClass="button button_default" OnClick="lbuF6S1Check_Click">ตรวจสอบ<img src="Image/Small/forward.png" class="icon_right"/></asp:LinkButton>
+                        <asp:LinkButton ID="lbuF6S1Check" runat="server" CssClass="ps-button" OnClick="lbuF6S1Check_Click">ตรวจสอบ<img src="Image/Small/forward.png" class="icon_right"/></asp:LinkButton>
                     </td>
                 </tr>
             </table>
@@ -1103,8 +1101,8 @@
                 <tr>
                     <td class="col1">&nbsp;</td>
                     <td class="col_res">
-                        <asp:LinkButton ID="lbuF6S2Back" runat="server" CssClass="button button_default" OnClick="lbuF6S2Back_Click"><img src="Image/Small/back.png" class="icon_left"/>ย้อนกลับ</asp:LinkButton>
-                        <asp:LinkButton ID="LinkButton4" runat="server" CssClass="button button_default" OnClick="lbuF1S2Add_Click">ยืนคำขอลา</asp:LinkButton>
+                        <asp:LinkButton ID="lbuF6S2Back" runat="server" CssClass="ps-button" OnClick="lbuF6S2Back_Click"><img src="Image/Small/back.png" class="icon_left"/>ย้อนกลับ</asp:LinkButton>
+                        <asp:LinkButton ID="LinkButton4" runat="server" CssClass="ps-button" OnClick="lbuF1S2Add_Click">ยืนคำขอลา</asp:LinkButton>
                     </td>
                 </tr>
             </table>
@@ -1209,7 +1207,7 @@
                 <tr>
                     <td class="col1">&nbsp;</td>
                     <td class="col2">
-                        <asp:LinkButton ID="lbuF7S1Check" runat="server" CssClass="button button_default" OnClick="lbuF7S1Check_Click">ตรวจสอบ<img src="Image/Small/forward.png" class="icon_right"/></asp:LinkButton>
+                        <asp:LinkButton ID="lbuF7S1Check" runat="server" CssClass="ps-button" OnClick="lbuF7S1Check_Click">ตรวจสอบ<img src="Image/Small/forward.png" class="icon_right"/></asp:LinkButton>
                     </td>
                 </tr>
             </table>
@@ -1308,8 +1306,8 @@
                 <tr>
                     <td class="col1">&nbsp;</td>
                     <td class="col_res">
-                        <asp:LinkButton ID="lbuF7S2Back" runat="server" CssClass="button button_default" OnClick="lbuF7S2Back_Click"><img src="Image/Small/back.png" class="icon_left"/>ย้อนกลับ</asp:LinkButton>
-                        <asp:LinkButton ID="LinkButton5" runat="server" CssClass="button button_default" OnClick="lbuF1S2Add_Click">ยืนคำขอลา</asp:LinkButton>
+                        <asp:LinkButton ID="lbuF7S2Back" runat="server" CssClass="ps-button" OnClick="lbuF7S2Back_Click"><img src="Image/Small/back.png" class="icon_left"/>ย้อนกลับ</asp:LinkButton>
+                        <asp:LinkButton ID="LinkButton5" runat="server" CssClass="ps-button" OnClick="lbuF1S2Add_Click">ยืนคำขอลา</asp:LinkButton>
                     </td>
                 </tr>
             </table>
@@ -1508,7 +1506,7 @@
                 <tr>
                     <td class="auto-style3"></td>
                     <td class="auto-style4">
-                        <asp:LinkButton ID="lbuF8S1Check" runat="server" CssClass="button button_default" OnClick="lbuF8S1Check_Click">ตรวจสอบ<img src="Image/Small/forward.png" class="icon_right"/></asp:LinkButton>
+                        <asp:LinkButton ID="lbuF8S1Check" runat="server" CssClass="ps-button" OnClick="lbuF8S1Check_Click">ตรวจสอบ<img src="Image/Small/forward.png" class="icon_right"/></asp:LinkButton>
                     </td>
                 </tr>
             </table>
@@ -1607,8 +1605,8 @@
                 <tr>
                     <td class="col1">&nbsp;</td>
                     <td class="col_res">
-                        <asp:LinkButton ID="lbuF8S2Back" runat="server" CssClass="button button_default" OnClick="lbuF8S2Back_Click"><img src="Image/Small/back.png" class="icon_left"/>ย้อนกลับ</asp:LinkButton>
-                        <asp:LinkButton ID="LinkButton6" runat="server" CssClass="button button_default" OnClick="lbuF1S2Add_Click">ยืนคำขอลา</asp:LinkButton>
+                        <asp:LinkButton ID="lbuF8S2Back" runat="server" CssClass="ps-button" OnClick="lbuF8S2Back_Click"><img src="Image/Small/back.png" class="icon_left"/>ย้อนกลับ</asp:LinkButton>
+                        <asp:LinkButton ID="LinkButton6" runat="server" CssClass="ps-button" OnClick="lbuF1S2Add_Click">ยืนคำขอลา</asp:LinkButton>
                                         </td>
                                     </tr>
                                 </table>
@@ -1682,7 +1680,7 @@
                 <tr>
                     <td class="col1">&nbsp;</td>
                     <td class="col2">
-                        <asp:LinkButton ID="lbuF9S1Check" runat="server" CssClass="button button_default" OnClick="lbuF9S1Check_Click">ตรวจสอบ<img src="Image/Small/forward.png" class="icon_right"/></asp:LinkButton>
+                        <asp:LinkButton ID="lbuF9S1Check" runat="server" CssClass="ps-button" OnClick="lbuF9S1Check_Click">ตรวจสอบ<img src="Image/Small/forward.png" class="icon_right"/></asp:LinkButton>
                     </td>
                 </tr>
             </table>
@@ -1763,8 +1761,8 @@
                 <tr>
                     <td class="col1">&nbsp;</td>
                     <td class="col_res">
-                        <asp:LinkButton ID="lbuF9S2Back" runat="server" CssClass="button button_default" OnClick="lbuF9S2Back_Click"><img src="Image/Small/back.png" class="icon_left"/>ย้อนกลับ</asp:LinkButton>
-                        <asp:LinkButton ID="LinkButton9" runat="server" CssClass="button button_default" OnClick="lbuF1S2Add_Click">ยืนคำขอลา</asp:LinkButton>
+                        <asp:LinkButton ID="lbuF9S2Back" runat="server" CssClass="ps-button" OnClick="lbuF9S2Back_Click"><img src="Image/Small/back.png" class="icon_left"/>ย้อนกลับ</asp:LinkButton>
+                        <asp:LinkButton ID="LinkButton9" runat="server" CssClass="ps-button" OnClick="lbuF1S2Add_Click">ยืนคำขอลา</asp:LinkButton>
                                         </td>
                 </tr>
             </table>
@@ -1838,7 +1836,7 @@
                 <tr>
                     <td class="col1">&nbsp;</td>
                     <td class="col2">
-                        <asp:LinkButton ID="lbuF10S1Check" runat="server" CssClass="button button_default" OnClick="lbuF10S1Check_Click">ตรวจสอบ<img src="Image/Small/forward.png" class="icon_right"/></asp:LinkButton>
+                        <asp:LinkButton ID="lbuF10S1Check" runat="server" CssClass="ps-button" OnClick="lbuF10S1Check_Click">ตรวจสอบ<img src="Image/Small/forward.png" class="icon_right"/></asp:LinkButton>
                                         </td>
                                     </tr>
                                 </table>
@@ -1919,15 +1917,15 @@
                 <tr>
                     <td class="col1">&nbsp;</td>
                     <td class="col_res">
-                        <asp:LinkButton ID="lbuF10S2Back" runat="server" CssClass="button button_default" OnClick="lbuF10S2Back_Click"><img src="Image/Small/back.png" class="icon_left"/>ย้อนกลับ</asp:LinkButton>
-                        <asp:LinkButton ID="LinkButton7" runat="server" CssClass="button button_default" OnClick="lbuF1S2Add_Click">ยืนคำขอลา</asp:LinkButton>
+                        <asp:LinkButton ID="lbuF10S2Back" runat="server" CssClass="ps-button" OnClick="lbuF10S2Back_Click"><img src="Image/Small/back.png" class="icon_left"/>ย้อนกลับ</asp:LinkButton>
+                        <asp:LinkButton ID="LinkButton7" runat="server" CssClass="ps-button" OnClick="lbuF1S2Add_Click">ยืนคำขอลา</asp:LinkButton>
                 </td>
             </tr>
         </table>
             </asp:View>
             <asp:View ID="View21" runat="server">
                 <div>
-                <asp:LinkButton ID="lbuBackMain" runat="server" CssClass="button button_default" OnClick="lbuBackMain_Click"><img class="icon_left" src="Image/Small/back.png" />กลับหน้าหลัก</asp:LinkButton>
+                <asp:LinkButton ID="lbuBackMain" runat="server" CssClass="ps-button" OnClick="lbuBackMain_Click"><img class="icon_left" src="Image/Small/back.png" />กลับหน้าหลัก</asp:LinkButton>
             </div>
             </asp:View>
         </asp:MultiView>

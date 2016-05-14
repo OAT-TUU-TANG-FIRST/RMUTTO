@@ -2184,7 +2184,7 @@ namespace WEB_PERSONAL.Entities
         {
             DataTable dt = new DataTable();
             OracleConnection conn = ConnectionDB.GetOracleConnection();
-            string query = "SELECT * FROM TB_GRADE_LEV ";
+            string query = "SELECT * FROM TB_GRAD_LEV ";
             if (!string.IsNullOrEmpty(GRAD_LEV_NAME))
             {
                 query += " where 1=1 ";
@@ -2225,7 +2225,7 @@ namespace WEB_PERSONAL.Entities
         {
             int id = 0;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
-            OracleCommand command = new OracleCommand("INSERT INTO TB_GRADE_LEV (GRAD_LEV_NAME) VALUES (:GRAD_LEV_NAME)", conn);
+            OracleCommand command = new OracleCommand("INSERT INTO TB_GRAD_LEV (GRAD_LEV_NAME) VALUES (:GRAD_LEV_NAME)", conn);
             try
             {
                 if (conn.State != ConnectionState.Open)
@@ -2251,7 +2251,7 @@ namespace WEB_PERSONAL.Entities
         {
             bool result = false;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
-            string query = "Update TB_GRADE_LEV Set ";
+            string query = "Update TB_GRAD_LEV Set ";
             query += " GRAD_LEV_ID = :GRAD_LEV_ID,";
             query += " GRAD_LEV_NAME = :GRAD_LEV_NAME";
             query += " where GRAD_LEV_ID = :GRAD_LEV_ID";
@@ -2286,7 +2286,7 @@ namespace WEB_PERSONAL.Entities
         {
             bool result = false;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
-            OracleCommand command = new OracleCommand("Delete TB_GRADE_LEV where GRAD_LEV_ID = :GRAD_LEV_ID", conn);
+            OracleCommand command = new OracleCommand("Delete TB_GRAD_LEV where GRAD_LEV_ID = :GRAD_LEV_ID", conn);
             try
             {
                 if (conn.State != ConnectionState.Open)
@@ -2317,7 +2317,7 @@ namespace WEB_PERSONAL.Entities
             OracleConnection conn = ConnectionDB.GetOracleConnection();
 
             // Create the command
-            OracleCommand command = new OracleCommand("SELECT count(GRAD_LEV_NAME) FROM TB_GRADE_LEV WHERE GRAD_LEV_NAME = :GRAD_LEV_NAME ", conn);
+            OracleCommand command = new OracleCommand("SELECT count(GRAD_LEV_NAME) FROM TB_GRAD_LEV WHERE GRAD_LEV_NAME = :GRAD_LEV_NAME ", conn);
 
             // Add the parameters.
             command.Parameters.Add(new OracleParameter("GRAD_LEV_NAME", GRAD_LEV_NAME));
@@ -4150,11 +4150,11 @@ namespace WEB_PERSONAL.Entities
     /// </summary>
     public class ClassPositionWork
     {
-        public string POSITION_WORK_ID { get; set; }
+        public int POSITION_WORK_ID { get; set; }
         public string POSITION_WORK_NAME { get; set; }
 
         public ClassPositionWork() { }
-        public ClassPositionWork(string POSITION_WORK_ID, string POSITION_WORK_NAME)
+        public ClassPositionWork(int POSITION_WORK_ID, string POSITION_WORK_NAME)
         {
             this.POSITION_WORK_ID = POSITION_WORK_ID;
             this.POSITION_WORK_NAME = POSITION_WORK_NAME;
@@ -4877,30 +4877,33 @@ namespace WEB_PERSONAL.Entities
         }
     }
     /// <summary>
-    /// ระดับข้าราชการ
+    /// ตำแหน่ง
     /// </summary>
-    public class ClassPositionGoverment
+    public class ClassPosition
     {
-        public int ID { get; set; }
+        public string ID { get; set; }
         public string NAME { get; set; }
         public string ST_ID { get; set; }
 
-        public ClassPositionGoverment() { }
-        public ClassPositionGoverment(int ID, string NAME, string ST_ID)
+        public ClassPosition() { }
+        public ClassPosition(string ID, string NAME, string ST_ID)
         {
             this.ID = ID;
             this.NAME = NAME;
             this.ST_ID = ST_ID;
         }
 
-        public DataTable GetPositionGoverment(string NAME, string ST_ID)
+        public DataTable GetPosition(string ID, string NAME, string ST_ID)
         {
             DataTable dt = new DataTable();
             OracleConnection conn = ConnectionDB.GetOracleConnection();
-            string query = "SELECT * FROM TB_POSITION_GOVERNMENT_OFFICER ";
-            if (!string.IsNullOrEmpty(NAME) || !string.IsNullOrEmpty(ST_ID))
+            string query = "SELECT * FROM TB_POSITION ";
+            if (!string.IsNullOrEmpty(ID) || !string.IsNullOrEmpty(NAME) || !string.IsNullOrEmpty(ST_ID))
             {
                 query += " where 1=1 ";
+                if (!string.IsNullOrEmpty(ID)) {
+                    query += " and ID like :ID ";
+                }
                 if (!string.IsNullOrEmpty(NAME))
                 {
                     query += " and NAME like :NAME ";
@@ -4917,6 +4920,9 @@ namespace WEB_PERSONAL.Entities
                 if (conn.State != ConnectionState.Open)
                 {
                     conn.Open();
+                }
+                if (!string.IsNullOrEmpty(ID)) {
+                    command.Parameters.Add(new OracleParameter("ID", ID + "%"));
                 }
                 if (!string.IsNullOrEmpty(NAME))
                 {
@@ -4942,17 +4948,18 @@ namespace WEB_PERSONAL.Entities
             return dt;
         }
 
-        public int InsertPositionGoverment()
+        public int InsertPosition()
         {
             int id = 0;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
-            OracleCommand command = new OracleCommand("INSERT INTO TB_POSITION_GOVERNMENT_OFFICER (NAME,ST_ID) VALUES (:NAME,:ST_ID)", conn);
+            OracleCommand command = new OracleCommand("INSERT INTO TB_POSITION (ID,NAME,ST_ID) VALUES (:ID,:NAME,:ST_ID)", conn);
             try
             {
                 if (conn.State != ConnectionState.Open)
                 {
                     conn.Open();
                 }
+                command.Parameters.Add(new OracleParameter("ID", ID));
                 command.Parameters.Add(new OracleParameter("NAME", NAME));
                 command.Parameters.Add(new OracleParameter("ST_ID", ST_ID));
                 id = command.ExecuteNonQuery();
@@ -4969,11 +4976,12 @@ namespace WEB_PERSONAL.Entities
             return id;
         }
 
-        public bool UpdatePositionGoverment()
+        public bool UpdatePosition()
         {
             bool result = false;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
-            string query = "Update TB_POSITION_GOVERNMENT_OFFICER Set ";
+            string query = "Update TB_POSITION Set ";
+            query += " ID = :ID,";
             query += " NAME = :NAME,";
             query += " ST_ID = :ST_ID";
             query += " where ID = :ID";
@@ -4985,9 +4993,9 @@ namespace WEB_PERSONAL.Entities
                 {
                     conn.Open();
                 }
+                command.Parameters.Add(new OracleParameter("ID", ID));
                 command.Parameters.Add(new OracleParameter("NAME", NAME));
                 command.Parameters.Add(new OracleParameter("ST_ID", ST_ID));
-                command.Parameters.Add(new OracleParameter("ID", ID));
 
                 if (command.ExecuteNonQuery() > 0)
                 {
@@ -5005,11 +5013,11 @@ namespace WEB_PERSONAL.Entities
             return result;
         }
 
-        public bool DeletePositionGoverment()
+        public bool DeletePosition()
         {
             bool result = false;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
-            OracleCommand command = new OracleCommand("Delete TB_POSITION_GOVERNMENT_OFFICER where ID = :ID", conn);
+            OracleCommand command = new OracleCommand("Delete TB_POSITION where ID = :ID", conn);
             try
             {
                 if (conn.State != ConnectionState.Open)
@@ -5033,210 +5041,16 @@ namespace WEB_PERSONAL.Entities
             }
             return result;
         }
-        public bool CheckUsePositionGovermentName()
+        public bool CheckUsePositionID()
         {
             bool result = true;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
 
             // Create the command
-            OracleCommand command = new OracleCommand("SELECT count(NAME) FROM TB_POSITION_GOVERNMENT_OFFICER WHERE NAME = :NAME and ST_ID = :ST_ID ", conn);
+            OracleCommand command = new OracleCommand("SELECT count(ID) FROM TB_POSITION WHERE ID = :ID", conn);
 
             // Add the parameters.
-            command.Parameters.Add(new OracleParameter("NAME", NAME));
-            command.Parameters.Add(new OracleParameter("ST_ID", ST_ID));
-            try
-            {
-                if (conn.State != ConnectionState.Open)
-                {
-                    conn.Open();
-                }
-                int count = (int)(decimal)command.ExecuteScalar();
-                if (count >= 1)
-                {
-                    result = false;
-                }
-
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                command.Dispose();
-                conn.Close();
-            }
-            return result;
-        }
-    }
-    /// <summary>
-    /// ลูกจ้างประจำ
-    /// </summary>
-    public class ClassPositionPermanent
-    {
-        public int ID { get; set; }
-        public string NAME { get; set; }
-        public string ST_ID { get; set; }
-
-        public ClassPositionPermanent() { }
-        public ClassPositionPermanent(int ID, string NAME, string ST_ID)
-        {
-            this.ID = ID;
-            this.NAME = NAME;
-            this.ST_ID = ST_ID;
-        }
-
-        public DataTable GetPositionPermanent(string NAME, string ST_ID)
-        {
-            DataTable dt = new DataTable();
-            OracleConnection conn = ConnectionDB.GetOracleConnection();
-            string query = "SELECT * FROM TB_POSITION_PERMANENT_EMP ";
-            if (!string.IsNullOrEmpty(NAME) || !string.IsNullOrEmpty(ST_ID))
-            {
-                query += " where 1=1 ";
-                if (!string.IsNullOrEmpty(NAME))
-                {
-                    query += " and NAME like :NAME ";
-                }
-                if (!string.IsNullOrEmpty(ST_ID))
-                {
-                    query += " and ST_ID like :ST_ID ";
-                }
-            }
-            OracleCommand command = new OracleCommand(query, conn);
-            // Create the command
-            try
-            {
-                if (conn.State != ConnectionState.Open)
-                {
-                    conn.Open();
-                }
-                if (!string.IsNullOrEmpty(NAME))
-                {
-                    command.Parameters.Add(new OracleParameter("NAME", NAME + "%"));
-                }
-                if (!string.IsNullOrEmpty(ST_ID))
-                {
-                    command.Parameters.Add(new OracleParameter("ST_ID", ST_ID ));
-                }
-                OracleDataAdapter sd = new OracleDataAdapter(command);
-                sd.Fill(dt);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                command.Dispose();
-                conn.Close();
-            }
-
-            return dt;
-        }
-
-        public int InsertPositionPermanent()
-        {
-            int id = 0;
-            OracleConnection conn = ConnectionDB.GetOracleConnection();
-            OracleCommand command = new OracleCommand("INSERT INTO TB_POSITION_PERMANENT_EMP (NAME,ST_ID) VALUES (:NAME,:ST_ID)", conn);
-            try
-            {
-                if (conn.State != ConnectionState.Open)
-                {
-                    conn.Open();
-                }
-                command.Parameters.Add(new OracleParameter("NAME", NAME));
-                command.Parameters.Add(new OracleParameter("ST_ID", ST_ID));
-                id = command.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                command.Dispose();
-                conn.Close();
-            }
-            return id;
-        }
-
-        public bool UpdatePositionPermanent()
-        {
-            bool result = false;
-            OracleConnection conn = ConnectionDB.GetOracleConnection();
-            string query = "Update TB_POSITION_PERMANENT_EMP Set ";
-            query += " NAME = :NAME,";
-            query += " ST_ID = :ST_ID";
-            query += " where ID = :ID";
-
-            OracleCommand command = new OracleCommand(query, conn);
-            try
-            {
-                if (conn.State != ConnectionState.Open)
-                {
-                    conn.Open();
-                }
-                command.Parameters.Add(new OracleParameter("NAME", NAME));
-                command.Parameters.Add(new OracleParameter("ST_ID", ST_ID));
-                command.Parameters.Add(new OracleParameter("ID", ID));
-
-                if (command.ExecuteNonQuery() > 0)
-                {
-                    result = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                command.Dispose();
-            }
-            return result;
-        }
-
-        public bool DeletePositionPermanent()
-        {
-            bool result = false;
-            OracleConnection conn = ConnectionDB.GetOracleConnection();
-            OracleCommand command = new OracleCommand("Delete TB_POSITION_PERMANENT_EMP where ID = :ID", conn);
-            try
-            {
-                if (conn.State != ConnectionState.Open)
-                {
-                    conn.Open();
-                }
-                command.Parameters.Add(new OracleParameter("ID", ID));
-                if (command.ExecuteNonQuery() >= 0)
-                {
-                    result = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                command.Dispose();
-                conn.Close();
-            }
-            return result;
-        }
-        public bool CheckUsePositionPermanentName()
-        {
-            bool result = true;
-            OracleConnection conn = ConnectionDB.GetOracleConnection();
-
-            // Create the command
-            OracleCommand command = new OracleCommand("SELECT count(NAME) FROM TB_POSITION_PERMANENT_EMP WHERE NAME = :NAME and ST_ID = :ST_ID ", conn);
-
-            // Add the parameters.
-            command.Parameters.Add(new OracleParameter("NAME", NAME));
-            command.Parameters.Add(new OracleParameter("ST_ID", ST_ID));
+            command.Parameters.Add(new OracleParameter("ID", ID));
             try
             {
                 if (conn.State != ConnectionState.Open)

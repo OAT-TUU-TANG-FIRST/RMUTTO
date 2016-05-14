@@ -31,6 +31,33 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl notification;
         
         /// <summary>
+        /// Panel0 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel Panel0;
+        
+        /// <summary>
+        /// txtSearchPersonID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSearchPersonID;
+        
+        /// <summary>
+        /// btnSearchPerson control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSearchPerson;
+        
+        /// <summary>
         /// MultiView1 control.
         /// </summary>
         /// <remarks>
@@ -67,186 +94,6 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.TextBox tbCitizenID;
         
         /// <summary>
-        /// UpdateddlTitle control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdateddlTitle;
-        
-        /// <summary>
-        /// ddlTitle control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTitle;
-        
-        /// <summary>
-        /// UpdatetbNameTH control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetbNameTH;
-        
-        /// <summary>
-        /// tbNameTH control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbNameTH;
-        
-        /// <summary>
-        /// UpdatetbLastNameTH control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetbLastNameTH;
-        
-        /// <summary>
-        /// tbLastNameTH control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbLastNameTH;
-        
-        /// <summary>
-        /// UpdatetbNameEN control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetbNameEN;
-        
-        /// <summary>
-        /// tbNameEN control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbNameEN;
-        
-        /// <summary>
-        /// UpdatetbLastNameEN control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetbLastNameEN;
-        
-        /// <summary>
-        /// tbLastNameEN control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbLastNameEN;
-        
-        /// <summary>
-        /// UpdateddlGender control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdateddlGender;
-        
-        /// <summary>
-        /// ddlGender control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlGender;
-        
-        /// <summary>
-        /// UpdatetbBirthday control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetbBirthday;
-        
-        /// <summary>
-        /// tbBirthday control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbBirthday;
-        
-        /// <summary>
-        /// UpdateddlRace control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdateddlRace;
-        
-        /// <summary>
-        /// ddlRace control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlRace;
-        
-        /// <summary>
-        /// UpdateddlNation control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdateddlNation;
-        
-        /// <summary>
-        /// ddlNation control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlNation;
-        
-        /// <summary>
-        /// UpdateddlBlood control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdateddlBlood;
-        
-        /// <summary>
-        /// ddlBlood control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlBlood;
-        
-        /// <summary>
         /// UpdatetbEmail control.
         /// </summary>
         /// <remarks>
@@ -263,6 +110,24 @@ namespace WEB_PERSONAL {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbEmail;
+        
+        /// <summary>
+        /// UpdateddlTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdateddlTitle;
+        
+        /// <summary>
+        /// ddlTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlTitle;
         
         /// <summary>
         /// UpdatetbPhone control.
@@ -283,6 +148,24 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.TextBox tbPhone;
         
         /// <summary>
+        /// UpdatetbNameTH control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatetbNameTH;
+        
+        /// <summary>
+        /// tbNameTH control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbNameTH;
+        
+        /// <summary>
         /// UpdatetbTelephone control.
         /// </summary>
         /// <remarks>
@@ -299,6 +182,294 @@ namespace WEB_PERSONAL {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbTelephone;
+        
+        /// <summary>
+        /// UpdatetbLastNameTH control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatetbLastNameTH;
+        
+        /// <summary>
+        /// tbLastNameTH control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbLastNameTH;
+        
+        /// <summary>
+        /// UpdatetbFatherName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatetbFatherName;
+        
+        /// <summary>
+        /// tbFatherName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbFatherName;
+        
+        /// <summary>
+        /// UpdatetbNameEN control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatetbNameEN;
+        
+        /// <summary>
+        /// tbNameEN control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbNameEN;
+        
+        /// <summary>
+        /// UpdatetbFatherLastName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatetbFatherLastName;
+        
+        /// <summary>
+        /// tbFatherLastName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbFatherLastName;
+        
+        /// <summary>
+        /// UpdatetbLastNameEN control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatetbLastNameEN;
+        
+        /// <summary>
+        /// tbLastNameEN control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbLastNameEN;
+        
+        /// <summary>
+        /// UpdatetbMotherName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatetbMotherName;
+        
+        /// <summary>
+        /// tbMotherName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbMotherName;
+        
+        /// <summary>
+        /// UpdateddlGender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdateddlGender;
+        
+        /// <summary>
+        /// ddlGender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlGender;
+        
+        /// <summary>
+        /// UpdatetbMotherLastName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatetbMotherLastName;
+        
+        /// <summary>
+        /// tbMotherLastName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbMotherLastName;
+        
+        /// <summary>
+        /// UpdatetbBirthday control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatetbBirthday;
+        
+        /// <summary>
+        /// tbBirthday control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbBirthday;
+        
+        /// <summary>
+        /// UpdatetbMotherOldLastName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatetbMotherOldLastName;
+        
+        /// <summary>
+        /// tbMotherOldLastName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbMotherOldLastName;
+        
+        /// <summary>
+        /// UpdateddlRace control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdateddlRace;
+        
+        /// <summary>
+        /// ddlRace control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlRace;
+        
+        /// <summary>
+        /// UpdatetbCoupleName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatetbCoupleName;
+        
+        /// <summary>
+        /// tbCoupleName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbCoupleName;
+        
+        /// <summary>
+        /// UpdateddlNation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdateddlNation;
+        
+        /// <summary>
+        /// ddlNation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlNation;
+        
+        /// <summary>
+        /// UpdatetbCoupleLastName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatetbCoupleLastName;
+        
+        /// <summary>
+        /// tbCoupleLastName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbCoupleLastName;
+        
+        /// <summary>
+        /// UpdateddlBlood control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdateddlBlood;
+        
+        /// <summary>
+        /// ddlBlood control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlBlood;
+        
+        /// <summary>
+        /// UpdatetbCoupleOldLastName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatetbCoupleOldLastName;
+        
+        /// <summary>
+        /// tbCoupleOldLastName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbCoupleOldLastName;
         
         /// <summary>
         /// UpdateddlReligion control.
@@ -335,150 +506,6 @@ namespace WEB_PERSONAL {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlStatus;
-        
-        /// <summary>
-        /// UpdatetbFatherName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetbFatherName;
-        
-        /// <summary>
-        /// tbFatherName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbFatherName;
-        
-        /// <summary>
-        /// UpdatetbFatherLastName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetbFatherLastName;
-        
-        /// <summary>
-        /// tbFatherLastName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbFatherLastName;
-        
-        /// <summary>
-        /// UpdatetbMotherName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetbMotherName;
-        
-        /// <summary>
-        /// tbMotherName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbMotherName;
-        
-        /// <summary>
-        /// UpdatetbMotherLastName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetbMotherLastName;
-        
-        /// <summary>
-        /// tbMotherLastName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbMotherLastName;
-        
-        /// <summary>
-        /// UpdatetbMotherOldLastName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetbMotherOldLastName;
-        
-        /// <summary>
-        /// tbMotherOldLastName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbMotherOldLastName;
-        
-        /// <summary>
-        /// UpdatetbCoupleName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetbCoupleName;
-        
-        /// <summary>
-        /// tbCoupleName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbCoupleName;
-        
-        /// <summary>
-        /// UpdatetbCoupleLastName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetbCoupleLastName;
-        
-        /// <summary>
-        /// tbCoupleLastName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbCoupleLastName;
-        
-        /// <summary>
-        /// UpdatetbCoupleOldLastName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetbCoupleOldLastName;
-        
-        /// <summary>
-        /// tbCoupleOldLastName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbCoupleOldLastName;
         
         /// <summary>
         /// lbuV1Next control.
@@ -1057,24 +1084,6 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.GridView GridViewStudy;
         
         /// <summary>
-        /// UpdateGridViewStudyShow control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdateGridViewStudyShow;
-        
-        /// <summary>
-        /// GridViewStudyShow control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridViewStudyShow;
-        
-        /// <summary>
         /// lbuV3Back control.
         /// </summary>
         /// <remarks>
@@ -1208,6 +1217,24 @@ namespace WEB_PERSONAL {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlBudget;
+        
+        /// <summary>
+        /// UpdateddlPosition control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdateddlPosition;
+        
+        /// <summary>
+        /// ddlPosition control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlPosition;
         
         /// <summary>
         /// UpdateddlAdminPosition control.
@@ -1579,24 +1606,6 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.GridView GridViewTraining;
         
         /// <summary>
-        /// UpdateGridViewTrainingShow control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdateGridViewTrainingShow;
-        
-        /// <summary>
-        /// GridViewTrainingShow control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridViewTrainingShow;
-        
-        /// <summary>
         /// lbuV6Back control.
         /// </summary>
         /// <remarks>
@@ -1687,22 +1696,22 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.LinkButton lbuV7Add;
         
         /// <summary>
-        /// UpdateGridViewDDA control.
+        /// UpdateGridViewDAA control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdateGridViewDDA;
+        protected global::System.Web.UI.UpdatePanel UpdateGridViewDAA;
         
         /// <summary>
-        /// GridViewDDA control.
+        /// GridViewDAA control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridViewDDA;
+        protected global::System.Web.UI.WebControls.GridView GridViewDAA;
         
         /// <summary>
         /// lbuV7Back control.
@@ -1901,24 +1910,6 @@ namespace WEB_PERSONAL {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridViewPAS;
-        
-        /// <summary>
-        /// UpdateGridViewPASShow control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdateGridViewPASShow;
-        
-        /// <summary>
-        /// GridViewPASShow control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridViewPASShow;
         
         /// <summary>
         /// lbuV8Back control.

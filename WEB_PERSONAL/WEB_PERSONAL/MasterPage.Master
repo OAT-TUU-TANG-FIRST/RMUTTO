@@ -9,7 +9,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="shortcut icon" href="Image/favicon.ico" type="image/x-icon" />
     <!--link rel="icon" href="Image/favicon.ico" /-->
-    <title>ระบบบุคลากร - มหาวิทยาลัยเทคโนโลยีราชมงคลตะวันออก วิทยาเขตบางพระ</title>
+    <title>ระบบบุคลากร - มหาวิทยาลัยเทคโนโลยีราชมงคลตะวันออก</title>
     <link href="CSS/Master.css" rel="stylesheet" />
 
     <link href="jQueryCalendarThai/jquery-ui-1.10.3.custom.css" rel="stylesheet" />
@@ -26,7 +26,7 @@
         $.datepicker.regional['th'] = {
             changeMonth: true,
             changeYear: true,
-
+            
             //defaultDate: GetFxupdateDate(FxRateDateAndUpdate.d[0].Day),
             yearOffSet: 543,
             showOn: "button",
@@ -54,6 +54,17 @@
                     $(this).datepicker("setDate", new Date()); //Set ค่าวันปัจจุบัน
                 }
             }
+            /*beforeShow: function () {
+                if ($(this).val() != "") {
+                    var arrayDate = $(this).val().split(" ");
+                    if (arrayDate.length == 4) {
+                        arrayDate[2] = arrayDate[3];
+                    }
+                    $(this).val(arrayDate[0] + "/" + arrayDate[1] + "/" + arrayDate[2]);
+                } else {
+                    $(this).datepicker("setDate", new Date()); //Set ค่าวันปัจจุบัน
+                }
+            }*/
         };
         $.datepicker.setDefaults($.datepicker.regional['th']);
     </script>
@@ -77,9 +88,9 @@
 
                 <div class="ps-ms-side-group">
                     <img src="Image/RMUTTO.png" class="rmutto"/>
-                    <span class="ps-ms-rmutto">ระบบบุคลากร<br />Personnel System</span>
+                    <span class="ps-ms-rmutto"><span style="font-family: THSB; font-size: 28px;">ระบบบุคลากร</span><br />Personnel System</span>
                     </div>
-                <div class="ps-separator"></div>
+                <div class="ps-ms-side-separator"></div>
                 <div class="ps-ms-side-group">
                     <span class="ps-ms-side-group-header">ผู้ใช้</span>
                     <div class="ps-ms-profile-div"><img src="Image/no_image.png" class="ps-ms-profile-pic" id="profile_pic" runat="server"/></div>
@@ -95,7 +106,7 @@
                 <div class="ps-ms-side-group">
                     <span class="ps-ms-side-group-header">บุคลากร</span>
                     <a href="AddPerson.aspx" id="LinkAddPerson" runat="server"><img src="Image/Small/person2.png" />เพิ่มบุคลากร</a>
-                    <a href="AddPerson-Edit.aspx" id="LinkEditPerson" runat="server"><img src="Image/Small/person2.png" />แก้ไขบุคลากร</a>
+                    <a href="AddPerson-Edit.aspx" id="LinkEditPerson" runat="server"><img src="Image/Small/edit.png" />แก้ไขบุคลากร</a>
                     <a href="ListPerson-ADMIN.aspx"><img src="Image/Small/person2.png" />รายชื่อบุคลากร</a>
                     <a href="SEMINAR-GENERAL.aspx"><img src="Image/Small/person2.png" />การเพิ่มพัฒนาบุคลากร</a>
                     <a href="SEMINAR-ADMIN.aspx"><img src="Image/Small/person2.png" />การแก้ไขพัฒนาบุคลากร</a>
@@ -105,20 +116,25 @@
                 
                 <div class="ps-ms-side-group">
                     <span class="ps-ms-side-group-header">การเลื่อนขั้นเงินเดือน</span>
-                    <a href="UpSalary70_30_1.aspx"><img src="Image/Small/money.png" />ขอเลื่อนขั้นเงินเดือน 70:30</a>
-                    <a href="UpSalary80_20_1.aspx"><img src="Image/Small/money.png" />ขอเลื่อนขั้นเงินเดือน 80:20</a>
+                    <a href="UpSalary70_30_1.aspx"><img src="Image/Small/money.png" />ขอเลื่อนขั้นเงินเดือน 70:30 แบบที่ 1</a>
+                    <a href="UpSalary70_30_2.aspx"><img src="Image/Small/money.png" />ขอเลื่อนขั้นเงินเดือน 70:30 แบบที่ 2</a>
+                    <a href="UpSalary80_20_1.aspx"><img src="Image/Small/money.png" />ขอเลื่อนขั้นเงินเดือน 80:20 แบบที่ 1</a>
+                    <a href="UpSalary80_20_2.aspx"><img src="Image/Small/money.png" />ขอเลื่อนขั้นเงินเดือน 80:20 แบบที่ 2</a>
+                    <a href="UpSalary70_30_Evaluation.aspx"><img src="Image/Small/money.png" />ประเมินการขอเลื่อนขั้นเงินเดือน<asp:Label ID="lbUpSal7030Count" runat="server" Text="ทดสอบ" CssClass="master_text_alert"></asp:Label></a>
+                    
                 </div>
                 
                 <div class="ps-ms-side-group">
                     <span class="ps-ms-side-group-header">การลา</span>
-                    <a href="Leave.aspx"><img src="Image/Small/add.png" />ทำการลา</a>
-                    <a href="LeaveCancel.aspx"><img src="Image/Small/delete.png" />ยกเลิกการลา</a>
-                    <a href="LeaveComment.aspx"><img src="Image/Small/pencil_y.png" />ลงความเห็นการลา<asp:Label ID="lbLeaveCommentCount" runat="server" Text="ทดสอบ" CssClass="master_text_alert"></asp:Label></a>
-                    <a href="LeaveAllow.aspx"><img src="Image/Small/correct.png" />อนุมัติการลา<asp:Label ID="lbLeaveAllowCount" runat="server" Text="ทดสอบ" CssClass="master_text_alert"></asp:Label></a>
-                    <a href="LeaveHistory.aspx"><img src="Image/Small/table.png" />ประวัติการลา</a>
-                    <a href="LeaveClaim.aspx"><img src="Image/Small/statistic.png" />สิทธิการลา</a>
+                    <a href="Leave.aspx"><img src="Image/Small/document-create.png" />ทำการลา</a>
+                    <a href="LeaveCancel.aspx"><img src="Image/Small/document-delete.png" />ยกเลิกการลา</a>
+                    <a href="LeaveComment.aspx"><img src="Image/Small/document-edit.png" />ลงความเห็นการลา<asp:Label ID="lbLeaveCommentCount" runat="server" Text="ทดสอบ" CssClass="master_text_alert"></asp:Label></a>
+                    <a href="LeaveAllow.aspx"><img src="Image/Small/document-accept.png" />อนุมัติการลา<asp:Label ID="lbLeaveAllowCount" runat="server" Text="ทดสอบ" CssClass="master_text_alert"></asp:Label></a>
+                    <a href="LeaveHistory.aspx"><img src="Image/Small/clock-history.png" />ประวัติการลา</a>
+                    <!--a href="LeaveClaim.aspx"><img src="Image/Small/info.png" />สิทธิการลา</!--a-->
+                    <a href="LeavePermission.aspx"><img src="Image/Small/info.png" />ตารางสิทธิการอนุญาต</a>
                     <a href="WorkingTime.aspx" id="LinkWorkingTime" runat="server"><img src="Image/Small/clock.png" />เพิ่มเวลาปฏิบัติงาน</a>
-                    <a href="WorkingTimeHistory.aspx"><img src="Image/Small/table.png" />ประวัติเวลาปฏิบัติงาน</a>
+                    <a href="WorkingTimeHistory.aspx"><img src="Image/Small/clock-history.png" />ประวัติเวลาปฏิบัติงาน</a>
                     <a href="Leave-Report1.aspx"><img src="Image/Small/report.png" />ออกรายงานการลา</a>
                     <a href="LeaveManager.aspx"><img src="Image/Small/wrench.png" />จัดการข้อมูลการลา</a>
                     <a href="WorkingTimeManager.aspx"><img src="Image/Small/wrench.png" />จัดการข้อมูลเวลาปฏิบัติงาน</a>
@@ -126,11 +142,16 @@
                 
                 <div class="ps-ms-side-group">
                     <span class="ps-ms-side-group-header">เครื่องราชอิสริยาภรณ์</span>
-                    <a href="INS_Request_admin.aspx"><img src="Image/Small/medal.png" />คนที่เข้าเกณฑ์การรับเครื่องราช</a>
-                    <a href="insignia_from_view.aspx"><img src="Image/Small/medal.png" />ประวัติการขอเครื่องราชฯ</a>
+                    <a href="INSG_Request.aspx"><img src="Image/Small/medal.png" />การขอเครื่องราชฯ</a>
+                    <a href="INSG_Borrow.aspx"><img src="Image/Small/medal.png" />การยืมเครื่องราชฯ</a>
+                    <a href="INSG_Return.aspx"><img src="Image/Small/medal.png" />การคืนเครื่องราชฯ</a>
+                    <a href="INSG_Qualified.aspx"><img src="Image/Small/medal.png" />รายชื่อผู้ที่เข้าเกณฑ์การรับเครื่องราชฯ</a>
+                    <a href="INSG_RequestList.aspx"><img src="Image/Small/medal.png" />รายชื่อการขอเครื่องราชฯ</a>
+                    
+                    <!--a href="insignia_from_view.aspx"><img src="Image/Small/medal.png" />ประวัติการขอเครื่องราชฯ</!--a>
                     <a href="insignia_recordnote2.aspx"><img src="Image/Small/medal.png" />ประวัติการรับเครื่องราชฯ</a>
                     <a href="insignia_from_add.aspx"><img src="Image/Small/medal.png" />เพิ่มข้อมูลเครื่องราชฯ</a>
-                    <a href="insignia_recordnote2-ADMIN.aspx"><img src="Image/Small/medal.png" />เพิ่มประวัติการรับเครื่องราชฯ</a>
+                    <a href="insignia_recordnote2-ADMIN.aspx"><img src="Image/Small/medal.png" />เพิ่มประวัติการรับเครื่องราชฯ</a-->
                     <!--a href="insignia_maintence.aspx">บัญชีรายชื่อผู้ขอรับภาพถ่ายเข้าเฝ้า(ชั้นสายสะพาย)</!--a>
                                     <a href="insignia_maintence.aspx">แบบคำขอยืมเครื่องราชอิสริยาภรณ์</a>
                                     <a href="insignia_maintence.aspx">หลักฐานการส่งคืน/ชดใช้ราคาเครื่องราชอิสริยาภรณ์</a>
@@ -146,7 +167,7 @@
 
                 <div class="ps-ms-side-group">
                     <span class="ps-ms-side-group-header">ข้อมูลระบบ</span>
-                    <div style="margin-left: 10px;">เวอร์ชั่น : v1.0.4</div>
+                    <div style="margin-left: 10px;">เวอร์ชั่น : v1.0.7</div>
                     <div style="margin-left: 10px;">ตัวนับ : <span id="s_counter" runat="server"></span></div>
                 </div>
 

@@ -10,6 +10,8 @@ using Oracle.DataAccess.Client;
 namespace WEB_PERSONAL {
     public partial class Developer : System.Web.UI.Page {
         protected void Page_Load(object sender, EventArgs e) {
+            
+
             if(!IsPostBack) {
                 using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                     con.Open();
@@ -26,6 +28,20 @@ namespace WEB_PERSONAL {
                 GridView2.DataBind();
             }
             
+        }
+        protected void Page_LoadComplete(object sender, EventArgs e) {
+
+            lbo1.Items.Clear();
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
+                con.Open();
+                using (OracleCommand com = new OracleCommand("SELECT * FROM TB_CHAT", con)) {
+                    using (OracleDataReader reader = com.ExecuteReader()) {
+                        while (reader.Read()) {
+                            lbo1.Items.Add(new ListItem(reader.GetString(1) + " : " + reader.GetString(2)));
+                        }
+                    }
+                }
+            }
         }
 
         protected void lbuSQL_Click(object sender, EventArgs e) {
@@ -85,6 +101,26 @@ namespace WEB_PERSONAL {
             }
             GridView2.DataBind();
             ScriptManager.RegisterStartupScript(this, typeof(Page), "UpdateMsg", "openPopup('popup1');", true);
+        }
+
+        protected void lbc_Click(object sender, EventArgs e) {
+            DatabaseManager.ExecuteNonQuery("INSERT INTO TB_CHAT VALUES(SEQ_CHAT_ID.NEXTVAL, '" + tbc1.Text + "','" + tbc2.Text + "')");
+        }
+
+        protected void LinkButton2_Click(object sender, EventArgs e) {
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
+                con.Open();
+                using (OracleCommand com = new OracleCommand("INSERT INTO TB_TEST_A VALUES(:1, :2)", con)) {
+                    com.Parameters.Add("1", new Random().Next(1, 999999));
+                    com.Parameters.Add("2", new DateTime(2016, 4, 28));
+                    com.ExecuteNonQuery();
+                }
+            }
+        }
+
+        protected void LinkButton3_Click(object sender, EventArgs e) {
+            ScriptManager.RegisterClientScriptBlock(this, GetType(), "k1", "window.open();", true);
+
         }
     }
 }

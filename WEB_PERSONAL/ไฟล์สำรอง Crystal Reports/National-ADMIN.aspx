@@ -4,8 +4,11 @@
     <style type="text/css">
         .divpan {
             text-align: center;
+            color: blue;
         }
-
+        div{
+            color:#003380;
+        }
         .panin {
             border: 1px solid black;
             margin: 20px;
@@ -14,13 +17,13 @@
         }
 
         body {
-            background-image: url("Image/444.png");
+            background-color : white;
         }
 
         .tb5 {
             background-repeat: repeat-x;
-            border: 1px solid #d1c7ac;
-            width: 130px;
+            border: 1px solid #ff9900;
+            width: 150px;
             color: #333333;
             padding: 3px;
             margin-right: 4px;
@@ -28,41 +31,57 @@
             font-family: tahoma, arial, sans-serif;
             border-radius: 10px;
             resize: none;
+            
         }
         .center1 { 
                display:inline-block; 
         }
+        legend{
+            padding: 3px;
+            margin-right: 4px;
+            margin-bottom: 8px;
+            font-family: tahoma, arial, sans-serif;
+            border-radius: 10px;
+            resize: none;
+            text-align: center;
+            font-size:medium;
+            color:royalblue;
+        }
+        fieldset{
+            border: 3px solid #99e6ff;
+            color: black;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:Panel ID="Panel1" runat="server" CssClass="divpan" BackColor="White" ForeColor="#6699FF" BorderColor="Aqua" DefaultButton="btnSearchNATIONAL">
+    <asp:Panel ID="Panel1" runat="server" CssClass="divpan" BackColor="White" ForeColor="#6699FF" BorderColor="Tomato" DefaultButton="btnSearchNATIONAL">
         <div>
             <fieldset>
                 <legend>ค้นหาข้อมูล</legend>
                 <div>
-                    รหัสสัญชาติ :&nbsp<asp:TextBox ID="txtSearchNationID" runat="server" CssClass="tb5" Width="50px" MaxLength="2"></asp:TextBox>
-                    ชื่อสัญชาติภาษาอังกฤษ :&nbsp<asp:TextBox ID="txtSearchNationENG" runat="server" CssClass="tb5" Width="150px" MaxLength="100"></asp:TextBox>
-                    ชื่อสัญชาติภาษาไทย :&nbsp<asp:TextBox ID="txtSearchNationTHA" runat="server" CssClass="tb5" Width="150px" MaxLength="100"></asp:TextBox>
+                    อักษรย่อสัญชาติ/เชื้อชาติ 2 ตัวอักษร:&nbsp<asp:TextBox ID="txtSearchNationID" runat="server" CssClass="tb5" Width="50px" MaxLength="2"></asp:TextBox>
+                    ชื่อสัญชาติ/เชื้อชาติภาษาอังกฤษ :&nbsp<asp:TextBox ID="txtSearchNationENG" runat="server" CssClass="tb5" Width="150px" MaxLength="100"></asp:TextBox>
+                    ชื่อสัญชาติ/เชื้อชาติภาษาไทย :&nbsp<asp:TextBox ID="txtSearchNationTHA" runat="server" CssClass="tb5" Width="150px" MaxLength="100"></asp:TextBox>
                     <asp:Button ID="btnSearchNATIONAL" Text="Search" runat="server" CssClass="master_OAT_button" OnClick="btnSearchNATIONAL_Click" />
                     <asp:Button ID="btnSearchRefresh" Text="Refresh" runat="server" CssClass="master_OAT_button" OnClick="btnSearchRefresh_Click" />
                 </div>
             </fieldset>
         </div>
     </asp:Panel>
-    <asp:Panel ID="Panel2" runat="server" ScrollBars="Horizontal" CssClass="divpan" BackColor="White" ForeColor="#6699FF" BorderColor="Aqua" DefaultButton="btnSubmitNATIONAL">
+    <asp:Panel ID="Panel2" runat="server" ScrollBars="Horizontal" CssClass="divpan" BackColor="White" ForeColor="#6699FF" BorderColor="Tomato" DefaultButton="btnSubmitNATIONAL">
         <div>
             <fieldset>
                 <legend>เพิ่มข้อมูล</legend>
                 <div>
                     <table class="center1">
                         <tr>
-                            <td style="margin-left: auto; margin-right: auto; text-align: center">รหัสสัญชาติ :</td>
+                            <td style="margin-left: auto; margin-right: auto; text-align: center">อักษรย่อสัญชาติ/เชื้อชาติ 2 ตัวอักษร :</td>
                             <td style="text-align: left; width: 50px;">
                                 <asp:TextBox ID="txtInsertNationID" runat="server" CssClass="tb5" MaxLength="2" Width="50px"></asp:TextBox></td>
-                            <td style="margin-left: auto; margin-right: auto; text-align: center">ชื่อสัญชาติภาษาอังกฤษ :</td>
+                            <td style="margin-left: auto; margin-right: auto; text-align: center">ชื่อสัญชาติ/เชื้อชาติภาษาอังกฤษ :</td>
                             <td style="text-align: left; width: 90px;">
                                 <asp:TextBox ID="txtInsertNationENG" runat="server" CssClass="tb5" MaxLength="100" Width="150px"></asp:TextBox></td>
-                            <td style="margin-left: auto; margin-right: auto; text-align: center">ชื่อสัญชาติภาษาไทย :</td>
+                            <td style="margin-left: auto; margin-right: auto; text-align: center">ชื่อสัญชาติ/เชื้อชาติภาษาไทย :</td>
                             <td style="text-align: left; width: 80px;">
                                 <asp:TextBox ID="txtInsertNationTHA" runat="server" CssClass="tb5" MaxLength="100" Width="150px"></asp:TextBox></td>
                             <td style="text-align: left;">
@@ -96,7 +115,7 @@
                                         <asp:Label ID="lblNationSEQ" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.NATION_SEQ") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="รหัสสัญชาติ" ControlStyle-Width="120" HeaderStyle-BackColor="#0099FF" HeaderStyle-ForeColor="Aqua">
+                                <asp:TemplateField HeaderText="อักษรย่อสัญชาติ/เชื้อชาติ 2 ตัวอักษร" ControlStyle-Width="120" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Tomato">
                                     <ItemTemplate>
                                         <asp:Label ID="lblNationIDEdit" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.NATION_ID") %>'></asp:Label>
                                     </ItemTemplate>
@@ -104,7 +123,7 @@
                                         <asp:TextBox ID="txtNationIDEdit" MaxLength="2" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.NATION_ID") %>'></asp:TextBox>
                                     </EditItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="ชื่อสัญชาติภาษาอังกฤษ" ControlStyle-Width="380" HeaderStyle-BackColor="#0099FF" HeaderStyle-ForeColor="Aqua">
+                                <asp:TemplateField HeaderText="ชื่อสัญชาติ/เชื้อชาติภาษาอังกฤษ" ControlStyle-Width="380" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Tomato">
                                     <ItemTemplate>
                                         <asp:Label ID="lblNationENGEdit" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.NATION_ENG") %>'></asp:Label>
                                     </ItemTemplate>
@@ -112,7 +131,7 @@
                                         <asp:TextBox ID="txtNationENGEdit" MaxLength="100" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.NATION_ENG") %>'></asp:TextBox>
                                     </EditItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="ชื่อสัญชาติภาษาไทย" ControlStyle-Width="380" HeaderStyle-BackColor="#0099FF" HeaderStyle-ForeColor="Aqua">
+                                <asp:TemplateField HeaderText="ชื่อสัญชาติ/เชื้อชาติภาษาไทย" ControlStyle-Width="380" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Tomato">
                                     <ItemTemplate>
                                         <asp:Label ID="lblNationTHAEdit" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.NATION_THA") %>'></asp:Label>
                                     </ItemTemplate>
@@ -120,8 +139,8 @@
                                         <asp:TextBox ID="txtNationTHAEdit" MaxLength="100" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.NATION_THA") %>'></asp:TextBox>
                                     </EditItemTemplate>
                                 </asp:TemplateField>
-                                <asp:CommandField ShowEditButton="True" CancelText="Cancel" DeleteText="Delete" EditText="Edit" UpdateText="Update" HeaderText="แก้ไข" HeaderStyle-BackColor="#0099FF" HeaderStyle-ForeColor="Aqua" />
-                                <asp:TemplateField HeaderText="ลบ" HeaderStyle-BackColor="#0099FF" HeaderStyle-ForeColor="Aqua">
+                                <asp:CommandField ShowEditButton="True" CancelText="Cancel" DeleteText="Delete" EditText="Edit" UpdateText="Update" HeaderText="แก้ไข" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Tomato" />
+                                <asp:TemplateField HeaderText="ลบ" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Tomato">
                                     <ItemTemplate>
                                         <asp:LinkButton ID="DeleteButton1" runat="server" CausesValidation="false" CommandName="Delete" Text="Delete"></asp:LinkButton>
                                     </ItemTemplate>

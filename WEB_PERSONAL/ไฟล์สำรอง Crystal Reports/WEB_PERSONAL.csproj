@@ -73,6 +73,7 @@
       <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Oracle.DataAccess, Version=2.121.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86" />
     <Reference Include="System.Data.OracleClient" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -109,6 +110,7 @@
     <Content Include="404.aspx" />
     <Content Include="AAA.aspx" />
     <Content Include="About.aspx" />
+    <Content Include="AcademicPosition-ADMIN.aspx" />
     <Content Include="Access.aspx" />
     <Content Include="AddPerson-Edit.aspx" />
     <Content Include="AddPerson.aspx" />
@@ -678,6 +680,7 @@
     <Content Include="aspnet_client\system_web\4_0_30319\crystalreportviewers13\prompting\js\promptengine_strings_zh_TW.js" />
     <Content Include="aspnet_client\system_web\4_0_30319\crystalreportviewers13\urlreporting\activexviewer.js" />
     <Content Include="aspnet_client\system_web\4_0_30319\crystalreportviewers13\urlreporting\appletviewer.js" />
+    <Content Include="Blood-ADMIN.aspx" />
     <Content Include="Budget-ADMIN.aspx" />
     <Content Include="Campus-ADMIN.aspx" />
     <Content Include="ChangePassword.aspx" />
@@ -739,6 +742,7 @@
     <Content Include="DataManager.aspx" />
     <Content Include="Developer.aspx" />
     <Content Include="District-ADMIN.aspx" />
+    <Content Include="Division-ADMIN.aspx" />
     <Content Include="Entities\Virus.mp3" />
     <Content Include="Faculty-ADMIN.aspx" />
     <Content Include="Global.asax" />
@@ -762,10 +766,18 @@
     <Content Include="Image\font_icon.png" />
     <Content Include="Image\ImageTUU\maintence.png" />
     <Content Include="Image\office.jpg" />
+    <Content Include="Image\rmutto_clear.jpg" />
     <Content Include="Image\Small\back.png" />
+    <Content Include="Image\Small\bin.png" />
+    <Content Include="Image\Small\clock-history.png" />
     <Content Include="Image\Small\clock.png" />
+    <Content Include="Image\Small\document-accept.png" />
+    <Content Include="Image\Small\document-create.png" />
+    <Content Include="Image\Small\document-delete.png" />
+    <Content Include="Image\Small\document-edit.png" />
     <Content Include="Image\Small\home.png" />
     <Content Include="Image\Small\home3.png" />
+    <Content Include="Image\Small\info.png" />
     <Content Include="Image\Small\key.png" />
     <Content Include="Image\Small\lock.png" />
     <Content Include="Image\Small\logout.png" />
@@ -798,9 +810,11 @@
     <Content Include="Image\Small\pencil_y.png" />
     <Content Include="Image\Small\red_alert.png" />
     <Content Include="Image\Small\search.png" />
+    <Content Include="Image\Small\send-email.png" />
     <Content Include="Image\Small\statistic.png" />
     <Content Include="Image\Small\table.png" />
     <Content Include="Image\Small\unlock.png" />
+    <Content Include="Image\Small\upload.png" />
     <Content Include="Image\Small\wrench.png" />
     <Content Include="Image\Small\yellow_alert.png" />
     <Content Include="Image\stickman.png" />
@@ -812,6 +826,11 @@
     <Content Include="Image\TUUbg5.jpg" />
     <Content Include="Image\white1.png" />
     <Content Include="Image\มทร.ตะวันออก.jpg" />
+    <Content Include="INSG_Borrow.aspx" />
+    <Content Include="INSG_Qualified.aspx" />
+    <Content Include="INSG_Request.aspx" />
+    <Content Include="INSG_RequestList.aspx" />
+    <Content Include="INSG_Return.aspx" />
     <Content Include="insignia_from_add.aspx" />
     <Content Include="insignia_from_view.aspx" />
     <Content Include="insignia_maintence.aspx" />
@@ -938,8 +957,8 @@
     <Content Include="LeaveClaim.aspx" />
     <Content Include="LeaveComment.aspx" />
     <Content Include="LeaveHistory.aspx" />
+    <Content Include="LeaveManager.aspx" />
     <Content Include="ListPerson-ADMIN.aspx" />
-    <Content Include="Login.aspx" />
     <Content Include="Ministry-ADMIN.aspx" />
     <Content Include="Month-ADMIN.aspx" />
     <Content Include="National-ADMIN.aspx" />
@@ -948,13 +967,14 @@
     <Content Include="Font\THSarabun BoldItalic.ttf" />
     <Content Include="Font\THSarabun Italic.ttf" />
     <Content Include="Font\THSarabun.ttf" />
+    <Content Include="Permission.aspx" />
+    <Content Include="Position-ADMIN.aspx" />
     <Content Include="Person-Detail.aspx" />
     <Content Include="personalDataSet.xsc">
       <DependentUpon>personalDataSet.xsd</DependentUpon>
     </Content>
     <Content Include="Plugins\EPPlus.dll" />
     <Content Include="Plugins\EPPlus.XML" />
-    <Content Include="Position-ADMIN.aspx" />
     <Content Include="PositionWork-ADMIN.aspx" />
     <Content Include="jquery.mCustomScrollbar\jquery.mCustomScrollbar.concat.min.js" />
     <Content Include="Province-ADMIN.aspx" />
@@ -966,13 +986,22 @@
     <Content Include="Profile.aspx" />
     <Content Include="Staff-ADMIN.aspx" />
     <Content Include="StaffType-ADMIN.aspx" />
-    <Content Include="Study-Report1.aspx" />
+    <Content Include="StatusPerson-ADMIN.aspx" />
+    <Content Include="SumReport_UpSalary.aspx" />
     <Content Include="TeachISCED-ADMIN.aspx" />
     <Content Include="TestOutput.aspx" />
     <Content Include="UploadList.aspx" />
+    <Content Include="UpSalary70_30_1.aspx" />
+    <Content Include="UpSalary70_30_2.aspx" />
+    <Content Include="UpSalary70_30_Evaluation.aspx" />
+    <Content Include="UpSalary80_20_1.aspx" />
+    <Content Include="UpSalary80_20_2.aspx" />
+    <Content Include="UpSalaryForm.aspx" />
     <Content Include="ViewLeaveForm.aspx" />
+    <Content Include="WorkDivision-ADMIN.aspx" />
     <Content Include="WorkingTime.aspx" />
     <Content Include="WorkingTimeHistory.aspx" />
+    <Content Include="WorkingTimeManager.aspx" />
     <Content Include="Year-ADMIN.aspx" />
     <Content Include="Font\WDB_Bangna.ttf" />
     <Content Include="Font\THSARABUNNEW BOLDITALIC_0.TTF" />
@@ -1007,7 +1036,6 @@
     <Content Include="Script\JSFunction.js" />
     <Content Include="SEMINAR-ADMIN.aspx" />
     <Content Include="SEMINAR-GENERAL.aspx" />
-    <Content Include="Study-IN.aspx" />
     <Content Include="TitleName-ADMIN.aspx" />
     <Content Include="Salary.aspx" />
     <Content Include="CSS\Master.css" />
@@ -1036,6 +1064,13 @@
     </Compile>
     <Compile Include="About.aspx.designer.cs">
       <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AcademicPosition-ADMIN.aspx.cs">
+      <DependentUpon>AcademicPosition-ADMIN.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AcademicPosition-ADMIN.aspx.designer.cs">
+      <DependentUpon>AcademicPosition-ADMIN.aspx</DependentUpon>
     </Compile>
     <Compile Include="Access.aspx.cs">
       <DependentUpon>Access.aspx</DependentUpon>
@@ -1072,6 +1107,13 @@
     <Compile Include="Amphur-ADMIN.aspx.designer.cs">
       <DependentUpon>Amphur-ADMIN.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Blood-ADMIN.aspx.cs">
+      <DependentUpon>Blood-ADMIN.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Blood-ADMIN.aspx.designer.cs">
+      <DependentUpon>Blood-ADMIN.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Budget-ADMIN.aspx.cs">
       <DependentUpon>Budget-ADMIN.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1100,16 +1142,10 @@
     <Compile Include="CitizenDetails.aspx.designer.cs">
       <DependentUpon>CitizenDetails.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Class\BaseSalary.cs" />
     <Compile Include="Class\DatabaseManager.cs" />
-    <Compile Include="Class\DisciplinaryAndAmnesty.cs" />
     <Compile Include="Class\Form1Package.cs" />
-    <Compile Include="Class\JobLicense.cs" />
     <Compile Include="Class\Person.cs" />
     <Compile Include="Class\PersonnelSystem.cs" />
-    <Compile Include="Class\PositionAndSalary.cs" />
-    <Compile Include="Class\StudyHistory.cs" />
-    <Compile Include="Class\TrainingHistory.cs" />
     <Compile Include="Connection\ConnectionDB.cs" />
     <Compile Include="DataManager.aspx.cs">
       <DependentUpon>DataManager.aspx</DependentUpon>
@@ -1138,6 +1174,13 @@
     </Compile>
     <Compile Include="District-ADMIN.aspx.designer.cs">
       <DependentUpon>District-ADMIN.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Division-ADMIN.aspx.cs">
+      <DependentUpon>Division-ADMIN.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Division-ADMIN.aspx.designer.cs">
+      <DependentUpon>Division-ADMIN.aspx</DependentUpon>
     </Compile>
     <Compile Include="Entities\Report.cs" />
     <Compile Include="Entities\Tuu.cs" />
@@ -1182,6 +1225,41 @@
     </Compile>
     <Compile Include="GradLev-ADMIN.aspx.designer.cs">
       <DependentUpon>GradLev-ADMIN.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="INSG_Borrow.aspx.cs">
+      <DependentUpon>INSG_Borrow.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="INSG_Borrow.aspx.designer.cs">
+      <DependentUpon>INSG_Borrow.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="INSG_Qualified.aspx.cs">
+      <DependentUpon>INSG_Qualified.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="INSG_Qualified.aspx.designer.cs">
+      <DependentUpon>INSG_Qualified.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="INSG_Request.aspx.cs">
+      <DependentUpon>INSG_Request.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="INSG_Request.aspx.designer.cs">
+      <DependentUpon>INSG_Request.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="INSG_RequestList.aspx.cs">
+      <DependentUpon>INSG_RequestList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="INSG_RequestList.aspx.designer.cs">
+      <DependentUpon>INSG_RequestList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="INSG_Return.aspx.cs">
+      <DependentUpon>INSG_Return.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="INSG_Return.aspx.designer.cs">
+      <DependentUpon>INSG_Return.aspx</DependentUpon>
     </Compile>
     <Compile Include="insignia_from_add.aspx.cs">
       <DependentUpon>insignia_from_add.aspx</DependentUpon>
@@ -1330,19 +1408,19 @@
     <Compile Include="LeaveHistory.aspx.designer.cs">
       <DependentUpon>LeaveHistory.aspx</DependentUpon>
     </Compile>
+    <Compile Include="LeaveManager.aspx.cs">
+      <DependentUpon>LeaveManager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LeaveManager.aspx.designer.cs">
+      <DependentUpon>LeaveManager.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ListPerson-ADMIN.aspx.cs">
       <DependentUpon>ListPerson-ADMIN.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ListPerson-ADMIN.aspx.designer.cs">
       <DependentUpon>ListPerson-ADMIN.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Login.aspx.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Login.aspx.designer.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="MasterPage.Master.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
@@ -1372,6 +1450,20 @@
     <Compile Include="National-ADMIN.aspx.designer.cs">
       <DependentUpon>National-ADMIN.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Permission.aspx.cs">
+      <DependentUpon>Permission.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Permission.aspx.designer.cs">
+      <DependentUpon>Permission.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Position-ADMIN.aspx.cs">
+      <DependentUpon>Position-ADMIN.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Position-ADMIN.aspx.designer.cs">
+      <DependentUpon>Position-ADMIN.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Person-Detail.aspx.cs">
       <DependentUpon>Person-Detail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1383,13 +1475,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>personalDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Position-ADMIN.aspx.cs">
-      <DependentUpon>Position-ADMIN.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Position-ADMIN.aspx.designer.cs">
-      <DependentUpon>Position-ADMIN.aspx</DependentUpon>
     </Compile>
     <Compile Include="PositionWork-ADMIN.aspx.cs">
       <DependentUpon>PositionWork-ADMIN.aspx</DependentUpon>
@@ -1431,7 +1516,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CrystalReport1.rpt</DependentUpon>
       <SubType>Component</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Salary-report.aspx.cs">
       <DependentUpon>Salary-report.aspx</DependentUpon>
@@ -1510,19 +1594,19 @@
     <Compile Include="StaffType-ADMIN.aspx.designer.cs">
       <DependentUpon>StaffType-ADMIN.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Study-IN.aspx.cs">
-      <DependentUpon>Study-IN.aspx</DependentUpon>
+    <Compile Include="SumReport_UpSalary.aspx.cs">
+      <DependentUpon>SumReport_UpSalary.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Study-IN.aspx.designer.cs">
-      <DependentUpon>Study-IN.aspx</DependentUpon>
+    <Compile Include="SumReport_UpSalary.aspx.designer.cs">
+      <DependentUpon>SumReport_UpSalary.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Study-Report1.aspx.cs">
-      <DependentUpon>Study-Report1.aspx</DependentUpon>
+    <Compile Include="StatusPerson-ADMIN.aspx.cs">
+      <DependentUpon>StatusPerson-ADMIN.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Study-Report1.aspx.designer.cs">
-      <DependentUpon>Study-Report1.aspx</DependentUpon>
+    <Compile Include="StatusPerson-ADMIN.aspx.designer.cs">
+      <DependentUpon>StatusPerson-ADMIN.aspx</DependentUpon>
     </Compile>
     <Compile Include="TeachISCED-ADMIN.aspx.cs">
       <DependentUpon>TeachISCED-ADMIN.aspx</DependentUpon>
@@ -1560,6 +1644,48 @@
     <Compile Include="UploadList.aspx.designer.cs">
       <DependentUpon>UploadList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="UpSalary70_30_1.aspx.cs">
+      <DependentUpon>UpSalary70_30_1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UpSalary70_30_1.aspx.designer.cs">
+      <DependentUpon>UpSalary70_30_1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UpSalary70_30_2.aspx.cs">
+      <DependentUpon>UpSalary70_30_2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UpSalary70_30_2.aspx.designer.cs">
+      <DependentUpon>UpSalary70_30_2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UpSalary70_30_Evaluation.aspx.cs">
+      <DependentUpon>UpSalary70_30_Evaluation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UpSalary70_30_Evaluation.aspx.designer.cs">
+      <DependentUpon>UpSalary70_30_Evaluation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UpSalary80_20_1.aspx.cs">
+      <DependentUpon>UpSalary80_20_1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UpSalary80_20_1.aspx.designer.cs">
+      <DependentUpon>UpSalary80_20_1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UpSalary80_20_2.aspx.cs">
+      <DependentUpon>UpSalary80_20_2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UpSalary80_20_2.aspx.designer.cs">
+      <DependentUpon>UpSalary80_20_2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UpSalaryForm.aspx.cs">
+      <DependentUpon>UpSalaryForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UpSalaryForm.aspx.designer.cs">
+      <DependentUpon>UpSalaryForm.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Util.cs" />
     <Compile Include="ViewLeaveForm.aspx.cs">
       <DependentUpon>ViewLeaveForm.aspx</DependentUpon>
@@ -1567,6 +1693,13 @@
     </Compile>
     <Compile Include="ViewLeaveForm.aspx.designer.cs">
       <DependentUpon>ViewLeaveForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WorkDivision-ADMIN.aspx.cs">
+      <DependentUpon>WorkDivision-ADMIN.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WorkDivision-ADMIN.aspx.designer.cs">
+      <DependentUpon>WorkDivision-ADMIN.aspx</DependentUpon>
     </Compile>
     <Compile Include="WorkingTime.aspx.cs">
       <DependentUpon>WorkingTime.aspx</DependentUpon>
@@ -1581,6 +1714,13 @@
     </Compile>
     <Compile Include="WorkingTimeHistory.aspx.designer.cs">
       <DependentUpon>WorkingTimeHistory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WorkingTimeManager.aspx.cs">
+      <DependentUpon>WorkingTimeManager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WorkingTimeManager.aspx.designer.cs">
+      <DependentUpon>WorkingTimeManager.aspx</DependentUpon>
     </Compile>
     <Compile Include="Year-ADMIN.aspx.cs">
       <DependentUpon>Year-ADMIN.aspx</DependentUpon>
@@ -1611,11 +1751,10 @@
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Reports\CrystalReport1.rpt">
+    <EmbeddedResource Include="Reports\CrystalReport1.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CrystalReport1.cs</LastGenOutput>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

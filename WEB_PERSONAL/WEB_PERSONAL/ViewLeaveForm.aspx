@@ -20,6 +20,10 @@
                 display: inline-block;
                 margin-right: 20px;
             }
+            #ContentPlaceHolder1_div_dr_cer img {
+                width: 200px;
+                height: auto;
+            }
     </style>
 
 </asp:Content>
@@ -225,7 +229,10 @@
                     </tr>
                 </table>
             </div>
-
+            <div class="ps-separator"></div>
+            <div id="div_dr_cer" runat="server">
+                
+            </div>
             <div class="ps-separator"></div>
 
         </asp:View>

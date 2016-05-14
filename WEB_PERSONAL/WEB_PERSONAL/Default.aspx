@@ -13,7 +13,7 @@
         <div>
             <table class="ps-table">
                 <tr>
-                    <td class="head" colspan="2">ข้อมูลผู้ใช้</td>
+                    <td class="head" colspan="2"><img src="Image/Small/person2.png" class="icon_left"/>ข้อมูลผู้ใช้</td>
                 </tr>
                 <tr>
                     <td class="col1">ชื่อ</td>

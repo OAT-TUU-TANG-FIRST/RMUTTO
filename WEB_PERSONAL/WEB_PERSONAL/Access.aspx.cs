@@ -15,7 +15,7 @@ namespace WEB_PERSONAL {
                 if(Request.QueryString["ID"] != null && Request.QueryString["Password"] != null && Request.QueryString["Action"] != null) {
                     if (DatabaseManager.ValidateUser(Request.QueryString["ID"], Request.QueryString["Password"])) {
                         PersonnelSystem ps = new PersonnelSystem();
-                        ps.LoginPerson = DatabaseManager.GetPerson(tbUsername.Text);
+                        ps.LoginPerson = DatabaseManager.GetPerson(Request.QueryString["ID"].ToString());
                         Session["PersonnelSystem"] = ps;
                         if(Request.QueryString["Action"] == "1") {
                             Response.Redirect("ChangePassword.aspx");

@@ -71,9 +71,10 @@ namespace WEB_PERSONAL.Entities {
         public string PS_SPECIAL_WORK { get; set; }
         public string PS_TEACH_ISCED_ID { get; set; }
         public string PS_PASSWORD { get; set; }
+        public string PS_POSITION_ID { get; set; }
 
         public PS_PERSON() { }
-        public PS_PERSON(string PS_CITIZEN_ID, int PS_ID, int PS_MINISTRY_ID, string PS_GROM, int PS_TITLE_ID, string PS_FN_TH, string PS_FN_EN, string PS_LN_TH, string PS_LN_EN, int PS_GENDER_ID, DateTime PS_BIRTHDAY_DATE, string PS_BIRTHDAY_LONG, int PS_RACE_ID, string PS_NATION_ID, int PS_BLOOD_ID, string PS_EMAIL, string PS_PHONE, string PS_TELEPHONE_WORK, int PS_RELIGION_ID, int PS_STATUS_ID, string PS_DAD_FN, string PS_DAD_LN, string PS_MOM_FN, string PS_MOM_LN, string PS_MOM_LN_OLD, string PS_LOV_FN, string PS_LOV_LN, string PS_LOV_LN_OLD, string PS_HOMEADD, string PS_SOI, string PS_MOO, string PS_STREET, int PS_PROVINCE_ID, int PS_AMPHUR_ID, int PS_DISTRICT, string PS_ZIPCODE, int PS_COUNTRY_ID, string PS_STATE, string PS_HOMEADD_NOW, string PS_SOI_NOW, string PS_MOO_NOW, string PS_STREET_NOW, int PS_PROVINCE_ID_NOW, int PS_AMPHUR_ID_NOW, int PS_DISTRICT_ID_NOW, string PS_ZIPCODE_NOW, int PS_COUNTRY_ID_NOW, string PS_STATE_NOW, int PS_CAMPUS_ID, int PS_FACULTY_ID, int PS_DIVISION_ID, int PS_WORK_DIVISION_ID, int PS_STAFFTYPE_ID, int PS_BUDGET_ID, string PS_ADMIN_POS_ID, int PS_WORK_POS_ID, int PS_ACAD_POS_ID, DateTime PS_INWORK_DATE, DateTime PS_RETIRE_DATE, string PS_RETIRE_LONG, string PS_SPECIAL_WORK, string PS_TEACH_ISCED_ID, string PS_PASSWORD) {
+        public PS_PERSON(string PS_CITIZEN_ID, int PS_ID, int PS_MINISTRY_ID, string PS_GROM, int PS_TITLE_ID, string PS_FN_TH, string PS_FN_EN, string PS_LN_TH, string PS_LN_EN, int PS_GENDER_ID, DateTime PS_BIRTHDAY_DATE, string PS_BIRTHDAY_LONG, int PS_RACE_ID, string PS_NATION_ID, int PS_BLOOD_ID, string PS_EMAIL, string PS_PHONE, string PS_TELEPHONE_WORK, int PS_RELIGION_ID, int PS_STATUS_ID, string PS_DAD_FN, string PS_DAD_LN, string PS_MOM_FN, string PS_MOM_LN, string PS_MOM_LN_OLD, string PS_LOV_FN, string PS_LOV_LN, string PS_LOV_LN_OLD, string PS_HOMEADD, string PS_SOI, string PS_MOO, string PS_STREET, int PS_PROVINCE_ID, int PS_AMPHUR_ID, int PS_DISTRICT, string PS_ZIPCODE, int PS_COUNTRY_ID, string PS_STATE, string PS_HOMEADD_NOW, string PS_SOI_NOW, string PS_MOO_NOW, string PS_STREET_NOW, int PS_PROVINCE_ID_NOW, int PS_AMPHUR_ID_NOW, int PS_DISTRICT_ID_NOW, string PS_ZIPCODE_NOW, int PS_COUNTRY_ID_NOW, string PS_STATE_NOW, int PS_CAMPUS_ID, int PS_FACULTY_ID, int PS_DIVISION_ID, int PS_WORK_DIVISION_ID, int PS_STAFFTYPE_ID, int PS_BUDGET_ID, string PS_ADMIN_POS_ID, int PS_WORK_POS_ID, int PS_ACAD_POS_ID, DateTime PS_INWORK_DATE, DateTime PS_RETIRE_DATE, string PS_RETIRE_LONG, string PS_SPECIAL_WORK, string PS_TEACH_ISCED_ID, string PS_PASSWORD, string PS_POSITION_ID) {
             this.PS_CITIZEN_ID = PS_CITIZEN_ID;
             this.PS_ID = PS_ID;
             this.PS_MINISTRY_ID = PS_MINISTRY_ID;
@@ -142,7 +143,7 @@ namespace WEB_PERSONAL.Entities {
         public int INSERT_PS_PERSON() {
             int id = 0;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
-            OracleCommand command = new OracleCommand("INSERT INTO PS_PERSON (PS_CITIZEN_ID,PS_MINISTRY_ID,PS_GROM,PS_TITLE_ID,PS_FN_TH,PS_FN_EN,PS_LN_TH,PS_LN_EN,PS_GENDER_ID,PS_BIRTHDAY_DATE,PS_BIRTHDAY_LONG,PS_RACE_ID,PS_NATION_ID,PS_BLOOD_ID,PS_EMAIL,PS_PHONE,PS_TELEPHONE_WORK,PS_RELIGION_ID,PS_STATUS_ID,PS_DAD_FN,PS_DAD_LN,PS_MOM_FN,PS_MOM_LN,PS_MOM_LN_OLD,PS_LOV_FN,PS_LOV_LN,PS_LOV_LN_OLD,PS_HOMEADD,PS_SOI,PS_MOO,PS_STREET,PS_PROVINCE_ID,PS_AMPHUR_ID,PS_DISTRICT,PS_ZIPCODE,PS_COUNTRY_ID,PS_STATE,PS_HOMEADD_NOW,PS_SOI_NOW,PS_MOO_NOW,PS_STREET_NOW,PS_PROVINCE_ID_NOW,PS_AMPHUR_ID_NOW,PS_DISTRICT_ID_NOW,PS_ZIPCODE_NOW,PS_COUNTRY_ID_NOW,PS_STATE_NOW,PS_CAMPUS_ID,PS_FACULTY_ID,PS_DIVISION_ID,PS_WORK_DIVISION_ID,PS_STAFFTYPE_ID,PS_BUDGET_ID,PS_ADMIN_POS_ID,PS_WORK_POS_ID,PS_ACAD_POS_ID,PS_INWORK_DATE,PS_RETIRE_DATE,PS_RETIRE_LONG,PS_SPECIAL_WORK,PS_TEACH_ISCED_ID,PS_PASSWORD) VALUES (:PS_CITIZEN_ID,:PS_MINISTRY_ID,:PS_GROM,:PS_TITLE_ID,:PS_FN_TH,:PS_FN_EN,:PS_LN_TH,:PS_LN_EN,:PS_GENDER_ID,:PS_BIRTHDAY_DATE,:PS_BIRTHDAY_LONG,:PS_RACE_ID,:PS_NATION_ID,:PS_BLOOD_ID,:PS_EMAIL,:PS_PHONE,:PS_TELEPHONE_WORK,:PS_RELIGION_ID,:PS_STATUS_ID,:PS_DAD_FN, :PS_DAD_LN, :PS_MOM_FN, :PS_MOM_LN, :PS_MOM_LN_OLD, :PS_LOV_FN, :PS_LOV_LN, :PS_LOV_LN_OLD, :PS_HOMEADD, :PS_SOI, :PS_MOO, :PS_STREET, :PS_PROVINCE_ID, :PS_AMPHUR_ID, :PS_DISTRICT, :PS_ZIPCODE, :PS_COUNTRY_ID, :PS_STATE, :PS_HOMEADD_NOW, :PS_SOI_NOW, :PS_MOO_NOW, :PS_STREET_NOW, :PS_PROVINCE_ID_NOW, :PS_AMPHUR_ID_NOW, :PS_DISTRICT_ID_NOW, :PS_ZIPCODE_NOW, :PS_COUNTRY_ID_NOW, :PS_STATE_NOW, :PS_CAMPUS_ID, :PS_FACULTY_ID, :PS_DIVISION_ID, :PS_WORK_DIVISION_ID, :PS_STAFFTYPE_ID, :PS_BUDGET_ID, :PS_ADMIN_POS_ID, :PS_WORK_POS_ID, :PS_ACAD_POS_ID, :PS_INWORK_DATE, :PS_RETIRE_DATE, :PS_RETIRE_LONG, :PS_SPECIAL_WORK, :PS_TEACH_ISCED_ID, :PS_PASSWORD)", conn);
+            OracleCommand command = new OracleCommand("INSERT INTO PS_PERSON (PS_CITIZEN_ID,PS_MINISTRY_ID,PS_GROM,PS_TITLE_ID,PS_FN_TH,PS_FN_EN,PS_LN_TH,PS_LN_EN,PS_GENDER_ID,PS_BIRTHDAY_DATE,PS_BIRTHDAY_LONG,PS_RACE_ID,PS_NATION_ID,PS_BLOOD_ID,PS_EMAIL,PS_PHONE,PS_TELEPHONE_WORK,PS_RELIGION_ID,PS_STATUS_ID,PS_DAD_FN,PS_DAD_LN,PS_MOM_FN,PS_MOM_LN,PS_MOM_LN_OLD,PS_LOV_FN,PS_LOV_LN,PS_LOV_LN_OLD,PS_HOMEADD,PS_SOI,PS_MOO,PS_STREET,PS_PROVINCE_ID,PS_AMPHUR_ID,PS_DISTRICT,PS_ZIPCODE,PS_COUNTRY_ID,PS_STATE,PS_HOMEADD_NOW,PS_SOI_NOW,PS_MOO_NOW,PS_STREET_NOW,PS_PROVINCE_ID_NOW,PS_AMPHUR_ID_NOW,PS_DISTRICT_ID_NOW,PS_ZIPCODE_NOW,PS_COUNTRY_ID_NOW,PS_STATE_NOW,PS_CAMPUS_ID,PS_FACULTY_ID,PS_DIVISION_ID,PS_WORK_DIVISION_ID,PS_STAFFTYPE_ID,PS_BUDGET_ID,PS_ADMIN_POS_ID,PS_WORK_POS_ID,PS_ACAD_POS_ID,PS_INWORK_DATE,PS_RETIRE_DATE,PS_RETIRE_LONG,PS_SPECIAL_WORK,PS_TEACH_ISCED_ID,PS_PASSWORD,PS_POSITION_ID) VALUES (:PS_CITIZEN_ID,:PS_MINISTRY_ID,:PS_GROM,:PS_TITLE_ID,:PS_FN_TH,:PS_FN_EN,:PS_LN_TH,:PS_LN_EN,:PS_GENDER_ID,:PS_BIRTHDAY_DATE,:PS_BIRTHDAY_LONG,:PS_RACE_ID,:PS_NATION_ID,:PS_BLOOD_ID,:PS_EMAIL,:PS_PHONE,:PS_TELEPHONE_WORK,:PS_RELIGION_ID,:PS_STATUS_ID,:PS_DAD_FN, :PS_DAD_LN, :PS_MOM_FN, :PS_MOM_LN, :PS_MOM_LN_OLD, :PS_LOV_FN, :PS_LOV_LN, :PS_LOV_LN_OLD, :PS_HOMEADD, :PS_SOI, :PS_MOO, :PS_STREET, :PS_PROVINCE_ID, :PS_AMPHUR_ID, :PS_DISTRICT, :PS_ZIPCODE, :PS_COUNTRY_ID, :PS_STATE, :PS_HOMEADD_NOW, :PS_SOI_NOW, :PS_MOO_NOW, :PS_STREET_NOW, :PS_PROVINCE_ID_NOW, :PS_AMPHUR_ID_NOW, :PS_DISTRICT_ID_NOW, :PS_ZIPCODE_NOW, :PS_COUNTRY_ID_NOW, :PS_STATE_NOW, :PS_CAMPUS_ID, :PS_FACULTY_ID, :PS_DIVISION_ID, :PS_WORK_DIVISION_ID, :PS_STAFFTYPE_ID, :PS_BUDGET_ID, :PS_ADMIN_POS_ID, :PS_WORK_POS_ID, :PS_ACAD_POS_ID, :PS_INWORK_DATE, :PS_RETIRE_DATE, :PS_RETIRE_LONG, :PS_SPECIAL_WORK, :PS_TEACH_ISCED_ID, :PS_PASSWORD, :PS_POSITION_ID)", conn);
 
             try {
                 if (conn.State != ConnectionState.Open) {
@@ -210,6 +211,7 @@ namespace WEB_PERSONAL.Entities {
                 command.Parameters.Add(new OracleParameter("PS_SPECIAL_WORK", PS_SPECIAL_WORK));
                 command.Parameters.Add(new OracleParameter("PS_TEACH_ISCED_ID", PS_TEACH_ISCED_ID));
                 command.Parameters.Add(new OracleParameter("PS_PASSWORD", PS_PASSWORD));
+                command.Parameters.Add(new OracleParameter("PS_POSITION_ID", PS_POSITION_ID));
 
                 id = command.ExecuteNonQuery();
             } catch (Exception ex) {
@@ -286,7 +288,8 @@ namespace WEB_PERSONAL.Entities {
             query += " PS_RETIRE_LONG = :PS_RETIRE_LONG ,";
             query += " PS_SPECIAL_WORK = :PS_SPECIAL_WORK ,";
             query += " PS_TEACH_ISCED_ID = :PS_TEACH_ISCED_ID ,";
-            query += " PS_PASSWORD = :PS_PASSWORD ";
+            query += " PS_PASSWORD = :PS_PASSWORD,";
+            query += " PS_POSITION_ID = :PS_POSITION_ID ";
             query += " where PS_ID  = :PS_ID";
 
             OracleCommand command = new OracleCommand(query, conn);
@@ -356,6 +359,7 @@ namespace WEB_PERSONAL.Entities {
                 command.Parameters.Add(new OracleParameter("PS_SPECIAL_WORK", PS_SPECIAL_WORK));
                 command.Parameters.Add(new OracleParameter("PS_TEACH_ISCED_ID", PS_TEACH_ISCED_ID));
                 command.Parameters.Add(new OracleParameter("PS_PASSWORD", PS_PASSWORD));
+                command.Parameters.Add(new OracleParameter("PS_POSITION_ID", PS_POSITION_ID));
                 command.Parameters.Add(new OracleParameter("PS_ID", PS_ID));
                 if (command.ExecuteNonQuery() > 0) {
                     result = true;
@@ -417,9 +421,7 @@ namespace WEB_PERSONAL.Entities {
             return result;
         }
     }
-    /// <summary>
-    /// 
-    /// </summary>
+
     public class PS_STUDY {
         public int PS_STUDY_ID { get; set; }
         public string PS_CITIZEN_ID { get; set; }
@@ -446,6 +448,120 @@ namespace WEB_PERSONAL.Entities {
             this.PS_QUALIFICATION = PS_QUALIFICATION;
             this.PS_MAJOR = PS_MAJOR;
             this.PS_COUNTRY_ID = PS_COUNTRY_ID;
+        }
+
+        public DataTable SELECT_PS_STUDY(string PS_CITIZEN_ID, string PS_DEGREE_ID, string PS_UNIV_NAME, string PS_FROM_MONTH, string PS_FROM_YEAR, string PS_TO_MONTH, string PS_TO_YEAR, string PS_QUALIFICATION, string PS_MAJOR, string PS_COUNTRY_ID)
+        {
+            DataTable dt = new DataTable();
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            string query = "SELECT * FROM PS_STUDY ";
+            if (!string.IsNullOrEmpty(PS_CITIZEN_ID) || !string.IsNullOrEmpty(PS_DEGREE_ID) || !string.IsNullOrEmpty(PS_UNIV_NAME) || !string.IsNullOrEmpty(PS_FROM_MONTH) || !string.IsNullOrEmpty(PS_FROM_YEAR) || !string.IsNullOrEmpty(PS_TO_MONTH) || !string.IsNullOrEmpty(PS_TO_YEAR) || !string.IsNullOrEmpty(PS_QUALIFICATION) || !string.IsNullOrEmpty(PS_MAJOR) || !string.IsNullOrEmpty(PS_COUNTRY_ID))
+            {
+                query += " where 1=1 ";
+                if (!string.IsNullOrEmpty(PS_CITIZEN_ID))
+                {
+                    query += " and PS_CITIZEN_ID like :PS_CITIZEN_ID ";
+                }
+                if (!string.IsNullOrEmpty(PS_DEGREE_ID))
+                {
+                    query += " and PS_DEGREE_ID like :PS_DEGREE_ID ";
+                }
+                if (!string.IsNullOrEmpty(PS_UNIV_NAME))
+                {
+                    query += " and PS_UNIV_NAME like :PS_UNIV_NAME ";
+                }
+                if (!string.IsNullOrEmpty(PS_FROM_MONTH))
+                {
+                    query += " and PS_FROM_MONTH like :PS_FROM_MONTH ";
+                }
+                if (!string.IsNullOrEmpty(PS_FROM_YEAR))
+                {
+                    query += " and PS_FROM_YEAR like :PS_FROM_YEAR ";
+                }
+                if (!string.IsNullOrEmpty(PS_TO_MONTH))
+                {
+                    query += " and PS_TO_MONTH like :PS_TO_MONTH ";
+                }
+                if (!string.IsNullOrEmpty(PS_TO_YEAR))
+                {
+                    query += " and PS_TO_YEAR like :PS_TO_YEAR ";
+                }
+                if (!string.IsNullOrEmpty(PS_QUALIFICATION))
+                {
+                    query += " and PS_QUALIFICATION like :PS_QUALIFICATION ";
+                }
+                if (!string.IsNullOrEmpty(PS_MAJOR))
+                {
+                    query += " and PS_MAJOR like :PS_MAJOR ";
+                }
+                if (!string.IsNullOrEmpty(PS_COUNTRY_ID))
+                {
+                    query += " and PS_COUNTRY_ID like :PS_COUNTRY_ID ";
+                }
+            }
+            OracleCommand command = new OracleCommand(query, conn);
+            // Create the command
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                if (!string.IsNullOrEmpty(PS_CITIZEN_ID))
+                {
+                    command.Parameters.Add(new OracleParameter("PS_CITIZEN_ID", PS_CITIZEN_ID));
+                }
+                if (!string.IsNullOrEmpty(PS_DEGREE_ID))
+                {
+                    command.Parameters.Add(new OracleParameter("PS_DEGREE_ID", PS_DEGREE_ID));
+                }
+                if (!string.IsNullOrEmpty(PS_UNIV_NAME))
+                {
+                    command.Parameters.Add(new OracleParameter("PS_UNIV_NAME", PS_UNIV_NAME));
+                }
+                if (!string.IsNullOrEmpty(PS_FROM_MONTH))
+                {
+                    command.Parameters.Add(new OracleParameter("PS_FROM_MONTH", PS_FROM_MONTH));
+                }
+                if (!string.IsNullOrEmpty(PS_FROM_YEAR))
+                {
+                    command.Parameters.Add(new OracleParameter("PS_FROM_YEAR", PS_FROM_YEAR));
+                }
+                if (!string.IsNullOrEmpty(PS_TO_MONTH))
+                {
+                    command.Parameters.Add(new OracleParameter("PS_TO_MONTH", PS_TO_MONTH));
+                }
+                if (!string.IsNullOrEmpty(PS_TO_YEAR))
+                {
+                    command.Parameters.Add(new OracleParameter("PS_TO_YEAR", PS_TO_YEAR));
+                }
+                if (!string.IsNullOrEmpty(PS_QUALIFICATION))
+                {
+                    command.Parameters.Add(new OracleParameter("PS_QUALIFICATION", PS_QUALIFICATION));
+                }
+                if (!string.IsNullOrEmpty(PS_MAJOR))
+                {
+                    command.Parameters.Add(new OracleParameter("PS_MAJOR", PS_MAJOR));
+                }
+                if (!string.IsNullOrEmpty(PS_COUNTRY_ID))
+                {
+                    command.Parameters.Add(new OracleParameter("PS_COUNTRY_ID", PS_COUNTRY_ID));
+                }
+                OracleDataAdapter sd = new OracleDataAdapter(command);
+                sd.Fill(dt);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+
+            return dt;
         }
 
         public int INSERT_PS_STUDY() {
@@ -543,9 +659,7 @@ namespace WEB_PERSONAL.Entities {
             return result;
         }
     }
-    /// <summary>
-    /// 
-    /// </summary>
+
     public class PS_PROFESSIONAL_LICENSE {
         public int PS_PL_ID { get; set; }
         public string PS_CITIZEN_ID { get; set; }
@@ -562,6 +676,80 @@ namespace WEB_PERSONAL.Entities {
             this.PS_DEPARTMENT = PS_DEPARTMENT;
             this.PS_LICENSE_NO = PS_LICENSE_NO;
             this.PS_USE_DATE = PS_USE_DATE;
+        }
+
+        public DataTable SELECT_PS_PROFESSIONAL_LICENSE(string PS_CITIZEN_ID, string PS_LICENSE_NAME, string PS_DEPARTMENT, string PS_LICENSE_NO, string PS_USE_DATE)
+        {
+            DataTable dt = new DataTable();
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            string query = "SELECT * FROM PS_PROFESSIONAL_LICENSE ";
+            if (!string.IsNullOrEmpty(PS_CITIZEN_ID) || !string.IsNullOrEmpty(PS_LICENSE_NAME) || !string.IsNullOrEmpty(PS_DEPARTMENT) || !string.IsNullOrEmpty(PS_LICENSE_NO) || !string.IsNullOrEmpty(PS_USE_DATE))
+            {
+                query += " where 1=1 ";
+                if (!string.IsNullOrEmpty(PS_CITIZEN_ID))
+                {
+                    query += " and PS_CITIZEN_ID like :PS_CITIZEN_ID ";
+                }
+                if (!string.IsNullOrEmpty(PS_LICENSE_NAME))
+                {
+                    query += " and PS_LICENSE_NAME like :PS_LICENSE_NAME ";
+                }
+                if (!string.IsNullOrEmpty(PS_DEPARTMENT))
+                {
+                    query += " and PS_DEPARTMENT like :PS_DEPARTMENT ";
+                }
+                if (!string.IsNullOrEmpty(PS_LICENSE_NO))
+                {
+                    query += " and PS_LICENSE_NO like :PS_LICENSE_NO ";
+                }
+                if (!string.IsNullOrEmpty(PS_USE_DATE))
+                {
+                    query += " and PS_USE_DATE like :PS_USE_DATE ";
+                }
+            }
+            OracleCommand command = new OracleCommand(query, conn);
+            // Create the command
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                if (!string.IsNullOrEmpty(PS_CITIZEN_ID))
+                {
+                    command.Parameters.Add(new OracleParameter("PS_CITIZEN_ID", PS_CITIZEN_ID));
+                }
+                if (!string.IsNullOrEmpty(PS_LICENSE_NAME))
+                {
+                    command.Parameters.Add(new OracleParameter("PS_LICENSE_NAME", PS_LICENSE_NAME));
+                }
+                if (!string.IsNullOrEmpty(PS_DEPARTMENT))
+                {
+                    command.Parameters.Add(new OracleParameter("PS_DEPARTMENT", PS_DEPARTMENT));
+                }
+                if (!string.IsNullOrEmpty(PS_LICENSE_NO))
+                {
+                    command.Parameters.Add(new OracleParameter("PS_LICENSE_NO", PS_LICENSE_NO));
+                }
+                if (!string.IsNullOrEmpty(PS_USE_DATE))
+                {
+                    command.Parameters.Add(new OracleParameter("PS_USE_DATE", PS_USE_DATE));
+                }
+                OracleDataAdapter sd = new OracleDataAdapter(command);
+                sd.Fill(dt);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+
+            return dt;
         }
 
         public int INSERT_PS_PROFESSIONAL_LICENSE() {
@@ -609,6 +797,7 @@ namespace WEB_PERSONAL.Entities {
                 command.Parameters.Add(new OracleParameter("PS_LICENSE_NAME", PS_LICENSE_NAME));
                 command.Parameters.Add(new OracleParameter("PS_DEPARTMENT", PS_DEPARTMENT));
                 command.Parameters.Add(new OracleParameter("PS_LICENSE_NO", PS_LICENSE_NO));
+                command.Parameters.Add(new OracleParameter("PS_USE_DATE", PS_USE_DATE));
                 command.Parameters.Add(new OracleParameter("PS_PL_ID", PS_PL_ID));
                 if (command.ExecuteNonQuery() > 0) {
                     result = true;
@@ -643,9 +832,7 @@ namespace WEB_PERSONAL.Entities {
             return result;
         }
     }
-    /// <summary>
-    /// 
-    /// </summary>
+
     public class PS_TRAINING {
         public int PS_TRAINING_ID { get; set; }
         public string PS_CITIZEN_ID { get; set; }
@@ -666,6 +853,96 @@ namespace WEB_PERSONAL.Entities {
             this.PS_TO_MONTH = PS_TO_MONTH;
             this.PS_TO_YEAR = PS_TO_YEAR;
             this.PS_DEPARTMENT = PS_DEPARTMENT;
+        }
+
+        public DataTable SELECT_PS_TRAINING(string PS_CITIZEN_ID, string PS_COURSE, string PS_FROM_MONTH, string PS_FROM_YEAR, string PS_TO_MONTH, string PS_TO_YEAR, string PS_DEPARTMENT)
+        {
+            DataTable dt = new DataTable();
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            string query = "SELECT * FROM PS_TRAINING ";
+            if (!string.IsNullOrEmpty(PS_CITIZEN_ID) || !string.IsNullOrEmpty(PS_COURSE) || !string.IsNullOrEmpty(PS_FROM_MONTH) || !string.IsNullOrEmpty(PS_FROM_YEAR) || !string.IsNullOrEmpty(PS_TO_MONTH) || !string.IsNullOrEmpty(PS_TO_YEAR) || !string.IsNullOrEmpty(PS_DEPARTMENT))
+            {
+                query += " where 1=1 ";
+                if (!string.IsNullOrEmpty(PS_CITIZEN_ID))
+                {
+                    query += " and PS_CITIZEN_ID like :PS_CITIZEN_ID ";
+                }
+                if (!string.IsNullOrEmpty(PS_COURSE))
+                {
+                    query += " and PS_COURSE like :PS_COURSE ";
+                }
+                if (!string.IsNullOrEmpty(PS_FROM_MONTH))
+                {
+                    query += " and PS_FROM_MONTH like :PS_FROM_MONTH ";
+                }
+                if (!string.IsNullOrEmpty(PS_FROM_YEAR))
+                {
+                    query += " and PS_FROM_YEAR like :PS_FROM_YEAR ";
+                }
+                if (!string.IsNullOrEmpty(PS_TO_MONTH))
+                {
+                    query += " and PS_TO_MONTH like :PS_TO_MONTH ";
+                }
+                if (!string.IsNullOrEmpty(PS_TO_YEAR))
+                {
+                    query += " and PS_TO_YEAR like :PS_TO_YEAR ";
+                }
+                if (!string.IsNullOrEmpty(PS_DEPARTMENT))
+                {
+                    query += " and PS_DEPARTMENT like :PS_DEPARTMENT ";
+                }
+            }
+            OracleCommand command = new OracleCommand(query, conn);
+            // Create the command
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                if (!string.IsNullOrEmpty(PS_CITIZEN_ID))
+                {
+                    command.Parameters.Add(new OracleParameter("PS_CITIZEN_ID", PS_CITIZEN_ID));
+                }
+                if (!string.IsNullOrEmpty(PS_COURSE))
+                {
+                    command.Parameters.Add(new OracleParameter("PS_COURSE", PS_COURSE));
+                }
+                if (!string.IsNullOrEmpty(PS_FROM_MONTH))
+                {
+                    command.Parameters.Add(new OracleParameter("PS_FROM_MONTH", PS_FROM_MONTH));
+                }
+                if (!string.IsNullOrEmpty(PS_FROM_YEAR))
+                {
+                    command.Parameters.Add(new OracleParameter("PS_FROM_YEAR", PS_FROM_YEAR));
+                }
+                if (!string.IsNullOrEmpty(PS_TO_MONTH))
+                {
+                    command.Parameters.Add(new OracleParameter("PS_TO_MONTH", PS_TO_MONTH));
+                }
+                if (!string.IsNullOrEmpty(PS_TO_YEAR))
+                {
+                    command.Parameters.Add(new OracleParameter("PS_TO_YEAR", PS_TO_YEAR));
+                }
+                if (!string.IsNullOrEmpty(PS_DEPARTMENT))
+                {
+                    command.Parameters.Add(new OracleParameter("PS_DEPARTMENT", PS_DEPARTMENT));
+                }
+                OracleDataAdapter sd = new OracleDataAdapter(command);
+                sd.Fill(dt);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+
+            return dt;
         }
 
         public int INSERT_PS_TRAINING() {
@@ -700,7 +977,7 @@ namespace WEB_PERSONAL.Entities {
             OracleConnection conn = ConnectionDB.GetOracleConnection();
             string query = "Update PS_TRAINING Set ";
             query += " PS_CITIZEN_ID = :PS_CITIZEN_ID ,";
-            query += " PS_COURSE = :PS_COURSE  ,";
+            query += " PS_COURSE = :PS_COURSE ,";
             query += " PS_FROM_MONTH = :PS_FROM_MONTH ,";
             query += " PS_FROM_YEAR = :PS_FROM_YEAR ,";
             query += " PS_TO_MONTH = :PS_TO_MONTH ,";
@@ -754,9 +1031,7 @@ namespace WEB_PERSONAL.Entities {
             return result;
         }
     }
-    /// <summary>
-    /// 
-    /// </summary>
+
     public class PS_DISCIPLINARY_AND_AMNESTY {
         public int PS_DAA_ID { get; set; }
         public string PS_CITIZEN_ID { get; set; }
@@ -771,6 +1046,72 @@ namespace WEB_PERSONAL.Entities {
             this.PS_YEAR = PS_YEAR;
             this.PS_DAA_NAME = PS_DAA_NAME;
             this.PS_REF = PS_REF;
+        }
+
+        public DataTable SELECT_PS_DISCIPLINARY_AND_AMNESTY(string PS_CITIZEN_ID, string PS_YEAR, string PS_DAA_NAME, string PS_REF)
+        {
+            DataTable dt = new DataTable();
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            string query = "SELECT * FROM PS_DISCIPLINARY_AND_AMNESTY ";
+            if (!string.IsNullOrEmpty(PS_CITIZEN_ID) || !string.IsNullOrEmpty(PS_YEAR) || !string.IsNullOrEmpty(PS_DAA_NAME) || !string.IsNullOrEmpty(PS_REF))
+            {
+                query += " where 1=1 ";
+                if (!string.IsNullOrEmpty(PS_CITIZEN_ID))
+                {
+                    query += " and PS_CITIZEN_ID like :PS_CITIZEN_ID ";
+                }
+                if (!string.IsNullOrEmpty(PS_YEAR))
+                {
+                    query += " and PS_YEAR like :PS_YEAR ";
+                }
+                if (!string.IsNullOrEmpty(PS_DAA_NAME))
+                {
+                    query += " and PS_DAA_NAME like :PS_DAA_NAME ";
+                }
+                if (!string.IsNullOrEmpty(PS_REF))
+                {
+                    query += " and PS_REF like :PS_REF ";
+                }
+            }
+            OracleCommand command = new OracleCommand(query, conn);
+            // Create the command
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                if (!string.IsNullOrEmpty(PS_CITIZEN_ID))
+                {
+                    command.Parameters.Add(new OracleParameter("PS_CITIZEN_ID", PS_CITIZEN_ID));
+                }
+                if (!string.IsNullOrEmpty(PS_YEAR))
+                {
+                    command.Parameters.Add(new OracleParameter("PS_YEAR", PS_YEAR));
+                }
+                if (!string.IsNullOrEmpty(PS_DAA_NAME))
+                {
+                    command.Parameters.Add(new OracleParameter("PS_DAA_NAME", PS_DAA_NAME));
+                }
+                if (!string.IsNullOrEmpty(PS_REF))
+                {
+                    command.Parameters.Add(new OracleParameter("PS_REF", PS_REF));
+                }
+                OracleDataAdapter sd = new OracleDataAdapter(command);
+                sd.Fill(dt);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+
+            return dt;
         }
 
         public int INSERT_PS_DISCIPLINARY_AND_AMNESTY() {
@@ -849,9 +1190,7 @@ namespace WEB_PERSONAL.Entities {
             return result;
         }
     }
-    /// <summary>
-    /// 
-    /// </summary>
+
     public class PS_POSITION_AND_SALARY {
         public int PS_PAS_ID { get; set; }
         public string PS_CITIZEN_ID { get; set; }
@@ -876,6 +1215,112 @@ namespace WEB_PERSONAL.Entities {
             this.PS_SALARY = PS_SALARY;
             this.PS_SALARY_POSITION = PS_SALARY_POSITION;
             this.PS_REF = PS_REF;
+        }
+
+        public DataTable SELECT_PS_POSITION_AND_SALARY(string PS_CITIZEN_ID, string PS_DATE, string PS_POSITION, string PS_POSITION_NO, string PS_POSITION_TYPE, string PS_POSITION_DEGREE, string PS_SALARY, string PS_SALARY_POSITION, string PS_REF)
+        {
+            DataTable dt = new DataTable();
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            string query = "SELECT * FROM PS_POSITION_AND_SALARY ";
+            if (!string.IsNullOrEmpty(PS_CITIZEN_ID) || !string.IsNullOrEmpty(PS_DATE) || !string.IsNullOrEmpty(PS_POSITION) || !string.IsNullOrEmpty(PS_POSITION_NO) || !string.IsNullOrEmpty(PS_POSITION_TYPE) || !string.IsNullOrEmpty(PS_POSITION_DEGREE) || !string.IsNullOrEmpty(PS_SALARY) || !string.IsNullOrEmpty(PS_SALARY_POSITION) || !string.IsNullOrEmpty(PS_REF))
+            {
+                query += " where 1=1 ";
+                if (!string.IsNullOrEmpty(PS_CITIZEN_ID))
+                {
+                    query += " and PS_CITIZEN_ID like :PS_CITIZEN_ID ";
+                }
+                if (!string.IsNullOrEmpty(PS_DATE))
+                {
+                    query += " and PS_DATE like :PS_DATE ";
+                }
+                if (!string.IsNullOrEmpty(PS_POSITION))
+                {
+                    query += " and PS_POSITION like :PS_POSITION ";
+                }
+                if (!string.IsNullOrEmpty(PS_POSITION_NO))
+                {
+                    query += " and PS_POSITION_NO like :PS_POSITION_NO ";
+                }
+                if (!string.IsNullOrEmpty(PS_POSITION_TYPE))
+                {
+                    query += " and PS_POSITION_TYPE like :PS_POSITION_TYPE ";
+                }
+                if (!string.IsNullOrEmpty(PS_POSITION_DEGREE))
+                {
+                    query += " and PS_POSITION_DEGREE like :PS_POSITION_DEGREE ";
+                }
+                if (!string.IsNullOrEmpty(PS_SALARY))
+                {
+                    query += " and PS_SALARY like :PS_SALARY ";
+                }
+                if (!string.IsNullOrEmpty(PS_SALARY_POSITION))
+                {
+                    query += " and PS_SALARY_POSITION like :PS_SALARY_POSITION ";
+                }
+                if (!string.IsNullOrEmpty(PS_REF))
+                {
+                    query += " and PS_REF like :PS_REF ";
+                }
+            }
+            OracleCommand command = new OracleCommand(query, conn);
+            // Create the command
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                if (!string.IsNullOrEmpty(PS_CITIZEN_ID))
+                {
+                    command.Parameters.Add(new OracleParameter("PS_CITIZEN_ID", PS_CITIZEN_ID));
+                }
+                if (!string.IsNullOrEmpty(PS_DATE))
+                {
+                    command.Parameters.Add(new OracleParameter("PS_DATE", PS_DATE));
+                }
+                if (!string.IsNullOrEmpty(PS_POSITION))
+                {
+                    command.Parameters.Add(new OracleParameter("PS_POSITION", PS_POSITION));
+                }
+                if (!string.IsNullOrEmpty(PS_POSITION_NO))
+                {
+                    command.Parameters.Add(new OracleParameter("PS_POSITION_NO", PS_POSITION_NO));
+                }
+                if (!string.IsNullOrEmpty(PS_POSITION_TYPE))
+                {
+                    command.Parameters.Add(new OracleParameter("PS_POSITION_TYPE", PS_POSITION_TYPE));
+                }
+                if (!string.IsNullOrEmpty(PS_POSITION_DEGREE))
+                {
+                    command.Parameters.Add(new OracleParameter("PS_POSITION_DEGREE", PS_POSITION_DEGREE));
+                }
+                if (!string.IsNullOrEmpty(PS_SALARY))
+                {
+                    command.Parameters.Add(new OracleParameter("PS_SALARY", PS_SALARY));
+                }
+                if (!string.IsNullOrEmpty(PS_SALARY_POSITION))
+                {
+                    command.Parameters.Add(new OracleParameter("PS_SALARY_POSITION", PS_SALARY_POSITION));
+                }
+                if (!string.IsNullOrEmpty(PS_REF))
+                {
+                    command.Parameters.Add(new OracleParameter("PS_REF", PS_REF));
+                }
+                OracleDataAdapter sd = new OracleDataAdapter(command);
+                sd.Fill(dt);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+
+            return dt;
         }
 
         public int INSERT_PS_POSITION_AND_SALARY() {

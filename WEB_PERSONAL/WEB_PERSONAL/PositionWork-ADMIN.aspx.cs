@@ -94,7 +94,7 @@ namespace WEB_PERSONAL
         }
         protected void modDeleteCommand(Object sender, GridViewDeleteEventArgs e)
         {
-            string id = GridView1.DataKeys[e.RowIndex].Value.ToString();
+            int id = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Value);
             ClassPositionWork pw = new ClassPositionWork();
             pw.POSITION_WORK_ID = id;
             pw.DeletePositionWork();
@@ -108,7 +108,7 @@ namespace WEB_PERSONAL
             Label lblPositionWorkIDEdit = (Label)GridView1.Rows[e.RowIndex].FindControl("lblPositionWorkIDEdit");
             TextBox txtPositionWorkNameEdit = (TextBox)GridView1.Rows[e.RowIndex].FindControl("txtPositionWorkNameEdit");
 
-            ClassPositionWork pw = new ClassPositionWork(lblPositionWorkIDEdit.Text, txtPositionWorkNameEdit.Text);
+            ClassPositionWork pw = new ClassPositionWork(Convert.ToInt32(lblPositionWorkIDEdit.Text), txtPositionWorkNameEdit.Text);
 
             if (pw.CheckUsePositionWorkName())
             {

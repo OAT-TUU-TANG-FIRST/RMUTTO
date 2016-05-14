@@ -19,6 +19,7 @@ namespace WEB_PERSONAL {
                 GridView1.DataBind();
 
                 if(GridView1.Rows.Count > 0) {
+                    lbGS1.Visible = false;
                     TableHeaderCell headerCell = new TableHeaderCell();
                     headerCell.Text = "ดูข้อมูล";
                     GridView1.HeaderRow.Cells.Add(headerCell);
@@ -59,6 +60,8 @@ namespace WEB_PERSONAL {
                     }
 
                     Util.NormalizeGridViewDate(GridView1, 2);
+                } else {
+                    lbGS1.Visible = true;
                 }
                 
             }
@@ -68,6 +71,7 @@ namespace WEB_PERSONAL {
                 GridView3.DataBind();
 
                 if (GridView3.Rows.Count > 0) {
+                    lbGS3.Visible = false;
                     TableHeaderCell headerCell = new TableHeaderCell();
                     headerCell.Text = "ตกลง";
                     GridView3.HeaderRow.Cells.Add(headerCell);
@@ -108,6 +112,8 @@ namespace WEB_PERSONAL {
                     }
 
                     Util.NormalizeGridViewDate(GridView3, 2);
+                } else {
+                    lbGS3.Visible = true;
                 }
 
 
@@ -118,6 +124,7 @@ namespace WEB_PERSONAL {
                 GridView2.DataBind();
 
                 if(GridView2.Rows.Count > 0) {
+                    lbGS2.Visible = false;
                     TableHeaderCell headerCell = new TableHeaderCell();
                     headerCell.Text = "ดูข้อมูล";
                     GridView2.HeaderRow.Cells.Add(headerCell);
@@ -157,13 +164,44 @@ namespace WEB_PERSONAL {
                     }
 
                     Util.NormalizeGridViewDate(GridView2, 2);
+                } else {
+                    lbGS2.Visible = true;
                 }
                 
                 
             }
-         
+            using(OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
+                con.Open();
+                using(OracleCommand com = new OracleCommand("SELECT YEAR, SICK_NOW, SICK_REQ, KIJ_NOW, KIJ_REQ, GB_NOW, GB_REQ, HGB_NOW, HGB_REQ, REST_NOW, REST_REQ, REST_MAX, ORDAIN_NOW, ORDAIN_REQ, HUJ_NOW, HUJ_REQ  FROM LEV_CLAIM WHERE PS_CITIZEN_ID = '" + loginPerson.CitizenID + "'", con)) {
+                    using(OracleDataReader reader = com.ExecuteReader()) {
+                        while(reader.Read()) {
+                            TableRow r = new TableRow();
+                            TableCell c;
+                            for (int i = 0; i < 16; i++) {
+                                c = new TableCell();
+                                c.Text = reader.GetValue(i).ToString();
+                                r.Cells.Add(c);
+                            }
+
+                            Table1.Rows.Add(r); 
+                        }
+                    }
+                }
+            }
 
             //}
+        }
+
+        protected void lbuVS1_Click(object sender, EventArgs e) {
+            MultiView1.ActiveViewIndex = 0;
+            lbuVS1.CssClass = "ps-vs-sel";
+            lbuVS2.CssClass = "ps-vs";
+        }
+
+        protected void lbuVS2_Click(object sender, EventArgs e) {
+            MultiView1.ActiveViewIndex = 1;
+            lbuVS1.CssClass = "ps-vs";
+            lbuVS2.CssClass = "ps-vs-sel";
         }
     }
 }

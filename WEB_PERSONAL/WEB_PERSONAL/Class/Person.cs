@@ -108,8 +108,8 @@ namespace WEB_PERSONAL.Class {
         public string PositionID;
         public string PositionName;
 
-
-        
+        public int WorkYear;
+        public int Salary;
         
         public int NotificationCount;
 
@@ -124,6 +124,9 @@ namespace WEB_PERSONAL.Class {
         }
         public string MotherFirstNameAndLastName {
             get { return MotherFirstName + " " + MotherLastName; }
+        }
+        public string CoupleFirstNameAndLastName {
+            get { return CoupleFirstName + " " + CoupleLastName; }
         }
 
     }

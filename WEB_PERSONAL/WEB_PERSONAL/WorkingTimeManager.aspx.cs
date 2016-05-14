@@ -13,11 +13,17 @@ namespace WEB_PERSONAL {
 
             if (!IsPostBack) {
                 DatabaseManager.BindDropDown(ddlVX1WorktimeSec, "SELECT * FROM LEV_WORKTIME_SEC ORDER BY WORKTIME_SEC_ID ASC", "WORKTIME_SEC_NAME", "WORKTIME_SEC_ID", "--กรุณาเลือกกะงาน--");
+                DatabaseManager.BindDropDown(ddlEditKa, "SELECT * FROM LEV_WORKTIME_SEC ORDER BY WORKTIME_SEC_ID ASC", "WORKTIME_SEC_NAME", "WORKTIME_SEC_ID", "--กรุณาเลือกกะงาน--");
             }
 
-            DatabaseManager.BindGridView(gv1, "SELECT WORKTIME_ID รหัส, LEV_WORKTIME.CITIZEN_ID รหัสพนักงาน, (SELECT PS_FN_TH || ' ' || PS_LN_TH FROM PS_PERSON WHERE PS_PERSON.PS_CITIZEN_ID = LEV_WORKTIME.CITIZEN_ID) ชื่อ, TODAY วันที่, LEV_WORKTIME.WORKTIME_SEC_ID รหัสกะงาน, (SELECT WORKTIME_SEC_HOUR_IN || ':' || WORKTIME_SEC_MINUTE_IN FROM LEV_WORKTIME_SEC WHERE LEV_WORKTIME_SEC.WORKTIME_SEC_ID = LEV_WORKTIME.WORKTIME_SEC_ID) เข้างาน, (SELECT WORKTIME_SEC_HOUR_OUT || ':' || WORKTIME_SEC_MINUTE_OUT FROM LEV_WORKTIME_SEC WHERE LEV_WORKTIME_SEC.WORKTIME_SEC_ID = LEV_WORKTIME.WORKTIME_SEC_ID) เลิกงาน, HOUR_IN || ':' || MINUTE_IN เข้า, HOUR_OUT || ':' || MINUTE_OUT ออก, LATE_IN สาย, LATE_OUT ออกก่อน, ABSENT ขาด FROM LEV_WORKTIME, LEV_WORKTIME_SEC WHERE LEV_WORKTIME.WORKTIME_SEC_ID = LEV_WORKTIME_SEC.WORKTIME_SEC_ID ORDER BY WORKTIME_ID DESC");
+            BindGV("SELECT WORKTIME_ID รหัส, LEV_WORKTIME.CITIZEN_ID รหัสพนักงาน, (SELECT PS_FN_TH || ' ' || PS_LN_TH FROM PS_PERSON WHERE PS_PERSON.PS_CITIZEN_ID = LEV_WORKTIME.CITIZEN_ID) ชื่อ, TODAY วันที่, LEV_WORKTIME.WORKTIME_SEC_ID รหัสกะงาน, (SELECT WORKTIME_SEC_HOUR_IN || ':' || WORKTIME_SEC_MINUTE_IN FROM LEV_WORKTIME_SEC WHERE LEV_WORKTIME_SEC.WORKTIME_SEC_ID = LEV_WORKTIME.WORKTIME_SEC_ID) เข้างาน, (SELECT WORKTIME_SEC_HOUR_OUT || ':' || WORKTIME_SEC_MINUTE_OUT FROM LEV_WORKTIME_SEC WHERE LEV_WORKTIME_SEC.WORKTIME_SEC_ID = LEV_WORKTIME.WORKTIME_SEC_ID) เลิกงาน, HOUR_IN || ':' || MINUTE_IN เข้า, HOUR_OUT || ':' || MINUTE_OUT ออก, LATE_IN สาย, LATE_OUT ออกก่อน, ABSENT ขาด FROM LEV_WORKTIME, LEV_WORKTIME_SEC WHERE LEV_WORKTIME.WORKTIME_SEC_ID = LEV_WORKTIME_SEC.WORKTIME_SEC_ID ORDER BY WORKTIME_ID DESC");
+        }
 
-            if(gv1.Rows.Count > 0) {
+        private void BindGV(string sql) {
+            DatabaseManager.BindGridView(gv1, sql);
+
+            if (gv1.Rows.Count > 0) {
+                lbuVX1DeleteSelected.Visible = true;
                 Util.GridViewAddCheckBox(gv1);
 
                 TableHeaderCell headerCell = new TableHeaderCell();
@@ -31,8 +37,9 @@ namespace WEB_PERSONAL {
                         {
                             LinkButton btn = new LinkButton();
                             btn.CssClass = "ps-button-img";
-                            btn.Text = "<img src='Image/Small/wrench.png'></img>";
+                            btn.Text = "<img src='Image/Small/document-edit.png'></img>";
                             btn.Click += (e2, e3) => {
+                                MultiView1.ActiveViewIndex = 1;
                                 //Response.Redirect("ViewLeaveForm.aspx?Form=1&LeaveID=" + ID);
                             };
                             cell.Controls.Add(btn);
@@ -50,16 +57,16 @@ namespace WEB_PERSONAL {
 
                         gv1.Rows[i].Cells.Add(cell);
                     }
-                    
-                    if (Util.StringEqual(gv1.Rows[i].Cells[8].Text, new string[] { "0", "", ":", " ", "&nbsp;"})) {
+
+                    if (Util.StringEqual(gv1.Rows[i].Cells[8].Text, new string[] { "0", "", ":", " ", "&nbsp;" })) {
                         gv1.Rows[i].Cells[8].Text = "-";
                     }
 
-                    if (Util.StringEqual(gv1.Rows[i].Cells[9].Text, new string[] { "0", "", ":", " ", "&nbsp;"})) {
+                    if (Util.StringEqual(gv1.Rows[i].Cells[9].Text, new string[] { "0", "", ":", " ", "&nbsp;" })) {
                         gv1.Rows[i].Cells[9].Text = "-";
                     }
 
-                    if (Util.StringEqual(gv1.Rows[i].Cells[10].Text, new string[] { "0", "", ":", " ", "&nbsp;"})) {
+                    if (Util.StringEqual(gv1.Rows[i].Cells[10].Text, new string[] { "0", "", ":", " ", "&nbsp;" })) {
                         gv1.Rows[i].Cells[10].Text = "-";
                     }
 
@@ -77,6 +84,8 @@ namespace WEB_PERSONAL {
 
                 Util.NormalizeGridViewDate(gv1, 4);
 
+            } else {
+                lbuVX1DeleteSelected.Visible = false;
             }
         }
 
@@ -140,6 +149,30 @@ namespace WEB_PERSONAL {
  
  
             }
+        }
+
+        protected void ddlEditKa_SelectedIndexChanged(object sender, EventArgs e) {
+
+        }
+
+        protected void lbuEditBack_Click(object sender, EventArgs e) {
+            MultiView1.ActiveViewIndex = 0;
+        }
+
+        protected void lbuEditFinish_Click(object sender, EventArgs e) {
+
+        }
+
+        protected void lbuSearch_Click(object sender, EventArgs e) {
+            string sql = "SELECT WORKTIME_ID รหัส, LEV_WORKTIME.CITIZEN_ID รหัสพนักงาน, (SELECT PS_FN_TH || ' ' || PS_LN_TH FROM PS_PERSON WHERE PS_PERSON.PS_CITIZEN_ID = LEV_WORKTIME.CITIZEN_ID) ชื่อ, TODAY วันที่, LEV_WORKTIME.WORKTIME_SEC_ID รหัสกะงาน, (SELECT WORKTIME_SEC_HOUR_IN || ':' || WORKTIME_SEC_MINUTE_IN FROM LEV_WORKTIME_SEC WHERE LEV_WORKTIME_SEC.WORKTIME_SEC_ID = LEV_WORKTIME.WORKTIME_SEC_ID) เข้างาน, (SELECT WORKTIME_SEC_HOUR_OUT || ':' || WORKTIME_SEC_MINUTE_OUT FROM LEV_WORKTIME_SEC WHERE LEV_WORKTIME_SEC.WORKTIME_SEC_ID = LEV_WORKTIME.WORKTIME_SEC_ID) เลิกงาน, HOUR_IN || ':' || MINUTE_IN เข้า, HOUR_OUT || ':' || MINUTE_OUT ออก, LATE_IN สาย, LATE_OUT ออกก่อน, ABSENT ขาด FROM LEV_WORKTIME, LEV_WORKTIME_SEC WHERE LEV_WORKTIME.WORKTIME_SEC_ID = LEV_WORKTIME_SEC.WORKTIME_SEC_ID";
+            if(tbSearchCitizenID.Text != "") {
+                sql += " AND CITIZEN_ID = '" + tbSearchCitizenID.Text + "'";
+            }
+            if (tbSearchDate.Text != "") {
+                sql += " AND TODAY = '" + Util.DatabaseToDateSearch(tbSearchDate.Text) + "'";
+            }
+            sql += " ORDER BY WORKTIME_ID DESC";
+            BindGV(sql);
         }
     }
 }

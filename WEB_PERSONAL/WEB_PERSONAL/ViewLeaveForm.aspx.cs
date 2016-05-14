@@ -77,6 +77,10 @@ namespace WEB_PERSONAL {
                 lbCmdHighComment.Text = f1.CommanderHighComment;
                 lbCmdHighDate.Text = f1.CommanderHighDate;
                 lbCmdHighAllow.Text = f1.CommanderHighAllowName;
+                if(f1.DoctorCertificate != "") {
+                    string loc = "Upload/DrCer/" + f1.DoctorCertificate;
+                    div_dr_cer.InnerHtml += "<a href='" + loc + "'><img src='" + loc + "' /></a>";
+                }
             }
 
         }
