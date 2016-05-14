@@ -73,7 +73,7 @@
       <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Oracle.DataAccess, Version=2.121.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86" />
+    <Reference Include="Oracle.DataAccess, Version=2.121.2.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86" />
     <Reference Include="System.Data.OracleClient" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -958,7 +958,6 @@
     </Content>
     <Content Include="Plugins\EPPlus.dll" />
     <Content Include="Plugins\EPPlus.XML" />
-    <Content Include="Position-ADMIN.aspx" />
     <Content Include="PositionWork-ADMIN.aspx" />
     <Content Include="jquery.mCustomScrollbar\jquery.mCustomScrollbar.concat.min.js" />
     <Content Include="Province-ADMIN.aspx" />
@@ -1384,12 +1383,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>personalDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Position-ADMIN.aspx.cs">
-      <DependentUpon>Position-ADMIN.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Position-ADMIN.aspx.designer.cs">
-      <DependentUpon>Position-ADMIN.aspx</DependentUpon>
     </Compile>
     <Compile Include="PositionWork-ADMIN.aspx.cs">
       <DependentUpon>PositionWork-ADMIN.aspx</DependentUpon>
