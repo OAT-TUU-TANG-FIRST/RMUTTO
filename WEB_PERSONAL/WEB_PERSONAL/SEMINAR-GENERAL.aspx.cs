@@ -225,12 +225,13 @@ namespace WEB_PERSONAL
             S.InsertSEMINAR();
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('เพิ่มข้อมูลเรียบร้อย')", true);
             ClearData();
+            MultiView1.ActiveViewIndex = 0;
         }
 
 
         protected void btnCancelSeminar_Click(object sender, EventArgs e)
         {
-            ClearData();
+            MultiView1.ActiveViewIndex = 0;
         }
 
 
@@ -279,6 +280,9 @@ namespace WEB_PERSONAL
             }
         }
 
-
+        protected void lblNextV1_Click(object sender, EventArgs e)
+        {
+            MultiView1.ActiveViewIndex = 1;
+        }
     }
 }
