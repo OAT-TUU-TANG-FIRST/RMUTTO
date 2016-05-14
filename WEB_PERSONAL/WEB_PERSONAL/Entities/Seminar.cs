@@ -10,7 +10,6 @@ namespace WEB_PERSONAL.Entities
 {
     public class Seminar
     {
-
         public int SEMINAR_ID { get; set; }
         public string SEMINAR_NAME { get; set; }
         public string SEMINAR_LASTNAME { get; set; }
@@ -72,25 +71,33 @@ namespace WEB_PERSONAL.Entities
             this.CITIZEN_ID = CITIZEN_ID;
         }
 
-        public DataTable GetSEMINAR(string SEMINAR_NAME, string SEMINAR_DATETIME_FROM, string SEMINAR_DATETIME_TO)
+        public DataTable GetSEMINAR(string CITIZEN_ID, string SEMINAR_NAME, string SEMINAR_LASTNAME, string SEMINAR_NAMEOFPROJECT, string SEMINAR_PLACE)
         {
             DataTable dt = new DataTable();
             OracleConnection conn = ConnectionDB.GetOracleConnection();
             string query = "SELECT * FROM TB_SEMINAR ";
-            if (!string.IsNullOrEmpty(SEMINAR_NAME) || !string.IsNullOrEmpty(SEMINAR_DATETIME_FROM) || !string.IsNullOrEmpty(SEMINAR_DATETIME_TO))
+            if (!string.IsNullOrEmpty(CITIZEN_ID) || !string.IsNullOrEmpty(SEMINAR_NAME))
             {
                 query += " where 1=1 ";
+                if (!string.IsNullOrEmpty(CITIZEN_ID))
+                {
+                    query += " and CITIZEN_ID like :CITIZEN_ID ";
+                }
                 if (!string.IsNullOrEmpty(SEMINAR_NAME))
                 {
                     query += " and SEMINAR_NAME like :SEMINAR_NAME ";
                 }
-                if (!string.IsNullOrEmpty(SEMINAR_DATETIME_FROM))
+                if (!string.IsNullOrEmpty(SEMINAR_LASTNAME))
                 {
-                    query += " and CONVERT(varchar(10),SEMINAR_DATETIME_FROM,103) = @SEMINAR_DATETIME_FROM ";
+                    query += " and SEMINAR_LASTNAME like :SEMINAR_LASTNAME ";
                 }
-                if (!string.IsNullOrEmpty(SEMINAR_DATETIME_TO))
+                if (!string.IsNullOrEmpty(SEMINAR_NAMEOFPROJECT))
                 {
-                    query += " and CONVERT(varchar(10),SEMINAR_DATETIME_TO,103) = @SEMINAR_DATETIME_TO ";
+                    query += " and SEMINAR_NAMEOFPROJECT like :SEMINAR_NAMEOFPROJECT ";
+                }
+                if (!string.IsNullOrEmpty(SEMINAR_PLACE))
+                {
+                    query += " and SEMINAR_PLACE like :SEMINAR_PLACE ";
                 }
             }
             OracleCommand command = new OracleCommand(query, conn);
@@ -101,61 +108,25 @@ namespace WEB_PERSONAL.Entities
                 {
                     conn.Open();
                 }
-
+                if (!string.IsNullOrEmpty(CITIZEN_ID))
+                {
+                    command.Parameters.Add(new OracleParameter("CITIZEN_ID", CITIZEN_ID));
+                }
                 if (!string.IsNullOrEmpty(SEMINAR_NAME))
                 {
-                    command.Parameters.Add(new OracleParameter("SEMINAR_NAME", SEMINAR_NAME + "%"));
+                    command.Parameters.Add(new OracleParameter("SEMINAR_NAME", SEMINAR_NAME ));
                 }
-                if (!string.IsNullOrEmpty(SEMINAR_DATETIME_FROM))
-                {
-                    command.Parameters.Add(new OracleParameter("SEMINAR_DATETIME_FROM", SEMINAR_DATETIME_FROM));
-                }
-                if (!string.IsNullOrEmpty(SEMINAR_DATETIME_TO))
-                {
-                    command.Parameters.Add(new OracleParameter("SEMINAR_DATETIME_TO", SEMINAR_DATETIME_TO));
-                }
-                OracleDataAdapter sd = new OracleDataAdapter(command);
-                sd.Fill(dt);
-
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-            finally
-            {
-                command.Dispose();
-                conn.Close();
-            }
-
-            return dt;
-        }
-        public DataTable GetSEMINARSearch(string SEMINAR_NAME)
-        {
-            DataTable dt = new DataTable();
-            OracleConnection conn = ConnectionDB.GetOracleConnection();
-            string query = "SELECT * FROM TB_SEMINAR ";
-            if (!string.IsNullOrEmpty(SEMINAR_NAME))
-            {
-                query += " where 1=1 ";
                 if (!string.IsNullOrEmpty(SEMINAR_NAME))
                 {
-                    query += " and SEMINAR_NAME like :SEMINAR_NAME ";
+                    command.Parameters.Add(new OracleParameter("SEMINAR_LASTNAME", SEMINAR_LASTNAME));
                 }
-            }
-            OracleCommand command = new OracleCommand(query, conn);
-            // Create the command
-            try
-            {
-                if (conn.State != ConnectionState.Open)
-                {
-                    conn.Open();
-                }
-
                 if (!string.IsNullOrEmpty(SEMINAR_NAME))
                 {
-                    command.Parameters.Add(new OracleParameter("SEMINAR_NAME", SEMINAR_NAME + "%"));
+                    command.Parameters.Add(new OracleParameter("SEMINAR_NAMEOFPROJECT", SEMINAR_NAMEOFPROJECT));
+                }
+                if (!string.IsNullOrEmpty(SEMINAR_NAME))
+                {
+                    command.Parameters.Add(new OracleParameter("SEMINAR_PLACE", SEMINAR_PLACE));
                 }
                 OracleDataAdapter sd = new OracleDataAdapter(command);
                 sd.Fill(dt);
