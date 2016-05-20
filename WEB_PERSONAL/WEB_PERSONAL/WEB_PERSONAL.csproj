@@ -735,6 +735,7 @@
     <Content Include="CSS\Late.css" />
     <Content Include="CSS\Leave.css" />
     <Content Include="CSS\Person-Detail.css" />
+    <Content Include="CSS\Print.css" />
     <Content Include="CSS\Profile.css" />
     <Content Include="CSS\Salary.css" />
     <Content Include="CSS\Study.css" />
@@ -768,6 +769,7 @@
     <Content Include="Image\rmutto_clear.jpg" />
     <Content Include="Image\Small\a.png" />
     <Content Include="Image\Small\back.png" />
+    <Content Include="Image\Small\bell.png" />
     <Content Include="Image\Small\bin.png" />
     <Content Include="Image\Small\calendar.png" />
     <Content Include="Image\Small\clip.png" />
@@ -778,19 +780,29 @@
     <Content Include="Image\Small\document-create.png" />
     <Content Include="Image\Small\document-delete.png" />
     <Content Include="Image\Small\document-edit.png" />
+    <Content Include="Image\Small\document.png" />
     <Content Include="Image\Small\edit.png" />
     <Content Include="Image\Small\home.png" />
     <Content Include="Image\Small\home3.png" />
+    <Content Include="Image\Small\ID.png" />
+    <Content Include="Image\Small\image.png" />
     <Content Include="Image\Small\info.png" />
     <Content Include="Image\Small\key.png" />
+    <Content Include="Image\Small\list.png" />
+    <Content Include="Image\Small\location.png" />
     <Content Include="Image\Small\lock.png" />
     <Content Include="Image\Small\logout.png" />
     <Content Include="Image\Small\medal.png" />
     <Content Include="Image\Small\money.png" />
     <Content Include="Image\Small\next.png" />
+    <Content Include="Image\Small\office.png" />
     <Content Include="Image\Small\person2.png" />
     <Content Include="Image\Small\phone.png" />
+    <Content Include="Image\Small\pointer.png" />
+    <Content Include="Image\Small\position.png" />
     <Content Include="Image\Small\printer.png" />
+    <Content Include="Image\Small\progress.png" />
+    <Content Include="Image\Small\question.png" />
     <Content Include="Image\Small\report.png" />
     <Content Include="Image\loading_spinner.gif" />
     <Content Include="Image\login.png" />
@@ -977,6 +989,7 @@
     <Content Include="Plugins\EPPlus.XML" />
     <Content Include="PositionWork-ADMIN.aspx" />
     <Content Include="jquery.mCustomScrollbar\jquery.mCustomScrollbar.concat.min.js" />
+    <Content Include="PrintLeaveForm.aspx" />
     <Content Include="Province-ADMIN.aspx" />
     <Content Include="Religion-ADMIN.aspx" />
     <Content Include="Report-Custom-Person.aspx" />
@@ -1154,6 +1167,7 @@
     </Compile>
     <Compile Include="Class\DatabaseManager.cs" />
     <Compile Include="Class\Form1Package.cs" />
+    <Compile Include="Class\LeaveData.cs" />
     <Compile Include="Class\Person.cs" />
     <Compile Include="Class\PersonnelSystem.cs" />
     <Compile Include="Connection\ConnectionDB.cs" />
@@ -1491,6 +1505,13 @@
     </Compile>
     <Compile Include="PositionWork-ADMIN.aspx.designer.cs">
       <DependentUpon>PositionWork-ADMIN.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintLeaveForm.aspx.cs">
+      <DependentUpon>PrintLeaveForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrintLeaveForm.aspx.designer.cs">
+      <DependentUpon>PrintLeaveForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="Profile.aspx.cs">
       <DependentUpon>Profile.aspx</DependentUpon>

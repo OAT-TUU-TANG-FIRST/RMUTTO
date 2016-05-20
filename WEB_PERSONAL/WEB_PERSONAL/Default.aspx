@@ -20,6 +20,10 @@
                     <td class="col2"><asp:Label ID="lbName" runat="server" Text="-"></asp:Label></td>
                 </tr>
                 <tr>
+                    <td class="col1">ประเภท</td>
+                    <td class="col2"><asp:Label ID="lbStaffType" runat="server" Text="-"></asp:Label></td>
+                </tr>
+                <tr>
                     <td class="col1">ตำแหน่ง</td>
                     <td class="col2"><asp:Label ID="lbPosition" runat="server" Text="-"></asp:Label></td>
                 </tr>

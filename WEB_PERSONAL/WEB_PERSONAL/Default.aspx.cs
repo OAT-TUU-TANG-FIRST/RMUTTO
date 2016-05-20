@@ -16,6 +16,7 @@ namespace WEB_PERSONAL {
             PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
             Person loginPerson = ps.LoginPerson;
             lbName.Text = loginPerson.FullName;
+            lbStaffType.Text = loginPerson.StaffTypeName;
             lbPosition.Text = loginPerson.PositionName;
             lbPositionRank.Text = loginPerson.AdminPositionName;
             lbDepartment.Text = loginPerson.DivisionName;
@@ -25,7 +26,7 @@ namespace WEB_PERSONAL {
             int count_finish = 0;
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
-                using (OracleCommand com = new OracleCommand("SELECT COUNT(LEAVE_ID) FROM LEV_MAIN WHERE PS_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND LEV_MAIN.LEAVE_STATE = 3", con)) {
+                using (OracleCommand com = new OracleCommand("SELECT COUNT(LEAVE_ID) FROM LEV_DATA WHERE PS_ID = '" + loginPerson.CitizenID + "' AND LEAVE_STATUS_ID in(3,7)", con)) {
                     using (OracleDataReader reader = com.ExecuteReader()) {
                         while (reader.Read()) {
                             count_finish = int.Parse(reader.GetValue(0).ToString());
@@ -54,7 +55,7 @@ namespace WEB_PERSONAL {
                 }
                 if (count_finish != 0) {
                     notification_area.InnerHtml += "<div class='complete_left' style='margin-bottom: 20px;'></div>";
-                    notification_area.InnerHtml += "<div class='complete_center'><img src='Image/Small/correct.png' class='icon_left'/>คุณมี " + count_finish + " รายการที่สำเร็จ<br>";
+                    notification_area.InnerHtml += "<div class='complete_center'><img src='Image/Small/correct.png' class='icon_left'/>คุณมี " + count_finish + " การลาที่เสร็จสิ้น<br>";
                     notification_area.InnerHtml += "<a href='LeaveHistory.aspx' class='ps-button'>ไปหน้าประวัติการลา<img src='Image/Small/next.png' class='icon_right' /></a>";
                     notification_area.InnerHtml += "</div>";
                 }

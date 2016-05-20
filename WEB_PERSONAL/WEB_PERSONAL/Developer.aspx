@@ -7,30 +7,12 @@
     <div class="default_page_style">
 
         <div>
+            <asp:TextBox ID="tbConsole" runat="server" TextMode="MultiLine" Width="500" Height="500"></asp:TextBox>
+        </div>
+
+        <div>
             <asp:LinkButton ID="LinkButton3" runat="server" OnClick="LinkButton3_Click">POPUP</asp:LinkButton>
-        </div>
-
-        <div>
-            <asp:LinkButton ID="LinkButton2" runat="server" OnClick="LinkButton2_Click">Test Date</asp:LinkButton>
-        </div>
-
-        <div>
-            <div>
-                <asp:listbox runat="server" id="lbo1"></asp:listbox>
-            </div>
-            <div>
-                <asp:textbox runat="server" id="tbc1" cssclass="ps-textbox"></asp:textbox>
-            </div>
-            <div>
-                <asp:textbox runat="server" id="tbc2" TextMode="MultiLine" cssclass="ps-textbox"></asp:textbox>
-            </div>
-            <div>
-                <asp:linkbutton runat="server" id="lbc" cssclass="ps-button" OnClick="lbc_Click">Send</asp:linkbutton>
-            </div>
-            
-            
-        </div>
-        
+        </div> 
 
         <asp:Table ID="Table1" runat="server">
             <asp:TableHeaderRow>

@@ -14,165 +14,260 @@ namespace WEB_PERSONAL {
             PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
             Person loginPerson = ps.LoginPerson;
             {
-                SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEV_MAIN.LEAVE_ID รหัสการลา, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_MAIN.LEAVE_TYPE_ID) ประเภทการลา, LEV_MAIN.REQ_DATE วันที่ข้อมูล, LEAVE_STATE สถานะ, NVL(CH_ALLOW,0) ผลการอนุมัติ FROM LEV_MAIN WHERE LEAVE_STATE in(1,2) AND PS_CITIZEN_ID = '" + loginPerson.CitizenID + "'");
-                GridView1.DataSource = sds;
-                GridView1.DataBind();
+                SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEAVE_ID รหัสการลา, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_DATA.LEAVE_TYPE_ID) ประเภทการลา, REQ_DATE วันที่ข้อมูล, (SELECT PS_FN_TH || ' ' || PS_LN_TH FROM PS_PERSON WHERE PS_CITIZEN_ID = LEV_DATA.PS_ID) ชื่อผู้ลา, (SELECT TB_POSITION.NAME FROM TB_POSITION, PS_PERSON WHERE TB_POSITION.ID = PS_PERSON.PS_POSITION_ID AND PS_PERSON.PS_CITIZEN_ID = LEV_DATA.PS_ID) ตำแหน่ง, (SELECT ADMIN_POSITION_NAME FROM TB_ADMIN_POSITION, PS_PERSON WHERE ADMIN_POSITION_ID = PS_PERSON.PS_ADMIN_POS_ID AND PS_PERSON.PS_CITIZEN_ID = LEV_DATA.PS_ID) ระดับ, (SELECT LEAVE_STATUS_NAME FROM LEV_STATUS WHERE LEV_STATUS.LEAVE_STATUS_ID = LEV_DATA.LEAVE_STATUS_ID) สถานะ FROM LEV_DATA WHERE LEAVE_STATUS_ID in(1,2,5,6) AND PS_ID = '" + loginPerson.CitizenID + "' ORDER BY LEAVE_ID DESC");
+                gvProgressing.DataSource = sds;
+                gvProgressing.DataBind();
 
-                if(GridView1.Rows.Count > 0) {
-                    lbGS1.Visible = false;
+                if(gvProgressing.Rows.Count > 0) {
+                    lbProgressing.Visible = false;
                     TableHeaderCell headerCell = new TableHeaderCell();
                     headerCell.Text = "ดูข้อมูล";
-                    GridView1.HeaderRow.Cells.Add(headerCell);
+                    gvProgressing.HeaderRow.Cells.Add(headerCell);
 
-                    for (int i = 0; i < GridView1.Rows.Count; ++i) {
-                        string ID = GridView1.Rows[i].Cells[0].Text;
+                    gvProgressing.HeaderRow.Cells[0].Text = "<img src='Image/Small/ID.png' class='icon_left'/>" + gvProgressing.HeaderRow.Cells[0].Text;
+                    gvProgressing.HeaderRow.Cells[1].Text = "<img src='Image/Small/list.png' class='icon_left'/>" + gvProgressing.HeaderRow.Cells[1].Text;
+                    gvProgressing.HeaderRow.Cells[2].Text = "<img src='Image/Small/calendar.png' class='icon_left'/>" + gvProgressing.HeaderRow.Cells[2].Text;
+                    gvProgressing.HeaderRow.Cells[3].Text = "<img src='Image/Small/person2.png' class='icon_left'/>" + gvProgressing.HeaderRow.Cells[3].Text;
+                    gvProgressing.HeaderRow.Cells[6].Text = "<img src='Image/Small/question.png' class='icon_left'/>" + gvProgressing.HeaderRow.Cells[6].Text;
+
+                    for (int i = 0; i < gvProgressing.Rows.Count; ++i) {
+                        string ID = gvProgressing.Rows[i].Cells[0].Text;
                         TableCell cell = new TableCell();
                         LinkButton btn = new LinkButton();
                         btn.CssClass = "ps-button-img";
                         btn.Text = "<img src='Image/Small/search.png'></img>";
                         btn.Click += (e2, e3) => {
-                            Response.Redirect("ViewLeaveForm.aspx?Form=1&LeaveID=" + ID);
+                            Response.Redirect("ViewLeaveForm.aspx?LeaveID=" + ID);
                         };
                         cell.Controls.Add(btn);
-                        GridView1.Rows[i].Cells.Add(cell);
-
-                        if(Util.StringEqual(GridView1.Rows[i].Cells[3].Text, new string[] {"1", "2" })) {
-                            GridView1.Rows[i].Cells[3].Text = "อยู่ระหว่างการพิจารณา";
-                            GridView1.Rows[i].Cells[3].ForeColor = System.Drawing.Color.Orange;
-                        }
-                        if (Util.StringEqual(GridView1.Rows[i].Cells[3].Text, new string[] { "3", "4" })) {
-                            GridView1.Rows[i].Cells[3].Text = "เสร็จสิ้น";
-                            GridView1.Rows[i].Cells[3].ForeColor = System.Drawing.Color.Green;
-                        }
-                        if (Util.StringEqual(GridView1.Rows[i].Cells[4].Text, new string[] { "0" })) {
-                            GridView1.Rows[i].Cells[4].Text = "-";
-                            GridView1.Rows[i].Cells[4].ForeColor = System.Drawing.Color.Orange;
-                        }
-                        if (Util.StringEqual(GridView1.Rows[i].Cells[4].Text, new string[] { "1" })) {
-                            GridView1.Rows[i].Cells[4].Text = "อนุมัติ";
-                            GridView1.Rows[i].Cells[4].ForeColor = System.Drawing.Color.Green;
-                        }
-                        if (Util.StringEqual(GridView1.Rows[i].Cells[4].Text, new string[] { "2" })) {
-                            GridView1.Rows[i].Cells[4].Text = "ไม่อนุมัติ";
-                            GridView1.Rows[i].Cells[4].ForeColor = System.Drawing.Color.Red;
-                        }
+                        gvProgressing.Rows[i].Cells.Add(cell);
 
                     }
 
-                    Util.NormalizeGridViewDate(GridView1, 2);
+                    Util.NormalizeGridViewDate(gvProgressing, 2);
                 } else {
-                    lbGS1.Visible = true;
+                    lbProgressing.Visible = true;
                 }
                 
             }
             {
-                SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEV_MAIN.LEAVE_ID รหัสการลา, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_MAIN.LEAVE_TYPE_ID) ประเภทการลา, LEV_MAIN.REQ_DATE วันที่ข้อมูล, LEAVE_STATE สถานะ, NVL(CH_ALLOW,0) ผลการอนุมัติ FROM LEV_MAIN WHERE LEAVE_STATE = 3 AND PS_CITIZEN_ID = '" + loginPerson.CitizenID + "'");
-                GridView3.DataSource = sds;
-                GridView3.DataBind();
+                SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEAVE_ID รหัสการลา, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_DATA.LEAVE_TYPE_ID) ประเภทการลา, REQ_DATE วันที่ข้อมูล, (SELECT PS_FN_TH || ' ' || PS_LN_TH FROM PS_PERSON WHERE PS_CITIZEN_ID = LEV_DATA.PS_ID) ชื่อผู้ลา, (SELECT TB_POSITION.NAME FROM TB_POSITION, PS_PERSON WHERE TB_POSITION.ID = PS_PERSON.PS_POSITION_ID AND PS_PERSON.PS_CITIZEN_ID = LEV_DATA.PS_ID) ตำแหน่ง, (SELECT ADMIN_POSITION_NAME FROM TB_ADMIN_POSITION, PS_PERSON WHERE ADMIN_POSITION_ID = PS_PERSON.PS_ADMIN_POS_ID AND PS_PERSON.PS_CITIZEN_ID = LEV_DATA.PS_ID) ระดับ, (SELECT LEAVE_STATUS_NAME FROM LEV_STATUS WHERE LEV_STATUS.LEAVE_STATUS_ID = LEV_DATA.LEAVE_STATUS_ID) สถานะ, NVL(CH_ALLOW,0) ผลการอนุมัติ FROM LEV_DATA WHERE LEAVE_STATUS_ID in(3,7) AND PS_ID = '" + loginPerson.CitizenID + "' ORDER BY LEAVE_ID DESC");
+                gvFinish.DataSource = sds;
+                gvFinish.DataBind();
 
-                if (GridView3.Rows.Count > 0) {
-                    lbGS3.Visible = false;
+                if (gvFinish.Rows.Count > 0) {
+                    lbFinish.Visible = false;
                     TableHeaderCell headerCell = new TableHeaderCell();
                     headerCell.Text = "ตกลง";
-                    GridView3.HeaderRow.Cells.Add(headerCell);
+                    gvFinish.HeaderRow.Cells.Add(headerCell);
 
-                    for (int i = 0; i < GridView3.Rows.Count; ++i) {
-                        string ID = GridView3.Rows[i].Cells[0].Text;
+                    gvFinish.HeaderRow.Cells[0].Text = "<img src='Image/Small/ID.png' class='icon_left'/>" + gvFinish.HeaderRow.Cells[0].Text;
+                    gvFinish.HeaderRow.Cells[1].Text = "<img src='Image/Small/list.png' class='icon_left'/>" + gvFinish.HeaderRow.Cells[1].Text;
+                    gvFinish.HeaderRow.Cells[2].Text = "<img src='Image/Small/calendar.png' class='icon_left'/>" + gvFinish.HeaderRow.Cells[2].Text;
+                    gvFinish.HeaderRow.Cells[3].Text = "<img src='Image/Small/person2.png' class='icon_left'/>" + gvFinish.HeaderRow.Cells[3].Text;        
+                    gvFinish.HeaderRow.Cells[6].Text = "<img src='Image/Small/question.png' class='icon_left'/>" + gvFinish.HeaderRow.Cells[6].Text;
+                    gvFinish.HeaderRow.Cells[7].Text = "<img src='Image/Small/correct.png' class='icon_left'/>" + gvFinish.HeaderRow.Cells[7].Text;
+
+                    for (int i = 0; i < gvFinish.Rows.Count; ++i) {
+                        string ID = gvFinish.Rows[i].Cells[0].Text;
                         TableCell cell = new TableCell();
                         LinkButton btn = new LinkButton();
                         btn.CssClass = "ps-button-img";
                         btn.Text = "ตกลง";
                         btn.Click += (e2, e3) => {
-                            DatabaseManager.ExecuteNonQuery("UPDATE LEV_MAIN SET LEAVE_STATE = 4 WHERE LEAVE_ID = " + ID);
+                            LeaveData leaveData = new LeaveData();
+                            leaveData.Load(int.Parse(ID));
+
+                            if (leaveData.LeaveStatusID == 3) {
+                                DatabaseManager.ExecuteNonQuery("UPDATE LEV_DATA SET LEAVE_STATUS_ID = 4 WHERE LEAVE_ID = " + ID);
+                            } else if (leaveData.LeaveStatusID == 7) {
+                                DatabaseManager.ExecuteNonQuery("UPDATE LEV_DATA SET LEAVE_STATUS_ID = 8 WHERE LEAVE_ID = " + ID);
+                            }
                             Response.Redirect("LeaveHistory.aspx");
                         };
                         cell.Controls.Add(btn);
-                        GridView3.Rows[i].Cells.Add(cell);
+                        gvFinish.Rows[i].Cells.Add(cell);
 
-                        if (Util.StringEqual(GridView3.Rows[i].Cells[3].Text, new string[] { "1", "2" })) {
-                            GridView3.Rows[i].Cells[3].Text = "อยู่ระหว่างการพิจารณา";
-                            GridView3.Rows[i].Cells[3].ForeColor = System.Drawing.Color.Orange;
+                        if (Util.StringEqual(gvFinish.Rows[i].Cells[7].Text, new string[] { "0" })) {
+                            gvFinish.Rows[i].Cells[7].Text = "-";
+                            gvFinish.Rows[i].Cells[7].ForeColor = System.Drawing.Color.Orange;
                         }
-                        if (Util.StringEqual(GridView3.Rows[i].Cells[3].Text, new string[] { "3", "4" })) {
-                            GridView3.Rows[i].Cells[3].Text = "เสร็จสิ้น";
-                            GridView3.Rows[i].Cells[3].ForeColor = System.Drawing.Color.Green;
+                        if (Util.StringEqual(gvFinish.Rows[i].Cells[7].Text, new string[] { "1" })) {
+                            gvFinish.Rows[i].Cells[7].Text = "อนุมัติ";
+                            gvFinish.Rows[i].Cells[7].ForeColor = System.Drawing.Color.Green;
                         }
-                        if (Util.StringEqual(GridView3.Rows[i].Cells[4].Text, new string[] { "0" })) {
-                            GridView3.Rows[i].Cells[4].Text = "-";
-                            GridView3.Rows[i].Cells[4].ForeColor = System.Drawing.Color.Orange;
-                        }
-                        if (Util.StringEqual(GridView3.Rows[i].Cells[4].Text, new string[] { "1" })) {
-                            GridView3.Rows[i].Cells[4].Text = "อนุมัติ";
-                            GridView3.Rows[i].Cells[4].ForeColor = System.Drawing.Color.Green;
-                        }
-                        if (Util.StringEqual(GridView3.Rows[i].Cells[4].Text, new string[] { "2" })) {
-                            GridView3.Rows[i].Cells[4].Text = "ไม่อนุมัติ";
-                            GridView3.Rows[i].Cells[4].ForeColor = System.Drawing.Color.Red;
+                        if (Util.StringEqual(gvFinish.Rows[i].Cells[7].Text, new string[] { "2" })) {
+                            gvFinish.Rows[i].Cells[7].Text = "ไม่อนุมัติ";
+                            gvFinish.Rows[i].Cells[7].ForeColor = System.Drawing.Color.Red;
                         }
                     }
 
-                    Util.NormalizeGridViewDate(GridView3, 2);
+                    Util.NormalizeGridViewDate(gvFinish, 2);
                 } else {
-                    lbGS3.Visible = true;
+                    lbFinish.Visible = true;
                 }
 
 
             }
             {
-                SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEV_MAIN.LEAVE_ID รหัสการลา, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_MAIN.LEAVE_TYPE_ID) ประเภทการลา, LEV_MAIN.REQ_DATE วันที่ข้อมูล, LEAVE_STATE สถานะ, NVL(CH_ALLOW,0) ผลการอนุมัติ FROM LEV_MAIN WHERE LEAVE_STATE = 4 AND PS_CITIZEN_ID = '" + loginPerson.CitizenID + "'");
-                GridView2.DataSource = sds;
-                GridView2.DataBind();
+                SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEAVE_ID รหัสการลา, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_DATA.LEAVE_TYPE_ID) ประเภทการลา, REQ_DATE วันที่ข้อมูล,  (SELECT PS_FN_TH || ' ' || PS_LN_TH FROM PS_PERSON WHERE PS_CITIZEN_ID = LEV_DATA.PS_ID) ชื่อผู้ลา, (SELECT TB_POSITION.NAME FROM TB_POSITION, PS_PERSON WHERE TB_POSITION.ID = PS_PERSON.PS_POSITION_ID AND PS_PERSON.PS_CITIZEN_ID = LEV_DATA.PS_ID) ตำแหน่ง, (SELECT ADMIN_POSITION_NAME FROM TB_ADMIN_POSITION, PS_PERSON WHERE ADMIN_POSITION_ID = PS_PERSON.PS_ADMIN_POS_ID AND PS_PERSON.PS_CITIZEN_ID = LEV_DATA.PS_ID) ระดับ, (SELECT LEAVE_STATUS_NAME FROM LEV_STATUS WHERE LEV_STATUS.LEAVE_STATUS_ID = LEV_DATA.LEAVE_STATUS_ID) สถานะ, NVL(CH_ALLOW,0) ผลการอนุมัติ FROM LEV_DATA WHERE LEAVE_STATUS_ID in(4,8) AND PS_ID = '" + loginPerson.CitizenID + "' ORDER BY LEAVE_ID DESC");
+                gvHistory.DataSource = sds;
+                gvHistory.DataBind();
 
-                if(GridView2.Rows.Count > 0) {
-                    lbGS2.Visible = false;
+                if(gvHistory.Rows.Count > 0) {
+                    lbHistory.Visible = false;
                     TableHeaderCell headerCell = new TableHeaderCell();
                     headerCell.Text = "ดูข้อมูล";
-                    GridView2.HeaderRow.Cells.Add(headerCell);
+                    gvHistory.HeaderRow.Cells.Add(headerCell);
 
-                    for (int i = 0; i < GridView2.Rows.Count; ++i) {
-                        string ID = GridView2.Rows[i].Cells[0].Text;
+                    gvHistory.HeaderRow.Cells[0].Text = "<img src='Image/Small/ID.png' class='icon_left'/>" + gvHistory.HeaderRow.Cells[0].Text;
+                    gvHistory.HeaderRow.Cells[1].Text = "<img src='Image/Small/list.png' class='icon_left'/>" + gvHistory.HeaderRow.Cells[1].Text;
+                    gvHistory.HeaderRow.Cells[2].Text = "<img src='Image/Small/calendar.png' class='icon_left'/>" + gvHistory.HeaderRow.Cells[2].Text;
+                    gvHistory.HeaderRow.Cells[3].Text = "<img src='Image/Small/person2.png' class='icon_left'/>" + gvHistory.HeaderRow.Cells[3].Text;
+                    gvHistory.HeaderRow.Cells[6].Text = "<img src='Image/Small/question.png' class='icon_left'/>" + gvHistory.HeaderRow.Cells[6].Text;
+                    gvHistory.HeaderRow.Cells[7].Text = "<img src='Image/Small/correct.png' class='icon_left'/>" + gvHistory.HeaderRow.Cells[7].Text;
+
+                    for (int i = 0; i < gvHistory.Rows.Count; ++i) {
+                        string ID = gvHistory.Rows[i].Cells[0].Text;
                         TableCell cell = new TableCell();
                         LinkButton btn = new LinkButton();
                         btn.CssClass = "ps-button-img";
                         btn.Text = "<img src='Image/Small/search.png'></img>";
                         btn.Click += (e2, e3) => {
-                            Response.Redirect("ViewLeaveForm.aspx?Form=1&LeaveID=" + ID);
+                            Response.Redirect("ViewLeaveForm.aspx?LeaveID=" + ID);
                         };
                         cell.Controls.Add(btn);
-                        GridView2.Rows[i].Cells.Add(cell);
+                        gvHistory.Rows[i].Cells.Add(cell);
 
-                        if (Util.StringEqual(GridView2.Rows[i].Cells[3].Text, new string[] { "1", "2" })) {
-                            GridView2.Rows[i].Cells[3].Text = "อยู่ระหว่างการพิจารณา";
-                            GridView2.Rows[i].Cells[3].ForeColor = System.Drawing.Color.Orange;
+                        if (Util.StringEqual(gvHistory.Rows[i].Cells[7].Text, new string[] { "0" })) {
+                            gvHistory.Rows[i].Cells[7].Text = "-";
+                            gvHistory.Rows[i].Cells[7].ForeColor = System.Drawing.Color.Orange;
                         }
-                        if (Util.StringEqual(GridView2.Rows[i].Cells[3].Text, new string[] { "3", "4" })) {
-                            GridView2.Rows[i].Cells[3].Text = "เสร็จสิ้น";
-                            GridView2.Rows[i].Cells[3].ForeColor = System.Drawing.Color.Green;
+                        if (Util.StringEqual(gvHistory.Rows[i].Cells[7].Text, new string[] { "1" })) {
+                            gvHistory.Rows[i].Cells[7].Text = "อนุมัติ";
+                            gvHistory.Rows[i].Cells[7].ForeColor = System.Drawing.Color.Green;
                         }
-                        if (Util.StringEqual(GridView2.Rows[i].Cells[4].Text, new string[] { "0" })) {
-                            GridView2.Rows[i].Cells[4].Text = "-";
-                            GridView2.Rows[i].Cells[4].ForeColor = System.Drawing.Color.Orange;
-                        }
-                        if (Util.StringEqual(GridView2.Rows[i].Cells[4].Text, new string[] { "1" })) {
-                            GridView2.Rows[i].Cells[4].Text = "อนุมัติ";
-                            GridView2.Rows[i].Cells[4].ForeColor = System.Drawing.Color.Green;
-                        }
-                        if (Util.StringEqual(GridView2.Rows[i].Cells[4].Text, new string[] { "2" })) {
-                            GridView2.Rows[i].Cells[4].Text = "ไม่อนุมัติ";
-                            GridView2.Rows[i].Cells[4].ForeColor = System.Drawing.Color.Red;
+                        if (Util.StringEqual(gvHistory.Rows[i].Cells[7].Text, new string[] { "2" })) {
+                            gvHistory.Rows[i].Cells[7].Text = "ไม่อนุมัติ";
+                            gvHistory.Rows[i].Cells[7].ForeColor = System.Drawing.Color.Red;
                         }
                     }
 
-                    Util.NormalizeGridViewDate(GridView2, 2);
+                    Util.NormalizeGridViewDate(gvHistory, 2);
                 } else {
-                    lbGS2.Visible = true;
+                    lbHistory.Visible = true;
                 }
                 
                 
             }
-            using(OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
+
+            {
+                SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEAVE_ID รหัสการลา, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_DATA.LEAVE_TYPE_ID) ประเภทการลา, REQ_DATE วันที่ข้อมูล,  (SELECT PS_FN_TH || ' ' || PS_LN_TH FROM PS_PERSON WHERE PS_CITIZEN_ID = LEV_DATA.PS_ID) ชื่อผู้ลา, (SELECT TB_POSITION.NAME FROM TB_POSITION, PS_PERSON WHERE TB_POSITION.ID = PS_PERSON.PS_POSITION_ID AND PS_PERSON.PS_CITIZEN_ID = LEV_DATA.PS_ID) ตำแหน่ง, (SELECT ADMIN_POSITION_NAME FROM TB_ADMIN_POSITION, PS_PERSON WHERE ADMIN_POSITION_ID = PS_PERSON.PS_ADMIN_POS_ID AND PS_PERSON.PS_CITIZEN_ID = LEV_DATA.PS_ID) ระดับ, (SELECT LEAVE_STATUS_NAME FROM LEV_STATUS WHERE LEV_STATUS.LEAVE_STATUS_ID = LEV_DATA.LEAVE_STATUS_ID) สถานะ, NVL(CH_ALLOW,0) ผลการอนุมัติ FROM LEV_DATA WHERE CL_ID = '" + loginPerson.CitizenID + "' ORDER BY LEAVE_ID DESC");
+                gvCL.DataSource = sds;
+                gvCL.DataBind();
+
+                if (gvCL.Rows.Count > 0) {
+                    lbCL.Visible = false;
+                    TableHeaderCell headerCell = new TableHeaderCell();
+                    headerCell.Text = "ดูข้อมูล";
+                    gvCL.HeaderRow.Cells.Add(headerCell);
+
+                    gvCL.HeaderRow.Cells[0].Text = "<img src='Image/Small/ID.png' class='icon_left'/>" + gvCL.HeaderRow.Cells[0].Text;
+                    gvCL.HeaderRow.Cells[1].Text = "<img src='Image/Small/list.png' class='icon_left'/>" + gvCL.HeaderRow.Cells[1].Text;
+                    gvCL.HeaderRow.Cells[2].Text = "<img src='Image/Small/calendar.png' class='icon_left'/>" + gvCL.HeaderRow.Cells[2].Text;
+                    gvCL.HeaderRow.Cells[3].Text = "<img src='Image/Small/person2.png' class='icon_left'/>" + gvCL.HeaderRow.Cells[3].Text;
+                    gvCL.HeaderRow.Cells[6].Text = "<img src='Image/Small/question.png' class='icon_left'/>" + gvCL.HeaderRow.Cells[6].Text;
+                    gvCL.HeaderRow.Cells[7].Text = "<img src='Image/Small/correct.png' class='icon_left'/>" + gvCL.HeaderRow.Cells[7].Text;
+
+                    for (int i = 0; i < gvCL.Rows.Count; ++i) {
+                        string ID = gvCL.Rows[i].Cells[0].Text;
+                        TableCell cell = new TableCell();
+                        LinkButton btn = new LinkButton();
+                        btn.CssClass = "ps-button-img";
+                        btn.Text = "<img src='Image/Small/search.png'></img>";
+                        btn.Click += (e2, e3) => {
+                            Response.Redirect("ViewLeaveForm.aspx?LeaveID=" + ID);
+                        };
+                        cell.Controls.Add(btn);
+                        gvCL.Rows[i].Cells.Add(cell);
+
+                        if (Util.StringEqual(gvCL.Rows[i].Cells[7].Text, new string[] { "0" })) {
+                            gvCL.Rows[i].Cells[7].Text = "-";
+                            gvCL.Rows[i].Cells[7].ForeColor = System.Drawing.Color.Orange;
+                        }
+                        if (Util.StringEqual(gvCL.Rows[i].Cells[7].Text, new string[] { "1" })) {
+                            gvCL.Rows[i].Cells[7].Text = "อนุมัติ";
+                            gvCL.Rows[i].Cells[7].ForeColor = System.Drawing.Color.Green;
+                        }
+                        if (Util.StringEqual(gvCL.Rows[i].Cells[7].Text, new string[] { "2" })) {
+                            gvCL.Rows[i].Cells[7].Text = "ไม่อนุมัติ";
+                            gvCL.Rows[i].Cells[7].ForeColor = System.Drawing.Color.Red;
+                        }
+                    }
+
+                    Util.NormalizeGridViewDate(gvCL, 2);
+                } else {
+                    lbCL.Visible = true;
+                }
+
+
+            }
+
+            {
+                SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEAVE_ID รหัสการลา, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_DATA.LEAVE_TYPE_ID) ประเภทการลา, REQ_DATE วันที่ข้อมูล,  (SELECT PS_FN_TH || ' ' || PS_LN_TH FROM PS_PERSON WHERE PS_CITIZEN_ID = LEV_DATA.PS_ID) ชื่อผู้ลา, (SELECT TB_POSITION.NAME FROM TB_POSITION, PS_PERSON WHERE TB_POSITION.ID = PS_PERSON.PS_POSITION_ID AND PS_PERSON.PS_CITIZEN_ID = LEV_DATA.PS_ID) ตำแหน่ง, (SELECT ADMIN_POSITION_NAME FROM TB_ADMIN_POSITION, PS_PERSON WHERE ADMIN_POSITION_ID = PS_PERSON.PS_ADMIN_POS_ID AND PS_PERSON.PS_CITIZEN_ID = LEV_DATA.PS_ID) ระดับ, (SELECT LEAVE_STATUS_NAME FROM LEV_STATUS WHERE LEV_STATUS.LEAVE_STATUS_ID = LEV_DATA.LEAVE_STATUS_ID) สถานะ, NVL(CH_ALLOW,0) ผลการอนุมัติ FROM LEV_DATA WHERE CH_ID = '" + loginPerson.CitizenID + "' ORDER BY LEAVE_ID DESC");
+                gvCH.DataSource = sds;
+                gvCH.DataBind();
+
+                if (gvCH.Rows.Count > 0) {
+                    lbCH.Visible = false;
+                    TableHeaderCell headerCell = new TableHeaderCell();
+                    headerCell.Text = "ดูข้อมูล";
+                    gvCH.HeaderRow.Cells.Add(headerCell);
+
+                    gvCH.HeaderRow.Cells[0].Text = "<img src='Image/Small/ID.png' class='icon_left'/>" + gvCH.HeaderRow.Cells[0].Text;
+                    gvCH.HeaderRow.Cells[1].Text = "<img src='Image/Small/list.png' class='icon_left'/>" + gvCH.HeaderRow.Cells[1].Text;
+                    gvCH.HeaderRow.Cells[2].Text = "<img src='Image/Small/calendar.png' class='icon_left'/>" + gvCH.HeaderRow.Cells[2].Text;
+                    gvCH.HeaderRow.Cells[3].Text = "<img src='Image/Small/person2.png' class='icon_left'/>" + gvCH.HeaderRow.Cells[3].Text;
+                    gvCH.HeaderRow.Cells[6].Text = "<img src='Image/Small/question.png' class='icon_left'/>" + gvCH.HeaderRow.Cells[6].Text;
+                    gvCH.HeaderRow.Cells[7].Text = "<img src='Image/Small/correct.png' class='icon_left'/>" + gvCH.HeaderRow.Cells[7].Text;
+
+                    for (int i = 0; i < gvCH.Rows.Count; ++i) {
+                        string ID = gvCH.Rows[i].Cells[0].Text;
+                        TableCell cell = new TableCell();
+                        LinkButton btn = new LinkButton();
+                        btn.CssClass = "ps-button-img";
+                        btn.Text = "<img src='Image/Small/search.png'></img>";
+                        btn.Click += (e2, e3) => {
+                            Response.Redirect("ViewLeaveForm.aspx?LeaveID=" + ID);
+                        };
+                        cell.Controls.Add(btn);
+                        gvCH.Rows[i].Cells.Add(cell);
+
+                        if (Util.StringEqual(gvCH.Rows[i].Cells[7].Text, new string[] { "0" })) {
+                            gvCH.Rows[i].Cells[7].Text = "-";
+                            gvCH.Rows[i].Cells[7].ForeColor = System.Drawing.Color.Orange;
+                        }
+                        if (Util.StringEqual(gvCH.Rows[i].Cells[7].Text, new string[] { "1" })) {
+                            gvCH.Rows[i].Cells[7].Text = "อนุมัติ";
+                            gvCH.Rows[i].Cells[7].ForeColor = System.Drawing.Color.Green;
+                        }
+                        if (Util.StringEqual(gvCH.Rows[i].Cells[7].Text, new string[] { "2" })) {
+                            gvCH.Rows[i].Cells[7].Text = "ไม่อนุมัติ";
+                            gvCH.Rows[i].Cells[7].ForeColor = System.Drawing.Color.Red;
+                        }
+                    }
+
+                    Util.NormalizeGridViewDate(gvCH, 2);
+                } else {
+                    lbCH.Visible = true;
+                }
+
+
+            }
+
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
-                using(OracleCommand com = new OracleCommand("SELECT YEAR, SICK_NOW, SICK_REQ, KIJ_NOW, KIJ_REQ, GB_NOW, GB_REQ, HGB_NOW, HGB_REQ, REST_NOW, REST_REQ, REST_MAX, ORDAIN_NOW, ORDAIN_REQ, HUJ_NOW, HUJ_REQ  FROM LEV_CLAIM WHERE PS_CITIZEN_ID = '" + loginPerson.CitizenID + "'", con)) {
+                using(OracleCommand com = new OracleCommand("SELECT YEAR, SICK_NOW, SICK_REQ, BUSINESS_NOW, BUSINESS_REQ, GB_NOW, GB_REQ, HGB_NOW, HGB_REQ, REST_NOW, REST_REQ, REST_MAX, ORDAIN_NOW, ORDAIN_REQ, HUJ_NOW, HUJ_REQ  FROM LEV_CLAIM WHERE PS_CITIZEN_ID = '" + loginPerson.CitizenID + "'", con)) {
                     using(OracleDataReader reader = com.ExecuteReader()) {
                         while(reader.Read()) {
                             TableRow r = new TableRow();
@@ -196,12 +291,23 @@ namespace WEB_PERSONAL {
             MultiView1.ActiveViewIndex = 0;
             lbuVS1.CssClass = "ps-vs-sel";
             lbuVS2.CssClass = "ps-vs";
+            lbuVS3.CssClass = "ps-vs";
         }
 
         protected void lbuVS2_Click(object sender, EventArgs e) {
             MultiView1.ActiveViewIndex = 1;
             lbuVS1.CssClass = "ps-vs";
             lbuVS2.CssClass = "ps-vs-sel";
+            lbuVS3.CssClass = "ps-vs";
         }
+
+        protected void lbuVS3_Click(object sender, EventArgs e) {
+            MultiView1.ActiveViewIndex = 2;
+            lbuVS1.CssClass = "ps-vs";
+            lbuVS2.CssClass = "ps-vs";
+            lbuVS3.CssClass = "ps-vs-sel";
+        }
+
+        
     }
 }

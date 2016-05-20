@@ -29,9 +29,6 @@
                 <asp:TableHeaderCell>ลาไปอุปสมบทหรือประกอบพิธีฮัจย์</asp:TableHeaderCell>
             </asp:TableHeaderRow>
         </asp:Table>
-        <div style="margin: 10px 0;">
-            <asp:LinkButton ID="lbuEdit" runat="server" CssClass="ps-button" OnClick="lbuEdit_Click"><img src="Image/Small/wrench.png" class="icon_left"/>แก้ไข</asp:LinkButton>
-        </div>
         
         <div class="ps-separator"></div>
     </div>

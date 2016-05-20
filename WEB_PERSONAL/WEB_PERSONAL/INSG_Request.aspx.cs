@@ -23,6 +23,7 @@ namespace WEB_PERSONAL {
 
             if(ddlInsg.SelectedIndex == 0) {
                 srd.InnerHtml = "";
+                lbuWant.Visible = false;
                 return;
             }
 
@@ -31,12 +32,12 @@ namespace WEB_PERSONAL {
 
             string isv = ddlInsg.SelectedValue;
             lp.WorkYear = 5;
-            lp.Salary = 15000;
+            //lp.Salary = 15000;
 
             int อายุงาน = lp.WorkYear;
             int เงินเดือน = lp.Salary;
             int เงินเดือนขั้นต่ำของชำนาญงาน = DatabaseManager.ExecuteInt("SELECT P_SAL_MIN FROM TB_POSITION_SAL_MINMAX WHERE P_POS_ID = 14102");
-            int ปีดำรงตำแหน่งชำนาญงาน = 4;
+            int ปีดำรงตำแหน่งชำนาญงาน = DatabaseManager.ExecuteInt("SELECT TRUNC((CURRENT_DATE - POSITION_FROM_DATE)/365,0) YEAR FROM PS_POSITION_HISTORY WHERE PS_CITIZEN_ID = '" + lp.CitizenID + "' AND POSITION_ID = '14102'");
 
             Clear();
             AddHeader("เงื่อนไข");
@@ -173,8 +174,10 @@ namespace WEB_PERSONAL {
             AddHeader("สรุปผลการขอ");
             if (work) {
                 AddTrue("สามารถข้อได้");
+                lbuWant.Visible = true;
             } else {
                 AddFalse("ไม่สามารถข้อได้");
+                lbuWant.Visible = false;
             }
         }
         private void Clear() {
@@ -192,6 +195,10 @@ namespace WEB_PERSONAL {
         private void AddFalse(string text) {
             srd.InnerHtml += "<div style='color : #ff0000'><img src='Image/Small/delete.png' class='icon_left' />" + text + "</div>";
             work = false;
+        }
+
+        protected void lbuWant_Click(object sender, EventArgs e) {
+            MultiView1.ActiveViewIndex = 1;
         }
     }
 }

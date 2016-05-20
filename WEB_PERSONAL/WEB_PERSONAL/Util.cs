@@ -112,8 +112,7 @@ namespace WEB_PERSONAL {
             string s_year = ss[2];
             return "วันที่" + NormalizeThaiWord(NumberToThaiWord(s_day)) + "เดือน" + shortToLong(s_month) + "ปี" + NormalizeThaiWord(NumberToThaiWord(s_year));
         }
-        public static string ToThaiMonth(string s) {
-            int month = Int32.Parse(s.Trim());
+        public static string ToThaiMonth(int month) {
             switch (month) {
                 case 1: return "มกราคม";
                 case 2: return "กุมภาพันธ์";
@@ -129,6 +128,9 @@ namespace WEB_PERSONAL {
                 case 12: return "ธันวาคม";
                 default: return "[ERROR]";
             }
+        }
+        public static string ToThaiMonth(string s) {
+            return ToThaiMonth(int.Parse(s));
         }
         public static string shortToLong(string s) {
             switch (s) {
@@ -383,6 +385,30 @@ namespace WEB_PERSONAL {
             return dt;
 
         }
+        public static DateTime ToDateTimeOracle(string date) {
+            string[] split = date.Split(' ');
+            string day = split[0];
+            string month = split[1];
+            string year = split[2];
+            string sMonth = "";
+            switch (month) {
+                case "ม.ค.": sMonth = "01"; break;
+                case "ก.พ.": sMonth = "02"; break;
+                case "มี.ค.": sMonth = "03"; break;
+                case "เม.ย.": sMonth = "04"; break;
+                case "พ.ค.": sMonth = "05"; break;
+                case "มิ.ย.": sMonth = "06"; break;
+                case "ก.ค.": sMonth = "07"; break;
+                case "ส.ค.": sMonth = "08"; break;
+                case "ก.ย.": sMonth = "09"; break;
+                case "ต.ค.": sMonth = "10"; break;
+                case "พ.ย.": sMonth = "11"; break;
+                case "ธ.ค.": sMonth = "12"; break;
+            }
+            DateTime dt = new DateTime(int.Parse(year)-543, int.Parse(sMonth), int.Parse(day));
+            return dt;
+
+        }
         public static string ToThaiMonthShort(string monthNum) {
             switch (int.Parse(monthNum)) {
                 case 1: return "ม.ค.";
@@ -549,7 +575,14 @@ namespace WEB_PERSONAL {
             }
             return v2[0] + " " + v2[1] + " " + (int.Parse(v2[2]) - 543);
         }
-
+        public static int BudgetYear() {
+            DateTime dtToday = DateTime.Today;
+            int budgetYear = dtToday.Year;
+            if (dtToday.Month >= 10) {
+                ++budgetYear;
+            }
+            return budgetYear;
+        }
         public void Insig() {
 
             string ประเภทบุคลากร = "";

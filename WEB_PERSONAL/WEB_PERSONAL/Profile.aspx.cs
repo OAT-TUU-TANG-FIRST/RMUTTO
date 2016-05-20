@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data.OracleClient;
+using Oracle.DataAccess.Client;
 using System.IO;
 using WEB_PERSONAL.Class;
 
@@ -15,9 +15,28 @@ namespace WEB_PERSONAL {
             Person pp = ps.LoginPerson;
 
             profile_images.InnerHtml = "";
-            string[] personImageFileNames = DatabaseManager.GetPersonImageFileNames(pp.CitizenID);
-            for (int i = 0; i < personImageFileNames.Length; i++) {
-                string path = "Upload/PersonImage/" + personImageFileNames[i];
+
+            
+
+            List<int> ids = new List<int>();
+            List<string> urls = new List<string>();
+
+            using(OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
+                con.Open();
+                using(OracleCommand com = new OracleCommand("SELECT ID, URL FROM PS_PERSON_IMAGE WHERE CITIZEN_ID = '" + pp.CitizenID + "'", con)) {
+                    using(OracleDataReader reader = com.ExecuteReader()) {
+                        while(reader.Read()) {
+                            ids.Add(reader.GetInt32(0));
+                            urls.Add(reader.GetString(1));
+                        }
+                    }
+                }
+            }
+
+            for (int i = 0; i < ids.Count; i++) {
+                string path = "Upload/PersonImage/" + urls[i];
+                int ID = ids[i];
+                string url = urls[i];
 
                 Panel p = new Panel();
                 p.Style.Add("display", "inline-block");
@@ -34,30 +53,38 @@ namespace WEB_PERSONAL {
 
                 Panel p2 = new Panel();
                 p.Controls.Add(p2);
-                /*lb.Controls.Add(img1);
-                
-                profile_images.InnerHtml += "<div style='display: inline-block;'>";
-                profile_images.InnerHtml += "<a href='" + path + "'><img src='" + path + "' /></a>";
-                profile_images.InnerHtml += "<div id='id1'></div>";
-                profile_images.InnerHtml += "</div>";*/
 
                 LinkButton lbSelectImagePresent = new LinkButton();
                 lbSelectImagePresent.CssClass = "ps-button";
-                lbSelectImagePresent.Text = "เลือก";
-                lbSelectImagePresent.Click += (e1,e2) => {
-                    Response.Redirect("Default.aspx");
+                lbSelectImagePresent.Text = "<img src='Image/Small/pointer.png' class='icon_left' />เลือก";
+                lbSelectImagePresent.Click += (e1, e2) => {
+                    DatabaseManager.ExecuteNonQuery("UPDATE PS_PERSON_IMAGE SET PRESENT = 0 WHERE CITIZEN_ID = '" + pp.CitizenID + "'");
+                    DatabaseManager.ExecuteNonQuery("UPDATE PS_PERSON_IMAGE SET PRESENT = 1 WHERE CITIZEN_ID = '" + pp.CitizenID + "' AND ID = " + ID);
+                    Response.Redirect("Profile.aspx");
                 };
                 p2.Controls.Add(lbSelectImagePresent);
-                //FindControl("id1").Controls.Add(lbSelectImagePresent);
+
+                LinkButton lbDeleteImagePresent = new LinkButton();
+                lbDeleteImagePresent.CssClass = "ps-button";
+                lbDeleteImagePresent.Text = "<img src='Image/Small/delete.png' class='icon_left' />ลบ";
+                lbDeleteImagePresent.Click += (e1, e2) => {
+                    FileInfo FileIn = new FileInfo(Server.MapPath("~/Upload/PersonImage/" + url));
+                    if (FileIn.Exists) {
+                        FileIn.Delete();
+                    }
+                    DatabaseManager.ExecuteNonQuery("DELETE FROM PS_PERSON_IMAGE WHERE ID = " + ID);
+                    Response.Redirect("Profile.aspx");
+                };
+                p2.Controls.Add(lbDeleteImagePresent);
             }
- 
+
 
             lbCitizenID.Text = pp.CitizenID;
             lbFirstName.Text = pp.FirstName;
             lbLastName.Text = pp.LastName;
             lbGender.Text = pp.GenderName;
-            lbBirthday.Text = pp.BirthDate;
-            lbInWorkDay.Text = pp.InWorkDate;
+            lbBirthday.Text = pp.BirthDate.Value.ToLongDateString();
+            lbInWorkDay.Text = pp.InWorkDate.Value.ToLongDateString();
             lbPosition.Text = pp.PositionName;
             lbAdminPosition.Text = pp.AdminPositionName;
             lbDept.Text = pp.DivisionName;
@@ -102,31 +129,26 @@ namespace WEB_PERSONAL {
         }
 
         protected void lbuUploadPicture_Click(object sender, EventArgs e) {
+            PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
+            Person pp = ps.LoginPerson;
+
             if (FileUpload1.HasFile) {
-                string fname = Path.GetFileName(FileUpload1.FileName);
+                FileInfo fi = new FileInfo(FileUpload1.FileName);
+                string fname = Util.RandomFileName() + fi.Extension;
                 FileUpload1.SaveAs(Server.MapPath("~/Upload/PersonImage/" + fname));
+                using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
+                    con.Open();
+                    using(OracleCommand com = new OracleCommand("INSERT INTO PS_PERSON_IMAGE (ID, CITIZEN_ID, URL, PRESENT) VALUES(SEQ_PERSON_IMAGE_ID.NEXTVAL, :CITIZEN_ID, :URL, :PRESENT)", con)) {
+                        com.Parameters.Add("CITIZEN_ID", pp.CitizenID);
+                        com.Parameters.Add("URL", fname);
+                        int v1 = 0;
+                        com.Parameters.Add("PRESENT", v1);
+                        com.ExecuteNonQuery();
+                    }
+                }
             }
         }
 
-        protected void lbuSec1_Click(object sender, EventArgs e) {
-            MultiView1.ActiveViewIndex = 0;
-            lbuSec1.CssClass = "ps-vs-sel";
-            lbuSec2.CssClass = "ps-vs";
-            lbuSec3.CssClass = "ps-vs";
-        }
-
-        protected void lbuSec2_Click(object sender, EventArgs e) {
-            MultiView1.ActiveViewIndex = 1;
-            lbuSec1.CssClass = "ps-vs";
-            lbuSec2.CssClass = "ps-vs-sel";
-            lbuSec3.CssClass = "ps-vs";
-        }
-
-        protected void lbuSec3_Click(object sender, EventArgs e) {
-            MultiView1.ActiveViewIndex = 2;
-            lbuSec1.CssClass = "ps-vs";
-            lbuSec2.CssClass = "ps-vs";
-            lbuSec3.CssClass = "ps-vs-sel";
-        }
+        
     }
 }

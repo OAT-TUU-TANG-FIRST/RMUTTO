@@ -4,15 +4,19 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.UI.HtmlControls;
 using WEB_PERSONAL.Class;
-using System.Data.OleDb;
 
 namespace WEB_PERSONAL {
-    public partial class ViewLeaveForm : System.Web.UI.Page {
-        protected void Page_Load(object sender, EventArgs e) {
+    public partial class PrintLeaveForm : System.Web.UI.Page {
 
-            if(!IsPostBack) {
+        protected void Page_Init(object sender, EventArgs e) {
+            if(Session["PersonnelSystem"] == null) {
+                Response.Redirect("Access.aspx");
+            }
+        }
+
+        protected void Page_Load(object sender, EventArgs e) {
+            if (!IsPostBack) {
                 if (Request.QueryString["LeaveID"] == null) {
                     return;
                 }
@@ -101,7 +105,10 @@ namespace WEB_PERSONAL {
                 lbLeaveID.Text = leaveData.LeaveID.ToString();
                 lbLeaveStatusID.Text = leaveData.LeaveStatusName;
                 lbLeaveType.Text = leaveData.LeaveTypeName;
-                lbReqDate.Text = leaveData.RequestDate.Value.ToLongDateString();
+                string req_day = leaveData.RequestDate.Value.Day.ToString();
+                string req_month = Util.ToThaiMonth(leaveData.RequestDate.Value.Month);
+                string req_year = (leaveData.RequestDate.Value.Year+543).ToString();
+                lbReqDate.Text = "วันที่ " + req_day + " เดือน " + req_month + " พ.ศ. " + req_year;
                 lbPSName.Text = leaveData.PS_Title + leaveData.PS_FirstName + " " + leaveData.PS_LastName;
                 lbPSPos.Text = leaveData.PS_Position;
                 lbPSAPos.Text = leaveData.PS_AdminPosition;
@@ -184,11 +191,6 @@ namespace WEB_PERSONAL {
                     lbCHAllow.Text = "-";
                 }
 
-                if (leaveData.DocterCertificationFileName != "") {
-                    string loc = "Upload/DrCer/" + leaveData.DocterCertificationFileName;
-                    div_dr_cer.InnerHtml += "<a href='" + loc + "'><img src='" + loc + "' /></a>";
-                }
-
                 if (leaveData.LeaveStatusID >= 1 && leaveData.LeaveStatusID <= 4) {
 
                 } else if (leaveData.LeaveStatusID >= 5 && leaveData.LeaveStatusID <= 8) {
@@ -213,15 +215,6 @@ namespace WEB_PERSONAL {
                 }
             }
 
-            
-
-
-        }
-
-        protected void lbuPrint_Click(object sender, EventArgs e) {
-            Response.Redirect("PrintLeaveForm.aspx?LeaveID=" + Request.QueryString["LeaveID"].ToString());
         }
     }
-
-
 }

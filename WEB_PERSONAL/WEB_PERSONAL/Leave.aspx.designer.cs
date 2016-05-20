@@ -49,49 +49,256 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.View VX1_1;
         
         /// <summary>
-        /// tbF1S1FromDate control.
+        /// lbLeaveTypeName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbF1S1FromDate;
+        protected global::System.Web.UI.WebControls.Label lbLeaveTypeName;
         
         /// <summary>
-        /// tbF1S1ToDate control.
+        /// trS1WifeFirstName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbF1S1ToDate;
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow trS1WifeFirstName;
         
         /// <summary>
-        /// tbF1S1Reason control.
+        /// tbS1WifeFirstName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbF1S1Reason;
+        protected global::System.Web.UI.WebControls.TextBox tbS1WifeFirstName;
         
         /// <summary>
-        /// tbF1S1Contact control.
+        /// trS1WifeLastName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbF1S1Contact;
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow trS1WifeLastName;
         
         /// <summary>
-        /// tbF1S1Phone control.
+        /// tbS1WifeLastName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbF1S1Phone;
+        protected global::System.Web.UI.WebControls.TextBox tbS1WifeLastName;
+        
+        /// <summary>
+        /// trS1GBDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow trS1GBDate;
+        
+        /// <summary>
+        /// tbS1GBDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbS1GBDate;
+        
+        /// <summary>
+        /// trS1Ordained control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow trS1Ordained;
+        
+        /// <summary>
+        /// rbS1OrdainedT control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbS1OrdainedT;
+        
+        /// <summary>
+        /// rbS1OrdainedF control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbS1OrdainedF;
+        
+        /// <summary>
+        /// trS1TempleName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow trS1TempleName;
+        
+        /// <summary>
+        /// tbS1TempleName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbS1TempleName;
+        
+        /// <summary>
+        /// trS1TempleLocation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow trS1TempleLocation;
+        
+        /// <summary>
+        /// tbS1TempleLocation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbS1TempleLocation;
+        
+        /// <summary>
+        /// trS1OrdainDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow trS1OrdainDate;
+        
+        /// <summary>
+        /// tbS1OrdainDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbS1OrdainDate;
+        
+        /// <summary>
+        /// trS1Hujed control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow trS1Hujed;
+        
+        /// <summary>
+        /// rbS1HujedT control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbS1HujedT;
+        
+        /// <summary>
+        /// rbS1HujedF control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbS1HujedF;
+        
+        /// <summary>
+        /// tbS1FromDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbS1FromDate;
+        
+        /// <summary>
+        /// tbS1ToDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbS1ToDate;
+        
+        /// <summary>
+        /// trS1Reason control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow trS1Reason;
+        
+        /// <summary>
+        /// tbS1Reason control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbS1Reason;
+        
+        /// <summary>
+        /// trS1Contact control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow trS1Contact;
+        
+        /// <summary>
+        /// tbS1Contact control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbS1Contact;
+        
+        /// <summary>
+        /// trS1Phone control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow trS1Phone;
+        
+        /// <summary>
+        /// tbS1Phone control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbS1Phone;
+        
+        /// <summary>
+        /// trS1DrCer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow trS1DrCer;
         
         /// <summary>
         /// FileUpload1 control.
@@ -103,13 +310,13 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.FileUpload FileUpload1;
         
         /// <summary>
-        /// lbuF1S1Check control.
+        /// lbuS1Check control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbuF1S1Check;
+        protected global::System.Web.UI.WebControls.LinkButton lbuS1Check;
         
         /// <summary>
         /// VX1_2 control.
@@ -121,1318 +328,409 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.View VX1_2;
         
         /// <summary>
-        /// lbF1S2LeaveTypeName control.
+        /// lbLeaveTypeName2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF1S2LeaveTypeName;
+        protected global::System.Web.UI.WebControls.Label lbLeaveTypeName2;
         
         /// <summary>
-        /// lbF1S2PersonName control.
+        /// lbS2LeaveTypeName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF1S2PersonName;
+        protected global::System.Web.UI.WebControls.Label lbS2LeaveTypeName;
         
         /// <summary>
-        /// lbF1S2PersonPosition control.
+        /// lbS2PSName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF1S2PersonPosition;
+        protected global::System.Web.UI.WebControls.Label lbS2PSName;
         
         /// <summary>
-        /// lbF1S2PersonRank control.
+        /// lbS2PSPos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF1S2PersonRank;
+        protected global::System.Web.UI.WebControls.Label lbS2PSPos;
         
         /// <summary>
-        /// lbF1S2PersonDepartment control.
+        /// lbS2PSAPos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF1S2PersonDepartment;
+        protected global::System.Web.UI.WebControls.Label lbS2PSAPos;
         
         /// <summary>
-        /// lbF1S2LastFTTDate control.
+        /// lbS2PSDept control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF1S2LastFTTDate;
+        protected global::System.Web.UI.WebControls.Label lbS2PSDept;
         
         /// <summary>
-        /// lbF1S2FTTDate control.
+        /// trS2BirthDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF1S2FTTDate;
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow trS2BirthDate;
         
         /// <summary>
-        /// lbF1S2Statistic control.
+        /// lbS2PSBirthDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF1S2Statistic;
+        protected global::System.Web.UI.WebControls.Label lbS2PSBirthDate;
         
         /// <summary>
-        /// lbF1S2Reason control.
+        /// trS2WorkInDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF1S2Reason;
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow trS2WorkInDate;
         
         /// <summary>
-        /// lbF1S2Contact control.
+        /// lbS2PSWorkInDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF1S2Contact;
+        protected global::System.Web.UI.WebControls.Label lbS2PSWorkInDate;
         
         /// <summary>
-        /// lbF1S2Phone control.
+        /// trS2RestSave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF1S2Phone;
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow trS2RestSave;
         
         /// <summary>
-        /// lbF1S2DrCer control.
+        /// lbS2RestSave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF1S2DrCer;
+        protected global::System.Web.UI.WebControls.Label lbS2RestSave;
         
         /// <summary>
-        /// lbuF1S2Back control.
+        /// trS2RestLeft control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbuF1S2Back;
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow trS2RestLeft;
         
         /// <summary>
-        /// lbuF1S2Add control.
+        /// lbS2RestLeft control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbuF1S2Add;
+        protected global::System.Web.UI.WebControls.Label lbS2RestLeft;
         
         /// <summary>
-        /// VX2_1 control.
+        /// trS2RestTotal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View VX2_1;
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow trS2RestTotal;
         
         /// <summary>
-        /// tbVX21FromDate control.
+        /// lbS2RestTotal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbVX21FromDate;
+        protected global::System.Web.UI.WebControls.Label lbS2RestTotal;
         
         /// <summary>
-        /// tbVX21ToDate control.
+        /// trS2WifeName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbVX21ToDate;
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow trS2WifeName;
         
         /// <summary>
-        /// tbVX21Reason control.
+        /// lbS2WifeName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbVX21Reason;
+        protected global::System.Web.UI.WebControls.Label lbS2WifeName;
         
         /// <summary>
-        /// tbVX21Contact control.
+        /// trS2GBDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbVX21Contact;
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow trS2GBDate;
         
         /// <summary>
-        /// tbVX21Phone control.
+        /// lbS2GBDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbVX21Phone;
+        protected global::System.Web.UI.WebControls.Label lbS2GBDate;
         
         /// <summary>
-        /// lbuVX21Next control.
+        /// trS2Ordained control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbuVX21Next;
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow trS2Ordained;
         
         /// <summary>
-        /// VX2_2 control.
+        /// lbS2Ordained control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View VX2_2;
+        protected global::System.Web.UI.WebControls.Label lbS2Ordained;
         
         /// <summary>
-        /// lbVX22LeaveTypeName control.
+        /// trS2TempleName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbVX22LeaveTypeName;
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow trS2TempleName;
         
         /// <summary>
-        /// lbVX22PersonName control.
+        /// lbS2TempleName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbVX22PersonName;
+        protected global::System.Web.UI.WebControls.Label lbS2TempleName;
         
         /// <summary>
-        /// lbVX22PersonPosition control.
+        /// trS2TempleLocation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbVX22PersonPosition;
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow trS2TempleLocation;
         
         /// <summary>
-        /// lbVX22PersonPosRank control.
+        /// lbS2TempleLocation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbVX22PersonPosRank;
+        protected global::System.Web.UI.WebControls.Label lbS2TempleLocation;
         
         /// <summary>
-        /// lbVX22PersonDept control.
+        /// trS2OrdainDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbVX22PersonDept;
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow trS2OrdainDate;
         
         /// <summary>
-        /// lbVX22LastFTTDate control.
+        /// lbS2OrdainDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbVX22LastFTTDate;
+        protected global::System.Web.UI.WebControls.Label lbS2OrdainDate;
         
         /// <summary>
-        /// lbVX22FTTDate control.
+        /// trS2Hujed control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbVX22FTTDate;
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow trS2Hujed;
         
         /// <summary>
-        /// lbVX22Reason control.
+        /// lbS2Hujed control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbVX22Reason;
+        protected global::System.Web.UI.WebControls.Label lbS2Hujed;
         
         /// <summary>
-        /// lbVX22Contact control.
+        /// trS2LastFTTDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbVX22Contact;
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow trS2LastFTTDate;
         
         /// <summary>
-        /// lbVX22Phone control.
+        /// lbS2LastFTTDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbVX22Phone;
+        protected global::System.Web.UI.WebControls.Label lbS2LastFTTDate;
         
         /// <summary>
-        /// lbuVX22Back control.
+        /// lbS2FTTDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbuVX22Back;
+        protected global::System.Web.UI.WebControls.Label lbS2FTTDate;
         
         /// <summary>
-        /// lbuVX22Finish control.
+        /// trS2Statistic control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbuVX22Finish;
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow trS2Statistic;
         
         /// <summary>
-        /// VX3_1 control.
+        /// lbS2Statistic control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View VX3_1;
+        protected global::System.Web.UI.WebControls.Label lbS2Statistic;
         
         /// <summary>
-        /// TextBox59 control.
+        /// trS2Reason control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox59;
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow trS2Reason;
         
         /// <summary>
-        /// TextBox60 control.
+        /// lbS2Reason control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox60;
+        protected global::System.Web.UI.WebControls.Label lbS2Reason;
         
         /// <summary>
-        /// TextBox61 control.
+        /// trS2Contact control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox61;
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow trS2Contact;
         
         /// <summary>
-        /// TextBox62 control.
+        /// lbS2Contact control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox62;
+        protected global::System.Web.UI.WebControls.Label lbS2Contact;
         
         /// <summary>
-        /// TextBox63 control.
+        /// trS2Phone control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox63;
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow trS2Phone;
         
         /// <summary>
-        /// LinkButton10 control.
+        /// lbS2Phone control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton10;
+        protected global::System.Web.UI.WebControls.Label lbS2Phone;
         
         /// <summary>
-        /// VX3_2 control.
+        /// trS2DrCer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View VX3_2;
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow trS2DrCer;
         
         /// <summary>
-        /// Label57 control.
+        /// lbS2DrCer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label57;
+        protected global::System.Web.UI.WebControls.Label lbS2DrCer;
         
         /// <summary>
-        /// Label58 control.
+        /// lbuS2Back control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label58;
+        protected global::System.Web.UI.WebControls.LinkButton lbuS2Back;
         
         /// <summary>
-        /// Label59 control.
+        /// lbuS2Finish control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label59;
-        
-        /// <summary>
-        /// Label60 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label60;
-        
-        /// <summary>
-        /// Label61 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label61;
-        
-        /// <summary>
-        /// Label62 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label62;
-        
-        /// <summary>
-        /// Label63 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label63;
-        
-        /// <summary>
-        /// Label64 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label64;
-        
-        /// <summary>
-        /// Label65 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label65;
-        
-        /// <summary>
-        /// Label66 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label66;
-        
-        /// <summary>
-        /// LinkButton11 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton11;
-        
-        /// <summary>
-        /// LinkButton12 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton12;
-        
-        /// <summary>
-        /// VX4_1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.View VX4_1;
-        
-        /// <summary>
-        /// tbF3S1FromDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbF3S1FromDate;
-        
-        /// <summary>
-        /// tbF3S1ToDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbF3S1ToDate;
-        
-        /// <summary>
-        /// tbF3S1Contact control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbF3S1Contact;
-        
-        /// <summary>
-        /// tbF3S1Phone control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbF3S1Phone;
-        
-        /// <summary>
-        /// lbuF3S1Check control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbuF3S1Check;
-        
-        /// <summary>
-        /// VX4_2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.View VX4_2;
-        
-        /// <summary>
-        /// lbF3S2LeaveTypeName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF3S2LeaveTypeName;
-        
-        /// <summary>
-        /// lbF3S2PersonName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF3S2PersonName;
-        
-        /// <summary>
-        /// lbF3S2PersonPosition control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF3S2PersonPosition;
-        
-        /// <summary>
-        /// lbF3S2PersonRank control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF3S2PersonRank;
-        
-        /// <summary>
-        /// lbF3S2PersonDepartment control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF3S2PersonDepartment;
-        
-        /// <summary>
-        /// lbF3S2SaveDay control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF3S2SaveDay;
-        
-        /// <summary>
-        /// lbF3S2LeftDay control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF3S2LeftDay;
-        
-        /// <summary>
-        /// lbF3S2LeftTotalDay control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF3S2LeftTotalDay;
-        
-        /// <summary>
-        /// lbF3S2FromDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF3S2FromDate;
-        
-        /// <summary>
-        /// lbF3S2ToDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF3S2ToDate;
-        
-        /// <summary>
-        /// lbF3S2TotalDay control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF3S2TotalDay;
-        
-        /// <summary>
-        /// lbF3S2Contact control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF3S2Contact;
-        
-        /// <summary>
-        /// lbF3S2Phone control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF3S2Phone;
-        
-        /// <summary>
-        /// lbuF3S2Back control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbuF3S2Back;
-        
-        /// <summary>
-        /// lbuF3S2Add control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbuF3S2Add;
-        
-        /// <summary>
-        /// VX5_1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.View VX5_1;
-        
-        /// <summary>
-        /// tbF2S1WifeName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbF2S1WifeName;
-        
-        /// <summary>
-        /// tbF2S1WifeLastName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbF2S1WifeLastName;
-        
-        /// <summary>
-        /// tbF2S1GiveBirthDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbF2S1GiveBirthDate;
-        
-        /// <summary>
-        /// tbF2S1FromDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbF2S1FromDate;
-        
-        /// <summary>
-        /// tbF2S1ToDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbF2S1ToDate;
-        
-        /// <summary>
-        /// tbF2S1Contact control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbF2S1Contact;
-        
-        /// <summary>
-        /// tbF2S1Phone control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbF2S1Phone;
-        
-        /// <summary>
-        /// lbuF2S1Check control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbuF2S1Check;
-        
-        /// <summary>
-        /// VX5_2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.View VX5_2;
-        
-        /// <summary>
-        /// lbF2S2LeaveTypeName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF2S2LeaveTypeName;
-        
-        /// <summary>
-        /// lbF2S2PersonName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF2S2PersonName;
-        
-        /// <summary>
-        /// lbF2S2PersonPosition control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF2S2PersonPosition;
-        
-        /// <summary>
-        /// lbF2S2PersonRank control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF2S2PersonRank;
-        
-        /// <summary>
-        /// lbF2S2PersonDepartment control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF2S2PersonDepartment;
-        
-        /// <summary>
-        /// lbF2S2WifeName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF2S2WifeName;
-        
-        /// <summary>
-        /// lbF2S2WifeLastName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF2S2WifeLastName;
-        
-        /// <summary>
-        /// lbF2S2GiveBirthDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF2S2GiveBirthDate;
-        
-        /// <summary>
-        /// lbF2S2FromDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF2S2FromDate;
-        
-        /// <summary>
-        /// lbF2S2ToDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF2S2ToDate;
-        
-        /// <summary>
-        /// lbF2S2TotalDay control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF2S2TotalDay;
-        
-        /// <summary>
-        /// lbF2S2Contact control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF2S2Contact;
-        
-        /// <summary>
-        /// lbF2S2Phone control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF2S2Phone;
-        
-        /// <summary>
-        /// lbuF2S2Back control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbuF2S2Back;
-        
-        /// <summary>
-        /// lbuF2S2Add control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbuF2S2Add;
-        
-        /// <summary>
-        /// VX6_1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.View VX6_1;
-        
-        /// <summary>
-        /// rbOrdainedTrue control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rbOrdainedTrue;
-        
-        /// <summary>
-        /// rbOrdainedFalse control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rbOrdainedFalse;
-        
-        /// <summary>
-        /// tbF4S1TempleName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbF4S1TempleName;
-        
-        /// <summary>
-        /// tbF4S1TempleLocation control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbF4S1TempleLocation;
-        
-        /// <summary>
-        /// tbF4S1OrdainDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbF4S1OrdainDate;
-        
-        /// <summary>
-        /// tbF4S1FromDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbF4S1FromDate;
-        
-        /// <summary>
-        /// tbF4S1ToDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbF4S1ToDate;
-        
-        /// <summary>
-        /// lbuF4S1Check control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbuF4S1Check;
-        
-        /// <summary>
-        /// VX6_2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.View VX6_2;
-        
-        /// <summary>
-        /// lbF4S2LeaveTypeName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF4S2LeaveTypeName;
-        
-        /// <summary>
-        /// lbF4S2PersonName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF4S2PersonName;
-        
-        /// <summary>
-        /// lbF4S2PersonPosition control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF4S2PersonPosition;
-        
-        /// <summary>
-        /// lbF4S2PersonRank control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF4S2PersonRank;
-        
-        /// <summary>
-        /// lbF4S2PersonDepartment control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF4S2PersonDepartment;
-        
-        /// <summary>
-        /// lbF4S2PersonBirthDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF4S2PersonBirthDate;
-        
-        /// <summary>
-        /// lbF4S2PersonWorkInDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF4S2PersonWorkInDate;
-        
-        /// <summary>
-        /// lbF4S2PersonOrdained control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF4S2PersonOrdained;
-        
-        /// <summary>
-        /// lbF4S2TempleName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF4S2TempleName;
-        
-        /// <summary>
-        /// lbF4S2TempleLocation control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF4S2TempleLocation;
-        
-        /// <summary>
-        /// lbF4S2OrdainDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF4S2OrdainDate;
-        
-        /// <summary>
-        /// lbF4S2FromDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF4S2FromDate;
-        
-        /// <summary>
-        /// lbF4S2ToDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF4S2ToDate;
-        
-        /// <summary>
-        /// lbF4S2TotalDay control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF4S2TotalDay;
-        
-        /// <summary>
-        /// lbuF4S2Back control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbuF4S2Back;
-        
-        /// <summary>
-        /// lbuF4S2Confirm control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbuF4S2Confirm;
-        
-        /// <summary>
-        /// VX7_1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.View VX7_1;
-        
-        /// <summary>
-        /// rbHujedTrue control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rbHujedTrue;
-        
-        /// <summary>
-        /// rbHujedFalse control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rbHujedFalse;
-        
-        /// <summary>
-        /// tbF5S1FromDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbF5S1FromDate;
-        
-        /// <summary>
-        /// tbF5S1ToDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbF5S1ToDate;
-        
-        /// <summary>
-        /// lbuF5S1Check control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbuF5S1Check;
-        
-        /// <summary>
-        /// VX7_2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.View VX7_2;
-        
-        /// <summary>
-        /// lbF5S2LeaveTypeName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF5S2LeaveTypeName;
-        
-        /// <summary>
-        /// lbF5S2PersonName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF5S2PersonName;
-        
-        /// <summary>
-        /// lbF5S2PersonPosition control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF5S2PersonPosition;
-        
-        /// <summary>
-        /// lbF5S2PersonRank control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF5S2PersonRank;
-        
-        /// <summary>
-        /// lbF5S2PersonDepartment control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF5S2PersonDepartment;
-        
-        /// <summary>
-        /// lbF5S2PersonWorkInDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF5S2PersonWorkInDate;
-        
-        /// <summary>
-        /// lbF5S2PersonHujed control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF5S2PersonHujed;
-        
-        /// <summary>
-        /// lbF5S2FromDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF5S2FromDate;
-        
-        /// <summary>
-        /// lbF5S2ToDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF5S2ToDate;
-        
-        /// <summary>
-        /// lbF5S2TotalDay control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbF5S2TotalDay;
-        
-        /// <summary>
-        /// lbuF5S2Back control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbuF5S2Back;
-        
-        /// <summary>
-        /// LinkButton3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton3;
+        protected global::System.Web.UI.WebControls.LinkButton lbuS2Finish;
         
         /// <summary>
         /// VX_F control.
@@ -1451,6 +749,15 @@ namespace WEB_PERSONAL {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lbuBackMain;
+        
+        /// <summary>
+        /// lbuHistory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbuHistory;
         
         /// <summary>
         /// hfSql control.

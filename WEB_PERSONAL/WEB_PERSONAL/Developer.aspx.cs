@@ -13,6 +13,20 @@ namespace WEB_PERSONAL {
             
 
             if(!IsPostBack) {
+
+                using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
+                    con.Open();
+                    using (OracleCommand com = new OracleCommand("SELECT PS_BIRTHDAY_DATE FROM PS_PERSON", con)) {
+                        using (OracleDataReader reader = com.ExecuteReader()) {
+                            while (reader.Read()) {
+                                tbConsole.Text = reader.GetDateTime(0).ToShortDateString();
+                                
+                            }
+                        }
+                    }
+                }
+
+
                 using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                     con.Open();
                     using (OracleCommand com = new OracleCommand("SELECT OWNER, TABLE_NAME FROM DBA_TABLES WHERE OWNER = 'RMUTTO' ORDER BY TABLE_NAME ASC", con)) {
@@ -26,22 +40,14 @@ namespace WEB_PERSONAL {
                 SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT PS_CITIZEN_ID, PS_FN_TH, PS_LN_TH FROM PS_PERSON");
                 GridView2.DataSource = sds;
                 GridView2.DataBind();
+
+
             }
             
         }
         protected void Page_LoadComplete(object sender, EventArgs e) {
 
-            lbo1.Items.Clear();
-            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
-                con.Open();
-                using (OracleCommand com = new OracleCommand("SELECT * FROM TB_CHAT", con)) {
-                    using (OracleDataReader reader = com.ExecuteReader()) {
-                        while (reader.Read()) {
-                            lbo1.Items.Add(new ListItem(reader.GetString(1) + " : " + reader.GetString(2)));
-                        }
-                    }
-                }
-            }
+      
         }
 
         protected void lbuSQL_Click(object sender, EventArgs e) {
@@ -103,20 +109,6 @@ namespace WEB_PERSONAL {
             ScriptManager.RegisterStartupScript(this, typeof(Page), "UpdateMsg", "openPopup('popup1');", true);
         }
 
-        protected void lbc_Click(object sender, EventArgs e) {
-            DatabaseManager.ExecuteNonQuery("INSERT INTO TB_CHAT VALUES(SEQ_CHAT_ID.NEXTVAL, '" + tbc1.Text + "','" + tbc2.Text + "')");
-        }
-
-        protected void LinkButton2_Click(object sender, EventArgs e) {
-            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
-                con.Open();
-                using (OracleCommand com = new OracleCommand("INSERT INTO TB_TEST_A VALUES(:1, :2)", con)) {
-                    com.Parameters.Add("1", new Random().Next(1, 999999));
-                    com.Parameters.Add("2", new DateTime(2016, 4, 28));
-                    com.ExecuteNonQuery();
-                }
-            }
-        }
 
         protected void LinkButton3_Click(object sender, EventArgs e) {
             ScriptManager.RegisterClientScriptBlock(this, GetType(), "k1", "window.open();", true);

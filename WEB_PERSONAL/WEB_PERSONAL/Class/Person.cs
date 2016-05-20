@@ -15,11 +15,11 @@ namespace WEB_PERSONAL.Class {
         public string TitleName;
         public string FirstName;
         public string LastName;
-        public string BirthDate;
+        public DateTime? BirthDate;
         public string BirthDateLong;
-        public string RetireDate;
+        public DateTime? RetireDate;
         public string RetireDateLong;
-        public string InWorkDate;
+        public DateTime? InWorkDate;
         public string StaffTypeID;
         public string StaffTypeName;
         public string FatherFirstName;

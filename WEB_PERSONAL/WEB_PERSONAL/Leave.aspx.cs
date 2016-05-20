@@ -17,507 +17,396 @@ namespace WEB_PERSONAL {
 
         protected void Page_Load(object sender, EventArgs e) {
             if (!IsPostBack) {
-                //DatabaseManager.BindDropDown(ddlLeaveType, "SELECT * FROM LEV_TYPE", "LEAVE_TYPE_NAME", "LEAVE_TYPE_ID", "-- กรุณาเลือกประเภทการลา --");
+                DatabaseManager.BindDropDown(ddlLeaveType, "SELECT * FROM LEV_TYPE", "LEAVE_TYPE_NAME", "LEAVE_TYPE_ID", "-- กรุณาเลือกประเภทการลา --");
             }
         }
 
-        protected void lbuF1S1Check_Click(object sender, EventArgs e) {
+        protected void lbuS1Check_Click(object sender, EventArgs e) {
 
-            if (tbF1S1FromDate.Text == "" ||
-                tbF1S1ToDate.Text == "" ||
-                !Util.IsDateValid(tbF1S1FromDate.Text) ||
-                !Util.IsDateValid(tbF1S1ToDate.Text) ||
-                tbF1S1Reason.Text == "" ||
-                tbF1S1Contact.Text == "" ||
-                tbF1S1Phone.Text == "") {
-                ChangeNotification("danger", "<img src='Image/Small/red_alert.png' style='padding-right: 10px;'></img><strong>เกิดข้อผิดพลาด!</strong><br>");
+            PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
+            Person loginPerson = ps.LoginPerson;
 
-                if (tbF1S1FromDate.Text == "") {
-                    AddNotification("<div class='hm_tab'></div>- กรุณากรอก <strong>จากวันที่</strong><br>");
-                } else if (!Util.IsDateValid(tbF1S1FromDate.Text)) {
-                    AddNotification("<div class='hm_tab'></div>- <strong>จากวันที่</strong> ไม่ถูกต้อง<br>");
+            trS2BirthDate.Visible = false;
+            trS2WorkInDate.Visible = false;
+            trS2WifeName.Visible = false;
+            trS2GBDate.Visible = false;
+            trS2Ordained.Visible = false;
+            trS2TempleName.Visible = false;
+            trS2TempleLocation.Visible = false;
+            trS2OrdainDate.Visible = false;
+            trS2Hujed.Visible = false;
+            trS2Reason.Visible = false;
+            trS2Contact.Visible = false;
+            trS2Phone.Visible = false;
+            trS2DrCer.Visible = false;
+            trS2RestSave.Visible = false;
+            trS2RestLeft.Visible = false;
+            trS2RestTotal.Visible = false;
+
+            if (ddlLeaveType.SelectedValue == "1") {
+                trS2Reason.Visible = true;
+                trS2Contact.Visible = true;
+                trS2Phone.Visible = true;
+                trS2DrCer.Visible = true;
+            } else if (ddlLeaveType.SelectedValue == "2") {
+                trS2Reason.Visible = true;
+                trS2Contact.Visible = true;
+                trS2Phone.Visible = true;
+            } else if (ddlLeaveType.SelectedValue == "3") {
+                trS2Reason.Visible = true;
+                trS2Contact.Visible = true;
+                trS2Phone.Visible = true;
+            } else if (ddlLeaveType.SelectedValue == "4") {
+                trS2RestSave.Visible = true;
+                trS2RestLeft.Visible = true;
+                trS2RestTotal.Visible = true;
+                trS2Contact.Visible = true;
+                trS2Phone.Visible = true;
+            } else if (ddlLeaveType.SelectedValue == "5") {
+                trS2WifeName.Visible = true;
+                trS2GBDate.Visible = true;
+                trS2Contact.Visible = true;
+                trS2Phone.Visible = true;
+            } else if (ddlLeaveType.SelectedValue == "6") {
+                trS2BirthDate.Visible = true;
+                trS2WorkInDate.Visible = true;
+                trS2Ordained.Visible = true;
+                trS2TempleName.Visible = true;
+                trS2TempleLocation.Visible = true;
+                trS2OrdainDate.Visible = true;
+            } else if (ddlLeaveType.SelectedValue == "7") {
+                trS2BirthDate.Visible = true;
+                trS2WorkInDate.Visible = true;
+                trS2Hujed.Visible = true;
+            }
+
+            if (ddlLeaveType.SelectedValue == "4") {
+                if (tbS1FromDate.Text != "" && tbS1ToDate.Text != "") {
+                    DateTime dtFromDate = Util.ToDateTimeOracle(tbS1FromDate.Text);
+                    DateTime dtToDate = Util.ToDateTimeOracle(tbS1ToDate.Text);
+                    int totalDay = (int)(dtToDate - dtFromDate).TotalDays + 1;
+                    int max = DatabaseManager.ExecuteInt("SELECT REST_MAX FROM LEV_CLAIM WHERE PS_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND YEAR = " + Util.BudgetYear());
+                    int now = DatabaseManager.ExecuteInt("SELECT REST_NOW FROM LEV_CLAIM WHERE PS_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND YEAR = " + Util.BudgetYear());
+                    if (now + totalDay > max) {
+                        ChangeNotification("danger", "ปีนี้คุณไม่สามารถลาพักผ่อนเกิน " + max + " วันได้ ลาไปแล้ว " + now + " วัน ครั้งนี้ " + totalDay + " วัน รวม " + (totalDay + now) + " วัน");
+                        return;
+                    }
                 }
-                if (tbF1S1ToDate.Text == "") {
-                    AddNotification("<div class='hm_tab'></div>- กรุณากรอก <strong>ถึงวันที่</strong><br>");
-                } else if (!Util.IsDateValid(tbF1S1ToDate.Text)) {
-                    AddNotification("<div class='hm_tab'></div>- <strong>ถึงวันที่</strong> ไม่ถูกต้อง<br>");
-                }
-                if (tbF1S1Reason.Text == "") {
-                    AddNotification("<div class='hm_tab'></div>- กรุณากรอก <strong>เหตุผล</strong><br>");
-                }
-                if (tbF1S1Contact.Text == "") {
-                    AddNotification("<div class='hm_tab'></div>- กรุณากรอก <strong>ติดต่อได้ที่</strong><br>");
-                }
-                if (tbF1S1Phone.Text == "") {
-                    AddNotification("<div class='hm_tab'></div>- กรุณากรอก <strong>เบอร์โทรศัพท์</strong><br>");
-                }
+            }
+
+            int v1 = 2;
+            if(v1==1) {
+
+                
+
+                /*if (tbS1FromDate.Text == "" ||
+                    tbS1ToDate.Text == "" ||
+                    !Util.IsDateValid(tbS1FromDate.Text) ||
+                    !Util.IsDateValid(tbS1ToDate.Text) ||
+                    tbS1Reason.Text == "" ||
+                    tbS1Contact.Text == "" ||
+                    tbS1Phone.Text == "") {
+                    ChangeNotification("danger", "<img src='Image/Small/red_alert.png' style='padding-right: 10px;'></img><strong>เกิดข้อผิดพลาด!</strong><br>");
+
+                    if (tbS1FromDate.Text == "") {
+                        AddNotification("<div class='hm_tab'></div>- กรุณากรอก <strong>จากวันที่</strong><br>");
+                    } else if (!Util.IsDateValid(tbS1FromDate.Text)) {
+                        AddNotification("<div class='hm_tab'></div>- <strong>จากวันที่</strong> ไม่ถูกต้อง<br>");
+                    }
+                    if (tbS1ToDate.Text == "") {
+                        AddNotification("<div class='hm_tab'></div>- กรุณากรอก <strong>ถึงวันที่</strong><br>");
+                    } else if (!Util.IsDateValid(tbS1ToDate.Text)) {
+                        AddNotification("<div class='hm_tab'></div>- <strong>ถึงวันที่</strong> ไม่ถูกต้อง<br>");
+                    }
+                    if (tbS1Reason.Text == "") {
+                        AddNotification("<div class='hm_tab'></div>- กรุณากรอก <strong>เหตุผล</strong><br>");
+                    }
+                    if (tbS1Contact.Text == "") {
+                        AddNotification("<div class='hm_tab'></div>- กรุณากรอก <strong>ติดต่อได้ที่</strong><br>");
+                    }
+                    if (tbS1Phone.Text == "") {
+                        AddNotification("<div class='hm_tab'></div>- กรุณากรอก <strong>เบอร์โทรศัพท์</strong><br>");
+                    }
+                }*/
+
+
             } else {
-                Session["LeaveF1FileUpload1"] = FileUpload1;
                 MultiView1.ActiveViewIndex = 1;
+
+                Session["LeaveSickFileUpload"] = FileUpload1;
+                
                 ChangeNotification("info", "กรุณายืนยันข้อมูลอีกครั้ง");
 
-                PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
-                Person loginPerson = ps.LoginPerson;
+                
 
                 string leavedDate = "ไม่เคยลา";
-                string lastFromDate = "''";
-                string lastToDate = "''";
-                string lastTotalDay = "''";
+                DateTime? lastFromDate = null;
+                DateTime? lastToDate = null;
+                int lastTotalDay = 0;
 
-                int pastTotalDay = DatabaseManager.ExecuteInt("SELECT NVL(SUM(TOTAL_DAY),0) FROM LEV_MAIN WHERE PS_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND EXTRACT(YEAR FROM FROM_DATE) = 2016");
+                int pastTotalDay = DatabaseManager.ExecuteInt("SELECT NVL(SUM(TOTAL_DAY),0) FROM LEV_DATA WHERE PS_ID = '" + loginPerson.CitizenID + "' AND LEAVE_TYPE_ID = " + ddlLeaveType.SelectedValue + " AND EXTRACT(YEAR FROM FROM_DATE) = " + Util.BudgetYear());
 
                 using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                     con.Open();
-                    using (OracleCommand com = new OracleCommand("SELECT LEV_MAIN.FROM_DATE, LEV_MAIN.TO_DATE, LEV_MAIN.TOTAL_DAY FROM LEV_MAIN WHERE LEV_MAIN.PS_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND LEV_MAIN.LEAVE_TYPE_ID = " + ddlLeaveType.SelectedValue + " AND ROWNUM = 1 ORDER BY LEV_MAIN.LEAVE_ID DESC", con)) {
+                    using (OracleCommand com = new OracleCommand("SELECT FROM_DATE, TO_DATE, TOTAL_DAY FROM LEV_DATA WHERE PS_ID = '" + loginPerson.CitizenID + "' AND LEAVE_TYPE_ID = " + ddlLeaveType.SelectedValue + " AND EXTRACT(YEAR FROM FROM_DATE) = " + Util.BudgetYear() + " ORDER BY LEAVE_ID DESC", con)) {
                         using (OracleDataReader reader = com.ExecuteReader()) {
-                            while (reader.Read()) {
-                                lastFromDate = Util.PureDatabaseToThaiDate(reader.GetValue(0).ToString());
-                                lastToDate = Util.PureDatabaseToThaiDate(reader.GetValue(1).ToString());
-                                lastTotalDay = reader.GetValue(2).ToString();
-                                leavedDate = lastFromDate + "&nbsp;&nbsp;ถึง&nbsp;&nbsp;" + lastToDate + "&nbsp;&nbsp;รวม&nbsp;&nbsp;" + lastTotalDay + " วัน ";
+                            if (reader.Read()) {
+                                lastFromDate = reader.GetDateTime(0);
+                                lastToDate = reader.GetDateTime(1);
+                                lastTotalDay = (int)(lastToDate.Value - lastFromDate.Value).TotalDays + 1;
+                                leavedDate = lastFromDate.Value.ToLongDateString() + " ถึง " + lastToDate.Value.ToLongDateString() + " รวม " + lastTotalDay + " วัน ";
+                            } else {
+                                lastTotalDay = 0;
                             }
                         }
                     }
-   
+
                 }
 
-                lbF1S2PersonName.Text = loginPerson.FullName;
-                lbF1S2PersonPosition.Text = loginPerson.PositionName;
-                lbF1S2PersonRank.Text = loginPerson.AdminPositionName;
-                lbF1S2PersonDepartment.Text = loginPerson.DivisionName;
-                lbF1S2LastFTTDate.Text = leavedDate;
-                lbF1S2LeaveTypeName.Text = ddlLeaveType.SelectedItem.Text;
-                DateTime dtFromDate = Util.ToDateTime(tbF1S1FromDate.Text);
-                DateTime dtToDate = Util.ToDateTime(tbF1S1ToDate.Text);
+                int restSave = 1;
+                int restLeft = 2;
+                int restTotal = 3;
+
+                lbS2PSName.Text = loginPerson.FullName;
+                lbS2PSPos.Text = loginPerson.PositionName;
+                lbS2PSAPos.Text = loginPerson.AdminPositionName;
+                lbS2PSDept.Text = loginPerson.DivisionName;
+                lbS2PSBirthDate.Text = loginPerson.BirthDate.Value.ToLongDateString();
+                lbS2PSWorkInDate.Text = loginPerson.InWorkDate.Value.ToLongDateString();
+                lbS2RestSave.Text = restSave + " วัน";
+                lbS2RestLeft.Text = restLeft + " วัน";
+                lbS2RestTotal.Text = restTotal + " วัน";
+                lbS2WifeName.Text = tbS1WifeFirstName.Text + " " + tbS1WifeLastName.Text;
+                lbS2GBDate.Text = tbS1GBDate.Text;
+                lbS2Ordained.Text = rbS1OrdainedT.Checked ? "เคย" : "ไม่เคย";
+                lbS2TempleName.Text = tbS1TempleName.Text;
+                lbS2TempleLocation.Text = tbS1TempleLocation.Text;
+                lbS2OrdainDate.Text = tbS1OrdainDate.Text;
+                lbS2Hujed.Text = rbS1HujedT.Checked ? "เคย" : "ไม่เคย";
+                lbS2LastFTTDate.Text = leavedDate;
+                lbS2LeaveTypeName.Text = ddlLeaveType.SelectedItem.Text;
+                DateTime dtFromDate = Util.ToDateTimeOracle(tbS1FromDate.Text);
+                DateTime dtToDate = Util.ToDateTimeOracle(tbS1ToDate.Text);
                 int totalDay = (int)(dtToDate - dtFromDate).TotalDays + 1;
-                lbF1S2FTTDate.Text = tbF1S1FromDate.Text + "&nbsp;&nbsp;ถึง&nbsp;&nbsp;" + tbF1S1ToDate.Text + "&nbsp;&nbsp;รวม&nbsp;&nbsp;" + totalDay + " วัน";
-                lbF1S2Statistic.Text = "ลามาแล้ว " + pastTotalDay + " วัน / ลาครั้งนี้ " + totalDay + " วัน / รวม " + (pastTotalDay + totalDay) + " วัน";
-                lbF1S2Reason.Text = tbF1S1Reason.Text;
-                lbF1S2Contact.Text = tbF1S1Contact.Text;
-                lbF1S2Phone.Text = tbF1S1Phone.Text;
+                lbS2FTTDate.Text = dtFromDate.ToLongDateString() + " ถึง " + dtToDate.ToLongDateString() + " รวม " + totalDay + " วัน";
+                lbS2Statistic.Text = "ลามาแล้ว " + pastTotalDay + " วัน / ลาครั้งนี้ " + totalDay + " วัน / รวม " + (pastTotalDay + totalDay) + " วัน";
+                lbS2Reason.Text = tbS1Reason.Text;
+                lbS2Contact.Text = tbS1Contact.Text;
+                lbS2Phone.Text = tbS1Phone.Text;
                 string drCer;
                 if (FileUpload1.HasFile) {
-                    lbF1S2DrCer.Text = "มี";
+                    lbS2DrCer.Text = "มี";
                     FileInfo fi = new FileInfo(FileUpload1.FileName);
                     drCer = Util.RandomFileName() + fi.Extension;
                 } else {
-                    lbF1S2DrCer.Text = "ไม่มี";
+                    lbS2DrCer.Text = "ไม่มี";
                     drCer = "";
                 }
-                
+
 
                 Person psCL = DatabaseManager.GetPerson("701");
                 Person psCH = DatabaseManager.GetPerson("702");
 
+                LeaveData leaveData = new LeaveData();
+                leaveData.LeaveTypeID = int.Parse(ddlLeaveType.SelectedValue);
+                leaveData.LeaveStatusID = 1;
+                leaveData.PS_ID = loginPerson.CitizenID;
+                leaveData.RequestDate = DateTime.Now;
+                leaveData.FromDate = dtFromDate;
+                leaveData.ToDate = dtToDate;
+                leaveData.TotalDay = totalDay;
 
-                string sql1 = "INSERT INTO LEV_MAIN (LEAVE_ID, LEAVE_TYPE_ID, LEAVE_STATE, PS_CITIZEN_ID, REQ_DATE, FROM_DATE, TO_DATE, TOTAL_DAY, CL_ID, CL_TITLE, CL_FN, CL_LN, CL_POS, CL_COMM, CL_DATE, CH_ID, CH_TITLE, CH_FN, CH_LN, CH_POS, CH_COMM, CH_ALLOW, CH_DATE, PS_TITLE, PS_FN, PS_LN, PS_POS, PS_DEPT, PS_POS_RANK) VALUES ({0},{1},{2},'{3}',{4},{5},{6},{7},'{8}','{9}','{10}','{11}','{12}','{13}',{14},'{15}','{16}','{17}','{18}','{19}','{20}',{21},{22},'{23}','{24}','{25}','{26}','{27}','{28}')";
-                sql1 = string.Format(sql1, "{0}", ddlLeaveType.SelectedValue, 1, loginPerson.CitizenID, Util.TodayDatabaseToDate(), Util.DatabaseToDate(tbF1S1FromDate.Text), Util.DatabaseToDate(tbF1S1ToDate.Text), totalDay, psCL.CitizenID, psCL.TitleName, psCL.FirstName, psCL.LastName, psCL.PositionName, "", "''", psCH.CitizenID, psCH.TitleName, psCH.FirstName, psCH.LastName, psCH.PositionName, "", "''", "''", loginPerson.TitleName, loginPerson.FirstName, loginPerson.LastName, loginPerson.PositionName, loginPerson.DivisionName, loginPerson.AdminPositionName);
-                hfSql.Value = sql1;
+                leaveData.CL_ID = psCL.CitizenID;
+                leaveData.CL_Title = psCL.TitleName;
+                leaveData.CL_FirstName = psCL.FirstName;
+                leaveData.CL_LastName = psCL.LastName;
+                leaveData.CL_Position = psCL.PositionName;
+                leaveData.CL_AdminPosition = psCL.AdminPositionName;
 
-                string sql2 = "INSERT INTO LEV_FORM1 (FORM1_ID, LEAVE_ID, REASON, CONTACT, PHONE, LAST_FROM_DATE, LAST_TO_DATE, LAST_TOTAL_DAY, DR_CER_FILE_NAME, COUNT_PAST, COUNT_NOW, COUNT_TOTAL) VALUES ({0},{1},'{2}','{3}','{4}',{5},{6},{7},'{8}',{9},{10},{11})";
-                sql2 = string.Format(sql2, "SEQ_LEV_FORM1_ID.NEXTVAL", "{0}", tbF1S1Reason.Text, tbF1S1Contact.Text, tbF1S1Phone.Text, Util.DatabaseToDate(lastFromDate), Util.DatabaseToDate(lastToDate), lastTotalDay, drCer, pastTotalDay, totalDay, pastTotalDay + totalDay);
-                hfSql2.Value = sql2;
+                leaveData.CH_ID = psCH.CitizenID;
+                leaveData.CH_Title = psCH.TitleName;
+                leaveData.CH_FirstName = psCH.FirstName;
+                leaveData.CH_LastName = psCH.LastName;
+                leaveData.CH_Position = psCH.PositionName;
+                leaveData.CH_AdminPosition = psCH.AdminPositionName;
+
+                leaveData.PS_Title = loginPerson.TitleName;
+                leaveData.PS_FirstName = loginPerson.FirstName;
+                leaveData.PS_LastName = loginPerson.LastName;
+                leaveData.PS_Position = loginPerson.PositionName;
+                leaveData.PS_Department = loginPerson.DivisionName;
+                leaveData.PS_AdminPosition = loginPerson.AdminPositionName;
+                leaveData.PS_BirthDate = loginPerson.BirthDate;
+                leaveData.PS_WorkInDate = loginPerson.InWorkDate;
+                leaveData.Reason = tbS1Reason.Text;
+                leaveData.Contact = tbS1Contact.Text;
+                leaveData.Telephone = tbS1Phone.Text;
+                if (lastFromDate.HasValue) {
+                    leaveData.LastFromDate = lastFromDate;
+                    leaveData.LastToDate = lastToDate;
+                }
+                leaveData.LastTotalDay = lastTotalDay;
+
+                leaveData.DocterCertificationFileName = drCer;
+                leaveData.CountPast = pastTotalDay;
+                leaveData.CountNow = totalDay;
+                leaveData.CountTotal = pastTotalDay + totalDay;
+                leaveData.RestLeft = restLeft;
+                leaveData.RestSave = restSave;
+                leaveData.RestTotal = restTotal;
+                leaveData.WifeFirstName = tbS1WifeFirstName.Text;
+                leaveData.WifeLastName = tbS1WifeLastName.Text;
+                if(ddlLeaveType.SelectedValue == "5")
+                    leaveData.GiveBirthDate = Util.ToDateTimeOracle(tbS1GBDate.Text);
+                leaveData.Ordained = rbS1OrdainedT.Checked ? 1 : 0;
+                leaveData.TempleName = tbS1TempleName.Text;
+                leaveData.TempleLocation = tbS1TempleLocation.Text;
+                if (ddlLeaveType.SelectedValue == "6")
+                    leaveData.OrdainDate = Util.ToDateTimeOracle(tbS1OrdainDate.Text);
+                leaveData.Hujed = rbS1HujedT.Checked ? 1 : 0;
+                Session["LeaveData"] = leaveData;
 
                 hfFileUploadName.Value = drCer;
 
-                //Person cmdLowPerson = DatabaseManager.GetPerson("1111111111111");
-                //Person cmdHighPerson = DatabaseManager.GetPerson("1111111111112");
-
-
-
-                /*string sql2 = "INSERT INTO LEV_FORM1 (FORM1_ID, LEAVE_ID, FROM_DATE, TO_DATE, TOTAL_DAY, REASON, CONTACT, PHONE, PERSON_POSITION, PERSON_RANK, PERSON_DEPARTMENT, LAST_FROM_DATE, LAST_TO_DATE, LAST_TOTAL_DAY, PERSON_PREFIX, PERSON_FIRST_NAME, PERSON_LAST_NAME, CMD_LOW_ID, CMD_LOW_POS, CMD_LOW_PREFIX, CMD_LOW_FIRST_NAME, CMD_LOW_LAST_NAME, CMD_HIGH_ID, CMD_HIGH_POS, CMD_HIGH_PREFIX, CMD_HIGH_FIRST_NAME, CMD_HIGH_LAST_NAME) VALUES ({0},{1},{2},{3},'{4}','{5}','{6}','{7}','{8}','{9}','{10}',{11},{12},{13},'{14}','{15}','{16}','{17}','{18}','{19}','{20}','{21}','{22}','{23}','{24}','{25}','{26}')";
-                sql2 = string.Format(sql2, "SEQ_LEV_FORM1_ID.NEXTVAL", "{0}", Util.DatabaseToDate(tbF1S1FromDate.Text), Util.DatabaseToDate(tbF1S1ToDate.Text), totalDay, tbF1S1Reason.Text, tbF1S1Contact.Text, tbF1S1Phone.Text, loginPerson.PositionName, loginPerson.AdminPositionName, loginPerson.DivisionName, Util.DatabaseToDate(lastFromDate), Util.DatabaseToDate(lastToDate), lastTotalDay, loginPerson.TitleName, loginPerson.FirstName, loginPerson.LastName, "1111111111111", cmdLowPerson.PositionName, cmdLowPerson.TitleName, cmdLowPerson.FirstName, cmdLowPerson.LastName, "1111111111112", cmdHighPerson.PositionName, cmdHighPerson.TitleName, cmdHighPerson.FirstName, cmdHighPerson.LastName);
-                hfSql2.Value = sql2;
-
-                if(FileUpload1.HasFile) {
-                    FileUpload1.SaveAs(Server.MapPath("Upload/" + FileUpload1.FileName));
-                }*/
-
-
-                //TextBox56.Text += sql1 + System.Environment.NewLine + sql2;
-
-                /*string sql = "INSERT INTO LEV_FORM1 (LEAVE_ID, CITIZEN_ID, REQ_DATE, LEAVE_TYPE_ID, FROM_DATE, TO_DATE, TOTAL_DAY, REASON, CONTACT, PHONE, STATE_ID) VALUES (SEQ_LEV_FORM1_ID.NEXTVAL, '{0}', {1}, {2}, {3}, {4}, {5}, '{6}', '{7}', '{8}', {9})";
-                hfSql.Value = string.Format(sql, loginPerson.CitizenID, Util.TodayDatabaseToDate(), ddlLeaveType.SelectedValue, Util.DatabaseToDate(tbF1S1FromDate.Text), Util.DatabaseToDate(tbF1S1ToDate.Text), totalDay, lbF1S2Reason.Text, lbF1S2Contact.Text, lbF1S2Phone.Text, 1);
-                */
-
-                /*if(FileUpload1.HasFile) {
-                    FileInfo fi = new FileInfo(FileUpload1.FileName);
-                    string ext = fi.Extension;
-                    FileUpload1.SaveAs(Server.MapPath("Upload/DrCer/" + Util.RandomFileName() + ext));
-                }*/
-
-
             }
 
+            
 
         }
-        protected void lbuF2S1Check_Click(object sender, EventArgs e) {
-            if (tbF2S1WifeName.Text == "" ||
-                tbF2S1WifeLastName.Text == "" ||
-                tbF2S1GiveBirthDate.Text == "" ||
-                !Util.IsDateValid(tbF2S1GiveBirthDate.Text) ||
-                tbF2S1FromDate.Text == "" ||
-                tbF2S1ToDate.Text == "" ||
-                !Util.IsDateValid(tbF2S1FromDate.Text) ||
-                !Util.IsDateValid(tbF2S1ToDate.Text) ||
-                tbF2S1Contact.Text == "" ||
-                tbF2S1Phone.Text == "") {
-                ChangeNotification("danger", "<img src='Image/red_alert.png' style='padding-right: 10px;'></img><strong>เกิดข้อผิดพลาด!</strong><br>");
 
-                if (tbF2S1WifeName.Text == "") {
-                    AddNotification("<div class='hm_tab'></div>- กรุณากรอก <strong>ชื่อภริยา</strong><br>");
-                }
-                if (tbF2S1WifeLastName.Text == "") {
-                    AddNotification("<div class='hm_tab'></div>- กรุณากรอก <strong>นามสกุลภริยา</strong><br>");
-                }
-                if (tbF2S1GiveBirthDate.Text == "") {
-                    AddNotification("<div class='hm_tab'></div>- กรุณากรอก <strong>วันที่คลอดบุตร</strong><br>");
-                } else if (!Util.IsDateValid(tbF2S1GiveBirthDate.Text)) {
-                    AddNotification("<div class='hm_tab'></div>- <strong>วันที่คลอดบุตร</strong> ไม่ถูกต้อง<br>");
-                }
-                if (tbF2S1FromDate.Text == "") {
-                    AddNotification("<div class='hm_tab'></div>- กรุณากรอก <strong>จากวันที่</strong><br>");
-                } else if (!Util.IsDateValid(tbF2S1FromDate.Text)) {
-                    AddNotification("<div class='hm_tab'></div>- <strong>จากวันที่</strong> ไม่ถูกต้อง<br>");
-                }
-                if (tbF2S1ToDate.Text == "") {
-                    AddNotification("<div class='hm_tab'></div>- กรุณากรอก <strong>ถึงวันที่</strong><br>");
-                } else if (!Util.IsDateValid(tbF2S1ToDate.Text)) {
-                    AddNotification("<div class='hm_tab'></div>- <strong>ถึงวันที่</strong> ไม่ถูกต้อง<br>");
-                }
-                if (tbF2S1Contact.Text == "") {
-                    AddNotification("<div class='hm_tab'></div>- กรุณากรอก <strong>ติดต่อได้ที่</strong><br>");
-                }
-                if (tbF2S1Phone.Text == "") {
-                    AddNotification("<div class='hm_tab'></div>- กรุณากรอก <strong>เบอร์โทรศัพท์</strong><br>");
-                }
-            } else {
-
-                MultiView1.ActiveViewIndex = 3;
-                ChangeNotification("info", "กรุณายืนยันข้อมูลอีกครั้ง");
-
-                PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
-                Person loginPerson = ps.LoginPerson;
-
-                string leavedDate = "ไม่เคยลา";
-                string lastFromDate = "''";
-                string lastToDate = "''";
-                string lastTotalDay = "''";
-                using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
-                    con.Open();
-                    using (OracleCommand com = new OracleCommand("SELECT LEV_MAIN.FROM_DATE, LEV_MAIN.TO_DATE, LEV_MAIN.TOTAL_DAY FROM LEV_MAIN WHERE LEV_MAIN.PS_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND LEV_MAIN.LEAVE_TYPE_ID = " + ddlLeaveType.SelectedValue + " AND ROWNUM = 1 ORDER BY LEV_MAIN.LEAVE_ID DESC", con)) {
-                        using (OracleDataReader reader = com.ExecuteReader()) {
-                            while (reader.Read()) {
-                                lastFromDate = Util.PureDatabaseToThaiDate(reader.GetValue(0).ToString());
-                                lastToDate = Util.PureDatabaseToThaiDate(reader.GetValue(1).ToString());
-                                lastTotalDay = reader.GetValue(2).ToString();
-                                leavedDate = lastFromDate + "&nbsp;&nbsp;ถึง&nbsp;&nbsp;" + lastToDate + "&nbsp;&nbsp;รวม&nbsp;&nbsp;" + lastTotalDay + " วัน ";
-                            }
-                        }
-                    }
-                }
-
-                lbVX22PersonName.Text = loginPerson.FullName;
-                lbVX22PersonPosition.Text = loginPerson.PositionName;
-                lbVX22PersonPosRank.Text = loginPerson.AdminPositionName;
-                lbVX22PersonDept.Text = loginPerson.DivisionName;
-                lbVX22LastFTTDate.Text = leavedDate;
-                lbVX22LeaveTypeName.Text = ddlLeaveType.SelectedItem.Text;
-                DateTime dtFromDate = Util.ToDateTime(tbVX21FromDate.Text);
-                DateTime dtToDate = Util.ToDateTime(tbVX21ToDate.Text);
-                int totalDay = (int)(dtToDate - dtFromDate).TotalDays + 1;
-                lbVX22FTTDate.Text = tbF1S1FromDate.Text + "&nbsp;&nbsp;ถึง&nbsp;&nbsp;" + tbF1S1ToDate.Text + "&nbsp;&nbsp;รวม&nbsp;&nbsp;" + totalDay + " วัน";
-                lbVX22Reason.Text = tbF1S1Reason.Text;
-                lbVX22Contact.Text = tbF1S1Contact.Text;
-                lbVX22Phone.Text = tbF1S1Phone.Text;
-
-                Person psCL = DatabaseManager.GetPerson("701");
-                Person psCH = DatabaseManager.GetPerson("702");
-
-
-                string sql1 = "INSERT INTO LEV_MAIN (LEAVE_ID, LEAVE_TYPE_ID, LEAVE_STATE, PS_CITIZEN_ID, REQ_DATE, FROM_DATE, TO_DATE, TOTAL_DAY, CL_ID, CL_TITLE, CL_FN, CL_LN, CL_POS, CL_COMM, CL_DATE, CH_ID, CH_TITLE, CH_FN, CH_LN, CH_POS, CH_COMM, CH_ALLOW, CH_DATE, PS_TITLE, PS_FN, PS_LN, PS_POS, PS_DEPT, PS_POS_RANK) VALUES ({0},{1},{2},'{3}',{4},{5},{6},{7},'{8}','{9}','{10}','{11}','{12}','{13}',{14},'{15}','{16}','{17}','{18}','{19}','{20}',{21},{22},'{23}','{24}','{25}','{26}','{27}','{28}')";
-                sql1 = string.Format(sql1, "{0}", ddlLeaveType.SelectedValue, 2, loginPerson.CitizenID, Util.TodayDatabaseToDate(), Util.DatabaseToDate(tbF1S1FromDate.Text), Util.DatabaseToDate(tbF1S1ToDate.Text), totalDay, psCL.CitizenID, psCL.TitleName, psCL.FirstName, psCL.LastName, psCL.PositionName, "", "''", psCH.CitizenID, psCH.TitleName, psCH.FirstName, psCH.LastName, psCH.PositionName, "", "''", "''", loginPerson.TitleName, loginPerson.FirstName, loginPerson.LastName, loginPerson.PositionName, loginPerson.DivisionName, loginPerson.AdminPositionName);
-                hfSql.Value = sql1;
-
-                string sql2 = "INSERT INTO LEV_FORM1 (FORM1_ID, LEAVE_ID, REASON, CONTACT, PHONE, LAST_FROM_DATE, LAST_TO_DATE, LAST_TOTAL_DAY, DR_CER_FILE_NAME) VALUES ({0},{1},'{2}','{3}','{4}',{5},{6},{7},'{8}')";
-                sql2 = string.Format(sql2, "SEQ_LEV_FORM1_ID.NEXTVAL", "{0}", tbF1S1Reason.Text, tbF1S1Contact.Text, tbF1S1Phone.Text, Util.DatabaseToDate(lastFromDate), Util.DatabaseToDate(lastToDate), lastTotalDay, "");
-                hfSql2.Value = sql2;
-
-            }
-        }
-        protected void lbuF3S1Check_Click(object sender, EventArgs e) {
-            if (tbF3S1FromDate.Text == "" ||
-                tbF3S1ToDate.Text == "" ||
-                !Util.IsDateValid(tbF3S1FromDate.Text) ||
-                !Util.IsDateValid(tbF3S1ToDate.Text) ||
-                tbF3S1Contact.Text == "" ||
-                tbF3S1Phone.Text == "") {
-                ChangeNotification("danger", "<img src='Image/red_alert.png' style='padding-right: 10px;'></img><strong>เกิดข้อผิดพลาด!</strong><br>");
-
-                if (tbF3S1FromDate.Text == "") {
-                    AddNotification("<div class='hm_tab'></div>- กรุณากรอก <strong>จากวันที่</strong><br>");
-                } else if (!Util.IsDateValid(tbF3S1FromDate.Text)) {
-                    AddNotification("<div class='hm_tab'></div>- <strong>จากวันที่</strong> ไม่ถูกต้อง<br>");
-                }
-                if (tbF3S1ToDate.Text == "") {
-                    AddNotification("<div class='hm_tab'></div>- กรุณากรอก <strong>ถึงวันที่</strong><br>");
-                } else if (!Util.IsDateValid(tbF3S1ToDate.Text)) {
-                    AddNotification("<div class='hm_tab'></div>- <strong>ถึงวันที่</strong> ไม่ถูกต้อง<br>");
-                }
-                if (tbF3S1Contact.Text == "") {
-                    AddNotification("<div class='hm_tab'></div>- กรุณากรอก <strong>ติดต่อได้ที่</strong><br>");
-                }
-                if (tbF3S1Phone.Text == "") {
-                    AddNotification("<div class='hm_tab'></div>- กรุณากรอก <strong>เบอร์โทรศัพท์</strong><br>");
-                }
-            } else {
-               /* HideAllAndShow(sectionF3S2);
-                ChangeNotification("info", "กรุณายืนยันข้อมูลอีกครั้ง");
-
-                LeaveSystem leaveSystem = ((LeaveSystem)Session["leaveSystem"]);
-                Person loginPerson = leaveSystem.LoginPerson;
-                lbF3S2LeaveTypeName.Text = ddlLeaveType.SelectedItem.Text;
-
-                lbF3S2PersonName.Text = loginPerson.FullName;
-                lbF3S2PersonPosition.Text = loginPerson.PositionName;
-                lbF3S2PersonRank.Text = loginPerson.PositionRank;
-                lbF3S2PersonDepartment.Text = loginPerson.DepartmentName;
-
-                lbF3S2FromDate.Text = tbF3S1FromDate.Text;
-                lbF3S2ToDate.Text = tbF3S1ToDate.Text;
-                DateTime dtFromDate = Util.ToDateTime(lbF3S2FromDate.Text);
-                DateTime dtToDate = Util.ToDateTime(lbF3S2ToDate.Text);
-                int totalDay = (int)(dtToDate - dtFromDate).TotalDays + 1;
-                lbF3S2TotalDay.Text = "" + totalDay + " วัน";
-                lbF3S2Contact.Text = tbF3S1Contact.Text;
-                lbF3S2Phone.Text = tbF3S1Phone.Text;
-                string sql = "INSERT INTO LEV_LEAVE (LEAVE_ID, CITIZEN_ID, REQ_DATE, LEAVE_TYPE_ID, FROM_DATE, TO_DATE, TOTAL_DAY, REASON, CONTACT, PHONE, STATE_ID) VALUES (SEQ_LEAVE_ID.NEXTVAL, '{0}', {1}, {2}, {3}, {4}, {5}, '{6}', '{7}', '{8}', {9})";
-                hfSql.Value = string.Format(sql, loginPerson.CitizenID, Util.TodayDatabaseToDate(), ddlLeaveType.SelectedValue, Util.DatabaseToDate(tbF1S1FromDate.Text), Util.DatabaseToDate(tbF1S1ToDate.Text), totalDay, lbF1S2Reason.Text, lbF1S2Contact.Text, lbF1S2Phone.Text, 1);
-                */
-
-
-            }
-
-        }
-        protected void lbuF4S1Check_Click(object sender, EventArgs e) {
-            if (tbF4S1TempleName.Text == "" ||
-                tbF4S1TempleLocation.Text == "" ||
-                tbF4S1OrdainDate.Text == "" ||
-                tbF4S1FromDate.Text == "" ||
-                tbF4S1ToDate.Text == "" ||
-                !Util.IsDateValid(tbF4S1OrdainDate.Text) ||
-                !Util.IsDateValid(tbF4S1FromDate.Text) ||
-                !Util.IsDateValid(tbF4S1ToDate.Text)) {
-                ChangeNotification("danger", "<img src='Image/red_alert.png' style='padding-right: 10px;'></img><strong>เกิดข้อผิดพลาด!</strong><br>");
-                if (tbF4S1TempleName.Text == "") {
-                    AddNotification("<div class='hm_tab'></div>- กรุณากรอก <strong>ชื่อวัด</strong><br>");
-                }
-                if (tbF4S1TempleLocation.Text == "") {
-                    AddNotification("<div class='hm_tab'></div>- กรุณากรอก <strong>สถานที่</strong><br>");
-                }
-                if (tbF4S1OrdainDate.Text == "") {
-                    AddNotification("<div class='hm_tab'></div>- กรุณากรอก <strong>วันที่อุปสมบท</strong><br>");
-                } else if (!Util.IsDateValid(tbF4S1OrdainDate.Text)) {
-                    AddNotification("<div class='hm_tab'></div>- <strong>วันที่อุปสมบท</strong> ไม่ถูกต้อง<br>");
-                }
-                if (tbF4S1FromDate.Text == "") {
-                    AddNotification("<div class='hm_tab'></div>- กรุณากรอก <strong>จากวันที่</strong><br>");
-                } else if (!Util.IsDateValid(tbF4S1FromDate.Text)) {
-                    AddNotification("<div class='hm_tab'></div>- <strong>จากวันที่</strong> ไม่ถูกต้อง<br>");
-                }
-                if (tbF4S1ToDate.Text == "") {
-                    AddNotification("<div class='hm_tab'></div>- กรุณากรอก <strong>ถึงวันที่</strong><br>");
-                } else if (!Util.IsDateValid(tbF4S1ToDate.Text)) {
-                    AddNotification("<div class='hm_tab'></div>- <strong>ถึงวันที่</strong> ไม่ถูกต้อง<br>");
-                }
-            } else {
-               /* HideAllAndShow(sectionF4S2);
-                ChangeNotification("info", "กรุณายืนยันข้อมูลอีกครั้ง");
-
-                LeaveSystem leaveSystem = ((LeaveSystem)Session["leaveSystem"]);
-                Person loginPerson = leaveSystem.LoginPerson;
-                lbF4S2LeaveTypeName.Text = ddlLeaveType.SelectedItem.Text;
-
-                lbF4S2PersonName.Text = loginPerson.FullName;
-                lbF4S2PersonPosition.Text = loginPerson.PositionName;
-                lbF4S2PersonRank.Text = loginPerson.PositionRank;
-                lbF4S2PersonDepartment.Text = loginPerson.DepartmentName;
-                lbF4S2PersonBirthDate.Text = loginPerson.BirthDate;
-                lbF4S2PersonWorkInDate.Text = loginPerson.WorkInDate;
-
-                lbF4S2PersonOrdained.Text = rbOrdainedTrue.Checked ? "เคย" : "ไม่เคย";
-                lbF4S2TempleName.Text = tbF4S1TempleName.Text;
-                lbF4S2TempleLocation.Text = tbF4S1TempleLocation.Text;
-                lbF4S2OrdainDate.Text = tbF4S1OrdainDate.Text;
-                lbF4S2FromDate.Text = tbF4S1FromDate.Text;
-                lbF4S2ToDate.Text = tbF4S1ToDate.Text;
-                DateTime dtFromDate = Util.ToDateTime(lbF4S2FromDate.Text);
-                DateTime dtToDate = Util.ToDateTime(lbF4S2ToDate.Text);
-                int totalDay = (int)(dtToDate - dtFromDate).TotalDays + 1;
-                lbF4S2TotalDay.Text = "" + totalDay + " วัน";
-                string sql = "INSERT INTO LEV_LEAVE (LEAVE_ID, CITIZEN_ID, REQ_DATE, LEAVE_TYPE_ID, FROM_DATE, TO_DATE, TOTAL_DAY, REASON, CONTACT, PHONE, STATE_ID) VALUES (SEQ_LEAVE_ID.NEXTVAL, '{0}', {1}, {2}, {3}, {4}, {5}, '{6}', '{7}', '{8}', {9})";
-                hfSql.Value = string.Format(sql, loginPerson.CitizenID, Util.TodayDatabaseToDate(), ddlLeaveType.SelectedValue, Util.DatabaseToDate(tbF1S1FromDate.Text), Util.DatabaseToDate(tbF1S1ToDate.Text), totalDay, lbF1S2Reason.Text, lbF1S2Contact.Text, lbF1S2Phone.Text, 1);
-
-    */
-
-            }
-        }
-        protected void lbuF5S1Check_Click(object sender, EventArgs e) {
-            if (tbF5S1FromDate.Text == "" ||
-                tbF5S1ToDate.Text == "" ||
-                !Util.IsDateValid(tbF5S1FromDate.Text) ||
-                !Util.IsDateValid(tbF5S1ToDate.Text)) {
-                ChangeNotification("danger", "<img src='Image/red_alert.png' style='padding-right: 10px;'></img><strong>เกิดข้อผิดพลาด!</strong><br>");
-                if (tbF5S1FromDate.Text == "") {
-                    AddNotification("<div class='hm_tab'></div>- กรุณากรอก <strong>จากวันที่</strong><br>");
-                } else if (!Util.IsDateValid(tbF5S1FromDate.Text)) {
-                    AddNotification("<div class='hm_tab'></div>- <strong>จากวันที่</strong> ไม่ถูกต้อง<br>");
-                }
-                if (tbF5S1ToDate.Text == "") {
-                    AddNotification("<div class='hm_tab'></div>- กรุณากรอก <strong>ถึงวันที่</strong><br>");
-                } else if (!Util.IsDateValid(tbF5S1ToDate.Text)) {
-                    AddNotification("<div class='hm_tab'></div>- <strong>ถึงวันที่</strong> ไม่ถูกต้อง<br>");
-                }
-            } else {
-               /* HideAllAndShow(sectionF5S2);
-                ChangeNotification("info", "กรุณายืนยันข้อมูลอีกครั้ง");
-
-                LeaveSystem leaveSystem = ((LeaveSystem)Session["leaveSystem"]);
-                Person loginPerson = leaveSystem.LoginPerson;
-                lbF5S2LeaveTypeName.Text = ddlLeaveType.SelectedItem.Text;
-
-                lbF5S2PersonName.Text = loginPerson.FullName;
-                lbF5S2PersonPosition.Text = loginPerson.PositionName;
-                lbF5S2PersonRank.Text = loginPerson.PositionRank;
-                lbF5S2PersonDepartment.Text = loginPerson.DepartmentName;
-                lbF5S2PersonWorkInDate.Text = loginPerson.WorkInDate;
-
-                lbF5S2PersonHujed.Text = rbHujedTrue.Checked ? "เคย" : "ไม่เคย";
-                lbF5S2FromDate.Text = tbF5S1FromDate.Text;
-                lbF5S2ToDate.Text = tbF5S1ToDate.Text;
-                DateTime dtFromDate = Util.ToDateTime(lbF5S2FromDate.Text);
-                DateTime dtToDate = Util.ToDateTime(lbF5S2ToDate.Text);
-                int totalDay = (int)(dtToDate - dtFromDate).TotalDays + 1;
-                lbF5S2TotalDay.Text = "" + totalDay + " วัน";
-                string sql = "INSERT INTO LEV_LEAVE (LEAVE_ID, CITIZEN_ID, REQ_DATE, LEAVE_TYPE_ID, FROM_DATE, TO_DATE, TOTAL_DAY, REASON, CONTACT, PHONE, STATE_ID) VALUES (SEQ_LEAVE_ID.NEXTVAL, '{0}', {1}, {2}, {3}, {4}, {5}, '{6}', '{7}', '{8}', {9})";
-                hfSql.Value = string.Format(sql, loginPerson.CitizenID, Util.TodayDatabaseToDate(), ddlLeaveType.SelectedValue, Util.DatabaseToDate(tbF1S1FromDate.Text), Util.DatabaseToDate(tbF1S1ToDate.Text), totalDay, lbF1S2Reason.Text, lbF1S2Contact.Text, lbF1S2Phone.Text, 1);
-                */
-            }
-        }
-   
-
-        protected void lbuF1S2Back_Click(object sender, EventArgs e) {
+        protected void lbuS2Back_Click(object sender, EventArgs e) {
             MultiView1.ActiveViewIndex = 0;
-            ChangeNotification("info", "กรุณากรอกข้อมูล");
-        }
-        protected void lbuF2S2Back_Click(object sender, EventArgs e) {
-            MultiView1.ActiveViewIndex = 2;
-            ChangeNotification("info", "กรุณากรอกข้อมูล");
-        }
-        protected void lbuF3S2Back_Click(object sender, EventArgs e) {
-            MultiView1.ActiveViewIndex = 4;
-            ChangeNotification("info", "กรุณากรอกข้อมูล");
-        }
-        protected void lbuF4S2Back_Click(object sender, EventArgs e) {
-            MultiView1.ActiveViewIndex = 6;
-            ChangeNotification("info", "กรุณากรอกข้อมูล");
-        }
-        protected void lbuF5S2Back_Click(object sender, EventArgs e) {
-            MultiView1.ActiveViewIndex = 8;
-            ChangeNotification("info", "กรุณากรอกข้อมูล");
         }
 
-
-        protected void lbuF1S2Add_Click(object sender, EventArgs e) {
-
-            int leave_id = DatabaseManager.ExecuteSequence("SEQ_LEV_MAIN_ID");
-
-            string sql1 = hfSql.Value;
-            sql1 = string.Format(sql1, leave_id);
-            string sql2 = hfSql2.Value;
-            sql2 = string.Format(sql2, leave_id);
-
-            DatabaseManager.ExecuteNonQuery(sql1);
-            DatabaseManager.ExecuteNonQuery(sql2);
-            FileUpload fu = (FileUpload)Session["LeaveF1FileUpload1"];
-            if (fu.HasFile) {
-                fu.SaveAs(Server.MapPath("Upload/DrCer/" + hfFileUploadName.Value));
+        protected void lbuS2Finish_Click(object sender, EventArgs e) {
+            LeaveData leaveData = (LeaveData)(Session["LeaveData"]);
+            leaveData.LeaveID = DatabaseManager.ExecuteSequence("SEQ_LEV_MAIN_ID");
+            if(ddlLeaveType.SelectedValue == "1") {
+                leaveData.AddLeaveSick();
+                FileUpload fu = (FileUpload)Session["LeaveSickFileUpload"];
+                if (fu.HasFile) {
+                    fu.SaveAs(Server.MapPath("Upload/DrCer/" + hfFileUploadName.Value));
+                }
+            } else if (ddlLeaveType.SelectedValue == "2") {
+                leaveData.AddLeaveBusiness();
+            } else if (ddlLeaveType.SelectedValue == "3") {
+                leaveData.AddLeaveGiveBirth();
+            } else if (ddlLeaveType.SelectedValue == "4") {
+                leaveData.AddLeaveRest();
+            } else if (ddlLeaveType.SelectedValue == "5") {
+                leaveData.AddLeaveHelpGiveBirth();
+            } else if (ddlLeaveType.SelectedValue == "6") {
+                leaveData.AddLeaveOrdain();
+            } else if (ddlLeaveType.SelectedValue == "7") {
+                leaveData.AddLeaveHuj();
             }
 
             ChangeNotification("success", "<strong>ทำการลาสำเร็จ!</strong> คุณสามารถตรวจสอบสถานะการลาได้ที่เมนู การลา -> ประวัติการลา");
-            MultiView1.ActiveViewIndex = 14;
+            MultiView1.ActiveViewIndex = 2;
+        }
 
-        }
-        protected void lbuVX22Finish_Click(object sender, EventArgs e) {
-            int leave_id = DatabaseManager.ExecuteSequence("SEQ_LEV_MAIN_ID");
-            string sql1 = hfSql.Value;
-            sql1 = string.Format(sql1, leave_id);
-            string sql2 = hfSql2.Value;
-            sql2 = string.Format(sql2, leave_id);
-            DatabaseManager.ExecuteNonQuery(sql1);
-            DatabaseManager.ExecuteNonQuery(sql2);
-            ChangeNotification("success", "<strong>ทำการลาสำเร็จ!</strong> คุณสามารถตรวจสอบสถานะการลาได้ที่เมนู การลา -> สถานะ และ ประวัติการลา");
-            MultiView1.ActiveViewIndex = 14;
-        }
-        protected void lbuBackMain_Click(object sender, EventArgs e) {
-            Response.Redirect("Default.aspx");
-        }
 
         protected void ddlLeaveType_SelectedIndexChanged(object sender, EventArgs e) {
-            switch (ddlLeaveType.SelectedValue) {
-                case "0":
-                    MultiView1.ActiveViewIndex = -1;
-                    ClearNotification();
-                    break;
-                case "1":
-                    MultiView1.ActiveViewIndex = 0;
-                    ChangeNotification("info", "กรุณากรอกข้อมูล");
-                    break;
-                case "2":
-                    MultiView1.ActiveViewIndex = 2;
-                    ChangeNotification("info", "กรุณากรอกข้อมูล");
-                    break;
-                case "3":
-                    MultiView1.ActiveViewIndex = 4;
-                    ChangeNotification("info", "กรุณากรอกข้อมูล");
-                    break;
-                case "4":
-                    MultiView1.ActiveViewIndex = 6;
-                    ChangeNotification("info", "กรุณากรอกข้อมูล");
-                    break;
-                case "5":
-                    MultiView1.ActiveViewIndex = 8;
-                    ChangeNotification("info", "กรุณากรอกข้อมูล");
-                    break;
-                case "6":
-                    MultiView1.ActiveViewIndex = 10;
-                    ChangeNotification("info", "กรุณากรอกข้อมูล");
-                    break;
-                case "7":
-                    MultiView1.ActiveViewIndex = 12;
-                    ChangeNotification("info", "กรุณากรอกข้อมูล");
-                    break;
-                case "8":
-                    MultiView1.ActiveViewIndex = 10;
-                    ChangeNotification("info", "กรุณากรอกข้อมูล");
-                    break;
-                case "9":
-                    MultiView1.ActiveViewIndex = 12;
-                    ChangeNotification("info", "กรุณากรอกข้อมูล");
-                    break;
-                case "10":
-                    MultiView1.ActiveViewIndex = 14;
-                    ChangeNotification("info", "กรุณากรอกข้อมูล");
-                    break;
-                case "11":
-                    MultiView1.ActiveViewIndex = 16;
-                    ChangeNotification("info", "กรุณากรอกข้อมูล");
-                    break;
-                case "12":
-                    MultiView1.ActiveViewIndex = 18;
-                    ChangeNotification("info", "กรุณากรอกข้อมูล");
-                    break;
+
+            PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
+            Person pp = ps.LoginPerson;
+            if(ddlLeaveType.SelectedValue == "1") {
+                if(DatabaseManager.ExecuteInt("SELECT SICK_NOW - SICK_REQ FROM LEV_CLAIM WHERE YEAR = " + Util.BudgetYear() + " AND PS_CITIZEN_ID = '" + pp.CitizenID + "'") != 0) {
+                    ChangeNotification("danger", "ไม่สามารถทำการลาได้เนื่องจากมีการลาป่วยอยู่ในระหว่างดำเนินการ");
+                    ddlLeaveType.SelectedIndex = 0;
+                    return;
+                }
+            } else if (ddlLeaveType.SelectedValue == "2") {
+                if (DatabaseManager.ExecuteInt("SELECT BUSINESS_NOW - BUSINESS_REQ FROM LEV_CLAIM WHERE YEAR = " + Util.BudgetYear() + " AND PS_CITIZEN_ID = '" + pp.CitizenID + "'") != 0) {
+                    ChangeNotification("danger", "ไม่สามารถทำการลาได้เนื่องจากมีการลากิจอยู่ในระหว่างดำเนินการ");
+                    ddlLeaveType.SelectedIndex = 0;
+                    return;
+                }
+            } else if (ddlLeaveType.SelectedValue == "3") {
+                if (DatabaseManager.ExecuteInt("SELECT GB_NOW - GB_REQ FROM LEV_CLAIM WHERE YEAR = " + Util.BudgetYear() + " AND PS_CITIZEN_ID = '" + pp.CitizenID + "'") != 0) {
+                    ChangeNotification("danger", "ไม่สามารถทำการลาได้เนื่องจากมีการลาคลอดบุตรอยู่ในระหว่างดำเนินการ");
+                    ddlLeaveType.SelectedIndex = 0;
+                    return;
+                }
+            } else if (ddlLeaveType.SelectedValue == "4") {
+                if (DatabaseManager.ExecuteInt("SELECT REST_NOW - REST_REQ FROM LEV_CLAIM WHERE YEAR = " + Util.BudgetYear() + " AND PS_CITIZEN_ID = '" + pp.CitizenID + "'") != 0) {
+                    ChangeNotification("danger", "ไม่สามารถทำการลาได้เนื่องจากมีการลาพักผ่อนอยู่ในระหว่างดำเนินการ");
+                    ddlLeaveType.SelectedIndex = 0;
+                    return;
+                }
+            } else if (ddlLeaveType.SelectedValue == "5") {
+                if (DatabaseManager.ExecuteInt("SELECT HGB_NOW - HGB_REQ FROM LEV_CLAIM WHERE YEAR = " + Util.BudgetYear() + " AND PS_CITIZEN_ID = '" + pp.CitizenID + "'") != 0) {
+                    ChangeNotification("danger", "ไม่สามารถทำการลาได้เนื่องจากมีการลาไปช่วยเหลือภริยาที่คลอดบุตรอยู่ในระหว่างดำเนินการ");
+                    ddlLeaveType.SelectedIndex = 0;
+                    return;
+                }
+            } else if (ddlLeaveType.SelectedValue == "6") {
+                if (DatabaseManager.ExecuteInt("SELECT ORDAIN_NOW - ORDAIN_REQ FROM LEV_CLAIM WHERE YEAR = " + Util.BudgetYear() + " AND PS_CITIZEN_ID = '" + pp.CitizenID + "'") != 0) {
+                    ChangeNotification("danger", "ไม่สามารถทำการลาได้เนื่องจากมีการลาไปอุปสมบทอยู่ในระหว่างดำเนินการ");
+                    ddlLeaveType.SelectedIndex = 0;
+                    return;
+                }
+            } else if (ddlLeaveType.SelectedValue == "7") {
+                if (DatabaseManager.ExecuteInt("SELECT HUJ_NOW - HUJ_REQ FROM LEV_CLAIM WHERE YEAR = " + Util.BudgetYear() + " AND PS_CITIZEN_ID = '" + pp.CitizenID + "'") != 0) {
+                    ChangeNotification("danger", "ไม่สามารถทำการลาได้เนื่องจากมีการลาไปประกอบพิธีฮัจย์อยู่ในระหว่างดำเนินการ");
+                    ddlLeaveType.SelectedIndex = 0;
+                    return;
+                }
             }
+
+            lbLeaveTypeName.Text = "ข้อมูล" + ddlLeaveType.SelectedItem.Text;
+            lbLeaveTypeName2.Text = "ข้อมูล" + ddlLeaveType.SelectedItem.Text;
+            if(ddlLeaveType.SelectedIndex == 0) {
+                MultiView1.ActiveViewIndex = -1;
+                ClearNotification();
+            } else {
+                MultiView1.ActiveViewIndex = 0;
+                ChangeNotification("info", "กรุณากรอกข้อมูล");
+            }
+
+            trS1WifeFirstName.Visible = false;
+            trS1WifeLastName.Visible = false;
+            trS1GBDate.Visible = false;
+            trS1Ordained.Visible = false;
+            trS1TempleName.Visible = false;
+            trS1TempleLocation.Visible = false;
+            trS1OrdainDate.Visible = false;
+            trS1Hujed.Visible = false;
+            trS1Reason.Visible = false;
+            trS1Contact.Visible = false;
+            trS1Phone.Visible = false;
+            trS1DrCer.Visible = false;
+            if (ddlLeaveType.SelectedValue == "1") {
+                trS1Reason.Visible = true;
+                trS1Contact.Visible = true;
+                trS1Phone.Visible = true;
+                trS1DrCer.Visible = true;
+            } else if(ddlLeaveType.SelectedValue == "2") {
+                trS1Reason.Visible = true;
+                trS1Contact.Visible = true;
+                trS1Phone.Visible = true;
+            } else if (ddlLeaveType.SelectedValue == "3") {
+                trS1Reason.Visible = true;
+                trS1Contact.Visible = true;
+                trS1Phone.Visible = true;
+            } else if (ddlLeaveType.SelectedValue == "4") {
+                trS1Contact.Visible = true;
+                trS1Phone.Visible = true;
+            } else if (ddlLeaveType.SelectedValue == "5") {
+                trS1WifeFirstName.Visible = true;
+                trS1WifeLastName.Visible = true;
+                trS1GBDate.Visible = true;
+                trS1Contact.Visible = true;
+                trS1Phone.Visible = true;
+            } else if (ddlLeaveType.SelectedValue == "6") {
+                trS1Ordained.Visible = true;
+                trS1TempleName.Visible = true;
+                trS1TempleLocation.Visible = true;
+                trS1OrdainDate.Visible = true;
+            } else if (ddlLeaveType.SelectedValue == "7") {
+                trS1Hujed.Visible = true;
+            }
+
         }
 
         private void ChangeNotification(string type) {
@@ -547,107 +436,13 @@ namespace WEB_PERSONAL {
             notification.InnerHtml += text;
         }
 
-        protected void lbuVX21Next_Click(object sender, EventArgs e) {
-            /*if (tbF2S1WifeName.Text == "" ||
-                tbF2S1WifeLastName.Text == "" ||
-                tbF2S1GiveBirthDate.Text == "" ||
-                !Util.IsDateValid(tbF2S1GiveBirthDate.Text) ||
-                tbF2S1FromDate.Text == "" ||
-                tbF2S1ToDate.Text == "" ||
-                !Util.IsDateValid(tbF2S1FromDate.Text) ||
-                !Util.IsDateValid(tbF2S1ToDate.Text) ||
-                tbF2S1Contact.Text == "" ||
-                tbF2S1Phone.Text == "") {
-                ChangeNotification("danger", "<img src='Image/red_alert.png' style='padding-right: 10px;'></img><strong>เกิดข้อผิดพลาด!</strong><br>");
-
-                if (tbF2S1WifeName.Text == "") {
-                    AddNotification("<div class='hm_tab'></div>- กรุณากรอก <strong>ชื่อภริยา</strong><br>");
-                }
-                if (tbF2S1WifeLastName.Text == "") {
-                    AddNotification("<div class='hm_tab'></div>- กรุณากรอก <strong>นามสกุลภริยา</strong><br>");
-                }
-                if (tbF2S1GiveBirthDate.Text == "") {
-                    AddNotification("<div class='hm_tab'></div>- กรุณากรอก <strong>วันที่คลอดบุตร</strong><br>");
-                } else if (!Util.IsDateValid(tbF2S1GiveBirthDate.Text)) {
-                    AddNotification("<div class='hm_tab'></div>- <strong>วันที่คลอดบุตร</strong> ไม่ถูกต้อง<br>");
-                }
-                if (tbF2S1FromDate.Text == "") {
-                    AddNotification("<div class='hm_tab'></div>- กรุณากรอก <strong>จากวันที่</strong><br>");
-                } else if (!Util.IsDateValid(tbF2S1FromDate.Text)) {
-                    AddNotification("<div class='hm_tab'></div>- <strong>จากวันที่</strong> ไม่ถูกต้อง<br>");
-                }
-                if (tbF2S1ToDate.Text == "") {
-                    AddNotification("<div class='hm_tab'></div>- กรุณากรอก <strong>ถึงวันที่</strong><br>");
-                } else if (!Util.IsDateValid(tbF2S1ToDate.Text)) {
-                    AddNotification("<div class='hm_tab'></div>- <strong>ถึงวันที่</strong> ไม่ถูกต้อง<br>");
-                }
-                if (tbF2S1Contact.Text == "") {
-                    AddNotification("<div class='hm_tab'></div>- กรุณากรอก <strong>ติดต่อได้ที่</strong><br>");
-                }
-                if (tbF2S1Phone.Text == "") {
-                    AddNotification("<div class='hm_tab'></div>- กรุณากรอก <strong>เบอร์โทรศัพท์</strong><br>");
-                }
-            } else */{
-
-                MultiView1.ActiveViewIndex = 3;
-                ChangeNotification("info", "กรุณายืนยันข้อมูลอีกครั้ง");
-
-                PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
-                Person loginPerson = ps.LoginPerson;
-
-                string leavedDate = "ไม่เคยลา";
-                string lastFromDate = "''";
-                string lastToDate = "''";
-                string lastTotalDay = "''";
-                using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
-                    con.Open();
-                    using (OracleCommand com = new OracleCommand("SELECT LEV_MAIN.FROM_DATE, LEV_MAIN.TO_DATE, LEV_MAIN.TOTAL_DAY FROM LEV_MAIN WHERE LEV_MAIN.PS_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND LEV_MAIN.LEAVE_TYPE_ID = " + ddlLeaveType.SelectedValue + " AND ROWNUM = 1 ORDER BY LEV_MAIN.LEAVE_ID DESC", con)) {
-                        using (OracleDataReader reader = com.ExecuteReader()) {
-                            while (reader.Read()) {
-                                lastFromDate = Util.PureDatabaseToThaiDate(reader.GetValue(0).ToString());
-                                lastToDate = Util.PureDatabaseToThaiDate(reader.GetValue(1).ToString());
-                                lastTotalDay = reader.GetValue(2).ToString();
-                                leavedDate = lastFromDate + "&nbsp;&nbsp;ถึง&nbsp;&nbsp;" + lastToDate + "&nbsp;&nbsp;รวม&nbsp;&nbsp;" + lastTotalDay + " วัน ";
-                            }
-                        }
-                    }
-                }
-
-                lbVX22PersonName.Text = loginPerson.FullName;
-                lbVX22PersonPosition.Text = loginPerson.PositionName;
-                lbVX22PersonPosRank.Text = loginPerson.AdminPositionName;
-                lbVX22PersonDept.Text = loginPerson.DivisionName;
-                lbVX22LastFTTDate.Text = leavedDate;
-                lbVX22LeaveTypeName.Text = ddlLeaveType.SelectedItem.Text;
-                DateTime dtFromDate = Util.ToDateTime(tbVX21FromDate.Text);
-                DateTime dtToDate = Util.ToDateTime(tbVX21ToDate.Text);
-                int totalDay = (int)(dtToDate - dtFromDate).TotalDays + 1;
-                lbVX22FTTDate.Text = tbVX21FromDate.Text + "&nbsp;&nbsp;ถึง&nbsp;&nbsp;" + tbVX21ToDate.Text + "&nbsp;&nbsp;รวม&nbsp;&nbsp;" + totalDay + " วัน";
-                lbVX22Reason.Text = tbVX21Reason.Text;
-                lbVX22Contact.Text = tbVX21Contact.Text;
-                lbVX22Phone.Text = tbVX21Phone.Text;
-
-                Person psCL = DatabaseManager.GetPerson("701");
-                Person psCH = DatabaseManager.GetPerson("702");
-
-
-                string sql1 = "INSERT INTO LEV_MAIN (LEAVE_ID, LEAVE_TYPE_ID, LEAVE_STATE, PS_CITIZEN_ID, REQ_DATE, FROM_DATE, TO_DATE, TOTAL_DAY, CL_ID, CL_TITLE, CL_FN, CL_LN, CL_POS, CL_COMM, CL_DATE, CH_ID, CH_TITLE, CH_FN, CH_LN, CH_POS, CH_COMM, CH_ALLOW, CH_DATE, PS_TITLE, PS_FN, PS_LN, PS_POS, PS_DEPT, PS_POS_RANK) VALUES ({0},{1},{2},'{3}',{4},{5},{6},{7},'{8}','{9}','{10}','{11}','{12}','{13}',{14},'{15}','{16}','{17}','{18}','{19}','{20}',{21},{22},'{23}','{24}','{25}','{26}','{27}','{28}')";
-                sql1 = string.Format(sql1, "{0}", ddlLeaveType.SelectedValue, 1, loginPerson.CitizenID, Util.TodayDatabaseToDate(), Util.DatabaseToDate(tbVX21FromDate.Text), Util.DatabaseToDate(tbVX21ToDate.Text), totalDay, psCL.CitizenID, psCL.TitleName, psCL.FirstName, psCL.LastName, psCL.PositionName, "", "''", psCH.CitizenID, psCH.TitleName, psCH.FirstName, psCH.LastName, psCH.PositionName, "", "''", "''", loginPerson.TitleName, loginPerson.FirstName, loginPerson.LastName, loginPerson.PositionName, loginPerson.DivisionName, loginPerson.AdminPositionName);
-                hfSql.Value = sql1;
-
-                string sql2 = "INSERT INTO LEV_FORM1 (FORM1_ID, LEAVE_ID, REASON, CONTACT, PHONE, LAST_FROM_DATE, LAST_TO_DATE, LAST_TOTAL_DAY, DR_CER_FILE_NAME) VALUES ({0},{1},'{2}','{3}','{4}',{5},{6},{7},'{8}')";
-                sql2 = string.Format(sql2, "SEQ_LEV_FORM1_ID.NEXTVAL", "{0}", tbVX21Reason.Text, tbVX21Contact.Text, tbVX21Phone.Text, Util.DatabaseToDate(lastFromDate), Util.DatabaseToDate(lastToDate), lastTotalDay, "");
-                hfSql2.Value = sql2;
-
-            }
+        protected void lbuBackMain_Click(object sender, EventArgs e) {
+            Response.Redirect("Default.aspx");
         }
 
-        protected void lbuVX22Back_Click(object sender, EventArgs e) {
-            MultiView1.ActiveViewIndex = 2;
-            ChangeNotification("info", "กรุณากรอกข้อมูล");
+        protected void lbuHistory_Click(object sender, EventArgs e) {
+            Response.Redirect("LeaveHistory.aspx");
         }
-
-        
     }
 
 }

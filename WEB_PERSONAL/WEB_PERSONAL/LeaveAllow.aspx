@@ -1,6 +1,16 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="LeaveAllow.aspx.cs" Inherits="WEB_PERSONAL.LeaveAllow" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style type="text/css">
+        .auto-style2 {
+            padding: 3px 5px;
+            background-color: #ffffff;
+            color: #0000ff;
+            color: #0040ff;
+            border-bottom: 1px solid #f0f0f0;
+            height: 25px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="default_page_style">
@@ -19,98 +29,250 @@
                         <td class="head" colspan="2">ข้อมูลการลา</td>
                     </tr>
                     <tr>
-                    <td class="col1">รหัสการลา</td>
+                    <td class="col1">
+                        <img src="Image/Small/ID.png" class="icon_left" />
+                        รหัสการลา</td>
                     <td class="col2">
-                        <asp:Label ID="lbF1LeaveID" runat="server"></asp:Label>
+                        <asp:Label ID="lbLeaveID" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
-                    <td class="col1"><img src="Image/Small/person2.png" class="icon_left"/>ผู้ลา</td>
+                    <td class="col1"><img src="Image/Small/list.png" class="icon_left"/>ประเภทการลา</td>
                     <td class="col2">
-                        <asp:Label ID="lbF1LeaverName" runat="server"></asp:Label>
+                        <asp:Label ID="lbLeaveTypeName" runat="server"></asp:Label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col1">
+                        <img src="Image/Small/calendar.png" class="icon_left"/>
+                        วันที่ข้อมูล</td>
+                    <td class="col2">
+                        <asp:Label ID="lbReqDate" runat="server"></asp:Label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col1">
+                        <img src="Image/Small/person2.png" class="icon_left" />
+                        ผู้ลา</td>
+                    <td class="col2">
+                        <asp:Label ID="lbPSName" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">ตำแหน่ง</td>
                     <td class="col2">
-                        <asp:Label ID="lbF1PersonPosition" runat="server"></asp:Label>
+                        <asp:Label ID="lbPSPos" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">ระดับ</td>
                     <td class="col2">
-                        <asp:Label ID="lbF1PersonRank" runat="server"></asp:Label>
+                        <asp:Label ID="lbPSAPos" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">สังกัด</td>
                     <td class="col2">
-                        <asp:Label ID="lbF1PersonDepartment" runat="server"></asp:Label>
+                        <asp:Label ID="lbPSDept" runat="server"></asp:Label>
                     </td>
                 </tr>
-                <tr>
-                    <td class="col1"><img src="Image/Small/calendar.png" class="icon_left"/>วันที่ยื่นเรื่อง</td>
+                <tr id="trPSBirthDate" runat="server">
+                    <td class="col1"><img src="Image/Small/calendar.png" class="icon_left"/>เกิดวันที่ </td>
                     <td class="col2">
-                        <asp:Label ID="lbF1ReqDate" runat="server"></asp:Label>
+                        <asp:Label ID="lbPSBirthDate" runat="server"></asp:Label>
                     </td>
                 </tr>
-                <tr>
-                    <td class="col1">ประเภทการลา</td>
+                <tr id="trPSWorkInDate" runat="server">
+                    <td class="col1"><img src="Image/Small/calendar.png" class="icon_left"/>เข้ารับราชการวันที่ </td>
                     <td class="col2">
-                        <asp:Label ID="lbF1LeaveTypeName" runat="server"></asp:Label>
+                        <asp:Label ID="lbPSWorkInDate" runat="server"></asp:Label>
                     </td>
                 </tr>
-                <tr>
-                    <td class="col1"><img src="Image/Small/calendar.png" class="icon_left"/>ลาครั้งล่าสุด</td>
+                <tr id="trRestSave" runat="server">
+                    <td class="col1"><img src="Image/Small/calendar.png" class="icon_left"/>วันลาพักผ่อนสะสม</td>
                     <td class="col2">
-                        <asp:Label ID="lbF1LastFTTDate" runat="server"></asp:Label>
+                        <asp:Label ID="lbRestSave" runat="server"></asp:Label>
                     </td>
                 </tr>
-                <tr>
-                    <td class="col1"><img src="Image/Small/calendar.png" class="icon_left"/>ลาครั้งนี้</td>
+                <tr id="trRestLeft" runat="server">
+                    <td class="col1"><img src="Image/Small/calendar.png" class="icon_left"/>มีสิทธิลาประจำปีนี้อีก</td>
                     <td class="col2">
-                        <asp:Label ID="lbF1FTTDate" runat="server"></asp:Label>
+                        <asp:Label ID="lbRestLeft" runat="server"></asp:Label>
                     </td>
                 </tr>
-                <tr>
-                    <td class="col1"><img src="Image/Small/calendar.png" class="icon_left"/>สถิติการลา</td>
+                <tr id="trRestTotal" runat="server">
+                    <td class="col1"><img src="Image/Small/calendar.png" class="icon_left"/>รวม</td>
                     <td class="col2">
-                        <asp:Label ID="lbF1Statistic" runat="server"></asp:Label>
+                        <asp:Label ID="lbRestTotal" runat="server"></asp:Label>
                     </td>
                 </tr>
-                <tr>
-                    <td class="col1"><img src="Image/Small/a.png" class="icon_left"/>เหตุผล</td>
+                <tr id="trWifeName" runat="server">
+                    <td class="col1"><img src="Image/Small/person2.png" class="icon_left"/>ชื่อภริยา</td>
                     <td class="col2">
-                        <asp:Label ID="lbF1Reason" runat="server"></asp:Label>
+                        <asp:Label ID="lbWifeName" runat="server"></asp:Label>
                     </td>
                 </tr>
-                <tr>
-                    <td class="col1"><img src="Image/Small/a.png" class="icon_left"/>ติดต่อได้ที่</td>
+                    <tr id="trGBDate" runat="server">
+                    <td class="col1"><img src="Image/Small/calendar.png" class="icon_left"/>คลอดบุตรวันที่</td>
                     <td class="col2">
-                        <asp:Label ID="lbF1Contact" runat="server"></asp:Label>
-                    </td>
+                        <asp:Label ID="lbGBDate" runat="server"></asp:Label>
+                        </td>
                 </tr>
-                <tr>
-                    <td class="col1"><img src="Image/Small/phone.png" class="icon_left"/>เบอร์โทรศัพท์</td>
-                    <td class="col2">
-                        <asp:Label ID="lbF1Phone" runat="server"></asp:Label>
-                    </td>
-                </tr>
+                    <tr id="trOrdained" runat="server">
+                        <td class="col1">
+                            <img src="Image/Small/question.png" class="icon_left"/>
+                            การอุปสมบท</td>
+                        <td class="col2">
+                            <asp:Label ID="lbOrdained" runat="server"></asp:Label>
+                        </td>
+                    </tr>
+                    <tr id="trTempleName" runat="server">
+                        <td class="col1">
+                            <img src="Image/Small/bell.png" class="icon_left"/>
+                            ชื่อวัด</td>
+                        <td class="col2">
+                            <asp:Label ID="lbTempleName" runat="server"></asp:Label>
+                        </td>
+                    </tr>
+                    <tr id="trTempleLocation" runat="server">
+                        <td class="col1">
+                            <img src="Image/Small/location.png" class="icon_left" />
+                            สถานที่</td>
+                        <td class="col2">
+                            <asp:Label ID="lbTempleLocation" runat="server"></asp:Label>
+                        </td>
+                    </tr>
+                    <tr id="trOrdainDate" runat="server">
+                        <td class="col1">
+                            <img src="Image/Small/calendar.png" class="icon_left" />
+                            อุปสมบทวันที่</td>
+                        <td class="col2">
+                            <asp:Label ID="lbOrdainDate" runat="server"></asp:Label>
+                        </td>
+                    </tr>
+                    <tr id="trHujed" runat="server">
+                        <td class="col1">
+                            <img src="Image/Small/question.png" class="icon_left" />
+                            การไปประกอบพิธีฮัจย์</td>
+                        <td class="col2">
+                            <asp:Label ID="lbHujed" runat="server"></asp:Label>
+                        </td>
+                    </tr>
+                    <tr id="trLastFTTDate" runat="server">
+                        <td class="col1">
+                            <img src="Image/Small/calendar.png" class="icon_left" />
+                            วันที่ลาล่าสุด </td>
+                        <td class="col2">
+                            <asp:Label ID="lbLastFTTDate" runat="server"></asp:Label>
+                        </td>
+                    </tr>
                     <tr>
-                    <td class="col1"><img src="Image/Small/clip.png" class="icon_left"/>เอกสารแนบ</td>
-                    <td class="col2">
-                        <div id="divDrCer" runat="server"></div></td>
-                </tr>
+                        <td class="col1">
+                            <img src="Image/Small/calendar.png" class="icon_left" />
+                            วันที่ลา </td>
+                        <td class="col2">
+                            <asp:Label ID="lbFTTDate" runat="server"></asp:Label>
+                        </td>
+                    </tr>
+                    <tr id="trStatistic" runat="server">
+                        <td class="col1">
+                            <img src="Image/Small/calendar.png" class="icon_left" />
+                            สถิติการลา</td>
+                        <td class="col2">
+                            <asp:Label ID="lbStatistic" runat="server"></asp:Label>
+                        </td>
+                    </tr>
+                    <tr id="trReason" runat="server">
+                        <td class="col1">
+                            <img src="Image/Small/comment.png" class="icon_left" />
+                            เหตุผล</td>
+                        <td class="auto-style2">
+                            <asp:Label ID="lbReason" runat="server"></asp:Label>
+                        </td>
+                    </tr>
+                    <tr id="trContact" runat="server">
+                        <td class="col1">
+                            <img src="Image/Small/a.png" class="icon_left" />
+                            ติดต่อได้ที่</td>
+                        <td class="col2">
+                            <asp:Label ID="lbContact" runat="server"></asp:Label>
+                        </td>
+                    </tr>
+                    <tr id="trPhone" runat="server">
+                        <td class="col1">
+                            <img src="Image/Small/phone.png" class="icon_left" />
+                            เบอร์โทรศัพท์</td>
+                        <td class="col2">
+                            <asp:Label ID="lbPhone" runat="server"></asp:Label>
+                        </td>
+                    </tr>
+                    <tr id="trDrCer" runat="server">
+                        <td class="col1">
+                            <img src="Image/Small/clip.png" class="icon_left" />
+                            เอกสารแนบ</td>
+                        <td class="col2">
+                            <div id="divDrCer" runat="server">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col1">&nbsp;</td>
+                        <td class="col2">&nbsp;</td>
+                    </tr>
+                    <tr id="trCLOldComment" runat="server">
+                        <td class="col1">
+                            <img src="Image/Small/comment.png" class="icon_left" />
+                            ความเห็นผู้บังคับบัญชาระดับต่ำเก่า</td>
+                        <td class="col2">
+                            <asp:Label ID="lbCLOldComment" runat="server"></asp:Label>
+                        </td>
+                    </tr>
+                    <tr id="trCLOldDate" runat="server">
+                        <td class="col1">
+                            <img src="Image/Small/calendar.png" class="icon_left" />
+                            วันที่</td>
+                        <td class="col2">
+                            <asp:Label ID="lbCLOldDate" runat="server"></asp:Label>
+                        </td>
+                    </tr>
+                    <tr id="trCHOldComment" runat="server">
+                        <td class="col1">
+                            <img src="Image/Small/comment.png" class="icon_left" />
+                            ความเห็นเก่า</td>
+                        <td class="col2">
+                            <asp:Label ID="lbCHOldComment" runat="server"></asp:Label>
+                        </td>
+                    </tr>
+                    <tr id="trCHOldDate" runat="server">
+                        <td class="col1">
+                            <img src="Image/Small/calendar.png" class="icon_left" />
+                            วันที่</td>
+                        <td class="col2">
+                            <asp:Label ID="lbCHOldDate" runat="server"></asp:Label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col1">&nbsp;</td>
+                        <td class="col2">&nbsp;</td>
+                    </tr>
+                    <tr id="trCancelReason" runat="server">
+                        <td class="col1">
+                            <img src="Image/Small/comment.png" class="icon_left" />
+                            เหตุผลที่ยกเลิก</td>
+                        <td class="col2">
+                            <asp:Label ID="lbCancelReason" runat="server"></asp:Label>
+                        </td>
+                    </tr>
                     <tr>
                     <td class="col1"><img src="Image/Small/comment.png" class="icon_left"/>ความเห็นจากผู้บังคับบัญชาระดับต่ำ</td>
                     <td class="col2">
-                        <asp:Label ID="lbF1CLComment" runat="server"></asp:Label>
+                        <asp:Label ID="lbCLComment" runat="server"></asp:Label>
                     </td>
                 </tr>
                     <tr>
                     <td class="col1"><img src="Image/Small/calendar.png" class="icon_left"/>วันที่ลงความเห็น</td>
                     <td class="col2">
-                        <asp:Label ID="lbF1CLDate" runat="server"></asp:Label>
+                        <asp:Label ID="lbCLDate" runat="server"></asp:Label>
                     </td>
                 </tr>
                     <tr>

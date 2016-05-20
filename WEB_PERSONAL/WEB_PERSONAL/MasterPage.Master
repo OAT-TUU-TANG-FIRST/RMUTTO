@@ -161,13 +161,13 @@
                 <div class="ps-ms-side-group">
                     <span class="ps-ms-side-group-header">จัดการข้อมูล</span>
                     <a href="DataManager.aspx" id="LinkDropDown" runat="server"><img src="Image/Small/wrench.png" />แก้ไข Dropdown</a>
-                    <a href="Developer.aspx" id="LinkDeveloper" runat="server"><img src="Image/Small/wrench.png" />DEVELOPER ZONE</a>
-                    <a href="UploadList.aspx" id="LinkUpload" runat="server"><img src="Image/Small/wrench.png" />Upload List</a>
+                    <a href="Developer.aspx" id="LinkDeveloper" runat="server"><img src="Image/Small/wrench.png" />ส่วนนักพัฒนา</a>
+                    <a href="UploadList.aspx" id="LinkUpload" runat="server"><img src="Image/Small/wrench.png" />รายการอัพโหลด</a>
                 </div>
 
                 <div class="ps-ms-side-group">
                     <span class="ps-ms-side-group-header">ข้อมูลระบบ</span>
-                    <div style="margin-left: 10px;">เวอร์ชั่น : v1.0.7</div>
+                    <div style="margin-left: 10px;">เวอร์ชั่น : v1.0.8</div>
                     <div style="margin-left: 10px;">ตัวนับ : <span id="s_counter" runat="server"></span></div>
                 </div>
 

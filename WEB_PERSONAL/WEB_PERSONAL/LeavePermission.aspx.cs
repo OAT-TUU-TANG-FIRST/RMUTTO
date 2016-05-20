@@ -35,8 +35,5 @@ namespace WEB_PERSONAL {
             }
         }
 
-        protected void lbuEdit_Click(object sender, EventArgs e) {
-
-        }
     }
 }

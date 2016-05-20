@@ -34,7 +34,7 @@ namespace WEB_PERSONAL {
 
             if (count > 0) {
 
-                SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEV_MAIN.LEAVE_ID รหัสการลา, (SELECT PS_FN_TH || ' ' || PS_LN_TH FROM PS_PERSON WHERE PS_CITIZEN_ID = LEV_MAIN.PS_CITIZEN_ID) ชื่อผู้ลา, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_MAIN.LEAVE_TYPE_ID) ประเภทการลา, LEV_MAIN.REQ_DATE วันที่ข้อมูล FROM LEV_MAIN WHERE LEAVE_STATE = 2 AND CH_ID = '" + loginPerson.CitizenID + "'");
+                SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEAVE_ID รหัสการลา, (SELECT PS_FN_TH || ' ' || PS_LN_TH FROM PS_PERSON WHERE PS_CITIZEN_ID = LEV_DATA.PS_ID) ชื่อผู้ลา, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_DATA.LEAVE_TYPE_ID) ประเภทการลา, REQ_DATE วันที่ข้อมูล, (SELECT LEAVE_STATUS_NAME FROM LEV_STATUS WHERE LEAVE_STATUS_ID = LEV_DATA.LEAVE_STATUS_ID) สถานะ FROM LEV_DATA WHERE LEAVE_STATUS_ID in(2,6) AND CH_ID = '" + loginPerson.CitizenID + "'");
                 GridView1.DataSource = sds;
                 GridView1.DataBind();
 
@@ -44,39 +44,175 @@ namespace WEB_PERSONAL {
                 newHeader.Text = "เลือก";
                 GridView1.HeaderRow.Cells.Add(newHeader);
 
+                GridView1.HeaderRow.Cells[0].Text = "<img src='Image/Small/ID.png' class='icon_left'/>" + GridView1.HeaderRow.Cells[0].Text;
+                GridView1.HeaderRow.Cells[1].Text = "<img src='Image/Small/person2.png' class='icon_left'/>" + GridView1.HeaderRow.Cells[1].Text;
+                GridView1.HeaderRow.Cells[2].Text = "<img src='Image/Small/list.png' class='icon_left'/>" + GridView1.HeaderRow.Cells[2].Text;
+                GridView1.HeaderRow.Cells[3].Text = "<img src='Image/Small/calendar.png' class='icon_left'/>" + GridView1.HeaderRow.Cells[3].Text;
+                GridView1.HeaderRow.Cells[4].Text = "<img src='Image/Small/question.png' class='icon_left'/>" + GridView1.HeaderRow.Cells[4].Text;
+                GridView1.HeaderRow.Cells[5].Text = "<img src='Image/Small/pointer.png' class='icon_left'/>" + GridView1.HeaderRow.Cells[5].Text;
+
                 for (int i = 0; i < GridView1.Rows.Count; ++i) {
 
                     string id = GridView1.Rows[i].Cells[0].Text;
-                    Form1Package f1 = DatabaseManager.GetForm1Package(id);
 
                     LinkButton lbu = new LinkButton();
                     lbu.Text = "เลือก";
                     lbu.CssClass = "ps-button";
                     lbu.Click += (e2, e3) => {
-                        lbF1LeaveID.Text = id;
-                        lbF1LeaverName.Text = f1.PersonPrefix + f1.PersonFirstName + " " + f1.PersonLastName;
-                        lbF1PersonPosition.Text = f1.PersonPosition;
-                        lbF1PersonDepartment.Text = f1.PersonDepartment;
-                        lbF1PersonRank.Text = f1.PersonRank;
-                        lbF1ReqDate.Text = f1.RequestDate;
-                        lbF1LeaveTypeName.Text = f1.LeaveTypeName;
-                        if (f1.LastFromDate == "") {
-                            lbF1LastFTTDate.Text = "ยังไม่เคยลา";
+
+                        LeaveData leaveData = new LeaveData();
+                        leaveData.Load(int.Parse(id));
+                        Session["LeaveData"] = leaveData;
+
+                        trPSBirthDate.Visible = false;
+                        trPSWorkInDate.Visible = false;
+                        trWifeName.Visible = false;
+                        trGBDate.Visible = false;
+                        trOrdained.Visible = false;
+                        trTempleName.Visible = false;
+                        trTempleLocation.Visible = false;
+                        trOrdainDate.Visible = false;
+                        trHujed.Visible = false;
+                        trReason.Visible = false;
+                        trContact.Visible = false;
+                        trPhone.Visible = false;
+                        trRestSave.Visible = false;
+                        trRestLeft.Visible = false;
+                        trRestTotal.Visible = false;
+                        trStatistic.Visible = false;
+                        trCLOldComment.Visible = false;
+                        trCLOldDate.Visible = false;
+                        trCHOldComment.Visible = false;
+                        trCHOldDate.Visible = false;
+                        trCancelReason.Visible = false;
+
+                        if (leaveData.LeaveTypeID == 1) {
+                            trStatistic.Visible = true;
+                            trReason.Visible = true;
+                            trContact.Visible = true;
+                            trPhone.Visible = true;
+                        } else if (leaveData.LeaveTypeID == 2) {
+                            trStatistic.Visible = true;
+                            trReason.Visible = true;
+                            trContact.Visible = true;
+                            trPhone.Visible = true;
+                        } else if (leaveData.LeaveTypeID == 3) {
+                            trStatistic.Visible = true;
+                            trReason.Visible = true;
+                            trContact.Visible = true;
+                            trPhone.Visible = true;
+                        } else if (leaveData.LeaveTypeID == 4) {
+                            trRestSave.Visible = true;
+                            trRestLeft.Visible = true;
+                            trRestTotal.Visible = true;
+                            trContact.Visible = true;
+                            trPhone.Visible = true;
+                        } else if (leaveData.LeaveTypeID == 5) {
+                            trWifeName.Visible = true;
+                            trGBDate.Visible = true;
+                            trContact.Visible = true;
+                            trPhone.Visible = true;
+                        } else if (leaveData.LeaveTypeID == 6) {
+                            trPSBirthDate.Visible = true;
+                            trPSWorkInDate.Visible = true;
+                            trOrdained.Visible = true;
+                            trTempleName.Visible = true;
+                            trTempleLocation.Visible = true;
+                            trOrdainDate.Visible = true;
+                        } else if (leaveData.LeaveTypeID == 7) {
+                            trPSBirthDate.Visible = true;
+                            trPSWorkInDate.Visible = true;
+                            trHujed.Visible = true;
+                        }
+
+                        if (leaveData.LeaveStatusID == 2) {
+
+                        } else if (leaveData.LeaveStatusID == 6) {
+                            trCLOldComment.Visible = true;
+                            trCLOldDate.Visible = true;
+                            trCHOldComment.Visible = true;
+                            trCHOldDate.Visible = true;
+                            trCancelReason.Visible = true;
+                        }
+
+                        lbLeaveID.Text = leaveData.LeaveID.ToString();
+                        lbLeaveTypeName.Text = leaveData.LeaveTypeName;
+                        lbReqDate.Text = leaveData.RequestDate.Value.ToLongDateString();
+                        lbPSName.Text = leaveData.PS_Title + leaveData.PS_FirstName + " " + leaveData.PS_LastName;
+                        lbPSPos.Text = leaveData.PS_Position;
+                        lbPSAPos.Text = leaveData.PS_AdminPosition;
+                        lbPSDept.Text = leaveData.PS_Department;
+
+                        if (leaveData.PS_BirthDate.HasValue) {
+                            lbPSBirthDate.Text = leaveData.PS_BirthDate.Value.ToLongDateString();
                         } else {
-                            lbF1LastFTTDate.Text = f1.LastFromDate + " - " + f1.LastToDate + " / รวม " + f1.LastTotalDay + " วัน";
+                            lbPSBirthDate.Text = "-";
                         }
-                        lbF1FTTDate.Text = f1.FromDate + " - " + f1.ToDate + " / รวม " + f1.TotalDay + " วัน";
-                        lbF1Statistic.Text = "ลามาแล้ว " + f1.CountPast + " วัน / ลาครั้งนี้ " + f1.CountNow + " วัน / รวม " + f1.CountTotal + " วัน";
-                        lbF1Reason.Text = f1.Reason;
-                        lbF1Contact.Text = f1.Contact;
-                        lbF1Phone.Text = f1.Phone;
-
-                        if (f1.DoctorCertificate != "") {
-                            divDrCer.InnerHtml = "<a href='Upload/Drcer/" + f1.DoctorCertificate + "'><img src='Upload/DrCer/" + f1.DoctorCertificate + "' style='width: 200px;' /></a>";
+                        if (leaveData.PS_WorkInDate.HasValue) {
+                            lbPSWorkInDate.Text = leaveData.PS_WorkInDate.Value.ToLongDateString();
+                        } else {
+                            lbPSWorkInDate.Text = "-";
                         }
 
-                        lbF1CLComment.Text = f1.CommanderLowComment;
-                        lbF1CLDate.Text = f1.CommanderLowDate;
+                        lbRestSave.Text = leaveData.RestSave + " วัน";
+                        lbRestLeft.Text = leaveData.RestLeft + " วัน";
+                        lbRestTotal.Text = leaveData.RestTotal + " วัน";
+
+                        lbWifeName.Text = leaveData.WifeFirstName + " " + leaveData.WifeLastName;
+                        if (leaveData.GiveBirthDate.HasValue) {
+                            lbGBDate.Text = leaveData.GiveBirthDate.Value.ToLongDateString();
+                        } else {
+                            lbGBDate.Text = "-";
+                        }
+
+                        lbOrdained.Text = leaveData.Ordained == 1 ? "เคย" : "ไม่เคย";
+                        lbTempleName.Text = leaveData.TempleName;
+                        lbTempleLocation.Text = leaveData.TempleLocation;
+                        if (leaveData.OrdainDate.HasValue) {
+                            lbOrdainDate.Text = leaveData.OrdainDate.Value.ToLongDateString();
+                        } else {
+                            lbOrdainDate.Text = "-";
+                        }
+
+                        lbHujed.Text = leaveData.Hujed == 1 ? "เคย" : "ไม่เคย";
+
+                        if (leaveData.FromDate.HasValue) {
+                            lbFTTDate.Text = leaveData.FromDate.Value.ToLongDateString() + " ถึง " + leaveData.ToDate.Value.ToLongDateString() + " รวม " + leaveData.TotalDay + " วัน";
+                        } else {
+                            lbFTTDate.Text = "ไม่เคยลา";
+                        }
+                        lbStatistic.Text = "ลามาแล้ว " + leaveData.CountPast + " วัน / ลาครั้งนี้ " + leaveData.CountNow + " วัน / รวม " + leaveData.CountTotal + " วัน";
+
+                        lbReason.Text = leaveData.Reason;
+                        lbContact.Text = leaveData.Contact;
+                        lbPhone.Text = leaveData.Telephone;
+
+                        if (leaveData.LastFromDate.HasValue) {
+                            lbLastFTTDate.Text = leaveData.LastFromDate.Value.ToLongDateString() + " ถึง " + leaveData.LastToDate.Value.ToLongDateString() + " รวม " + leaveData.LastTotalDay + " วัน";
+                        } else {
+                            lbLastFTTDate.Text = "ไม่เคยลา";
+                        }
+
+                        
+
+                        if (leaveData.DocterCertificationFileName != "") {
+                            divDrCer.InnerHtml = "<a href='Upload/Drcer/" + leaveData.DocterCertificationFileName + "'><img src='Upload/DrCer/" + leaveData.DocterCertificationFileName + "' style='width: 200px;' /></a>";
+                        }
+
+                        if (leaveData.LeaveStatusID >= 1 && leaveData.LeaveStatusID <= 4) {
+                            lbCLComment.Text = leaveData.CL_Comment;
+                            lbCLDate.Text = leaveData.CL_Date.Value.ToLongDateString();
+                        } else if (leaveData.LeaveStatusID >= 5 && leaveData.LeaveStatusID <= 8) {
+                            lbCLOldComment.Text = leaveData.CL_Comment;
+                            lbCLOldDate.Text = leaveData.CL_Date.Value.ToLongDateString();
+                            lbCHOldComment.Text = leaveData.CH_Comment;
+                            lbCHOldDate.Text = leaveData.CH_Date.Value.ToLongDateString();
+                            lbCancelReason.Text = leaveData.CancelReason;
+                            lbCLComment.Text = leaveData.CL_CancelComment;
+                            lbCLDate.Text = leaveData.CL_CancelDate.Value.ToLongDateString();
+                        }
+
+                        
                         MultiView1.ActiveViewIndex = 1;
 
                         error_area.Attributes["class"] = "alert alert_info";
@@ -87,59 +223,7 @@ namespace WEB_PERSONAL {
                     GridView1.Rows[i].Cells.Add(cell);
                 }
 
-
-                /*HTable htable = new HTable(i1);
-                htable.AddHeaderRow(new string[] { "รหัสการลา", "ผู้ลา", "วันที่ยื่นเรื่อง", "ประเภทการลา", "จากวันที่", "ถึงวันที่", "รวมวัน", "เหตุผล", "สถานะ", "เลือก" });
-                using (OleDbConnection con = new OleDbConnection(DatabaseManager.CONNECTION_STRING)) {
-                    con.Open();
-                    using (OleDbCommand com = new OleDbCommand("SELECT LEAVE_ID, (SELECT PERSON_NAME || ' ' || PERSON_LASTNAME FROM TB_PERSON WHERE CITIZEN_ID = LEV_LEAVE.CITIZEN_ID), REQ_DATE, LEAVE_TYPE_NAME, FROM_DATE, TO_DATE, TOTAL_DAY, REASON, LEAVE_STATE_NAME FROM LEV_LEAVE, LEV_TYPE, LEV_STATE WHERE CMD_HIGH_ID = '" + loginPerson.CitizenID + "' AND LEV_LEAVE.LEAVE_TYPE_ID = LEV_TYPE.LEAVE_TYPE_ID AND LEV_LEAVE.STATE_ID = LEV_STATE.LEAVE_STATE_ID AND LEV_LEAVE.STATE_ID = 3", con)) {
-                        using (OleDbDataReader reader = com.ExecuteReader()) {
-                            while (reader.Read()) {
-                                string id = reader.GetValue(0).ToString();
-                                string name = reader.GetValue(1).ToString();
-                                string req_date = Util.ToOracleDateTime(reader.GetDateTime(2));
-                                string leave_type_name = reader.GetValue(3).ToString();
-                                string from_date = Util.ToOracleDateTime(reader.GetDateTime(4));
-                                string to_date = Util.ToOracleDateTime(reader.GetDateTime(5));
-                                string total_day = reader.GetValue(6).ToString();
-                                string reason = reader.GetValue(7).ToString();
-                                string state = reader.GetValue(8).ToString();
-                                htable.AddRow(new string[] {
-                                id,
-                                name,
-                                req_date,
-                                leave_type_name,
-                                from_date,
-                                to_date,
-                                total_day,
-                                reason,
-                                state
-                            });
-                                LinkButton b = new LinkButton();
-                                b.Text = "เลือก";
-                                b.CssClass = "hm_button_primary";
-                                b.Click += (e2, e3) => {
-                                    lbLeaveID.Text = id;
-                                    lbLeaverName.Text = name;
-                                    lbReqDate.Text = req_date;
-                                    lbLeaveTypeName.Text = leave_type_name;
-                                    lbFromDate.Text = from_date;
-                                    lbToDate.Text = to_date;
-                                    lbTotalDay.Text = total_day + " วัน";
-                                    lbReason.Text = reason;
-                                    i1.Style.Add("display", "none");
-                                    i2.Style.Add("display", "block");
-                                    i3.Style.Add("display", "none");
-                                    error_area.Attributes["class"] = "hm_alert_info";
-                                    error_area.InnerHtml = "กรุณาเลือกการอนุมัติ";
-                                };
-                                TableCell c = new TableCell();
-                                c.Controls.Add(b);
-                                htable.LastestRow().Cells.Add(c);
-                            }
-                        }
-                    }
-                }*/
+                
             }
         }
 
@@ -164,9 +248,21 @@ namespace WEB_PERSONAL {
                 if (rbNotAllow.Checked) {
                     allow = 2;
                 }
-                //DatabaseManager.ExecuteNonQuery("UPDATE LEV_FORM1 SET CMD_HIGH_COMMENT = '" + tbComment.Text + "', CMD_HIGH_DATE = " + Util.TodayDatabaseToDate() + ", CMD_HIGH_ALLOW = " + allow + ", STATE_ID = 4 WHERE LEAVE_ID = " + lbF1LeaveID.Text);
+                LeaveData leaveData = (LeaveData)Session["LeaveData"];
+                if (leaveData.LeaveStatusID == 2) {
+                    leaveData.CH_Comment = tbF1Comment.Text;
+                    leaveData.CH_Allow = allow;
+                    leaveData.CH_Date = DateTime.Today;
+                    leaveData.ExecuteAllow();
+                } else if (leaveData.LeaveStatusID == 6) {
+                    leaveData.CH_CancelComment = tbF1Comment.Text;
+                    leaveData.CH_CancelAllow = allow;
+                    leaveData.CH_CancelDate = DateTime.Today;
+                    leaveData.ExecuteCancelAllow();
+                }
+                    
 
-                DatabaseManager.ExecuteNonQuery("UPDATE LEV_MAIN SET LEAVE_STATE = 3, CH_COMM = '" + tbF1Comment.Text + "', CH_ALLOW = " + allow + ", CH_DATE = " +  Util.TodayDatabaseToDate() + " WHERE LEAVE_ID = '" + lbF1LeaveID.Text + "'");
+                
             }
         }
 

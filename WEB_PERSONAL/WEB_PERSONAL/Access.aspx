@@ -35,7 +35,7 @@
                                 <div style="margin: 5px 0;"></div>
                                 <asp:LinkButton ID="lbuLogin" runat="server" OnClick="lbuLogin_Click" CssClass="login_button"><img src="Image/Small/key.png" class="icon_left"/>เข้าสู่ระบบ</asp:LinkButton>
                                 <div style="margin: 5px 0;"></div>
-                                <asp:Label ID="Label12X" runat="server" CssClass="cerror"></asp:Label>
+                                <asp:Label ID="Label12X" runat="server" CssClass="cerror" ForeColor="White"></asp:Label>
 
                             </asp:Panel>
 

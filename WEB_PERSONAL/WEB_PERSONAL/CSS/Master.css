@@ -1357,7 +1357,7 @@ ault_page_header {
     transition: border-bottom-color ease 0.25s;
 }
 .ps-vs:hover {
-    border-bottom: 4px solid #00a2e8;
+    color: #000000;
 }
 .ps-vs-sel {
     display: inline-block;
