@@ -44,10 +44,10 @@
         }
     </style>
     <script>
-        $(function () {
+        function pageLoad(sender, args) {
             $("#ContentPlaceHolder1_tbBirthday,#ContentPlaceHolder1_tbDateInwork,#ContentPlaceHolder1_tbUseDate11,#ContentPlaceHolder1_tbDate14").datepicker($.datepicker.regional["th"]);
             $("#ContentPlaceHolder1_tbDateInwork").datepicker($.datepicker.regional["th"]);
-        });
+        };
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">

@@ -195,7 +195,8 @@ namespace WEB_PERSONAL {
         }
 
 
-        protected void btnCancelSeminar_Click(object sender, EventArgs e) {
+        protected void btnCancelSeminar_Click(object sender, EventArgs e)
+        {
             MultiView1.ActiveViewIndex = 0;
         }
 
@@ -239,7 +240,8 @@ namespace WEB_PERSONAL {
             }
         }
 
-        protected void lblNextV1_Click(object sender, EventArgs e) {
+        protected void lblNextV1_Click(object sender, EventArgs e)
+        {
             MultiView1.ActiveViewIndex = 1;
         }
     }
