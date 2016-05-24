@@ -114,6 +114,8 @@
     <Content Include="Access.aspx" />
     <Content Include="AddPerson-Edit.aspx" />
     <Content Include="AddPerson.aspx" />
+    <Content Include="AddPersonGP7-Edit.aspx" />
+    <Content Include="AddPersonGP7.aspx" />
     <Content Include="AdminPosition-ADMIN.aspx" />
     <Content Include="Amphur-ADMIN.aspx" />
     <Content Include="aspnet_client\system_web\4_0_30319\crystalreportviewers13\ActiveXControls\PrintControl.cab" />
@@ -1115,6 +1117,20 @@
     </Compile>
     <Compile Include="AddPerson.aspx.designer.cs">
       <DependentUpon>AddPerson.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddPersonGP7-Edit.aspx.cs">
+      <DependentUpon>AddPersonGP7-Edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddPersonGP7-Edit.aspx.designer.cs">
+      <DependentUpon>AddPersonGP7-Edit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddPersonGP7.aspx.cs">
+      <DependentUpon>AddPersonGP7.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddPersonGP7.aspx.designer.cs">
+      <DependentUpon>AddPersonGP7.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminPosition-ADMIN.aspx.cs">
       <DependentUpon>AdminPosition-ADMIN.aspx</DependentUpon>
