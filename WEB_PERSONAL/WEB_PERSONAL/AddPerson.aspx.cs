@@ -528,7 +528,7 @@ namespace WEB_PERSONAL
                 notification.Attributes["class"] = "none";
                 notification.InnerHtml = "";
             }*/
-            //MultiView1.ActiveViewIndex = 2;
+            MultiView1.ActiveViewIndex = 2;
         }
         protected void lbuAddressFetch_Click(object sender, EventArgs e)
         {

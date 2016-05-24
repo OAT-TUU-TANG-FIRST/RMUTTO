@@ -385,7 +385,7 @@
                                     <asp:Button ID="btnCancelSeminar" Text="ย้อนกลับ" runat="server" OnClick="btnCancelSeminar_Click" CssClass="ps-button" /></td>
                                 <td style="text-align: left; width: 10px;"></td>
                                 <td style="text-align: right; margin-right: 5px;">
-                                    <asp:Button ID="btnSaveSeminar" Text="ตกลง" runat="server" OnClick="btnSubmitSeminar_Click" CssClass="ps-button" /></td>
+                                    <asp:Button ID="btnSaveSeminar" Text="แก้ไขข้อมูลพัฒนาบุคลากร" runat="server" OnClick="btnSubmitSeminar_Click" CssClass="ps-button" /></td>
                             </tr>
                         </table>
                     </fieldset>
