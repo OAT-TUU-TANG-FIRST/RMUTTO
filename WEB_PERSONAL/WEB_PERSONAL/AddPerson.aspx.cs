@@ -364,114 +364,112 @@ namespace WEB_PERSONAL
 
         protected void lbuV1Next_Click(object sender, EventArgs e)
         {
-              if(tbCitizenID.Text == "" || ddlTitle.SelectedIndex == 0 || tbNameTH.Text == ""|| tbLastNameTH.Text == "" || tbNameEN.Text == "" || tbLastNameEN.Text == "" || ddlGender.SelectedIndex == 0 || tbBirthday.Text == "" || ddlRace.SelectedIndex == 0 || ddlNation.SelectedIndex == 0 || ddlBlood.SelectedIndex == 0 || tbEmail.Text == "" || tbPhone.Text == "" || tbTelephone.Text == "" || ddlReligion.SelectedIndex == 0 || ddlStatus.SelectedIndex == 0 || tbFatherName.Text == "" || tbFatherLastName.Text == "" || tbMotherName.Text == "" || tbMotherLastName.Text == "" || tbMotherOldLastName.Text == "" || tbCoupleName.Text == "" || tbCoupleLastName.Text == "" || tbCoupleOldLastName.Text == "") {
+            /*if(tbCitizenID.Text == "" || ddlTitle.SelectedIndex == 0 || tbNameTH.Text == ""|| tbLastNameTH.Text == "" || tbNameEN.Text == "" || tbLastNameEN.Text == "" || ddlGender.SelectedIndex == 0 || tbBirthday.Text == "" || ddlRace.SelectedIndex == 0 || ddlNation.SelectedIndex == 0 || ddlBlood.SelectedIndex == 0 || tbEmail.Text == "" || tbPhone.Text == "" || tbTelephone.Text == "" || ddlReligion.SelectedIndex == 0 || ddlStatus.SelectedIndex == 0 || tbFatherName.Text == "" || tbFatherLastName.Text == "" || tbMotherName.Text == "" || tbMotherLastName.Text == "" || tbMotherOldLastName.Text == "" || tbCoupleName.Text == "" || tbCoupleLastName.Text == "" || tbCoupleOldLastName.Text == "") {
 
-                notification.Attributes["class"] = "alert alert_danger";
-                notification.InnerHtml = "";
+              notification.Attributes["class"] = "alert alert_danger";
+              notification.InnerHtml = "";
 
-                notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>เกิดข้อผิดพลาด !</strong></div>";
-                if (tbCitizenID.Text == "") {
-                    notification.InnerHtml += "<div>กรุณากรอก 'บัตรประชาชน'</div>";
-                }
-                if (ddlTitle.SelectedIndex == 0)
-                {
-                    notification.InnerHtml += "<div>กรุณาเลือก 'คำนำหน้า'</div>";
-                }
-                if (tbNameTH.Text == "") {
-                    notification.InnerHtml += "<div>กรุณากรอก 'ชื่อ'</div>";
-                }
-                if (tbLastNameTH.Text == "")
-                {
-                    notification.InnerHtml += "<div>กรุณากรอก 'นามสกุล'</div>";
-                }
-                if (tbNameEN.Text == "")
-                {
-                    notification.InnerHtml += "<div>กรุณากรอก 'ชื่อ อังกฤษ'</div>";
-                }
-                if (tbLastNameEN.Text == "")
-                {
-                    notification.InnerHtml += "<div>กรุณากรอก 'นามสกุล อังกฤษ'</div>";
-                }
-                if (ddlGender.SelectedIndex == 0)
-                {
-                    notification.InnerHtml += "<div>กรุณาเลือก 'เพศ'</div>";
-                }
-                if (tbBirthday.Text == "")
-                {
-                    notification.InnerHtml += "<div>กรุณากรอก 'วันเกิด'</div>";
-                }
-                if (ddlRace.SelectedIndex == 0)
-                {
-                    notification.InnerHtml += "<div>กรุณาเลือก 'เชื้อชาติ'</div>";
-                }
-                if (ddlNation.SelectedIndex == 0)
-                {
-                    notification.InnerHtml += "<div>กรุณาเลือก 'สัญชาติ'</div>";
-                }
-                if (ddlBlood.SelectedIndex == 0)
-                {
-                    notification.InnerHtml += "<div>กรุณาเลือก 'กรุ๊ปเลือด'</div>";
-                }
-                if (tbEmail.Text == "")
-                {
-                    notification.InnerHtml += "<div>กรุณากรอก 'อีเมล'</div>";
-                }
-                if (tbPhone.Text == "")
-                {
-                    notification.InnerHtml += "<div>กรุณากรอก 'โทรศัพท์มือถือ'</div>";
-                }
-                if (tbTelephone.Text == "")
-                {
-                    notification.InnerHtml += "<div>กรุณากรอก 'โทรศัพท์ที่ทำงาน'</div>";
-                }
-                if (ddlReligion.SelectedIndex == 0)
-                {
-                    notification.InnerHtml += "<div>กรุณาเลือก 'ศาสนา'</div>";
-                }
-                if (ddlStatus.SelectedIndex == 0)
-                {
-                    notification.InnerHtml += "<div>กรุณาเลือก 'สถานภาพ'</div>";
-                }
-                if (tbFatherName.Text == "")
-                {
-                    notification.InnerHtml += "<div>กรุณากรอก 'ชื่อบิดา'</div>";
-                }
-                if (tbFatherLastName.Text == "")
-                {
-                    notification.InnerHtml += "<div>กรุณากรอก 'นามสกุลบิดา'</div>";
-                }
-                if (tbMotherName.Text == "")
-                {
-                    notification.InnerHtml += "<div>กรุณากรอก 'ชื่อมารดา'</div>";
-                }
-                if (tbMotherLastName.Text == "")
-                {
-                    notification.InnerHtml += "<div>กรุณากรอก 'นามสกุลมารดา'</div>";
-                }
-                if (tbMotherOldLastName.Text == "")
-                {
-                    notification.InnerHtml += "<div>กรุณากรอก 'นามสกุลมารดาเดิม'</div>";
-                }
-                if (tbCoupleName.Text == "")
-                {
-                    notification.InnerHtml += "<div>กรุณากรอก 'ชื่อคู่สมรส'</div>";
-                }
-                if (tbCoupleLastName.Text == "")
-                {
-                    notification.InnerHtml += "<div>กรุณากรอก 'นามสกุลคู่สมรส'</div>";
-                }
-                if (tbCoupleOldLastName.Text == "")
-                {
-                    notification.InnerHtml += "<div>กรุณากรอก 'นามสกุลคู่สมรสเดิม'</div>";
-                }
-            } else {
-                MultiView1.ActiveViewIndex = 1;
-                notification.Attributes["class"] = "none";
-                notification.InnerHtml = "";
-            }
-            
-
-            //MultiView1.ActiveViewIndex = 1;
+              notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>เกิดข้อผิดพลาด !</strong></div>";
+              if (tbCitizenID.Text == "") {
+                  notification.InnerHtml += "<div>กรุณากรอก 'บัตรประชาชน'</div>";
+              }
+              if (ddlTitle.SelectedIndex == 0)
+              {
+                  notification.InnerHtml += "<div>กรุณาเลือก 'คำนำหน้า'</div>";
+              }
+              if (tbNameTH.Text == "") {
+                  notification.InnerHtml += "<div>กรุณากรอก 'ชื่อ'</div>";
+              }
+              if (tbLastNameTH.Text == "")
+              {
+                  notification.InnerHtml += "<div>กรุณากรอก 'นามสกุล'</div>";
+              }
+              if (tbNameEN.Text == "")
+              {
+                  notification.InnerHtml += "<div>กรุณากรอก 'ชื่อ อังกฤษ'</div>";
+              }
+              if (tbLastNameEN.Text == "")
+              {
+                  notification.InnerHtml += "<div>กรุณากรอก 'นามสกุล อังกฤษ'</div>";
+              }
+              if (ddlGender.SelectedIndex == 0)
+              {
+                  notification.InnerHtml += "<div>กรุณาเลือก 'เพศ'</div>";
+              }
+              if (tbBirthday.Text == "")
+              {
+                  notification.InnerHtml += "<div>กรุณากรอก 'วันเกิด'</div>";
+              }
+              if (ddlRace.SelectedIndex == 0)
+              {
+                  notification.InnerHtml += "<div>กรุณาเลือก 'เชื้อชาติ'</div>";
+              }
+              if (ddlNation.SelectedIndex == 0)
+              {
+                  notification.InnerHtml += "<div>กรุณาเลือก 'สัญชาติ'</div>";
+              }
+              if (ddlBlood.SelectedIndex == 0)
+              {
+                  notification.InnerHtml += "<div>กรุณาเลือก 'กรุ๊ปเลือด'</div>";
+              }
+              if (tbEmail.Text == "")
+              {
+                  notification.InnerHtml += "<div>กรุณากรอก 'อีเมล'</div>";
+              }
+              if (tbPhone.Text == "")
+              {
+                  notification.InnerHtml += "<div>กรุณากรอก 'โทรศัพท์มือถือ'</div>";
+              }
+              if (tbTelephone.Text == "")
+              {
+                  notification.InnerHtml += "<div>กรุณากรอก 'โทรศัพท์ที่ทำงาน'</div>";
+              }
+              if (ddlReligion.SelectedIndex == 0)
+              {
+                  notification.InnerHtml += "<div>กรุณาเลือก 'ศาสนา'</div>";
+              }
+              if (ddlStatus.SelectedIndex == 0)
+              {
+                  notification.InnerHtml += "<div>กรุณาเลือก 'สถานภาพ'</div>";
+              }
+              if (tbFatherName.Text == "")
+              {
+                  notification.InnerHtml += "<div>กรุณากรอก 'ชื่อบิดา'</div>";
+              }
+              if (tbFatherLastName.Text == "")
+              {
+                  notification.InnerHtml += "<div>กรุณากรอก 'นามสกุลบิดา'</div>";
+              }
+              if (tbMotherName.Text == "")
+              {
+                  notification.InnerHtml += "<div>กรุณากรอก 'ชื่อมารดา'</div>";
+              }
+              if (tbMotherLastName.Text == "")
+              {
+                  notification.InnerHtml += "<div>กรุณากรอก 'นามสกุลมารดา'</div>";
+              }
+              if (tbMotherOldLastName.Text == "")
+              {
+                  notification.InnerHtml += "<div>กรุณากรอก 'นามสกุลมารดาเดิม'</div>";
+              }
+              if (tbCoupleName.Text == "")
+              {
+                  notification.InnerHtml += "<div>กรุณากรอก 'ชื่อคู่สมรส'</div>";
+              }
+              if (tbCoupleLastName.Text == "")
+              {
+                  notification.InnerHtml += "<div>กรุณากรอก 'นามสกุลคู่สมรส'</div>";
+              }
+              if (tbCoupleOldLastName.Text == "")
+              {
+                  notification.InnerHtml += "<div>กรุณากรอก 'นามสกุลคู่สมรสเดิม'</div>";
+              }
+          } else {
+              MultiView1.ActiveViewIndex = 1;
+              notification.Attributes["class"] = "none";
+              notification.InnerHtml = "";
+          }*/
+            MultiView1.ActiveViewIndex = 1;
         }
 
         protected void lbuV2Back_Click(object sender, EventArgs e)
@@ -481,57 +479,56 @@ namespace WEB_PERSONAL
 
         protected void lbuV2Next_Click(object sender, EventArgs e)
         {
-             if (tbHomeAdd.Text == "" || tbSoi.Text == "" || tbMoo.Text == "" || tbRoad.Text == "" || ddlProvince.SelectedIndex == 0 || ddlAmphur.SelectedIndex == 0 || ddlDistrict.SelectedIndex == 0 || tbZipcode.Text == "" || ddlCountry.SelectedIndex == 0 || tbState.Text == "" ||
-                 tbHomeAdd2.Text == "" || tbSoi2.Text == "" || tbMoo2.Text == "" || tbRoad2.Text == "" || ddlProvince2.SelectedIndex == 0 || ddlAmphur2.SelectedIndex == 0 || ddlDistrict2.SelectedIndex == 0 || tbZipcode2.Text == "" || ddlCountry2.SelectedIndex == 0 || tbState2.Text == "")
-             {
-                 notification.Attributes["class"] = "alert alert_danger";
-                 notification.InnerHtml = "";
+            /*if (tbHomeAdd.Text == "" || tbSoi.Text == "" || tbMoo.Text == "" || tbRoad.Text == "" || ddlProvince.SelectedIndex == 0 || ddlAmphur.SelectedIndex == 0 || ddlDistrict.SelectedIndex == 0 || tbZipcode.Text == "" || ddlCountry.SelectedIndex == 0 || tbState.Text == "" ||
+                tbHomeAdd2.Text == "" || tbSoi2.Text == "" || tbMoo2.Text == "" || tbRoad2.Text == "" || ddlProvince2.SelectedIndex == 0 || ddlAmphur2.SelectedIndex == 0 || ddlDistrict2.SelectedIndex == 0 || tbZipcode2.Text == "" || ddlCountry2.SelectedIndex == 0 || tbState2.Text == "")
+            {
+                notification.Attributes["class"] = "alert alert_danger";
+                notification.InnerHtml = "";
 
-                 notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong> เกิดข้อผิดพลาด !</strong></div>";
-                 if (tbHomeAdd.Text == "" || tbHomeAdd2.Text == "")
-                 {
-                     notification.InnerHtml += "<div>กรุณากรอก 'บ้านเลขที่'</div>";
-                 }
-                 if (tbSoi.Text == "" || tbSoi2.Text == "")
-                 {
-                     notification.InnerHtml += "<div>กรุณากรอก 'ซอย'</div>";
-                 }
-                 if (tbMoo.Text == "" || tbMoo2.Text == "")
-                 {
-                     notification.InnerHtml += "<div>กรุณากรอก 'หมู่'</div>";
-                 }
-                 if (tbRoad.Text == "" || tbRoad2.Text == "")
-                 {
-                     notification.InnerHtml += "<div>กรุณากรอก 'ถนน'</div>";
-                 }
-                 if (ddlProvince.SelectedIndex == 0 || ddlProvince2.SelectedIndex == 0)
-                 {
-                     notification.InnerHtml += "<div>กรุณาเลือก 'จังหวัด'</div>";
-                 }
-                 if (ddlAmphur.SelectedIndex == 0 || ddlAmphur2.SelectedIndex == 0)
-                 {
-                     notification.InnerHtml += "<div>กรุณาเลือก 'อำเภอ / เขต'</div>";
-                 }
-                 if (ddlDistrict.SelectedIndex == 0 || ddlDistrict2.SelectedIndex == 0)
-                 {
-                     notification.InnerHtml += "<div>กรุณาเลือก 'ตำบล / แขวง'</div>";
-                 }
-                 if (tbZipcode.Text == "" || tbZipcode2.Text == "")
-                 {
-                     notification.InnerHtml += "<div>กรุณากรอก 'รหัสไปรณีย์'</div>";
-                 }
-                 if (ddlCountry.SelectedIndex == 0 || ddlCountry2.SelectedIndex == 0)
-                 {
-                     notification.InnerHtml += "<div>กรุณาเลือก 'ประเทศ'</div>";
-                 }
-             }
-             else {
-                 MultiView1.ActiveViewIndex = 2;
-                 notification.Attributes["class"] = "none";
-                 notification.InnerHtml = "";
-             }
-             
-            MultiView1.ActiveViewIndex = 2;
+                notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong> เกิดข้อผิดพลาด !</strong></div>";
+                if (tbHomeAdd.Text == "" || tbHomeAdd2.Text == "")
+                {
+                    notification.InnerHtml += "<div>กรุณากรอก 'บ้านเลขที่'</div>";
+                }
+                if (tbSoi.Text == "" || tbSoi2.Text == "")
+                {
+                    notification.InnerHtml += "<div>กรุณากรอก 'ซอย'</div>";
+                }
+                if (tbMoo.Text == "" || tbMoo2.Text == "")
+                {
+                    notification.InnerHtml += "<div>กรุณากรอก 'หมู่'</div>";
+                }
+                if (tbRoad.Text == "" || tbRoad2.Text == "")
+                {
+                    notification.InnerHtml += "<div>กรุณากรอก 'ถนน'</div>";
+                }
+                if (ddlProvince.SelectedIndex == 0 || ddlProvince2.SelectedIndex == 0)
+                {
+                    notification.InnerHtml += "<div>กรุณาเลือก 'จังหวัด'</div>";
+                }
+                if (ddlAmphur.SelectedIndex == 0 || ddlAmphur2.SelectedIndex == 0)
+                {
+                    notification.InnerHtml += "<div>กรุณาเลือก 'อำเภอ / เขต'</div>";
+                }
+                if (ddlDistrict.SelectedIndex == 0 || ddlDistrict2.SelectedIndex == 0)
+                {
+                    notification.InnerHtml += "<div>กรุณาเลือก 'ตำบล / แขวง'</div>";
+                }
+                if (tbZipcode.Text == "" || tbZipcode2.Text == "")
+                {
+                    notification.InnerHtml += "<div>กรุณากรอก 'รหัสไปรณีย์'</div>";
+                }
+                if (ddlCountry.SelectedIndex == 0 || ddlCountry2.SelectedIndex == 0)
+                {
+                    notification.InnerHtml += "<div>กรุณาเลือก 'ประเทศ'</div>";
+                }
+            }
+            else {
+                MultiView1.ActiveViewIndex = 2;
+                notification.Attributes["class"] = "none";
+                notification.InnerHtml = "";
+            }*/
+            //MultiView1.ActiveViewIndex = 2;
         }
         protected void lbuAddressFetch_Click(object sender, EventArgs e)
         {
@@ -568,65 +565,65 @@ namespace WEB_PERSONAL
 
         protected void lbSubmit_Click(object sender, EventArgs e)
         {
-              if (ddlCampus.SelectedIndex == 0 || ddlFaculty.SelectedIndex == 0 || ddlDivision.SelectedIndex == 0 || ddlWorkDivision.SelectedIndex == 0 || ddlStaffType.SelectedIndex == 0 || ddlBudget.SelectedIndex == 0 || ddlAdminPosition.SelectedIndex == 0 || ddlPositionWork.SelectedIndex == 0 || ddlAcademic.SelectedIndex == 0 || tbDateInwork.Text == "" || tbSpecialWork.Text == "" || ddlTeachISCED.SelectedIndex == 0)
-              {
-                  notification.Attributes["class"] = "alert alert_danger";
-                  notification.InnerHtml = "";
-                  notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong> เกิดข้อผิดพลาด !</strong></div>";
-                  if (ddlCampus.SelectedIndex == 0)
-                  {
-                      notification.InnerHtml += "<div>กรุณาเลือก 'วิทยาเขต'</div>";
-                  }
-                  if (ddlFaculty.SelectedIndex == 0)
-                  {
-                      notification.InnerHtml += "<div>กรุณาเลือก 'สำนัก / สถาบัน / คณะ'</div>";
-                  }
-                  if (ddlDivision.SelectedIndex == 0)
-                  {
-                      notification.InnerHtml += "<div>กรุณาเลือก 'กอง / สำนักงานเลขา / ภาควิชา'</div>";
-                  }
-                  if (ddlWorkDivision.SelectedIndex == 0)
-                  {
-                      notification.InnerHtml += "<div>กรุณาเลือก 'งาน / ฝ่าย'</div>";
-                  }
-                  if (ddlStaffType.SelectedIndex == 0)
-                  {
-                      notification.InnerHtml += "<div>กรุณาเลือก 'ประเภทบุคลากร'</div>";
-                  }
-                  if (ddlBudget.SelectedIndex == 0)
-                  {
-                      notification.InnerHtml += "<div>กรุณาเลือก 'ประเภทเงินจ้าง'</div>";
-                  }
-                  if (ddlAdminPosition.SelectedIndex == 0)
-                  {
-                      notification.InnerHtml += "<div>กรุณาเลือก 'ตำแหน่งบริหาร'</div>";
-                  }
-                  if (ddlPositionWork.SelectedIndex == 0)
-                  {
-                      notification.InnerHtml += "<div>กรุณาเลือก 'ตำแหน่งในสายงาน'</div>";
-                  }
-                  if (ddlAcademic.SelectedIndex == 0)
-                  {
-                      notification.InnerHtml += "<div>กรุณาเลือก 'ตำแหน่งทางวิชาการ'</div>";
-                  }
-                  if (tbDateInwork.Text == "")
-                  {
-                      notification.InnerHtml += "<div>กรุณากรอก 'วันที่เริ่มบรรจุ / เริ่มงาน'</div>";
-                  }
-                  if (tbSpecialWork.Text == "")
-                  {
-                      notification.InnerHtml += "<div>กรุณากรอก 'ความเชี่ยวชาญในสายงาน'</div>";
-                  }
-                  if (ddlTeachISCED.SelectedIndex == 0)
-                  {
-                      notification.InnerHtml += "<div>กรุณาเลือก 'กลุ่มสาขาวิชาที่สอน'</div>";
-                  }
-                  else {
+            /*if (ddlCampus.SelectedIndex == 0 || ddlFaculty.SelectedIndex == 0 || ddlDivision.SelectedIndex == 0 || ddlWorkDivision.SelectedIndex == 0 || ddlStaffType.SelectedIndex == 0 || ddlBudget.SelectedIndex == 0 || ddlAdminPosition.SelectedIndex == 0 || ddlPositionWork.SelectedIndex == 0 || ddlAcademic.SelectedIndex == 0 || tbDateInwork.Text == "" || tbSpecialWork.Text == "" || ddlTeachISCED.SelectedIndex == 0)
+            {
+                notification.Attributes["class"] = "alert alert_danger";
+                notification.InnerHtml = "";
+                notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong> เกิดข้อผิดพลาด !</strong></div>";
+                if (ddlCampus.SelectedIndex == 0)
+                {
+                    notification.InnerHtml += "<div>กรุณาเลือก 'วิทยาเขต'</div>";
+                }
+                if (ddlFaculty.SelectedIndex == 0)
+                {
+                    notification.InnerHtml += "<div>กรุณาเลือก 'สำนัก / สถาบัน / คณะ'</div>";
+                }
+                if (ddlDivision.SelectedIndex == 0)
+                {
+                    notification.InnerHtml += "<div>กรุณาเลือก 'กอง / สำนักงานเลขา / ภาควิชา'</div>";
+                }
+                if (ddlWorkDivision.SelectedIndex == 0)
+                {
+                    notification.InnerHtml += "<div>กรุณาเลือก 'งาน / ฝ่าย'</div>";
+                }
+                if (ddlStaffType.SelectedIndex == 0)
+                {
+                    notification.InnerHtml += "<div>กรุณาเลือก 'ประเภทบุคลากร'</div>";
+                }
+                if (ddlBudget.SelectedIndex == 0)
+                {
+                    notification.InnerHtml += "<div>กรุณาเลือก 'ประเภทเงินจ้าง'</div>";
+                }
+                if (ddlAdminPosition.SelectedIndex == 0)
+                {
+                    notification.InnerHtml += "<div>กรุณาเลือก 'ตำแหน่งบริหาร'</div>";
+                }
+                if (ddlPositionWork.SelectedIndex == 0)
+                {
+                    notification.InnerHtml += "<div>กรุณาเลือก 'ตำแหน่งในสายงาน'</div>";
+                }
+                if (ddlAcademic.SelectedIndex == 0)
+                {
+                    notification.InnerHtml += "<div>กรุณาเลือก 'ตำแหน่งทางวิชาการ'</div>";
+                }
+                if (tbDateInwork.Text == "")
+                {
+                    notification.InnerHtml += "<div>กรุณากรอก 'วันที่เริ่มบรรจุ / เริ่มงาน'</div>";
+                }
+                if (tbSpecialWork.Text == "")
+                {
+                    notification.InnerHtml += "<div>กรุณากรอก 'ความเชี่ยวชาญในสายงาน'</div>";
+                }
+                if (ddlTeachISCED.SelectedIndex == 0)
+                {
+                    notification.InnerHtml += "<div>กรุณาเลือก 'กลุ่มสาขาวิชาที่สอน'</div>";
+                }
+                else {
 
-                      notification.Attributes["class"] = "none";
-                      notification.InnerHtml = "";
-                  }
-              }
+                    notification.Attributes["class"] = "none";
+                    notification.InnerHtml = "";
+                }
+            }*/
 
             PS_PERSON P0 = new PS_PERSON();
 

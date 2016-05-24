@@ -21,51 +21,7 @@ namespace WEB_PERSONAL
             {
                 txtBudget.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
             }
-           /* SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT SEMINAR_ID รหัส,CITIZEN_ID รหัสบัตรประชาชน,SEMINAR_NAME ชื่อ,SEMINAR_LASTNAME นามสกุล,SEMINAR_NAMEOFPROJECT ชื่อโครงการ, SEMINAR_PLACE สถานที่ FROM TB_SEMINAR WHERE CITIZEN_ID = '" + txtSearchSeminarCitizen.Text + "'");
-            GridView1.DataSource = sds;
-            GridView1.DataBind();
-            if (GridView1.Rows.Count > 0)
-            {
-                TableHeaderCell newHeader = new TableHeaderCell();
-                newHeader.Text = "เลือก";
-                GridView1.HeaderRow.Cells.Add(newHeader);
 
-                for (int i = 0; i < GridView1.Rows.Count; ++i)
-                {
-                    string id = GridView1.Rows[i].Cells[0].Text;
-                    string SeminarName = "";
-                    using (OracleConnection conn = Util.OC())
-                    {
-                        PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
-                        Person PP = ps.LoginPerson;
-                        using (OracleCommand cmd = new OracleCommand("select SEMINAR_NAME from TB_SEMINAR where SEMINAR_ID = " + id, conn))
-
-                        {
-                            using (OracleDataReader reader = cmd.ExecuteReader())
-                            {
-                                while (reader.Read())
-                                {
-                                    SeminarName = reader.IsDBNull(0) ? "" : reader.GetString(0);
-
-                                }
-                            }
-                        }
-
-                    }
-
-                    LinkButton lbu = new LinkButton();
-                    lbu.Text = "เลือก";
-                    lbu.CssClass = "ps-button";
-                    lbu.Click += (e2, e3) =>
-                    {
-                        txtName.Text = SeminarName;
-
-                    };
-                    TableCell cell = new TableCell();
-                    cell.Controls.Add(lbu);
-                    GridView1.Rows[i].Cells.Add(cell);
-                }
-            }  */
         }
         #region ViewState DataTable
 
@@ -89,11 +45,6 @@ namespace WEB_PERSONAL
                 Response.Redirect("Access.aspx");
                 return;
             }
-            Seminar s = new Seminar();
-            DataTable dt = s.GetSEMINAR("", "", "", "", "");
-            GridView1.DataSource = dt;
-            GridView1.DataBind();
-            SetViewState(dt);
         }
 
         protected void ClearData()
@@ -332,12 +283,11 @@ namespace WEB_PERSONAL
 
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            //e.Row.Cells[0].Visible = false;
             DataRowView drv = e.Row.DataItem as DataRowView;
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 LinkButton lb = (LinkButton)e.Row.FindControl("DeleteButton1");
-                lb.Attributes.Add("onclick", "return confirm('คุณต้องการจะลบชื่อโครงการ" + DataBinder.Eval(e.Row.DataItem, "SEMINAR_NAMEOFPROJECT") + " ใช่ไหม ?');");
+                //lb.Attributes.Add("onclick", "return confirm('คุณต้องการจะลบชื่อโครงการ " + DataBinder.Eval(e.Row.DataItem, "SEMINAR_NAMEOFPROJECT") + " ใช่ไหม ?');");
             }
             e.Row.Attributes.Add("style", "cursor:help;");
             if (e.Row.RowType == DataControlRowType.DataRow && e.Row.RowState == DataControlRowState.Alternate)
@@ -360,48 +310,98 @@ namespace WEB_PERSONAL
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
         protected void modUpdateCommand(object sender, GridViewUpdateEventArgs e)
         {
-            GridViewRow row = GridView2.SelectedRow;
+            GridViewRow row = Gridview1.SelectedRow;
             txtName.Text = row.Cells[0].Text;
         }
         protected void modDeleteCommand(Object sender, GridViewDeleteEventArgs e)
         {
-            int id = Convert.ToInt32(GridView2.DataKeys[e.RowIndex].Value);
+            int id = Convert.ToInt32(Gridview1.DataKeys[e.RowIndex].Value);
             Seminar s = new Seminar();
             s.SEMINAR_ID = id;
             s.DeleteSEMINAR();
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ลบข้อมูลเรียบร้อย')", true);
 
-            GridView2.EditIndex = -1;
+            Gridview1.EditIndex = -1;
         }
         protected void myGridViewSeminar_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            GridView2.PageIndex = e.NewPageIndex;
-            GridView2.DataSource = GetViewState();
-            GridView2.DataBind();
+            Gridview1.PageIndex = e.NewPageIndex;
+            Gridview1.DataSource = GetViewState();
+            Gridview1.DataBind();
         }
         protected void btnSearchSeminar_Click(object sender, EventArgs e)
         {
-            //SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT SEMINAR_ID รหัส,CITIZEN_ID รหัสบัตรประชาชน,SEMINAR_NAME ชื่อ,SEMINAR_LASTNAME นามสกุล,SEMINAR_NAMEOFPROJECT ชื่อโครงการ, SEMINAR_PLACE สถานที่ FROM TB_SEMINAR WHERE CITIZEN_ID = '" + txtSearchSeminarCitizen.Text + "'");
-            //GridView1.DataSource = sds;
-            //GridView1.DataBind();
-            if (string.IsNullOrEmpty(txtSearchSeminarCitizen.Text) || string.IsNullOrEmpty(txtSearchSeminarName.Text) || string.IsNullOrEmpty(txtSearchSeminarLastName.Text) || string.IsNullOrEmpty(txtSearchSeminarNameOfProject.Text) || string.IsNullOrEmpty(txtSearchSeminarCitizen.Text) || string.IsNullOrEmpty(txtSearchSeminarPlace.Text))
+            if (string.IsNullOrEmpty(txtSearchSeminarCitizen.Text))
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก คำค้นหา')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก รหัสบัตรประชาชน')", true);
                 return;
             }
             else
             {
                 Seminar s = new Seminar();
-                DataTable dt = s.GetSEMINAR(txtSearchSeminarCitizen.Text, txtSearchSeminarName.Text, txtSearchSeminarLastName.Text, txtSearchSeminarNameOfProject.Text, txtSearchSeminarPlace.Text);
-                GridView2.DataSource = dt;
-                GridView2.DataBind();
+                DataTable dt = s.GetSEMINAR(txtSearchSeminarCitizen.Text,"", "","","");
+                Gridview1.DataSource = dt;
+                Gridview1.DataBind();
                 SetViewState(dt);
             }
+            //
+            /*if (string.IsNullOrEmpty(txtSearchSeminarName.Text))
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก ชื่อ')", true);
+                return;
+            }
+            else
+            {
+                Seminar s = new Seminar();
+                DataTable dt = s.GetSEMINAR("", txtSearchSeminarName.Text, "", "", "");
+                Gridview1.DataSource = dt;
+                Gridview1.DataBind();
+                SetViewState(dt);
+            }
+            //
+            if (string.IsNullOrEmpty(txtSearchSeminarLastName.Text))
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก นามสกุล')", true);
+                return;
+            }
+            else
+            {
+                Seminar s = new Seminar();
+                DataTable dt = s.GetSEMINAR("", "", txtSearchSeminarLastName.Text, "", "");
+                Gridview1.DataSource = dt;
+                Gridview1.DataBind();
+                SetViewState(dt);
+            }
+            //
+            if (string.IsNullOrEmpty(txtSearchSeminarNameOfProject.Text))
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก ชื่อโครงการฝึกอบรม/สัมมนา/ดูงาน')", true);
+                return;
+            }
+            else
+            {
+                Seminar s = new Seminar();
+                DataTable dt = s.GetSEMINAR("", "", "", txtSearchSeminarNameOfProject.Text, "");
+                Gridview1.DataSource = dt;
+                Gridview1.DataBind();
+                SetViewState(dt);
+            }
+            //
+            if (string.IsNullOrEmpty(txtSearchSeminarPlace.Text))
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก สถานที่ฝึกอบรม/สัมมนา/ดูงาน')", true);
+                return;
+            }
+            else
+            {
+                Seminar s = new Seminar();
+                DataTable dt = s.GetSEMINAR("", "", "", "", txtSearchSeminarPlace.Text);
+                Gridview1.DataSource = dt;
+                Gridview1.DataBind();
+                SetViewState(dt);
+            }*/
         }
 
         protected void btnSearchRefresh_Click(object sender, EventArgs e)
@@ -409,8 +409,8 @@ namespace WEB_PERSONAL
             ClearData();
             Seminar s = new Seminar();
             DataTable dt = s.GetSEMINAR("","","","","");
-            GridView1.DataSource = dt;
-            GridView1.DataBind();
+            Gridview1.DataSource = dt;
+            Gridview1.DataBind();
             SetViewState(dt);
         }
 

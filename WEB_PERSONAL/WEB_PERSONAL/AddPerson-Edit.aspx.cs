@@ -474,8 +474,6 @@ namespace WEB_PERSONAL
                 notification.Attributes["class"] = "none";
                 notification.InnerHtml = "";
             }*/
-
-
             MultiView1.ActiveViewIndex = 1;
         }
 

@@ -9,7 +9,6 @@
 
         div {
             color: #003380;
-            text-align: center;
         }
 
         .panin {
