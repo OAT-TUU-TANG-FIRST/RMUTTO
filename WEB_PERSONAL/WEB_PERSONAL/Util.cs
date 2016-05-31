@@ -573,7 +573,7 @@ namespace WEB_PERSONAL {
                 case "พ.ย.": v2[1] = "NOV"; break;
                 case "ธ.ค.": v2[1] = "DEC"; break;
             }
-            return v2[0] + " " + v2[1] + " " + (int.Parse(v2[2]) - 543);
+            return "TO_DATE('" + v2[0] + " " + v2[1] + " " + (int.Parse(v2[2]) - 543) + "', 'DD MON YYYY')";
         }
         public static int BudgetYear() {
             DateTime dtToday = DateTime.Today;

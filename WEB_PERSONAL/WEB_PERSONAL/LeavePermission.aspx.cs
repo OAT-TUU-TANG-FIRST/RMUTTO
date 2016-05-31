@@ -22,11 +22,16 @@ namespace WEB_PERSONAL {
 
                             for (int i = 0; i < 7; i++) {
                                 c = new TableCell();
-                                c.Text = reader.GetString(i);
+                                string txt = reader.GetString(i);
+                                if(txt == "มีอำนาจ") {
+                                    c.Text = "<img src='Image/Small/correct.png' />";
+                                } else if(txt == "ไม่มีอำนาจ"){
+                                    c.Text = "<img src='Image/Small/delete.png' />";
+                                } else {
+                                    c.Text = txt;
+                                }
                                 r.Cells.Add(c);
                             }
-                            
-
 
                             Table1.Rows.Add(r);
                         }

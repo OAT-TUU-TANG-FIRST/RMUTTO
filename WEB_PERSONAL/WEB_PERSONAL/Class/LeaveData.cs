@@ -200,7 +200,7 @@ namespace WEB_PERSONAL.Class {
                             }
                             ++i;
 
-                            DocterCertificationFileName = reader.IsDBNull(i) ? null : reader.GetString(i); ++i;
+                            DocterCertificationFileName = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
                             CountPast = reader.IsDBNull(i) ? -1 : reader.GetInt32(i); ++i;
                             CountNow = reader.IsDBNull(i) ? -1 : reader.GetInt32(i); ++i;
                             CountTotal = reader.IsDBNull(i) ? -1 : reader.GetInt32(i); ++i;
@@ -305,7 +305,7 @@ namespace WEB_PERSONAL.Class {
                         com.ExecuteNonQuery();
                     }
                 } else if (LeaveTypeID == 6) {
-                    using (OracleCommand com = new OracleCommand("UPDATE LEV_CLAIM SET OD_REQ = OD_NOW - " + TotalDay + " WHERE YEAR = " + Util.BudgetYear() + " AND PS_CITIZEN_ID = :PS_CITIZEN_ID", con)) {
+                    using (OracleCommand com = new OracleCommand("UPDATE LEV_CLAIM SET ORDAIN_REQ = ORDAIN_NOW - " + TotalDay + " WHERE YEAR = " + Util.BudgetYear() + " AND PS_CITIZEN_ID = :PS_CITIZEN_ID", con)) {
                         com.Parameters.Add("PS_CITIZEN_ID", PS_ID);
                         com.ExecuteNonQuery();
                     }
@@ -388,7 +388,7 @@ namespace WEB_PERSONAL.Class {
         public void AddLeaveRest() {
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
-                using (OracleCommand com = new OracleCommand("INSERT INTO LEV_DATA (LEAVE_ID, LEAVE_TYPE_ID, LEAVE_STATUS_ID, PS_ID, REQ_DATE, FROM_DATE, TO_DATE, TOTAL_DAY, CL_ID, CL_TT, CL_FN, CL_LN, CL_POS, CL_APOS, CH_ID, CH_TT, CH_FN, CH_LN, CH_POS, CH_APOS, PS_TT, PS_FN, PS_LN, PS_POS, PS_DEPT, PS_APOS, CONTACT, TELEPHONE, COUNT_PAST, COUNT_NOW, COUNT_TOTAL, BUDGET_YEAR) VALUES (:LEAVE_ID, :LEAVE_TYPE_ID, :LEAVE_STATUS_ID, :PS_ID, :REQ_DATE, :FROM_DATE, :TO_DATE, :TOTAL_DAY, :CL_ID, :CL_TT, :CL_FN, :CL_LN, :CL_POS, :CL_APOS, :CH_ID, :CH_TT, :CH_FN, :CH_LN, :CH_POS, :CH_APOS, :PS_TT, :PS_FN, :PS_LN, :PS_POS, :PS_DEPT, :PS_APOS, :CONTACT, :TELEPHONE, :COUNT_PAST, :COUNT_NOW, :COUNT_TOTAL, :BUDGET_YEAR)", con)) {
+                using (OracleCommand com = new OracleCommand("INSERT INTO LEV_DATA (LEAVE_ID, LEAVE_TYPE_ID, LEAVE_STATUS_ID, PS_ID, REQ_DATE, FROM_DATE, TO_DATE, TOTAL_DAY, CL_ID, CL_TT, CL_FN, CL_LN, CL_POS, CL_APOS, CH_ID, CH_TT, CH_FN, CH_LN, CH_POS, CH_APOS, PS_TT, PS_FN, PS_LN, PS_POS, PS_DEPT, PS_APOS, CONTACT, TELEPHONE, COUNT_PAST, COUNT_NOW, COUNT_TOTAL, REST_SAVE, REST_LEFT, REST_TOTAL, BUDGET_YEAR) VALUES (:LEAVE_ID, :LEAVE_TYPE_ID, :LEAVE_STATUS_ID, :PS_ID, :REQ_DATE, :FROM_DATE, :TO_DATE, :TOTAL_DAY, :CL_ID, :CL_TT, :CL_FN, :CL_LN, :CL_POS, :CL_APOS, :CH_ID, :CH_TT, :CH_FN, :CH_LN, :CH_POS, :CH_APOS, :PS_TT, :PS_FN, :PS_LN, :PS_POS, :PS_DEPT, :PS_APOS, :CONTACT, :TELEPHONE, :COUNT_PAST, :COUNT_NOW, :COUNT_TOTAL, :REST_SAVE, :REST_LEFT, :REST_TOTAL, :BUDGET_YEAR)", con)) {
                     com.Parameters.Add("LEAVE_ID", LeaveID);
                     com.Parameters.Add("LEAVE_TYPE_ID", LeaveTypeID);
                     com.Parameters.Add("LEAVE_STATUS_ID", LeaveStatusID);
@@ -420,6 +420,9 @@ namespace WEB_PERSONAL.Class {
                     com.Parameters.Add("COUNT_PAST", CountPast);
                     com.Parameters.Add("COUNT_NOW", CountNow);
                     com.Parameters.Add("COUNT_TOTAL", CountTotal);
+                    com.Parameters.Add("REST_SAVE", RestSave);
+                    com.Parameters.Add("REST_LEFT", RestLeft);
+                    com.Parameters.Add("REST_TOTAL", RestTotal);
                     com.Parameters.Add("BUDGET_YEAR", Util.BudgetYear());
                     com.ExecuteNonQuery();
                 }
@@ -473,7 +476,7 @@ namespace WEB_PERSONAL.Class {
         public void AddLeaveOrdain() {
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
-                using (OracleCommand com = new OracleCommand("INSERT INTO LEV_DATA (LEAVE_ID, LEAVE_TYPE_ID, LEAVE_STATUS_ID, PS_ID, REQ_DATE, FROM_DATE, TO_DATE, TOTAL_DAY, CL_ID, CL_TT, CL_FN, CL_LN, CL_POS, CL_APOS, CH_ID, CH_TT, CH_FN, CH_LN, CH_POS, CH_APOS, PS_TT, PS_FN, PS_LN, PS_POS, PS_DEPT, PS_APOS, CONTACT, TELEPHONE, COUNT_PAST, COUNT_NOW, COUNT_TOTAL, WIFE_FN, WIFE_LN, GB_DATE, BUDGET_YEAR) VALUES (:LEAVE_ID, :LEAVE_TYPE_ID, :LEAVE_STATUS_ID, :PS_ID, :REQ_DATE, :FROM_DATE, :TO_DATE, :TOTAL_DAY, :CL_ID, :CL_TT, :CL_FN, :CL_LN, :CL_POS, :CL_APOS, :CH_ID, :CH_TT, :CH_FN, :CH_LN, :CH_POS, :CH_APOS, :PS_TT, :PS_FN, :PS_LN, :PS_POS, :PS_DEPT, :PS_APOS, :CONTACT, :TELEPHONE, :COUNT_PAST, :COUNT_NOW, :COUNT_TOTAL, :WIFE_FN, :WIFE_LN, :GB_DATE, :BUDGET_YEAR)", con)) {
+                using (OracleCommand com = new OracleCommand("INSERT INTO LEV_DATA (LEAVE_ID, LEAVE_TYPE_ID, LEAVE_STATUS_ID, PS_ID, REQ_DATE, FROM_DATE, TO_DATE, TOTAL_DAY, CL_ID, CL_TT, CL_FN, CL_LN, CL_POS, CL_APOS, CH_ID, CH_TT, CH_FN, CH_LN, CH_POS, CH_APOS, PS_TT, PS_FN, PS_LN, PS_POS, PS_DEPT, PS_APOS, PS_BIRTHDATE, PS_WORKIN_DATE, TELEPHONE, OD_ED, TP_NAME, TP_LOC, OD_DATE, BUDGET_YEAR) VALUES (:LEAVE_ID, :LEAVE_TYPE_ID, :LEAVE_STATUS_ID, :PS_ID, :REQ_DATE, :FROM_DATE, :TO_DATE, :TOTAL_DAY, :CL_ID, :CL_TT, :CL_FN, :CL_LN, :CL_POS, :CL_APOS, :CH_ID, :CH_TT, :CH_FN, :CH_LN, :CH_POS, :CH_APOS, :PS_TT, :PS_FN, :PS_LN, :PS_POS, :PS_DEPT, :PS_APOS, :PS_BIRTHDATE, :PS_WORKIN_DATE, :TELEPHONE, :OD_ED, :TP_NAME, :TP_LOC, :OD_DATE, :BUDGET_YEAR)", con)) {
                     com.Parameters.Add("LEAVE_ID", LeaveID);
                     com.Parameters.Add("LEAVE_TYPE_ID", LeaveTypeID);
                     com.Parameters.Add("LEAVE_STATUS_ID", LeaveStatusID);
@@ -502,9 +505,10 @@ namespace WEB_PERSONAL.Class {
                     com.Parameters.Add("PS_APOS", PS_AdminPosition);
                     com.Parameters.Add("PS_BIRTHDATE", PS_BirthDate);
                     com.Parameters.Add("PS_WORKIN_DATE", PS_WorkInDate);
+                    com.Parameters.Add("TELEPHONE", Telephone);
                     com.Parameters.Add("OD_ED", Ordained);
                     com.Parameters.Add("TP_NAME", TempleName);
-                    com.Parameters.Add("TP_LOC", TempleName);
+                    com.Parameters.Add("TP_LOC", TempleLocation);
                     com.Parameters.Add("OD_DATE", OrdainDate);
                     com.Parameters.Add("BUDGET_YEAR", Util.BudgetYear());
                     com.ExecuteNonQuery();
@@ -515,7 +519,7 @@ namespace WEB_PERSONAL.Class {
         public void AddLeaveHuj() {
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
-                using (OracleCommand com = new OracleCommand("INSERT INTO LEV_DATA (LEAVE_ID, LEAVE_TYPE_ID, LEAVE_STATUS_ID, PS_ID, REQ_DATE, FROM_DATE, TO_DATE, TOTAL_DAY, CL_ID, CL_TT, CL_FN, CL_LN, CL_POS, CL_APOS, CH_ID, CH_TT, CH_FN, CH_LN, CH_POS, CH_APOS, PS_TT, PS_FN, PS_LN, PS_POS, PS_DEPT, PS_APOS, CONTACT, TELEPHONE, COUNT_PAST, COUNT_NOW, COUNT_TOTAL, WIFE_FN, WIFE_LN, GB_DATE, BUDGET_YEAR) VALUES (:LEAVE_ID, :LEAVE_TYPE_ID, :LEAVE_STATUS_ID, :PS_ID, :REQ_DATE, :FROM_DATE, :TO_DATE, :TOTAL_DAY, :CL_ID, :CL_TT, :CL_FN, :CL_LN, :CL_POS, :CL_APOS, :CH_ID, :CH_TT, :CH_FN, :CH_LN, :CH_POS, :CH_APOS, :PS_TT, :PS_FN, :PS_LN, :PS_POS, :PS_DEPT, :PS_APOS, :CONTACT, :TELEPHONE, :COUNT_PAST, :COUNT_NOW, :COUNT_TOTAL, :WIFE_FN, :WIFE_LN, :GB_DATE, :BUDGET_YEAR)", con)) {
+                using (OracleCommand com = new OracleCommand("INSERT INTO LEV_DATA (LEAVE_ID, LEAVE_TYPE_ID, LEAVE_STATUS_ID, PS_ID, REQ_DATE, FROM_DATE, TO_DATE, TOTAL_DAY, CL_ID, CL_TT, CL_FN, CL_LN, CL_POS, CL_APOS, CH_ID, CH_TT, CH_FN, CH_LN, CH_POS, CH_APOS, PS_TT, PS_FN, PS_LN, PS_POS, PS_DEPT, PS_APOS, PS_BIRTHDATE, PS_WORKIN_DATE, HUJ_ED, BUDGET_YEAR) VALUES (:LEAVE_ID, :LEAVE_TYPE_ID, :LEAVE_STATUS_ID, :PS_ID, :REQ_DATE, :FROM_DATE, :TO_DATE, :TOTAL_DAY, :CL_ID, :CL_TT, :CL_FN, :CL_LN, :CL_POS, :CL_APOS, :CH_ID, :CH_TT, :CH_FN, :CH_LN, :CH_POS, :CH_APOS, :PS_TT, :PS_FN, :PS_LN, :PS_POS, :PS_DEPT, :PS_APOS, :PS_BIRTHDATE, :PS_WORKIN_DATE, :HUJ_ED, :BUDGET_YEAR)", con)) {
                     com.Parameters.Add("LEAVE_ID", LeaveID);
                     com.Parameters.Add("LEAVE_TYPE_ID", LeaveTypeID);
                     com.Parameters.Add("LEAVE_STATUS_ID", LeaveStatusID);
@@ -603,7 +607,14 @@ namespace WEB_PERSONAL.Class {
                             com.ExecuteNonQuery();
                         }
                     } else if (LeaveTypeID == 4) {
-                        using (OracleCommand com = new OracleCommand("UPDATE LEV_CLAIM SET REST_NOW = REST_REQ WHERE YEAR = " + BudgetYear + " AND PS_CITIZEN_ID = :PS_CITIZEN_ID", con)) {
+                        int _restSave = DatabaseManager.ExecuteInt("SELECT REST_SAVE FROM LEV_CLAIM WHERE PS_CITIZEN_ID = '" + PS_ID + "' AND YEAR = " + BudgetYear);
+                        int _restThis = DatabaseManager.ExecuteInt("SELECT REST_THIS FROM LEV_CLAIM WHERE PS_CITIZEN_ID = '" + PS_ID + "' AND YEAR = " + BudgetYear);
+                        _restSave -= TotalDay;
+                        if(_restSave < 0) {
+                            _restThis += _restSave;
+                            _restSave = 0;
+                        }
+                        using (OracleCommand com = new OracleCommand("UPDATE LEV_CLAIM SET REST_NOW = REST_REQ, REST_SAVE = " + _restSave + ", REST_THIS = " + _restThis + " WHERE YEAR = " + BudgetYear + " AND PS_CITIZEN_ID = :PS_CITIZEN_ID", con)) {
                             com.Parameters.Add("PS_CITIZEN_ID", PS_ID);
                             com.ExecuteNonQuery();
                         }
@@ -613,7 +624,7 @@ namespace WEB_PERSONAL.Class {
                             com.ExecuteNonQuery();
                         }
                     } else if (LeaveTypeID == 6) {
-                        using (OracleCommand com = new OracleCommand("UPDATE LEV_CLAIM SET OD_NOW = OD_REQ WHERE YEAR = " + BudgetYear + " AND PS_CITIZEN_ID = :PS_CITIZEN_ID", con)) {
+                        using (OracleCommand com = new OracleCommand("UPDATE LEV_CLAIM SET ORDAIN_NOW = ORDAIN_REQ WHERE YEAR = " + BudgetYear + " AND PS_CITIZEN_ID = :PS_CITIZEN_ID", con)) {
                             com.Parameters.Add("PS_CITIZEN_ID", PS_ID);
                             com.ExecuteNonQuery();
                         }
@@ -650,7 +661,7 @@ namespace WEB_PERSONAL.Class {
                             com.ExecuteNonQuery();
                         }
                     } else if (LeaveTypeID == 6) {
-                        using (OracleCommand com = new OracleCommand("UPDATE LEV_CLAIM SET OD_REQ = OD_NOW WHERE YEAR = " + BudgetYear + " AND PS_CITIZEN_ID = :PS_CITIZEN_ID", con)) {
+                        using (OracleCommand com = new OracleCommand("UPDATE LEV_CLAIM SET ORDAIN_REQ = ORDAIN_NOW WHERE YEAR = " + BudgetYear + " AND PS_CITIZEN_ID = :PS_CITIZEN_ID", con)) {
                             com.Parameters.Add("PS_CITIZEN_ID", PS_ID);
                             com.ExecuteNonQuery();
                         }
@@ -693,7 +704,15 @@ namespace WEB_PERSONAL.Class {
                             com.ExecuteNonQuery();
                         }
                     } else if (LeaveTypeID == 4) {
-                        using (OracleCommand com = new OracleCommand("UPDATE LEV_CLAIM SET REST_NOW = REST_REQ WHERE YEAR = " + BudgetYear + " AND PS_CITIZEN_ID = :PS_CITIZEN_ID", con)) {
+                        int _restSave = DatabaseManager.ExecuteInt("SELECT REST_SAVE FROM LEV_CLAIM WHERE PS_CITIZEN_ID = '" + PS_ID + "' AND YEAR = " + BudgetYear);
+                        int _restThis = DatabaseManager.ExecuteInt("SELECT REST_THIS FROM LEV_CLAIM WHERE PS_CITIZEN_ID = '" + PS_ID + "' AND YEAR = " + BudgetYear);
+                        int _restThisFix = DatabaseManager.ExecuteInt("SELECT REST_THIS_FIX FROM LEV_CLAIM WHERE PS_CITIZEN_ID = '" + PS_ID + "' AND YEAR = " + BudgetYear);
+                        _restThis += TotalDay;
+                        if (_restThis > _restThisFix) {
+                            _restSave += _restThisFix - _restThis;
+                            _restThis = _restThisFix;
+                        }
+                        using (OracleCommand com = new OracleCommand("UPDATE LEV_CLAIM SET REST_NOW = REST_REQ, REST_SAVE = " + _restSave + ", REST_THIS = " + _restThis + " WHERE YEAR = " + BudgetYear + " AND PS_CITIZEN_ID = :PS_CITIZEN_ID", con)) {
                             com.Parameters.Add("PS_CITIZEN_ID", PS_ID);
                             com.ExecuteNonQuery();
                         }
@@ -703,7 +722,7 @@ namespace WEB_PERSONAL.Class {
                             com.ExecuteNonQuery();
                         }
                     } else if (LeaveTypeID == 6) {
-                        using (OracleCommand com = new OracleCommand("UPDATE LEV_CLAIM SET OD_NOW = OD_REQ WHERE YEAR = " + BudgetYear + " AND PS_CITIZEN_ID = :PS_CITIZEN_ID", con)) {
+                        using (OracleCommand com = new OracleCommand("UPDATE LEV_CLAIM SET ORDAIN_NOW = ORDAIN_REQ WHERE YEAR = " + BudgetYear + " AND PS_CITIZEN_ID = :PS_CITIZEN_ID", con)) {
                             com.Parameters.Add("PS_CITIZEN_ID", PS_ID);
                             com.ExecuteNonQuery();
                         }
@@ -713,7 +732,7 @@ namespace WEB_PERSONAL.Class {
                             com.ExecuteNonQuery();
                         }
                     }
-                } else if (CH_Allow == 0) {
+                } else if (CH_Allow == 2) {
                     if (LeaveTypeID == 1) {
                         using (OracleCommand com = new OracleCommand("UPDATE LEV_CLAIM SET SICK_REQ = SICK_NOW WHERE YEAR = " + BudgetYear + " AND PS_CITIZEN_ID = :PS_CITIZEN_ID", con)) {
                             com.Parameters.Add("PS_CITIZEN_ID", PS_ID);
@@ -740,7 +759,7 @@ namespace WEB_PERSONAL.Class {
                             com.ExecuteNonQuery();
                         }
                     } else if (LeaveTypeID == 6) {
-                        using (OracleCommand com = new OracleCommand("UPDATE LEV_CLAIM SET OD_REQ = OD_NOW WHERE YEAR = " + BudgetYear + " AND PS_CITIZEN_ID = :PS_CITIZEN_ID", con)) {
+                        using (OracleCommand com = new OracleCommand("UPDATE LEV_CLAIM SET ORDAIN_REQ = ORDAIN_NOW WHERE YEAR = " + BudgetYear + " AND PS_CITIZEN_ID = :PS_CITIZEN_ID", con)) {
                             com.Parameters.Add("PS_CITIZEN_ID", PS_ID);
                             com.ExecuteNonQuery();
                         }

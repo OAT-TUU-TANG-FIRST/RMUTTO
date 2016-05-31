@@ -6,13 +6,13 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using Oracle.DataAccess.Client;
+using WEB_PERSONAL.Class;
 
 namespace WEB_PERSONAL {
     public partial class Leave_Report1 : System.Web.UI.Page {
 
         protected void Page_Load(object sender, EventArgs e) {
-            if (Session["login_id"] == null) {
-                Session["redirect_to"] = Request.Url.ToString();
+            if (PersonnelSystem.GetPersonnelSystem(this) == null) {
                 Response.Redirect("Access.aspx");
                 return;
             }
@@ -22,12 +22,12 @@ namespace WEB_PERSONAL {
                 }
                 DateTime dt = Util.ODTT();
                 
-                if(dt.Month >= 1 && dt.Month <= 9) {
-                    DropDownList1.SelectedValue = "" + (dt.Year - 1);
+                if(dt.Month >= 10) {
+                    DropDownList1.SelectedValue = "" + (dt.Year + 1);
                 } else {
                     DropDownList1.SelectedValue = "" + dt.Year;
                 }
-                Label1.Text = "(1 ตุลาคม " + DropDownList1.SelectedValue + " - 30 กันยายน " + (Convert.ToInt32(DropDownList1.SelectedValue) + 1) + ")";
+                Label1.Text = "(1 ตุลาคม " + (int.Parse(DropDownList1.SelectedValue)-1) + " - 30 กันยายน " + DropDownList1.SelectedValue + ")";
             }
 
             
@@ -58,203 +58,50 @@ namespace WEB_PERSONAL {
             dt.Columns.Add("ลาอุปสมบทฯ(ระบุวันที่ลา)");
             dt.Columns.Add("หมายเหตุ");
 
-
-
-
-
-            int i = 1;
-            using (OracleConnection con = Util.OC()) {
-                using (OracleCommand command = new OracleCommand("SELECT CITIZEN_ID, PERSON_NAME || ' ' || PERSON_LASTNAME FROM TB_PERSON", con)) {
+            List<Person> persons = new List<Person>();
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
+                con.Open();
+                using (OracleCommand command = new OracleCommand("SELECT PS_CITIZEN_ID FROM PS_PERSON ORDER BY PS_CITIZEN_ID ASC", con)) {
                     using (OracleDataReader reader = command.ExecuteReader()) {
-                        if (reader.HasRows) {
-                            while (reader.Read()) {
-
-                                bool toAdd = true;
-                                DataRow dr = dt.NewRow();
-
-
-
-                                if (!reader.IsDBNull(0)) {
-                                    
-                                    
-                                    using (OracleCommand command2 = new OracleCommand("SELECT COUNT(*) FROM TB_LEAVE WHERE CITIZEN_ID = :1 AND LEAVE_FROM_DATE >= TO_DATE('01-10-" + DropDownList1.SelectedValue + "','DD-MM-YYYY') AND LEAVE_FROM_DATE <= TO_DATE('30-09-" + (Convert.ToInt32(DropDownList1.SelectedValue) + 1) + "','DD-MM-YYYY')", con)) {
-                                        command2.Parameters.Add("1", reader.GetString(0));
-                                        using (OracleDataReader reader2 = command2.ExecuteReader()) {
-                                            if (reader2.HasRows) {
-                                                reader2.Read();
-                                                if(reader2.GetInt32(0) == 0) {
-                                                    toAdd = false;
-                                                } else {
-                                                    dr[0] = i++;
-                                                    dr[1] = reader.GetString(1);
-                                                }
-                                                
-                                            } else {
-                                                dr[2] = "-";
-                                            }
-                                        }
-                                    }
-
-                                    using (OracleCommand command2 = new OracleCommand("SELECT POSITION_NAME FROM TB_POSITION_AND_SALARY WHERE CITIZEN_ID = :1 ORDER BY ID DESC", con)) {
-                                        command2.Parameters.Add("1", reader.GetString(0));
-                                        using (OracleDataReader reader2 = command2.ExecuteReader()) {
-                                            if (reader2.HasRows) {
-                                                reader2.Read();
-                                                dr[2] = reader2.GetString(0);
-                                            } else {
-                                                dr[2] = "-";
-                                            }
-                                        }
-                                    }
-                                    //puy time
-                                    using (OracleCommand command2 = new OracleCommand("SELECT COUNT(CITIZEN_ID) FROM TB_LEAVE WHERE CITIZEN_ID = :1 AND LEAVE_TYPE_ID = 1 AND LEAVE_FROM_DATE >= TO_DATE('01-10-" + DropDownList1.SelectedValue + "','DD-MM-YYYY') AND LEAVE_FROM_DATE <= TO_DATE('30-09-" + (Convert.ToInt32(DropDownList1.SelectedValue)+1) + "','DD-MM-YYYY')", con)) {
-                                        command2.Parameters.Add("1", reader.GetString(0));
-                                        using (OracleDataReader reader2 = command2.ExecuteReader()) {
-                                            if (reader2.HasRows) {
-                                                reader2.Read();
-                                                dr[3] = reader2.GetInt32(0).ToString();
-                                            } else {
-                                                dr[3] = "-";
-                                            }
-                                        }
-                                    }
-                                    //puy day
-                                    using (OracleCommand command2 = new OracleCommand("SELECT NVL(SUM(LEAVE_TO_DATE-LEAVE_FROM_DATE+1),0) FROM TB_LEAVE WHERE CITIZEN_ID = :1 AND LEAVE_TYPE_ID = 1 AND LEAVE_FROM_DATE >= TO_DATE('01-10-" + DropDownList1.SelectedValue + "','DD-MM-YYYY') AND LEAVE_FROM_DATE <= TO_DATE('30-09-" + (Convert.ToInt32(DropDownList1.SelectedValue) + 1) + "','DD-MM-YYYY')", con)) {
-                                        command2.Parameters.Add("1", reader.GetString(0));
-                                        using (OracleDataReader reader2 = command2.ExecuteReader()) {
-                                            if (reader2.HasRows) {
-                                                reader2.Read();
-                                                dr[4] = reader2.GetInt32(0).ToString();
-                                            } else {
-                                                dr[4] = "-";
-                                            }
-                                        }
-                                    }
-                                    //kid time
-                                    using (OracleCommand command2 = new OracleCommand("SELECT COUNT(CITIZEN_ID) FROM TB_LEAVE WHERE CITIZEN_ID = :1 AND LEAVE_TYPE_ID = 2 AND LEAVE_FROM_DATE >= TO_DATE('01-10-" + DropDownList1.SelectedValue + "','DD-MM-YYYY') AND LEAVE_FROM_DATE <= TO_DATE('30-09-" + (Convert.ToInt32(DropDownList1.SelectedValue) + 1) + "','DD-MM-YYYY')", con)) {
-                                        command2.Parameters.Add("1", reader.GetString(0));
-                                        using (OracleDataReader reader2 = command2.ExecuteReader()) {
-                                            if (reader2.HasRows) {
-                                                reader2.Read();
-                                                dr[5] = reader2.GetInt32(0).ToString();
-                                            } else {
-                                                dr[5] = "-";
-                                            }
-                                        }
-                                    }
-                                    //kid day
-                                    using (OracleCommand command2 = new OracleCommand("SELECT NVL(SUM(LEAVE_TO_DATE-LEAVE_FROM_DATE+1),0) FROM TB_LEAVE WHERE CITIZEN_ID = :1 AND LEAVE_TYPE_ID = 2 AND LEAVE_FROM_DATE >= TO_DATE('01-10-" + DropDownList1.SelectedValue + "','DD-MM-YYYY') AND LEAVE_FROM_DATE <= TO_DATE('30-09-" + (Convert.ToInt32(DropDownList1.SelectedValue) + 1) + "','DD-MM-YYYY')", con)) {
-                                        command2.Parameters.Add("1", reader.GetString(0));
-                                        using (OracleDataReader reader2 = command2.ExecuteReader()) {
-                                            if (reader2.HasRows) {
-                                                reader2.Read();
-                                                dr[6] = reader2.GetInt32(0).ToString();
-                                            } else {
-                                                dr[6] = "-";
-                                            }
-                                        }
-                                    }
-                                    //pakpon time
-                                    using (OracleCommand command2 = new OracleCommand("SELECT COUNT(CITIZEN_ID) FROM TB_LEAVE WHERE CITIZEN_ID = :1 AND LEAVE_TYPE_ID = 3 AND LEAVE_FROM_DATE >= TO_DATE('01-10-" + DropDownList1.SelectedValue + "','DD-MM-YYYY') AND LEAVE_FROM_DATE <= TO_DATE('30-09-" + (Convert.ToInt32(DropDownList1.SelectedValue) + 1) + "','DD-MM-YYYY')", con)) {
-                                        command2.Parameters.Add("1", reader.GetString(0));
-                                        using (OracleDataReader reader2 = command2.ExecuteReader()) {
-                                            if (reader2.HasRows) {
-                                                reader2.Read();
-                                                dr[7] = reader2.GetInt32(0).ToString();
-                                            } else {
-                                                dr[7] = "-";
-                                            }
-                                        }
-                                    }
-                                    //pakpon day
-                                    using (OracleCommand command2 = new OracleCommand("SELECT NVL(SUM(LEAVE_TO_DATE-LEAVE_FROM_DATE+1),0) FROM TB_LEAVE WHERE CITIZEN_ID = :1 AND LEAVE_TYPE_ID = 3 AND LEAVE_FROM_DATE >= TO_DATE('01-10-" + DropDownList1.SelectedValue + "','DD-MM-YYYY') AND LEAVE_FROM_DATE <= TO_DATE('30-09-" + (Convert.ToInt32(DropDownList1.SelectedValue) + 1) + "','DD-MM-YYYY')", con)) {
-                                        command2.Parameters.Add("1", reader.GetString(0));
-                                        using (OracleDataReader reader2 = command2.ExecuteReader()) {
-                                            if (reader2.HasRows) {
-                                                reader2.Read();
-                                                dr[8] = reader2.GetInt32(0).ToString();
-                                            } else {
-                                                dr[8] = "-";
-                                            }
-                                        }
-                                    }
-                                    //late time
-                                    using (OracleCommand command2 = new OracleCommand("SELECT COUNT(*) FROM TB_WORK_CHECK_IN WHERE CITIZEN_ID = :1 AND HOUR_IN * 60 + MINUTE_IN > 510 AND DDATE >= TO_DATE('01-10-" + DropDownList1.SelectedValue + "','DD-MM-YYYY') AND DDATE <= TO_DATE('30-09-" + (Convert.ToInt32(DropDownList1.SelectedValue) + 1) + "','DD-MM-YYYY')", con)) {
-                                        command2.Parameters.Add("1", reader.GetString(0));
-                                        using (OracleDataReader reader2 = command2.ExecuteReader()) {
-                                            if (reader2.HasRows) {
-                                                reader2.Read();
-                                                dr[9] = reader2.GetInt32(0).ToString();
-                                            } else {
-                                                dr[9] = "-";
-                                            }
-                                        }
-                                    }
-                                    //kad-rasha-kan day
-                                    using (OracleCommand command2 = new OracleCommand("SELECT NVL(SUM(LEAVE_TO_DATE - LEAVE_FROM_DATE + 1), 0) FROM TB_LEAVE WHERE CITIZEN_ID = :1 AND LEAVE_FROM_DATE >= TO_DATE('01-10-" + DropDownList1.SelectedValue + "','DD-MM-YYYY') AND LEAVE_FROM_DATE <= TO_DATE('30-09-" + (Convert.ToInt32(DropDownList1.SelectedValue) + 1) + "','DD-MM-YYYY')", con)) {
-                                        command2.Parameters.Add("1", reader.GetString(0));
-                                        using (OracleDataReader reader2 = command2.ExecuteReader()) {
-                                            if (reader2.HasRows) {
-                                                reader2.Read();
-                                                dr[10] = reader2.GetInt32(0).ToString();
-                                            } else {
-                                                dr[10] = "-";
-                                            }
-                                        }
-                                    }
-                                    //la-suk-sa-tor
-                                    using (OracleCommand command2 = new OracleCommand("SELECT TO_CHAR(STUDY_FROM_DATE, 'DD MON RRRR', 'NLS_DATE_LANGUAGE = THAI') FROM TB_STUDY WHERE CITIZEN_ID = :1 AND ROWNUM = 1 AND STUDY_FROM_DATE >= TO_DATE('01-10-" + DropDownList1.SelectedValue + "','DD-MM-YYYY') AND STUDY_FROM_DATE <= TO_DATE('30-09-" + (Convert.ToInt32(DropDownList1.SelectedValue) + 1) + "','DD-MM-YYYY') ORDER BY STUDY_FROM_DATE DESC", con)) {
-                                        command2.Parameters.Add("1", reader.GetString(0));
-                                        using (OracleDataReader reader2 = command2.ExecuteReader()) {
-                                            if (reader2.HasRows) {
-                                                reader2.Read();
-                                                dr[11] = reader2.GetString(0);
-                                            } else {
-                                                dr[11] = "-";
-                                            }
-                                        }
-                                    }
-                                    //la-klod-bud
-                                    using (OracleCommand command2 = new OracleCommand("SELECT TO_CHAR(LEAVE_FROM_DATE, 'DD MON RRRR', 'NLS_DATE_LANGUAGE = THAI') FROM TB_LEAVE WHERE CITIZEN_ID = :1 AND LEAVE_TYPE_ID = 4 AND ROWNUM = 1 AND LEAVE_FROM_DATE >= TO_DATE('01-10-" + DropDownList1.SelectedValue + "','DD-MM-YYYY') AND LEAVE_FROM_DATE <= TO_DATE('30-09-" + (Convert.ToInt32(DropDownList1.SelectedValue) + 1) + "','DD-MM-YYYY') ORDER BY LEAVE_FROM_DATE DESC", con)) {
-                                        command2.Parameters.Add("1", reader.GetString(0));
-                                        using (OracleDataReader reader2 = command2.ExecuteReader()) {
-                                            if (reader2.HasRows) {
-                                                reader2.Read();
-                                                dr[12] = reader2.GetString(0);
-                                            } else {
-                                                dr[12] = "-";
-                                            }
-                                        }
-                                    }
-                                    //la-uppa-som-bod
-                                    using (OracleCommand command2 = new OracleCommand("SELECT TO_CHAR(LEAVE_FROM_DATE, 'DD MON RRRR', 'NLS_DATE_LANGUAGE = THAI') FROM TB_LEAVE WHERE CITIZEN_ID = :1 AND LEAVE_TYPE_ID = 5 AND ROWNUM = 1 AND LEAVE_FROM_DATE >= TO_DATE('01-10-" + DropDownList1.SelectedValue + "','DD-MM-YYYY') AND LEAVE_FROM_DATE <= TO_DATE('30-09-" + (Convert.ToInt32(DropDownList1.SelectedValue) + 1) + "','DD-MM-YYYY') ORDER BY LEAVE_FROM_DATE DESC", con)) {
-                                        command2.Parameters.Add("1", reader.GetString(0));
-                                        using (OracleDataReader reader2 = command2.ExecuteReader()) {
-                                            if (reader2.HasRows) {
-                                                reader2.Read();
-                                                dr[13] = reader2.GetString(0);
-                                            } else {
-                                                dr[13] = "-";
-                                            }
-                                        }
-                                    }
-                                } else {
-                                    toAdd = false;
-                                }
-
-
-
-
-                                if(toAdd)
-                                    dt.Rows.Add(dr);
-                            }
-                        } else {
-                            Util.Alert(this, "no data");
-                            return;
+                        while(reader.Read()) {
+                            Person ps = DatabaseManager.GetPerson(reader.GetString(0));
+                            persons.Add(ps);
                         }
                     }
                 }
             }
+
+            int budgetYear = int.Parse(DropDownList1.SelectedValue)-543;
+
+            for (int i = 0; i < persons.Count; i++) {
+                Person ps = persons[i];
+                DataRow dr = dt.NewRow();
+                dr[0] = (i+1);
+                dr[1] = ps.FirstNameAndLastName;
+                dr[2] = ps.PositionName;
+
+                dr[3] = DatabaseManager.ExecuteInt("SELECT NVL(COUNT(LEAVE_ID),0) FROM LEV_DATA WHERE LEAVE_TYPE_ID = 1 AND PS_ID = '" + ps.CitizenID + "' AND BUDGET_YEAR = " + budgetYear);
+                dr[4] = DatabaseManager.ExecuteInt("SELECT NVL(SUM(TOTAL_DAY),0) FROM LEV_DATA WHERE LEAVE_TYPE_ID = 1 AND PS_ID = '" + ps.CitizenID + "' AND BUDGET_YEAR = " + budgetYear);
+                dr[5] = DatabaseManager.ExecuteInt("SELECT NVL(COUNT(LEAVE_ID),0) FROM LEV_DATA WHERE LEAVE_TYPE_ID = 2 AND PS_ID = '" + ps.CitizenID + "' AND BUDGET_YEAR = " + budgetYear);
+                dr[6] = DatabaseManager.ExecuteInt("SELECT NVL(SUM(TOTAL_DAY),0) FROM LEV_DATA WHERE LEAVE_TYPE_ID = 2 AND PS_ID = '" + ps.CitizenID + "' AND BUDGET_YEAR = " + budgetYear);
+                dr[7] = DatabaseManager.ExecuteInt("SELECT NVL(COUNT(LEAVE_ID),0) FROM LEV_DATA WHERE LEAVE_TYPE_ID = 4 AND PS_ID = '" + ps.CitizenID + "' AND BUDGET_YEAR = " + budgetYear);
+                dr[8] = DatabaseManager.ExecuteInt("SELECT NVL(SUM(TOTAL_DAY),0) FROM LEV_DATA WHERE LEAVE_TYPE_ID = 4 AND PS_ID = '" + ps.CitizenID + "' AND BUDGET_YEAR = " + budgetYear);
+
+                dr[9] = DatabaseManager.ExecuteInt("SELECT NVL(COUNT(WORKTIME_ID),0) FROM LEV_WORKTIME WHERE LATE = 1 AND CITIZEN_ID = '" + ps.CitizenID + "' AND EXTRACT(YEAR FROM TODAY) = " + budgetYear);
+                dr[10] = DatabaseManager.ExecuteInt("SELECT NVL(COUNT(WORKTIME_ID),0) FROM LEV_WORKTIME WHERE ABSENT = 1 AND CITIZEN_ID = '" + ps.CitizenID + "' AND EXTRACT(YEAR FROM TODAY) = " + budgetYear);
+
+                dr[11] = "-";
+                dr[12] = "-";
+                dr[13] = "-";
+                dr[14] = "-";
+
+                dt.Rows.Add(dr);
+
+            }
+
+
+
+            
 
             GridView1.DataSource = dt;
             GridView1.DataBind();

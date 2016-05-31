@@ -215,12 +215,6 @@
                             <div id="divDrCer" runat="server"></div>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="col1">
-                            &nbsp;</td>
-                        <td class="col2">
-                            &nbsp;</td>
-                    </tr>
                     <tr id="trOldComment" runat="server">
                         <td class="col1">
                             <img src="Image/Small/comment.png" class="icon_left" />
@@ -244,10 +238,6 @@
                         <td class="col2">
                             <asp:Label ID="lbCancelReason" runat="server"></asp:Label>
                         </td>
-                    </tr>
-                    <tr>
-                        <td class="col1">&nbsp;</td>
-                        <td class="col2">&nbsp;</td>
                     </tr>
                     <tr>
                         <td class="col1">

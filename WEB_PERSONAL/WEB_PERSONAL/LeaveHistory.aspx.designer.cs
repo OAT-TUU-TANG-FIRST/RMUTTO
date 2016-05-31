@@ -58,15 +58,6 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.View View1;
         
         /// <summary>
-        /// gvFinish control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvFinish;
-        
-        /// <summary>
         /// lbFinish control.
         /// </summary>
         /// <remarks>
@@ -76,13 +67,13 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.Label lbFinish;
         
         /// <summary>
-        /// gvProgressing control.
+        /// gvFinish control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvProgressing;
+        protected global::System.Web.UI.WebControls.GridView gvFinish;
         
         /// <summary>
         /// lbProgressing control.
@@ -94,13 +85,13 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.Label lbProgressing;
         
         /// <summary>
-        /// gvHistory control.
+        /// gvProgressing control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvHistory;
+        protected global::System.Web.UI.WebControls.GridView gvProgressing;
         
         /// <summary>
         /// lbHistory control.
@@ -112,6 +103,15 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.Label lbHistory;
         
         /// <summary>
+        /// gvHistory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvHistory;
+        
+        /// <summary>
         /// View2 control.
         /// </summary>
         /// <remarks>
@@ -119,15 +119,6 @@ namespace WEB_PERSONAL {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.View View2;
-        
-        /// <summary>
-        /// gvCL control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvCL;
         
         /// <summary>
         /// lbCL control.
@@ -139,13 +130,13 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.Label lbCL;
         
         /// <summary>
-        /// gvCH control.
+        /// gvCL control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvCH;
+        protected global::System.Web.UI.WebControls.GridView gvCL;
         
         /// <summary>
         /// lbCH control.
@@ -155,6 +146,15 @@ namespace WEB_PERSONAL {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbCH;
+        
+        /// <summary>
+        /// gvCH control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvCH;
         
         /// <summary>
         /// View3 control.

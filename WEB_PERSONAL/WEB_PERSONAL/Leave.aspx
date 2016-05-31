@@ -81,7 +81,7 @@
                     </tr>
                     <tr id="trS1WifeFirstName" runat="server">
                         <td class="col1">
-                            <img src="Image/Small/person2.png" class="icon_left" />ชื่อภริยา</td>
+                            <img src="Image/Small/person2.png" class="icon_left" />ชื่อจริงภริยา</td>
                         <td class="col2">
                             <asp:TextBox ID="tbS1WifeFirstName" runat="server" CssClass="ps-textbox"></asp:TextBox>
                         </td>

@@ -236,10 +236,6 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="col1">&nbsp;</td>
-                        <td class="col2">&nbsp;</td>
-                    </tr>
-                    <tr>
                         <td class="col1" style="vertical-align: top;">
                             <img src="Image/Small/a.png" class="icon_left"/>
                             เหตุผลที่ยกเลิก</td>

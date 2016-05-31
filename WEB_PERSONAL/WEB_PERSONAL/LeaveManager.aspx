@@ -15,17 +15,6 @@
         <div class="ps-header">
             <img src="Image/Small/wrench.png" />จัดการข้อมูลการลา
         </div>
-        <div class="ps-vs-main">
-            <asp:LinkButton ID="lbuLF1Select" runat="server" OnClick="lbuLF1Select_Click" CssClass="ps-vs-sel">การลาป่วย</asp:LinkButton>
-            <asp:LinkButton ID="lbuLF2Select" runat="server" OnClick="lbuLF2Select_Click" CssClass="ps-vs">การลากิจ</asp:LinkButton>
-            <asp:LinkButton ID="lbuLF3Select" runat="server" OnClick="lbuLF3Select_Click" CssClass="ps-vs">การลาพักผ่อน</asp:LinkButton>
-            <asp:LinkButton ID="lbuLF4Select" runat="server" OnClick="lbuLF4Select_Click" CssClass="ps-vs">การลาคลอดบุตร</asp:LinkButton>
-            <asp:LinkButton ID="lbuLF5Select" runat="server" OnClick="lbuLF5Select_Click" CssClass="ps-vs">การไปช่วยเหลือภริยาที่คลอดบุตร</asp:LinkButton>
-            <asp:LinkButton ID="lbuLF6Select" runat="server" OnClick="lbuLF6Select_Click" CssClass="ps-vs">ลาไปอุมสมบท</asp:LinkButton>
-            <asp:LinkButton ID="lbuLF7Select" runat="server" OnClick="lbuLF7Select_Click" CssClass="ps-vs">ลาไปประกอบพิธีฮัจย์</asp:LinkButton>
-        </div>
-        <asp:MultiView ID="MV1" runat="server" ActiveViewIndex="0">
-            <asp:View ID="View1" runat="server">
                 <asp:MultiView ID="MV1_1" runat="server" ActiveViewIndex="0">
                     <asp:View ID="View8" runat="server">
                         <table class="ps-table">
@@ -264,27 +253,6 @@
                         </table>
                     </asp:View>
                 </asp:MultiView>
-
-            </asp:View>
-            <asp:View ID="View2" runat="server">
-                <asp:GridView ID="gv2" runat="server" CssClass="ps-gridview" EmptyDataText="ไม่มีข้อมูล"></asp:GridView>
-            </asp:View>
-            <asp:View ID="View3" runat="server">
-                <asp:GridView ID="gv3" runat="server" CssClass="ps-gridview" EmptyDataText="ไม่มีข้อมูล"></asp:GridView>
-            </asp:View>
-            <asp:View ID="View4" runat="server">
-                <asp:GridView ID="GridView1" runat="server" CssClass="ps-gridview" EmptyDataText="ไม่มีข้อมูล"></asp:GridView>
-            </asp:View>
-            <asp:View ID="View5" runat="server">
-                <asp:GridView ID="GridView2" runat="server" CssClass="ps-gridview" EmptyDataText="ไม่มีข้อมูล"></asp:GridView>
-            </asp:View>
-            <asp:View ID="View6" runat="server">
-                <asp:GridView ID="GridView3" runat="server" CssClass="ps-gridview" EmptyDataText="ไม่มีข้อมูล"></asp:GridView>
-            </asp:View>
-            <asp:View ID="View7" runat="server">
-                <asp:GridView ID="GridView4" runat="server" CssClass="ps-gridview" EmptyDataText="ไม่มีข้อมูล"></asp:GridView>
-            </asp:View>
-        </asp:MultiView>
     </div>
 
 </asp:Content>

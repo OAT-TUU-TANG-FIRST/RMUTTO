@@ -405,8 +405,5 @@
     </table>
     <div class="ps-separator"></div>
 
-    <div>
-        <asp:LinkButton ID="lbuPrint" runat="server" CssClass="ps-button" OnClick="lbuPrint_Click"><img src="Image/Small/printer.png" class="icon_left" />พิมพ์</asp:LinkButton>
-    </div>
         </div>
 </asp:Content>

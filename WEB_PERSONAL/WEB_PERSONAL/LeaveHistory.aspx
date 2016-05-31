@@ -27,6 +27,11 @@
             padding: 20px;
             padding-top: 0px;
         }
+
+        .lbGV {
+            display: inline-block;
+            margin-bottom: 5px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -49,9 +54,9 @@
                     <img src="Image/Small/correct.png" />รายการที่เสร็จสิ้น
                 </div>
                 <div class="sec2">
-
+                    <asp:Label ID="lbFinish" runat="server" Text="ไม่มีข้อมูล" CssClass="lbGV"></asp:Label>
                     <asp:GridView ID="gvFinish" runat="server" CssClass="ps-gridview"></asp:GridView>
-                    <asp:Label ID="lbFinish" runat="server" Text="ไม่มีข้อมูล"></asp:Label>
+                    
                 </div>
             </div>
 
@@ -60,9 +65,9 @@
                     <img src="Image/Small/progress.png" />รายการที่อยู่ระหว่างการดำเนินการ
                 </div>
                 <div class="sec2">
-
+                    <asp:Label ID="lbProgressing" runat="server" Text="ไม่มีข้อมูล" CssClass="lbGV"></asp:Label>
                     <asp:GridView ID="gvProgressing" runat="server" CssClass="ps-gridview"></asp:GridView>
-                    <asp:Label ID="lbProgressing" runat="server" Text="ไม่มีข้อมูล"></asp:Label>
+                    
                 </div>
             </div>
 
@@ -72,9 +77,9 @@
                     <img src="Image/Small/table.png" />ประวัติการลา
                 </div>
                 <div class="sec2">
-
+                    <asp:Label ID="lbHistory" runat="server" Text="ไม่มีข้อมูล" CssClass="lbGV"></asp:Label>
                     <asp:GridView ID="gvHistory" runat="server" CssClass="ps-gridview"></asp:GridView>
-                    <asp:Label ID="lbHistory" runat="server" Text="ไม่มีข้อมูล"></asp:Label>
+                    
                 </div>
             </div>
 
@@ -87,9 +92,9 @@
                     <img src="Image/Small/pencil_y.png" />ประวัติการลาที่เป็นผู้ลงความเห็น
                 </div>
                 <div class="sec2">
-
+                    <asp:Label ID="lbCL" runat="server" Text="ไม่มีข้อมูล" CssClass="lbGV"></asp:Label>
                     <asp:GridView ID="gvCL" runat="server" CssClass="ps-gridview"></asp:GridView>
-                    <asp:Label ID="lbCL" runat="server" Text="ไม่มีข้อมูล"></asp:Label>
+                    
                 </div>
             </div>
             <div class="sec">
@@ -97,8 +102,9 @@
                     <img src="Image/Small/correct.png" />ประวัติการลาที่เป็นผู้อนุมัติ
                 </div>
                 <div class="sec2">
+                    <asp:Label ID="lbCH" runat="server" Text="ไม่มีข้อมูล" CssClass="lbGV"></asp:Label>
                     <asp:GridView ID="gvCH" runat="server" CssClass="ps-gridview"></asp:GridView>
-                    <asp:Label ID="lbCH" runat="server" Text="ไม่มีข้อมูล"></asp:Label>
+                    
                 </div>
             </div>
             <div class="ps-separator"></div>
@@ -116,7 +122,7 @@
                     <asp:TableHeaderCell ColumnSpan="2">ลากิจ</asp:TableHeaderCell>
                     <asp:TableHeaderCell ColumnSpan="2">ลาคลอดบุตร</asp:TableHeaderCell>
                     <asp:TableHeaderCell ColumnSpan="2">ลาไปช่วยเหลือภริยาที่คลอดบุตร</asp:TableHeaderCell>
-                    <asp:TableHeaderCell ColumnSpan="3">ลาพักผ่อน</asp:TableHeaderCell>
+                    <asp:TableHeaderCell ColumnSpan="7">ลาพักผ่อน</asp:TableHeaderCell>
                     <asp:TableHeaderCell ColumnSpan="2">ลาไปอุปสมบท</asp:TableHeaderCell>
                     <asp:TableHeaderCell ColumnSpan="2">ลาไปประกอบพิธีฮัจย์</asp:TableHeaderCell>
                 </asp:TableHeaderRow>
@@ -132,6 +138,10 @@
                     <asp:TableHeaderCell>รวมขอ</asp:TableHeaderCell>
                     <asp:TableHeaderCell>วัน</asp:TableHeaderCell>
                     <asp:TableHeaderCell>รวมขอ</asp:TableHeaderCell>
+                    <asp:TableHeaderCell>เหลือสะสม</asp:TableHeaderCell>
+                    <asp:TableHeaderCell>สะสม</asp:TableHeaderCell>
+                    <asp:TableHeaderCell>เหลือปีนี้</asp:TableHeaderCell>
+                    <asp:TableHeaderCell>ปีนี้</asp:TableHeaderCell>
                     <asp:TableHeaderCell>สูงสุด</asp:TableHeaderCell>
                     <asp:TableHeaderCell>วัน</asp:TableHeaderCell>
                     <asp:TableHeaderCell>รวมขอ</asp:TableHeaderCell>

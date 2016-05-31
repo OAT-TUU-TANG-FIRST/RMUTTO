@@ -9,12 +9,12 @@
     <title></title>
     <style>
         @font-face {
-            font-family: THS;
-            src: url("Font/THSarabun.ttf");
+            font-family: THSB;
+            src: url("Font/TH Sarabun PSK/THSarabun Bold.ttf");
         }
         body {
-            font-family: THS;
-            font-size: 26px;
+            font-family: THSB;
+            font-size: 20px;
         }
         .g1 th {
             text-align: center;
@@ -27,7 +27,7 @@
         }
         #Label4 {
             font-size: 64px;
-            font-family: 'WDB Bangna';
+            font-family: THSB;
         }
     
     </style>

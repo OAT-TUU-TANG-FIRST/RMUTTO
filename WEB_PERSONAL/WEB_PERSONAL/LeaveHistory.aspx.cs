@@ -19,7 +19,7 @@ namespace WEB_PERSONAL {
                 gvProgressing.DataBind();
 
                 if(gvProgressing.Rows.Count > 0) {
-                    lbProgressing.Visible = false;
+                    lbProgressing.Text = "พบข้อมูล " + gvProgressing.Rows.Count + " รายการ";
                     TableHeaderCell headerCell = new TableHeaderCell();
                     headerCell.Text = "ดูข้อมูล";
                     gvProgressing.HeaderRow.Cells.Add(headerCell);
@@ -46,7 +46,7 @@ namespace WEB_PERSONAL {
 
                     Util.NormalizeGridViewDate(gvProgressing, 2);
                 } else {
-                    lbProgressing.Visible = true;
+                    lbProgressing.Text = "ไม่พบข้อมูล";
                 }
                 
             }
@@ -56,7 +56,7 @@ namespace WEB_PERSONAL {
                 gvFinish.DataBind();
 
                 if (gvFinish.Rows.Count > 0) {
-                    lbFinish.Visible = false;
+                    lbFinish.Text = "พบข้อมูล " + gvFinish.Rows.Count + " รายการ";
                     TableHeaderCell headerCell = new TableHeaderCell();
                     headerCell.Text = "ตกลง";
                     gvFinish.HeaderRow.Cells.Add(headerCell);
@@ -89,22 +89,18 @@ namespace WEB_PERSONAL {
                         gvFinish.Rows[i].Cells.Add(cell);
 
                         if (Util.StringEqual(gvFinish.Rows[i].Cells[7].Text, new string[] { "0" })) {
-                            gvFinish.Rows[i].Cells[7].Text = "-";
-                            gvFinish.Rows[i].Cells[7].ForeColor = System.Drawing.Color.Orange;
+                            gvFinish.Rows[i].Cells[7].Text = "ไม่อนุมัติ";
+                            gvFinish.Rows[i].Cells[7].ForeColor = System.Drawing.Color.Red;
                         }
                         if (Util.StringEqual(gvFinish.Rows[i].Cells[7].Text, new string[] { "1" })) {
                             gvFinish.Rows[i].Cells[7].Text = "อนุมัติ";
                             gvFinish.Rows[i].Cells[7].ForeColor = System.Drawing.Color.Green;
                         }
-                        if (Util.StringEqual(gvFinish.Rows[i].Cells[7].Text, new string[] { "2" })) {
-                            gvFinish.Rows[i].Cells[7].Text = "ไม่อนุมัติ";
-                            gvFinish.Rows[i].Cells[7].ForeColor = System.Drawing.Color.Red;
-                        }
                     }
 
                     Util.NormalizeGridViewDate(gvFinish, 2);
                 } else {
-                    lbFinish.Visible = true;
+                    lbFinish.Text = "ไม่พบข้อมูล";
                 }
 
 
@@ -115,7 +111,7 @@ namespace WEB_PERSONAL {
                 gvHistory.DataBind();
 
                 if(gvHistory.Rows.Count > 0) {
-                    lbHistory.Visible = false;
+                    lbHistory.Text = "พบข้อมูล " + gvHistory.Rows.Count + " รายการ";
                     TableHeaderCell headerCell = new TableHeaderCell();
                     headerCell.Text = "ดูข้อมูล";
                     gvHistory.HeaderRow.Cells.Add(headerCell);
@@ -140,22 +136,18 @@ namespace WEB_PERSONAL {
                         gvHistory.Rows[i].Cells.Add(cell);
 
                         if (Util.StringEqual(gvHistory.Rows[i].Cells[7].Text, new string[] { "0" })) {
-                            gvHistory.Rows[i].Cells[7].Text = "-";
-                            gvHistory.Rows[i].Cells[7].ForeColor = System.Drawing.Color.Orange;
+                            gvHistory.Rows[i].Cells[7].Text = "ไม่อนุมัติ";
+                            gvHistory.Rows[i].Cells[7].ForeColor = System.Drawing.Color.Red;
                         }
                         if (Util.StringEqual(gvHistory.Rows[i].Cells[7].Text, new string[] { "1" })) {
                             gvHistory.Rows[i].Cells[7].Text = "อนุมัติ";
                             gvHistory.Rows[i].Cells[7].ForeColor = System.Drawing.Color.Green;
                         }
-                        if (Util.StringEqual(gvHistory.Rows[i].Cells[7].Text, new string[] { "2" })) {
-                            gvHistory.Rows[i].Cells[7].Text = "ไม่อนุมัติ";
-                            gvHistory.Rows[i].Cells[7].ForeColor = System.Drawing.Color.Red;
-                        }
                     }
 
                     Util.NormalizeGridViewDate(gvHistory, 2);
                 } else {
-                    lbHistory.Visible = true;
+                    lbHistory.Text = "ไม่พบข้อมูล";
                 }
                 
                 
@@ -167,7 +159,7 @@ namespace WEB_PERSONAL {
                 gvCL.DataBind();
 
                 if (gvCL.Rows.Count > 0) {
-                    lbCL.Visible = false;
+                    lbCL.Text = "พบข้อมูล " + gvCL.Rows.Count + " รายการ";
                     TableHeaderCell headerCell = new TableHeaderCell();
                     headerCell.Text = "ดูข้อมูล";
                     gvCL.HeaderRow.Cells.Add(headerCell);
@@ -192,22 +184,18 @@ namespace WEB_PERSONAL {
                         gvCL.Rows[i].Cells.Add(cell);
 
                         if (Util.StringEqual(gvCL.Rows[i].Cells[7].Text, new string[] { "0" })) {
-                            gvCL.Rows[i].Cells[7].Text = "-";
-                            gvCL.Rows[i].Cells[7].ForeColor = System.Drawing.Color.Orange;
+                            gvCL.Rows[i].Cells[7].Text = "ไม่อนุมัติ";
+                            gvCL.Rows[i].Cells[7].ForeColor = System.Drawing.Color.Red;
                         }
                         if (Util.StringEqual(gvCL.Rows[i].Cells[7].Text, new string[] { "1" })) {
                             gvCL.Rows[i].Cells[7].Text = "อนุมัติ";
                             gvCL.Rows[i].Cells[7].ForeColor = System.Drawing.Color.Green;
                         }
-                        if (Util.StringEqual(gvCL.Rows[i].Cells[7].Text, new string[] { "2" })) {
-                            gvCL.Rows[i].Cells[7].Text = "ไม่อนุมัติ";
-                            gvCL.Rows[i].Cells[7].ForeColor = System.Drawing.Color.Red;
-                        }
                     }
 
                     Util.NormalizeGridViewDate(gvCL, 2);
                 } else {
-                    lbCL.Visible = true;
+                    lbCL.Text = "ไม่พบข้อมูล";
                 }
 
 
@@ -219,7 +207,7 @@ namespace WEB_PERSONAL {
                 gvCH.DataBind();
 
                 if (gvCH.Rows.Count > 0) {
-                    lbCH.Visible = false;
+                    lbCH.Text = "พบข้อมูล " + gvCH.Rows.Count + " รายการ";
                     TableHeaderCell headerCell = new TableHeaderCell();
                     headerCell.Text = "ดูข้อมูล";
                     gvCH.HeaderRow.Cells.Add(headerCell);
@@ -244,22 +232,18 @@ namespace WEB_PERSONAL {
                         gvCH.Rows[i].Cells.Add(cell);
 
                         if (Util.StringEqual(gvCH.Rows[i].Cells[7].Text, new string[] { "0" })) {
-                            gvCH.Rows[i].Cells[7].Text = "-";
-                            gvCH.Rows[i].Cells[7].ForeColor = System.Drawing.Color.Orange;
+                            gvCH.Rows[i].Cells[7].Text = "ไม่อนุมัติ";
+                            gvCH.Rows[i].Cells[7].ForeColor = System.Drawing.Color.Red;
                         }
                         if (Util.StringEqual(gvCH.Rows[i].Cells[7].Text, new string[] { "1" })) {
                             gvCH.Rows[i].Cells[7].Text = "อนุมัติ";
                             gvCH.Rows[i].Cells[7].ForeColor = System.Drawing.Color.Green;
                         }
-                        if (Util.StringEqual(gvCH.Rows[i].Cells[7].Text, new string[] { "2" })) {
-                            gvCH.Rows[i].Cells[7].Text = "ไม่อนุมัติ";
-                            gvCH.Rows[i].Cells[7].ForeColor = System.Drawing.Color.Red;
-                        }
                     }
 
                     Util.NormalizeGridViewDate(gvCH, 2);
                 } else {
-                    lbCH.Visible = true;
+                    lbCH.Text = "ไม่พบข้อมูล";
                 }
 
 
@@ -267,12 +251,12 @@ namespace WEB_PERSONAL {
 
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
-                using(OracleCommand com = new OracleCommand("SELECT YEAR, SICK_NOW, SICK_REQ, BUSINESS_NOW, BUSINESS_REQ, GB_NOW, GB_REQ, HGB_NOW, HGB_REQ, REST_NOW, REST_REQ, REST_MAX, ORDAIN_NOW, ORDAIN_REQ, HUJ_NOW, HUJ_REQ  FROM LEV_CLAIM WHERE PS_CITIZEN_ID = '" + loginPerson.CitizenID + "'", con)) {
+                using(OracleCommand com = new OracleCommand("SELECT YEAR, SICK_NOW, SICK_REQ, BUSINESS_NOW, BUSINESS_REQ, GB_NOW, GB_REQ, HGB_NOW, HGB_REQ, REST_NOW, REST_REQ, REST_SAVE, REST_SAVE_FIX, REST_THIS, REST_THIS_FIX, REST_MAX, ORDAIN_NOW, ORDAIN_REQ, HUJ_NOW, HUJ_REQ  FROM LEV_CLAIM WHERE PS_CITIZEN_ID = '" + loginPerson.CitizenID + "'", con)) {
                     using(OracleDataReader reader = com.ExecuteReader()) {
                         while(reader.Read()) {
                             TableRow r = new TableRow();
                             TableCell c;
-                            for (int i = 0; i < 16; i++) {
+                            for (int i = 0; i < 20; i++) {
                                 c = new TableCell();
                                 c.Text = reader.GetValue(i).ToString();
                                 r.Cells.Add(c);

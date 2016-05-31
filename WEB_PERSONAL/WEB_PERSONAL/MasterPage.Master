@@ -131,13 +131,15 @@
                     <a href="LeaveComment.aspx"><img src="Image/Small/document-edit.png" />ลงความเห็นการลา<asp:Label ID="lbLeaveCommentCount" runat="server" Text="ทดสอบ" CssClass="master_text_alert"></asp:Label></a>
                     <a href="LeaveAllow.aspx"><img src="Image/Small/document-accept.png" />อนุมัติการลา<asp:Label ID="lbLeaveAllowCount" runat="server" Text="ทดสอบ" CssClass="master_text_alert"></asp:Label></a>
                     <a href="LeaveHistory.aspx"><img src="Image/Small/clock-history.png" />ประวัติการลา</a>
+                    <a href="WorkingTimeHistory.aspx"><img src="Image/Small/clock-history.png" />ประวัติเวลาปฏิบัติงาน</a>
                     <!--a href="LeaveClaim.aspx"><img src="Image/Small/info.png" />สิทธิการลา</!--a-->
                     <a href="LeavePermission.aspx"><img src="Image/Small/info.png" />ตารางสิทธิการอนุญาต</a>
-                    <a href="WorkingTime.aspx" id="LinkWorkingTime" runat="server"><img src="Image/Small/clock.png" />เพิ่มเวลาปฏิบัติงาน</a>
-                    <a href="WorkingTimeHistory.aspx"><img src="Image/Small/clock-history.png" />ประวัติเวลาปฏิบัติงาน</a>
+                    
+                    
                     <a href="Leave-Report1.aspx"><img src="Image/Small/report.png" />ออกรายงานการลา</a>
-                    <a href="LeaveManager.aspx"><img src="Image/Small/wrench.png" />จัดการข้อมูลการลา</a>
-                    <a href="WorkingTimeManager.aspx"><img src="Image/Small/wrench.png" />จัดการข้อมูลเวลาปฏิบัติงาน</a>
+                    <!--a href="LeaveManager.aspx"><img src="Image/Small/wrench.png" />จัดการข้อมูลการลา</!--a-->
+                    <a href="WorkingDay.aspx"><img src="Image/Small/wrench.png" />จัดการวันปฏิบัติราชการ</a>
+                    <!--a href="WorkingTimeManager.aspx"><img src="Image/Small/wrench.png" />จัดการข้อมูลเวลาปฏิบัติงาน</!--a-->
                 </div>
                 
                 <div class="ps-ms-side-group">
@@ -167,7 +169,7 @@
 
                 <div class="ps-ms-side-group">
                     <span class="ps-ms-side-group-header">ข้อมูลระบบ</span>
-                    <div style="margin-left: 10px;">เวอร์ชั่น : v1.0.8</div>
+                    <div style="margin-left: 10px;">เวอร์ชั่น : v1.0.9</div>
                     <div style="margin-left: 10px;">ตัวนับ : <span id="s_counter" runat="server"></span></div>
                 </div>
 

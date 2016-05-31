@@ -39,7 +39,12 @@
             </table>
         </div>
         <div class="ps-separator"></div>
+        <asp:LinkButton ID="lbuSend" runat="server" CssClass="ps-button" OnClick="lbuSend_Click"><img src='Image/Small/send-email.png' class='icon_left'/>ส่งการแจ้งเตือน</asp:LinkButton>
+        <asp:Table ID="Table1" runat="server" CssClass="ps-ins-table">
+            
+        </asp:Table>
         <asp:GridView ID="gv1" runat="server" CssClass="ps-gridview"></asp:GridView>
+        <asp:HiddenField ID="hf1" runat="server" />
 
     </div>
 </asp:Content>

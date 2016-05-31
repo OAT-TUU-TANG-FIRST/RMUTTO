@@ -765,6 +765,18 @@
     <Content Include="Image\Button\reload.png" />
     <Content Include="Image\font_icon.png" />
     <Content Include="Image\ImageTUU\maintence.png" />
+    <Content Include="Image\Insignia\จ.ช..png" />
+    <Content Include="Image\Insignia\จ.ม..png" />
+    <Content Include="Image\Insignia\ต.ช..png" />
+    <Content Include="Image\Insignia\ต.ม..png" />
+    <Content Include="Image\Insignia\ท.ช..png" />
+    <Content Include="Image\Insignia\ท.ม..png" />
+    <Content Include="Image\Insignia\บ.ช..png" />
+    <Content Include="Image\Insignia\บ.ม..png" />
+    <Content Include="Image\Insignia\ป.ช..png" />
+    <Content Include="Image\Insignia\ป.ม..png" />
+    <Content Include="Image\Insignia\ม.ป.ช..png" />
+    <Content Include="Image\Insignia\ม.ว.ม..png" />
     <Content Include="Image\office.jpg" />
     <Content Include="Image\rmutto_clear.jpg" />
     <Content Include="Image\Small\a.png" />
@@ -1012,6 +1024,7 @@
     <Content Include="UpSalaryForm.aspx" />
     <Content Include="ViewLeaveForm.aspx" />
     <Content Include="WorkDivision-ADMIN.aspx" />
+    <Content Include="WorkingDay.aspx" />
     <Content Include="WorkingTime.aspx" />
     <Content Include="WorkingTimeHistory.aspx" />
     <Content Include="WorkingTimeManager.aspx" />
@@ -1730,6 +1743,13 @@
     </Compile>
     <Compile Include="WorkDivision-ADMIN.aspx.designer.cs">
       <DependentUpon>WorkDivision-ADMIN.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WorkingDay.aspx.cs">
+      <DependentUpon>WorkingDay.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WorkingDay.aspx.designer.cs">
+      <DependentUpon>WorkingDay.aspx</DependentUpon>
     </Compile>
     <Compile Include="WorkingTime.aspx.cs">
       <DependentUpon>WorkingTime.aspx</DependentUpon>

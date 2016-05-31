@@ -246,7 +246,7 @@ namespace WEB_PERSONAL {
                 MultiView1.ActiveViewIndex = 2;
                 int allow = 1;
                 if (rbNotAllow.Checked) {
-                    allow = 2;
+                    allow = 0;
                 }
                 LeaveData leaveData = (LeaveData)Session["LeaveData"];
                 if (leaveData.LeaveStatusID == 2) {

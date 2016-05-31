@@ -218,9 +218,9 @@ namespace WEB_PERSONAL {
 
         }
 
-        protected void lbuPrint_Click(object sender, EventArgs e) {
+        /*protected void lbuPrint_Click(object sender, EventArgs e) {
             Response.Redirect("PrintLeaveForm.aspx?LeaveID=" + Request.QueryString["LeaveID"].ToString());
-        }
+        }*/
     }
 
 

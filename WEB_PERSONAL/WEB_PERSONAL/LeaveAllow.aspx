@@ -186,7 +186,7 @@
                         <td class="col1">
                             <img src="Image/Small/comment.png" class="icon_left" />
                             เหตุผล</td>
-                        <td class="auto-style2">
+                        <td class="col2">
                             <asp:Label ID="lbReason" runat="server"></asp:Label>
                         </td>
                     </tr>
@@ -214,10 +214,6 @@
                             <div id="divDrCer" runat="server">
                             </div>
                         </td>
-                    </tr>
-                    <tr>
-                        <td class="col1">&nbsp;</td>
-                        <td class="col2">&nbsp;</td>
                     </tr>
                     <tr id="trCLOldComment" runat="server">
                         <td class="col1">
@@ -250,10 +246,6 @@
                         <td class="col2">
                             <asp:Label ID="lbCHOldDate" runat="server"></asp:Label>
                         </td>
-                    </tr>
-                    <tr>
-                        <td class="col1">&nbsp;</td>
-                        <td class="col2">&nbsp;</td>
                     </tr>
                     <tr id="trCancelReason" runat="server">
                         <td class="col1">
