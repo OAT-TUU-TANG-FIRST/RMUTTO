@@ -74,37 +74,9 @@
                     <asp:Button ID="btnSearchSeminar" Text="Search" runat="server" CssClass="master_OAT_button" OnClick="btnSearchSeminar_Click" />
                     <asp:Button ID="btnSearchRefresh" Text="Refresh" runat="server" CssClass="master_OAT_button" OnClick="btnSearchRefresh_Click" />
                 </div>
-                <div>
-                    <table class="center1">
-                        <tr>
-                            <td style="text-align: left; width: 30px;"></td>
-                            <td style="text-align: right; margin-right: 5px;">ชื่อ:&nbsp;</td>
-                            <td style="text-align: left; width: 120px;">
-                                <asp:TextBox ID="txtSearchSeminarName" runat="server" CssClass="tb5" MaxLength="100"></asp:TextBox>
-                            </td>
-                            <td style="text-align: left; width: 30px;"></td>
-                            <td style="text-align: right; margin-right: 5px;">นามสกุล :&nbsp;</td>
-                            <td style="text-align: left;">
-                                <asp:TextBox ID="txtSearchSeminarLastName" runat="server" CssClass="tb5" MaxLength="100"></asp:TextBox></td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: left; width: 10px;"></td>
-                            <td style="text-align: right; margin-right: 5px;">ชื่อโครงการฝึกอบรม/สัมมนา/ดูงาน :&nbsp;</td>
-                            <td style="text-align: left; width: 120px;">
-                                <asp:TextBox ID="txtSearchSeminarNameOfProject" runat="server" CssClass="tb5" MaxLength="100"></asp:TextBox>
-                            </td>
-                            <td style="text-align: left; width: 10px;"></td>
-                            <td style="text-align: right; margin-right: 5px;">สถานที่ฝึกอบรม/สัมมนา/ดูงาน :&nbsp;</td>
-                            <td style="text-align: left;">
-                                <asp:TextBox ID="txtSearchSeminarPlace" runat="server" CssClass="tb5" MaxLength="100"></asp:TextBox></td>
-                        </tr>
-                    </table>
-
-                   <!-- <asp:GridView ID="GridView1" runat="server" Style="margin-left: auto; margin-right: auto; text-align: center; width: 100%" CssClass="ps-gridview" OnRowDataBound="GridView1_RowDataBound"> 
-                    </asp:GridView> -->
-                    <asp:UpdatePanel ID="UpdateGridView2" runat="server">
+                <asp:UpdatePanel ID="UpdateGridview1" runat="server">
                     <ContentTemplate>
-                        <asp:GridView ID="GridView2" runat="server" Style="margin-left: auto; margin-right: auto; text-align: center; width: 100%"
+                        <asp:GridView ID="Gridview1" runat="server" Style="margin-left: auto; margin-right: auto; text-align: center; width: 100%"
                             AutoGenerateColumns="false"
                             AllowPaging="true"
                             DataKeyNames="SEMINAR_ID"
@@ -113,7 +85,7 @@
                             OnRowDataBound="GridView1_RowDataBound"
                             OnPageIndexChanging="myGridViewSeminar_PageIndexChanging" PageSize="10" BackColor="White" BorderColor="#999999">
                             <Columns>
-                                <asp:TemplateField Visible="false" HeaderText="SEMENAR_ID" ControlStyle-Width="180" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Aqua" >
+                                <asp:TemplateField Visible="false" HeaderText="SEMENAR_ID" ControlStyle-Width="180" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Aqua">
                                     <ItemTemplate>
                                         <asp:Label ID="lblSEidEDIT" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.SEMINAR_ID") %>'></asp:Label>
                                     </ItemTemplate>
@@ -153,11 +125,9 @@
                         </asp:GridView>
                     </ContentTemplate>
                     <Triggers>
-                        <asp:AsyncPostBackTrigger ControlID="GridView2" />
+                        <asp:AsyncPostBackTrigger ControlID="Gridview1" />
                     </Triggers>
                 </asp:UpdatePanel>
-
-                </div>
             </fieldset>
         </div>
     </asp:Panel>
@@ -179,25 +149,25 @@
                                 <td style="text-align: right; margin-right: 5px;">1. </td>
                                 <td style="text-align: right; margin-right: 5px;">ชื่อ<span class="textred">*</span> :&nbsp;</td>
                                 <td class="col1">
-                                    <asp:TextBox ID="txtName" runat="server" MaxLength="100" Width="148px" CssClass="tb5" ></asp:TextBox>
+                                    <asp:TextBox ID="txtName" runat="server" MaxLength="100" Width="148px" CssClass="tb5"></asp:TextBox>
                                 </td>
                                 <td style="text-align: left; width: 10px;"></td>
                                 <td style="text-align: right; margin-right: 5px;">นามสกุล<span class="textred">*</span> :&nbsp;</td>
                                 <td style="text-align: left; width: 170px;">
-                                    <asp:TextBox ID="txtLastName" runat="server" MaxLength="100" Width="148px" CssClass="tb5" ></asp:TextBox></td>
+                                    <asp:TextBox ID="txtLastName" runat="server" MaxLength="100" Width="148px" CssClass="tb5"></asp:TextBox></td>
                                 <td style="text-align: right; margin-right: 5px;">ตำแหน่ง<span class="textred">*</span> :&nbsp;</td>
                                 <td style="text-align: left; width: 170px;">
-                                    <asp:TextBox ID="txtPosition" runat="server" MaxLength="100" Width="148px" CssClass="tb5" ></asp:TextBox></td>
+                                    <asp:TextBox ID="txtPosition" runat="server" MaxLength="100" Width="148px" CssClass="tb5"></asp:TextBox></td>
                                 <td style="text-align: right; margin-right: 5px;">ระดับ<span class="textred">*</span> :&nbsp;</td>
                                 <td style="text-align: left; width: 170px;">
-                                    <asp:TextBox ID="txtDegree" runat="server" MaxLength="100" Width="153px" CssClass="tb5" ></asp:TextBox></td>
+                                    <asp:TextBox ID="txtDegree" runat="server" MaxLength="100" Width="153px" CssClass="tb5"></asp:TextBox></td>
                             </tr>
                         </table>
                         <table>
                             <tr>
                                 <td style="text-align: right; margin-right: 5px;">สังกัด<span class="textred">*</span> :&nbsp;</td>
                                 <td style="text-align: left;">
-                                    <asp:TextBox ID="txtCampus" runat="server" MaxLength="100" Width="625px" CssClass="tb5" Placeholder="สังกัด" ></asp:TextBox></td>
+                                    <asp:TextBox ID="txtCampus" runat="server" MaxLength="100" Width="625px" CssClass="tb5" Placeholder="สังกัด"></asp:TextBox></td>
                                 <td style="text-align: left; width: 10px;"></td>
                                 <td style="text-align: right; margin-right: 5px;">มหาวิทยาลัยเทคโนยีราชมงคลตะวันออก</td>
                             </tr>
@@ -207,7 +177,7 @@
                                 <td style="text-align: right; margin-right: 5px;">2. </td>
                                 <td style="text-align: right; margin-right: 5px;">ชื่อโครงการฝึกอบรม/สัมมนา/ดูงาน<span class="textred">*</span> :&nbsp;</td>
                                 <td style="text-align: left;">
-                                    <asp:TextBox ID="txtNameOfProject" runat="server" MaxLength="100" Width="691px" CssClass="tb5" Placeholder="ชื่อโครงการฝึกอบรม/สัมมนา/ดูงาน" ></asp:TextBox></td>
+                                    <asp:TextBox ID="txtNameOfProject" runat="server" MaxLength="100" Width="691px" CssClass="tb5" Placeholder="ชื่อโครงการฝึกอบรม/สัมมนา/ดูงาน"></asp:TextBox></td>
                             </tr>
                         </table>
                         <table>
@@ -215,7 +185,7 @@
                                 <td style="text-align: right; margin-right: 5px;">3. </td>
                                 <td style="text-align: right; margin-right: 5px;">สถานที่ฝึกอบรม/สัมมนา/ดูงาน<span class="textred">*</span> :&nbsp;</td>
                                 <td style="text-align: left;">
-                                    <asp:TextBox ID="txtPlace" runat="server" MaxLength="100" Width="713px" CssClass="tb5" Placeholder="สถานที่ฝึกอบรม/สัมมนา/ดูงาน" ></asp:TextBox></td>
+                                    <asp:TextBox ID="txtPlace" runat="server" MaxLength="100" Width="713px" CssClass="tb5" Placeholder="สถานที่ฝึกอบรม/สัมมนา/ดูงาน"></asp:TextBox></td>
                             </tr>
                         </table>
                         <table>
@@ -226,7 +196,7 @@
                                 <td style="text-align: left; width: 220px;">
                                     <asp:UpdatePanel ID="UpdatePanel4" runat="server">
                                         <ContentTemplate>
-                                            <asp:TextBox ID="txtDateFrom" runat="server" Width="180px" MaxLength="12" CssClass="tb5" OnTextChanged="txtDateFrom_TextChanged" AutoPostBack="True" ></asp:TextBox>
+                                            <asp:TextBox ID="txtDateFrom" runat="server" Width="180px" MaxLength="12" CssClass="tb5" OnTextChanged="txtDateFrom_TextChanged" AutoPostBack="True"></asp:TextBox>
                                         </ContentTemplate>
                                         <Triggers>
                                             <asp:AsyncPostBackTrigger ControlID="txtDateFrom" />
@@ -238,7 +208,7 @@
                                 <td style="text-align: left; width: 220px;">
                                     <asp:UpdatePanel ID="UpdatePanel5" runat="server">
                                         <ContentTemplate>
-                                            <asp:TextBox ID="txtDateTO" runat="server" MaxLength="12" Width="180px" OnTextChanged="txtDateTO_TextChanged" CssClass="tb5" AutoPostBack="True" ></asp:TextBox>
+                                            <asp:TextBox ID="txtDateTO" runat="server" MaxLength="12" Width="180px" OnTextChanged="txtDateTO_TextChanged" CssClass="tb5" AutoPostBack="True"></asp:TextBox>
                                         </ContentTemplate>
                                         <Triggers>
                                             <asp:AsyncPostBackTrigger ControlID="txtDateFrom" />
@@ -280,7 +250,7 @@
                                 <td style="text-align: left; width: 10px;"></td>
                                 <td style="text-align: right; margin-right: 5px;">ค่าใช้จ่ายตลอดโครงการ<span class="textred">*</span> :&nbsp;</td>
                                 <td style="text-align: left; width: 50px;">
-                                    <asp:TextBox ID="txtBudget" runat="server" MaxLength="100" Width="360px" CssClass="tb5" Placeholder="ค่าใช้จ่ายตลอดโครงการ" ></asp:TextBox></td>
+                                    <asp:TextBox ID="txtBudget" runat="server" MaxLength="100" Width="360px" CssClass="tb5" Placeholder="ค่าใช้จ่ายตลอดโครงการ"></asp:TextBox></td>
                                 <td style="text-align: right; margin-right: 5px;">บาท </td>
                             </tr>
                         </table>
@@ -288,7 +258,7 @@
                             <tr>
                                 <td style="text-align: right; margin-right: 5px;">แหล่งงบประมาณที่ได้รับการสนับสนุน<span class="textred">*</span></td>
                                 <td style="text-align: left; width: 50px;">
-                                    <asp:TextBox ID="txtSupportBudget" runat="server" MaxLength="100" Width="718px" CssClass="tb5" Placeholder="แหล่งงบประมาณที่ได้รับการสนับสนุน" ></asp:TextBox></td>
+                                    <asp:TextBox ID="txtSupportBudget" runat="server" MaxLength="100" Width="718px" CssClass="tb5" Placeholder="แหล่งงบประมาณที่ได้รับการสนับสนุน"></asp:TextBox></td>
                             </tr>
                         </table>
                         <table>
@@ -415,7 +385,7 @@
                                     <asp:Button ID="btnCancelSeminar" Text="ย้อนกลับ" runat="server" OnClick="btnCancelSeminar_Click" CssClass="ps-button" /></td>
                                 <td style="text-align: left; width: 10px;"></td>
                                 <td style="text-align: right; margin-right: 5px;">
-                                    <asp:Button ID="btnSaveSeminar" Text="ตกลง" runat="server" OnClick="btnSubmitSeminar_Click" CssClass="ps-button" /></td>
+                                    <asp:Button ID="btnSaveSeminar" Text="แก้ไขข้อมูลพัฒนาบุคลากร" runat="server" OnClick="btnSubmitSeminar_Click" CssClass="ps-button" /></td>
                             </tr>
                         </table>
                     </fieldset>

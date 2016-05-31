@@ -58,67 +58,22 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.Button btnSearchRefresh;
         
         /// <summary>
-        /// txtSearchSeminarName control.
+        /// UpdateGridview1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearchSeminarName;
+        protected global::System.Web.UI.UpdatePanel UpdateGridview1;
         
         /// <summary>
-        /// txtSearchSeminarLastName control.
+        /// Gridview1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearchSeminarLastName;
-        
-        /// <summary>
-        /// txtSearchSeminarNameOfProject control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearchSeminarNameOfProject;
-        
-        /// <summary>
-        /// txtSearchSeminarPlace control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearchSeminarPlace;
-        
-        /// <summary>
-        /// GridView1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
-        
-        /// <summary>
-        /// UpdateGridView2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdateGridView2;
-        
-        /// <summary>
-        /// GridView2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView2;
+        protected global::System.Web.UI.WebControls.GridView Gridview1;
         
         /// <summary>
         /// Panel1 control.
