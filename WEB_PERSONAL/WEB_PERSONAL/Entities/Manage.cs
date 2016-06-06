@@ -5076,5 +5076,988 @@ namespace WEB_PERSONAL.Entities
             return result;
         }
     }
+    /// <summary>
+    /// ClanInsignia
+    /// </summary>
+    public class ClassClanInsignia
+    {
 
+        public int ID_CLANINSIGNIA { get; set; }
+        public string NAME_CLANINSIGNIA_THA { get; set; }
+
+        public ClassClanInsignia() { }
+        public ClassClanInsignia(int ID_CLANINSIGNIA, string NAME_CLANINSIGNIA_THA)
+        {
+            this.ID_CLANINSIGNIA = ID_CLANINSIGNIA;
+            this.NAME_CLANINSIGNIA_THA = NAME_CLANINSIGNIA_THA;
+        }
+
+        public DataTable GetClanInsignia(string NAME_CLANINSIGNIA_THA)
+        {
+            DataTable dt = new DataTable();
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            string query = "SELECT * FROM TB_CLANINSIGNIA ";
+            if (!string.IsNullOrEmpty(NAME_CLANINSIGNIA_THA))
+            {
+                query += " where 1=1 ";
+                if (!string.IsNullOrEmpty(NAME_CLANINSIGNIA_THA))
+                {
+                    query += " and NAME_CLANINSIGNIA_THA like :NAME_CLANINSIGNIA_THA ";
+                }
+            }
+            OracleCommand command = new OracleCommand(query, conn);
+            // Create the command
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                if (!string.IsNullOrEmpty(NAME_CLANINSIGNIA_THA))
+                {
+                    command.Parameters.Add(new OracleParameter("NAME_CLANINSIGNIA_THA", NAME_CLANINSIGNIA_THA + "%"));
+                }
+                OracleDataAdapter sd = new OracleDataAdapter(command);
+                sd.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+
+            return dt;
+        }
+
+        public int InsertClanInsignia()
+        {
+            int id = 0;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            OracleCommand command = new OracleCommand("INSERT INTO TB_CLANINSIGNIA (NAME_CLANINSIGNIA_THA) VALUES (:NAME_CLANINSIGNIA_THA)", conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("NAME_CLANINSIGNIA_THA", NAME_CLANINSIGNIA_THA));
+                id = command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return id;
+        }
+
+        public bool UpdateClanInsignia()
+        {
+            bool result = false;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            string query = "Update TB_CLANINSIGNIA Set ";
+            query += " ID_CLANINSIGNIA = :ID_CLANINSIGNIA,";
+            query += " NAME_CLANINSIGNIA_THA = :NAME_CLANINSIGNIA_THA";
+            query += " where ID_CLANINSIGNIA = :ID_CLANINSIGNIA";
+
+            OracleCommand command = new OracleCommand(query, conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("ID_CLANINSIGNIA", ID_CLANINSIGNIA));
+                command.Parameters.Add(new OracleParameter("NAME_CLANINSIGNIA_THA", NAME_CLANINSIGNIA_THA));
+
+                if (command.ExecuteNonQuery() > 0)
+                {
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+            }
+            return result;
+        }
+
+        public bool DeleteClanInsignia()
+        {
+            bool result = false;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            OracleCommand command = new OracleCommand("Delete TB_CLANINSIGNIA where ID_CLANINSIGNIA = :ID_CLANINSIGNIA", conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("ID_CLANINSIGNIA", ID_CLANINSIGNIA));
+                if (command.ExecuteNonQuery() >= 0)
+                {
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return result;
+        }
+
+        public bool CheckUseClanInsignia()
+        {
+            bool result = true;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+
+            // Create the command
+            OracleCommand command = new OracleCommand("SELECT count(NAME_CLANINSIGNIA_THA) FROM TB_CLANINSIGNIA WHERE NAME_CLANINSIGNIA_THA = :NAME_CLANINSIGNIA_THA ", conn);
+
+            // Add the parameters.
+            command.Parameters.Add(new OracleParameter("NAME_CLANINSIGNIA_THA", NAME_CLANINSIGNIA_THA));
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                int count = (int)(decimal)command.ExecuteScalar();
+                if (count >= 1)
+                {
+                    result = false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return result;
+        }
+    }
+    /// <summary>
+    /// INS_GRADEINSIGNIA : Dropdown เครื่องราชฯ
+    /// </summary>
+    public class ClassGradeInsignia
+    {
+
+        public int ID_GRADEINSIGNIA { get; set; }
+        public string NAME_GRADEINSIGNIA_THA { get; set; }
+        public string ABBREVIATIONS_THA { get; set; }
+        public int ID_CLANINSIGNIA { get; set; }
+
+        public ClassGradeInsignia() { }
+        public ClassGradeInsignia(int ID_GRADEINSIGNIA, string NAME_GRADEINSIGNIA_THA, string ABBREVIATIONS_THA, int ID_CLANINSIGNIA)
+        {
+            this.ID_GRADEINSIGNIA = ID_GRADEINSIGNIA;
+            this.NAME_GRADEINSIGNIA_THA = NAME_GRADEINSIGNIA_THA;
+            this.ABBREVIATIONS_THA = ABBREVIATIONS_THA;
+            this.ID_CLANINSIGNIA = ID_CLANINSIGNIA;
+        }
+
+        public DataTable GetGradeInsignia(string NAME_GRADEINSIGNIA_THA, string ABBREVIATIONS_THA, string ID_CLANINSIGNIA)
+        {
+            DataTable dt = new DataTable();
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            string query = "SELECT * FROM INS_GRADEINSIGNIA ";
+            if (!string.IsNullOrEmpty(NAME_GRADEINSIGNIA_THA) || !string.IsNullOrEmpty(ABBREVIATIONS_THA) || !string.IsNullOrEmpty(ID_CLANINSIGNIA))
+            {
+                query += " where 1=1 ";
+                if (!string.IsNullOrEmpty(NAME_GRADEINSIGNIA_THA))
+                {
+                    query += " and NAME_GRADEINSIGNIA_THA like :NAME_GRADEINSIGNIA_THA ";
+                }
+                if (!string.IsNullOrEmpty(ABBREVIATIONS_THA))
+                {
+                    query += " and ABBREVIATIONS_THA like :ABBREVIATIONS_THA ";
+                }
+                if (!string.IsNullOrEmpty(ID_CLANINSIGNIA))
+                {
+                    query += " and ID_CLANINSIGNIA like :ID_CLANINSIGNIA ";
+                }
+            }
+            OracleCommand command = new OracleCommand(query, conn);
+            // Create the command
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                if (!string.IsNullOrEmpty(NAME_GRADEINSIGNIA_THA))
+                {
+                    command.Parameters.Add(new OracleParameter("NAME_GRADEINSIGNIA_THA", NAME_GRADEINSIGNIA_THA + "%"));
+                }
+                if (!string.IsNullOrEmpty(ABBREVIATIONS_THA))
+                {
+                    command.Parameters.Add(new OracleParameter("ABBREVIATIONS_THA", ABBREVIATIONS_THA + "%"));
+                }
+                if (!string.IsNullOrEmpty(ID_CLANINSIGNIA))
+                {
+                    command.Parameters.Add(new OracleParameter("ID_CLANINSIGNIA", ID_CLANINSIGNIA ));
+                }
+                OracleDataAdapter sd = new OracleDataAdapter(command);
+                sd.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+
+            return dt;
+        }
+
+        public int InsertGradeInsignia()
+        {
+            int id = 0;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            OracleCommand command = new OracleCommand("INSERT INTO INS_GRADEINSIGNIA (NAME_GRADEINSIGNIA_THA,ABBREVIATIONS_THA,ID_CLANINSIGNIA) VALUES (:NAME_GRADEINSIGNIA_THA, :ABBREVIATIONS_THA, :ID_CLANINSIGNIA)", conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("NAME_GRADEINSIGNIA_THA", NAME_GRADEINSIGNIA_THA));
+                command.Parameters.Add(new OracleParameter("ABBREVIATIONS_THA", ABBREVIATIONS_THA));
+                command.Parameters.Add(new OracleParameter("ID_CLANINSIGNIA", ID_CLANINSIGNIA));
+                id = command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return id;
+        }
+
+        public bool UpdateGradeInsignia()
+        {
+            bool result = false;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            string query = "Update INS_GRADEINSIGNIA Set ";
+            query += " ID_GRADEINSIGNIA = :ID_GRADEINSIGNIA,";
+            query += " NAME_GRADEINSIGNIA_THA = :NAME_GRADEINSIGNIA_THA,";
+            query += " ABBREVIATIONS_THA = :ABBREVIATIONS_THA,";
+            query += " ID_CLANINSIGNIA = :ID_CLANINSIGNIA";
+            query += " where ID_GRADEINSIGNIA = :ID_GRADEINSIGNIA";
+
+            OracleCommand command = new OracleCommand(query, conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("ID_GRADEINSIGNIA", ID_GRADEINSIGNIA));
+                command.Parameters.Add(new OracleParameter("NAME_GRADEINSIGNIA_THA", NAME_GRADEINSIGNIA_THA));
+                command.Parameters.Add(new OracleParameter("ABBREVIATIONS_THA", ABBREVIATIONS_THA));
+                command.Parameters.Add(new OracleParameter("ID_CLANINSIGNIA", ID_CLANINSIGNIA));
+
+                if (command.ExecuteNonQuery() > 0)
+                {
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+            }
+            return result;
+        }
+
+        public bool DeleteGradeInsignia()
+        {
+            bool result = false;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            OracleCommand command = new OracleCommand("Delete INS_GRADEINSIGNIA where ID_GRADEINSIGNIA = :ID_GRADEINSIGNIA", conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("ID_GRADEINSIGNIA", ID_GRADEINSIGNIA));
+                if (command.ExecuteNonQuery() >= 0)
+                {
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return result;
+        }
+
+        public bool CheckUseGradeInsignia()
+        {
+            bool result = true;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+
+            // Create the command
+            OracleCommand command = new OracleCommand("SELECT count(NAME_GRADEINSIGNIA_THA) FROM INS_GRADEINSIGNIA WHERE NAME_GRADEINSIGNIA_THA = :NAME_GRADEINSIGNIA_THA and ABBREVIATIONS_THA = :ABBREVIATIONS_THA and ID_CLANINSIGNIA = :ID_CLANINSIGNIA ", conn);
+            //OracleCommand command = new OracleCommand("SELECT count(NAME_GRADEINSIGNIA_THA) FROM INS_GRADEINSIGNIA WHERE NAME_GRADEINSIGNIA_THA = :NAME_GRADEINSIGNIA_THA ", conn);
+
+            // Add the parameters.
+            command.Parameters.Add(new OracleParameter("NAME_GRADEINSIGNIA_THA", NAME_GRADEINSIGNIA_THA));
+            command.Parameters.Add(new OracleParameter("ABBREVIATIONS_THA", ABBREVIATIONS_THA));
+            command.Parameters.Add(new OracleParameter("ID_CLANINSIGNIA", ID_CLANINSIGNIA));
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                int count = (int)(decimal)command.ExecuteScalar();
+                if (count >= 1)
+                {
+                    result = false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return result;
+        }
+    }
+    /// <summary>
+    /// Salary เงินเดือนขั้นต่ำ
+    /// </summary>
+    public class ClassSalaryMinMax
+    {
+
+        public int ID_GRADEINSIGNIA { get; set; }
+        public string NAME_GRADEINSIGNIA_THA { get; set; }
+        public string ABBREVIATIONS_THA { get; set; }
+        public int ID_CLANINSIGNIA { get; set; }
+
+        public ClassSalaryMinMax() { }
+        public ClassSalaryMinMax(int ID_GRADEINSIGNIA, string NAME_GRADEINSIGNIA_THA, string ABBREVIATIONS_THA, int ID_CLANINSIGNIA)
+        {
+            this.ID_GRADEINSIGNIA = ID_GRADEINSIGNIA;
+            this.NAME_GRADEINSIGNIA_THA = NAME_GRADEINSIGNIA_THA;
+            this.ABBREVIATIONS_THA = ABBREVIATIONS_THA;
+            this.ID_CLANINSIGNIA = ID_CLANINSIGNIA;
+        }
+
+        public DataTable GetGradeInsignia(string NAME_GRADEINSIGNIA_THA, string ABBREVIATIONS_THA, string ID_CLANINSIGNIA)
+        {
+            DataTable dt = new DataTable();
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            string query = "SELECT * FROM INS_GRADEINSIGNIA ";
+            if (!string.IsNullOrEmpty(NAME_GRADEINSIGNIA_THA) || !string.IsNullOrEmpty(ABBREVIATIONS_THA) || !string.IsNullOrEmpty(ID_CLANINSIGNIA))
+            {
+                query += " where 1=1 ";
+                if (!string.IsNullOrEmpty(NAME_GRADEINSIGNIA_THA))
+                {
+                    query += " and NAME_GRADEINSIGNIA_THA like :NAME_GRADEINSIGNIA_THA ";
+                }
+                if (!string.IsNullOrEmpty(ABBREVIATIONS_THA))
+                {
+                    query += " and ABBREVIATIONS_THA like :ABBREVIATIONS_THA ";
+                }
+                if (!string.IsNullOrEmpty(ID_CLANINSIGNIA))
+                {
+                    query += " and ID_CLANINSIGNIA like :ID_CLANINSIGNIA ";
+                }
+            }
+            OracleCommand command = new OracleCommand(query, conn);
+            // Create the command
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                if (!string.IsNullOrEmpty(NAME_GRADEINSIGNIA_THA))
+                {
+                    command.Parameters.Add(new OracleParameter("NAME_GRADEINSIGNIA_THA", NAME_GRADEINSIGNIA_THA + "%"));
+                }
+                if (!string.IsNullOrEmpty(ABBREVIATIONS_THA))
+                {
+                    command.Parameters.Add(new OracleParameter("ABBREVIATIONS_THA", ABBREVIATIONS_THA + "%"));
+                }
+                if (!string.IsNullOrEmpty(ID_CLANINSIGNIA))
+                {
+                    command.Parameters.Add(new OracleParameter("ID_CLANINSIGNIA", ID_CLANINSIGNIA));
+                }
+                OracleDataAdapter sd = new OracleDataAdapter(command);
+                sd.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+
+            return dt;
+        }
+
+        public int InsertGradeInsignia()
+        {
+            int id = 0;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            OracleCommand command = new OracleCommand("INSERT INTO INS_GRADEINSIGNIA (NAME_GRADEINSIGNIA_THA,ABBREVIATIONS_THA,ID_CLANINSIGNIA) VALUES (:NAME_GRADEINSIGNIA_THA, :ABBREVIATIONS_THA, :ID_CLANINSIGNIA)", conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("NAME_GRADEINSIGNIA_THA", NAME_GRADEINSIGNIA_THA));
+                command.Parameters.Add(new OracleParameter("ABBREVIATIONS_THA", ABBREVIATIONS_THA));
+                command.Parameters.Add(new OracleParameter("ID_CLANINSIGNIA", ID_CLANINSIGNIA));
+                id = command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return id;
+        }
+
+        public bool UpdateGradeInsignia()
+        {
+            bool result = false;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            string query = "Update INS_GRADEINSIGNIA Set ";
+            query += " ID_GRADEINSIGNIA = :ID_GRADEINSIGNIA,";
+            query += " NAME_GRADEINSIGNIA_THA = :NAME_GRADEINSIGNIA_THA,";
+            query += " ABBREVIATIONS_THA = :ABBREVIATIONS_THA,";
+            query += " ID_CLANINSIGNIA = :ID_CLANINSIGNIA";
+            query += " where ID_GRADEINSIGNIA = :ID_GRADEINSIGNIA";
+
+            OracleCommand command = new OracleCommand(query, conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("ID_GRADEINSIGNIA", ID_GRADEINSIGNIA));
+                command.Parameters.Add(new OracleParameter("NAME_GRADEINSIGNIA_THA", NAME_GRADEINSIGNIA_THA));
+                command.Parameters.Add(new OracleParameter("ABBREVIATIONS_THA", ABBREVIATIONS_THA));
+                command.Parameters.Add(new OracleParameter("ID_CLANINSIGNIA", ID_CLANINSIGNIA));
+
+                if (command.ExecuteNonQuery() > 0)
+                {
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+            }
+            return result;
+        }
+
+        public bool DeleteGradeInsignia()
+        {
+            bool result = false;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            OracleCommand command = new OracleCommand("Delete INS_GRADEINSIGNIA where ID_GRADEINSIGNIA = :ID_GRADEINSIGNIA", conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("ID_GRADEINSIGNIA", ID_GRADEINSIGNIA));
+                if (command.ExecuteNonQuery() >= 0)
+                {
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return result;
+        }
+
+        public bool CheckUseGradeInsignia()
+        {
+            bool result = true;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+
+            // Create the command
+            OracleCommand command = new OracleCommand("SELECT count(NAME_GRADEINSIGNIA_THA) FROM INS_GRADEINSIGNIA WHERE NAME_GRADEINSIGNIA_THA = :NAME_GRADEINSIGNIA_THA and ABBREVIATIONS_THA = :ABBREVIATIONS_THA and ID_CLANINSIGNIA = :ID_CLANINSIGNIA ", conn);
+            //OracleCommand command = new OracleCommand("SELECT count(NAME_GRADEINSIGNIA_THA) FROM INS_GRADEINSIGNIA WHERE NAME_GRADEINSIGNIA_THA = :NAME_GRADEINSIGNIA_THA ", conn);
+
+            // Add the parameters.
+            command.Parameters.Add(new OracleParameter("NAME_GRADEINSIGNIA_THA", NAME_GRADEINSIGNIA_THA));
+            command.Parameters.Add(new OracleParameter("ABBREVIATIONS_THA", ABBREVIATIONS_THA));
+            command.Parameters.Add(new OracleParameter("ID_CLANINSIGNIA", ID_CLANINSIGNIA));
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                int count = (int)(decimal)command.ExecuteScalar();
+                if (count >= 1)
+                {
+                    result = false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return result;
+        }
+    }
+    /// <summary>
+    /// ตำแหน่ง-บัญชีเงินเดือนขั้นต่ำ ขั้นสูง ของข้าราชการพลเรือนในสถาบันอุดมศึกษา
+    /// </summary>
+    public class ClassPositionMinMax
+    {
+        public int P_ID { get; set; }
+        public string P_NAME { get; set; }
+
+        public ClassPositionMinMax() { }
+        public ClassPositionMinMax(int P_ID, string P_NAME)
+        {
+            this.P_ID = P_ID;
+            this.P_NAME = P_NAME;
+        }
+
+        public DataTable GetPositionMinMax(string P_NAME)
+        {
+            DataTable dt = new DataTable();
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            string query = "SELECT * FROM TB_POS_GOVER_ACADEMIC ";
+            if (!string.IsNullOrEmpty(P_NAME))
+            {
+                query += " where 1=1 ";
+                if (!string.IsNullOrEmpty(P_NAME))
+                {
+                    query += " and P_NAME like :P_NAME ";
+                }
+            }
+            OracleCommand command = new OracleCommand(query, conn);
+            // Create the command
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                if (!string.IsNullOrEmpty(P_NAME))
+                {
+                    command.Parameters.Add(new OracleParameter("P_NAME", P_NAME + "%"));
+                }
+                OracleDataAdapter sd = new OracleDataAdapter(command);
+                sd.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+
+            return dt;
+        }
+
+        public int InsertPositionMinMax()
+        {
+            int id = 0;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            OracleCommand command = new OracleCommand("INSERT INTO TB_POS_GOVER_ACADEMIC (P_NAME) VALUES (:P_NAME)", conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("P_NAME", P_NAME));
+                id = command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return id;
+        }
+
+        public bool UpdatePositionMinMax()
+        {
+            bool result = false;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            string query = "Update TB_POS_GOVER_ACADEMIC Set ";
+            query += " P_NAME = :P_NAME";
+            query += " where P_ID = :P_ID";
+
+            OracleCommand command = new OracleCommand(query, conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("P_ID", P_ID));
+                command.Parameters.Add(new OracleParameter("P_NAME", P_NAME));
+
+                if (command.ExecuteNonQuery() > 0)
+                {
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+            }
+            return result;
+        }
+
+        public bool DeletePositionMinMax()
+        {
+            bool result = false;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            OracleCommand command = new OracleCommand("Delete TB_POS_GOVER_ACADEMIC where P_ID = :P_ID", conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("P_ID", P_ID));
+                if (command.ExecuteNonQuery() >= 0)
+                {
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return result;
+        }
+        public bool CheckUsePositionMinMaxName()
+        {
+            bool result = true;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+
+            // Create the command
+            OracleCommand command = new OracleCommand("SELECT count(P_NAME) FROM TB_POS_GOVER_ACADEMIC WHERE P_NAME = :P_NAME ", conn);
+
+            // Add the parameters.
+            command.Parameters.Add(new OracleParameter("P_NAME", P_NAME));
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                int count = (int)(decimal)command.ExecuteScalar();
+                if (count >= 1)
+                {
+                    result = false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return result;
+        }
+    }
+    /// <summary>
+    /// ตำแหน่ง-บัญชีเงินเดือนขั้นต่ำ ขั้นสูง ของข้าราชการพลเรือนในสถาบันอุดมศึกษา
+    /// </summary>
+    public class ClassSalMinMax
+    {
+        public int P_ID { get; set; }
+        public int P_POS_GOVER_ACADEMIC { get; set; }
+        public int P_POS_ID { get; set; }
+        public int P_SAL_MIN { get; set; }
+        public int P_SAL_MAX { get; set; }
+        public int P_SAL_MIN_TEMP { get; set; }
+
+        public ClassSalMinMax() { }
+        public ClassSalMinMax(int P_ID, int P_POS_GOVER_ACADEMIC, int P_POS_ID, int P_SAL_MIN, int P_SAL_MAX, int P_SAL_MIN_TEMP)
+        {
+            this.P_ID = P_ID;
+            this.P_POS_GOVER_ACADEMIC = P_POS_GOVER_ACADEMIC;
+            this.P_POS_ID = P_POS_ID;
+            this.P_SAL_MIN = P_SAL_MIN;
+            this.P_SAL_MAX = P_SAL_MAX;
+            this.P_SAL_MIN_TEMP = P_SAL_MIN_TEMP;
+        }
+
+        public DataTable GetSalMinMax(string P_POS_GOVER_ACADEMIC, string P_POS_ID, string P_SAL_MIN, string P_SAL_MAX, string P_SAL_MIN_TEMP)
+        {
+            DataTable dt = new DataTable();
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            string query = "SELECT * FROM TB_POSITION_SAL_MINMAX ";
+            if (!string.IsNullOrEmpty(P_POS_GOVER_ACADEMIC) || !string.IsNullOrEmpty(P_POS_ID) || !string.IsNullOrEmpty(P_SAL_MIN) || !string.IsNullOrEmpty(P_SAL_MAX) || !string.IsNullOrEmpty(P_SAL_MIN_TEMP))
+            {
+                query += " where 1=1 ";
+                if (!string.IsNullOrEmpty(P_POS_GOVER_ACADEMIC))
+                {
+                    query += " and P_POS_GOVER_ACADEMIC like :P_POS_GOVER_ACADEMIC ";
+                }
+                if (!string.IsNullOrEmpty(P_POS_ID))
+                {
+                    query += " and P_POS_ID like :P_POS_ID ";
+                }
+                if (!string.IsNullOrEmpty(P_SAL_MIN))
+                {
+                    query += " and P_SAL_MIN like :P_SAL_MIN ";
+                }
+                if (!string.IsNullOrEmpty(P_SAL_MAX))
+                {
+                    query += " and P_SAL_MAX like :P_SAL_MAX ";
+                }
+                if (!string.IsNullOrEmpty(P_SAL_MIN_TEMP))
+                {
+                    query += " and P_SAL_MIN_TEMP like :P_SAL_MIN_TEMP ";
+                }
+            }
+            OracleCommand command = new OracleCommand(query, conn);
+            // Create the command
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                if (!string.IsNullOrEmpty(P_POS_GOVER_ACADEMIC))
+                {
+                    command.Parameters.Add(new OracleParameter("P_POS_GOVER_ACADEMIC", P_POS_GOVER_ACADEMIC));
+                }
+                if (!string.IsNullOrEmpty(P_POS_ID))
+                {
+                    command.Parameters.Add(new OracleParameter("P_POS_ID", P_POS_ID));
+                }
+                if (!string.IsNullOrEmpty(P_SAL_MIN))
+                {
+                    command.Parameters.Add(new OracleParameter("P_SAL_MIN", P_SAL_MIN));
+                }
+                if (!string.IsNullOrEmpty(P_SAL_MAX))
+                {
+                    command.Parameters.Add(new OracleParameter("P_SAL_MAX", P_SAL_MAX));
+                }
+                if (!string.IsNullOrEmpty(P_SAL_MIN_TEMP))
+                {
+                    command.Parameters.Add(new OracleParameter("P_SAL_MIN_TEMP", P_SAL_MIN_TEMP));
+                }
+                OracleDataAdapter sd = new OracleDataAdapter(command);
+                sd.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+
+            return dt;
+        }
+
+        public int InsertSalMinMax()
+        {
+            int id = 0;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            OracleCommand command = new OracleCommand("INSERT INTO TB_POSITION_SAL_MINMAX (P_POS_GOVER_ACADEMIC,P_POS_ID,P_SAL_MIN,P_SAL_MAX,P_SAL_MIN_TEMP) VALUES (:P_POS_GOVER_ACADEMIC,:P_POS_ID,:P_SAL_MIN,:P_SAL_MAX,:P_SAL_MIN_TEMP)", conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("P_POS_GOVER_ACADEMIC", P_POS_GOVER_ACADEMIC));
+                command.Parameters.Add(new OracleParameter("P_POS_ID", P_POS_ID));
+                command.Parameters.Add(new OracleParameter("P_SAL_MIN", P_SAL_MIN));
+                command.Parameters.Add(new OracleParameter("P_SAL_MAX", P_SAL_MAX));
+                command.Parameters.Add(new OracleParameter("P_SAL_MIN_TEMP", P_SAL_MIN_TEMP));
+                id = command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return id;
+        }
+
+        public bool UpdateSalMinMax()
+        {
+            bool result = false;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            string query = "Update TB_POSITION_SAL_MINMAX Set ";
+            query += " P_POS_GOVER_ACADEMIC = :P_POS_GOVER_ACADEMIC,";
+            query += " P_POS_ID = :P_POS_ID,";
+            query += " P_SAL_MIN = :P_SAL_MIN,";
+            query += " P_SAL_MAX = :P_SAL_MAX,";
+            query += " P_SAL_MIN_TEMP = :P_SAL_MIN_TEMP";
+            query += " where P_ID = :P_ID";
+
+            OracleCommand command = new OracleCommand(query, conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("P_POS_GOVER_ACADEMIC", P_POS_GOVER_ACADEMIC));
+                command.Parameters.Add(new OracleParameter("P_POS_ID", P_POS_ID));
+                command.Parameters.Add(new OracleParameter("P_SAL_MIN", P_SAL_MIN));
+                command.Parameters.Add(new OracleParameter("P_SAL_MAX", P_SAL_MAX));
+                command.Parameters.Add(new OracleParameter("P_SAL_MIN_TEMP", P_SAL_MIN_TEMP));
+                command.Parameters.Add(new OracleParameter("P_ID", P_ID));
+                if (command.ExecuteNonQuery() > 0)
+                {
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+            }
+            return result;
+        }
+
+        public bool DeleteSalMinMax()
+        {
+            bool result = false;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            OracleCommand command = new OracleCommand("Delete TB_POSITION_SAL_MINMAX where P_ID = :P_ID", conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("P_ID", P_ID));
+                if (command.ExecuteNonQuery() >= 0)
+                {
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return result;
+        }
+    }
 }

@@ -1,5 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Budget-ADMIN.aspx.cs" Inherits="WEB_PERSONAL.Budget_ADMIN" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Claninsignia-ADMIN.aspx.cs" Inherits="WEB_PERSONAL.Claninsignia_ADMIN" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
         .divpan {
@@ -53,39 +52,39 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:Panel ID="Panel1" runat="server" CssClass="divpan" BackColor="White" ForeColor="#6699FF" BorderColor="Tomato" DefaultButton="btnSearchBudgetName">
+    <asp:Panel ID="Panel1" runat="server" CssClass="divpan" BackColor="White" ForeColor="#6699FF" BorderColor="Tomato" DefaultButton="btnSearchClanInsig">
         <div>
             <fieldset>
                 <legend>ค้นหาข้อมูล</legend>
                 <div>
-                    ชื่อประเภทเงินจ้าง :&nbsp;<asp:TextBox ID="txtSearchBudgetName" runat="server" CssClass="tb5" Width="230px" MaxLength="100"></asp:TextBox>
-                    <asp:Button ID="btnSearchBudgetName" Text="Search" runat="server" CssClass="master_OAT_button" OnClick="btnSearchBudgetName_Click" />
+                    ชื่อกลุ่มเครื่องราชฯ :&nbsp;<asp:TextBox ID="txtSearchClanInsigName" runat="server" CssClass="tb5" Width="230px" MaxLength="100"></asp:TextBox>
+                    <asp:Button ID="btnSearchClanInsig" Text="Search" runat="server" CssClass="master_OAT_button" OnClick="btnSearchClanInsig_Click" />
                     <asp:Button ID="btnSearchRefresh" Text="Refresh" runat="server" CssClass="master_OAT_button" OnClick="btnSearchRefresh_Click" />
                 </div>
             </fieldset>
         </div>
     </asp:Panel>
-    <asp:Panel ID="Panel2" runat="server" ScrollBars="Horizontal" CssClass="divpan" BackColor="White" ForeColor="#6699FF" BorderColor="Tomato" DefaultButton="btnSubmitBudget">
+    <asp:Panel ID="Panel2" runat="server" ScrollBars="Horizontal" CssClass="divpan" BackColor="White" ForeColor="#6699FF" BorderColor="Tomato" DefaultButton="btnSubmitClanInsig">
         <div>
             <fieldset>
                 <legend>เพิ่มข้อมูล</legend>
                 <div>
-                    <table class="center1"> 
+                    <table class="center1">
                         <tr>
-                            <td style="margin-left: auto; margin-right: auto; text-align: center">ชื่อประเภทเงินจ้าง :</td>
+                            <td style="margin-left: auto; margin-right: auto; text-align: center">ชื่อกลุ่มเครื่องราชฯ :</td>
                             <td style="text-align: left; width: 120px;">
-                                <asp:TextBox ID="txtInsertBudgetName" runat="server" CssClass="tb5" Width="230px" MaxLength="100"></asp:TextBox></td>
+                                <asp:TextBox ID="txtInsertClanInsigName" runat="server" CssClass="tb5" Width="230px" MaxLength="100"></asp:TextBox></td>
                             <td style="text-align: left;">
-                                <asp:Button ID="btnSubmitBudget" Text="OK" runat="server" CssClass="master_OAT_button" OnClick="btnSubmitBudget_Click" /></td>
+                                <asp:Button ID="btnSubmitClanInsig" Text="OK" runat="server" CssClass="master_OAT_button" OnClick="btnSubmitClanInsig_Click" /></td>
                             <td style="text-align: left;">
-                                <asp:Button ID="btnCancelBudget" Text="Cancel" runat="server" CssClass="master_OAT_button" OnClick="btnCancelBudget_Click" /></td>
+                                <asp:Button ID="btnCancelClanInsig" Text="Cancel" runat="server" CssClass="master_OAT_button" OnClick="btnCancelClanInsig_Click" /></td>
                         </tr>
                     </table>
                 </div>
             </fieldset>
         </div>
         <div>
-            <fieldset>
+            <fieldset> 
                 <legend>ข้อมูล</legend>
                 <asp:ScriptManager ID="ScriptManager1" runat="server" />
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -93,25 +92,25 @@
                         <asp:GridView ID="GridView1" runat="server" Style="margin-left: auto; margin-right: auto; text-align: center; width: 100%"
                             AutoGenerateColumns="false"
                             AllowPaging="true"
-                            DataKeyNames="BUDGET_ID"
+                            DataKeyNames="ID_CLANINSIGNIA"
                             OnRowEditing="modEditCommand"
                             OnRowCancelingEdit="modCancelCommand"
                             OnRowUpdating="modUpdateCommand"
                             OnRowDeleting="modDeleteCommand"
                             OnRowDataBound="GridView1_RowDataBound"
-                            OnPageIndexChanging="myGridViewBudget_PageIndexChanging" PageSize="15" BackColor="White" BorderColor="#999999">
+                            OnPageIndexChanging="myGridViewClanInsig_PageIndexChanging" PageSize="15" BackColor="White" BorderColor="#999999">
                             <Columns>
-                                <asp:TemplateField Visible="false" HeaderText="รหัสประเภทเงินจ้าง" ControlStyle-Width="230" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Tomato">
+                                <asp:TemplateField Visible="false" HeaderText="รหัสกลุ่มเครื่องราชฯ" ControlStyle-Width="180" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Tomato">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblBudgetIDEdit" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.BUDGET_ID") %>'></asp:Label>
+                                        <asp:Label ID="lblClanInsigIDEdit" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.ID_CLANINSIGNIA") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="ชื่อประเภทเงินจ้าง" ControlStyle-Width="600" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Tomato">
+                                <asp:TemplateField HeaderText="ชื่อกลุ่มเครื่องราชฯ" ControlStyle-Width="640" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Tomato">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblBudgetNameEdit" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.BUDGET_NAME") %>'></asp:Label>
+                                        <asp:Label ID="lblClanInsigNameEdit" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.NAME_CLANINSIGNIA_THA") %>'></asp:Label>
                                     </ItemTemplate>
                                     <EditItemTemplate>
-                                        <asp:TextBox ID="txtBudgetNameEdit" MaxLength="100" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.BUDGET_NAME") %>'></asp:TextBox>
+                                        <asp:TextBox ID="txtClanInsigNameEdit" MaxLength="100" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.NAME_CLANINSIGNIA_THA") %>'></asp:TextBox>
                                     </EditItemTemplate>
                                 </asp:TemplateField>
                                 <asp:CommandField ShowEditButton="True" CancelText="Cancel" DeleteText="Delete" EditText="Edit" UpdateText="Update" HeaderText="แก้ไข" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Tomato" />
@@ -131,3 +130,4 @@
         </div>
     </asp:Panel>
 </asp:Content>
+

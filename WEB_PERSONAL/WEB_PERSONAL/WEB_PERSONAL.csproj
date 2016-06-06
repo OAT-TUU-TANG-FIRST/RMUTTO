@@ -687,6 +687,7 @@
     <Content Include="Campus-ADMIN.aspx" />
     <Content Include="ChangePassword.aspx" />
     <Content Include="CitizenDetails.aspx" />
+    <Content Include="Claninsignia-ADMIN.aspx" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -749,6 +750,7 @@
     <Content Include="Faculty-ADMIN.aspx" />
     <Content Include="Global.asax" />
     <Content Include="GradCountry-ADMIN.aspx" />
+    <Content Include="GradeInsignia-ADMIN.aspx" />
     <Content Include="GradLev-ADMIN.aspx" />
     <Content Include="images\icon\Before_Print.gif" />
     <Content Include="images\icon\Icon1.png" />
@@ -994,6 +996,8 @@
     <Content Include="National-ADMIN.aspx" />
     <Content Include="packages.config" />
     <Content Include="Permission.aspx" />
+    <Content Include="PosiGoverAcad-ADMIN.aspx" />
+    <Content Include="PosiGoverSalary-ADMIN.aspx" />
     <Content Include="Position-ADMIN.aspx" />
     <Content Include="Person-Detail.aspx" />
     <Content Include="personalDataSet.xsc">
@@ -1194,6 +1198,13 @@
     <Compile Include="CitizenDetails.aspx.designer.cs">
       <DependentUpon>CitizenDetails.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Claninsignia-ADMIN.aspx.cs">
+      <DependentUpon>Claninsignia-ADMIN.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Claninsignia-ADMIN.aspx.designer.cs">
+      <DependentUpon>Claninsignia-ADMIN.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Class\DatabaseManager.cs" />
     <Compile Include="Class\Form1Package.cs" />
     <Compile Include="Class\LeaveData.cs" />
@@ -1270,6 +1281,13 @@
     </Compile>
     <Compile Include="GradCountry-ADMIN.aspx.designer.cs">
       <DependentUpon>GradCountry-ADMIN.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GradeInsignia-ADMIN.aspx.cs">
+      <DependentUpon>GradeInsignia-ADMIN.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GradeInsignia-ADMIN.aspx.designer.cs">
+      <DependentUpon>GradeInsignia-ADMIN.aspx</DependentUpon>
     </Compile>
     <Compile Include="GradLev-ADMIN.aspx.cs">
       <DependentUpon>GradLev-ADMIN.aspx</DependentUpon>
@@ -1508,6 +1526,20 @@
     </Compile>
     <Compile Include="Permission.aspx.designer.cs">
       <DependentUpon>Permission.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PosiGoverAcad-ADMIN.aspx.cs">
+      <DependentUpon>PosiGoverAcad-ADMIN.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PosiGoverAcad-ADMIN.aspx.designer.cs">
+      <DependentUpon>PosiGoverAcad-ADMIN.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PosiGoverSalary-ADMIN.aspx.cs">
+      <DependentUpon>PosiGoverSalary-ADMIN.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PosiGoverSalary-ADMIN.aspx.designer.cs">
+      <DependentUpon>PosiGoverSalary-ADMIN.aspx</DependentUpon>
     </Compile>
     <Compile Include="Position-ADMIN.aspx.cs">
       <DependentUpon>Position-ADMIN.aspx</DependentUpon>

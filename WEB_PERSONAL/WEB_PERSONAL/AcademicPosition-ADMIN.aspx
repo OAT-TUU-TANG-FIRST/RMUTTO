@@ -1,9 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="AcademicPosition-ADMIN.aspx.cs" Inherits="WEB_PERSONAL.AcademicPosition_ADMIN" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
-                .divpan {
+        .divpan {
             text-align: center;
-            color: blue;
         }
         .panin {
             border: 1px solid black;
