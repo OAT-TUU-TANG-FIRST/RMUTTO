@@ -67,7 +67,7 @@ namespace WEB_PERSONAL {
                     
 
                     LinkButton lbu = new LinkButton();
-                    lbu.Text = "เลือก";
+                    lbu.Text = "<img src='Image/Small/next.png'></img>";
                     lbu.CssClass = "ps-button";
                     lbu.Click += (e2, e3) => {
 

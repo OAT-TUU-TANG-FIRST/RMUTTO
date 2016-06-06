@@ -31,6 +31,24 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
+        /// noti_alert control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl noti_alert;
+        
+        /// <summary>
+        /// lbuUser control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbuUser;
+        
+        /// <summary>
         /// profile_pic control.
         /// </summary>
         /// <remarks>
@@ -40,67 +58,121 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.HtmlControls.HtmlImage profile_pic;
         
         /// <summary>
-        /// LinkButton1 control.
+        /// profile_name control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl profile_name;
         
         /// <summary>
-        /// LinkButton10 control.
+        /// lbuLogout control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton10;
+        protected global::System.Web.UI.WebControls.LinkButton lbuLogout;
         
         /// <summary>
-        /// LinkAddPerson control.
+        /// s_counter control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor LinkAddPerson;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl s_counter;
         
         /// <summary>
-        /// LinkEditPerson control.
+        /// profile_pic2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor LinkEditPerson;
+        protected global::System.Web.UI.HtmlControls.HtmlImage profile_pic2;
         
         /// <summary>
-        /// LinkAddPerson2 control.
+        /// lbName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor LinkAddPerson2;
+        protected global::System.Web.UI.WebControls.Label lbName;
         
         /// <summary>
-        /// LinkEditPerson2 control.
+        /// lbStaffType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor LinkEditPerson2;
+        protected global::System.Web.UI.WebControls.Label lbStaffType;
         
         /// <summary>
-        /// lbUpSal7030Count control.
+        /// lbPosition control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbUpSal7030Count;
+        protected global::System.Web.UI.WebControls.Label lbPosition;
+        
+        /// <summary>
+        /// lbPositionRank control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPositionRank;
+        
+        /// <summary>
+        /// lbDepartment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbDepartment;
+        
+        /// <summary>
+        /// A5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor A5;
+        
+        /// <summary>
+        /// A6 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor A6;
+        
+        /// <summary>
+        /// A7 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor A7;
+        
+        /// <summary>
+        /// A8 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor A8;
         
         /// <summary>
         /// lbLeaveCommentCount control.
@@ -121,40 +193,94 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.Label lbLeaveAllowCount;
         
         /// <summary>
-        /// LinkDropDown control.
+        /// LeaveReport control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor LinkDropDown;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor LeaveReport;
         
         /// <summary>
-        /// LinkDeveloper control.
+        /// WorkingDay control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor LinkDeveloper;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor WorkingDay;
         
         /// <summary>
-        /// LinkUpload control.
+        /// LeaveControl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor LinkUpload;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor LeaveControl;
         
         /// <summary>
-        /// s_counter control.
+        /// A2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl s_counter;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor A2;
+        
+        /// <summary>
+        /// noti_leave_none control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl noti_leave_none;
+        
+        /// <summary>
+        /// noti_cl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl noti_cl;
+        
+        /// <summary>
+        /// noti_ch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl noti_ch;
+        
+        /// <summary>
+        /// noti_leave_finish control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl noti_leave_finish;
+        
+        /// <summary>
+        /// noti_ins_none control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl noti_ins_none;
+        
+        /// <summary>
+        /// noti_ins control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl noti_ins;
         
         /// <summary>
         /// ContentPlaceHolder1 control.

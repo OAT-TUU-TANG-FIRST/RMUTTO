@@ -5,49 +5,46 @@
         .complete_center {
             font-size: 16px;
         }
+
+        /*.ps-box-il-ms {
+            margin-right: 20px;
+            margin-bottom: 20px;
+            vertical-align: top;
+        }*/
+        .c1 {
+            font-size: 64px;
+            text-align: center;
+            color: #a0a0a0;
+            margin-top: 50px;
+        }
+        .c2 {
+            font-size: 23px;
+            color: #808080;
+            margin-top: 50px;
+            text-align: center;
+        }
+        .c2_2 {
+            display: inline-block;
+            text-align: left;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
-    
-
-    <div class="default_page_style">
-
-        <div class="ps-header"><img src="Image/Small/home3.png"/>ยินดีต้อนรับสู่ระบบบุคลากร</div>
-        <div>
-            <table class="ps-table">
-                <tr>
-                    <td class="head" colspan="2"><img src="Image/Small/person2.png" class="icon_left"/>ข้อมูลผู้ใช้</td>
-                </tr>
-                <tr>
-                    <td class="col1">ชื่อ</td>
-                    <td class="col2"><asp:Label ID="lbName" runat="server" Text="-"></asp:Label></td>
-                </tr>
-                <tr>
-                    <td class="col1">ประเภท</td>
-                    <td class="col2"><asp:Label ID="lbStaffType" runat="server" Text="-"></asp:Label></td>
-                </tr>
-                <tr>
-                    <td class="col1">ตำแหน่ง</td>
-                    <td class="col2"><asp:Label ID="lbPosition" runat="server" Text="-"></asp:Label></td>
-                </tr>
-                <tr>
-                    <td class="col1">ระดับ</td>
-                    <td class="col2"><asp:Label ID="lbPositionRank" runat="server" Text="-"></asp:Label></td>
-                </tr>
-                <tr>
-                    <td class="col1">สังกัด</td>
-                    <td class="col2"><asp:Label ID="lbDepartment" runat="server" Text="-"></asp:Label></td>
-                </tr>
-            </table>
+    <div>
+        <div class="c1">
+            ยินดีต้อนรับสู่ระบบบุคลากร
+        </div>
+        <div class="c2">
+            <div class="c2_2">
+                <div>
+                กดปุ่ม <img src="Image/x32/menu.png" /> เพื่อเลือกเมนูการใช้งาน
+            </div>
+            <div>
+                กดปุ่ม <img src="Image/x32/notification.png" /> เพื่อดูสถานะการแจ้งเตือน
+            </div>
+            </div>
             
         </div>
-        <div class="ps-separator"></div>
-
-        <div class="ps-header"><img src="Image/Small/yellow_alert.png" />การแจ้งเตือน</div>
-        <div id="notification_area" runat="server"></div>
-
-        <div class="ps-separator"></div>
-
+        <div class="ps-separator" style="margin-top: 50px;"></div>
     </div>
 </asp:Content>

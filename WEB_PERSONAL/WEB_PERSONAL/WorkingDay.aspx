@@ -33,8 +33,7 @@
         }
         .d_txt {
             text-align: center;
-            font-size: 24px;
-            font-family: THSB;
+            font-size: 20px;
         }
         .d_blank {
             display: inline-block;
@@ -94,12 +93,11 @@
             width: 55px;
             height: 30px;
             line-height: 30px;
-            font-size: 20px;
+            font-size: 14px;
             color: #ffffff;
             background-color: #404040;
             text-decoration: none;
             text-align: center;
-            font-family: THSB;
         }
         
     </style>
@@ -107,9 +105,11 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="default_page_style">
         <div class="ps-header"><img src="Image/Small/wrench.png" />จัดการวันปฏิบัติราชการ</div>
-        <div class="calendar">
-            <div class="ps-separator"></div>
-
+        <div class="ps-box-il">
+            <div class="ps-box-i0">
+                <div class="ps-box-hd10"><img src="Image/Small/calendar.png" class="icon_left"/>กำหนดวันหยุดราชการ</div>
+                <div class="ps-box-ct10">
+                     <div class="calendar">
             <asp:Table ID="Table1" runat="server" CssClass="d_table">
  
             </asp:Table>
@@ -132,12 +132,13 @@
             </div>
         </div>
         <div style="clear: both;"></div>
-        <div class="ps-separator"></div>
-        <div>
-            <table class="ps-table">
-                <tr>
-                    <td class="head" colspan="2"><img src="Image/Small/clock.png" class="icon_left"/>ปรับเวลาขาดมาสาย</td>
-                </tr>
+
+                </div>
+            </div>
+            <div class="ps-box-i0">
+                <div class="ps-box-hd10"><img src="Image/Small/clock.png" class="icon_left"/>ปรับเวลาขาดมาสาย</div>
+                <div class="ps-box-ct10">
+                    <table class="ps-table-x16">
                 <tr>
                     <td class="col1">เวลาสาย</td>
                     <td class="col2">
@@ -155,6 +156,8 @@
                     </td>
                 </tr>
             </table>
+                </div>
+            </div>
         </div>
 
     </div>

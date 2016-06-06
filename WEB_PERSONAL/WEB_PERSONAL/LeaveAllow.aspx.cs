@@ -56,7 +56,7 @@ namespace WEB_PERSONAL {
                     string id = GridView1.Rows[i].Cells[0].Text;
 
                     LinkButton lbu = new LinkButton();
-                    lbu.Text = "เลือก";
+                    lbu.Text = "<img src='Image/Small/next.png'></img>";
                     lbu.CssClass = "ps-button";
                     lbu.Click += (e2, e3) => {
 

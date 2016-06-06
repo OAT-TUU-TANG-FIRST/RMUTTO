@@ -22,23 +22,24 @@
         <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex="0">
             <asp:View ID="View1" runat="server">
 
-                <div class="sec">
-                <div class="ps-header-mini">
-                    <img src="Image/Small/table.png" />เลือกรายการที่ต้องการยกเลิก
-                </div>
-                <div class="sec2">
-
-                    <asp:GridView ID="gvLeave" runat="server" CssClass="ps-gridview"></asp:GridView>
+                <div class="ps-box-il">
+                    <div class="ps-box-i0">
+                        <div class="ps-box-hd10">
+                            <img src="Image/Small/table.png" />เลือกรายการที่ต้องการยกเลิก
+                        </div>
+                        <div class="ps-box-ct10">
+                            <asp:GridView ID="gvLeave" runat="server" CssClass="ps-gridview-x16"></asp:GridView>
                     <asp:Label ID="lbLeave" runat="server" Text="ไม่มีข้อมูล"></asp:Label>
-                </div>
-                </div>
-                <div class="ps-separator"></div>
-
-                
+                        </div>
+                    </div>
+                </div>       
             </asp:View>
             
             <asp:View ID="View2" runat="server">
-                <table class="ps-table">
+                <div class="ps-box-il">
+                    <div class="ps-box-i0">
+                        <div class="ps-box-ct10">
+                            <table class="ps-table-x16">
                     <tr>
                         <td class="head" colspan="2">ข้อมูลการยกเลิกการลา</td>
                     </tr>
@@ -244,13 +245,16 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="ps-table-bottom" colspan="2">
+                        <td class="bottom" colspan="2">
                             <asp:LinkButton ID="lbuCancelBack" runat="server" CssClass="ps-button" OnClick="lbuCancelBack_Click"><img src="Image/Small/back.png" class="icon_left"/>ย้อนกลับ</asp:LinkButton>
                             <asp:LinkButton ID="lbuCancelFinish" runat="server" CssClass="ps-button" OnClick="lbuCancelFinish_Click"><img src="Image/Small/document-create.png" class="icon_left"/>ยืนคำขอลา</asp:LinkButton>
                         </td>
                     </tr>
                 </table>
-                <div class="ps-separator"></div>
+                        </div>
+                    </div>
+                </div>
+                
             </asp:View>
             <asp:View ID="View3" runat="server">
                 <div>

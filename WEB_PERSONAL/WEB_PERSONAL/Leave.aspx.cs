@@ -81,6 +81,79 @@ namespace WEB_PERSONAL {
                 trS2Hujed.Visible = true;
             }
 
+            if(tbS1FromDate.Text == "" || tbS1ToDate.Text == "" || !Util.IsDateValid(tbS1FromDate.Text) || !Util.IsDateValid(tbS1ToDate.Text)) {
+                ChangeNotification("danger", "กรุณากรอกวันที่ให้ถูกต้อง");
+                return;
+            } else {
+                DateTime dtFromDate = Util.ToDateTimeOracle(tbS1FromDate.Text);
+                DateTime dtToDate = Util.ToDateTimeOracle(tbS1ToDate.Text);
+                int totalDay = (int)(dtToDate - dtFromDate).TotalDays + 1;
+                int fromToNowtotalDay = (int)(dtFromDate - DateTime.Today).TotalDays;
+                if (totalDay <= 0) {
+                    ChangeNotification("danger", "วันที่ไม่ถูกต้อง");
+                    return;
+                }
+                int sick_now = -1;
+                int sick_max = -1;
+                int business_now = -1;
+                int business_max = -1;
+                int huj_now = -1;
+                int huj_max = -1;
+                int ordain_now = -1;
+                int ordain_max = -1;
+                {
+                    using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
+                        con.Open();
+                        using (OracleCommand com = new OracleCommand("SELECT SICK_NOW, SICK_MAX, BUSINESS_NOW, BUSINESS_MAX, HUJ_NOW, HUJ_MAX, ORDAIN_NOW, ORDAIN_MAX FROM LEV_CLAIM WHERE YEAR = " + Util.BudgetYear() + " AND PS_CITIZEN_ID = '" + loginPerson.CitizenID + "'", con)) {
+                            using (OracleDataReader reader = com.ExecuteReader()) {
+                                while (reader.Read()) {
+                                    sick_now = reader.GetInt32(0);
+                                    sick_max = reader.GetInt32(1);
+                                    business_now = reader.GetInt32(2);
+                                    business_max = reader.GetInt32(3);
+                                    huj_now = reader.GetInt32(4);
+                                    huj_max = reader.GetInt32(5);
+                                    ordain_now = reader.GetInt32(6);
+                                    ordain_max = reader.GetInt32(7);
+                                }
+                            }
+                        }
+
+                    }
+                }
+                if(ddlLeaveType.SelectedValue == "1") {
+                    if(sick_now + totalDay > sick_max) {
+                        ChangeNotification("danger", "ไม่สามารถลาป่วยได้มากกว่า " + sick_max + " วัน คุณลาไปแล้ว " + sick_now + " วัน ครั้งนี้ " + totalDay + " วัน รวม " + (sick_now + totalDay) + " วัน");
+                        return;
+                    }
+                }
+                if (ddlLeaveType.SelectedValue == "2") {
+                    if (business_now + totalDay > business_max) {
+                        ChangeNotification("danger", "ไม่สามารถลากิจได้มากกว่า " + business_max + " วัน คุณลาไปแล้ว " + business_now + " วัน ครั้งนี้ " + totalDay + " วัน รวม " + (business_now + totalDay) + " วัน");
+                        return;
+                    }
+                }
+                if (ddlLeaveType.SelectedValue == "6") {
+                    if (fromToNowtotalDay < 60) {
+                        ChangeNotification("danger", "ต้องลาล่วงหน้ามากกว่า 60 วันลาครั้งนี้ " + fromToNowtotalDay + " วัน");
+                        return;
+                    } else if (huj_now + totalDay > huj_max) {
+                        ChangeNotification("danger", "ไม่สามารถลาไปอุปสมบทได้มากกว่า " + ordain_max + " วัน คุณลาไปแล้ว " + ordain_now + " วัน ครั้งนี้ " + totalDay + " วัน รวม " + (ordain_now + totalDay) + " วัน");
+                        return;
+                    }
+                }
+                if (ddlLeaveType.SelectedValue == "7") {
+                    if(fromToNowtotalDay < 60) {
+                        ChangeNotification("danger", "ต้องลาล่วงหน้ามากกว่า 60 วันลาครั้งนี้ " + fromToNowtotalDay + " วัน");
+                        return;
+                    }
+                    else if (huj_now + totalDay > huj_max) {
+                        ChangeNotification("danger", "ไม่สามารถลาไปประกอบพิธีฮัจญ์ได้มากกว่า " + huj_max + " วัน คุณลาไปแล้ว " + huj_now + " วัน ครั้งนี้ " + totalDay + " วัน รวม " + (huj_now + totalDay) + " วัน");
+                        return;
+                    }
+                }
+            }
+
             if(ddlLeaveType.SelectedValue == "1" || ddlLeaveType.SelectedValue == "2" || ddlLeaveType.SelectedValue == "3") {
                 if(tbS1FromDate.Text == "" || tbS1ToDate.Text == "" || !Util.IsDateValid(tbS1FromDate.Text) || !Util.IsDateValid(tbS1ToDate.Text)) {
                     ChangeNotification("danger", "วันที่ไม่ถูกต้อง");

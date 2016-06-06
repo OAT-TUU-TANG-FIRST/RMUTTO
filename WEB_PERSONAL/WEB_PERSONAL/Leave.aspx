@@ -67,14 +67,11 @@
 
         <asp:MultiView ID="MultiView1" runat="server">
             <asp:View ID="VX1_1" runat="server">
-                <div class="ps-lb-progress-contain">
-                    <span class="ps-lb-progress-sel">1) กรอกข้อมูล</span>
-                    <span class="ps-lb-progress-cen"></span>
-                    <span class="ps-lb-progress-unsel">2) ยืนยันข้อมูล</span>
-                    <span class="ps-lb-progress-cen"></span>
-                    <span class="ps-lb-progress-unsel">3) เสร็จสิ้น</span>
-                </div>
-                <table class="ps-table">
+                
+                <div class="ps-box-il">
+                    <div class="ps-box-i0">
+                        <div class="ps-box-ct10">
+                            <table class="ps-table-x16">
                     <tr>
                         <td colspan="2" class="head">
                             <asp:Label ID="lbLeaveTypeName" runat="server"></asp:Label></td>
@@ -168,7 +165,7 @@
                     </tr>
                     <tr id="trS1Contact" runat="server">
                         <td class="col1">
-                            <img src="Image/Small/a.png" class="icon_left" />ติดต่อได้ที่</td>
+                            <img src="Image/Small/comment.png" class="icon_left" />ติดต่อได้ที่</td>
                         <td class="col2">
                             <asp:TextBox ID="tbS1Contact" runat="server" CssClass="ps-textbox"></asp:TextBox>
                         </td>
@@ -188,23 +185,23 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="ps-table-bottom" colspan="2">
+                        <td class="bottom" colspan="2">
                             <asp:LinkButton ID="lbuS1Check" runat="server" CssClass="ps-button" OnClick="lbuS1Check_Click">ต่อไป<img src="Image/Small/next.png" class="icon_right"/></asp:LinkButton>
                         </td>
                     </tr>
 
                 </table>
+                        </div>
+                    </div>
+                </div>
+                
 
             </asp:View>
             <asp:View ID="VX1_2" runat="server">
-                <div class="ps-lb-progress-contain">
-                    <span class="ps-lb-progress-unsel">1) กรอกข้อมูล</span>
-                    <span class="ps-lb-progress-cen"></span>
-                    <span class="ps-lb-progress-sel">2) ยืนยันข้อมูล</span>
-                    <span class="ps-lb-progress-cen"></span>
-                    <span class="ps-lb-progress-unsel">3) เสร็จสิ้น</span>
-                </div>
-                <table class="ps-table">
+                <div class="ps-box-il">
+                    <div class="ps-box-i0">
+                        <div class="ps-box-ct10">
+                            <table class="ps-table-x16">
                     <tr>
                         <td colspan="2" class="head">
                             <asp:Label ID="lbLeaveTypeName2" runat="server"></asp:Label></td>
@@ -387,12 +384,16 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="ps-table-bottom" colspan="2">
+                        <td class="bottom" colspan="2">
                             <asp:LinkButton ID="lbuS2Back" runat="server" CssClass="ps-button" OnClick="lbuS2Back_Click"><img src="Image/Small/back.png" class="icon_left"/>ย้อนกลับ</asp:LinkButton>
                             <asp:LinkButton ID="lbuS2Finish" runat="server" CssClass="ps-button" OnClick="lbuS2Finish_Click"><img src="Image/Small/document-create.png" class="icon_left"/>ยืนคำขอลา</asp:LinkButton>
                         </td>
                     </tr>
                 </table>
+                        </div>
+                    </div>
+                </div>
+                
             </asp:View>
             <asp:View ID="VX_F" runat="server">
                 <div>

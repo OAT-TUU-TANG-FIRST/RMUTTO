@@ -302,7 +302,7 @@ namespace WEB_PERSONAL {
                 case 3: ss[1] = "มี.ค."; break;
                 case 4: ss[1] = "เม.ย."; break;
                 case 5: ss[1] = "พ.ค."; break;
-                case 6: ss[1] = "มี.ค."; break;
+                case 6: ss[1] = "มิ.ย."; break;
                 case 7: ss[1] = "ก.ค."; break;
                 case 8: ss[1] = "ส.ค."; break;
                 case 9: ss[1] = "ก.ย."; break;
@@ -416,7 +416,7 @@ namespace WEB_PERSONAL {
                 case 3: return "มี.ค.";
                 case 4: return "เม.ย.";
                 case 5: return "พ.ค.";
-                case 6: return "มี.ค.";
+                case 6: return "มิ.ย.";
                 case 7: return "ก.ค.";
                 case 8: return "ส.ค.";
                 case 9: return "ก.ย.";

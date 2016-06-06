@@ -21,6 +21,7 @@
         .sec {
             background-color: #ffffff;
             margin-bottom: 1px;
+            border-top: 1px solid rgb(235,235,235);
         }
 
         .sec2 {
@@ -49,89 +50,95 @@
     <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex="0">
         <asp:View ID="View1" runat="server">
 
-            <div class="sec">
-                <div class="ps-header-mini">
-                    <img src="Image/Small/correct.png" />รายการที่เสร็จสิ้น
+            <div class="ps-box-mt10">
+                <div class="ps-box-i0">
+                    <div class="ps-box-hd10">
+                        <img src="Image/Small/correct.png" />รายการที่เสร็จสิ้น
+                    </div>
+                    <div class="ps-box-ct10">
+                        <asp:Label ID="lbFinish" runat="server" Text="ไม่มีข้อมูล" CssClass="lbGV"></asp:Label>
+                        <asp:GridView ID="gvFinish" runat="server" CssClass="ps-gridview-x16" AllowPaging="True" PageSize="10" OnPageIndexChanging="gvFinish_PageIndexChanging"></asp:GridView>
+                    </div>
                 </div>
-                <div class="sec2">
-                    <asp:Label ID="lbFinish" runat="server" Text="ไม่มีข้อมูล" CssClass="lbGV"></asp:Label>
-                    <asp:GridView ID="gvFinish" runat="server" CssClass="ps-gridview"></asp:GridView>
-                    
+
+                <div class="ps-box-i0">
+                    <div class="ps-box-hd10">
+                        <img src="Image/Small/progress.png" />รายการที่อยู่ระหว่างการดำเนินการ
+                    </div>
+                    <div class="ps-box-ct10">
+                        <asp:Label ID="lbProgressing" runat="server" Text="ไม่มีข้อมูล" CssClass="lbGV"></asp:Label>
+                        <asp:GridView ID="gvProgressing" runat="server" CssClass="ps-gridview-x16" AllowPaging="True" PageSize="10" OnPageIndexChanging="gvProgressing_PageIndexChanging"></asp:GridView>
+                    </div>
+                </div>
+
+                <div class="ps-box-i0">
+
+                    <div class="ps-box-hd10">
+                        <img src="Image/Small/table.png" />ประวัติการลา
+                    </div>
+                    <div class="ps-box-ct10">
+                        <asp:Label ID="lbHistory" runat="server" Text="ไม่พบข้อมูล" CssClass="lbGV"></asp:Label>
+                        <asp:GridView ID="gvHistory" runat="server" CssClass="ps-gridview-x16" AllowPaging="True" PageSize="10" OnPageIndexChanging="gvHistory_PageIndexChanging"></asp:GridView>
+                    </div>
                 </div>
             </div>
 
-            <div class="sec">
-                <div class="ps-header-mini">
-                    <img src="Image/Small/progress.png" />รายการที่อยู่ระหว่างการดำเนินการ
-                </div>
-                <div class="sec2">
-                    <asp:Label ID="lbProgressing" runat="server" Text="ไม่มีข้อมูล" CssClass="lbGV"></asp:Label>
-                    <asp:GridView ID="gvProgressing" runat="server" CssClass="ps-gridview"></asp:GridView>
-                    
-                </div>
-            </div>
 
-            <div class="sec">
-
-                <div class="ps-header-mini">
-                    <img src="Image/Small/table.png" />ประวัติการลา
-                </div>
-                <div class="sec2">
-                    <asp:Label ID="lbHistory" runat="server" Text="ไม่มีข้อมูล" CssClass="lbGV"></asp:Label>
-                    <asp:GridView ID="gvHistory" runat="server" CssClass="ps-gridview"></asp:GridView>
-                    
-                </div>
-            </div>
-
-
-            <div class="ps-separator"></div>
         </asp:View>
         <asp:View ID="View2" runat="server">
-            <div class="sec">
-                <div class="ps-header-mini">
+            <div class="ps-box-mt10">
+
+           
+            <div class="ps-box-i0">
+                <div class="ps-box-hd10">
                     <img src="Image/Small/pencil_y.png" />ประวัติการลาที่เป็นผู้ลงความเห็น
                 </div>
-                <div class="sec2">
+                <div class="ps-box-ct10">
                     <asp:Label ID="lbCL" runat="server" Text="ไม่มีข้อมูล" CssClass="lbGV"></asp:Label>
-                    <asp:GridView ID="gvCL" runat="server" CssClass="ps-gridview"></asp:GridView>
-                    
+                    <asp:GridView ID="gvCL" runat="server" CssClass="ps-gridview-x16" AllowPaging="True" PageSize="10" OnPageIndexChanging="gvCL_PageIndexChanging"></asp:GridView>
+
                 </div>
             </div>
-            <div class="sec">
-                <div class="ps-header-mini">
+            <div class="ps-box-i0">
+                <div class="ps-box-hd10">
                     <img src="Image/Small/correct.png" />ประวัติการลาที่เป็นผู้อนุมัติ
                 </div>
-                <div class="sec2">
+                <div class="ps-box-ct10">
                     <asp:Label ID="lbCH" runat="server" Text="ไม่มีข้อมูล" CssClass="lbGV"></asp:Label>
-                    <asp:GridView ID="gvCH" runat="server" CssClass="ps-gridview"></asp:GridView>
-                    
+                    <asp:GridView ID="gvCH" runat="server" CssClass="ps-gridview-x16" AllowPaging="True" PageSize="10" OnPageIndexChanging="gvCH_PageIndexChanging"></asp:GridView>
+
                 </div>
             </div>
-            <div class="ps-separator"></div>
+                 </div>
+            
         </asp:View>
         <asp:View ID="View3" runat="server">
 
-            <p style="margin: 10px 0; color: #808080;">
-                จำนวนวันที่ลา
-            </p>
-
-            <asp:Table ID="Table1" runat="server" CssClass="ps-gridview">
+            <div class="ps-box">
+                <div class="ps-box-i0">
+                    <div class="ps-box-hd10">
+                        จำนวนวันที่ลา
+                    </div>
+                    <div class="ps-box-ct10">
+                        <asp:Table ID="Table1" runat="server" CssClass="ps-gridview">
                 <asp:TableHeaderRow>
                     <asp:TableHeaderCell></asp:TableHeaderCell>
-                    <asp:TableHeaderCell ColumnSpan="2">ลาป่วย</asp:TableHeaderCell>
-                    <asp:TableHeaderCell ColumnSpan="2">ลากิจ</asp:TableHeaderCell>
+                    <asp:TableHeaderCell ColumnSpan="3">ลาป่วย</asp:TableHeaderCell>
+                    <asp:TableHeaderCell ColumnSpan="3">ลากิจ</asp:TableHeaderCell>
                     <asp:TableHeaderCell ColumnSpan="2">ลาคลอดบุตร</asp:TableHeaderCell>
                     <asp:TableHeaderCell ColumnSpan="2">ลาไปช่วยเหลือภริยาที่คลอดบุตร</asp:TableHeaderCell>
                     <asp:TableHeaderCell ColumnSpan="7">ลาพักผ่อน</asp:TableHeaderCell>
-                    <asp:TableHeaderCell ColumnSpan="2">ลาไปอุปสมบท</asp:TableHeaderCell>
-                    <asp:TableHeaderCell ColumnSpan="2">ลาไปประกอบพิธีฮัจย์</asp:TableHeaderCell>
+                    <asp:TableHeaderCell ColumnSpan="3">ลาไปอุปสมบท</asp:TableHeaderCell>
+                    <asp:TableHeaderCell ColumnSpan="3">ลาไปประกอบพิธีฮัจย์</asp:TableHeaderCell>
                 </asp:TableHeaderRow>
                 <asp:TableHeaderRow>
                     <asp:TableHeaderCell>ปี</asp:TableHeaderCell>
                     <asp:TableHeaderCell>วัน</asp:TableHeaderCell>
                     <asp:TableHeaderCell>รวมขอ</asp:TableHeaderCell>
+                    <asp:TableHeaderCell>สูงสุด</asp:TableHeaderCell>
                     <asp:TableHeaderCell>วัน</asp:TableHeaderCell>
                     <asp:TableHeaderCell>รวมขอ</asp:TableHeaderCell>
+                    <asp:TableHeaderCell>สูงสุด</asp:TableHeaderCell>
                     <asp:TableHeaderCell>วัน</asp:TableHeaderCell>
                     <asp:TableHeaderCell>รวมขอ</asp:TableHeaderCell>
                     <asp:TableHeaderCell>วัน</asp:TableHeaderCell>
@@ -145,12 +152,15 @@
                     <asp:TableHeaderCell>สูงสุด</asp:TableHeaderCell>
                     <asp:TableHeaderCell>วัน</asp:TableHeaderCell>
                     <asp:TableHeaderCell>รวมขอ</asp:TableHeaderCell>
+                    <asp:TableHeaderCell>สูงสุด</asp:TableHeaderCell>
                     <asp:TableHeaderCell>วัน</asp:TableHeaderCell>
                     <asp:TableHeaderCell>รวมขอ</asp:TableHeaderCell>
+                    <asp:TableHeaderCell>สูงสุด</asp:TableHeaderCell>
                 </asp:TableHeaderRow>
             </asp:Table>
-            
-            <div class="ps-separator"></div>
+                    </div>
+                </div>
+            </div>
 
         </asp:View>
     </asp:MultiView>

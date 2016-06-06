@@ -20,11 +20,19 @@
 
         <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex="0">
             <asp:View ID="View1" runat="server">
-                <asp:GridView ID="GridView1" runat="server" CssClass="ps-gridview"></asp:GridView>
-                <div class="ps-separator"></div>
+                <div class="ps-box-il">
+                    <div class="ps-box-i0">
+                        <div class="ps-box-ct10">
+                            <asp:GridView ID="GridView1" runat="server" CssClass="ps-gridview-x16"></asp:GridView>
+                        </div>
+                    </div>
+                </div>
             </asp:View>
             <asp:View ID="View2" runat="server">
-                <table class="ps-table">
+                <div class="ps-box-il">
+                    <div class="ps-box-i0">
+                        <div class="ps-box-ct10">
+                            <table class="ps-table-x16">
                     <tr>
                         <td class="head" colspan="2">ข้อมูลการลา</td>
                     </tr>
@@ -280,10 +288,18 @@
                             <asp:RadioButton ID="rbNotAllow" runat="server" GroupName="allow" Text="ไม่อนุญาต" />
                         </td>
                     </tr>
-                </table>
-                <div class="ps-separator"></div>
-                <asp:LinkButton ID="lbuBack" runat="server" CssClass="ps-button" OnClick="lbuBack_Click"><img src="Image/Small/back.png" class="icon_left"/>ย้อนกลับ</asp:LinkButton>
+                                <tr>
+                                    <td class="bottom" colspan="2">
+                                        <asp:LinkButton ID="lbuBack" runat="server" CssClass="ps-button" OnClick="lbuBack_Click"><img src="Image/Small/back.png" class="icon_left"/>ย้อนกลับ</asp:LinkButton>
                             <asp:LinkButton ID="lbuAddComment" runat="server" CssClass="ps-button" OnClick="lbuAddComment_Click">ยืนยันการอนุมัติ<img src="Image/Small/next.png" class="icon_right"/></asp:LinkButton>
+                                    </td>
+                                </tr>
+                </table>
+                        </div>
+                    </div>
+                </div>
+
+                
             </asp:View>
             <asp:View ID="View3" runat="server">
                 <asp:LinkButton ID="lbu1" runat="server" CssClass="ps-button" OnClick="lbu1_Click"><img src="Image/Small/back.png" class="icon_left"/>กลับหน้าหลัก</asp:LinkButton>

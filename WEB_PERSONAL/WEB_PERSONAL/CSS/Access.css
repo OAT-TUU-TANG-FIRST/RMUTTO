@@ -11,162 +11,78 @@
     src: url('../Font/Roboto/Roboto-Regular.ttf') format('truetype');
 }
 body {
-    background-image: url(../Image/rmutto_clear.jpg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
     font-size: 12px;
+    background-color: rgb(245,245,245);
 }
 
 
 .login_popup {
-    /*background-image: url(../Image/blurred-blue-background.jpg  );
-    background-repeat: no-repeat;
-    background-size: cover;*/
     width: 100vw;
     height: 100vh;
 }
 
 .login_popup_in {
-    /*background-image: url(../Image/blurred-blue-background.jpg  );
-    background-repeat: no-repeat;
-    background-size: cover;*/
     width: 100%;
-    height: 400px;
-
-
+    height: 440px;
     position: absolute;
     top:0;
-    bottom: 0;
+    bottom: 100px;
     left: 0;
     right: 0;
-
     margin: auto;
-
-
-    /*background-color: #ffffff;
-    background-color: rgba(64,64,64,0.25);*/
-    
-    /*background: linear-gradient(to bottom, rgba(128,128,128,0.25), rgba(32,32,32,0.5));*/
-    background-color: rgba(32,32,16,0.5);
-
-    border-top: 1px solid #808060;
-    border-bottom: 1px solid #808060;
-   
-    /*background-color: #ffffff;
-    border: none;
-    border: 5px solid #00a2e8;*/
-    /*border: 32px solid #ffffff;*/
-    /*/border-radius: 1000px;*/
-    /*box-shadow: #ffffff 0px 0px 50px;
-
-    transition: border ease 0.25s;*/
+    /*background-color: rgba(0,0,0,0.5);*/
+    /*background-image: url(../Image/rmutto_clear.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;*/
 }
 .login_popup_in2 {
-    width: 670px;
+    width: 400px;
     margin: 0 auto;
 }
 
-.login_popup_div_sec {
-     
-    margin: 0px auto;
-    margin-top: 20px;
 
-    /*box-shadow: #808080 0px 5px 5px;*/
-}
-
-.login_popup_div_sec_header {
-    /*background-color: rgba(255,255,255,0.25);*/
-    float: left;
-    padding: 0px 25px;
-    text-align: center;
-    font-weight: bold;
-
-}
-.login_popup_div_sec_header span {
-    /*margin-left: 20px;*/
-    color: #FFFFFF;
-    color: #000000;
-
-    /*text-shadow: 1px 1px 1px #000000;*/
-}
-.login_popup_div_sec_in {
-    float: right;
-    /*background-color: rgba(128,128,128,0.6);*/
-    padding: 20px 20px;
-    
-}
-.login_popup_div_sec_in span {
-    /*color: #FFFFFF;
-    text-shadow: 1px 1px 1px #808080;*/
-    color: #000000;
-
-}
 .login_logo {
-    margin-top: 20px;
-    height: 300px;
+    height: 250px;
 }
 .login_default_textbox {
-    width: 150px;
-    font-family: RB-Regular, Tahoma;
+    width: 190px;
+    font-family: Arial;
     font-size: 16px;
     padding: 3px 5px;
     color: #000000;
-    background-color: #ffffff;
+    background-color: #f8f8f8;
     border: 1px solid transparent;
     outline: none;
     border-radius: 4px;
+    margin: 3px 5px;
     /*box-shadow: rgba(0,162,232,0.8) 1px 1px 10px;
     box-shadow: rgba(0,0,0,0.5) 1px 1px 5px;*/
 }
-.login_default_textbox:focus {
-    
-}
 
 .t1 {
-    font-family: THSB;
-    color: #ffffff;
-    font-size: 100px;
-    text-shadow: 1px 1px 1px #404040;
+    color: #000000;
+    font-size: 23px;
 }
 .t2 {
-    font-family: THSB;
-    color: #ffffff;
-    font-size: 28px;
-    text-shadow: 1px 1px 1px #404040;
+    color: #000000;
+    font-size: 16px;
 }
 .cerror {
-    
-}
-.login_column0 {
-    text-align: left;
-    padding-right: 10px;
-}
-.login_column1 {
-    text-align: left;
-}
-table {
-    margin: 0 auto;
-}
-.login_button {
-    text-decoration: none;
-    color: #ffffff;
-    background-color: #404040;
-    text-align: center;
-    padding: 3px 20px;
-    height: 20px;
-    line-height: 20px;
     display: inline-block;
-    font-size: 16px;
-    outline: none;
-    border-top: 1px solid #606060;
-    border-bottom: 1px solid #202020;
-    border-radius: 4px;
-    transition: background-color ease 0.25s, border-color ease 0.25s;
+    margin-top: 5px;
+    color: #ff0000;
 }
-.login_button:hover {
-    color: #ffffff;
-    border-top: 1px solid #202020;
-    border-bottom: 1px solid #606060;
-    background-color: #303030;
+.web-link {
+
+}
+.web-link a {
+    display: inline-block;
+    padding: 5px 8px;
+    color: #000000;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+}
+.web-link a:hover {
+    border-bottom: 2px solid rgb(0,162,232);
 }
