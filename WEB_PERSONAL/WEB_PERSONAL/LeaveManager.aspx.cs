@@ -46,7 +46,7 @@ namespace WEB_PERSONAL {
                             btn.Text = "<img src='Image/Small/document-edit.png'></img>";
                             btn.Click += (e2, e3) => {
                                 MV1_1.ActiveViewIndex = 1;
-                                Form1Package p = DatabaseManager.GetForm1Package(ID);
+                                /*Form1Package p = DatabaseManager.GetForm1Package(ID);
                                 lbPuyEditLeaveID.Text = p.LeaveID;
                                 tbPuyEditCitizenID.Text = p.CitizenID;
                                 tbPuyEditFromDate.Text = p.FromDate;
@@ -70,7 +70,7 @@ namespace WEB_PERSONAL {
                                     rbPuyEditCHAllowOK.Checked = true;
                                 } else {
                                     rbPuyEditCHAllowKO.Checked = true;
-                                }
+                                }*/
                                 //Response.Redirect("ViewLeaveForm.aspx?Form=1&LeaveID=" + ID);
                             };
                             cell.Controls.Add(btn);

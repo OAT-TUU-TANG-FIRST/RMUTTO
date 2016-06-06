@@ -16,7 +16,7 @@ namespace WEB_PERSONAL {
                 PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
                 Person loginPerson = ps.LoginPerson;
 
-                SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEAVE_ID รหัสการลา, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_DATA.LEAVE_TYPE_ID) ประเภทการลา, REQ_DATE วันที่ข้อมูล, LEAVE_STATUS_ID สถานะ, NVL(CH_ALLOW,0) ผลการอนุมัติ FROM LEV_DATA WHERE LEAVE_STATUS_ID = 4 AND PS_ID = '" + loginPerson.CitizenID + "' AND CH_ALLOW = 1 ORDER BY LEAVE_ID DESC");
+                SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEAVE_ID รหัสการลา, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_DATA.LEAVE_TYPE_ID) ประเภทการลา, REQ_DATE วันที่ข้อมูล, FROM_DATE จากวันที่, TO_DATE ถึงวันที่, TOTAL_DAY รวมวัน FROM LEV_DATA WHERE LEAVE_STATUS_ID = 4 AND PS_ID = '" + loginPerson.CitizenID + "' AND CH_ALLOW = 1 ORDER BY LEAVE_ID DESC");
                 gvLeave.DataSource = sds;
                 gvLeave.DataBind();
 
@@ -29,15 +29,16 @@ namespace WEB_PERSONAL {
                 gvLeave.HeaderRow.Cells[0].Text = "<img src='Image/Small/ID.png' class='icon_left'/>" + gvLeave.HeaderRow.Cells[0].Text;
                 gvLeave.HeaderRow.Cells[1].Text = "<img src='Image/Small/list.png' class='icon_left'/>" + gvLeave.HeaderRow.Cells[1].Text;
                 gvLeave.HeaderRow.Cells[2].Text = "<img src='Image/Small/calendar.png' class='icon_left'/>" + gvLeave.HeaderRow.Cells[2].Text;
-                gvLeave.HeaderRow.Cells[3].Text = "<img src='Image/Small/question.png' class='icon_left'/>" + gvLeave.HeaderRow.Cells[3].Text;
-                gvLeave.HeaderRow.Cells[4].Text = "<img src='Image/Small/correct.png' class='icon_left'/>" + gvLeave.HeaderRow.Cells[4].Text;
+                gvLeave.HeaderRow.Cells[3].Text = "<img src='Image/Small/calendar.png' class='icon_left'/>" + gvLeave.HeaderRow.Cells[3].Text;
+                gvLeave.HeaderRow.Cells[4].Text = "<img src='Image/Small/calendar.png' class='icon_left'/>" + gvLeave.HeaderRow.Cells[4].Text;
+                gvLeave.HeaderRow.Cells[6].Text = "<img src='Image/Small/pointer.png' class='icon_left'/>" + gvLeave.HeaderRow.Cells[6].Text;
 
                 for (int i = 0; i < gvLeave.Rows.Count; ++i) {
 
                         string ID = gvLeave.Rows[i].Cells[0].Text;
                         TableCell cell = new TableCell();
                         LinkButton btn = new LinkButton();
-                        btn.CssClass = "ps-button-img";
+                        btn.CssClass = "ps-button";
                         btn.Text = "<img src='Image/Small/next.png'></img>";
                         btn.Click += (e2, e3) => {
 
@@ -170,27 +171,12 @@ namespace WEB_PERSONAL {
                         cell.Controls.Add(btn);
                         gvLeave.Rows[i].Cells.Add(cell);
 
-                        if (Util.StringEqual(gvLeave.Rows[i].Cells[3].Text, new string[] { "1", "2" })) {
-                            gvLeave.Rows[i].Cells[3].Text = "อยู่ระหว่างการพิจารณา";
-                            gvLeave.Rows[i].Cells[3].ForeColor = System.Drawing.Color.Orange;
-                        }
-                        if (Util.StringEqual(gvLeave.Rows[i].Cells[3].Text, new string[] { "3", "4" })) {
-                            gvLeave.Rows[i].Cells[3].Text = "เสร็จสิ้น";
-                            gvLeave.Rows[i].Cells[3].ForeColor = System.Drawing.Color.Green;
-                        }
-                        if (Util.StringEqual(gvLeave.Rows[i].Cells[4].Text, new string[] { "0" })) {
-                            gvLeave.Rows[i].Cells[4].Text = "ไม่อนุมัติ";
-                            gvLeave.Rows[i].Cells[4].ForeColor = System.Drawing.Color.Red;
-                        }
-                        if (Util.StringEqual(gvLeave.Rows[i].Cells[4].Text, new string[] { "1" })) {
-                            gvLeave.Rows[i].Cells[4].Text = "อนุมัติ";
-                            gvLeave.Rows[i].Cells[4].ForeColor = System.Drawing.Color.Green;
-                        }
-
                     }
 
                     Util.NormalizeGridViewDate(gvLeave, 2);
-                } else {
+                    Util.NormalizeGridViewDate(gvLeave, 3);
+                    Util.NormalizeGridViewDate(gvLeave, 4);
+            } else {
                     lbLeave.Visible = true;
                 }
 

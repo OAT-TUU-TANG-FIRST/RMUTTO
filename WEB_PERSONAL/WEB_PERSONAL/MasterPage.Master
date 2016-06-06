@@ -69,7 +69,47 @@
         $.datepicker.setDefaults($.datepicker.regional['th']);
     </script>
 
- 
+    <script>
+        function startTime() {
+            var today = new Date();
+            var d = today.getDate();
+            var M = (today.getMonth() + 1);
+            var y = (today.getFullYear() + 543);
+            var h = today.getHours();
+            var m = today.getMinutes();
+            var s = today.getSeconds();
+            d = checkTime(d);
+            M = checkTime(M);
+            m = checkTime(m);
+            s = checkTime(s);
+
+            var days = ['อาทิตย์', 'จันทร์', 'อังคาร', 'พุธ', 'พฤหัสบดี', 'ศุกร์', 'เสาร์'];
+            var months = ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'];
+
+            var day = days[today.getDay()];
+            var month = months[today.getMonth()];
+
+            document.getElementById('txt_date').innerHTML = "วัน" + day + "ที่ " + d + " " + month + " พ.ศ. " + y + " เวลา " + h + ":" + m + ":" + s + "น.";
+            var t = setTimeout(startTime, 500);
+        }
+        function checkTime(i) {
+            if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+            return i;
+        }
+        $(document).ready(function () {
+            //startTime();
+            $('#menu1').click(function () {
+                $('#menu1-ct').slideToggle(500);
+                $('#menu2-ct').slideUp(500);
+            });
+            $('#menu2').click(function () {
+                $('#menu2-ct').slideToggle(500);
+                $('#menu1-ct').slideUp(500);
+            });
+        });
+
+    </script>
+
 
 
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
@@ -84,113 +124,234 @@
 
         <div class="ps-ms-wrapper">
 
-            <div class="ps-ms-side">
-
-                <div class="ps-ms-side-group">
-                    <img src="Image/RMUTTO.png" class="rmutto"/>
-                    <span class="ps-ms-rmutto"><span style="font-family: THSB; font-size: 28px;">ระบบบุคลากร</span><br />Personnel System</span>
-                    </div>
-                <div class="ps-ms-side-separator"></div>
-                <div class="ps-ms-side-group">
-                    <span class="ps-ms-side-group-header">ผู้ใช้</span>
-                    <div class="ps-ms-profile-div"><img src="Image/no_image.png" class="ps-ms-profile-pic" id="profile_pic" runat="server"/></div>
-                    <asp:LinkButton ID="LinkButton1" runat="server" CssClass="ps-ms-user" OnClick="LinkButton1_Click1">LinkButton</asp:LinkButton>
-                    <asp:LinkButton ID="LinkButton10" runat="server" CssClass="ps-ms-logout" OnClick="LinkButton10_Click" ><img src="Image/Small/logout.png" />ออกจากระบบ</asp:LinkButton>
-                </div>
-                
-                <div class="ps-ms-side-group">
-                    <span class="ps-ms-side-group-header">เมนูหลัก</span>
-                    <a href="Default.aspx"><img src="Image/Small/home3.png" />หน้าหลัก</a>
-                </div>
-                
-                <div class="ps-ms-side-group">
-                    <span class="ps-ms-side-group-header">บุคลากร</span>
-                    <a href="AddPerson.aspx" id="LinkAddPerson" runat="server"><img src="Image/Small/person2.png" />เพิ่มข้อมูลบุคลากร</a>
-                    <a href="AddPerson-Edit.aspx" id="LinkEditPerson" runat="server"><img src="Image/Small/edit.png" />แก้ไขข้อมูลบุคลากร</a>
-                    <a href="AddPersonGP7.aspx" id="LinkAddPerson2" runat="server"><img src="Image/Small/person2.png" />เพิ่มข้อมูลบุคลากร(ก.พ.7)</a>
-                    <a href="AddPersonGP7-Edit.aspx" id="LinkEditPerson2" runat="server"><img src="Image/Small/edit.png" />แก้ไขข้อมูลบุคลากร(ก.พ.7)</a>
-                    <a href="ListPerson-ADMIN.aspx"><img src="Image/Small/person2.png" />รายชื่อบุคลากร</a>
-                    <a href="SEMINAR-GENERAL.aspx"><img src="Image/Small/person2.png" />การเพิ่มพัฒนาบุคลากร</a>
-                    <a href="SEMINAR-ADMIN.aspx"><img src="Image/Small/person2.png" />การแก้ไขพัฒนาบุคลากร</a>
-                    <a href="Report-Custom-Person.aspx"><img src="Image/Small/report.png" />ออกรายงานบุคลากร</a>
-                    <a href="Report-Custom-Person.aspx"><img src="Image/Small/report.png" />ออกรายงานพัฒนาบุคลากร</a>
-                </div>
-                
-                <div class="ps-ms-side-group">
-                    <span class="ps-ms-side-group-header">การเลื่อนขั้นเงินเดือน</span>
-                    <a href="UpSalary70_30_1.aspx"><img src="Image/Small/money.png" />ขอเลื่อนขั้นเงินเดือน 70:30 แบบที่ 1</a>
-                    <a href="UpSalary70_30_2.aspx"><img src="Image/Small/money.png" />ขอเลื่อนขั้นเงินเดือน 70:30 แบบที่ 2</a>
-                    <a href="UpSalary80_20_1.aspx"><img src="Image/Small/money.png" />ขอเลื่อนขั้นเงินเดือน 80:20 แบบที่ 1</a>
-                    <a href="UpSalary80_20_2.aspx"><img src="Image/Small/money.png" />ขอเลื่อนขั้นเงินเดือน 80:20 แบบที่ 2</a>
-                    <a href="UpSalary70_30_Evaluation.aspx"><img src="Image/Small/money.png" />ประเมินการขอเลื่อนขั้นเงินเดือน<asp:Label ID="lbUpSal7030Count" runat="server" Text="ทดสอบ" CssClass="master_text_alert"></asp:Label></a>
-                    
-                </div>
-                
-                <div class="ps-ms-side-group">
-                    <span class="ps-ms-side-group-header">การลา</span>
-                    <a href="Leave.aspx"><img src="Image/Small/document-create.png" />ทำการลา</a>
-                    <a href="LeaveCancel.aspx"><img src="Image/Small/document-delete.png" />ยกเลิกการลา</a>
-                    <a href="LeaveComment.aspx"><img src="Image/Small/document-edit.png" />ลงความเห็นการลา<asp:Label ID="lbLeaveCommentCount" runat="server" Text="ทดสอบ" CssClass="master_text_alert"></asp:Label></a>
-                    <a href="LeaveAllow.aspx"><img src="Image/Small/document-accept.png" />อนุมัติการลา<asp:Label ID="lbLeaveAllowCount" runat="server" Text="ทดสอบ" CssClass="master_text_alert"></asp:Label></a>
-                    <a href="LeaveHistory.aspx"><img src="Image/Small/clock-history.png" />ประวัติการลา</a>
-                    <a href="WorkingTimeHistory.aspx"><img src="Image/Small/clock-history.png" />ประวัติเวลาปฏิบัติงาน</a>
-                    <!--a href="LeaveClaim.aspx"><img src="Image/Small/info.png" />สิทธิการลา</!--a-->
-                    <a href="LeavePermission.aspx"><img src="Image/Small/info.png" />ตารางสิทธิการอนุญาต</a>
-                    
-                    
-                    <a href="Leave-Report1.aspx"><img src="Image/Small/report.png" />ออกรายงานการลา</a>
-                    <!--a href="LeaveManager.aspx"><img src="Image/Small/wrench.png" />จัดการข้อมูลการลา</!--a-->
-                    <a href="WorkingDay.aspx"><img src="Image/Small/wrench.png" />จัดการวันปฏิบัติราชการ</a>
-                    <!--a href="WorkingTimeManager.aspx"><img src="Image/Small/wrench.png" />จัดการข้อมูลเวลาปฏิบัติงาน</!--a-->
-                </div>
-                
-                <div class="ps-ms-side-group">
-                    <span class="ps-ms-side-group-header">เครื่องราชอิสริยาภรณ์</span>
-                    <a href="INSG_Request.aspx"><img src="Image/Small/medal.png" />การขอเครื่องราชฯ</a>
-                    <a href="INSG_Borrow.aspx"><img src="Image/Small/medal.png" />การยืมเครื่องราชฯ</a>
-                    <a href="INSG_Return.aspx"><img src="Image/Small/medal.png" />การคืนเครื่องราชฯ</a>
-                    <a href="INSG_Qualified.aspx"><img src="Image/Small/medal.png" />รายชื่อผู้ที่เข้าเกณฑ์การรับเครื่องราชฯ</a>
-                    <a href="INSG_RequestList.aspx"><img src="Image/Small/medal.png" />รายชื่อการขอเครื่องราชฯ</a>
-                    
-                    <!--a href="insignia_from_view.aspx"><img src="Image/Small/medal.png" />ประวัติการขอเครื่องราชฯ</!--a>
-                    <a href="insignia_recordnote2.aspx"><img src="Image/Small/medal.png" />ประวัติการรับเครื่องราชฯ</a>
-                    <a href="insignia_from_add.aspx"><img src="Image/Small/medal.png" />เพิ่มข้อมูลเครื่องราชฯ</a>
-                    <a href="insignia_recordnote2-ADMIN.aspx"><img src="Image/Small/medal.png" />เพิ่มประวัติการรับเครื่องราชฯ</a-->
-                    <!--a href="insignia_maintence.aspx">บัญชีรายชื่อผู้ขอรับภาพถ่ายเข้าเฝ้า(ชั้นสายสะพาย)</!--a>
-                                    <a href="insignia_maintence.aspx">แบบคำขอยืมเครื่องราชอิสริยาภรณ์</a>
-                                    <a href="insignia_maintence.aspx">หลักฐานการส่งคืน/ชดใช้ราคาเครื่องราชอิสริยาภรณ์</a>
-                                    <a href="insignia_maintence.aspx">บัญชีรายชื่อผู้ส่งคืนเครื่องราชอิสริยาภรณ์<!--/a-->
-                </div>
-                
-                <div class="ps-ms-side-group">
-                    <span class="ps-ms-side-group-header">จัดการข้อมูล</span>
-                    <a href="DataManager.aspx" id="LinkDropDown" runat="server"><img src="Image/Small/wrench.png" />แก้ไข Dropdown</a>
-                    <a href="Developer.aspx" id="LinkDeveloper" runat="server"><img src="Image/Small/wrench.png" />ส่วนนักพัฒนา</a>
-                    <a href="UploadList.aspx" id="LinkUpload" runat="server"><img src="Image/Small/wrench.png" />รายการอัพโหลด</a>
-                </div>
-
-                <div class="ps-ms-side-group">
-                    <span class="ps-ms-side-group-header">ข้อมูลระบบ</span>
-                    <div style="margin-left: 10px;">เวอร์ชั่น : v1.0.9</div>
-                    <div style="margin-left: 10px;">ตัวนับ : <span id="s_counter" runat="server"></span></div>
-                </div>
-
-                <div style="height: 20px;"></div>
-
-
-            </div>
-
             <div class="ps-ms-main">
+                <div class="ps-ms-main-hd-wrapper">
+                    <div class="ps-ms-main-hd">
+                        <div class="ps-ms-main-hd-left">
+                        <!--div id="txt_date" class="ps-ms-main-hd-date"></!--div-->
+                            <div id="menu1" class="ps-ms-main-hd-button"><img src="Image/x32/menu.png" /></div>
+                            <div class="ps-ms-main-hd-name">ระบบบุคลากร</div>
+                            
+                    </div>
+                    <div class="ps-ms-main-hd-right">
+                        <div id="menu2" class="ps-ms-main-hd-button"><img src="Image/x32/notification.png" /></div>
+                        <span class="ps-ms-main-hd-noti-alert-none" id="noti_alert" runat="server">0</span>
+                        <asp:LinkButton ID="lbuUser" runat="server" OnClick="lbuUser_Click" CssClass="ps-ms-user">
+                            <span class="ps-ms-profile-div"><img src="Image/no_image.png" class="ps-ms-profile-pic" id="profile_pic" runat="server"/></span>
+                            <span id="profile_name" runat="server"></span>
+                        </asp:LinkButton>
+                        <asp:LinkButton ID="lbuLogout" runat="server" OnClick="lbuLogout_Click" CssClass="ps-ms-logout">ออกจากระบบ</asp:LinkButton>
+                    </div>
+                    </div>
+                    
+                    <div class="ps-ms-main-drop" id="menu1-ct">
+                       <div class="ps-ms-main-drop-hd">
+                            <img src="Image/x32/menu.png"/>เมนู
+                        </div>
+                        <div class="ps-box-il-ms">
+                             <div class="ps-box-i0">
+                                <div class="ps-box-ct10">
+                                    <img src="Image/rmutto-ms-drop.png" class="rmutto"/>
+                                    <br />
+                                    <span class="ps-ms-rmutto"><span style="font-size: 23px;">ระบบบุคลากร</span><br />Personnel System</span>
+                                </div>
+                            </div>
+                            <div class="ps-box-i0">
+                                <div class="ps-box-ct10">
+                                    <a href="Default.aspx"><img src="Image/Small/home3.png" />หน้าหลัก</a>
+                                </div>
+                            </div>
+                            <div class="ps-box-i0">
+                                <div class="ps-box-ct10">
+                                    <div>เวอร์ชั่น : v1.1.0</div>
+                                    <div style="display: none;">ตัวนับ : <span id="s_counter" runat="server"></span></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ps-box-il-ms">
+                            <div class="ps-box-i0">
+                                <div class="ps-box-hd10-cen"><img src="Image/Small/person2.png" />ข้อมูลผู้ใช้</div>
+                            </div>
+                            <div class="ps-box-i0" style="text-align: center;">
+                                <span class="ps-ms-profile-div"><img src="Image/no_image.png" class="ps-ms-main-drop-profile-pic" id="profile_pic2" runat="server"/></span>
+                            </div>
+                            <div class="ps-box-i0">
+                                <div class="ps-box-ct10">
+                                    <table class="ps-table-ms">
+                                        <tr>
+                                            <td class="col1">ชื่อ</td>
+                                            <td class="col2">
+                                                <asp:Label ID="lbName" runat="server" Text="-"></asp:Label></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="col1">ประเภท</td>
+                                            <td class="col2">
+                                                <asp:Label ID="lbStaffType" runat="server" Text="-"></asp:Label></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="col1">ตำแหน่ง</td>
+                                            <td class="col2">
+                                                <asp:Label ID="lbPosition" runat="server" Text="-"></asp:Label></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="col1">ระดับ</td>
+                                            <td class="col2">
+                                                <asp:Label ID="lbPositionRank" runat="server" Text="-"></asp:Label></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="col1">สังกัด</td>
+                                            <td class="col2">
+                                                <asp:Label ID="lbDepartment" runat="server" Text="-"></asp:Label></td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+
+                            </div>
+                            <div class="ps-box-i0">
+                                <div class="ps-box-ct10" style="text-align: center;">
+                                    <a href="profile.aspx"><img src="Image/Small/search.png" class="icon_left"/>ดูประวัติส่วนตัว</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ps-box-il-ms">
+                            <div class="ps-box-i0">
+                                <div class="ps-box-hd10"><img src="Image/Small/person2.png" />บุคลากร</div>
+                             </div>
+                             <div class="ps-box-i0">
+                                <div class="ps-box-ct10">
+                                    <a href="AddPerson.aspx" id="A5" runat="server"><img src="Image/Small/person2.png" />เพิ่มข้อมูลบุคลากร</a>
+                                    <a href="AddPerson-Edit.aspx" id="A6" runat="server"><img src="Image/Small/edit.png" />แก้ไขข้อมูลบุคลากร</a>
+                                    <a href="AddPersonGP7.aspx" id="A7" runat="server"><img src="Image/Small/person2.png" />เพิ่มข้อมูลบุคลากร(ก.พ.7)</a>
+                                    <a href="AddPersonGP7-Edit.aspx" id="A8" runat="server"><img src="Image/Small/edit.png" />แก้ไขข้อมูลบุคลากร(ก.พ.7)</a>
+                                    <a href="ListPerson-ADMIN.aspx"><img src="Image/Small/person2.png" />รายชื่อบุคลากร</a>
+                                    <a href="SEMINAR-GENERAL.aspx"><img src="Image/Small/person2.png" />การเพิ่มพัฒนาบุคลากร</a>
+                                    <a href="SEMINAR-ADMIN.aspx"><img src="Image/Small/person2.png" />การแก้ไขพัฒนาบุคลากร</a>
+                                    <a href="Report-Custom-Person.aspx"><img src="Image/Small/report.png" />ออกรายงานบุคลากร</a>
+                                    <a href="Report-Custom-Person.aspx"><img src="Image/Small/report.png" />ออกรายงานพัฒนาบุคลากร</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ps-box-il-ms">
+                            <div class="ps-box-i0">
+                                <div class="ps-box-hd10"><img src="Image/Small/document.png" />การลา</div>
+                             </div>
+                             <div class="ps-box-i0">
+                                <div class="ps-box-ct10">
+                                    <a href="Leave.aspx"><img src="Image/Small/document-create.png" />ทำการลา</a>
+                                    <a href="LeaveCancel.aspx"><img src="Image/Small/document-delete.png" />ยกเลิกการลา</a>
+                                    <a href="LeaveComment.aspx"><img src="Image/Small/document-edit.png" />ลงความเห็นการลา<asp:Label ID="lbLeaveCommentCount" runat="server" Text="ทดสอบ" CssClass="master_text_alert"></asp:Label></a>
+                                    <a href="LeaveAllow.aspx"><img src="Image/Small/document-accept.png" />อนุมัติการลา<asp:Label ID="lbLeaveAllowCount" runat="server" Text="ทดสอบ" CssClass="master_text_alert"></asp:Label></a>
+                                    <a href="LeaveHistory.aspx"><img src="Image/Small/clock-history.png" />ประวัติการลา</a>
+                                    <a href="WorkingTimeHistory.aspx"><img src="Image/Small/clock-history.png" />ประวัติเวลาปฏิบัติงาน</a>
+                                    <a href="LeavePermission.aspx"><img src="Image/Small/info.png" />ตารางสิทธิการอนุญาต</a>
+                                    <a href="Leave-Report1.aspx" id="LeaveReport" runat="server"><img src="Image/Small/report.png" />ออกรายงานการลา</a>
+                                    <a href="WorkingDay.aspx" id="WorkingDay" runat="server"><img src="Image/Small/wrench.png" />จัดการวันปฏิบัติราชการ</a>
+                                    <a href="LeaveControl.aspx" id="LeaveControl" runat="server"><img src="Image/Small/wrench.png" />จัดการสิทธิใช้งานการลา</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ps-box-il-ms">
+                            <div class="ps-box-i0">
+                                <div class="ps-box-hd10"><img src="Image/Small/medal.png" />เครื่องราชอิสริยาภรณ์</div>
+                             </div>
+                             <div class="ps-box-i0">
+                                <div class="ps-box-ct10">
+                                    <a href="INSG_Request.aspx"><img src="Image/Small/medal.png" />การขอเครื่องราชฯ</a>
+                                    <a href="INSG_Borrow.aspx"><img src="Image/Small/medal.png" />การยืมเครื่องราชฯ</a>
+                                    <a href="INSG_Return.aspx"><img src="Image/Small/medal.png" />การคืนเครื่องราชฯ</a>
+                                    <a href="INSG_Qualified.aspx"><img src="Image/Small/medal.png" />รายชื่อผู้ที่เข้าเกณฑ์การรับเครื่องราชฯ</a>
+                                    <a href="INSG_RequestList.aspx"><img src="Image/Small/medal.png" />รายชื่อการขอเครื่องราชฯ</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ps-box-il-ms">
+                            <div class="ps-box-i0">
+                               <div class="ps-box-hd10"><img src="Image/Small/wrench.png" />จัดการข้อมูล</div>
+                             </div>
+                             <div class="ps-box-i0">
+                                <div class="ps-box-ct10">
+                                    <a href="DataManager.aspx" id="A2" runat="server"><img src="Image/Small/wrench.png" />แก้ไขข้อมูล Dropdown</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="ps-ms-main-drop" id="menu2-ct">
+                        <div class="ps-ms-main-drop-hd">
+                            <img src="Image/x32/notification.png"/>การแจ้งเตือน
+                        </div>
+                        <div class="ps-box-il-ms">
+                            <div class="ps-box-i0">
+                                <div class="ps-box-hd10-cen"><img src="Image/Small/document.png" />การลา</div>
+                            </div>
+                            <div class="ps-box-i0" id="noti_leave_none" runat="server">
+                                <div class="ps-box-hd10-cen" style="color: #a0a0a0; margin-top: 120px;">ไม่มีการแจ้งเตือนการลา</div>
+                            </div>
+                            <div class="ps-box-i0" id="noti_cl" runat="server">
+                                <div class="ps-box-ct10-cen">
+                                    <div><img src='Image/Small/pencil_y.png' class='icon_left' />คุณมีรายการที่ต้องลงความเห็นการลา</div><br />
+                                    <div><a href='LeaveComment.aspx'>ไปหน้าการลงความเห็น<img src='Image/Small/next.png' class='icon_right' /></a></div>
+                                </div>
+                            </div>
+                            <div class="ps-box-i0" id="noti_ch" runat="server">
+                                <div class="ps-box-ct10-cen">
+                                    <div><img src='Image/Small/correct.png' class='icon_left' />คุณมีรายการที่ต้องอนุมัติการลา</div><br />
+                                    <div><a href='LeaveAllow.aspx'>ไปหน้าการอนุมัติ<img src='Image/Small/next.png' class='icon_right' /></a></div>
+                                </div>
+                            </div>
+                            <div class="ps-box-i0" id="noti_leave_finish" runat="server">
+                                <div class="ps-box-ct10-cen">
+                                    <div><img src='Image/Small/correct.png' class='icon_left' />คุณมีรายการที่การลาที่เสร็จสิ้น</div><br />
+                                    <div><a href='LeaveHistory.aspx'>ไปหน้าประวัติการลา<img src='Image/Small/next.png' class='icon_right' /></a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ps-box-il-ms">
+                            <div class="ps-box-i0">
+                                <div class="ps-box-hd10-cen"><img src="Image/Small/medal.png" />เครื่องราชอิสริยาภรณ์</div>
+                            </div>
+                            <div class="ps-box-i0" id="noti_ins_none" runat="server">
+                                <div class="ps-box-hd10-cen" style="color: #a0a0a0; margin-top: 120px;">ไม่มีการแจ้งเตือนเครื่องราชฯ</div>
+                            </div>
+                            <div class="ps-box-i0" id="noti_ins" runat="server">
+                                <div class="ps-box-ct10-cen">
+                                    <div><img src='Image/Small/medal.png' class='icon_left' />คุณมีสิทธิขอเครื่องราช</div><br />
+                                    <div><a href='INSG_Request.aspx'>ไปหน้าการขอเครื่องราชฯ<img src='Image/Small/next.png' class='icon_right' /></a></div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                
+
+
+                <div class="ps-ms-main-ct">
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                 </asp:ContentPlaceHolder>
+                    </div>
+
+                <div class="ps-ms-main-ft-wrapper">
+                    <div class="ps-ms-main-ft">
+                        Copyright © 2016 Rajamangala University of Technology Tawan-ok. All rights reserved
+                    </div>
+                </div>
+                
+
             </div>
 
 
 
         </div>
-        <!--div class="master_footer">
-            Copyright © 2016 Rajamangala University of Technology Tawan-ok. All rights reserved
-        </!--div-->
+        
 
     </form>
 </body>

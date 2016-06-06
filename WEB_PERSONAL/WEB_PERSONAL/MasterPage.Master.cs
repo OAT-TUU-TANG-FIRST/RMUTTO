@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.OleDb;
 using WEB_PERSONAL.Class;
+using Oracle.DataAccess.Client;
 
 namespace WEB_PERSONAL {
     public partial class MasterPage : System.Web.UI.MasterPage {
@@ -21,14 +22,22 @@ namespace WEB_PERSONAL {
             PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
             Person loginPerson = ps.LoginPerson;
 
+            lbName.Text = loginPerson.FullName;
+            lbStaffType.Text = loginPerson.StaffTypeName;
+            lbPosition.Text = loginPerson.PositionName;
+            lbPositionRank.Text = loginPerson.AdminPositionName;
+            lbDepartment.Text = loginPerson.DivisionName;
+
             string name = loginPerson.FirstNameAndLastName;
-            LinkButton1.Text = "<img src='Image/Small/person2.png'/>" + name;
-            LinkButton10.Visible = true;
-            
+            profile_name.InnerText = name;
+          
             string personImageFileName = DatabaseManager.GetPersonImageFileName(loginPerson.CitizenID);
             if (personImageFileName != "") {
                 profile_pic.Src = "Upload/PersonImage/" + personImageFileName;
-            }  
+                profile_pic2.Src = "Upload/PersonImage/" + personImageFileName;
+            }  else {
+                profile_pic.Src = "Image/Small/person2.png";
+            }
 
             int v1 = DatabaseManager.GetLeaveRequiredCountByCommanderLow(loginPerson.CitizenID);
             if (v1 != 0) {
@@ -46,15 +55,6 @@ namespace WEB_PERSONAL {
             } else {
                 lbLeaveAllowCount.Text = "";
                 lbLeaveAllowCount.Visible = false;
-            }
-
-            int v3 = 0;// DatabaseManager.GetLeaveRequiredCountByCommanderHigh(loginPerson.CitizenID);
-            if (v3 != 0) {
-                lbUpSal7030Count.Text = "" + v3;
-                lbUpSal7030Count.Visible = true;
-            } else {
-                lbUpSal7030Count.Text = "";
-                lbUpSal7030Count.Visible = false;
             }
 
             /*if(v1 + v2 == 0) {
@@ -119,7 +119,107 @@ namespace WEB_PERSONAL {
             }
             */
 
+            //---------
+            int count_cl = DatabaseManager.GetLeaveRequiredCountByCommanderLow(loginPerson.CitizenID);
+            int count_ch = DatabaseManager.GetLeaveRequiredCountByCommanderHigh(loginPerson.CitizenID);
+            int count_leave_finish = 0;
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
+                con.Open();
+                using (OracleCommand com = new OracleCommand("SELECT COUNT(LEAVE_ID) FROM LEV_DATA WHERE PS_ID = '" + loginPerson.CitizenID + "' AND LEAVE_STATUS_ID in(3,7)", con)) {
+                    using (OracleDataReader reader = com.ExecuteReader()) {
+                        while (reader.Read()) {
+                            count_leave_finish = int.Parse(reader.GetValue(0).ToString());
+                        }
+                    }
+                }
+            }
+            int count_ins = 0;
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
+                con.Open();
+                using (OracleCommand com = new OracleCommand("SELECT COUNT(IAS_ID) FROM TB_INSIG_ADMIN_SENT WHERE IAS_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND IAS_STATUS = 1", con)) {
+                    using (OracleDataReader reader = com.ExecuteReader()) {
+                        while (reader.Read()) {
+                            count_ins = int.Parse(reader.GetValue(0).ToString());
+                        }
+                    }
+                }
+            }
+            int count = count_cl + count_ch + count_leave_finish + count_ins;
 
+
+            noti_leave_none.Visible = false;
+            noti_cl.Visible = false;
+            noti_ch.Visible = false;
+            noti_leave_finish.Visible = false;
+
+            noti_ins_none.Visible = false;
+            noti_ins.Visible = false;
+
+            if (count_cl + count_ch + count_leave_finish == 0) {
+                noti_leave_none.Visible = true;
+            } else {
+                if (count_cl != 0) {
+                    noti_cl.Visible = true;
+                }
+                if (count_ch != 0) {
+                    noti_ch.Visible = true;
+                }
+                if (count_leave_finish != 0) {
+                    noti_leave_finish.Visible = true;
+                }
+            }
+
+            if (count_ins == 0) {
+                noti_ins_none.Visible = true;
+            } else {
+                if (count_ins != 0) {
+                    noti_ins.Visible = true;
+                }
+
+            }
+            if(count > 0) {
+                noti_alert.InnerText = "" + count;
+                noti_alert.Attributes["class"] = "ps-ms-main-hd-noti-alert";
+            }
+            //---------
+            {
+                bool จัดการวันปฏิบัติราชการ = false;
+                using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
+                    con.Open();
+                    using (OracleCommand com = new OracleCommand("SELECT * FROM LEV_ACT WHERE PS_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND TYPE = 1", con)) {
+                        using (OracleDataReader reader = com.ExecuteReader()) {
+                            while (reader.Read()) {
+                                จัดการวันปฏิบัติราชการ = true;
+                            }
+                        }
+                    }
+                }
+                if (จัดการวันปฏิบัติราชการ) {
+                    WorkingDay.Visible = true;
+                } else {
+                    WorkingDay.Visible = false;
+                }
+            }
+            {
+                bool ออกรายงานการลา = false;
+                using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
+                    con.Open();
+                    using (OracleCommand com = new OracleCommand("SELECT * FROM LEV_ACT WHERE PS_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND TYPE = 2", con)) {
+                        using (OracleDataReader reader = com.ExecuteReader()) {
+                            while (reader.Read()) {
+                                ออกรายงานการลา = true;
+                            }
+                        }
+                    }
+                }
+                if (ออกรายงานการลา) {
+                    LeaveReport.Visible = true;
+                } else {
+                    LeaveReport.Visible = false;
+                }
+            }
+
+            //---------
 
             if (!IsPostBack) {
                 DatabaseManager.AddCounter();
@@ -202,9 +302,13 @@ namespace WEB_PERSONAL {
             Response.Redirect("Profile.aspx");
         }
 
-   
+        protected void lbuLogout_Click(object sender, EventArgs e) {
+            Session.Remove("PersonnelSystem");
+            Response.Redirect("Access.aspx");
+        }
 
- 
-
+        protected void lbuUser_Click(object sender, EventArgs e) {
+            Response.Redirect("Profile.aspx");
+        }
     }
 }

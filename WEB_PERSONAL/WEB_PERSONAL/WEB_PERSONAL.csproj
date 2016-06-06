@@ -730,19 +730,8 @@
     <Content Include="Content\themes\base\minified\images\ui-icons_454545_256x240.png" />
     <Content Include="Content\themes\base\minified\images\ui-icons_888888_256x240.png" />
     <Content Include="Content\themes\base\minified\images\ui-icons_cd0a0a_256x240.png" />
-    <Content Include="CSS\About.css" />
     <Content Include="CSS\Access.css" />
-    <Content Include="CSS\Admin.css" />
-    <Content Include="CSS\Default.css" />
-    <Content Include="CSS\Download.css" />
-    <Content Include="CSS\Late.css" />
-    <Content Include="CSS\Leave.css" />
-    <Content Include="CSS\Person-Detail.css" />
     <Content Include="CSS\Print.css" />
-    <Content Include="CSS\Profile.css" />
-    <Content Include="CSS\Salary.css" />
-    <Content Include="CSS\Study.css" />
-    <Content Include="CSS\UpdateHistory.css" />
     <Content Include="DataManager.aspx" />
     <Content Include="Developer.aspx" />
     <Content Include="District-ADMIN.aspx" />
@@ -782,6 +771,7 @@
     <Content Include="Image\Insignia\ม.ป.ช..png" />
     <Content Include="Image\Insignia\ม.ว.ม..png" />
     <Content Include="Image\office.jpg" />
+    <Content Include="Image\rmutto-ms-drop.png" />
     <Content Include="Image\rmutto_clear.jpg" />
     <Content Include="Image\Small\a.png" />
     <Content Include="Image\Small\back.png" />
@@ -809,6 +799,7 @@
     <Content Include="Image\Small\lock.png" />
     <Content Include="Image\Small\logout.png" />
     <Content Include="Image\Small\medal.png" />
+    <Content Include="Image\Small\menu-blue.png" />
     <Content Include="Image\Small\money.png" />
     <Content Include="Image\Small\next.png" />
     <Content Include="Image\Small\office.png" />
@@ -842,12 +833,14 @@
     <Content Include="Image\Small\paper.png" />
     <Content Include="Image\Small\pencil_y.png" />
     <Content Include="Image\Small\red_alert.png" />
+    <Content Include="Image\Small\save.png" />
     <Content Include="Image\Small\search.png" />
     <Content Include="Image\Small\send-email.png" />
     <Content Include="Image\Small\statistic.png" />
     <Content Include="Image\Small\table.png" />
     <Content Include="Image\Small\unlock.png" />
     <Content Include="Image\Small\upload.png" />
+    <Content Include="Image\Small\web.png" />
     <Content Include="Image\Small\wrench.png" />
     <Content Include="Image\Small\yellow_alert.png" />
     <Content Include="Image\stickman.png" />
@@ -858,6 +851,9 @@
     <Content Include="Image\TUUbg4.jpg" />
     <Content Include="Image\TUUbg5.jpg" />
     <Content Include="Image\white1.png" />
+    <Content Include="Image\x32\menu.png" />
+    <Content Include="Image\x32\notification.png" />
+    <Content Include="Image\x32\menu2.png" />
     <Content Include="Image\มทร.ตะวันออก.jpg" />
     <Content Include="INSG_Borrow.aspx" />
     <Content Include="INSG_Qualified.aspx" />
@@ -988,6 +984,7 @@
     <Content Include="LeaveCancel.aspx" />
     <Content Include="LeaveClaim.aspx" />
     <Content Include="LeaveComment.aspx" />
+    <Content Include="LeaveControl.aspx" />
     <Content Include="LeaveHistory.aspx" />
     <Content Include="LeaveManager.aspx" />
     <Content Include="LeavePermission.aspx" />
@@ -1011,9 +1008,6 @@
     <Content Include="Province-ADMIN.aspx" />
     <Content Include="Religion-ADMIN.aspx" />
     <Content Include="Report-Custom-Person.aspx" />
-    <Content Include="SalarybyID-Edit-Permanent.aspx" />
-    <Content Include="Salary_Salary_Admin.aspx" />
-    <Content Include="Salary_Basesalary_Admin.aspx" />
     <Content Include="Profile.aspx" />
     <Content Include="Staff-ADMIN.aspx" />
     <Content Include="StaffType-ADMIN.aspx" />
@@ -1022,12 +1016,6 @@
     <Content Include="TeachISCED-ADMIN.aspx" />
     <Content Include="TestOutput.aspx" />
     <Content Include="UploadList.aspx" />
-    <Content Include="UpSalary70_30_2.aspx" />
-    <Content Include="UpSalary70_30_Evaluation.aspx" />
-    <Content Include="UpSalary70_30_Evaluation_v2.aspx" />
-    <Content Include="UpSalary80_20_1.aspx" />
-    <Content Include="UpSalary80_20_2.aspx" />
-    <Content Include="UpSalaryForm.aspx" />
     <Content Include="ViewLeaveForm.aspx" />
     <Content Include="WorkDivision-ADMIN.aspx" />
     <Content Include="WorkingDay.aspx" />
@@ -1069,17 +1057,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Salary-report.aspx" />
-    <Content Include="SalarybyID-Edit.aspx" />
-    <Content Include="SalaryByID-Report.aspx" />
-    <Content Include="SalarybyID.aspx" />
     <Content Include="Script\jquery-1.7.1.min.js" />
     <Content Include="Script\jquery-ui-1.8.20.min.js" />
     <Content Include="Script\JSFunction.js" />
     <Content Include="SEMINAR-ADMIN.aspx" />
     <Content Include="SEMINAR-GENERAL.aspx" />
     <Content Include="TitleName-ADMIN.aspx" />
-    <Content Include="Salary.aspx" />
     <Content Include="CSS\Master.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -1206,7 +1189,6 @@
       <DependentUpon>Claninsignia-ADMIN.aspx</DependentUpon>
     </Compile>
     <Compile Include="Class\DatabaseManager.cs" />
-    <Compile Include="Class\Form1Package.cs" />
     <Compile Include="Class\LeaveData.cs" />
     <Compile Include="Class\Person.cs" />
     <Compile Include="Class\PersonnelSystem.cs" />
@@ -1471,6 +1453,13 @@
     <Compile Include="LeaveComment.aspx.designer.cs">
       <DependentUpon>LeaveComment.aspx</DependentUpon>
     </Compile>
+    <Compile Include="LeaveControl.aspx.cs">
+      <DependentUpon>LeaveControl.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LeaveControl.aspx.designer.cs">
+      <DependentUpon>LeaveControl.aspx</DependentUpon>
+    </Compile>
     <Compile Include="LeaveHistory.aspx.cs">
       <DependentUpon>LeaveHistory.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1608,55 +1597,6 @@
       <DependentUpon>CrystalReport1.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Salary-report.aspx.cs">
-      <DependentUpon>Salary-report.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Salary-report.aspx.designer.cs">
-      <DependentUpon>Salary-report.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SalarybyID-Edit-Permanent.aspx.cs">
-      <DependentUpon>SalarybyID-Edit-Permanent.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SalarybyID-Edit-Permanent.aspx.designer.cs">
-      <DependentUpon>SalarybyID-Edit-Permanent.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SalarybyID-Edit.aspx.cs">
-      <DependentUpon>SalarybyID-Edit.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SalarybyID-Edit.aspx.designer.cs">
-      <DependentUpon>SalarybyID-Edit.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SalaryByID-Report.aspx.cs">
-      <DependentUpon>SalaryByID-Report.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SalaryByID-Report.aspx.designer.cs">
-      <DependentUpon>SalaryByID-Report.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SalaryByID.aspx.cs">
-      <DependentUpon>SalarybyID.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SalaryByID.aspx.designer.cs">
-      <DependentUpon>SalarybyID.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Salary_Salary_Admin.aspx.cs">
-      <DependentUpon>Salary_Salary_Admin.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Salary_Salary_Admin.aspx.designer.cs">
-      <DependentUpon>Salary_Salary_Admin.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Salary_Basesalary_Admin.aspx.cs">
-      <DependentUpon>Salary_Basesalary_Admin.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Salary_Basesalary_Admin.aspx.designer.cs">
-      <DependentUpon>Salary_Basesalary_Admin.aspx</DependentUpon>
-    </Compile>
     <Compile Include="SEMINAR-ADMIN.aspx.cs">
       <DependentUpon>SEMINAR-ADMIN.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1721,61 +1661,12 @@
       <DependentUpon>TitleName-ADMIN.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Salary.aspx.cs">
-      <DependentUpon>Salary.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Salary.aspx.designer.cs">
-      <DependentUpon>Salary.aspx</DependentUpon>
-    </Compile>
     <Compile Include="UploadList.aspx.cs">
       <DependentUpon>UploadList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="UploadList.aspx.designer.cs">
       <DependentUpon>UploadList.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UpSalary70_30_2.aspx.cs">
-      <DependentUpon>UpSalary70_30_2.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UpSalary70_30_2.aspx.designer.cs">
-      <DependentUpon>UpSalary70_30_2.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UpSalary70_30_Evaluation.aspx.cs">
-      <DependentUpon>UpSalary70_30_Evaluation.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UpSalary70_30_Evaluation.aspx.designer.cs">
-      <DependentUpon>UpSalary70_30_Evaluation.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UpSalary70_30_Evaluation_v2.aspx.cs">
-      <DependentUpon>UpSalary70_30_Evaluation_v2.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UpSalary70_30_Evaluation_v2.aspx.designer.cs">
-      <DependentUpon>UpSalary70_30_Evaluation_v2.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UpSalary80_20_1.aspx.cs">
-      <DependentUpon>UpSalary80_20_1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UpSalary80_20_1.aspx.designer.cs">
-      <DependentUpon>UpSalary80_20_1.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UpSalary80_20_2.aspx.cs">
-      <DependentUpon>UpSalary80_20_2.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UpSalary80_20_2.aspx.designer.cs">
-      <DependentUpon>UpSalary80_20_2.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UpSalaryForm.aspx.cs">
-      <DependentUpon>UpSalaryForm.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UpSalaryForm.aspx.designer.cs">
-      <DependentUpon>UpSalaryForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="Util.cs" />
     <Compile Include="ViewLeaveForm.aspx.cs">

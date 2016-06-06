@@ -211,71 +211,7 @@ namespace WEB_PERSONAL.Class {
             }
             return null;
         }
-        public static Form1Package GetForm1Package(string leaveID) {
-            try {
-                int.Parse(leaveID);
-            } catch {
-                return null;
-            }
-            using (OracleConnection con = new OracleConnection(CONNECTION_STRING)) {
-                con.Open();
-                using (OracleCommand com = new OracleCommand("SELECT LEV_MAIN.*, LEV_FORM1.*, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_MAIN.LEAVE_TYPE_ID = LEV_TYPE.LEAVE_TYPE_ID) LEAVE_TYPE_NAME, (SELECT LEAVE_ALLOW_NAME FROM LEV_ALLOW WHERE CH_ALLOW = LEAVE_ALLOW_ID) LEAVE_ALLOW_NAME FROM LEV_MAIN, LEV_FORM1 WHERE LEV_MAIN.LEAVE_ID = LEV_FORM1.LEAVE_ID AND LEV_MAIN.LEAVE_ID = " + leaveID, con)) {
-                    using (OracleDataReader reader = com.ExecuteReader()) {
-                        while (reader.Read()) {
-                            Form1Package form1Package = new Form1Package();
-                            int i = 0;
-                            form1Package.LeaveID = reader.GetValue(i++).ToString();
-                            form1Package.LeaveTypeID = reader.GetValue(i++).ToString();
-                            form1Package.LeaveState = reader.GetValue(i++).ToString();
-                            form1Package.CitizenID = reader.GetValue(i++).ToString();
-                            form1Package.RequestDate = Util.PureDatabaseToThaiDate(reader.GetValue(i++).ToString());
-                            form1Package.FromDate = Util.PureDatabaseToThaiDate(reader.GetValue(i++).ToString());
-                            form1Package.ToDate = Util.PureDatabaseToThaiDate(reader.GetValue(i++).ToString());
-                            form1Package.TotalDay = reader.GetValue(i++).ToString();
-                            form1Package.CommanderLowID = reader.GetValue(i++).ToString();
-                            form1Package.CommanderLowPrefix = reader.GetValue(i++).ToString();
-                            form1Package.CommanderLowFirstName = reader.GetValue(i++).ToString();
-                            form1Package.CommanderLowLastName = reader.GetValue(i++).ToString();
-                            form1Package.CommanderLowPosition = reader.GetValue(i++).ToString();
-                            form1Package.CommanderLowComment = reader.GetValue(i++).ToString();
-                            form1Package.CommanderLowDate = Util.PureDatabaseToThaiDate(reader.GetValue(i++).ToString());
-                            form1Package.CommanderHighID = reader.GetValue(i++).ToString();
-                            form1Package.CommanderHighPrefix = reader.GetValue(i++).ToString();
-                            form1Package.CommanderHighFirstName = reader.GetValue(i++).ToString();
-                            form1Package.CommanderHighLastName = reader.GetValue(i++).ToString();
-                            form1Package.CommanderHighPosition = reader.GetValue(i++).ToString();
-                            form1Package.CommanderHighComment = reader.GetValue(i++).ToString();
-                            form1Package.CommanderHighAllow = reader.GetValue(i++).ToString();
-                            form1Package.CommanderHighDate = Util.PureDatabaseToThaiDate(reader.GetValue(i++).ToString());
-                            form1Package.PersonPrefix = reader.GetValue(i++).ToString();
-                            form1Package.PersonFirstName = reader.GetValue(i++).ToString();
-                            form1Package.PersonLastName = reader.GetValue(i++).ToString();
-                            form1Package.PersonPosition = reader.GetValue(i++).ToString();
-                            form1Package.PersonDepartment = reader.GetValue(i++).ToString();
-                            form1Package.PersonRank = reader.GetValue(i++).ToString();
-                            form1Package.FormID = reader.GetValue(i++).ToString();
-                            i++;
-                            form1Package.Reason = reader.GetValue(i++).ToString();
-                            form1Package.Contact = reader.GetValue(i++).ToString();
-                            form1Package.Phone = reader.GetValue(i++).ToString();
-                            form1Package.LastFromDate = Util.PureDatabaseToThaiDate(reader.GetValue(i++).ToString());
-                            form1Package.LastToDate = Util.PureDatabaseToThaiDate(reader.GetValue(i++).ToString());
-                            form1Package.LastTotalDay = reader.GetValue(i++).ToString();
-                            form1Package.DoctorCertificate = reader.GetValue(i++).ToString();
-                            form1Package.CountPast = reader.GetValue(i++).ToString();
-                            form1Package.CountNow = reader.GetValue(i++).ToString();
-                            form1Package.CountTotal = reader.GetValue(i++).ToString();
-                            form1Package.LeaveTypeName = reader.GetValue(i++).ToString();
-                            form1Package.CommanderHighAllowName = reader.GetValue(i++).ToString();
-                            
-
-                            return form1Package;
-                        }
-                    }
-                }
-            }
-            return null;
-        }
+        
         public static int GetLeaveRequiredCountByCommanderLow(string citizenID) {
             using (OracleConnection con = new OracleConnection(CONNECTION_STRING)) {
                 con.Open();

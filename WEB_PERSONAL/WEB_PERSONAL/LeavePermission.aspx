@@ -10,10 +10,13 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div>
         <div class="ps-header"><img src="Image/Small/info.png" />สิทธิการอนุญาตการลา</div>
-        <p class="c1">
-            การลาของข้าราชการพลเรือนในสถาบันอุดมศึกษา ตามระเบียบสำนักนายกรัฐมนตรีว่าด้วยการลาของข้าราชการ พ.ศ. ๒๕๕๕
-        </p>
-        <asp:Table ID="Table1" runat="server" CssClass="ps-gridview">
+        <div class="ps-box">
+            <div class="ps-box-i0">
+                <div class="ps-box-hd10">
+                    การลาของข้าราชการพลเรือนในสถาบันอุดมศึกษา ตามระเบียบสำนักนายกรัฐมนตรีว่าด้วยการลาของข้าราชการ พ.ศ. ๒๕๕๕
+                </div>
+                <div class="ps-box-ct10">
+                    <asp:Table ID="Table1" runat="server" CssClass="ps-gridview">
             <asp:TableHeaderRow>
                 <asp:TableHeaderCell></asp:TableHeaderCell>
                 <asp:TableHeaderCell ColumnSpan="2">วันอนุญาตครั้งหนึ่งไม่เกิน</asp:TableHeaderCell>
@@ -29,7 +32,9 @@
                 <asp:TableHeaderCell>ลาไปอุปสมบทหรือประกอบพิธีฮัจย์</asp:TableHeaderCell>
             </asp:TableHeaderRow>
         </asp:Table>
-        
-        <div class="ps-separator"></div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </asp:Content>
