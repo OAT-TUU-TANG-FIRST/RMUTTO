@@ -266,6 +266,7 @@
                                     <a href="INSG_Return.aspx"><img src="Image/Small/medal.png" />การคืนเครื่องราชฯ</a>
                                     <a href="INSG_Qualified.aspx"><img src="Image/Small/medal.png" />รายชื่อผู้ที่เข้าเกณฑ์การรับเครื่องราชฯ</a>
                                     <a href="INSG_RequestList.aspx"><img src="Image/Small/medal.png" />รายชื่อการขอเครื่องราชฯ</a>
+                                    <a href="INSG_Result_To_User.aspx"><img src="Image/Small/medal.png" />แจ้งผลผู้ที่ได้รับเครื่องราชฯ</a>
                                 </div>
                             </div>
                         </div>

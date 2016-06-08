@@ -44,9 +44,9 @@ namespace WEB_PERSONAL {
                     }
                     {
                         TableHeaderCell cell = new TableHeaderCell();
-                        cell.Text = "ชื่อ";
+                        cell.Text = "ชื่อ - สกุล";
                         row.Cells.Add(cell);
-                    }
+                    } 
                     {
                         TableHeaderCell cell = new TableHeaderCell();
                         cell.Text = "ชั้นเครื่องราชฯ ปัจจุบัน";
@@ -62,15 +62,27 @@ namespace WEB_PERSONAL {
                         cell.Text = "ชั้นเครื่องราชฯ ชั้นถัดไป";
                         row.Cells.Add(cell);
                     }
+                    {
+                        TableHeaderCell cell = new TableHeaderCell();
+                        cell.Text = "วันที่บรรจุ";
+                        row.Cells.Add(cell);
+                    }
+                    {
+                        TableHeaderCell cell = new TableHeaderCell();
+                        cell.Text = "เงินเดือน";
+                        row.Cells.Add(cell);
+                    }
+                    {
+                        TableHeaderCell cell = new TableHeaderCell();
+                        cell.Text = "ตำแหน่ง";
+                        row.Cells.Add(cell);
+                    }
                     Table1.Rows.Add(row);
                 }
 
-
-
-
                 using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                     con.Open();
-                    using (OracleCommand com = new OracleCommand("SELECT PS_PERSON.PS_CITIZEN_ID รหัสประชาชน, PS_PERSON.PS_FN_TH || ' ' || PS_PERSON.PS_LN_TH ชื่อ, PS_STAFFTYPE_ID, PS_PIG_ID, (SELECT TRUNC((SYSDATE - PS_INWORK_DATE)/365,0) from PS_PERSON A WHERE A.PS_CITIZEN_ID = PS_PERSON.PS_CITIZEN_ID), PS_SALARY FROM PS_PERSON", con)) {
+                    using (OracleCommand com = new OracleCommand("SELECT PS_PERSON.PS_CITIZEN_ID รหัสประชาชน, PS_PERSON.PS_FN_TH || ' ' || PS_PERSON.PS_LN_TH ชื่อ, PS_STAFFTYPE_ID, PS_PIG_ID, (SELECT TRUNC((SYSDATE - PS_INWORK_DATE)/365,0) from PS_PERSON A WHERE A.PS_CITIZEN_ID = PS_PERSON.PS_CITIZEN_ID), PS_SALARY, PS_INWORK_DATE, PS_SALARY, TB_POSITION.NAME FROM PS_PERSON INNER JOIN TB_POSITION ON PS_PERSON.PS_POSITION_ID = TB_POSITION.ID", con)) {
                         using (OracleDataReader reader = com.ExecuteReader()) {
                             while (reader.Read()) {
 
@@ -105,7 +117,7 @@ namespace WEB_PERSONAL {
                                     LinkButton lbName = new LinkButton();
                                     lbName.Text = reader.GetString(1);
                                     lbName.Click += (e2, e3) => {
-                                        Response.Redirect("Default.aspx?CitizenID=1234");
+                                        Response.Redirect("INSG_Qualified_Detail.aspx");
                                     };
                                     TableCell cell = new TableCell();
                                     cell.Controls.Add(lbName);
@@ -162,6 +174,30 @@ namespace WEB_PERSONAL {
                                     TableCell cell = new TableCell();
                                     cell.Controls.Add(p1);
                                     cell.Controls.Add(p2);
+                                    row.Cells.Add(cell);
+                                }
+
+                                {
+                                    Label lblDateInwork = new Label();
+                                    lblDateInwork.Text = reader.GetDateTime(6).ToString("dd MMM yyyy");
+                                    TableCell cell = new TableCell();
+                                    cell.Controls.Add(lblDateInwork);
+                                    row.Cells.Add(cell);
+                                }
+
+                                {
+                                    Label lblSalary = new Label();
+                                    lblSalary.Text = reader.GetInt32(7).ToString("#,###");
+                                    TableCell cell = new TableCell();
+                                    cell.Controls.Add(lblSalary);
+                                    row.Cells.Add(cell);
+                                }
+
+                                {
+                                    Label lblPosition = new Label();
+                                    lblPosition.Text = reader.GetString(8);
+                                    TableCell cell = new TableCell();
+                                    cell.Controls.Add(lblPosition);
                                     row.Cells.Add(cell);
                                 }
 

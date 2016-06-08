@@ -25,6 +25,8 @@ namespace WEB_PERSONAL {
                     string req_date = gv1.Rows[i].Cells[3].Text;
                     string state = gv1.Rows[i].Cells[4].Text;
 
+
+
                     LinkButton lbu = new LinkButton();
                     lbu.Text = "เลือก";
                     lbu.CssClass = "ps-button";

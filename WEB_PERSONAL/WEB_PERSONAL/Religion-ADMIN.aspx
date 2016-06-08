@@ -1,10 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Religion-ADMIN.aspx.cs" Inherits="WEB_PERSONAL.Religion_ADMIN" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
         .divpan {
             text-align: center;
-            color: blue;
         }
         div{
             color:#003380;

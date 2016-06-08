@@ -1,10 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Year-ADMIN.aspx.cs" Inherits="WEB_PERSONAL.Year_ADMIN" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
         .divpan {
             text-align: center;
-            color: blue;
         }
         div{
             color:#003380;
@@ -102,7 +100,7 @@
                             OnRowDataBound="GridView1_RowDataBound"
                             OnPageIndexChanging="myGridViewYEAR_PageIndexChanging" PageSize="15" BackColor="White" BorderColor="#999999">
                             <Columns>
-                                <asp:TemplateField HeaderText="ปีพุทธศักราช" ControlStyle-Width="820" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Tomato">
+                                <asp:TemplateField HeaderText="ปีพุทธศักราช" ControlStyle-Width="820" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Tomato" SortExpression="YEAR_ID">
                                     <ItemTemplate>
                                         <asp:Label ID="lblYearNameEdit" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.YEAR_ID") %>'></asp:Label>
                                     </ItemTemplate>

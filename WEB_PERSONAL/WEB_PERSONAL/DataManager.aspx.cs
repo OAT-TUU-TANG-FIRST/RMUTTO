@@ -15,5 +15,15 @@ namespace WEB_PERSONAL {
         {
 
         }
+
+        protected void btnView1Personnel_Click(object sender, EventArgs e)
+        {
+            MultiView1.ActiveViewIndex = 0;
+        }
+
+        protected void btnView2Insignia_Click(object sender, EventArgs e)
+        {
+            MultiView1.ActiveViewIndex = 1;
+        }
     }
 }

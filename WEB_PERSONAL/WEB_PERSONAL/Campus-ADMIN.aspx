@@ -3,7 +3,6 @@
     <style type="text/css">
         .divpan {
             text-align: center;
-            color: blue;
         }
         div{
             color:#003380;
@@ -131,4 +130,3 @@
         </div>
     </asp:Panel>
 </asp:Content>
-
