@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Year-ADMIN.aspx.cs" Inherits="WEB_PERSONAL.Year_ADMIN" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="PosiInsigDegree-ADMIN.aspx.cs" Inherits="WEB_PERSONAL.PosiInsigDegree_ADMIN" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
         .divpan {
@@ -52,32 +52,36 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:Panel ID="Panel1" runat="server" CssClass="divpan" BackColor="White" ForeColor="#6699FF" BorderColor="Tomato" DefaultButton="btnSearchYear">
+    <asp:Panel ID="Panel1" runat="server" CssClass="divpan" BackColor="White" ForeColor="#6699FF" BorderColor="Tomato" DefaultButton="btnSearchPosiInsigDegree">
         <div>
             <fieldset>
                 <legend>ค้นหาข้อมูล</legend>
                 <div>
-                    ปีพุทธศักราช :&nbsp;<asp:TextBox ID="txtSearchTH" runat="server" CssClass="tb5" Width="230px" MaxLength="4"></asp:TextBox>
-                    <asp:Button ID="btnSearchYear" Text="Search" runat="server" CssClass="master_OAT_button" OnClick="btnSearchYear_Click" />
+                    ชื่อระดับตำแหน่ง :&nbsp<asp:TextBox ID="txtSearchPosiInsigDegreeName" runat="server" CssClass="tb5" Width="230px" MaxLength="100"></asp:TextBox>
+                    ชื่่อระดับตำแหน่งประเภท :&nbsp<asp:DropDownList ID="ddlSearchPosiInsigGover" runat="server" CssClass="tb5" Width="250px"></asp:DropDownList>
+                    <asp:Button ID="btnSearchPosiInsigDegree" Text="Search" runat="server" CssClass="master_OAT_button" OnClick="btnSearchPosiInsigDegree_Click" />
                     <asp:Button ID="btnSearchRefresh" Text="Refresh" runat="server" CssClass="master_OAT_button" OnClick="btnSearchRefresh_Click" />
                 </div>
             </fieldset>
         </div>
     </asp:Panel>
-    <asp:Panel ID="Panel2" runat="server" ScrollBars="Horizontal" CssClass="divpan" BackColor="White" ForeColor="#6699FF" BorderColor="Tomato" DefaultButton="btnSubmitYEAR">
+    <asp:Panel ID="Panel2" runat="server" ScrollBars="Horizontal" CssClass="divpan" BackColor="White" ForeColor="#6699FF" BorderColor="Tomato" DefaultButton="btnSubmitPosiInsigDegree">
         <div>
             <fieldset>
                 <legend>เพิ่มข้อมูล</legend>
                 <div>
                     <table class="center1">
                         <tr>
-                            <td style="margin-left: auto; margin-right: auto; text-align: center">ปีพุทธศักราช :</td>
-                            <td style="text-align: left; width: 120px;">
-                                <asp:TextBox ID="txtYearName" runat="server" CssClass="tb5" Width="230px" MaxLength="4"></asp:TextBox></td>
+                            <td style="margin-left: auto; margin-right: auto; text-align: center">ชื่อระดับตำแหน่ง :</td>
+                            <td style="text-align: left; width: 50px;">
+                                <asp:TextBox ID="txtInsertPosiInsigDegreeName" runat="server" CssClass="tb5" MaxLength="100" Width="230px"></asp:TextBox></td>
+                            <td style="margin-left: auto; margin-right: auto; text-align: center">ชื่่อระดับตำแหน่งประเภท :</td>
+                            <td style="text-align: left; width: 80px;">
+                                <asp:DropDownList ID="ddlInsertPosiInsigGover" runat="server" CssClass="tb5" Width="250px"></asp:DropDownList></td>
                             <td style="text-align: left;">
-                                <asp:Button ID="btnSubmitYEAR" Text="OK" runat="server" CssClass="master_OAT_button" OnClick="btnSubmitYEAR_Click" /></td>
+                                <asp:Button ID="btnSubmitPosiInsigDegree" Text="OK" runat="server" CssClass="master_OAT_button" OnClick="btnSubmitPosiInsigDegree_Click" /></td>
                             <td style="text-align: left;">
-                                <asp:Button ID="btnCancelYEAR" Text="Cancel" runat="server" CssClass="master_OAT_button" OnClick="btnCancelYEAR_Click" /></td>
+                                <asp:Button ID="btnCancelPosiInsigDegree" Text="Cancel" runat="server" CssClass="master_OAT_button" OnClick="btnCancelPosiInsigDegree_Click" /></td>
                         </tr>
                     </table>
                 </div>
@@ -92,20 +96,33 @@
                         <asp:GridView ID="GridView1" runat="server" Style="margin-left: auto; margin-right: auto; text-align: center; width: 100%"
                             AutoGenerateColumns="false"
                             AllowPaging="true"
-                            DataKeyNames="YEAR_ID"
+                            DataKeyNames="PID_ID"
                             OnRowEditing="modEditCommand"
                             OnRowCancelingEdit="modCancelCommand"
                             OnRowUpdating="modUpdateCommand"
                             OnRowDeleting="modDeleteCommand"
                             OnRowDataBound="GridView1_RowDataBound"
-                            OnPageIndexChanging="myGridViewYEAR_PageIndexChanging" PageSize="15" BackColor="White" BorderColor="#999999">
+                            OnPageIndexChanging="myGridViewPosiInsigDegree_PageIndexChanging" PageSize="15" BackColor="White" BorderColor="#999999">
                             <Columns>
-                                <asp:TemplateField HeaderText="ปีพุทธศักราช" ControlStyle-Width="820" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Tomato" SortExpression="YEAR_ID">
+                                <asp:TemplateField Visible="false" HeaderText="รหัสระดับตำแหน่ง" ControlStyle-Width="100" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Tomato">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblYearNameEdit" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.YEAR_ID") %>'></asp:Label>
+                                        <asp:Label ID="lblPosiInsigDegreeIDEdit" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PID_ID") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="ชื่อระดับตำแหน่ง" ControlStyle-Width="380" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Tomato">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblPosiInsigDegreeNameEdit" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PID_NAME") %>'></asp:Label>
                                     </ItemTemplate>
                                     <EditItemTemplate>
-                                        <asp:TextBox ID="txtYearNameEdit" MaxLength="4" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.YEAR_ID") %>'></asp:TextBox>
+                                        <asp:TextBox ID="txtPosiInsigDegreeNameEdit" MaxLength="100" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PID_NAME") %>'></asp:TextBox>
+                                    </EditItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="ชื่่อระดับตำแหน่งประเภท" ControlStyle-Width="120" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Tomato">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblPosiInsigGoverIDEdit" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PIG_ID") %>'></asp:Label>
+                                    </ItemTemplate>
+                                    <EditItemTemplate>
+                                        <asp:DropDownList ID="ddlPosiInsigGoverIDEdit" runat="server"></asp:DropDownList>
                                     </EditItemTemplate>
                                 </asp:TemplateField>
                                 <asp:CommandField ShowEditButton="True" CancelText="Cancel" DeleteText="Delete" EditText="Edit" UpdateText="Update" HeaderText="แก้ไข" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Tomato" />

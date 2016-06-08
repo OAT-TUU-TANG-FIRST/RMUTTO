@@ -16,7 +16,24 @@ namespace WEB_PERSONAL {
             if(!IsPostBack) {
                 DatabaseManager.BindDropDown(ddlInsg, "SELECT * FROM INS_GRADEINSIGNIA ORDER BY ID_GRADEINSIGNIA DESC", "NAME_GRADEINSIGNIA_THA", "ID_GRADEINSIGNIA", "--กรุณาเลือกเครื่องราช--");
             }
-            
+
+            PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
+            Person loginPerson = ps.LoginPerson;
+
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+            {
+                con.Open();
+                using (OracleCommand com = new OracleCommand("SELECT p.PS_CITIZEN_ID from PS_PERSON p where p.PS_CITIZEN_ID = '" + ps.LoginPerson.CitizenID + "'", con))
+                {
+                    using (OracleDataReader reader = com.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            tbCitizen.Text = reader.IsDBNull(0) ? "" : reader.GetString(0) + " ";
+                        }
+                    }
+                }
+            }
         }
 
         protected void ddlInsg_SelectedIndexChanged(object sender, EventArgs e) {
@@ -196,9 +213,17 @@ namespace WEB_PERSONAL {
             srd.InnerHtml += "<div style='color : #ff0000'><img src='Image/Small/delete.png' class='icon_left' />" + text + "</div>";
             work = false;
         }
-
         protected void lbuWant_Click(object sender, EventArgs e) {
             MultiView1.ActiveViewIndex = 1;
+        }
+        protected void lbuCancleView2_Click(object sender, EventArgs e)
+        {
+            MultiView1.ActiveViewIndex = 0;
+        }
+
+        protected void lbuSubmitView2_Click(object sender, EventArgs e)
+        {
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ได้ทำการขอเครื่องราชฯ เรียบร้อยแล้ว !')", true);
         }
     }
 }

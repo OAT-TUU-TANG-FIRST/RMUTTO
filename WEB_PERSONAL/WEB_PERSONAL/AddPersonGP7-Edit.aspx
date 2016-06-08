@@ -8,13 +8,11 @@
             color: #9999ff;
             font-weight: 900;
         }
-
         .ui-datepicker {
             font-family: tahoma;
             text-align: center;
             color: dodgerblue;
         }
-
         fieldset {
             padding: 0.2em 0.5em;
             border: 3px solid #99e6ff;
@@ -22,7 +20,6 @@
             font-size: 90%;
             text-align: left;
         }
-
         legend {
             padding: 0.2em 0.5em;
             border: 3px solid #99e6ff;
@@ -30,7 +27,6 @@
             font-size: 120%;
             text-align: left;
         }
-
         .tb5 {
             background-repeat: repeat-x;
             border: 1px solid #ff9900;
@@ -42,6 +38,31 @@
             font-family: tahoma, arial, sans-serif;
             border-radius: 10px;
             resize: none;
+        }
+        .col1 {
+            text-align: right;
+        }
+        .col2 {
+            text-align: left;
+        }
+        .ps-button {
+            display: inline-block;
+            font-family: RB-Regular, Tahoma;
+            font-weight: normal;
+            font-size: 12px;
+            text-decoration: none;
+            padding: 3px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: color ease 0.25s, background-color ease 0.25s, border-color ease 0.25s;
+            text-align: left;
+            color: #000000;
+            background-color: #ffffff;
+            border: 1px solid #c0c0c0;
+            border-top: 1px solid #d0d0d0;
+            border-bottom: 1px solid #b0b0b0;
+            padding: 3px 15px;
+            border-collapse: collapse;
         }
     </style>
     <script>

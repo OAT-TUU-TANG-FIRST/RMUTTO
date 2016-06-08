@@ -6060,4 +6060,560 @@ namespace WEB_PERSONAL.Entities
             return result;
         }
     }
+    /// <summary>
+    /// PositionInsigGover
+    /// </summary>
+    public class ClassPositionInsigGover
+    {
+        public int PIG_ID { get; set; }
+        public string PIG_NAME { get; set; }
+
+        public ClassPositionInsigGover() { }
+        public ClassPositionInsigGover(int PIG_ID, string PIG_NAME)
+        {
+            this.PIG_ID = PIG_ID;
+            this.PIG_NAME = PIG_NAME;
+        }
+
+        public DataTable GetPositionInsigGover(string PIG_NAME)
+        {
+            DataTable dt = new DataTable();
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            string query = "SELECT * FROM TB_POSITION_INSIG_GOVER ";
+            if (!string.IsNullOrEmpty(PIG_NAME))
+            {
+                query += " where 1=1 ";
+                if (!string.IsNullOrEmpty(PIG_NAME))
+                {
+                    query += " and PIG_NAME like :PIG_NAME ";
+                }
+            }
+            OracleCommand command = new OracleCommand(query, conn);
+            // Create the command
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                if (!string.IsNullOrEmpty(PIG_NAME))
+                {
+                    command.Parameters.Add(new OracleParameter("PIG_NAME", PIG_NAME + "%"));
+                }
+                OracleDataAdapter sd = new OracleDataAdapter(command);
+                sd.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+
+            return dt;
+        }
+
+        public int InsertPositionInsigGover()
+        {
+            int id = 0;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            OracleCommand command = new OracleCommand("INSERT INTO TB_POSITION_INSIG_GOVER (PIG_NAME) VALUES (:PIG_NAME)", conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("PIG_NAME", PIG_NAME));
+                id = command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return id;
+        }
+
+        public bool UpdatePositionInsigGover()
+        {
+            bool result = false;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            string query = "Update TB_POSITION_INSIG_GOVER Set ";
+            query += " PIG_ID = :PIG_ID,";
+            query += " PIG_NAME = :PIG_NAME";
+            query += " where PIG_ID = :PIG_ID";
+
+            OracleCommand command = new OracleCommand(query, conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("PIG_ID", PIG_ID));
+                command.Parameters.Add(new OracleParameter("PIG_NAME", PIG_NAME));
+                if (command.ExecuteNonQuery() > 0)
+                {
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+            }
+            return result;
+        }
+
+        public bool DeletePositionInsigGover()
+        {
+            bool result = false;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            OracleCommand command = new OracleCommand("Delete TB_POSITION_INSIG_GOVER where PIG_ID = :PIG_ID", conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("PIG_ID", PIG_ID));
+                if (command.ExecuteNonQuery() >= 0)
+                {
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return result;
+        }
+        public bool CheckUsePositionInsigGoverName()
+        {
+            bool result = true;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+
+            // Create the command
+            OracleCommand command = new OracleCommand("SELECT count(PIG_NAME) FROM TB_POSITION_INSIG_GOVER WHERE PIG_NAME = :PIG_NAME ", conn);
+
+            // Add the parameters.
+            command.Parameters.Add(new OracleParameter("PIG_NAME", PIG_NAME));
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                int count = (int)(decimal)command.ExecuteScalar();
+                if (count >= 1)
+                {
+                    result = false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return result;
+        }
+    }
+    /// <summary>
+    /// PositionInsigDegree
+    /// </summary>
+    public class ClassPositionInsigDegree
+    {
+        public int PID_ID { get; set; }
+        public string PID_NAME { get; set; }
+        public int PIG_ID { get; set; }
+
+
+        public ClassPositionInsigDegree() { }
+        public ClassPositionInsigDegree(int PID_ID, string PID_NAME, int PIG_ID)
+        {
+            this.PID_ID = PID_ID;
+            this.PID_NAME = PID_NAME;
+            this.PIG_ID = PIG_ID;
+        }
+
+        public DataTable GetPositionInsigDegree(string PID_NAME, string PIG_ID)
+        {
+            DataTable dt = new DataTable();
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            string query = "SELECT * FROM TB_POSITION_INSIG_DEGREE ";
+            if (!string.IsNullOrEmpty(PID_NAME) || !string.IsNullOrEmpty(PIG_ID))
+            {
+                query += " where 1=1 ";
+                if (!string.IsNullOrEmpty(PID_NAME))
+                {
+                    query += " and PID_NAME like :PID_NAME ";
+                }
+                if (!string.IsNullOrEmpty(PIG_ID))
+                {
+                    query += " and PIG_ID like :PIG_ID ";
+                }
+            }
+            OracleCommand command = new OracleCommand(query, conn);
+            // Create the command
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                if (!string.IsNullOrEmpty(PID_NAME))
+                {
+                    command.Parameters.Add(new OracleParameter("PID_NAME", PID_NAME + "%"));
+                }
+                if (!string.IsNullOrEmpty(PIG_ID))
+                {
+                    command.Parameters.Add(new OracleParameter("PIG_ID", PIG_ID));
+                }
+                OracleDataAdapter sd = new OracleDataAdapter(command);
+                sd.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+
+            return dt;
+        }
+
+        public int InsertPositionInsigDegree()
+        {
+            int id = 0;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            OracleCommand command = new OracleCommand("INSERT INTO TB_POSITION_INSIG_DEGREE (PID_NAME,PIG_ID) VALUES (:PID_NAME,:PIG_ID)", conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("PID_NAME", PID_NAME));
+                command.Parameters.Add(new OracleParameter("PIG_ID", PIG_ID));
+                id = command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return id;
+        }
+
+        public bool UpdatePositionInsigDegree()
+        {
+            bool result = false;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            string query = "Update TB_POSITION_INSIG_DEGREE Set ";
+            query += " PID_ID = :PID_ID,";
+            query += " PID_NAME = :PID_NAME,";
+            query += " PIG_ID = :PIG_ID";
+            query += " where PID_ID = :PID_ID";
+
+            OracleCommand command = new OracleCommand(query, conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("PID_ID", PID_ID));
+                command.Parameters.Add(new OracleParameter("PID_NAME", PID_NAME));
+                command.Parameters.Add(new OracleParameter("PIG_ID", PIG_ID));
+                if (command.ExecuteNonQuery() > 0)
+                {
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+            }
+            return result;
+        }
+
+        public bool DeletePositionInsigDegree()
+        {
+            bool result = false;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            OracleCommand command = new OracleCommand("Delete TB_POSITION_INSIG_DEGREE where PID_ID = :PID_ID", conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("PID_ID", PID_ID));
+                if (command.ExecuteNonQuery() >= 0)
+                {
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return result;
+        }
+        public bool CheckUsePositionInsigDegreeName()
+        {
+            bool result = true;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+
+            // Create the command
+            OracleCommand command = new OracleCommand("SELECT count(PID_NAME) FROM TB_POSITION_INSIG_DEGREE WHERE PID_NAME = :PID_NAME and PIG_ID = :PIG_ID ", conn);
+
+            // Add the parameters.
+            command.Parameters.Add(new OracleParameter("PID_NAME", PID_NAME));
+            command.Parameters.Add(new OracleParameter("PIG_ID", PIG_ID));
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                int count = (int)(decimal)command.ExecuteScalar();
+                if (count >= 1)
+                {
+                    result = false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return result;
+        }
+    }
+    /// <summary>
+    /// PositionInsigEmp
+    /// </summary>
+    public class ClassPositionInsigEmp
+    {
+
+        public int PIE_ID { get; set; }
+        public string PIE_NAME { get; set; }
+
+        public ClassPositionInsigEmp() { }
+        public ClassPositionInsigEmp(int PIE_ID, string PIE_NAME)
+        {
+            this.PIE_ID = PIE_ID;
+            this.PIE_NAME = PIE_NAME;
+        }
+
+        public DataTable GetPositionInsigEmp(string PIE_NAME)
+        {
+            DataTable dt = new DataTable();
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            string query = "SELECT * FROM TB_POSITION_INSIG_EMP ";
+            if (!string.IsNullOrEmpty(PIE_NAME))
+            {
+                query += " where 1=1 ";
+                if (!string.IsNullOrEmpty(PIE_NAME))
+                {
+                    query += " and PIE_NAME like :PIE_NAME ";
+                }
+            }
+            OracleCommand command = new OracleCommand(query, conn);
+            // Create the command
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                if (!string.IsNullOrEmpty(PIE_NAME))
+                {
+                    command.Parameters.Add(new OracleParameter("PIE_NAME", PIE_NAME + "%"));
+                }
+                OracleDataAdapter sd = new OracleDataAdapter(command);
+                sd.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+
+            return dt;
+        }
+
+        public int InsertPositionInsigEmp()
+        {
+            int id = 0;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            OracleCommand command = new OracleCommand("INSERT INTO TB_POSITION_INSIG_EMP (PIE_NAME) VALUES (:PIE_NAME)", conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("PIE_NAME", PIE_NAME));
+                id = command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return id;
+        }
+
+        public bool UpdatePositionInsigEmp()
+        {
+            bool result = false;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            string query = "Update TB_POSITION_INSIG_EMP Set ";
+            query += " PIE_NAME = :PIE_NAME";
+            query += " where PIE_ID = :PIE_ID";
+
+            OracleCommand command = new OracleCommand(query, conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("PIE_ID", PIE_ID));
+                command.Parameters.Add(new OracleParameter("PIE_NAME", PIE_NAME));
+
+                if (command.ExecuteNonQuery() > 0)
+                {
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+            }
+            return result;
+        }
+
+        public bool DeletePositionInsigEmp()
+        {
+            bool result = false;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            OracleCommand command = new OracleCommand("Delete TB_POSITION_INSIG_EMP where PIE_ID = :PIE_ID", conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("PIE_ID", PIE_ID));
+                if (command.ExecuteNonQuery() >= 0)
+                {
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return result;
+        }
+        public bool CheckUsePositionInsigEmpName()
+        {
+            bool result = true;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+
+            // Create the command
+            OracleCommand command = new OracleCommand("SELECT count(PIE_NAME) FROM TB_POSITION_INSIG_EMP WHERE PIE_NAME = :PIE_NAME ", conn);
+
+            // Add the parameters.
+            command.Parameters.Add(new OracleParameter("PIE_NAME", PIE_NAME));
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                int count = (int)(decimal)command.ExecuteScalar();
+                if (count >= 1)
+                {
+                    result = false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return result;
+        }
+    }
 }

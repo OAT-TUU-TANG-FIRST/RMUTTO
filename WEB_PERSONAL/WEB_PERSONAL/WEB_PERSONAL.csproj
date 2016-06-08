@@ -857,8 +857,10 @@
     <Content Include="Image\มทร.ตะวันออก.jpg" />
     <Content Include="INSG_Borrow.aspx" />
     <Content Include="INSG_Qualified.aspx" />
+    <Content Include="INSG_Qualified_Detail.aspx" />
     <Content Include="INSG_Request.aspx" />
     <Content Include="INSG_RequestList.aspx" />
+    <Content Include="INSG_Result_To_User.aspx" />
     <Content Include="INSG_Return.aspx" />
     <Content Include="insignia_from_add.aspx" />
     <Content Include="insignia_from_view.aspx" />
@@ -995,6 +997,9 @@
     <Content Include="Permission.aspx" />
     <Content Include="PosiGoverAcad-ADMIN.aspx" />
     <Content Include="PosiGoverSalary-ADMIN.aspx" />
+    <Content Include="PosiInsigDegree-ADMIN.aspx" />
+    <Content Include="PosiInsigEMP-ADMIN.aspx" />
+    <Content Include="PosiInsigGover-ADMIN.aspx" />
     <Content Include="Position-ADMIN.aspx" />
     <Content Include="Person-Detail.aspx" />
     <Content Include="personalDataSet.xsc">
@@ -1292,6 +1297,13 @@
     <Compile Include="INSG_Qualified.aspx.designer.cs">
       <DependentUpon>INSG_Qualified.aspx</DependentUpon>
     </Compile>
+    <Compile Include="INSG_Qualified_Detail.aspx.cs">
+      <DependentUpon>INSG_Qualified_Detail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="INSG_Qualified_Detail.aspx.designer.cs">
+      <DependentUpon>INSG_Qualified_Detail.aspx</DependentUpon>
+    </Compile>
     <Compile Include="INSG_Request.aspx.cs">
       <DependentUpon>INSG_Request.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1305,6 +1317,13 @@
     </Compile>
     <Compile Include="INSG_RequestList.aspx.designer.cs">
       <DependentUpon>INSG_RequestList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="INSG_Result_To_User.aspx.cs">
+      <DependentUpon>INSG_Result_To_User.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="INSG_Result_To_User.aspx.designer.cs">
+      <DependentUpon>INSG_Result_To_User.aspx</DependentUpon>
     </Compile>
     <Compile Include="INSG_Return.aspx.cs">
       <DependentUpon>INSG_Return.aspx</DependentUpon>
@@ -1529,6 +1548,27 @@
     </Compile>
     <Compile Include="PosiGoverSalary-ADMIN.aspx.designer.cs">
       <DependentUpon>PosiGoverSalary-ADMIN.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PosiInsigDegree-ADMIN.aspx.cs">
+      <DependentUpon>PosiInsigDegree-ADMIN.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PosiInsigDegree-ADMIN.aspx.designer.cs">
+      <DependentUpon>PosiInsigDegree-ADMIN.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PosiInsigEMP-ADMIN.aspx.cs">
+      <DependentUpon>PosiInsigEMP-ADMIN.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PosiInsigEMP-ADMIN.aspx.designer.cs">
+      <DependentUpon>PosiInsigEMP-ADMIN.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PosiInsigGover-ADMIN.aspx.cs">
+      <DependentUpon>PosiInsigGover-ADMIN.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PosiInsigGover-ADMIN.aspx.designer.cs">
+      <DependentUpon>PosiInsigGover-ADMIN.aspx</DependentUpon>
     </Compile>
     <Compile Include="Position-ADMIN.aspx.cs">
       <DependentUpon>Position-ADMIN.aspx</DependentUpon>
