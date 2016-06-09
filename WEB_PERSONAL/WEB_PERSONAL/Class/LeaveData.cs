@@ -275,7 +275,12 @@ namespace WEB_PERSONAL.Class {
                 using (OracleCommand com = new OracleCommand("UPDATE LEV_DATA SET CANCEL_DATE = :CANCEL_DATE, CANCEL_REASON = :CANCEL_REASON, LEAVE_STATUS_ID = :LEAVE_STATUS_ID WHERE LEAVE_ID = " + LeaveID, con)) {
                     com.Parameters.Add("CANCEL_DATE", DateTime.Today);
                     com.Parameters.Add("CANCEL_REASON", CancelReason);
-                    com.Parameters.Add("LEAVE_STATUS_ID", 5);
+                    if(CL_ID == null) {
+                        com.Parameters.Add("LEAVE_STATUS_ID", 6);
+                    } else {
+                        com.Parameters.Add("LEAVE_STATUS_ID", 5);
+                    }
+                    
                     com.ExecuteNonQuery();
                 }
 

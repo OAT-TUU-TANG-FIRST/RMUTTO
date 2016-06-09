@@ -240,6 +240,90 @@ namespace WEB_PERSONAL.Class {
             }
             return -1;
         }
+        public static string รหัสหัวหน้าฝ่าย(string DVID) {
+            string citizenID = "-1";
+            using (OracleConnection con = new OracleConnection(CONNECTION_STRING)) {
+                con.Open();
+                using (OracleCommand com = new OracleCommand("SELECT PS_CITIZEN_ID FROM PS_PERSON WHERE PS_ADMIN_POS_ID = 10024 AND PS_DIVISION_ID = " + DVID, con)) {
+                    using (OracleDataReader reader = com.ExecuteReader()) {
+                        while (reader.Read()) {
+                            citizenID = reader.GetString(0);
+                        }
+                    }
+                }
+            }
+            return citizenID;
+        }
+        public static string รหัสหัวหน้าภาควิชา(string DVID) {
+            string citizenID = "-1";
+            using (OracleConnection con = new OracleConnection(CONNECTION_STRING)) {
+                con.Open();
+                using (OracleCommand com = new OracleCommand("SELECT PS_CITIZEN_ID FROM PS_PERSON WHERE PS_ADMIN_POS_ID = 10023 AND PS_DIVISION_ID = " + DVID, con)) {
+                    using (OracleDataReader reader = com.ExecuteReader()) {
+                        while (reader.Read()) {
+                            citizenID = reader.GetString(0);
+                        }
+                    }
+                }
+            }
+            return citizenID;
+        }
+        public static string รหัสคณบดี(string FID) {
+            string citizenID = "-1";
+            using (OracleConnection con = new OracleConnection(CONNECTION_STRING)) {
+                con.Open();
+                using (OracleCommand com = new OracleCommand("SELECT PS_CITIZEN_ID FROM PS_PERSON WHERE PS_ADMIN_POS_ID = 3 AND PS_FACULTY_ID = " + FID, con)) {
+                    using (OracleDataReader reader = com.ExecuteReader()) {
+                        while (reader.Read()) {
+                            citizenID = reader.GetString(0);
+                        }
+                    }
+                }
+            }
+            return citizenID;
+        }
+        public static string รหัสอธิการบดี(string CID) {
+            string citizenID = "-1";
+            using (OracleConnection con = new OracleConnection(CONNECTION_STRING)) {
+                con.Open();
+                using (OracleCommand com = new OracleCommand("SELECT PS_CITIZEN_ID FROM PS_PERSON WHERE PS_ADMIN_POS_ID = 1 AND PS_CAMPUS_ID = " + CID, con)) {
+                    using (OracleDataReader reader = com.ExecuteReader()) {
+                        while (reader.Read()) {
+                            citizenID = reader.GetString(0);
+                        }
+                    }
+                }
+            }
+            return citizenID;
+        }
+        public static string รหัสเลขาธิการคณะกรรมการ() {
+            string citizenID = "-1";
+            using (OracleConnection con = new OracleConnection(CONNECTION_STRING)) {
+                con.Open();
+                using (OracleCommand com = new OracleCommand("SELECT PS_CITIZEN_ID FROM PS_PERSON WHERE PS_ADMIN_POS_ID = 10022", con)) {
+                    using (OracleDataReader reader = com.ExecuteReader()) {
+                        while (reader.Read()) {
+                            citizenID = reader.GetString(0);
+                        }
+                    }
+                }
+            }
+            return citizenID;
+        }
+        public static string รหัสรัฐมนตรีเจ้าสังกัด() {
+            string citizenID = "-1";
+            using (OracleConnection con = new OracleConnection(CONNECTION_STRING)) {
+                con.Open();
+                using (OracleCommand com = new OracleCommand("SELECT PS_CITIZEN_ID FROM PS_PERSON WHERE PS_ADMIN_POS_ID = 10021", con)) {
+                    using (OracleDataReader reader = com.ExecuteReader()) {
+                        while (reader.Read()) {
+                            citizenID = reader.GetString(0);
+                        }
+                    }
+                }
+            }
+            return citizenID;
+        }
         public static void AddCounter() {
             ExecuteNonQuery("UPDATE TB_WEB SET COUNTER = COUNTER+1 WHERE ID = 1");
         }

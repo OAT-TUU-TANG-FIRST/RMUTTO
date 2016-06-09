@@ -384,6 +384,18 @@
                         </td>
                     </tr>
                     <tr>
+                        <td class="col1"><img src="Image/Small/person2.png" class="icon_left" />ผู้บังคับบัญชาระดับต่ำ</td>
+                        <td class="col2">
+                            <asp:Label ID="lbS2CL" runat="server" Text="-"></asp:Label>
+                        </td>
+                    </tr>
+                                <tr>
+                        <td class="col1"><img src="Image/Small/person2.png" class="icon_left" />ผู้บังคับบัญชาระดับสูง</td>
+                        <td class="col2">
+                            <asp:Label ID="lbS2CH" runat="server"></asp:Label>
+                        </td>
+                    </tr>
+                    <tr>
                         <td class="bottom" colspan="2">
                             <asp:LinkButton ID="lbuS2Back" runat="server" CssClass="ps-button" OnClick="lbuS2Back_Click"><img src="Image/Small/back.png" class="icon_left"/>ย้อนกลับ</asp:LinkButton>
                             <asp:LinkButton ID="lbuS2Finish" runat="server" CssClass="ps-button" OnClick="lbuS2Finish_Click"><img src="Image/Small/document-create.png" class="icon_left"/>ยืนคำขอลา</asp:LinkButton>

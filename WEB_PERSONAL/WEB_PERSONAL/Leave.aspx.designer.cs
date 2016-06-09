@@ -715,6 +715,24 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.Label lbS2DrCer;
         
         /// <summary>
+        /// lbS2CL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbS2CL;
+        
+        /// <summary>
+        /// lbS2CH control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbS2CH;
+        
+        /// <summary>
         /// lbuS2Back control.
         /// </summary>
         /// <remarks>

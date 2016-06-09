@@ -157,18 +157,27 @@ namespace WEB_PERSONAL {
                     lbLastFTTDate.Text = "ไม่เคยลา";
                 }
 
-                lbCLName.Text = leaveData.CL_Title + leaveData.CL_FirstName + " " + leaveData.CL_LastName;
-                lbCLPos.Text = leaveData.CL_Position;
-                if (leaveData.CL_Comment != "") {
-                    lbCLCom.Text = leaveData.CL_Comment;
-                } else {
+                if(leaveData.CL_ID == null) {
+                    lbCLName.Text = "-";
+                    lbCLPos.Text = "-";
                     lbCLCom.Text = "-";
-                }
-                if (leaveData.CL_Date.HasValue) {
-                    lbCLDate.Text = leaveData.CL_Date.Value.ToLongDateString();
-                } else {
                     lbCLDate.Text = "-";
+                } else {
+                    lbCLName.Text = leaveData.CL_Title + leaveData.CL_FirstName + " " + leaveData.CL_LastName;
+                    lbCLPos.Text = leaveData.CL_Position;
+                    if (leaveData.CL_Comment != "") {
+                        lbCLCom.Text = leaveData.CL_Comment;
+                    } else {
+                        lbCLCom.Text = "-";
+                    }
+                    if (leaveData.CL_Date.HasValue) {
+                        lbCLDate.Text = leaveData.CL_Date.Value.ToLongDateString();
+                    } else {
+                        lbCLDate.Text = "-";
+                    }
                 }
+
+                
                 lbCHName.Text = leaveData.CH_Title + leaveData.CH_FirstName + " " + leaveData.CH_LastName;
                 lbCHPos.Text = leaveData.CH_Position;
                 if (leaveData.CH_Comment != "") {

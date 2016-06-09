@@ -22,7 +22,7 @@ html, body {
     height: 100%;
 }
 body {
-    background-color: #ffffff;
+    background-color: rgb(240,240,240);
     /*font-family: RB-Regular, Tahoma;*/
     font-family: Arial;
     font-size: 12px;
@@ -56,8 +56,8 @@ body {
     border-bottom: 1px solid rgb(235,235,235);
 }
 .ps-ms-main-hd {
-    padding: 0px 5px;
-    width: 1270px;
+    padding: 0px 0px;
+    width: 1280px;
     margin: 0 auto;
     height: 32px;
 }

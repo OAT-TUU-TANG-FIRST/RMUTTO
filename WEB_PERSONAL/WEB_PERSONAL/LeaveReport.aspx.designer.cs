@@ -10,16 +10,7 @@
 namespace WEB_PERSONAL {
     
     
-    public partial class Leave_Report1 {
-        
-        /// <summary>
-        /// form1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+    public partial class LeaveReport1 {
         
         /// <summary>
         /// Label3 control.
@@ -58,13 +49,22 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// GridView1 control.
+        /// lbuExport control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.LinkButton lbuExport;
+        
+        /// <summary>
+        /// tb control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Table tb;
         
         /// <summary>
         /// Label4 control.

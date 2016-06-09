@@ -248,7 +248,7 @@
                                     <a href="LeaveHistory.aspx"><img src="Image/Small/clock-history.png" />ประวัติการลา</a>
                                     <a href="WorkingTimeHistory.aspx"><img src="Image/Small/clock-history.png" />ประวัติเวลาปฏิบัติงาน</a>
                                     <a href="LeavePermission.aspx"><img src="Image/Small/info.png" />ตารางสิทธิการอนุญาต</a>
-                                    <a href="Leave-Report1.aspx" id="LeaveReport" runat="server"><img src="Image/Small/report.png" />ออกรายงานการลา</a>
+                                    <a href="LeaveReport.aspx" id="LeaveReport" runat="server"><img src="Image/Small/report.png" />ออกรายงานการลา</a>
                                     <a href="WorkingDay.aspx" id="WorkingDay" runat="server"><img src="Image/Small/wrench.png" />จัดการวันปฏิบัติราชการ</a>
                                     <a href="LeaveControl.aspx" id="LeaveControl" runat="server"><img src="Image/Small/wrench.png" />จัดการสิทธิใช้งานการลา</a>
                                 </div>

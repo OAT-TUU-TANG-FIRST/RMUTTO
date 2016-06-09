@@ -200,16 +200,33 @@ namespace WEB_PERSONAL {
                         }
 
                         if (leaveData.LeaveStatusID >= 1 && leaveData.LeaveStatusID <= 4) {
-                            lbCLComment.Text = leaveData.CL_Comment;
-                            lbCLDate.Text = leaveData.CL_Date.Value.ToLongDateString();
+                            if(leaveData.CL_ID == null) {
+                                lbCLComment.Text = "-";
+                                lbCLDate.Text = "-";
+                            } else {
+                                lbCLComment.Text = leaveData.CL_Comment;
+                                lbCLDate.Text = leaveData.CL_Date.Value.ToLongDateString();
+                            }
+                            
                         } else if (leaveData.LeaveStatusID >= 5 && leaveData.LeaveStatusID <= 8) {
-                            lbCLOldComment.Text = leaveData.CL_Comment;
-                            lbCLOldDate.Text = leaveData.CL_Date.Value.ToLongDateString();
-                            lbCHOldComment.Text = leaveData.CH_Comment;
-                            lbCHOldDate.Text = leaveData.CH_Date.Value.ToLongDateString();
-                            lbCancelReason.Text = leaveData.CancelReason;
-                            lbCLComment.Text = leaveData.CL_CancelComment;
-                            lbCLDate.Text = leaveData.CL_CancelDate.Value.ToLongDateString();
+                            if(leaveData.CL_ID == null) {
+                                lbCLOldComment.Text = "-";
+                                lbCLOldDate.Text = "-";
+                                lbCHOldComment.Text = leaveData.CH_Comment;
+                                lbCHOldDate.Text = leaveData.CH_Date.Value.ToLongDateString();
+                                lbCancelReason.Text = leaveData.CancelReason;
+                                lbCLComment.Text = "-";
+                                lbCLDate.Text = "-";
+                            } else {
+                                lbCLOldComment.Text = leaveData.CL_Comment;
+                                lbCLOldDate.Text = leaveData.CL_Date.Value.ToLongDateString();
+                                lbCHOldComment.Text = leaveData.CH_Comment;
+                                lbCHOldDate.Text = leaveData.CH_Date.Value.ToLongDateString();
+                                lbCancelReason.Text = leaveData.CancelReason;
+                                lbCLComment.Text = leaveData.CL_CancelComment;
+                                lbCLDate.Text = leaveData.CL_CancelDate.Value.ToLongDateString();
+                            }
+                            
                         }
 
                         
