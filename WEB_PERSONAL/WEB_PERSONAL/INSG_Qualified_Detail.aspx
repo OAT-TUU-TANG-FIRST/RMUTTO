@@ -113,7 +113,14 @@
                 </tr>
             </table>
             <div>
-                <asp:Table ID="Table1" runat="server" CssClass="ps-ins-table"></asp:Table>
+                <asp:Table ID="Table1" runat="server" CssClass="ps-gridview-x16">
+                    <asp:TableHeaderRow>
+                        <asp:TableHeaderCell>ปีที่ได้รับ</asp:TableHeaderCell>
+                        <asp:TableHeaderCell>ชั้น</asp:TableHeaderCell>
+                        <asp:TableHeaderCell>ตำแหน่ง</asp:TableHeaderCell>
+                        <asp:TableHeaderCell>เงินเดือน</asp:TableHeaderCell>
+                    </asp:TableHeaderRow>
+                </asp:Table>
                 <asp:UpdatePanel ID="Updategv1" runat="server">
                     <ContentTemplate>
                         <asp:GridView ID="gv1" runat="server" CssClass="ps-gridview"></asp:GridView>
@@ -122,7 +129,6 @@
                         <asp:AsyncPostBackTrigger ControlID="gv1" />
                     </Triggers>
                 </asp:UpdatePanel>
-                <asp:HiddenField ID="hf1" runat="server" />
             </div>
         </fieldset>
     </div>

@@ -16,14 +16,7 @@ namespace WEB_PERSONAL {
             PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
             pp = ps.LoginPerson;
 
-            //LoadCalendar(Panel1, DateTime.Today);
-            if (!IsPostBack) {
-                int year = DateTime.Today.Year;
-                for (int i = 1; i <= 12; i++) {
-                    DateTime dt = new DateTime(year, i, 1);
-                    LoadCalendar(Panel1, dt);
-                }
-            }
+            LoadCalendar(Panel1, DateTime.Today);
         }
 
         
@@ -201,10 +194,8 @@ namespace WEB_PERSONAL {
         protected void lbuSearchV2_Click(object sender, EventArgs e) {
 
             Panel1.Controls.Clear();
-            for (int i = 1; i <= 12; i++) {
-                DateTime dt = new DateTime(int.Parse(tbYear.Text)-543, i, 1);
-                LoadCalendar(Panel1, dt);
-            }
+            DateTime dt = new DateTime(int.Parse(tbYear.Text)-543, int.Parse(ddlMonth.SelectedValue), 1);
+            LoadCalendar(Panel1, dt);
 
         }
     }

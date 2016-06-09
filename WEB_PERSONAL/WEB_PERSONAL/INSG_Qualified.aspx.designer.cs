@@ -58,6 +58,15 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.LinkButton lbuSearch;
         
         /// <summary>
+        /// lbuSearchAll control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbuSearchAll;
+        
+        /// <summary>
         /// lbuSend control.
         /// </summary>
         /// <remarks>

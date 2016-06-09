@@ -83,22 +83,25 @@
             <img src="Image/Small/medal.png" />ขอเครื่องราช
         </div>
         <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex="0">
-            <asp:View ID="View1" runat="server">
-                <div>
-                    รายชื่อเครื่องราชอิสริยาภรณ์
-                    <asp:DropDownList ID="ddlInsg" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlInsg_SelectedIndexChanged" CssClass="ps-dropdown"></asp:DropDownList>
-                </div>
-                <div class="ps-separator"></div>
-                <div id="srd" runat="server">
-                </div>
-                <div style="height: 20px;"></div>
-                <asp:LinkButton ID="lbuWant" runat="server" CssClass="ps-button" Visible="false" OnClick="lbuWant_Click"><img src="Image/Small/medal.png" class="icon_left"/>ขอเครื่องราช</asp:LinkButton>
-            </asp:View>
+            
             <asp:View ID="View2" runat="server">
                 <fieldset>
                     <legend class="TMZ">ข้อมูลการขอเครื่องราชอิสริยาภรณ์</legend>
                     <div style="display: inline-block; margin-right: 20px;" class="ps-ms-main-hd-left">
                         <table>
+                            <tr>
+                                <td class="col1">เลขประจำตัวประชาชน</td>
+                                <td class="col2">
+                                    <asp:UpdatePanel ID="UpdatetbInsig" runat="server">
+                                        <ContentTemplate>
+                                            <asp:TextBox ID="tbInsig" runat="server" CssClass="tb5"></asp:TextBox>
+                                        </ContentTemplate>
+                                        <Triggers>
+                                            <asp:AsyncPostBackTrigger ControlID="tbCitizen" />
+                                        </Triggers>
+                                    </asp:UpdatePanel>
+                                </td>
+                            </tr>
                             <tr>
                                 <td class="col1">เลขประจำตัวประชาชน</td>
                                 <td class="col2">
@@ -292,7 +295,6 @@
                         </table>
                     </div>
                     <div style="clear: both;" class="center1">
-                            <asp:LinkButton ID="lbuCancleView2" runat="server" CssClass="ps-button" OnClick="lbuCancleView2_Click"><img src="Image/Small/delete.png" class="icon_left"/>ยกเลิก</asp:LinkButton>
                             <asp:LinkButton ID="lbuSubmitView2" runat="server" CssClass="ps-button" OnClick="lbuSubmitView2_Click"><img src="Image/Small/correct.png" class="icon_left"/>ยืนยันการขอเครื่องราชอิสริยาภรณ์</asp:LinkButton>
                         </div>
                 </fieldset>

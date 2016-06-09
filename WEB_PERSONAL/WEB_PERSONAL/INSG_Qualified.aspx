@@ -33,7 +33,8 @@
                 <tr>
                     <td class="col1"></td>
                     <td class="col2">
-                        <asp:LinkButton ID="lbuSearch" runat="server" CssClass="ps-button" OnClick="lbuSearch_Click"><img src="Image/Small/search.png" class="icon_left"/>ค้นหา</asp:LinkButton>
+                        <asp:LinkButton ID="lbuSearch" runat="server" CssClass="ps-button" OnClick="lbuSearch_Click"><img src="Image/Small/search.png" class="icon_left"/>ค้นหาผู้ที่เข้าเกณฑ์</asp:LinkButton>
+                        <asp:LinkButton ID="lbuSearchAll" runat="server" CssClass="ps-button" OnClick="lbuSearchAll_Click"><img src="Image/Small/search.png" class="icon_left"/>ค้นหาทั้งหมด</asp:LinkButton>
                     </td>
                 </tr>
             </table>

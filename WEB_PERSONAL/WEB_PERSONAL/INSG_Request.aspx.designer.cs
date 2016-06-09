@@ -31,42 +31,6 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.MultiView MultiView1;
         
         /// <summary>
-        /// View1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.View View1;
-        
-        /// <summary>
-        /// ddlInsg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlInsg;
-        
-        /// <summary>
-        /// srd control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl srd;
-        
-        /// <summary>
-        /// lbuWant control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbuWant;
-        
-        /// <summary>
         /// View2 control.
         /// </summary>
         /// <remarks>
@@ -74,6 +38,24 @@ namespace WEB_PERSONAL {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.View View2;
+        
+        /// <summary>
+        /// UpdatetbInsig control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatetbInsig;
+        
+        /// <summary>
+        /// tbInsig control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbInsig;
         
         /// <summary>
         /// UpdatetbCitizen control.
@@ -326,15 +308,6 @@ namespace WEB_PERSONAL {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbDegree;
-        
-        /// <summary>
-        /// lbuCancleView2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbuCancleView2;
         
         /// <summary>
         /// lbuSubmitView2 control.
