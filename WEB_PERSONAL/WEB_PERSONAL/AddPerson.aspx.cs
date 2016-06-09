@@ -39,6 +39,7 @@ namespace WEB_PERSONAL
                 DatabaseManager.BindDropDown(ddlBlood, "SELECT * FROM TB_BLOOD", "BLOOD_NAME", "BLOOD_ID", "--กรุณาเลือกกรุ๊ปเลือด--");
                 DatabaseManager.BindDropDown(ddlStatus, "SELECT * FROM TB_STATUS_PERSON", "STATUS_NAME", "STATUS_ID", "--กรุณาเลือกสถานภาพ--");
                 DatabaseManager.BindDropDown(ddlReligion, "SELECT * FROM TB_RELIGION", "RELIGION_NAME", "RELIGION_ID", "--กรุณาเลือกศาสนา--");
+                DatabaseManager.BindDropDown(ddlRank, "SELECT * FROM TB_RANK", "RANK_NAME_TH", "RANK_ID", "--กรุณาเลือกยศ--");
                 //view2
                 DatabaseManager.BindDropDown(ddlCountry, "SELECT * FROM TB_GRAD_COUNTRY", "GRAD_SHORT_NAME", "GRAD_COUNTRY_ID", "--กรุณาเลือกประเทศ--");
                 ddlCountry.SelectedValue = "Thailand";
@@ -48,10 +49,12 @@ namespace WEB_PERSONAL
                 //view3
                 DatabaseManager.BindDropDown(ddlStaffType, "SELECT * FROM TB_STAFFTYPE", "STAFFTYPE_NAME", "STAFFTYPE_ID", "--กรุณาเลือกประเภทบุคลากร--");
                 DatabaseManager.BindDropDown(ddlBudget, "SELECT * FROM TB_BUDGET", "BUDGET_NAME", "BUDGET_ID", "--กรุณาเลือกประเภทเงินจ้าง--");
+                DatabaseManager.BindDropDown(ddlPosition, "SELECT * FROM TB_POSITION", "NAME", "ID", "--กรุณาเลือกตำแหน่ง--");
                 DatabaseManager.BindDropDown(ddlAdminPosition, "SELECT * FROM TB_ADMIN_POSITION", "ADMIN_POSITION_NAME", "ADMIN_POSITION_ID", "--กรุณาเลือกตำแหน่งบริหาร--");
                 DatabaseManager.BindDropDown(ddlPositionWork, "SELECT * FROM TB_POSITION_WORK", "POSITION_WORK_NAME", "POSITION_WORK_ID", "--กรุณาเลือกตำแหน่งในสายงาน--");
                 DatabaseManager.BindDropDown(ddlAcademic, "SELECT * FROM TB_ACADEMIC_POSITION", "ACAD_NAME", "ACAD_ID", "--กรุณาเลือกตำแหน่งทางวิชาการ--");
                 DatabaseManager.BindDropDown(ddlTeachISCED, "SELECT * FROM TB_TEACH_ISCED", "TEACH_ISCED_NAME_TH", "TEACH_ISCED_ID", "--กรุณาเลือกกลุ่มสาขาวิชาที่สอน--");
+                DatabaseManager.BindDropDown(ddlTpyePosition, "SELECT * FROM TB_POSITION_INSIG_GOVER", "PIG_NAME", "PIG_ID", "--กรุณาเลือกกตำแหน่งประเภท--");
 
             }
         }
@@ -364,7 +367,7 @@ namespace WEB_PERSONAL
 
         protected void lbuV1Next_Click(object sender, EventArgs e)
         {
-            /*if(tbCitizenID.Text == "" || ddlTitle.SelectedIndex == 0 || tbNameTH.Text == ""|| tbLastNameTH.Text == "" || tbNameEN.Text == "" || tbLastNameEN.Text == "" || ddlGender.SelectedIndex == 0 || tbBirthday.Text == "" || ddlRace.SelectedIndex == 0 || ddlNation.SelectedIndex == 0 || ddlBlood.SelectedIndex == 0 || tbEmail.Text == "" || tbPhone.Text == "" || tbTelephone.Text == "" || ddlReligion.SelectedIndex == 0 || ddlStatus.SelectedIndex == 0 || tbFatherName.Text == "" || tbFatherLastName.Text == "" || tbMotherName.Text == "" || tbMotherLastName.Text == "" || tbMotherOldLastName.Text == "" || tbCoupleName.Text == "" || tbCoupleLastName.Text == "" || tbCoupleOldLastName.Text == "") {
+            if(tbCitizenID.Text == "" || ddlTitle.SelectedIndex == 0 || tbNameTH.Text == ""|| tbLastNameTH.Text == "" || tbNameEN.Text == "" || tbLastNameEN.Text == "" || ddlGender.SelectedIndex == 0 || tbBirthday.Text == "" || ddlRace.SelectedIndex == 0 || ddlNation.SelectedIndex == 0 || ddlBlood.SelectedIndex == 0 || ddlRank.SelectedIndex == 0 || tbEmail.Text == "" || tbPhone.Text == "" || tbTelephone.Text == "" || ddlReligion.SelectedIndex == 0 || ddlStatus.SelectedIndex == 0 || tbFatherName.Text == "" || tbFatherLastName.Text == "" || tbMotherName.Text == "" || tbMotherLastName.Text == "" || tbMotherOldLastName.Text == "" || tbCoupleName.Text == "" || tbCoupleLastName.Text == "" || tbCoupleOldLastName.Text == "") {
 
               notification.Attributes["class"] = "alert alert_danger";
               notification.InnerHtml = "";
@@ -411,6 +414,10 @@ namespace WEB_PERSONAL
               if (ddlBlood.SelectedIndex == 0)
               {
                   notification.InnerHtml += "<div>กรุณาเลือก 'กรุ๊ปเลือด'</div>";
+              }
+              if (ddlRank.SelectedIndex == 0)
+              {
+                  notification.InnerHtml += "<div>กรุณาเลือก 'ยศ'</div>";
               }
               if (tbEmail.Text == "")
               {
@@ -468,8 +475,8 @@ namespace WEB_PERSONAL
               MultiView1.ActiveViewIndex = 1;
               notification.Attributes["class"] = "none";
               notification.InnerHtml = "";
-          }*/
-            MultiView1.ActiveViewIndex = 1;
+          }
+            //MultiView1.ActiveViewIndex = 1;
         }
 
         protected void lbuV2Back_Click(object sender, EventArgs e)
@@ -479,7 +486,7 @@ namespace WEB_PERSONAL
 
         protected void lbuV2Next_Click(object sender, EventArgs e)
         {
-            /*if (tbHomeAdd.Text == "" || tbSoi.Text == "" || tbMoo.Text == "" || tbRoad.Text == "" || ddlProvince.SelectedIndex == 0 || ddlAmphur.SelectedIndex == 0 || ddlDistrict.SelectedIndex == 0 || tbZipcode.Text == "" || ddlCountry.SelectedIndex == 0 || tbState.Text == "" ||
+            if (tbHomeAdd.Text == "" || tbSoi.Text == "" || tbMoo.Text == "" || tbRoad.Text == "" || ddlProvince.SelectedIndex == 0 || ddlAmphur.SelectedIndex == 0 || ddlDistrict.SelectedIndex == 0 || tbZipcode.Text == "" || ddlCountry.SelectedIndex == 0 || tbState.Text == "" ||
                 tbHomeAdd2.Text == "" || tbSoi2.Text == "" || tbMoo2.Text == "" || tbRoad2.Text == "" || ddlProvince2.SelectedIndex == 0 || ddlAmphur2.SelectedIndex == 0 || ddlDistrict2.SelectedIndex == 0 || tbZipcode2.Text == "" || ddlCountry2.SelectedIndex == 0 || tbState2.Text == "")
             {
                 notification.Attributes["class"] = "alert alert_danger";
@@ -527,8 +534,8 @@ namespace WEB_PERSONAL
                 MultiView1.ActiveViewIndex = 2;
                 notification.Attributes["class"] = "none";
                 notification.InnerHtml = "";
-            }*/
-            MultiView1.ActiveViewIndex = 2;
+            }
+            //MultiView1.ActiveViewIndex = 2;
         }
         protected void lbuAddressFetch_Click(object sender, EventArgs e)
         {
@@ -565,7 +572,7 @@ namespace WEB_PERSONAL
 
         protected void lbSubmit_Click(object sender, EventArgs e)
         {
-            /*if (ddlCampus.SelectedIndex == 0 || ddlFaculty.SelectedIndex == 0 || ddlDivision.SelectedIndex == 0 || ddlWorkDivision.SelectedIndex == 0 || ddlStaffType.SelectedIndex == 0 || ddlBudget.SelectedIndex == 0 || ddlAdminPosition.SelectedIndex == 0 || ddlPositionWork.SelectedIndex == 0 || ddlAcademic.SelectedIndex == 0 || tbDateInwork.Text == "" || tbSpecialWork.Text == "" || ddlTeachISCED.SelectedIndex == 0)
+            if (ddlCampus.SelectedIndex == 0 || ddlFaculty.SelectedIndex == 0 || ddlDivision.SelectedIndex == 0 || ddlWorkDivision.SelectedIndex == 0 || ddlStaffType.SelectedIndex == 0 || ddlBudget.SelectedIndex == 0 || ddlTpyePosition.SelectedIndex == 0 || ddlPosition.SelectedIndex == 0 || ddlAdminPosition.SelectedIndex == 0 || ddlPositionWork.SelectedIndex == 0 || ddlAcademic.SelectedIndex == 0 || tbDateInwork.Text == "" || tbSpecialWork.Text == "" || ddlTeachISCED.SelectedIndex == 0)
             {
                 notification.Attributes["class"] = "alert alert_danger";
                 notification.InnerHtml = "";
@@ -593,6 +600,14 @@ namespace WEB_PERSONAL
                 if (ddlBudget.SelectedIndex == 0)
                 {
                     notification.InnerHtml += "<div>กรุณาเลือก 'ประเภทเงินจ้าง'</div>";
+                }
+                if (ddlTpyePosition.SelectedIndex == 0)
+                {
+                    notification.InnerHtml += "<div>กรุณาเลือก 'ตำแหน่งประเภท'</div>";
+                }
+                if (ddlPosition.SelectedIndex == 0)
+                {
+                    notification.InnerHtml += "<div>กรุณาเลือก 'ตำแหน่ง'</div>";
                 }
                 if (ddlAdminPosition.SelectedIndex == 0)
                 {
@@ -623,7 +638,7 @@ namespace WEB_PERSONAL
                     notification.Attributes["class"] = "none";
                     notification.InnerHtml = "";
                 }
-            }*/
+            }
 
             PS_PERSON P0 = new PS_PERSON();
 
@@ -691,6 +706,13 @@ namespace WEB_PERSONAL
             P0.PS_SPECIAL_WORK = tbSpecialWork.Text;
             P0.PS_TEACH_ISCED_ID = ddlTeachISCED.SelectedValue;
             P0.PS_PASSWORD = Util.RandomPassword(8);
+
+            //เพิ่มมาใหม่
+            
+            P0.PS_POSITION_ID = ddlPosition.SelectedValue;
+            P0.PS_SW_ID = 6;
+            P0.PS_PIG_ID = Convert.ToInt32(ddlTpyePosition.SelectedValue);
+            P0.PS_RANK_ID = 0;
 
             if (P0.CheckUseCitizenID())
             {
