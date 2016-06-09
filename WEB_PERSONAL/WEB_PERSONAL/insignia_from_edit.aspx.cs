@@ -424,7 +424,7 @@ namespace WEB_PERSONAL
                         DataTable dt = new DataTable();
                         da.Fill(dt);
                         DropDownList10.DataSource = dt;
-                        DropDownList10.DataValueField = "SEQ";
+                        DropDownList10.DataValueField = "RANK_ID";
                         DropDownList10.DataTextField = "RANK_NAME_TH";
                         DropDownList10.DataBind();
                         sqlConn.Close();
