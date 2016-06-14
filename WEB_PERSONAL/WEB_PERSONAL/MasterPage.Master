@@ -250,7 +250,6 @@
                                     <a href="LeavePermission.aspx"><img src="Image/Small/info.png" />ตารางสิทธิการอนุญาต</a>
                                     <a href="LeaveReport.aspx" id="LeaveReport" runat="server"><img src="Image/Small/report.png" />ออกรายงานการลา</a>
                                     <a href="WorkingDay.aspx" id="WorkingDay" runat="server"><img src="Image/Small/wrench.png" />จัดการวันปฏิบัติราชการ</a>
-                                    <a href="LeaveControl.aspx" id="LeaveControl" runat="server"><img src="Image/Small/wrench.png" />จัดการสิทธิใช้งานการลา</a>
                                 </div>
                             </div>
                         </div>
@@ -261,9 +260,7 @@
                              </div>
                              <div class="ps-box-i0">
                                 <div class="ps-box-ct10">
-                                    <a href="INSG_Request.aspx"><img src="Image/Small/medal.png" />การขอเครื่องราชฯ</a>
-                                    <a href="INSG_Borrow.aspx"><img src="Image/Small/medal.png" />การยืมเครื่องราชฯ</a>
-                                    <a href="INSG_Return.aspx"><img src="Image/Small/medal.png" />การคืนเครื่องราชฯ</a>
+                                    <a href="INSG_Request.aspx"><img src="Image/Small/medal.png" />ขอเครื่องราชฯ</a>
                                     <a href="INSG_Qualified.aspx"><img src="Image/Small/medal.png" />รายชื่อผู้ที่เข้าเกณฑ์การรับเครื่องราชฯ</a>
                                     <a href="INSG_RequestList.aspx"><img src="Image/Small/medal.png" />รายชื่อการขอเครื่องราชฯ</a>
                                     <a href="INSG_Result_To_User.aspx"><img src="Image/Small/medal.png" />แจ้งผลผู้ที่ได้รับเครื่องราชฯ</a>
@@ -278,6 +275,7 @@
                              <div class="ps-box-i0">
                                 <div class="ps-box-ct10">
                                     <a href="DataManager.aspx" id="A2" runat="server"><img src="Image/Small/wrench.png" />แก้ไขข้อมูล Dropdown</a>
+                                    <a href="Permission.aspx" id="Permission" runat="server"><img src="Image/Small/wrench.png" />จัดการสิทธิใช้งานระบบ</a>
                                 </div>
                             </div>
                         </div>

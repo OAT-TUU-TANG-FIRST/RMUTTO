@@ -990,7 +990,6 @@
     <Content Include="LeaveCancel.aspx" />
     <Content Include="LeaveClaim.aspx" />
     <Content Include="LeaveComment.aspx" />
-    <Content Include="LeaveControl.aspx" />
     <Content Include="LeaveHistory.aspx" />
     <Content Include="LeaveManager.aspx" />
     <Content Include="LeavePermission.aspx" />
@@ -1469,13 +1468,6 @@
     </Compile>
     <Compile Include="LeaveComment.aspx.designer.cs">
       <DependentUpon>LeaveComment.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LeaveControl.aspx.cs">
-      <DependentUpon>LeaveControl.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LeaveControl.aspx.designer.cs">
-      <DependentUpon>LeaveControl.aspx</DependentUpon>
     </Compile>
     <Compile Include="LeaveHistory.aspx.cs">
       <DependentUpon>LeaveHistory.aspx</DependentUpon>

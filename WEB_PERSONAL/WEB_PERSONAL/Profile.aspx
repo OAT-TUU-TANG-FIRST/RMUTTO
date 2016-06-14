@@ -81,7 +81,7 @@
                         <tr>
                             <td class="col1">สถานภาพ</td>
                             <td class="col2">
-                                <asp:label id="lbStatus" runat="server"></asp:label>
+                                <asp:label id="lbStatusPerson" runat="server"></asp:label>
                             </td>
                             <td class="col1">กรุ๊ปเลือด</td>
                             <td class="col2">
@@ -138,6 +138,12 @@
                     <img src="Image/Small/office.png" />ข้อมูลทางการงาน</div>
                 <div class="ps-box-ct10">
                     <table class="ps-table-x16" style="vertical-align: top;">
+                        <tr>
+                            <td class="col1">สถานะการทำงาน</td>
+                            <td class="col2">
+                                <asp:label id="lbStatusWork" runat="server"></asp:label>
+                            </td>
+                        </tr>
                         <tr>
                             <td class="col1">วันที่เริ่มเข้ารับราชการ</td>
                             <td class="col2">
@@ -335,7 +341,7 @@
                 <div class="ps-box-hd10">
                     <img src="Image/Small/image.png" />รูปภาพ</div>
                 <div class="ps-box-ct10">
-                    <div style="background-color: #f0f0f0; color: #000000; padding: 5px 10px;">
+                    <div style="background-color: #f0f0f0; color: #000000; padding: 5px 10px;" id="id1" runat="server">
                         <asp:fileupload id="FileUpload1" runat="server" />
                         <asp:linkbutton id="lbuUploadPicture" runat="server" cssclass="ps-button" onclick="lbuUploadPicture_Click"><img src="Image/Small/upload.png" class="icon_left"/>อัพโหลด</asp:linkbutton>
                     </div>

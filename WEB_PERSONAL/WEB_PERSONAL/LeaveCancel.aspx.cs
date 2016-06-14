@@ -16,7 +16,7 @@ namespace WEB_PERSONAL {
                 PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
                 Person loginPerson = ps.LoginPerson;
 
-                SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEAVE_ID รหัสการลา, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_DATA.LEAVE_TYPE_ID) ประเภทการลา, REQ_DATE วันที่ข้อมูล, FROM_DATE จากวันที่, TO_DATE ถึงวันที่, TOTAL_DAY รวมวัน FROM LEV_DATA WHERE LEAVE_STATUS_ID = 4 AND PS_ID = '" + loginPerson.CitizenID + "' AND CH_ALLOW = 1 ORDER BY LEAVE_ID DESC");
+                SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEAVE_ID รหัสการลา, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_DATA.LEAVE_TYPE_ID) ประเภทการลา, REQ_DATE วันที่ข้อมูล, FROM_DATE จากวันที่, TO_DATE ถึงวันที่, TOTAL_DAY รวมวัน FROM LEV_DATA WHERE LEAVE_STATUS_ID = 4 AND PS_ID = '" + loginPerson.CitizenID + "' AND CH_ALLOW = 1 AND FROM_DATE > CURRENT_DATE ORDER BY LEAVE_ID DESC");
                 gvLeave.DataSource = sds;
                 gvLeave.DataBind();
 

@@ -136,7 +136,7 @@ namespace WEB_PERSONAL {
             int count_ins = 0;
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
-                using (OracleCommand com = new OracleCommand("SELECT COUNT(IAS_ID) FROM TB_INSIG_ADMIN_SENT WHERE IAS_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND IAS_STATUS = 1", con)) {
+                using (OracleCommand com = new OracleCommand("SELECT COUNT(IR_ID) FROM TB_INSIG_REQUEST WHERE IR_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND IR_STATUS = 1", con)) {
                     using (OracleDataReader reader = com.ExecuteReader()) {
                         while (reader.Read()) {
                             count_ins = int.Parse(reader.GetValue(0).ToString());
@@ -182,11 +182,11 @@ namespace WEB_PERSONAL {
                 noti_alert.Attributes["class"] = "ps-ms-main-hd-noti-alert";
             }
             //---------
-            {
+            /*{
                 bool จัดการวันปฏิบัติราชการ = false;
                 using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                     con.Open();
-                    using (OracleCommand com = new OracleCommand("SELECT * FROM LEV_ACT WHERE PS_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND TYPE = 1", con)) {
+                    using (OracleCommand com = new OracleCommand("SELECT * FROM TB_PERMISSION WHERE CITIZEN_ID = '" + loginPerson.CitizenID + "' AND PERMISSION_TYPE = 1", con)) {
                         using (OracleDataReader reader = com.ExecuteReader()) {
                             while (reader.Read()) {
                                 จัดการวันปฏิบัติราชการ = true;
@@ -204,7 +204,7 @@ namespace WEB_PERSONAL {
                 bool ออกรายงานการลา = false;
                 using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                     con.Open();
-                    using (OracleCommand com = new OracleCommand("SELECT * FROM LEV_ACT WHERE PS_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND TYPE = 2", con)) {
+                    using (OracleCommand com = new OracleCommand("SELECT * FROM TB_PERMISSION WHERE CITIZEN_ID = '" + loginPerson.CitizenID + "' AND PERMISSION_TYPE = 2", con)) {
                         using (OracleDataReader reader = com.ExecuteReader()) {
                             while (reader.Read()) {
                                 ออกรายงานการลา = true;
@@ -218,6 +218,14 @@ namespace WEB_PERSONAL {
                     LeaveReport.Visible = false;
                 }
             }
+            */
+            FuncPermission(WorkingDay, loginPerson.CitizenID, 1);
+            FuncPermission(LeaveReport, loginPerson.CitizenID, 2);
+            FuncPermission(A5, loginPerson.CitizenID, 3);
+            FuncPermission(A6, loginPerson.CitizenID, 4);
+            FuncPermission(A7, loginPerson.CitizenID, 5);
+            FuncPermission(A8, loginPerson.CitizenID, 6);
+
 
             //---------
 
@@ -225,6 +233,27 @@ namespace WEB_PERSONAL {
                 DatabaseManager.AddCounter();
             }
             s_counter.InnerText = "" + DatabaseManager.GetCounter().ToString("#,###");
+        }
+
+        private void FuncPermission(Control c, string citizenID, int type) {
+            {
+                bool b = false;
+                using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
+                    con.Open();
+                    using (OracleCommand com = new OracleCommand("SELECT * FROM TB_PERMISSION WHERE CITIZEN_ID = '" + citizenID + "' AND PERMISSION_TYPE = " + type, con)) {
+                        using (OracleDataReader reader = com.ExecuteReader()) {
+                            while (reader.Read()) {
+                                b = true;
+                            }
+                        }
+                    }
+                }
+                if (b) {
+                    c.Visible = true;
+                } else {
+                    c.Visible = false;
+                }
+            }
         }
 
         protected void LinkButton4_Click(object sender, EventArgs e) {
