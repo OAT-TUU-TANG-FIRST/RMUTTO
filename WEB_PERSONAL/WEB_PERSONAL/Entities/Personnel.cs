@@ -318,8 +318,8 @@ namespace WEB_PERSONAL.Entities {
             query += " PS_RANK_ID = :PS_RANK_ID ,";
             query += " PS_POSS_SALARY = :PS_POSS_SALARY ,";
             query += " PS_PIE_ID = :PS_PIE_ID ,";
-            query += " PS_PID_ID = :PS_PID_ID";
-            query += " where PS_ID  = :PS_ID";
+            query += " PS_PID_ID = :PS_PID_ID ";
+            query += " where PS_CITIZEN_ID = :PS_CITIZEN_ID ";
 
             OracleCommand command = new OracleCommand(query, conn);
             try {
@@ -396,7 +396,6 @@ namespace WEB_PERSONAL.Entities {
                 command.Parameters.Add(new OracleParameter("PS_POSS_SALARY", PS_POSS_SALARY));
                 command.Parameters.Add(new OracleParameter("PS_PIE_ID", PS_PIE_ID));
                 command.Parameters.Add(new OracleParameter("PS_PID_ID", PS_PID_ID));
-                command.Parameters.Add(new OracleParameter("PS_ID", PS_ID));
                 if (command.ExecuteNonQuery() > 0) {
                     result = true;
                 }

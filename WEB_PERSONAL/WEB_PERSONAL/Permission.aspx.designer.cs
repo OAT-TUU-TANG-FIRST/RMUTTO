@@ -58,40 +58,58 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.Label lbName;
         
         /// <summary>
-        /// cb3 control.
+        /// cbAddPerson1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cb3;
+        protected global::System.Web.UI.WebControls.CheckBox cbAddPerson1;
         
         /// <summary>
-        /// cb4 control.
+        /// cbAddPerson2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cb4;
+        protected global::System.Web.UI.WebControls.CheckBox cbAddPerson2;
         
         /// <summary>
-        /// cb5 control.
+        /// cbAddPerson3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cb5;
+        protected global::System.Web.UI.WebControls.CheckBox cbAddPerson3;
         
         /// <summary>
-        /// cb6 control.
+        /// cbAddPerson4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cb6;
+        protected global::System.Web.UI.WebControls.CheckBox cbAddPerson4;
+        
+        /// <summary>
+        /// cbAddPerson5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbAddPerson5;
+        
+        /// <summary>
+        /// cbAddPerson6 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbAddPerson6;
         
         /// <summary>
         /// cb1 control.
@@ -110,6 +128,60 @@ namespace WEB_PERSONAL {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox cb2;
+        
+        /// <summary>
+        /// cbAddInsig1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbAddInsig1;
+        
+        /// <summary>
+        /// cbAddInsig2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbAddInsig2;
+        
+        /// <summary>
+        /// cbAddInsig3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbAddInsig3;
+        
+        /// <summary>
+        /// cbAddInsig4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbAddInsig4;
+        
+        /// <summary>
+        /// cbAddManage1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbAddManage1;
+        
+        /// <summary>
+        /// cbAddManage2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbAddManage2;
         
         /// <summary>
         /// lbuSave control.

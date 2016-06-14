@@ -218,18 +218,16 @@ namespace WEB_PERSONAL
             S.SEMINAR_DATETIME_TO = new DateTime(Convert.ToInt32(splitDate2[2]), Util.MonthToNumber(splitDate2[1]), Convert.ToInt32(splitDate2[0]));
 
             DateTime SEMINAR_SIGNED_DATETIME = DateTime.Now;
-            S.InsertSEMINAR();
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('เพิ่มข้อมูลเรียบร้อย')", true);
+            S.UpdateSEMINAR();
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('อัพเดทข้อมูลเรียบร้อย')", true);
             ClearData();
             MultiView1.ActiveViewIndex = 0;
         }
-
 
         protected void btnCancelSeminar_Click(object sender, EventArgs e)
         {
             MultiView1.ActiveViewIndex = 0;
         }
-
 
         protected void txtDateTO_TextChanged(object sender, EventArgs e)
         {

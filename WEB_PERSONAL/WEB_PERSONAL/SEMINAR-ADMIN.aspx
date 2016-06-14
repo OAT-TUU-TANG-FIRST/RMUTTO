@@ -16,7 +16,6 @@
             padding: 0.2em 0.5em;
             border: 3px solid #99e6ff;
             color: black;
-            font-size: 90%;
             text-align: center;
         }
         legend {
@@ -153,14 +152,8 @@
         <div>
             <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex="0">
                 <asp:View ID="View1" runat="server">
-                    <div class="ps-lb-progress-contain">
-                        <span class="ps-lb-progress-sel">1) ข้อมูลการฝึกอบรม/สัมมนา/ดูงาน</span>
-                        <span class="ps-lb-progress-cen"></span>
-                        <span class="ps-lb-progress-unsel">2) สรุปผลการฝึกอบรม/สัมมนา/ดูงาน</span>
-                    </div>
                     <fieldset>
-                        <legend class="TMZ">(1/2)</legend>
-
+                        <legend class="TMZ">ข้อมูลการฝึกอบรม/สัมมนา/ดูงาน</legend>
                         <table>
                             <tr>
                                 <td style="text-align: right; margin-right: 5px;">1. </td>
@@ -313,13 +306,8 @@
                 </asp:View>
 
                 <asp:View ID="View2" runat="server">
-                    <div class="ps-lb-progress-contain">
-                        <span class="ps-lb-progress-unsel">1) ข้อมูลการฝึกอบรม/สัมมนา/ดูงาน</span>
-                        <span class="ps-lb-progress-cen"></span>
-                        <span class="ps-lb-progress-sel">2) สรุปผลการฝึกอบรม/สัมมนา/ดูงาน</span>
-                    </div>
                     <fieldset>
-                        <legend class="TMZ">(2/2)</legend>
+                        <legend class="TMZ">สรุปผลการฝึกอบรม/สัมมนา/ดูงาน</legend>
                         <table>
                             <tr>
                                 <td style="text-align: left; margin-right: 10px;">5. สรุปผลการฝึกอบรม/สัมมนา/ดูงาน </td>

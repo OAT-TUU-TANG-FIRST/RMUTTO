@@ -70,6 +70,9 @@
             padding: 3px 15px;
             border-collapse: collapse;
         }
+        .textred{
+            color:red;
+        }
     </style>
     <script>
         function pageLoad(sender, args) {
@@ -97,7 +100,8 @@
                                 <td class="col2">
                                     <asp:UpdatePanel ID="UpdatetbCitizenID" runat="server">
                                         <ContentTemplate>
-                                            <asp:TextBox ID="tbCitizenID" runat="server" CssClass="tb5" MaxLength="13" ></asp:TextBox>
+                                            <asp:TextBox ID="tbCitizenID" runat="server" CssClass="tb5" MaxLength="13"></asp:TextBox>
+                                            <asp:RequiredFieldValidator runat="server" ControlToValidate="tbCitizenID" CssClass="textred" ErrorMessage="*" />
                                             <asp:LinkButton ID="lbCheckUseCitizen" runat="server" CssClass="ps-button" OnClick="lbCheckUseCitizen_Click">ตรวจสอบรหัสบัตรประชาชน</asp:LinkButton>
                                         </ContentTemplate>
                                         <Triggers>
@@ -111,7 +115,8 @@
                                 <td class="col2">
                                     <asp:UpdatePanel ID="UpdateddlTitle" runat="server">
                                         <ContentTemplate>
-                                            <asp:DropDownList ID="ddlTitle" runat="server" CssClass="tb5" ></asp:DropDownList>
+                                            <asp:DropDownList ID="ddlTitle" runat="server" CssClass="tb5"></asp:DropDownList>
+                                            <asp:RequiredFieldValidator InitialValue="0" Display="Dynamic" runat="server" ControlToValidate="ddlTitle" CssClass="textred" Text="*" ErrorMessage="*" />
                                         </ContentTemplate>
                                         <Triggers>
                                             <asp:AsyncPostBackTrigger ControlID="ddlTitle" />
@@ -125,6 +130,7 @@
                                     <asp:UpdatePanel ID="UpdatetbNameTH" runat="server">
                                         <ContentTemplate>
                                             <asp:TextBox ID="tbNameTH" runat="server" CssClass="tb5"></asp:TextBox>
+                                            <asp:RequiredFieldValidator runat="server" ControlToValidate="tbNameTH" CssClass="textred" ErrorMessage="*" />
                                         </ContentTemplate>
                                         <Triggers>
                                             <asp:AsyncPostBackTrigger ControlID="tbNameTH" />
@@ -138,6 +144,7 @@
                                     <asp:UpdatePanel ID="UpdatetbLastNameTH" runat="server">
                                         <ContentTemplate>
                                             <asp:TextBox ID="tbLastNameTH" runat="server" CssClass="tb5"></asp:TextBox>
+                                            <asp:RequiredFieldValidator runat="server" ControlToValidate="tbLastNameTH" CssClass="textred" ErrorMessage="*" />
                                         </ContentTemplate>
                                         <Triggers>
                                             <asp:AsyncPostBackTrigger ControlID="tbLastNameTH" />
@@ -151,6 +158,7 @@
                                     <asp:UpdatePanel ID="UpdatetbNameEN" runat="server">
                                         <ContentTemplate>
                                             <asp:TextBox ID="tbNameEN" runat="server" CssClass="tb5"></asp:TextBox>
+                                            <asp:RequiredFieldValidator runat="server" ControlToValidate="tbNameEN" CssClass="textred" ErrorMessage="*" />
                                         </ContentTemplate>
                                         <Triggers>
                                             <asp:AsyncPostBackTrigger ControlID="tbNameEN" />
@@ -164,6 +172,7 @@
                                     <asp:UpdatePanel ID="UpdatetbLastNameEN" runat="server">
                                         <ContentTemplate>
                                             <asp:TextBox ID="tbLastNameEN" runat="server" CssClass="tb5"></asp:TextBox>
+                                            <asp:RequiredFieldValidator runat="server" ControlToValidate="tbLastNameEN" CssClass="textred" ErrorMessage="*" />
                                         </ContentTemplate>
                                         <Triggers>
                                             <asp:AsyncPostBackTrigger ControlID="tbLastNameEN" />
@@ -177,6 +186,7 @@
                                     <asp:UpdatePanel ID="UpdateddlGender" runat="server">
                                         <ContentTemplate>
                                             <asp:DropDownList ID="ddlGender" runat="server" CssClass="tb5"></asp:DropDownList>
+                                            <asp:RequiredFieldValidator InitialValue="0" Display="Dynamic" runat="server" ControlToValidate="ddlGender" CssClass="textred" Text="*" ErrorMessage="*" />
                                         </ContentTemplate>
                                         <Triggers>
                                             <asp:AsyncPostBackTrigger ControlID="ddlGender" />
@@ -190,6 +200,7 @@
                                     <asp:UpdatePanel ID="UpdatetbBirthday" runat="server">
                                         <ContentTemplate>
                                             <asp:TextBox ID="tbBirthday" runat="server" CssClass="tb5"></asp:TextBox>
+                                            <asp:RequiredFieldValidator runat="server" ControlToValidate="tbBirthday" CssClass="textred" ErrorMessage="*" />
                                         </ContentTemplate>
                                         <Triggers>
                                             <asp:AsyncPostBackTrigger ControlID="tbBirthday" />
@@ -203,6 +214,7 @@
                                     <asp:UpdatePanel ID="UpdateddlRace" runat="server">
                                         <ContentTemplate>
                                             <asp:DropDownList ID="ddlRace" runat="server" CssClass="tb5"></asp:DropDownList>
+                                            <asp:RequiredFieldValidator InitialValue="0" Display="Dynamic" runat="server" ControlToValidate="ddlRace" CssClass="textred" Text="*" ErrorMessage="*" />
                                         </ContentTemplate>
                                         <Triggers>
                                             <asp:AsyncPostBackTrigger ControlID="ddlRace" />
@@ -216,6 +228,7 @@
                                     <asp:UpdatePanel ID="UpdateddlNation" runat="server">
                                         <ContentTemplate>
                                             <asp:DropDownList ID="ddlNation" runat="server" CssClass="tb5"></asp:DropDownList>
+                                            <asp:RequiredFieldValidator InitialValue="0" Display="Dynamic" runat="server" ControlToValidate="ddlNation" CssClass="textred" Text="*" ErrorMessage="*" />
                                         </ContentTemplate>
                                         <Triggers>
                                             <asp:AsyncPostBackTrigger ControlID="ddlNation" />
@@ -229,6 +242,7 @@
                                     <asp:UpdatePanel ID="UpdateddlBlood" runat="server">
                                         <ContentTemplate>
                                             <asp:DropDownList ID="ddlBlood" runat="server" CssClass="tb5"></asp:DropDownList>
+                                            <asp:RequiredFieldValidator InitialValue="0" Display="Dynamic" runat="server" ControlToValidate="ddlBlood" CssClass="textred" Text="*" ErrorMessage="*" />
                                         </ContentTemplate>
                                         <Triggers>
                                             <asp:AsyncPostBackTrigger ControlID="ddlBlood" />
@@ -242,6 +256,7 @@
                                     <asp:UpdatePanel ID="UpdateddlReligion" runat="server">
                                         <ContentTemplate>
                                             <asp:DropDownList ID="ddlReligion" runat="server" CssClass="tb5"></asp:DropDownList>
+                                            <asp:RequiredFieldValidator InitialValue="0" Display="Dynamic" runat="server" ControlToValidate="ddlReligion" CssClass="textred" Text="*" ErrorMessage="*" />
                                         </ContentTemplate>
                                         <Triggers>
                                             <asp:AsyncPostBackTrigger ControlID="ddlReligion" />
@@ -255,6 +270,7 @@
                                     <asp:UpdatePanel ID="UpdateddlStatus" runat="server">
                                         <ContentTemplate>
                                             <asp:DropDownList ID="ddlStatus" runat="server" CssClass="tb5"></asp:DropDownList>
+                                            <asp:RequiredFieldValidator InitialValue="0" Display="Dynamic" runat="server" ControlToValidate="ddlStatus" CssClass="textred" Text="*" ErrorMessage="*" />
                                         </ContentTemplate>
                                         <Triggers>
                                             <asp:AsyncPostBackTrigger ControlID="ddlStatus" />
@@ -276,6 +292,7 @@
                                     <asp:UpdatePanel ID="UpdateddlRank" runat="server">
                                         <ContentTemplate>
                                             <asp:DropDownList ID="ddlRank" runat="server" CssClass="tb5"></asp:DropDownList>
+                                            <asp:RequiredFieldValidator InitialValue="0" Display="Dynamic" runat="server" ControlToValidate="ddlRank" CssClass="textred" Text="*" ErrorMessage="*"></asp:RequiredFieldValidator>
                                         </ContentTemplate>
                                         <Triggers>
                                             <asp:AsyncPostBackTrigger ControlID="ddlRank" />
@@ -289,6 +306,7 @@
                                     <asp:UpdatePanel ID="UpdatetbEmail" runat="server">
                                         <ContentTemplate>
                                             <asp:TextBox ID="tbEmail" runat="server" CssClass="tb5"></asp:TextBox>
+                                            <asp:RequiredFieldValidator runat="server" ControlToValidate="tbEmail" CssClass="textred" ErrorMessage="*" />
                                         </ContentTemplate>
                                         <Triggers>
                                             <asp:AsyncPostBackTrigger ControlID="tbEmail" />
@@ -302,6 +320,7 @@
                                     <asp:UpdatePanel ID="UpdatetbPhone" runat="server">
                                         <ContentTemplate>
                                             <asp:TextBox ID="tbPhone" runat="server" CssClass="tb5" MaxLength="10"></asp:TextBox>
+                                            <asp:RequiredFieldValidator runat="server" ControlToValidate="tbPhone" CssClass="textred" ErrorMessage="*" />
                                         </ContentTemplate>
                                         <Triggers>
                                             <asp:AsyncPostBackTrigger ControlID="tbPhone" />
@@ -328,6 +347,7 @@
                                     <asp:UpdatePanel ID="UpdatetbFatherName" runat="server">
                                         <ContentTemplate>
                                             <asp:TextBox ID="tbFatherName" runat="server" CssClass="tb5"></asp:TextBox>
+                                            <asp:RequiredFieldValidator runat="server" ControlToValidate="tbFatherName" CssClass="textred" ErrorMessage="*" />
                                         </ContentTemplate>
                                         <Triggers>
                                             <asp:AsyncPostBackTrigger ControlID="tbFatherName" />
@@ -341,6 +361,7 @@
                                     <asp:UpdatePanel ID="UpdatetbFatherLastName" runat="server">
                                         <ContentTemplate>
                                             <asp:TextBox ID="tbFatherLastName" runat="server" CssClass="tb5"></asp:TextBox>
+                                            <asp:RequiredFieldValidator runat="server" ControlToValidate="tbFatherLastName" CssClass="textred" ErrorMessage="*" />
                                         </ContentTemplate>
                                         <Triggers>
                                             <asp:AsyncPostBackTrigger ControlID="tbFatherLastName" />
@@ -354,6 +375,7 @@
                                     <asp:UpdatePanel ID="UpdatetbMotherName" runat="server">
                                         <ContentTemplate>
                                             <asp:TextBox ID="tbMotherName" runat="server" CssClass="tb5"></asp:TextBox>
+                                            <asp:RequiredFieldValidator runat="server" ControlToValidate="tbMotherName" CssClass="textred" ErrorMessage="*" />
                                         </ContentTemplate>
                                         <Triggers>
                                             <asp:AsyncPostBackTrigger ControlID="tbMotherName" />
@@ -367,6 +389,7 @@
                                     <asp:UpdatePanel ID="UpdatetbMotherLastName" runat="server">
                                         <ContentTemplate>
                                             <asp:TextBox ID="tbMotherLastName" runat="server" CssClass="tb5"></asp:TextBox>
+                                            <asp:RequiredFieldValidator runat="server" ControlToValidate="tbMotherLastName" CssClass="textred" ErrorMessage="*" />
                                         </ContentTemplate>
                                         <Triggers>
                                             <asp:AsyncPostBackTrigger ControlID="tbMotherLastName" />
@@ -448,6 +471,7 @@
                                     <asp:UpdatePanel ID="UpdatetbHomeAdd" runat="server">
                                         <ContentTemplate>
                                             <asp:TextBox ID="tbHomeAdd" runat="server" CssClass="tb5"></asp:TextBox>
+                                            <asp:RequiredFieldValidator runat="server" ControlToValidate="tbHomeAdd" CssClass="textred" ErrorMessage="*" />
                                         </ContentTemplate>
                                         <Triggers>
                                             <asp:AsyncPostBackTrigger ControlID="tbHomeAdd" />
@@ -487,6 +511,7 @@
                                     <asp:UpdatePanel ID="UpdatetbRoad" runat="server">
                                         <ContentTemplate>
                                             <asp:TextBox ID="tbRoad" runat="server" CssClass="tb5"></asp:TextBox>
+                                            <asp:RequiredFieldValidator runat="server" ControlToValidate="tbRoad" CssClass="textred" ErrorMessage="*" />
                                         </ContentTemplate>
                                         <Triggers>
                                             <asp:AsyncPostBackTrigger ControlID="tbRoad" />
@@ -500,6 +525,7 @@
                                     <asp:UpdatePanel ID="UpdateddlProvince" runat="server">
                                         <ContentTemplate>
                                             <asp:DropDownList ID="ddlProvince" runat="server" CssClass="tb5" AutoPostBack="True" OnSelectedIndexChanged="ddlProvince_SelectedIndexChanged"></asp:DropDownList>
+                                            <asp:RequiredFieldValidator InitialValue="0" Display="Dynamic" runat="server" ControlToValidate="ddlProvince" CssClass="textred" Text="*" ErrorMessage="*" />
                                         </ContentTemplate>
                                         <Triggers>
                                             <asp:AsyncPostBackTrigger ControlID="ddlProvince" />
@@ -513,6 +539,7 @@
                                     <asp:UpdatePanel ID="UpdateddlAmphur" runat="server">
                                         <ContentTemplate>
                                             <asp:DropDownList ID="ddlAmphur" runat="server" CssClass="tb5" AutoPostBack="True" OnSelectedIndexChanged="ddlAmphur_SelectedIndexChanged"></asp:DropDownList>
+                                            <asp:RequiredFieldValidator InitialValue="0" Display="Dynamic" runat="server" ControlToValidate="ddlAmphur" CssClass="textred" Text="*" ErrorMessage="*" />
                                         </ContentTemplate>
                                         <Triggers>
                                             <asp:AsyncPostBackTrigger ControlID="ddlAmphur" />
@@ -526,6 +553,7 @@
                                     <asp:UpdatePanel ID="UpdateddlDistrict" runat="server">
                                         <ContentTemplate>
                                             <asp:DropDownList ID="ddlDistrict" runat="server" CssClass="tb5" OnSelectedIndexChanged="ddlDistrict_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                                            <asp:RequiredFieldValidator InitialValue="0" Display="Dynamic" runat="server" ControlToValidate="ddlDistrict" CssClass="textred" Text="*" ErrorMessage="*" />
                                         </ContentTemplate>
                                         <Triggers>
                                             <asp:AsyncPostBackTrigger ControlID="ddlDistrict" />
@@ -539,6 +567,7 @@
                                     <asp:UpdatePanel ID="UpdatetbZipcode" runat="server">
                                         <ContentTemplate>
                                             <asp:TextBox ID="tbZipcode" runat="server" CssClass="tb5"></asp:TextBox>
+                                            <asp:RequiredFieldValidator runat="server" ControlToValidate="tbZipcode" CssClass="textred" ErrorMessage="*" />
                                         </ContentTemplate>
                                         <Triggers>
                                             <asp:AsyncPostBackTrigger ControlID="tbZipcode" />
@@ -552,6 +581,7 @@
                                     <asp:UpdatePanel ID="UpdateddlCountry" runat="server">
                                         <ContentTemplate>
                                             <asp:DropDownList ID="ddlCountry" runat="server" CssClass="tb5"></asp:DropDownList>
+                                            <asp:RequiredFieldValidator InitialValue="0" Display="Dynamic" runat="server" ControlToValidate="ddlCountry" CssClass="textred" Text="*" ErrorMessage="*" />
                                         </ContentTemplate>
                                         <Triggers>
                                             <asp:AsyncPostBackTrigger ControlID="ddlCountry" />
@@ -734,6 +764,7 @@
                                 <asp:UpdatePanel ID="UpdateddlCampus" runat="server">
                                     <ContentTemplate>
                                         <asp:DropDownList ID="ddlCampus" runat="server" CssClass="tb5" OnSelectedIndexChanged="ddlCampus_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                                        <asp:RequiredFieldValidator InitialValue="0" Display="Dynamic" runat="server" ControlToValidate="ddlCampus" CssClass="textred" Text="*" ErrorMessage="*" />
                                     </ContentTemplate>
                                     <Triggers>
                                         <asp:AsyncPostBackTrigger ControlID="ddlCampus" />
@@ -747,6 +778,7 @@
                                 <asp:UpdatePanel ID="UpdateddlFaculty" runat="server">
                                     <ContentTemplate>
                                         <asp:DropDownList ID="ddlFaculty" runat="server" CssClass="tb5" OnSelectedIndexChanged="ddlFaculty_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                                        <asp:RequiredFieldValidator InitialValue="0" Display="Dynamic" runat="server" ControlToValidate="ddlFaculty" CssClass="textred" Text="*" ErrorMessage="*" />
                                     </ContentTemplate>
                                     <Triggers>
                                         <asp:AsyncPostBackTrigger ControlID="ddlFaculty" />
@@ -760,6 +792,7 @@
                                 <asp:UpdatePanel ID="UpdateddlDivision" runat="server">
                                     <ContentTemplate>
                                         <asp:DropDownList ID="ddlDivision" runat="server" CssClass="tb5" OnSelectedIndexChanged="ddlDivision_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                                        <asp:RequiredFieldValidator InitialValue="0" Display="Dynamic" runat="server" ControlToValidate="ddlDivision" CssClass="textred" Text="*" ErrorMessage="*" />
                                     </ContentTemplate>
                                     <Triggers>
                                         <asp:AsyncPostBackTrigger ControlID="ddlDivision" />
@@ -786,6 +819,7 @@
                                 <asp:UpdatePanel ID="UpdateddlStaffType" runat="server">
                                     <ContentTemplate>
                                         <asp:DropDownList ID="ddlStaffType" runat="server" CssClass="tb5"></asp:DropDownList>
+                                        <asp:RequiredFieldValidator InitialValue="0" Display="Dynamic" runat="server" ControlToValidate="ddlStaffType" CssClass="textred" Text="*" ErrorMessage="*" />
                                     </ContentTemplate>
                                     <Triggers>
                                         <asp:AsyncPostBackTrigger ControlID="ddlStaffType" />
@@ -799,6 +833,7 @@
                                 <asp:UpdatePanel ID="UpdateddlBudget" runat="server">
                                     <ContentTemplate>
                                         <asp:DropDownList ID="ddlBudget" runat="server" CssClass="tb5"></asp:DropDownList>
+                                        <asp:RequiredFieldValidator InitialValue="0" Display="Dynamic" runat="server" ControlToValidate="ddlBudget" CssClass="textred" Text="*" ErrorMessage="*" />
                                     </ContentTemplate>
                                     <Triggers>
                                         <asp:AsyncPostBackTrigger ControlID="ddlBudget" />
@@ -812,6 +847,7 @@
                                 <asp:UpdatePanel ID="UpdatetbDateInwork" runat="server">
                                     <ContentTemplate>
                                         <asp:TextBox ID="tbDateInwork" runat="server" CssClass="tb5"></asp:TextBox>
+                                        <asp:RequiredFieldValidator runat="server" ControlToValidate="tbDateInwork" CssClass="textred" ErrorMessage="*" />
                                     </ContentTemplate>
                                     <Triggers>
                                         <asp:AsyncPostBackTrigger ControlID="tbDateInwork" />
@@ -825,6 +861,7 @@
                                 <asp:UpdatePanel ID="UpdatetbSalary" runat="server">
                                     <ContentTemplate>
                                         <asp:TextBox ID="tbSalary" runat="server" CssClass="tb5"></asp:TextBox>
+                                        <asp:RequiredFieldValidator runat="server" ControlToValidate="tbSalary" CssClass="textred" ErrorMessage="*" />
                                     </ContentTemplate>
                                     <Triggers>
                                         <asp:AsyncPostBackTrigger ControlID="tbSalary" />
@@ -838,6 +875,7 @@
                                 <asp:UpdatePanel ID="UpdatetbPositionSalary" runat="server">
                                     <ContentTemplate>
                                         <asp:TextBox ID="tbPositionSalary" runat="server" CssClass="tb5"></asp:TextBox>
+                                        <asp:RequiredFieldValidator runat="server" ControlToValidate="tbPositionSalary" CssClass="textred" ErrorMessage="*" />
                                     </ContentTemplate>
                                     <Triggers>
                                         <asp:AsyncPostBackTrigger ControlID="tbPositionSalary" />
@@ -851,6 +889,7 @@
                                 <asp:UpdatePanel ID="UpdateddlStatusWork" runat="server">
                                     <ContentTemplate>
                                         <asp:DropDownList ID="ddlStatusWork" runat="server" CssClass="tb5"></asp:DropDownList>
+                                        <asp:RequiredFieldValidator InitialValue="0" Display="Dynamic" runat="server" ControlToValidate="ddlStatusWork" CssClass="textred" Text="*" ErrorMessage="*" />
                                     </ContentTemplate>
                                     <Triggers>
                                         <asp:AsyncPostBackTrigger ControlID="ddlStatusWork" />
@@ -872,6 +911,7 @@
                                 <asp:UpdatePanel ID="UpdateddlTpyePosition" runat="server">
                                     <ContentTemplate>
                                         <asp:DropDownList ID="ddlTpyePosition" runat="server" CssClass="tb5"></asp:DropDownList>
+                                        <asp:RequiredFieldValidator InitialValue="0" Display="Dynamic" runat="server" ControlToValidate="ddlTpyePosition" CssClass="textred" Text="*" ErrorMessage="*" />
                                     </ContentTemplate>
                                     <Triggers>
                                         <asp:AsyncPostBackTrigger ControlID="ddlTpyePosition" />
@@ -885,6 +925,7 @@
                                 <asp:UpdatePanel ID="UpdateddlPosition" runat="server">
                                     <ContentTemplate>
                                         <asp:DropDownList ID="ddlPosition" runat="server" CssClass="tb5"></asp:DropDownList>
+                                        <asp:RequiredFieldValidator InitialValue="0" Display="Dynamic" runat="server" ControlToValidate="ddlPosition" CssClass="textred" Text="*" ErrorMessage="*" />
                                     </ContentTemplate>
                                     <Triggers>
                                         <asp:AsyncPostBackTrigger ControlID="ddlPosition" />
@@ -898,6 +939,7 @@
                                 <asp:UpdatePanel ID="UpdateddlAdminPosition" runat="server">
                                     <ContentTemplate>
                                         <asp:DropDownList ID="ddlAdminPosition" runat="server" CssClass="tb5"></asp:DropDownList>
+                                        <asp:RequiredFieldValidator InitialValue="0" Display="Dynamic" runat="server" ControlToValidate="ddlAdminPosition" CssClass="textred" Text="*" ErrorMessage="*" />
                                     </ContentTemplate>
                                     <Triggers>
                                         <asp:AsyncPostBackTrigger ControlID="ddlAdminPosition" />
@@ -911,6 +953,7 @@
                                 <asp:UpdatePanel ID="UpdateddlPositionWork" runat="server">
                                     <ContentTemplate>
                                         <asp:DropDownList ID="ddlPositionWork" runat="server" CssClass="tb5"></asp:DropDownList>
+                                        <asp:RequiredFieldValidator InitialValue="0" Display="Dynamic" runat="server" ControlToValidate="ddlPositionWork" CssClass="textred" Text="*" ErrorMessage="*" />
                                     </ContentTemplate>
                                     <Triggers>
                                         <asp:AsyncPostBackTrigger ControlID="ddlPositionWork" />
@@ -924,6 +967,7 @@
                                 <asp:UpdatePanel ID="UpdateddlAcademic" runat="server">
                                     <ContentTemplate>
                                         <asp:DropDownList ID="ddlAcademic" runat="server" CssClass="tb5"></asp:DropDownList>
+                                        <asp:RequiredFieldValidator InitialValue="0" Display="Dynamic" runat="server" ControlToValidate="ddlAcademic" CssClass="textred" Text="*" ErrorMessage="*" />
                                     </ContentTemplate>
                                     <Triggers>
                                         <asp:AsyncPostBackTrigger ControlID="ddlAcademic" />
@@ -938,6 +982,7 @@
                                 <asp:UpdatePanel ID="UpdatetbSpecialWork" runat="server">
                                     <ContentTemplate>
                                         <asp:TextBox ID="tbSpecialWork" runat="server" CssClass="tb5"></asp:TextBox>
+                                        <asp:RequiredFieldValidator runat="server" ControlToValidate="tbSpecialWork" CssClass="textred" ErrorMessage="*" />
                                     </ContentTemplate>
                                     <Triggers>
                                         <asp:AsyncPostBackTrigger ControlID="tbSpecialWork" />
@@ -951,6 +996,7 @@
                                 <asp:UpdatePanel ID="UpdateddlTeachISCED" runat="server">
                                     <ContentTemplate>
                                         <asp:DropDownList ID="ddlTeachISCED" runat="server" CssClass="tb5"></asp:DropDownList>
+                                        <asp:RequiredFieldValidator InitialValue="0" Display="Dynamic" runat="server" ControlToValidate="ddlTeachISCED" CssClass="textred" Text="*" ErrorMessage="*" />
                                     </ContentTemplate>
                                     <Triggers>
                                         <asp:AsyncPostBackTrigger ControlID="ddlTeachISCED" />
@@ -964,6 +1010,7 @@
                                 <asp:UpdatePanel ID="UpdateddlPosiInsigGover" runat="server">
                                     <ContentTemplate>
                                         <asp:DropDownList ID="ddlPosiInsigGover" runat="server" CssClass="tb5"></asp:DropDownList>
+                                        <asp:RequiredFieldValidator InitialValue="0" Display="Dynamic" runat="server" ControlToValidate="ddlPosiInsigGover" CssClass="textred" Text="*" ErrorMessage="*" />
                                     </ContentTemplate>
                                     <Triggers>
                                         <asp:AsyncPostBackTrigger ControlID="ddlPosiInsigGover" />
@@ -977,6 +1024,7 @@
                                 <asp:UpdatePanel ID="UpdateddlPosiInsigDegree" runat="server">
                                     <ContentTemplate>
                                         <asp:DropDownList ID="ddlPosiInsigDegree" runat="server" CssClass="tb5"></asp:DropDownList>
+                                        <asp:RequiredFieldValidator InitialValue="0" Display="Dynamic" runat="server" ControlToValidate="ddlPosiInsigDegree" CssClass="textred" Text="*" ErrorMessage="*" />
                                     </ContentTemplate>
                                     <Triggers>
                                         <asp:AsyncPostBackTrigger ControlID="ddlPosiInsigDegree" />
@@ -990,6 +1038,7 @@
                                 <asp:UpdatePanel ID="UpdateddlPosiInsigEMP" runat="server">
                                     <ContentTemplate>
                                         <asp:DropDownList ID="ddlPosiInsigEMP" runat="server" CssClass="tb5"></asp:DropDownList>
+                                        <asp:RequiredFieldValidator InitialValue="0" Display="Dynamic" runat="server" ControlToValidate="ddlPosiInsigEMP" CssClass="textred" Text="*" ErrorMessage="*" />
                                     </ContentTemplate>
                                     <Triggers>
                                         <asp:AsyncPostBackTrigger ControlID="ddlPosiInsigEMP" />

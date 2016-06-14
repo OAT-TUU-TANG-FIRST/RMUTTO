@@ -144,8 +144,23 @@ namespace WEB_PERSONAL {
                     }
                 }
             }
-            int count = count_cl + count_ch + count_leave_finish + count_ins;
+            int count_insadminknow = 0;
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+            {
+                con.Open();
+                using (OracleCommand com = new OracleCommand("SELECT COUNT(IR_STATUS) FROM TB_INSIG_REQUEST WHERE IR_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND IR_STATUS = 2", con))
+                {
+                    using (OracleDataReader reader = com.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            count_insadminknow = int.Parse(reader.GetValue(0).ToString());
+                        }
+                    }
+                }
+            }
 
+            int count = count_cl + count_ch + count_leave_finish + count_ins + count_insadminknow;
 
             noti_leave_none.Visible = false;
             noti_cl.Visible = false;
@@ -174,10 +189,13 @@ namespace WEB_PERSONAL {
             } else {
                 if (count_ins != 0) {
                     noti_ins.Visible = true;
+                } else if (count_insadminknow != 0)
+                {
+                    noti_insadminknow.Visible = true;
                 }
-
             }
-            if(count > 0) {
+
+            if (count > 0) {
                 noti_alert.InnerText = "" + count;
                 noti_alert.Attributes["class"] = "ps-ms-main-hd-noti-alert";
             }
@@ -221,11 +239,20 @@ namespace WEB_PERSONAL {
             */
             FuncPermission(WorkingDay, loginPerson.CitizenID, 1);
             FuncPermission(LeaveReport, loginPerson.CitizenID, 2);
-            FuncPermission(A5, loginPerson.CitizenID, 3);
-            FuncPermission(A6, loginPerson.CitizenID, 4);
-            FuncPermission(A7, loginPerson.CitizenID, 5);
-            FuncPermission(A8, loginPerson.CitizenID, 6);
+            FuncPermission(cbAddPerson1, loginPerson.CitizenID, 3);
+            FuncPermission(cbAddPerson2, loginPerson.CitizenID, 4);
+            FuncPermission(cbAddPerson3, loginPerson.CitizenID, 5);
+            FuncPermission(cbAddPerson4, loginPerson.CitizenID, 6);
+            FuncPermission(cbAddPerson5, loginPerson.CitizenID, 7);
+            FuncPermission(cbAddPerson6, loginPerson.CitizenID, 8);
 
+            FuncPermission(cbAddInsig1, loginPerson.CitizenID, 9);
+            FuncPermission(cbAddInsig2, loginPerson.CitizenID, 10);
+            FuncPermission(cbAddInsig3, loginPerson.CitizenID, 11);
+            FuncPermission(cbAddInsig4, loginPerson.CitizenID, 12);
+
+            FuncPermission(cbAddManage1, loginPerson.CitizenID, 13);
+            FuncPermission(cbAddManage2, loginPerson.CitizenID, 14);
 
             //---------
 

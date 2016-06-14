@@ -39,10 +39,18 @@ namespace WEB_PERSONAL {
                                 int type = reader.GetInt32(2);
                                 if (type == 1) { cb1.Checked = true; }
                                 else if (type == 2) { cb2.Checked = true; }
-                                else if (type == 3) { cb3.Checked = true; }
-                                else if (type == 4) { cb4.Checked = true; }
-                                else if (type == 5) { cb5.Checked = true; }
-                                else if (type == 6) { cb6.Checked = true; }
+                                else if (type == 3) { cbAddPerson1.Checked = true; }
+                                else if (type == 4) { cbAddPerson2.Checked = true; }
+                                else if (type == 5) { cbAddPerson3.Checked = true; }
+                                else if (type == 6) { cbAddPerson4.Checked = true; }
+                                else if (type == 7) { cbAddPerson5.Checked = true; }
+                                else if (type == 8) { cbAddPerson6.Checked = true; }
+                                else if (type == 9) { cbAddInsig1.Checked = true; }
+                                else if (type == 10) { cbAddInsig2.Checked = true; }
+                                else if (type == 11) { cbAddInsig3.Checked = true; }
+                                else if (type == 12) { cbAddInsig4.Checked = true; }
+                                else if (type == 13) { cbAddManage1.Checked = true; }
+                                else if (type == 14) { cbAddManage2.Checked = true; }
                             }
                         }
                     }
@@ -61,10 +69,21 @@ namespace WEB_PERSONAL {
                 con.Open();
                 Exe(cb1, citizenID, 1);
                 Exe(cb2, citizenID, 2);
-                Exe(cb3, citizenID, 3);
-                Exe(cb4, citizenID, 4);
-                Exe(cb5, citizenID, 5);
-                Exe(cb6, citizenID, 6);
+                Exe(cbAddPerson1, citizenID, 3);
+                Exe(cbAddPerson2, citizenID, 4);
+                Exe(cbAddPerson3, citizenID, 5);
+                Exe(cbAddPerson4, citizenID, 6);
+                Exe(cbAddPerson5, citizenID, 7);
+                Exe(cbAddPerson6, citizenID, 8);
+                Exe(cbAddInsig1, citizenID, 9);
+                Exe(cbAddInsig2, citizenID, 10);
+                Exe(cbAddInsig3, citizenID, 11);
+                Exe(cbAddInsig4, citizenID, 12);
+                Exe(cbAddManage1, citizenID, 13);
+                Exe(cbAddManage2, citizenID, 14);
+
+                Page.Response.Redirect(Page.Request.Url.ToString(), true);
+
                 /*if (cb1.Checked) {
                     bool have = false;
                     using (OracleCommand com = new OracleCommand("SELECT * FROM TB_PERMISSION WHERE CITIZEN_ID = '" + citizenID + "' AND PERMISSION_TYPE = 1", con)) {
