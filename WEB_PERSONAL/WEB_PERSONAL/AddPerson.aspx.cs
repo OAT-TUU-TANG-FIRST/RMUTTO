@@ -26,6 +26,8 @@ namespace WEB_PERSONAL
                 tbTelephone.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
                 tbZipcode.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
                 tbZipcode2.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
+                tbSalary.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
+                tbPositionSalary.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
 
                 notification.Attributes["class"] = "alert alert_info";
                 notification.InnerHtml = "กรุณากรอกข้อมูล";
@@ -706,13 +708,14 @@ namespace WEB_PERSONAL
             P0.PS_SPECIAL_WORK = tbSpecialWork.Text;
             P0.PS_TEACH_ISCED_ID = ddlTeachISCED.SelectedValue;
             P0.PS_PASSWORD = Util.RandomPassword(8);
-
-            //เพิ่มมาใหม่
-            
             P0.PS_POSITION_ID = ddlPosition.SelectedValue;
-            P0.PS_SW_ID = 6;
-            P0.PS_PIG_ID = Convert.ToInt32(ddlTpyePosition.SelectedValue);
-            P0.PS_RANK_ID = 0;
+            P0.PS_SALARY = Convert.ToInt32(tbPositionSalary.Text);
+            P0.PS_PIG_ID = Convert.ToInt32(ddlPosiInsigGover.SelectedValue);
+            P0.PS_SW_ID = Convert.ToInt32(ddlStatusWork.SelectedValue);
+            P0.PS_RANK_ID = Convert.ToInt32(ddlRank.SelectedValue);
+            P0.PS_POSS_SALARY = Convert.ToInt32(tbPositionSalary.Text);
+            P0.PS_PIE_ID = Convert.ToInt32(ddlPosiInsigEMP.SelectedValue);
+            P0.PS_PID_ID = Convert.ToInt32(ddlPosiInsigDegree.SelectedValue);
 
             if (P0.CheckUseCitizenID())
             {
@@ -734,6 +737,14 @@ namespace WEB_PERSONAL
         {
             PS_PERSON P0 = new PS_PERSON();
             P0.PS_CITIZEN_ID = tbCitizenID.Text;
+            if (string.IsNullOrEmpty(tbCitizenID.Text))
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอกรหัสบัตรประชาชน')", true);
+            }
+            if (tbCitizenID.Text.Length < 13)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอกรหัสบัตรประชาชนให้ครบ 13 หลัก')", true);
+            }
             if (P0.CheckUseCitizenID())
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('สามารถใช้รหัสบัตรประชาชนนี้')", true);
@@ -742,6 +753,7 @@ namespace WEB_PERSONAL
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('รหัสประจำตัวประชาชน ที่กรอกนี้ มีอยู่ในระบบแล้ว !')", true);
             }
+            
         }
     }
 }

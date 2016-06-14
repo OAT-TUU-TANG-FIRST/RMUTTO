@@ -139,6 +139,56 @@ namespace WEB_PERSONAL
             SetViewState(dt5);
         }
 
+        protected void ClearText()
+        {
+            tbCitizenID.Text = "";
+            lblCitizenID.Text = "";
+            lblName.Text = "";
+            lblLastName.Text = "";
+            lblStafftype.Text = "";
+            lblCampus.Text = "";
+            lblPosition.Text = "";
+            lblStatusPersonWork.Text = "";
+
+            ddlDegree10.SelectedIndex = 0;
+            tbUnivName10.Text = "";
+            ddlMonth10From.SelectedIndex = 0;
+            ddlYear10From.SelectedIndex = 0;
+            ddlMonth10To.SelectedIndex = 0;
+            ddlYear10To.SelectedIndex = 0;
+            tbQualification10.Text = "";
+            tbMajor10.Text = "";
+            ddlCountrySuccess10.SelectedIndex = 0;
+
+            tbLicenseName11.Text = "";
+            tbDepartment11.Text = "";
+            tbLicenseNo11.Text = "";
+            tbUseDate11.Text = "";
+
+            tbCourse.Text = "";
+            ddlMonth12From.SelectedIndex = 0;
+            ddlYear12From.SelectedIndex = 0;
+            ddlMonth12To.SelectedIndex = 0;
+            ddlYear12To.SelectedIndex = 0;
+            tbDepartment.Text = "";
+
+            ddlYear13.SelectedIndex = 0;
+            tbName13.Text = "";
+            tbREF13.Text = "";
+
+            tbDate14.Text = "";
+            tbPosition14.Text = "";
+            tbPositionNo14.Text = "";
+            ddlPositionType14.SelectedIndex = 0;
+            ddlPositionDegree14.SelectedIndex = 0;
+            tbSalary14.Text = "";
+            tbSalaryPosition14.Text = "";
+            tbRef14.Text = "";
+
+            notification.Attributes["class"] = "none";
+            notification.InnerHtml = "";
+        }
+
         protected void ClearPStudy10()
         {
             ddlDegree10.SelectedIndex = 0;
@@ -1494,24 +1544,35 @@ namespace WEB_PERSONAL
             }
             else
             {
-                PS_STUDY PStudy = new PS_STUDY();
-                PStudy.PS_CITIZEN_ID = tbCitizenID.Text;
-                PStudy.PS_DEGREE_ID = Convert.ToInt32(ddlDegree10.SelectedValue);
-                PStudy.PS_UNIV_NAME = tbUnivName10.Text;
-                PStudy.PS_FROM_MONTH = Convert.ToInt32(ddlMonth10From.SelectedValue);
-                PStudy.PS_FROM_YEAR = Convert.ToInt32(ddlYear10From.SelectedValue);
-                PStudy.PS_TO_MONTH = Convert.ToInt32(ddlMonth10To.SelectedValue);
-                PStudy.PS_TO_YEAR = Convert.ToInt32(ddlYear10To.SelectedValue);
-                PStudy.PS_QUALIFICATION = tbQualification10.Text;
-                PStudy.PS_MAJOR = tbMajor10.Text;
-                PStudy.PS_COUNTRY_ID = Convert.ToInt32(ddlCountrySuccess10.SelectedValue);
-                PStudy.INSERT_PS_STUDY();
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('เพิ่มข้อมูลประวัติการศึกษา เรียบร้อย')", true);
-                ClearPStudy10();
-                DataTable dt1 = PStudy.SELECT_PS_STUDY(tbCitizenID.Text, "", "", "", "", "", "", "", "", "");
-                GridViewStudy.DataSource = dt1;
-                GridViewStudy.DataBind();
-                SetViewState(dt1);
+                if (string.IsNullOrEmpty(tbCitizenID.Text))
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอกรหัสบัตรประชาชน')", true);
+                }
+                if (tbCitizenID.Text.Length <= 12)
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอกรหัสบัตรประชาชนให้ครบ 13 หลัก')", true);
+                }
+                else
+                {
+                    PS_STUDY PStudy = new PS_STUDY();
+                    PStudy.PS_CITIZEN_ID = lblCitizenID.Text;
+                    PStudy.PS_DEGREE_ID = Convert.ToInt32(ddlDegree10.SelectedValue);
+                    PStudy.PS_UNIV_NAME = tbUnivName10.Text;
+                    PStudy.PS_FROM_MONTH = Convert.ToInt32(ddlMonth10From.SelectedValue);
+                    PStudy.PS_FROM_YEAR = Convert.ToInt32(ddlYear10From.SelectedValue);
+                    PStudy.PS_TO_MONTH = Convert.ToInt32(ddlMonth10To.SelectedValue);
+                    PStudy.PS_TO_YEAR = Convert.ToInt32(ddlYear10To.SelectedValue);
+                    PStudy.PS_QUALIFICATION = tbQualification10.Text;
+                    PStudy.PS_MAJOR = tbMajor10.Text;
+                    PStudy.PS_COUNTRY_ID = Convert.ToInt32(ddlCountrySuccess10.SelectedValue);
+                    PStudy.INSERT_PS_STUDY();
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('เพิ่มข้อมูลประวัติการศึกษา เรียบร้อย')", true);
+                    ClearPStudy10();
+                    DataTable dt1 = PStudy.SELECT_PS_STUDY(lblCitizenID.Text, "", "", "", "", "", "", "", "", "");
+                    GridViewStudy.DataSource = dt1;
+                    GridViewStudy.DataBind();
+                    SetViewState(dt1);
+                }
 
                 notification.Attributes["class"] = "none";
                 notification.InnerHtml = "";
@@ -1545,19 +1606,30 @@ namespace WEB_PERSONAL
             }
             else
             {
-                PS_PROFESSIONAL_LICENSE PLicense = new PS_PROFESSIONAL_LICENSE();
-                PLicense.PS_CITIZEN_ID = tbCitizenID.Text;
-                PLicense.PS_LICENSE_NAME = tbLicenseName11.Text;
-                PLicense.PS_DEPARTMENT = tbDepartment11.Text;
-                PLicense.PS_LICENSE_NO = tbLicenseNo11.Text;
-                PLicense.PS_USE_DATE = Util.ODT(tbUseDate11.Text);
-                PLicense.INSERT_PS_PROFESSIONAL_LICENSE();
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('เพิ่มข้อมูลใบอนุญาตประกอบวิชาชีพ เรียบร้อย')", true);
-                ClearPLicense11();
-                DataTable dt2 = PLicense.SELECT_PS_PROFESSIONAL_LICENSE(tbCitizenID.Text, "", "", "", "");
-                GridViewLicense.DataSource = dt2;
-                GridViewLicense.DataBind();
-                SetViewState(dt2);
+                if (string.IsNullOrEmpty(tbCitizenID.Text))
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอกรหัสบัตรประชาชน')", true);
+                }
+                if (tbCitizenID.Text.Length <= 12)
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอกรหัสบัตรประชาชนให้ครบ 13 หลัก')", true);
+                }
+                else
+                {
+                    PS_PROFESSIONAL_LICENSE PLicense = new PS_PROFESSIONAL_LICENSE();
+                    PLicense.PS_CITIZEN_ID = lblCitizenID.Text;
+                    PLicense.PS_LICENSE_NAME = tbLicenseName11.Text;
+                    PLicense.PS_DEPARTMENT = tbDepartment11.Text;
+                    PLicense.PS_LICENSE_NO = tbLicenseNo11.Text;
+                    PLicense.PS_USE_DATE = Util.ODT(tbUseDate11.Text);
+                    PLicense.INSERT_PS_PROFESSIONAL_LICENSE();
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('เพิ่มข้อมูลใบอนุญาตประกอบวิชาชีพ เรียบร้อย')", true);
+                    ClearPLicense11();
+                    DataTable dt2 = PLicense.SELECT_PS_PROFESSIONAL_LICENSE(tbCitizenID.Text, "", "", "", "");
+                    GridViewLicense.DataSource = dt2;
+                    GridViewLicense.DataBind();
+                    SetViewState(dt2);
+                }
 
                 notification.Attributes["class"] = "none";
                 notification.InnerHtml = "";
@@ -1587,21 +1659,32 @@ namespace WEB_PERSONAL
             }
             else
             {
-                PS_TRAINING PTraining = new PS_TRAINING();
-                PTraining.PS_CITIZEN_ID = tbCitizenID.Text;
-                PTraining.PS_COURSE = tbCourse.Text;
-                PTraining.PS_FROM_MONTH = Convert.ToInt32(ddlMonth12From.SelectedValue);
-                PTraining.PS_FROM_YEAR = Convert.ToInt32(ddlYear12From.SelectedValue);
-                PTraining.PS_TO_MONTH = Convert.ToInt32(ddlMonth12To.SelectedValue);
-                PTraining.PS_TO_YEAR = Convert.ToInt32(ddlYear12To.SelectedValue);
-                PTraining.PS_DEPARTMENT = tbDepartment.Text;
-                PTraining.INSERT_PS_TRAINING();
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('เพิ่มข้อมูลประวัติการศึกษา เรียบร้อย')", true);
-                ClearPTraining12();
-                DataTable dt3 = PTraining.SELECT_PS_TRAINING(tbCitizenID.Text, "", "", "", "", "", "");
-                GridViewTraining.DataSource = dt3;
-                GridViewTraining.DataBind();
-                SetViewState(dt3);
+                if (string.IsNullOrEmpty(tbCitizenID.Text))
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอกรหัสบัตรประชาชน')", true);
+                }
+                if (tbCitizenID.Text.Length <= 12)
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอกรหัสบัตรประชาชนให้ครบ 13 หลัก')", true);
+                }
+                else
+                {
+                    PS_TRAINING PTraining = new PS_TRAINING();
+                    PTraining.PS_CITIZEN_ID = lblCitizenID.Text;
+                    PTraining.PS_COURSE = tbCourse.Text;
+                    PTraining.PS_FROM_MONTH = Convert.ToInt32(ddlMonth12From.SelectedValue);
+                    PTraining.PS_FROM_YEAR = Convert.ToInt32(ddlYear12From.SelectedValue);
+                    PTraining.PS_TO_MONTH = Convert.ToInt32(ddlMonth12To.SelectedValue);
+                    PTraining.PS_TO_YEAR = Convert.ToInt32(ddlYear12To.SelectedValue);
+                    PTraining.PS_DEPARTMENT = tbDepartment.Text;
+                    PTraining.INSERT_PS_TRAINING();
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('เพิ่มข้อมูลประวัติการศึกษา เรียบร้อย')", true);
+                    ClearPTraining12();
+                    DataTable dt3 = PTraining.SELECT_PS_TRAINING(tbCitizenID.Text, "", "", "", "", "", "");
+                    GridViewTraining.DataSource = dt3;
+                    GridViewTraining.DataBind();
+                    SetViewState(dt3);
+                }
 
                 notification.Attributes["class"] = "none";
                 notification.InnerHtml = "";
@@ -1631,18 +1714,29 @@ namespace WEB_PERSONAL
             }
             else
             {
-                PS_DISCIPLINARY_AND_AMNESTY PDAA = new PS_DISCIPLINARY_AND_AMNESTY();
-                PDAA.PS_CITIZEN_ID = tbCitizenID.Text;
-                PDAA.PS_YEAR = Convert.ToInt32(ddlYear13.SelectedValue);
-                PDAA.PS_DAA_NAME = tbName13.Text;
-                PDAA.PS_REF = tbREF13.Text;
-                PDAA.INSERT_PS_DISCIPLINARY_AND_AMNESTY();
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('เพิ่มข้อมูลการได้รับโทษทางวินัยและการนิรโทษกรรม เรียบร้อย')", true);
-                ClearPDAA13();
-                DataTable dt4 = PDAA.SELECT_PS_DISCIPLINARY_AND_AMNESTY(tbCitizenID.Text, "", "", "");
-                GridViewDAA.DataSource = dt4;
-                GridViewDAA.DataBind();
-                SetViewState(dt4);
+                if (string.IsNullOrEmpty(tbCitizenID.Text))
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอกรหัสบัตรประชาชน')", true);
+                }
+                if (tbCitizenID.Text.Length <= 12)
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอกรหัสบัตรประชาชนให้ครบ 13 หลัก')", true);
+                }
+                else
+                {
+                    PS_DISCIPLINARY_AND_AMNESTY PDAA = new PS_DISCIPLINARY_AND_AMNESTY();
+                    PDAA.PS_CITIZEN_ID = lblCitizenID.Text;
+                    PDAA.PS_YEAR = Convert.ToInt32(ddlYear13.SelectedValue);
+                    PDAA.PS_DAA_NAME = tbName13.Text;
+                    PDAA.PS_REF = tbREF13.Text;
+                    PDAA.INSERT_PS_DISCIPLINARY_AND_AMNESTY();
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('เพิ่มข้อมูลการได้รับโทษทางวินัยและการนิรโทษกรรม เรียบร้อย')", true);
+                    ClearPDAA13();
+                    DataTable dt4 = PDAA.SELECT_PS_DISCIPLINARY_AND_AMNESTY(tbCitizenID.Text, "", "", "");
+                    GridViewDAA.DataSource = dt4;
+                    GridViewDAA.DataBind();
+                    SetViewState(dt4);
+                }
 
                 notification.Attributes["class"] = "none";
                 notification.InnerHtml = "";
@@ -1693,24 +1787,34 @@ namespace WEB_PERSONAL
             }
             else
             {
-                PS_POSITION_AND_SALARY PPAS = new PS_POSITION_AND_SALARY();
-                PPAS.PS_CITIZEN_ID = tbCitizenID.Text;
-                PPAS.PS_DATE = Util.ODT(tbDate14.Text);
-                PPAS.PS_POSITION = tbPosition14.Text;
-                PPAS.PS_POSITION_NO = tbPositionNo14.Text;
-                PPAS.PS_POSITION_TYPE = ddlPositionType14.SelectedValue;
-                PPAS.PS_POSITION_DEGREE = ddlPositionDegree14.SelectedValue;
-                PPAS.PS_SALARY = Convert.ToInt32(tbSalary14.Text);
-                PPAS.PS_SALARY_POSITION = Convert.ToInt32(tbSalaryPosition14.Text);
-                PPAS.PS_REF = tbRef14.Text;
-                PPAS.INSERT_PS_POSITION_AND_SALARY();
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('เพิ่มข้อมูลการได้รับโทษทางวินัยและการนิรโทษกรรม เรียบร้อย')", true);
-                ClearPPAS14();
-                DataTable dt5 = PPAS.SELECT_PS_POSITION_AND_SALARY(tbCitizenID.Text, "", "", "", "", "", "", "", "");
-                GridViewPAS.DataSource = dt5;
-                GridViewPAS.DataBind();
-                SetViewState(dt5);
-
+                if (string.IsNullOrEmpty(tbCitizenID.Text))
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอกรหัสบัตรประชาชน')", true);
+                }
+                if (tbCitizenID.Text.Length <= 12)
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอกรหัสบัตรประชาชนให้ครบ 13 หลัก')", true);
+                }
+                else
+                {
+                    PS_POSITION_AND_SALARY PPAS = new PS_POSITION_AND_SALARY();
+                    PPAS.PS_CITIZEN_ID = lblCitizenID.Text;
+                    PPAS.PS_DATE = Util.ODT(tbDate14.Text);
+                    PPAS.PS_POSITION = tbPosition14.Text;
+                    PPAS.PS_POSITION_NO = tbPositionNo14.Text;
+                    PPAS.PS_POSITION_TYPE = ddlPositionType14.SelectedValue;
+                    PPAS.PS_POSITION_DEGREE = ddlPositionDegree14.SelectedValue;
+                    PPAS.PS_SALARY = Convert.ToInt32(tbSalary14.Text);
+                    PPAS.PS_SALARY_POSITION = Convert.ToInt32(tbSalaryPosition14.Text);
+                    PPAS.PS_REF = tbRef14.Text;
+                    PPAS.INSERT_PS_POSITION_AND_SALARY();
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('เพิ่มข้อมูลการได้รับโทษทางวินัยและการนิรโทษกรรม เรียบร้อย')", true);
+                    ClearPPAS14();
+                    DataTable dt5 = PPAS.SELECT_PS_POSITION_AND_SALARY(tbCitizenID.Text, "", "", "", "", "", "", "", "");
+                    GridViewPAS.DataSource = dt5;
+                    GridViewPAS.DataBind();
+                    SetViewState(dt5);
+                }
                 notification.Attributes["class"] = "none";
                 notification.InnerHtml = "";
             }
@@ -1721,18 +1825,31 @@ namespace WEB_PERSONAL
             PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
             Person loginPerson = ps.LoginPerson;
 
+            if (string.IsNullOrEmpty(tbCitizenID.Text))
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอกรหัสบัตรประชาชน')", true);
+            }
+            if (tbCitizenID.Text.Length <= 12)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอกรหัสบัตรประชาชนให้ครบ 13 หลัก')", true);
+            }
+
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
             {
                 con.Open();
-                using (OracleCommand com = new OracleCommand("SELECT PS_CITIZEN_ID,PS_FN_TH,PS_LN_TH FROM PS_PERSON WHERE PS_CITIZEN_ID = '" + tbCitizenID.Text + "'", con))
+                using (OracleCommand com = new OracleCommand("SELECT PS_CITIZEN_ID รหัสบัตรประชาชน, PS_FN_TH, PS_LN_TH, (SELECT STAFFTYPE_NAME FROM TB_STAFFTYPE WHERE PS_PERSON.PS_STAFFTYPE_ID = TB_STAFFTYPE.STAFFTYPE_ID) ประเภทบุคลากร, (SELECT CAMPUS_NAME FROM TB_CAMPUS WHERE PS_PERSON.PS_CAMPUS_ID = TB_CAMPUS.CAMPUS_ID) || ' > ' || (SELECT FACULTY_NAME FROM TB_FACULTY WHERE PS_PERSON.PS_FACULTY_ID = TB_FACULTY.FACULTY_ID) || ' > ' || (SELECT DIVISION_NAME FROM TB_DIVISION WHERE PS_PERSON.PS_DIVISION_ID = TB_DIVISION.DIVISION_ID) || ' > ' || (SELECT WORK_NAME FROM TB_WORK_DIVISION WHERE PS_PERSON.PS_WORK_DIVISION_ID = TB_WORK_DIVISION.WORK_ID) \"งาน / ฝ่าย\", (SELECT NAME FROM TB_POSITION WHERE PS_PERSON.PS_POSITION_ID = TB_POSITION.ID) ตำแหน่ง, (SELECT SW_NAME FROM TB_STATUS_WORK WHERE PS_PERSON.PS_SW_ID = TB_STATUS_WORK.SW_ID) สถานะการทำงาน FROM PS_PERSON WHERE PS_CITIZEN_ID = '" + tbCitizenID.Text + "'", con))
                 {
                     using (OracleDataReader reader = com.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            tbCitizenSearch.Text = reader.IsDBNull(0) ? "" : reader.GetString(0);
-                            tbNameSearch.Text = reader.IsDBNull(1) ? "" : reader.GetString(1);
-                            tbLastNameSearch.Text = reader.IsDBNull(2) ? "" : reader.GetString(2);
+                            lblCitizenID.Text = reader.IsDBNull(0) ? "" : reader.GetString(0);
+                            lblName.Text = reader.IsDBNull(1) ? "" : reader.GetString(1);
+                            lblLastName.Text = reader.IsDBNull(2) ? "" : reader.GetString(2);
+                            lblStafftype.Text = reader.IsDBNull(3) ? "" : reader.GetString(3);
+                            lblCampus.Text = reader.IsDBNull(4) ? "" : reader.GetString(4);
+                            lblPosition.Text = reader.IsDBNull(5) ? "" : reader.GetString(5);
+                            lblStatusPersonWork.Text = reader.IsDBNull(6) ? "" : reader.GetString(6);
 
                             //view1
                             if (string.IsNullOrEmpty(tbCitizenID.Text))
@@ -1780,10 +1897,10 @@ namespace WEB_PERSONAL
                             else
                             {
                                 PS_TRAINING PTraining = new PS_TRAINING();
-                                DataTable dt1 = PTraining.SELECT_PS_TRAINING(tbCitizenID.Text, "", "", "", "", "", "");
-                                GridViewTraining.DataSource = dt1;
+                                DataTable dt3 = PTraining.SELECT_PS_TRAINING(tbCitizenID.Text, "", "", "", "", "", "");
+                                GridViewTraining.DataSource = dt3;
                                 GridViewTraining.DataBind();
-                                SetViewState(dt1);
+                                SetViewState(dt3);
                             }
                             //view4
                             if (string.IsNullOrEmpty(tbCitizenID.Text))
@@ -1826,5 +1943,44 @@ namespace WEB_PERSONAL
             }
         }
 
+        protected void btnSearchRefresh_Click(object sender, EventArgs e)
+        {
+            PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
+            Person loginPerson = ps.LoginPerson;
+
+            ClearText();
+
+            PS_STUDY PStudy = new PS_STUDY();
+            DataTable dt1 = PStudy.SELECT_PS_STUDY(loginPerson.CitizenID, "", "", "", "", "", "", "", "", "");
+            GridViewStudy.DataSource = dt1;
+            GridViewStudy.DataBind();
+            SetViewState(dt1);
+
+            PS_PROFESSIONAL_LICENSE PLicense = new PS_PROFESSIONAL_LICENSE();
+            DataTable dt2 = PLicense.SELECT_PS_PROFESSIONAL_LICENSE(loginPerson.CitizenID, "", "", "", "");
+            GridViewLicense.DataSource = dt2;
+            GridViewLicense.DataBind();
+            SetViewState(dt2);
+
+            PS_TRAINING PTraining = new PS_TRAINING();
+            DataTable dt3 = PTraining.SELECT_PS_TRAINING(loginPerson.CitizenID, "", "", "", "", "", "");
+            GridViewTraining.DataSource = dt3;
+            GridViewTraining.DataBind();
+            SetViewState(dt3);
+
+            PS_DISCIPLINARY_AND_AMNESTY PDAA = new PS_DISCIPLINARY_AND_AMNESTY();
+            DataTable dt4 = PDAA.SELECT_PS_DISCIPLINARY_AND_AMNESTY(loginPerson.CitizenID, "", "", "");
+            GridViewDAA.DataSource = dt4;
+            GridViewDAA.DataBind();
+            SetViewState(dt4);
+
+            PS_POSITION_AND_SALARY PPAS = new PS_POSITION_AND_SALARY();
+            DataTable dt5 = PPAS.SELECT_PS_POSITION_AND_SALARY(loginPerson.CitizenID, "", "", "", "", "", "", "", "");
+            GridViewPAS.DataSource = dt5;
+            GridViewPAS.DataBind();
+            SetViewState(dt5);
+
+        }
     }
+
 }

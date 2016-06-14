@@ -6616,4 +6616,415 @@ namespace WEB_PERSONAL.Entities
             return result;
         }
     }
+    ///
+    ///ยศ
+    ///
+    public class ClassRank
+    {
+        public int RANK_ID { get; set; }
+        public string RANK_NAME_TH { get; set; }
+        public string RANK_NAME_TH_MIN { get; set; }
+
+        public ClassRank() { }
+        public ClassRank(int RANK_ID, string RANK_NAME_TH, string RANK_NAME_TH_MIN)
+        {
+            this.RANK_ID = RANK_ID;
+            this.RANK_NAME_TH = RANK_NAME_TH;
+            this.RANK_NAME_TH_MIN = RANK_NAME_TH_MIN;
+        }
+
+        public DataTable GetRank(string RANK_NAME_TH, string RANK_NAME_TH_MIN)
+        {
+            DataTable dt = new DataTable();
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            string query = "SELECT * FROM TB_RANK ";
+            if (!string.IsNullOrEmpty(RANK_NAME_TH) || !string.IsNullOrEmpty(RANK_NAME_TH_MIN))
+            {
+                query += " where 1=1 ";
+                if (!string.IsNullOrEmpty(RANK_NAME_TH))
+                {
+                    query += " and RANK_NAME_TH like :RANK_NAME_TH ";
+                }
+                if (!string.IsNullOrEmpty(RANK_NAME_TH_MIN))
+                {
+                    query += " and RANK_NAME_TH_MIN like :RANK_NAME_TH_MIN ";
+                }
+            }
+            OracleCommand command = new OracleCommand(query, conn);
+            // Create the command
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                if (!string.IsNullOrEmpty(RANK_NAME_TH))
+                {
+                    command.Parameters.Add(new OracleParameter("RANK_NAME_TH", RANK_NAME_TH + "%"));
+                }
+                if (!string.IsNullOrEmpty(RANK_NAME_TH_MIN))
+                {
+                    command.Parameters.Add(new OracleParameter("RANK_NAME_TH_MIN", RANK_NAME_TH_MIN + "%"));
+                }
+                OracleDataAdapter sd = new OracleDataAdapter(command);
+                sd.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+
+            return dt;
+        }
+
+        public int InsertRank()
+        {
+            int id = 0;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            OracleCommand command = new OracleCommand("INSERT INTO TB_RANK (RANK_NAME_TH,RANK_NAME_TH_MIN) VALUES (:RANK_NAME_TH,:RANK_NAME_TH_MIN)", conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("RANK_NAME_TH", RANK_NAME_TH));
+                command.Parameters.Add(new OracleParameter("RANK_NAME_TH_MIN", RANK_NAME_TH_MIN));
+                id = command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return id;
+        }
+
+        public bool UpdateRank()
+        {
+            bool result = false;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            string query = "Update TB_RANK Set ";
+            query += " RANK_NAME_TH = :RANK_NAME_TH,";
+            query += " RANK_NAME_TH_MIN = :RANK_NAME_TH_MIN";
+            query += " where RANK_ID = :RANK_ID";
+
+            OracleCommand command = new OracleCommand(query, conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("RANK_NAME_TH", RANK_NAME_TH));
+                command.Parameters.Add(new OracleParameter("RANK_NAME_TH_MIN", RANK_NAME_TH_MIN));
+                command.Parameters.Add(new OracleParameter("RANK_ID", RANK_ID));
+
+                if (command.ExecuteNonQuery() > 0)
+                {
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+            }
+            return result;
+        }
+
+        public bool DeleteRank()
+        {
+            bool result = false;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            OracleCommand command = new OracleCommand("Delete TB_RANK where RANK_ID = :RANK_ID", conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("RANK_ID", RANK_ID));
+                if (command.ExecuteNonQuery() >= 0)
+                {
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return result;
+        }
+
+        public bool CheckUseRankNameInsert()
+        {
+            bool result = true;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+
+            // Create the command
+            OracleCommand command = new OracleCommand("SELECT count(RANK_NAME_TH) FROM TB_RANK WHERE RANK_NAME_TH = :RANK_NAME_TH or RANK_NAME_TH_MIN = :RANK_NAME_TH_MIN", conn);
+
+            // Add the parameters.
+            command.Parameters.Add(new OracleParameter("RANK_NAME_TH", RANK_NAME_TH));
+            command.Parameters.Add(new OracleParameter("RANK_NAME_TH_MIN", RANK_NAME_TH_MIN));
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                int count = (int)(decimal)command.ExecuteScalar();
+                if (count >= 1)
+                {
+                    result = false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return result;
+        }
+
+        public bool CheckUseRankNameUpdate()
+        {
+            bool result = true;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+
+            // Create the command
+            OracleCommand command = new OracleCommand("SELECT count(RANK_NAME_TH) FROM TB_RANK WHERE RANK_NAME_TH = :RANK_NAME_TH and RANK_NAME_TH_MIN = :RANK_NAME_TH_MIN", conn);
+
+            // Add the parameters.
+            command.Parameters.Add(new OracleParameter("RANK_NAME_TH", RANK_NAME_TH));
+            command.Parameters.Add(new OracleParameter("RANK_NAME_TH_MIN", RANK_NAME_TH_MIN));
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                int count = (int)(decimal)command.ExecuteScalar();
+                if (count >= 1)
+                {
+                    result = false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return result;
+        }
+    }
+    /// <summary>
+    /// สถานะการทำงาน
+    /// </summary>
+    public class ClassStatusWork
+    {
+        public int SW_ID { get; set; }
+        public string SW_NAME { get; set; }
+
+        public ClassStatusWork() { }
+        public ClassStatusWork(int SW_ID, string SW_NAME)
+        {
+            this.SW_ID = SW_ID;
+            this.SW_NAME = SW_NAME;
+        }
+
+        public DataTable GetStatusWork(string SW_NAME)
+        {
+            DataTable dt = new DataTable();
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            string query = "SELECT * FROM TB_STATUS_WORK ";
+            if (!string.IsNullOrEmpty(SW_NAME))
+            {
+                query += " where 1=1 ";
+                if (!string.IsNullOrEmpty(SW_NAME))
+                {
+                    query += " and SW_NAME like :SW_NAME ";
+                }
+            }
+            OracleCommand command = new OracleCommand(query, conn);
+            // Create the command
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                if (!string.IsNullOrEmpty(SW_NAME))
+                {
+                    command.Parameters.Add(new OracleParameter("SW_NAME", SW_NAME + "%"));
+                }
+                OracleDataAdapter sd = new OracleDataAdapter(command);
+                sd.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+
+            return dt;
+        }
+
+        public int InsertStatusWork()
+        {
+            int id = 0;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            OracleCommand command = new OracleCommand("INSERT INTO TB_STATUS_WORK (SW_NAME) VALUES (:SW_NAME)", conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("SW_NAME", SW_NAME));
+                id = command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return id;
+        }
+
+        public bool UpdateStatusWork()
+        {
+            bool result = false;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            string query = "Update TB_STATUS_WORK Set ";
+            query += " SW_ID = :SW_ID,";
+            query += " SW_NAME = :SW_NAME";
+            query += " where SW_ID = :SW_ID";
+
+            OracleCommand command = new OracleCommand(query, conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("SW_ID", SW_ID));
+                command.Parameters.Add(new OracleParameter("SW_NAME", SW_NAME));
+
+                if (command.ExecuteNonQuery() > 0)
+                {
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+            }
+            return result;
+        }
+
+        public bool DeleteStatusWork()
+        {
+            bool result = false;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            OracleCommand command = new OracleCommand("Delete TB_STATUS_WORK where SW_ID = :SW_ID", conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("SW_ID", SW_ID));
+                if (command.ExecuteNonQuery() >= 0)
+                {
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return result;
+        }
+
+        public bool CheckUseStatusWorkName()
+        {
+            bool result = true;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+
+            // Create the command
+            OracleCommand command = new OracleCommand("SELECT count(SW_NAME) FROM TB_STATUS_WORK WHERE SW_NAME = :SW_NAME ", conn);
+
+            // Add the parameters.
+            command.Parameters.Add(new OracleParameter("SW_NAME", SW_NAME));
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                int count = (int)(decimal)command.ExecuteScalar();
+                if (count >= 1)
+                {
+                    result = false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                command.Dispose();
+                conn.Close();
+            }
+            return result;
+        }
+    }
 }

@@ -19,7 +19,6 @@
             padding: 0.2em 0.5em;
             border: 3px solid #99e6ff;
             color: black;
-            font-size: 90%;
             text-align: left;
         }
 
@@ -98,7 +97,7 @@
                                 <td class="col2">
                                     <asp:UpdatePanel ID="UpdatetbCitizenID" runat="server">
                                         <ContentTemplate>
-                                            <asp:TextBox ID="tbCitizenID" runat="server" CssClass="tb5" MaxLength="13"></asp:TextBox>
+                                            <asp:TextBox ID="tbCitizenID" runat="server" CssClass="tb5" MaxLength="13" ></asp:TextBox>
                                             <asp:LinkButton ID="lbCheckUseCitizen" runat="server" CssClass="ps-button" OnClick="lbCheckUseCitizen_Click">ตรวจสอบรหัสบัตรประชาชน</asp:LinkButton>
                                         </ContentTemplate>
                                         <Triggers>
@@ -112,7 +111,7 @@
                                 <td class="col2">
                                     <asp:UpdatePanel ID="UpdateddlTitle" runat="server">
                                         <ContentTemplate>
-                                            <asp:DropDownList ID="ddlTitle" runat="server" CssClass="tb5"></asp:DropDownList>
+                                            <asp:DropDownList ID="ddlTitle" runat="server" CssClass="tb5" ></asp:DropDownList>
                                         </ContentTemplate>
                                         <Triggers>
                                             <asp:AsyncPostBackTrigger ControlID="ddlTitle" />
@@ -302,7 +301,7 @@
                                 <td class="col2">
                                     <asp:UpdatePanel ID="UpdatetbPhone" runat="server">
                                         <ContentTemplate>
-                                            <asp:TextBox ID="tbPhone" runat="server" CssClass="tb5"></asp:TextBox>
+                                            <asp:TextBox ID="tbPhone" runat="server" CssClass="tb5" MaxLength="10"></asp:TextBox>
                                         </ContentTemplate>
                                         <Triggers>
                                             <asp:AsyncPostBackTrigger ControlID="tbPhone" />
@@ -315,7 +314,7 @@
                                 <td class="col2">
                                     <asp:UpdatePanel ID="UpdatetbTelephone" runat="server">
                                         <ContentTemplate>
-                                            <asp:TextBox ID="tbTelephone" runat="server" CssClass="tb5"></asp:TextBox>
+                                            <asp:TextBox ID="tbTelephone" runat="server" CssClass="tb5" MaxLength="15"></asp:TextBox>
                                         </ContentTemplate>
                                         <Triggers>
                                             <asp:AsyncPostBackTrigger ControlID="tbTelephone" />
@@ -448,7 +447,7 @@
                                 <td class="col2">
                                     <asp:UpdatePanel ID="UpdatetbHomeAdd" runat="server">
                                         <ContentTemplate>
-                                            <asp:TextBox ID="tbHomeAdd" runat="server" CssClass="tb5" require="required"></asp:TextBox>
+                                            <asp:TextBox ID="tbHomeAdd" runat="server" CssClass="tb5"></asp:TextBox>
                                         </ContentTemplate>
                                         <Triggers>
                                             <asp:AsyncPostBackTrigger ControlID="tbHomeAdd" />
@@ -461,7 +460,7 @@
                                 <td class="col2">
                                     <asp:UpdatePanel ID="UpdatetbSoi" runat="server">
                                         <ContentTemplate>
-                                            <asp:TextBox ID="tbSoi" runat="server" CssClass="tb5" require="required"></asp:TextBox>
+                                            <asp:TextBox ID="tbSoi" runat="server" CssClass="tb5"></asp:TextBox>
                                         </ContentTemplate>
                                         <Triggers>
                                             <asp:AsyncPostBackTrigger ControlID="tbSoi" />
@@ -819,7 +818,46 @@
                                     </Triggers>
                                 </asp:UpdatePanel>
                             </td>
-                        </tr>                     
+                        </tr>
+                            <tr>
+                            <td class="col1">เงินเดือน</td>
+                            <td class="col2">
+                                <asp:UpdatePanel ID="UpdatetbSalary" runat="server">
+                                    <ContentTemplate>
+                                        <asp:TextBox ID="tbSalary" runat="server" CssClass="tb5"></asp:TextBox>
+                                    </ContentTemplate>
+                                    <Triggers>
+                                        <asp:AsyncPostBackTrigger ControlID="tbSalary" />
+                                    </Triggers>
+                                </asp:UpdatePanel>
+                            </td>
+                        </tr>     
+                            <tr>
+                            <td class="col1">เงินประจำตำแหน่ง</td>
+                            <td class="col2">
+                                <asp:UpdatePanel ID="UpdatetbPositionSalary" runat="server">
+                                    <ContentTemplate>
+                                        <asp:TextBox ID="tbPositionSalary" runat="server" CssClass="tb5"></asp:TextBox>
+                                    </ContentTemplate>
+                                    <Triggers>
+                                        <asp:AsyncPostBackTrigger ControlID="tbPositionSalary" />
+                                    </Triggers>
+                                </asp:UpdatePanel>
+                            </td>
+                        </tr>      
+                            <tr>
+                            <td class="col1">สถานะการทำงาน</td>
+                            <td class="col2">
+                                <asp:UpdatePanel ID="UpdateddlStatusWork" runat="server">
+                                    <ContentTemplate>
+                                        <asp:DropDownList ID="ddlStatusWork" runat="server" CssClass="tb5"></asp:DropDownList>
+                                    </ContentTemplate>
+                                    <Triggers>
+                                        <asp:AsyncPostBackTrigger ControlID="ddlStatusWork" />
+                                    </Triggers>
+                                </asp:UpdatePanel>
+                            </td>
+                        </tr>               
                         </table>
                     </div>
                     <div style="float: left; display: inline-block;">
@@ -920,9 +958,48 @@
                                 </asp:UpdatePanel>
                             </td>
                         </tr>
+                            <tr>
+                            <td class="col1">ระดับตำแหน่งประเภท</td>
+                            <td class="col2">
+                                <asp:UpdatePanel ID="UpdateddlPosiInsigGover" runat="server">
+                                    <ContentTemplate>
+                                        <asp:DropDownList ID="ddlPosiInsigGover" runat="server" CssClass="tb5"></asp:DropDownList>
+                                    </ContentTemplate>
+                                    <Triggers>
+                                        <asp:AsyncPostBackTrigger ControlID="ddlPosiInsigGover" />
+                                    </Triggers>
+                                </asp:UpdatePanel>
+                            </td>
+                        </tr>
+                            <tr>
+                            <td class="col1">ตำแหน่งระดับ</td>
+                            <td class="col2">
+                                <asp:UpdatePanel ID="UpdateddlPosiInsigDegree" runat="server">
+                                    <ContentTemplate>
+                                        <asp:DropDownList ID="ddlPosiInsigDegree" runat="server" CssClass="tb5"></asp:DropDownList>
+                                    </ContentTemplate>
+                                    <Triggers>
+                                        <asp:AsyncPostBackTrigger ControlID="ddlPosiInsigDegree" />
+                                    </Triggers>
+                                </asp:UpdatePanel>
+                            </td>
+                        </tr>
+                            <tr>
+                            <td class="col1">ตำแหน่งกลุ่มพนักงานราชการ</td>
+                            <td class="col2">
+                                <asp:UpdatePanel ID="UpdateddlPosiInsigEMP" runat="server">
+                                    <ContentTemplate>
+                                        <asp:DropDownList ID="ddlPosiInsigEMP" runat="server" CssClass="tb5"></asp:DropDownList>
+                                    </ContentTemplate>
+                                    <Triggers>
+                                        <asp:AsyncPostBackTrigger ControlID="ddlPosiInsigEMP" />
+                                    </Triggers>
+                                </asp:UpdatePanel>
+                            </td>
+                        </tr>
                         </table>
                         </div>
-                    <div>
+                    <div style="clear: both;">
                         <asp:LinkButton ID="lbuV3Back" runat="server" CssClass="ps-button" OnClick="lbuV3Back_Click1">ย้อนกลับ</asp:LinkButton>
                         <asp:LinkButton ID="lbSubmit" runat="server" CssClass="ps-button" OnClick="lbSubmit_Click">เพิ่มข้อมูลบุคลากร</asp:LinkButton>
                     </div>

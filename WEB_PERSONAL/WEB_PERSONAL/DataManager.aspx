@@ -44,11 +44,18 @@
             border: 3px solid #99e6ff;
             color: black;
         }
-.col1 {
+
+        .col1 {
+            padding: 3px 5px;
             text-align: right;
+            background-color: #f8f8f8;
+            color: #404040;
         }
+
         .col2 {
-            text-align: left;
+            padding: 3px 5px;
+            background-color: #ffffff;
+            border-bottom: 1px solid #f0f0f0;
         }
         .ps-button {
             display: inline-block;
@@ -68,6 +75,24 @@
             border-bottom: 1px solid #b0b0b0;
             padding: 3px 15px;
             border-collapse: collapse;
+        }
+        .auto-style1 {
+            padding: 3px 5px;
+            text-align: right;
+            background-color: #f8f8f8;
+            color: #404040;
+            height: 26px;
+        }
+        .auto-style2 {
+            height: 26px;
+        }
+        .auto-style3 {
+            padding: 3px 5px;
+            text-align: right;
+            background-color: #f8f8f8;
+            color: #404040;
+            width: 10px;
+            height: 26px;
         }
     </style>
 </asp:Content>
@@ -135,48 +160,57 @@
                                     <td class="col1">จังหวัด :</td>
                                     <td><a href="Province-ADMIN.aspx" class="ps-button" style="width: 120px">จังหวัด</a></td>
                                     <td class="col1" style="width: 10px"></td>
-                                    <td class="col1">ตำแหน่งบริหาร :</td>
-                                    <td><a href="AdminPosition-ADMIN.aspx" class="ps-button" style="width: 160px">ตำแหน่งบริหาร</a></td>
+                                    <td class="col1">ตำแหน่ง :</td>
+                                    <td><a href="Position-ADMIN.aspx" class="ps-button" style="width: 160px">ตำแหน่ง</a></td>
                                 </tr>
                                 <tr>
                                     <td class="col1">อำเภอ :</td>
                                     <td><a href="Amphur-ADMIN.aspx" class="ps-button" style="width: 120px">อำเภอ</a></td>
                                     <td class="col1" style="width: 10px"></td>
-                                    <td class="col1">ตำแหน่งในสายงาน :</td>
-                                    <td><a href="PositionWork-ADMIN.aspx" class="ps-button" style="width: 160px">ตำแหน่งในสายงาน</a></td>
+                                    <td class="col1">ตำแหน่งบริหาร :</td>
+                                    <td><a href="AdminPosition-ADMIN.aspx" class="ps-button" style="width: 160px">ตำแหน่งบริหาร</a></td>
                                 </tr>
                                 <tr>
                                     <td class="col1">ตำบล :</td>
                                     <td><a href="District-ADMIN.aspx" class="ps-button" style="width: 120px">ตำบล</a></td>
                                     <td class="col1" style="width: 10px"></td>
-                                    <td class="col1">ตำแหน่งทางวิชาการ :</td>
-                                    <td><a href="AcademicPosition-ADMIN.aspx" class="ps-button" style="width: 160px">ตำแหน่งทางวิชาการ</a></td>
+                                    <td class="col1">ตำแหน่งในสายงาน :</td>
+                                    <td><a href="PositionWork-ADMIN.aspx" class="ps-button" style="width: 160px">ตำแหน่งในสายงาน</a></td>
                                 </tr>
                                 <tr>
                                     <td class="col1">ประเทศ :</td>
                                     <td><a href="GradCountry-ADMIN.aspx" class="ps-button" style="width: 120px">ประเทศ</a></td>
                                     <td class="col1" style="width: 10px"></td>
-                                    <td class="col1">กลุ่มสาขาวิชาที่สอน :</td>
-                                    <td><a href="TeachISCED-ADMIN.aspx" class="ps-button" style="width: 160px">กลุ่มสาขาวิชาที่สอน</a></td>
+                                    <td class="col1">ตำแหน่งทางวิชาการ :</td>
+                                    <td><a href="AcademicPosition-ADMIN.aspx" class="ps-button" style="width: 160px">ตำแหน่งทางวิชาการ</a></td>
                                 </tr>
                                 <tr>
                                     <td class="col1">ระดับการศึกษา :</td>
                                     <td><a href="GradLev-ADMIN.aspx" class="ps-button" style="width: 120px">ระดับการศึกษา</a></td>
                                     <td class="col1" style="width: 10px"></td>
-                                    <td class="col1">ตำแหน่งประเภท :</td>
-                                    <td><a href="Staff-ADMIN.aspx" class="ps-button" style="width: 160px">ตำแหน่งประเภท</a></td>
+                                    <td class="col1">กลุ่มสาขาวิชาที่สอน :</td>
+                                    <td><a href="TeachISCED-ADMIN.aspx" class="ps-button" style="width: 160px">กลุ่มสาขาวิชาที่สอน</a></td>
                                 </tr>
                                 <tr>
                                     <td class="col1">เดือน :</td>
                                     <td><a href="Month-ADMIN.aspx" class="ps-button" style="width: 120px">เดือน</a></td>
                                     <td class="col1" style="width: 10px"></td>
-                                    <td class="col1">ระดับ :</td>
-                                    <td><a href="Position-ADMIN.aspx" class="ps-button" style="width: 160px">ระดับ</a></td>
+                                    <td class="col1">ตำแหน่งประเภท :</td>
+                                    <td><a href="Staff-ADMIN.aspx" class="ps-button" style="width: 160px">ตำแหน่งประเภท</a></td>
                                 </tr>
                                 <tr>
                                     <td class="col1">ปี :</td>
                                     <td><a href="Year-ADMIN.aspx" class="ps-button" style="width: 120px">ปี</a></td>
+                                    <td class="col1" style="width: 10px"></td>
+                                    <td class="col1">ยศ :</td>
+                                    <td><a href="Rank-ADMIN.aspx" class="ps-button" style="width: 160px">ยศ</a></td>
                                 </tr>
+                                <tr>
+                                    <td class="col1">สถานะการทำงาน :</td>
+                                    <td><a href="StatusWork-ADMIN.aspx" class="ps-button" style="width: 120px">สถานะการทำงาน</a></td>
+
+                                </tr>
+
                             </table>
                         </div>
                     </fieldset>
@@ -188,29 +222,29 @@
                         <div>
                             <table class="center1">
                                 <tr>
-                                    <td class="col1">กลุ่มเครื่องราชฯ :</td>
-                                    <td><a href="Claninsignia-ADMIN.aspx" class="ps-button" style="width: 160px">กลุ่มเครื่องราชฯ</a></td>
-                                    <td class="col1" style="width: 10px"></td>
-                                    <td class="col1">เครื่องราชฯ :</td>
-                                    <td><a href="GradeInsignia-ADMIN.aspx" class="ps-button" style="width: 120px">เครื่่องราชฯ</a></td>
+                                    <td class="auto-style1">กลุ่มเครื่องราชฯ :</td>
+                                    <td class="auto-style2"><a href="Claninsignia-ADMIN.aspx" class="ps-button" style="width: 160px">กลุ่มเครื่องราชฯ</a></td>
+                                    <td class="auto-style3"></td>
+                                    <td class="auto-style1">เครื่องราชฯ :</td>
+                                    <td class="auto-style2"><a href="GradeInsignia-ADMIN.aspx" class="ps-button" style="width: 120px">เครื่่องราชฯ</a></td>
                                 </tr>
                                 <tr>
-                                    <td class="col1">ตำแหน่งกลุ่่ม :</td>
-                                    <td><a href="PosiGoverAcad-ADMIN.aspx" class="ps-button" style="width: 160px">ตำแหน่งกลุ่่ม</a></td>
+                                    <td class="col1">ตำแหน่งประเภท :</td>
+                                    <td><a href="PosiGoverAcad-ADMIN.aspx" class="ps-button" style="width: 160px">ตำแหน่งประเภท</a></td>
                                     <td class="col1" style="width: 10px"></td>
-                                    <td class="col1">ตำแหน่ง :</td>
-                                    <td><a href="PosiGoverSalary-ADMIN.aspx" class="ps-button" style="width: 120px">ตำแหน่ง</a></td>
+                                    <td class="col1">ขั้นเงินเดือนตำแหน่ง :</td>
+                                    <td><a href="PosiGoverSalary-ADMIN.aspx" class="ps-button" style="width: 120px">ขั้นเงินเดือนตำแหน่ง</a></td>
                                 </tr>
                                 <tr>
-                                    <td class="col1">ชื่่อระดับตำแหน่งประเภท :</td>
-                                    <td><a href="PosiInsigGover-ADMIN.aspx" class="ps-button" style="width: 160px">ชื่่อระดับตำแหน่งประเภท</a></td>
+                                    <td class="col1">ระดับตำแหน่งประเภท :</td>
+                                    <td><a href="PosiInsigGover-ADMIN.aspx" class="ps-button" style="width: 160px">ระดับตำแหน่งประเภท</a></td>
                                     <td class="col1" style="width: 10px"></td>
-                                    <td class="col1">ชื่อระดับตำแหน่ง :</td>
-                                    <td><a href="PosiInsigDegree-ADMIN.aspx" class="ps-button" style="width: 120px">ชื่อระดับตำแหน่ง</a></td>
+                                    <td class="col1">ตำแหน่งระดับ :</td>
+                                    <td><a href="PosiInsigDegree-ADMIN.aspx" class="ps-button" style="width: 120px">ตำแหน่งระดับ</a></td>
                                 </tr>
                                 <tr>
-                                    <td class="col1">ชื่อตำแหน่งกลุ่มพนักงานราชการ :</td>
-                                    <td><a href="PosiInsigEMP-ADMIN.aspx" class="ps-button" style="width: 160px">ชื่อตำแหน่งกลุ่มพนักงานราชการ</a></td>
+                                    <td class="col1">ตำแหน่งกลุ่มพนักงานราชการ :</td>
+                                    <td><a href="PosiInsigEMP-ADMIN.aspx" class="ps-button" style="width: 160px">ตำแหน่งกลุ่มพนักงานราชการ</a></td>
                                     <td class="col1" style="width: 10px"></td>
                                 </tr>
                             </table>

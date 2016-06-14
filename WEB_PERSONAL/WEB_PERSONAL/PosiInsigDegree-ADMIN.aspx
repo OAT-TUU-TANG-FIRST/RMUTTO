@@ -57,8 +57,8 @@
             <fieldset>
                 <legend>ค้นหาข้อมูล</legend>
                 <div>
-                    ชื่อระดับตำแหน่ง :&nbsp<asp:TextBox ID="txtSearchPosiInsigDegreeName" runat="server" CssClass="tb5" Width="230px" MaxLength="100"></asp:TextBox>
-                    ชื่่อระดับตำแหน่งประเภท :&nbsp<asp:DropDownList ID="ddlSearchPosiInsigGover" runat="server" CssClass="tb5" Width="250px"></asp:DropDownList>
+                    ชื่อตำแหน่งระดับ :&nbsp<asp:TextBox ID="txtSearchPosiInsigDegreeName" runat="server" CssClass="tb5" Width="230px" MaxLength="100"></asp:TextBox>
+                    ระดับตำแหน่งประเภท :&nbsp<asp:DropDownList ID="ddlSearchPosiInsigGover" runat="server" CssClass="tb5" Width="250px"></asp:DropDownList>
                     <asp:Button ID="btnSearchPosiInsigDegree" Text="Search" runat="server" CssClass="master_OAT_button" OnClick="btnSearchPosiInsigDegree_Click" />
                     <asp:Button ID="btnSearchRefresh" Text="Refresh" runat="server" CssClass="master_OAT_button" OnClick="btnSearchRefresh_Click" />
                 </div>
@@ -72,10 +72,10 @@
                 <div>
                     <table class="center1">
                         <tr>
-                            <td style="margin-left: auto; margin-right: auto; text-align: center">ชื่อระดับตำแหน่ง :</td>
+                            <td style="margin-left: auto; margin-right: auto; text-align: center">ชื่อตำแหน่งระดับ :</td>
                             <td style="text-align: left; width: 50px;">
                                 <asp:TextBox ID="txtInsertPosiInsigDegreeName" runat="server" CssClass="tb5" MaxLength="100" Width="230px"></asp:TextBox></td>
-                            <td style="margin-left: auto; margin-right: auto; text-align: center">ชื่่อระดับตำแหน่งประเภท :</td>
+                            <td style="margin-left: auto; margin-right: auto; text-align: center">ระดับตำแหน่งประเภท :</td>
                             <td style="text-align: left; width: 80px;">
                                 <asp:DropDownList ID="ddlInsertPosiInsigGover" runat="server" CssClass="tb5" Width="250px"></asp:DropDownList></td>
                             <td style="text-align: left;">
@@ -104,12 +104,12 @@
                             OnRowDataBound="GridView1_RowDataBound"
                             OnPageIndexChanging="myGridViewPosiInsigDegree_PageIndexChanging" PageSize="15" BackColor="White" BorderColor="#999999">
                             <Columns>
-                                <asp:TemplateField Visible="false" HeaderText="รหัสระดับตำแหน่ง" ControlStyle-Width="100" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Tomato">
+                                <asp:TemplateField Visible="false" HeaderText="รหัสตำแหน่งระดับ" ControlStyle-Width="100" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Tomato">
                                     <ItemTemplate>
                                         <asp:Label ID="lblPosiInsigDegreeIDEdit" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PID_ID") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="ชื่อระดับตำแหน่ง" ControlStyle-Width="380" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Tomato">
+                                <asp:TemplateField HeaderText="ชื่อตำแหน่งระดับ" ControlStyle-Width="380" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Tomato">
                                     <ItemTemplate>
                                         <asp:Label ID="lblPosiInsigDegreeNameEdit" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PID_NAME") %>'></asp:Label>
                                     </ItemTemplate>
@@ -117,7 +117,7 @@
                                         <asp:TextBox ID="txtPosiInsigDegreeNameEdit" MaxLength="100" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PID_NAME") %>'></asp:TextBox>
                                     </EditItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="ชื่่อระดับตำแหน่งประเภท" ControlStyle-Width="120" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Tomato">
+                                <asp:TemplateField HeaderText="ระดับตำแหน่งประเภท" ControlStyle-Width="120" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Tomato">
                                     <ItemTemplate>
                                         <asp:Label ID="lblPosiInsigGoverIDEdit" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PIG_ID") %>'></asp:Label>
                                     </ItemTemplate>

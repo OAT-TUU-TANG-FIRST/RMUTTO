@@ -17,7 +17,6 @@
             padding: 0.2em 0.5em;
             border: 3px solid #99e6ff;
             color: black;
-            font-size: 90%;
             text-align: left;
         }
         legend {

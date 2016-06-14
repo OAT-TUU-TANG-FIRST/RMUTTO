@@ -7,12 +7,6 @@
         <div>
             <table class="ps-table">
                 <tr>
-                    <td class="col1">ปี</td>
-                    <td class="col2">
-                        <asp:DropDownList ID="ddlYear" runat="server"></asp:DropDownList>
-                    </td>
-                </tr>
-                <tr>
                     <td class="col1">ประเภทบุคลากร</td>
                     <td class="col2">
                         <asp:DropDownList ID="ddlStaffType" runat="server"></asp:DropDownList>
@@ -42,7 +36,6 @@
         <div class="ps-separator"></div>
         <asp:LinkButton ID="lbuSend" runat="server" CssClass="ps-button" OnClick="lbuSend_Click"><img src='Image/Small/send-email.png' class='icon_left'/>ส่งการแจ้งเตือน</asp:LinkButton>
         <asp:Table ID="Table1" runat="server" CssClass="ps-ins-table"></asp:Table>
-        <asp:GridView ID="gv1" runat="server" CssClass="ps-gridview"></asp:GridView>
         <asp:HiddenField ID="hf1" runat="server" />
     </div>
 </asp:Content>

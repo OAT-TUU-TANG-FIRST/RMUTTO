@@ -90,7 +90,197 @@
                     <div style="display: inline-block; margin-right: 20px;" class="ps-ms-main-hd-left">
                         <table>
                             <tr>
-                                <td class="col1">เลขประจำตัวประชาชน</td>
+                                <td class="col1">ยศ</td>
+                                <td class="col2">
+                                    <asp:UpdatePanel ID="UpdatetbRank" runat="server">
+                                        <ContentTemplate>
+                                            <asp:TextBox ID="tbRank" runat="server" CssClass="tb5"></asp:TextBox>
+                                        </ContentTemplate>
+                                        <Triggers>
+                                            <asp:AsyncPostBackTrigger ControlID="tbRank" />
+                                        </Triggers>
+                                    </asp:UpdatePanel>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">คำนำหน้าชื่อ</td>
+                                <td class="col2">
+                                    <asp:UpdatePanel ID="UpdatetbTitleName" runat="server">
+                                        <ContentTemplate>
+                                            <asp:TextBox ID="tbTitleName" runat="server" CssClass="tb5"></asp:TextBox>
+                                        </ContentTemplate>
+                                        <Triggers>
+                                            <asp:AsyncPostBackTrigger ControlID="tbTitleName" />
+                                        </Triggers>
+                                    </asp:UpdatePanel>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">ชื่อ</td>
+                                <td class="col2">
+                                    <asp:UpdatePanel ID="UpdatetbName" runat="server">
+                                        <ContentTemplate>
+                                            <asp:TextBox ID="tbName" runat="server" CssClass="tb5"></asp:TextBox>
+                                        </ContentTemplate>
+                                        <Triggers>
+                                            <asp:AsyncPostBackTrigger ControlID="tbName" />
+                                        </Triggers>
+                                    </asp:UpdatePanel>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">นามสกุล</td>
+                                <td class="col2">
+                                    <asp:UpdatePanel ID="UpdatetbLastName" runat="server">
+                                        <ContentTemplate>
+                                            <asp:TextBox ID="tbLastName" runat="server" CssClass="tb5"></asp:TextBox>
+                                        </ContentTemplate>
+                                        <Triggers>
+                                            <asp:AsyncPostBackTrigger ControlID="tbLastName" />
+                                        </Triggers>
+                                    </asp:UpdatePanel>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">เพศ</td>
+                                <td class="col2">
+                                    <asp:UpdatePanel ID="UpdatetbGender" runat="server">
+                                        <ContentTemplate>
+                                            <asp:TextBox ID="tbGender" runat="server" CssClass="tb5"></asp:TextBox>
+                                        </ContentTemplate>
+                                        <Triggers>
+                                            <asp:AsyncPostBackTrigger ControlID="tbGender" />
+                                        </Triggers>
+                                    </asp:UpdatePanel>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">วัน/เดือน/ปีเกิด</td>
+                                <td class="col2">
+                                    <asp:UpdatePanel ID="UpdatetbBirthDate" runat="server">
+                                        <ContentTemplate>
+                                            <asp:TextBox ID="tbBirthDate" runat="server" CssClass="tb5"></asp:TextBox>
+                                        </ContentTemplate>
+                                        <Triggers>
+                                            <asp:AsyncPostBackTrigger ControlID="tbBirthDate" />
+                                        </Triggers>
+                                    </asp:UpdatePanel>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div style="float: left; display: inline-block; margin-right: 50px;">
+                        <table>
+                            <tr>
+                                <td class="col1">วัน/เดือน/ปีที่เริ่มรับราชการ</td>
+                                <td class="col2">
+                                    <asp:UpdatePanel ID="UpdatetbDateInwork" runat="server">
+                                        <ContentTemplate>
+                                            <asp:TextBox ID="tbDateInwork" runat="server" CssClass="tb5"></asp:TextBox>
+                                        </ContentTemplate>
+                                        <Triggers>
+                                            <asp:AsyncPostBackTrigger ControlID="tbDateInwork" />
+                                        </Triggers>
+                                    </asp:UpdatePanel>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">ตำแหน่งที่เริ่มรับราชการ</td>
+                                <td class="col2">
+                                    <asp:UpdatePanel ID="UpdatetbPosiDateInwork" runat="server">
+                                        <ContentTemplate>
+                                            <asp:TextBox ID="tbPosiDateInwork" runat="server" CssClass="tb5"></asp:TextBox>
+                                        </ContentTemplate>
+                                        <Triggers>
+                                            <asp:AsyncPostBackTrigger ControlID="tbPosiDateInwork" />
+                                        </Triggers>
+                                    </asp:UpdatePanel>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">ระดับที่เริ่มรับราชการ</td>
+                                <td class="col2">
+                                    <asp:UpdatePanel ID="UpdatetbDegreeDateInwork" runat="server">
+                                        <ContentTemplate>
+                                            <asp:TextBox ID="tbDegreeDateInwork" runat="server" CssClass="tb5"></asp:TextBox>
+                                        </ContentTemplate>
+                                        <Triggers>
+                                            <asp:AsyncPostBackTrigger ControlID="tbDegreeDateInwork" />
+                                        </Triggers>
+                                    </asp:UpdatePanel>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">ชื่อตำแหน่งปัจจุบัน</td>
+                                <td class="col2">
+                                    <asp:UpdatePanel ID="UpdatetbPositionCurrent" runat="server">
+                                        <ContentTemplate>
+                                            <asp:TextBox ID="tbPositionCurrent" runat="server" CssClass="tb5"></asp:TextBox>
+                                        </ContentTemplate>
+                                        <Triggers>
+                                            <asp:AsyncPostBackTrigger ControlID="tbPositionCurrent" />
+                                        </Triggers>
+                                    </asp:UpdatePanel>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">ประเภท</td>
+                                <td class="col2">
+                                    <asp:UpdatePanel ID="UpdatetbType" runat="server">
+                                        <ContentTemplate>
+                                            <asp:TextBox ID="tbType" runat="server" CssClass="tb5"></asp:TextBox>
+                                        </ContentTemplate>
+                                        <Triggers>
+                                            <asp:AsyncPostBackTrigger ControlID="tbType" />
+                                        </Triggers>
+                                    </asp:UpdatePanel>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">ระดับ</td>
+                                <td class="col2">
+                                    <asp:UpdatePanel ID="UpdatetbDegree" runat="server">
+                                        <ContentTemplate>
+                                            <asp:TextBox ID="tbDegree" runat="server" CssClass="tb5"></asp:TextBox>
+                                        </ContentTemplate>
+                                        <Triggers>
+                                            <asp:AsyncPostBackTrigger ControlID="tbDegree" />
+                                        </Triggers>
+                                    </asp:UpdatePanel>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div style="float: left; display: inline-block;">
+                        <table>
+                            <tr>
+                                <td class="col1">เงินเดือนป้จจุบัน</td>
+                                <td class="col2">
+                                    <asp:UpdatePanel ID="UpdatetbSalaryCurrent" runat="server">
+                                        <ContentTemplate>
+                                            <asp:TextBox ID="tbSalaryCurrent" runat="server" CssClass="tb5"></asp:TextBox>
+                                        </ContentTemplate>
+                                        <Triggers>
+                                            <asp:AsyncPostBackTrigger ControlID="tbSalaryCurrent" />
+                                        </Triggers>
+                                    </asp:UpdatePanel>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">เงินประจำตำแหน่ง</td>
+                                <td class="col2">
+                                    <asp:UpdatePanel ID="UpdatetbPositionSalary" runat="server">
+                                        <ContentTemplate>
+                                            <asp:TextBox ID="tbPositionSalary" runat="server" CssClass="tb5"></asp:TextBox>
+                                        </ContentTemplate>
+                                        <Triggers>
+                                            <asp:AsyncPostBackTrigger ControlID="tbPositionSalary" />
+                                        </Triggers>
+                                    </asp:UpdatePanel>
+                                </td>
+                            </tr>
+                            <tr>   
+                                <td class="col1">เครื่องราชฯ ที่ขอ</td>
                                 <td class="col2">
                                     <asp:UpdatePanel ID="UpdatetbInsig" runat="server">
                                         <ContentTemplate>
@@ -111,183 +301,6 @@
                                         </ContentTemplate>
                                         <Triggers>
                                             <asp:AsyncPostBackTrigger ControlID="tbCitizen" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col1">ชื่อ</td>
-                                <td class="col2">
-                                    <asp:UpdatePanel ID="UpdatetbName" runat="server">
-                                        <ContentTemplate>
-                                            <asp:TextBox ID="tbName" runat="server" CssClass="tb5"></asp:TextBox>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="tbName" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col1">วัน/เดือน/ปีที่เริ่มรับราชการ</td>
-                                <td class="col2">
-                                    <asp:UpdatePanel ID="UpdatetbDateInwork" runat="server">
-                                        <ContentTemplate>
-                                            <asp:TextBox ID="tbDateInwork" runat="server" CssClass="tb5"></asp:TextBox>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="tbDateInwork" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col1">ชื่อตำแหน่งปัจจุบัน</td>
-                                <td class="col2">
-                                    <asp:UpdatePanel ID="UpdatetbPositionCurrent" runat="server">
-                                        <ContentTemplate>
-                                            <asp:TextBox ID="tbPositionCurrent" runat="server" CssClass="tb5"></asp:TextBox>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="tbPositionCurrent" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col1">เงินเดือนป้จจุบัน</td>
-                                <td class="col2">
-                                    <asp:UpdatePanel ID="UpdatetbSalaryCurrent" runat="server">
-                                        <ContentTemplate>
-                                            <asp:TextBox ID="tbSalaryCurrent" runat="server" CssClass="tb5"></asp:TextBox>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="tbSalaryCurrent" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div style="float: left; display: inline-block; margin-right: 50px;">
-                        <table>
-                            <tr>
-                                <td class="col1">ยศ</td>
-                                <td class="col2">
-                                    <asp:UpdatePanel ID="UpdatetbRank" runat="server">
-                                        <ContentTemplate>
-                                            <asp:TextBox ID="tbRank" runat="server" CssClass="tb5"></asp:TextBox>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="tbRank" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col1">นามสกุล</td>
-                                <td class="col2">
-                                    <asp:UpdatePanel ID="UpdatetbLastName" runat="server">
-                                        <ContentTemplate>
-                                            <asp:TextBox ID="tbLastName" runat="server" CssClass="tb5"></asp:TextBox>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="tbLastName" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col1">ตำแหน่งเริ่มรับราชกาาร</td>
-                                <td class="col2">
-                                    <asp:UpdatePanel ID="UpdatetbPosition" runat="server">
-                                        <ContentTemplate>
-                                            <asp:TextBox ID="tbPosition" runat="server" CssClass="tb5"></asp:TextBox>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="tbPosition" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col1">ประเภท</td>
-                                <td class="col2">
-                                    <asp:UpdatePanel ID="UpdatetbType" runat="server">
-                                        <ContentTemplate>
-                                            <asp:TextBox ID="tbType" runat="server" CssClass="tb5"></asp:TextBox>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="tbType" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col1">เงินประจำตำแหน่ง</td>
-                                <td class="col2">
-                                    <asp:UpdatePanel ID="UpdatetbSalaryPosition" runat="server">
-                                        <ContentTemplate>
-                                            <asp:TextBox ID="tbSalaryPosition" runat="server" CssClass="tb5"></asp:TextBox>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="tbSalaryPosition" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div style="float: left; display: inline-block;">
-                        <table>
-                            <tr>
-                                <td class="col1">คำนำหน้าชื่อ</td>
-                                <td class="col2">
-                                    <asp:UpdatePanel ID="UpdatetbTitleName" runat="server">
-                                        <ContentTemplate>
-                                            <asp:TextBox ID="tbTitleName" runat="server" CssClass="tb5"></asp:TextBox>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="tbTitleName" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col1">วัน/เดือน/ปีเกิด</td>
-                                <td class="col2">
-                                    <asp:UpdatePanel ID="UpdatetbBirthDate" runat="server">
-                                        <ContentTemplate>
-                                            <asp:TextBox ID="tbBirthDate" runat="server" CssClass="tb5"></asp:TextBox>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="tbBirthDate" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col1">ระดับที่เริ่มรับราชกาาร</td>
-                                <td class="col2">
-                                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                                        <ContentTemplate>
-                                            <asp:TextBox ID="TextBox1" runat="server" CssClass="tb5"></asp:TextBox>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="tbBirthDate" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col1">ระดับ</td>
-                                <td class="col2">
-                                    <asp:UpdatePanel ID="UpdatetbDegree" runat="server">
-                                        <ContentTemplate>
-                                            <asp:TextBox ID="tbDegree" runat="server" CssClass="tb5"></asp:TextBox>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="tbDegree" />
                                         </Triggers>
                                     </asp:UpdatePanel>
                                 </td>

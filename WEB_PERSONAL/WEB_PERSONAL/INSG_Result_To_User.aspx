@@ -62,59 +62,12 @@
     <asp:ScriptManager ID="ScriptManager1" runat="server" />
         <div class="default_page_style">
         <div class="ps-header"><img src="Image/Small/medal.png" />การแจ้งผลผู้ที่ได้รับเครื่องราชอิสริยาภรณ์</div>
-        <div>
-            <table class="ps-table">
-                <tr>
-                    <td class="col1">ประจำปี</td>
-                    <td class="col2">
-                        <asp:DropDownList ID="ddlYear" runat="server"></asp:DropDownList>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col1"></td>
-                    <td class="col2">
-                        <asp:LinkButton ID="lbuSearch" runat="server" CssClass="ps-button"><img src="Image/Small/search.png" class="icon_left"/>ค้นหา</asp:LinkButton>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex="0">
-            <asp:View ID="View1" runat="server">
-                <asp:GridView ID="gv1" runat="server" CssClass="ps-gridview"></asp:GridView>
-            </asp:View>
-            <asp:View ID="View2" runat="server">
-                <table class="ps-table">
-                    <tr>
-                        <td class="head" colspan="2">แจ้งผลการขอเครื่องราช</td>
-                    </tr>
-                    <tr>
-                        <td class="col1">ขอวันที่</td>
-                        <td class="col2">
-                            <asp:Label ID="lbReqDate" runat="server" Text="Label"></asp:Label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col1">ชื่อผู้ขอ</td>
-                        <td class="col2">
-                            <asp:Label ID="lbCitizenName" runat="server" Text="Label"></asp:Label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col1">เครื่องราช</td>
-                        <td class="col2">
-                            <asp:Label ID="lbInsignia" runat="server" Text="Label"></asp:Label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col1">สถานะ</td>
-                        <td class="col2">
-                            <asp:Label ID="lbState" runat="server" Text="Label"></asp:Label>
-                        </td>
-                    </tr>
-                </table>
+        <asp:Table ID="Table1" runat="server" CssClass="ps-ins-table"></asp:Table>
                 <div class="ps-separator"></div>
-                
-                </asp:View>
-        </asp:MultiView>
+                <div>
+                    <asp:LinkButton ID="lblGet" runat="server" CssClass="ps-button" OnClick="lblGet_Click"><img src="Image/Small/correct.png" class="icon_left"/>ได้รับเครื่องราชฯ</asp:LinkButton>
+                    <asp:LinkButton ID="lblNotGet" runat="server" CssClass="ps-button" ><img src="Image/Small/delete.png" class="icon_left"/>ไม่ได้รับเครื่องราชฯ</asp:LinkButton>
+                </div>   
+        <div class="ps-separator"></div>
     </div>
 </asp:Content>

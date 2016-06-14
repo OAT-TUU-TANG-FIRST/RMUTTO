@@ -862,6 +862,7 @@
     <Content Include="Image\มทร.ตะวันออก.jpg" />
     <Content Include="INSG_Borrow.aspx" />
     <Content Include="INSG_Qualified.aspx" />
+    <Content Include="INSG_Qualified_Detail-ADMIN.aspx" />
     <Content Include="INSG_Qualified_Detail.aspx" />
     <Content Include="INSG_Request.aspx" />
     <Content Include="INSG_RequestList.aspx" />
@@ -1016,12 +1017,14 @@
     <Content Include="jquery.mCustomScrollbar\jquery.mCustomScrollbar.concat.min.js" />
     <Content Include="PrintLeaveForm.aspx" />
     <Content Include="Province-ADMIN.aspx" />
+    <Content Include="Rank-ADMIN.aspx" />
     <Content Include="Religion-ADMIN.aspx" />
     <Content Include="Report-Custom-Person.aspx" />
     <Content Include="Profile.aspx" />
     <Content Include="Staff-ADMIN.aspx" />
     <Content Include="StaffType-ADMIN.aspx" />
     <Content Include="StatusPerson-ADMIN.aspx" />
+    <Content Include="StatusWork-ADMIN.aspx" />
     <Content Include="SumReport_UpSalary.aspx" />
     <Content Include="TeachISCED-ADMIN.aspx" />
     <Content Include="TestOutput.aspx" />
@@ -1238,6 +1241,7 @@
     <Compile Include="Division-ADMIN.aspx.designer.cs">
       <DependentUpon>Division-ADMIN.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Entities\Insignia.cs" />
     <Compile Include="Entities\Report.cs" />
     <Compile Include="Entities\Tuu.cs" />
     <Compile Include="Entities\Personnel.cs" />
@@ -1301,6 +1305,13 @@
     </Compile>
     <Compile Include="INSG_Qualified.aspx.designer.cs">
       <DependentUpon>INSG_Qualified.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="INSG_Qualified_Detail-ADMIN.aspx.cs">
+      <DependentUpon>INSG_Qualified_Detail-ADMIN.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="INSG_Qualified_Detail-ADMIN.aspx.designer.cs">
+      <DependentUpon>INSG_Qualified_Detail-ADMIN.aspx</DependentUpon>
     </Compile>
     <Compile Include="INSG_Qualified_Detail.aspx.cs">
       <DependentUpon>INSG_Qualified_Detail.aspx</DependentUpon>
@@ -1622,6 +1633,13 @@
     <Compile Include="Province-ADMIN.aspx.designer.cs">
       <DependentUpon>Province-ADMIN.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Rank-ADMIN.aspx.cs">
+      <DependentUpon>Rank-ADMIN.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Rank-ADMIN.aspx.designer.cs">
+      <DependentUpon>Rank-ADMIN.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Religion-ADMIN.aspx.cs">
       <DependentUpon>Religion-ADMIN.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1669,6 +1687,13 @@
     </Compile>
     <Compile Include="StaffType-ADMIN.aspx.designer.cs">
       <DependentUpon>StaffType-ADMIN.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StatusWork-ADMIN.aspx.cs">
+      <DependentUpon>StatusWork-ADMIN.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StatusWork-ADMIN.aspx.designer.cs">
+      <DependentUpon>StatusWork-ADMIN.aspx</DependentUpon>
     </Compile>
     <Compile Include="SumReport_UpSalary.aspx.cs">
       <DependentUpon>SumReport_UpSalary.aspx</DependentUpon>

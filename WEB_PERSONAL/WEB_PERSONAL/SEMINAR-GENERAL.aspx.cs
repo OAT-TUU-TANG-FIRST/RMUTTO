@@ -18,20 +18,6 @@ namespace WEB_PERSONAL {
             if (!IsPostBack) {
                 txtBudget.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
             }
-
-            using (OracleConnection conn = Util.OC()) {
-                PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
-                Person PP = ps.LoginPerson;
-                using (OracleCommand cmd = new OracleCommand("select PERSON_NAME,PERSON_LASTNAME from tb_person where citizen_id = '" + PP.CitizenID + "'", conn)) {
-                    using (OracleDataReader reader = cmd.ExecuteReader()) {
-                        while (reader.Read()) {
-                            txtName.Text = reader.IsDBNull(0) ? "" : reader.GetString(0);
-                            txtLastName.Text = reader.IsDBNull(1) ? "" : reader.GetString(1);
-                        }
-                    }
-                }
-
-            }
         }
 
         void BindData() {

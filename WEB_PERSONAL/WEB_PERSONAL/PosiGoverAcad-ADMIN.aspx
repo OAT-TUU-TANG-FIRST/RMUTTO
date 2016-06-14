@@ -57,7 +57,7 @@
             <fieldset>
                 <legend>ค้นหาข้อมูล</legend>
                 <div>
-                    ตำแหน่ง :&nbsp;<asp:TextBox ID="txtSearchPosiGoverAcadName" runat="server" CssClass="tb5" Width="230px" MaxLength="100"></asp:TextBox>
+                    ชื่อตำแหน่งประเภท :&nbsp;<asp:TextBox ID="txtSearchPosiGoverAcadName" runat="server" CssClass="tb5" Width="230px" MaxLength="100"></asp:TextBox>
                     <asp:Button ID="btnSearchPosiGoverAcad" Text="Search" runat="server" CssClass="master_OAT_button" OnClick="btnSearchPosiGoverAcad_Click" />
                     <asp:Button ID="btnSearchRefresh" Text="Refresh" runat="server" CssClass="master_OAT_button" OnClick="btnSearchRefresh_Click" />
                 </div>
@@ -71,7 +71,7 @@
                 <div>
                     <table class="center1">
                         <tr>
-                            <td style="margin-left: auto; margin-right: auto; text-align: center">ตำแหน่ง :</td>
+                            <td style="margin-left: auto; margin-right: auto; text-align: center">ชื่อตำแหน่งประเภท :</td>
                             <td style="text-align: left; width: 120px;">
                                 <asp:TextBox ID="txtInsertPosiGoverAcadName" runat="server" CssClass="tb5" Width="230px" MaxLength="100"></asp:TextBox></td>
                             <td style="text-align: left;">
@@ -100,12 +100,12 @@
                             OnRowDataBound="GridView1_RowDataBound"
                             OnPageIndexChanging="myGridViewPosiGoverAcad_PageIndexChanging" PageSize="15" BackColor="White" BorderColor="#999999">
                             <Columns>
-                                <asp:TemplateField Visible="false" HeaderText="รหัสตำแหน่ง" ControlStyle-Width="180" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Tomato">
+                                <asp:TemplateField Visible="false" HeaderText="ตำแหน่งประเภท" ControlStyle-Width="180" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Tomato">
                                     <ItemTemplate>
                                         <asp:Label ID="lblPosiGoverAcadIDEdit" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.P_ID") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="ชื่อตำแหน่ง" ControlStyle-Width="640" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Tomato">
+                                <asp:TemplateField HeaderText="ชื่อตำแหน่งประเภท" ControlStyle-Width="640" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Tomato">
                                     <ItemTemplate>
                                         <asp:Label ID="lblPosiGoverAcadNameEdit" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.P_NAME") %>'></asp:Label>
                                     </ItemTemplate>

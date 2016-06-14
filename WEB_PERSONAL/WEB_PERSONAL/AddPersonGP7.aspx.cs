@@ -130,6 +130,56 @@ namespace WEB_PERSONAL
             }
         }
 
+        protected void ClearText()
+        {
+            tbCitizenID.Text = "";
+            lblCitizenID.Text = "";
+            lblName.Text = "";
+            lblLastName.Text = "";
+            lblStafftype.Text = "";
+            lblCampus.Text = "";
+            lblPosition.Text = "";
+            lblStatusPersonWork.Text = "";
+
+            ddlDegree10.SelectedIndex = 0;
+            tbUnivName10.Text = "";
+            ddlMonth10From.SelectedIndex = 0;
+            ddlYear10From.SelectedIndex = 0;
+            ddlMonth10To.SelectedIndex = 0;
+            ddlYear10To.SelectedIndex = 0;
+            tbQualification10.Text = "";
+            tbMajor10.Text = "";
+            ddlCountrySuccess10.SelectedIndex = 0;
+
+            tbLicenseName11.Text = "";
+            tbDepartment11.Text = "";
+            tbLicenseNo11.Text = "";
+            tbUseDate11.Text = "";
+
+            tbCourse.Text = "";
+            ddlMonth12From.SelectedIndex = 0;
+            ddlYear12From.SelectedIndex = 0;
+            ddlMonth12To.SelectedIndex = 0;
+            ddlYear12To.SelectedIndex = 0;
+            tbDepartment.Text = "";
+
+            ddlYear13.SelectedIndex = 0;
+            tbName13.Text = "";
+            tbREF13.Text = "";
+
+            tbDate14.Text = "";
+            tbPosition14.Text = "";
+            tbPositionNo14.Text = "";
+            ddlPositionType14.SelectedIndex = 0;
+            ddlPositionDegree14.SelectedIndex = 0;
+            tbSalary14.Text = "";
+            tbSalaryPosition14.Text = "";
+            tbRef14.Text = "";
+
+            notification.Attributes["class"] = "none";
+            notification.InnerHtml = "";
+        }
+
         protected void SQLddlPositionType14()
         {
             try
@@ -389,8 +439,11 @@ namespace WEB_PERSONAL
 
             if (string.IsNullOrEmpty(tbCitizenID.Text))
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ รหัสบัตรประชาชนของผู้ที่จะเพิ่มข้อมูล')", true);
-                return;
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอกรหัสบัตรประชาชน')", true);
+            }
+            if (tbCitizenID.Text.Length <= 12)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอกรหัสบัตรประชาชนให้ครบ 13 หลัก')", true);
             }
 
             for (int i = 0; i < GridViewStudy.Rows.Count; ++i)
@@ -408,7 +461,7 @@ namespace WEB_PERSONAL
                                 conn.Open();
                             }
 
-                            command.Parameters.Add(new OracleParameter("PS_CITIZEN_ID", tbCitizenID.Text));
+                            command.Parameters.Add(new OracleParameter("PS_CITIZEN_ID", lblCitizenID.Text));
                             command.Parameters.Add(new OracleParameter("PS_DEGREE_ID", GridViewStudy.Rows[i].Cells[0].Text));
                             command.Parameters.Add(new OracleParameter("PS_UNIV_NAME", GridViewStudy.Rows[i].Cells[1].Text));
                             command.Parameters.Add(new OracleParameter("PS_FROM_MONTH", GridViewStudy.Rows[i].Cells[2].Text));
@@ -455,7 +508,7 @@ namespace WEB_PERSONAL
                             }
                             DateTime DATE_11 = Util.ODT(GridViewLicense.Rows[i].Cells[3].Text);
 
-                            command.Parameters.Add(new OracleParameter("PS_CITIZEN_ID", tbCitizenID.Text));
+                            command.Parameters.Add(new OracleParameter("PS_CITIZEN_ID", lblCitizenID.Text));
                             command.Parameters.Add(new OracleParameter("PS_LICENSE_NAME", GridViewLicense.Rows[i].Cells[0].Text));
                             command.Parameters.Add(new OracleParameter("PS_DEPARTMENT", GridViewLicense.Rows[i].Cells[1].Text));
                             command.Parameters.Add(new OracleParameter("PS_LICENSE_NO", GridViewLicense.Rows[i].Cells[2].Text));
@@ -492,7 +545,7 @@ namespace WEB_PERSONAL
                                 conn.Open();
                             }
 
-                            command.Parameters.Add(new OracleParameter("PS_CITIZEN_ID", tbCitizenID.Text));
+                            command.Parameters.Add(new OracleParameter("PS_CITIZEN_ID", lblCitizenID.Text));
                             command.Parameters.Add(new OracleParameter("PS_COURSE", GridViewTraining.Rows[i].Cells[0].Text));
                             command.Parameters.Add(new OracleParameter("PS_FROM_MONTH", GridViewTraining.Rows[i].Cells[1].Text));
                             command.Parameters.Add(new OracleParameter("PS_FROM_YEAR", GridViewTraining.Rows[i].Cells[2].Text));
@@ -530,7 +583,7 @@ namespace WEB_PERSONAL
                                 conn.Open();
                             }
 
-                            command.Parameters.Add(new OracleParameter("PS_CITIZEN_ID", tbCitizenID.Text));
+                            command.Parameters.Add(new OracleParameter("PS_CITIZEN_ID", lblCitizenID.Text));
                             command.Parameters.Add(new OracleParameter("PS_YEAR", GridViewDDA.Rows[i].Cells[0].Text));
                             command.Parameters.Add(new OracleParameter("PS_DAA_NAME", GridViewDDA.Rows[i].Cells[1].Text));
                             command.Parameters.Add(new OracleParameter("PS_REF", GridViewDDA.Rows[i].Cells[2].Text));
@@ -571,7 +624,7 @@ namespace WEB_PERSONAL
                             }
                             DateTime DATE_11 = Util.ODT(GridViewPAS.Rows[i].Cells[0].Text);
 
-                            command.Parameters.Add(new OracleParameter("PS_CITIZEN_ID", tbCitizenID.Text));
+                            command.Parameters.Add(new OracleParameter("PS_CITIZEN_ID", lblCitizenID.Text));
                             command.Parameters.Add(new OracleParameter("PS_DATE", DATE_11));
                             command.Parameters.Add(new OracleParameter("PS_POSITION", GridViewPAS.Rows[i].Cells[1].Text));
                             command.Parameters.Add(new OracleParameter("PS_POSITION_NO", GridViewPAS.Rows[i].Cells[2].Text));
@@ -597,9 +650,9 @@ namespace WEB_PERSONAL
                 }
             }
 
-            Response.Redirect("Default.aspx");
-            //MultiView1.ActiveViewIndex = 0;
-            //Clear Do not Have
+            ClearText();
+
+            MultiView1.ActiveViewIndex = 0;
             notification.Attributes["class"] = "alert alert_success";
             notification.InnerHtml = "";
             notification.InnerHtml += "<div><img src='Image/Small/correct.png' /><strong> เพิ่มข้อมูลบุคลากร เรียบร้อย</strong></div>";
@@ -609,8 +662,11 @@ namespace WEB_PERSONAL
         {
             if (string.IsNullOrEmpty(tbCitizenID.Text))
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ รหัสบัตรประชาชนของผู้ที่จะเพิ่มข้อมูล')", true);
-                return;
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอกรหัสบัตรประชาชน')", true);
+            }
+            if (tbCitizenID.Text.Length <= 12)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอกรหัสบัตรประชาชนให้ครบ 13 หลัก')", true);
             }
             DataRow dr = ((DataTable)(Session["Study"])).NewRow();
             DataRow drShow = ((DataTable)(Session["StudyShow"])).NewRow();
@@ -681,8 +737,11 @@ namespace WEB_PERSONAL
         {
             if (string.IsNullOrEmpty(tbCitizenID.Text))
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ รหัสบัตรประชาชนของผู้ที่จะเพิ่มข้อมูล')", true);
-                return;
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอกรหัสบัตรประชาชน')", true);
+            }
+            if (tbCitizenID.Text.Length <= 12)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอกรหัสบัตรประชาชนให้ครบ 13 หลัก')", true);
             }
             DataRow dr = ((DataTable)(Session["ProLisence"])).NewRow();
             dr[0] = tbLicenseName11.Text;
@@ -727,8 +786,11 @@ namespace WEB_PERSONAL
         {
             if (string.IsNullOrEmpty(tbCitizenID.Text))
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ รหัสบัตรประชาชนของผู้ที่จะเพิ่มข้อมูล')", true);
-                return;
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอกรหัสบัตรประชาชน')", true);
+            }
+            if (tbCitizenID.Text.Length <= 12)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอกรหัสบัตรประชาชนให้ครบ 13 หลัก')", true);
             }
             DataRow dr = ((DataTable)(Session["Trainning"])).NewRow();
             DataRow drShow = ((DataTable)(Session["TrainningShow"])).NewRow();
@@ -781,8 +843,11 @@ namespace WEB_PERSONAL
         {
             if (string.IsNullOrEmpty(tbCitizenID.Text))
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ รหัสบัตรประชาชนของผู้ที่จะเพิ่มข้อมูล')", true);
-                return;
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอกรหัสบัตรประชาชน')", true);
+            }
+            if (tbCitizenID.Text.Length <= 12)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอกรหัสบัตรประชาชนให้ครบ 13 หลัก')", true);
             }
             DataRow dr = ((DataTable)(Session["DDA"])).NewRow();
             dr[0] = ddlYear13.SelectedValue;
@@ -822,8 +887,11 @@ namespace WEB_PERSONAL
         {
             if (string.IsNullOrEmpty(tbCitizenID.Text))
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ รหัสบัตรประชาชนของผู้ที่จะเพิ่มข้อมูล')", true);
-                return;
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอกรหัสบัตรประชาชน')", true);
+            }
+            if (tbCitizenID.Text.Length <= 12)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอกรหัสบัตรประชาชนให้ครบ 13 หลัก')", true);
             }
             DataRow dr = ((DataTable)(Session["PAS"])).NewRow();
             DataRow drShow = ((DataTable)(Session["PASShow"])).NewRow();
@@ -902,24 +970,42 @@ namespace WEB_PERSONAL
             PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
             Person loginPerson = ps.LoginPerson;
 
+            if (string.IsNullOrEmpty(tbCitizenID.Text))
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอกรหัสบัตรประชาชน')", true);
+            }
+            if (tbCitizenID.Text.Length <= 12)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอกรหัสบัตรประชาชนให้ครบ 13 หลัก')", true);
+            }
+
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
             {
                 con.Open();
-                using (OracleCommand com = new OracleCommand("SELECT PS_CITIZEN_ID,PS_FN_TH,PS_LN_TH FROM PS_PERSON WHERE PS_CITIZEN_ID = '" + tbCitizenID.Text + "'", con))
+                using (OracleCommand com = new OracleCommand("SELECT PS_CITIZEN_ID รหัสบัตรประชาชน, PS_FN_TH, PS_LN_TH, (SELECT STAFFTYPE_NAME FROM TB_STAFFTYPE WHERE PS_PERSON.PS_STAFFTYPE_ID = TB_STAFFTYPE.STAFFTYPE_ID) ประเภทบุคลากร, (SELECT CAMPUS_NAME FROM TB_CAMPUS WHERE PS_PERSON.PS_CAMPUS_ID = TB_CAMPUS.CAMPUS_ID) || ' > ' || (SELECT FACULTY_NAME FROM TB_FACULTY WHERE PS_PERSON.PS_FACULTY_ID = TB_FACULTY.FACULTY_ID) || ' > ' || (SELECT DIVISION_NAME FROM TB_DIVISION WHERE PS_PERSON.PS_DIVISION_ID = TB_DIVISION.DIVISION_ID) || ' > ' || (SELECT WORK_NAME FROM TB_WORK_DIVISION WHERE PS_PERSON.PS_WORK_DIVISION_ID = TB_WORK_DIVISION.WORK_ID) \"งาน / ฝ่าย\", (SELECT NAME FROM TB_POSITION WHERE PS_PERSON.PS_POSITION_ID = TB_POSITION.ID) ตำแหน่ง, (SELECT SW_NAME FROM TB_STATUS_WORK WHERE PS_PERSON.PS_SW_ID = TB_STATUS_WORK.SW_ID) สถานะการทำงาน FROM PS_PERSON WHERE PS_CITIZEN_ID = '" + tbCitizenID.Text + "'", con))
                 {
                     using (OracleDataReader reader = com.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            tbCitizenSearch.Text = reader.IsDBNull(0) ? "" : reader.GetString(0);
-                            tbNameSearch.Text = reader.IsDBNull(1) ? "" : reader.GetString(1);
-                            tbLastNameSearch.Text = reader.IsDBNull(2) ? "" : reader.GetString(2);
+                            lblCitizenID.Text = reader.IsDBNull(0) ? "" : reader.GetString(0);
+                            lblName.Text = reader.IsDBNull(1) ? "" : reader.GetString(1);
+                            lblLastName.Text = reader.IsDBNull(2) ? "" : reader.GetString(2);
+                            lblStafftype.Text = reader.IsDBNull(3) ? "" : reader.GetString(3);
+                            lblCampus.Text = reader.IsDBNull(4) ? "" : reader.GetString(4);
+                            lblPosition.Text = reader.IsDBNull(5) ? "" : reader.GetString(5);
+                            lblStatusPersonWork.Text = reader.IsDBNull(6) ? "" : reader.GetString(6);
                         }
                     }
                 }
             }
         }
 
-
+        protected void btnSearchRefresh_Click(object sender, EventArgs e)
+        {
+            PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
+            Person loginPerson = ps.LoginPerson;
+            ClearText();
+        }
     }
 }

@@ -94,9 +94,6 @@
                     <td class="col2">
                         <asp:Label ID="lblUniversity" runat="server">มหาวิทยาลัยเทคโนโลยีราชมงคลตะวันออก > </asp:Label>
                         <asp:Label ID="lblCampus" runat="server"></asp:Label>
-                        <asp:Label ID="lblFaculty" runat="server"></asp:Label>
-                        <asp:Label ID="lblDivision" runat="server"></asp:Label>
-                        <asp:Label ID="lblWorkDivision" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
@@ -113,22 +110,8 @@
                 </tr>
             </table>
             <div>
-                <asp:Table ID="Table1" runat="server" CssClass="ps-gridview-x16">
-                    <asp:TableHeaderRow>
-                        <asp:TableHeaderCell>ปีที่ได้รับ</asp:TableHeaderCell>
-                        <asp:TableHeaderCell>ชั้น</asp:TableHeaderCell>
-                        <asp:TableHeaderCell>ตำแหน่ง</asp:TableHeaderCell>
-                        <asp:TableHeaderCell>เงินเดือน</asp:TableHeaderCell>
-                    </asp:TableHeaderRow>
-                </asp:Table>
-                <asp:UpdatePanel ID="Updategv1" runat="server">
-                    <ContentTemplate>
-                        <asp:GridView ID="gv1" runat="server" CssClass="ps-gridview"></asp:GridView>
-                    </ContentTemplate>
-                    <Triggers>
-                        <asp:AsyncPostBackTrigger ControlID="gv1" />
-                    </Triggers>
-                </asp:UpdatePanel>
+                <asp:Table ID="Table1" runat="server" CssClass="ps-ins-table"></asp:Table>
+                <div class="ps-separator"></div>
             </div>
         </fieldset>
     </div>
