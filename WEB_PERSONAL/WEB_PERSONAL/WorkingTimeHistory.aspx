@@ -119,6 +119,19 @@
             text-decoration: none;
             text-align: center;
         }
+        .d_leave span {
+            display: inline-block;
+            width: 100px;
+            height: 75px;
+            line-height: 30px;
+            font-size: 12px;
+            color: #ffffff;
+            background-color: #00a2e8;
+            border-bottom: 1px solid #0071a1;
+            border-right: 1px solid #0071a1;
+            text-decoration: none;
+            text-align: center;
+        }
         .d_no_data span {
             display: inline-block;
             width: 100px;
@@ -152,23 +165,30 @@
         <div class="ps-box" style="margin-top: 10px;">
             <div class="ps-box-i0">
                 <div class="ps-box-hd10">
-                    <asp:DropDownList ID="ddlMonth" runat="server">
-                        <asp:ListItem Text="มกราคม" Value="1"></asp:ListItem>
-                        <asp:ListItem Text="กุมภาพันธ์" Value="2"></asp:ListItem>
-                        <asp:ListItem Text="มีนาคม" Value="3"></asp:ListItem>
-                        <asp:ListItem Text="เมษายน" Value="4"></asp:ListItem>
-                        <asp:ListItem Text="พฤษภาคม" Value="5"></asp:ListItem>
-                        <asp:ListItem Text="มิถุนายน" Value="6"></asp:ListItem>
-                        <asp:ListItem Text="กรกฎาคม" Value="7"></asp:ListItem>
-                        <asp:ListItem Text="สิงหาคม" Value="8"></asp:ListItem>
-                        <asp:ListItem Text="กันยายน" Value="9"></asp:ListItem>
-                        <asp:ListItem Text="ตุลาคม" Value="10"></asp:ListItem>
-                        <asp:ListItem Text="พฤษจิกายน" Value="11"></asp:ListItem>
-                        <asp:ListItem Text="ธันวาคม" Value="12"></asp:ListItem>
-                    </asp:DropDownList>
-                    <asp:TextBox ID="tbYear" runat="server" CssClass="ps-textbox" placeHolder="ปี พ.ศ." style="width: 50px;"></asp:TextBox>
-                    <asp:LinkButton ID="lbuSearchV2" runat="server" OnClick="lbuSearchV2_Click" CssClass="ps-button"><img src="Image/Small/search.png" class="icon_left"/>ค้นหา</asp:LinkButton>
+                    <asp:Panel ID="Panel2" runat="server" DefaultButton="lbuSearchV2">
+                        <asp:DropDownList ID="ddlMonth" runat="server" CssClass="ps-dropdown">
+                            <asp:ListItem Text="มกราคม" Value="1"></asp:ListItem>
+                            <asp:ListItem Text="กุมภาพันธ์" Value="2"></asp:ListItem>
+                            <asp:ListItem Text="มีนาคม" Value="3"></asp:ListItem>
+                            <asp:ListItem Text="เมษายน" Value="4"></asp:ListItem>
+                            <asp:ListItem Text="พฤษภาคม" Value="5"></asp:ListItem>
+                            <asp:ListItem Text="มิถุนายน" Value="6"></asp:ListItem>
+                            <asp:ListItem Text="กรกฎาคม" Value="7"></asp:ListItem>
+                            <asp:ListItem Text="สิงหาคม" Value="8"></asp:ListItem>
+                            <asp:ListItem Text="กันยายน" Value="9"></asp:ListItem>
+                            <asp:ListItem Text="ตุลาคม" Value="10"></asp:ListItem>
+                            <asp:ListItem Text="พฤษจิกายน" Value="11"></asp:ListItem>
+                            <asp:ListItem Text="ธันวาคม" Value="12"></asp:ListItem>
+                        </asp:DropDownList>
+
+                        <asp:TextBox ID="tbYear" runat="server" CssClass="ps-textbox" placeHolder="ปี พ.ศ." style="width: 50px;"></asp:TextBox>
+                        <asp:LinkButton ID="lbuSearchV2" runat="server" OnClick="lbuSearchV2_Click" CssClass="ps-button"><img src="Image/Small/search.png" class="icon_left"/>ค้นหา</asp:LinkButton>
+                        <asp:Label ID="lbError" runat="server" Text="" ForeColor="Red"></asp:Label>
+                    </asp:Panel>
                 </div>
+            </div>
+            <div class="ps-box-i0">
+                
                 <div class="ps-box-ct10">
                     <asp:Panel ID="Panel1" runat="server"></asp:Panel>
                 </div>

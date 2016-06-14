@@ -23,12 +23,15 @@ namespace WEB_PERSONAL {
                 }
                 DateTime dt = Util.ODTT();
 
-                if (dt.Month >= 10) {
+
+                /*if (dt.Month >= 10) {
                     DropDownList1.SelectedValue = "" + (dt.Year + 1);
                 } else {
                     DropDownList1.SelectedValue = "" + dt.Year;
-                }
-                Label1.Text = "(1 ตุลาคม " + (int.Parse(DropDownList1.SelectedValue) - 1) + " - 30 กันยายน " + DropDownList1.SelectedValue + ")";
+                }*/
+
+                DropDownList1.SelectedValue = "" + (Util.BudgetYear() + 543);
+
             }
 
 
@@ -38,6 +41,8 @@ namespace WEB_PERSONAL {
 
         private void BindGridView1() {
 
+            Label1.Text = "(1 ตุลาคม " + (int.Parse(DropDownList1.SelectedValue) - 1) + " - 30 กันยายน " + DropDownList1.SelectedValue + ")";
+            tb.Rows.Clear();
             {
                 TableHeaderRow row = new TableHeaderRow();
                 { TableHeaderCell cell = new TableHeaderCell(); cell.Text = ""; cell.ColumnSpan = 3; row.Cells.Add(cell); }
@@ -133,49 +138,52 @@ namespace WEB_PERSONAL {
                 }
                 {
                     TableCell cell = new TableCell();
-                    cell.Text = "" + DatabaseManager.ExecuteInt("SELECT NVL(COUNT(WORKTIME_ID),0) FROM LEV_WORKTIME WHERE LATE = 1 AND CITIZEN_ID = '" + ps.CitizenID + "' AND EXTRACT(YEAR FROM TODAY) = " + budgetYear);
+                    cell.Text = "" + DatabaseManager.ExecuteInt("SELECT NVL(COUNT(WORKTIME_ID),0) FROM LEV_WORKTIME WHERE LATE = 1 AND CITIZEN_ID = '" + ps.CitizenID + "' AND TODAY > TO_DATE('30-09-" + (budgetYear-1) + "', 'DD-MM-YYYY') AND TODAY < TO_DATE('01-10-" + (budgetYear) + "', 'DD-MM-YYYY')");
                     row.Cells.Add(cell);
                 }
                 {
                     TableCell cell = new TableCell();
-                    cell.Text = "" + DatabaseManager.ExecuteInt("SELECT NVL(COUNT(WORKTIME_ID),0) FROM LEV_WORKTIME WHERE ABSENT = 1 AND CITIZEN_ID = '" + ps.CitizenID + "' AND EXTRACT(YEAR FROM TODAY) = " + budgetYear);
-                    row.Cells.Add(cell);
-                }
-                {
-                    TableCell cell = new TableCell();
-                    cell.Text = "";
+                    cell.Text = "" + DatabaseManager.ExecuteInt("SELECT NVL(COUNT(WORKTIME_ID),0) FROM LEV_WORKTIME WHERE ABSENT = 1 AND CITIZEN_ID = '" + ps.CitizenID + "' AND TODAY > TO_DATE('30-09-" + (budgetYear-1) + "', 'DD-MM-YYYY') AND TODAY < TO_DATE('01-10-" + (budgetYear) + "', 'DD-MM-YYYY')");
                     row.Cells.Add(cell);
                 }
                 {
                     TableCell cell = new TableCell();
                     cell.Text = "";
+                    row.Cells.Add(cell);
+                }
+                {
+                   
                     using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                         con.Open();
-                        using (OracleCommand command = new OracleCommand("SELECT FROM_DATE FROM LEV_DATA WHERE PS_ID = '" + ps.CitizenID + "' AND LEAVE_TYPE_ID = 3 ORDER BY LEAVE_ID DESC", con)) {
-                            using (OracleDataReader reader = command.ExecuteReader()) {
-                                if (reader.Read()) {
-                                    cell.Text = reader.GetDateTime(0).ToLongDateString();
+                        {
+                            TableCell cell = new TableCell();
+                            cell.Text = "";
+                            using (OracleCommand command = new OracleCommand("SELECT FROM_DATE FROM LEV_DATA WHERE PS_ID = '" + ps.CitizenID + "' AND LEAVE_TYPE_ID = 3 ORDER BY LEAVE_ID DESC", con)) {
+                                using (OracleDataReader reader = command.ExecuteReader()) {
+                                    if (reader.Read()) {
+                                        cell.Text = reader.GetDateTime(0).ToLongDateString();
+                                    }
                                 }
                             }
+                            row.Cells.Add(cell);
                         }
-                    }
-                    row.Cells.Add(cell);
-                }
-                {
-                    TableCell cell = new TableCell();
-                    cell.Text = "";
-                    using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
-                        con.Open();
-                        using (OracleCommand command = new OracleCommand("SELECT FROM_DATE FROM LEV_DATA WHERE PS_ID = '" + ps.CitizenID + "' AND LEAVE_TYPE_ID = 6 ORDER BY LEAVE_ID DESC", con)) {
-                            using (OracleDataReader reader = command.ExecuteReader()) {
-                                if (reader.Read()) {
-                                    cell.Text = reader.GetDateTime(0).ToLongDateString();
+                        {
+                            TableCell cell = new TableCell();
+                            cell.Text = "";
+                            using (OracleCommand command = new OracleCommand("SELECT FROM_DATE FROM LEV_DATA WHERE PS_ID = '" + ps.CitizenID + "' AND LEAVE_TYPE_ID = 6 ORDER BY LEAVE_ID DESC", con)) {
+                                using (OracleDataReader reader = command.ExecuteReader()) {
+                                    if (reader.Read()) {
+                                        cell.Text = reader.GetDateTime(0).ToLongDateString();
+                                    }
                                 }
                             }
+                            row.Cells.Add(cell);
                         }
+
                     }
-                    row.Cells.Add(cell);
+                    
                 }
+                
                 {
                     TableCell cell = new TableCell();
                     cell.Text = "";
@@ -258,7 +266,7 @@ namespace WEB_PERSONAL {
             }
 
             Response.ContentType = "application/x-msexcel";
-            Response.AddHeader("Content-Disposition", "attachment;filename = ExcelFile.xls");
+            Response.AddHeader("Content-Disposition", "attachment;filename=LeaveReport" + DropDownList1.SelectedValue + ".xls");
             Response.ContentEncoding = Encoding.UTF8;
             StringWriter tw = new StringWriter();
             HtmlTextWriter hw = new HtmlTextWriter(tw);

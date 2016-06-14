@@ -241,13 +241,13 @@
                             <img src="Image/Small/a.png" class="icon_left"/>
                             เหตุผลที่ยกเลิก</td>
                         <td class="col2">
-                            <asp:TextBox ID="tbCancelReason" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="tbCancelReason" runat="server" TextMode="MultiLine"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
                         <td class="bottom" colspan="2">
                             <asp:LinkButton ID="lbuCancelBack" runat="server" CssClass="ps-button" OnClick="lbuCancelBack_Click"><img src="Image/Small/back.png" class="icon_left"/>ย้อนกลับ</asp:LinkButton>
-                            <asp:LinkButton ID="lbuCancelFinish" runat="server" CssClass="ps-button" OnClick="lbuCancelFinish_Click"><img src="Image/Small/document-create.png" class="icon_left"/>ยืนคำขอลา</asp:LinkButton>
+                            <asp:LinkButton ID="lbuCancelFinish" runat="server" CssClass="ps-button" OnClick="lbuCancelFinish_Click"><img src="Image/Small/document-delete.png" class="icon_left"/>ยืนคำขอยกเลิกการลา</asp:LinkButton>
                         </td>
                     </tr>
                 </table>

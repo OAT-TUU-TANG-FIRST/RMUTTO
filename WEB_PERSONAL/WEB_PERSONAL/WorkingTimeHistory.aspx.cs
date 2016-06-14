@@ -11,12 +11,19 @@ namespace WEB_PERSONAL {
     public partial class WorkingTimeHistory : System.Web.UI.Page {
 
         private Person pp;
+        //private List<DateTime> datetimeList;
 
         protected void Page_Load(object sender, EventArgs e) {
             PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
             pp = ps.LoginPerson;
-
+            //datetimeList = DatabaseManager.GetLeaveDateTimeFromToDate(pp.CitizenID);
             LoadCalendar(Panel1, DateTime.Today);
+            
+            if(!IsPostBack) {
+                DateTime dt = DateTime.Today;
+                ddlMonth.SelectedValue = "" + dt.Month;
+                tbYear.Text = "" + (dt.Year + 543);
+            }
         }
 
         
@@ -26,7 +33,7 @@ namespace WEB_PERSONAL {
             int daysInMonth = DateTime.DaysInMonth(dtm.Year, dtm.Month);
             Panel p2 = new Panel();
             p2.Style.Add("display", "inline-block");
-            p2.Style.Add("border", "1px solid rgb(235,235,235)");
+            //p2.Style.Add("border", "1px solid rgb(235,235,235)");
             p2.Style.Add("padding", "5px");
             p2.Style.Add("margin", "5px");
             p.Controls.Add(p2);
@@ -96,7 +103,11 @@ namespace WEB_PERSONAL {
                         bool absent = false;
                         string timeIn = "";
                         string timeOut = "";
+                        bool leave = false;
 
+                        /*if (datetimeList.Contains(dt)) {
+                            leave = true;
+                        }*/
 
                         using (OracleCommand com = new OracleCommand("SELECT COUNT(WORKDAY_ID) FROM LEV_WORKDAY WHERE WORKDAY_DATE = :WORKDAY_DATE", con)) {
                             com.Parameters.Add("WORKDAY_DATE", dt);
@@ -122,7 +133,9 @@ namespace WEB_PERSONAL {
                                 com.Parameters.Add("TODAY", dt);
                                 using (OracleDataReader reader = com.ExecuteReader()) {
                                     while (reader.Read()) {
-                                        late = Convert.ToBoolean(reader.GetInt32(0));
+                                        if (!reader.IsDBNull(0)) {
+                                            late = Convert.ToBoolean(reader.GetInt32(0));
+                                        }
                                     }
                                 }
                             }
@@ -130,7 +143,20 @@ namespace WEB_PERSONAL {
                                 com.Parameters.Add("TODAY", dt);
                                 using (OracleDataReader reader = com.ExecuteReader()) {
                                     while (reader.Read()) {
-                                        absent = Convert.ToBoolean(reader.GetInt32(0));
+                                        if (!reader.IsDBNull(0)) {
+                                            absent = Convert.ToBoolean(reader.GetInt32(0));
+                                        }
+                                    }
+                                }
+                            }
+                            using (OracleCommand com = new OracleCommand("SELECT LEAVE FROM LEV_WORKTIME WHERE TODAY = :TODAY AND CITIZEN_ID = '" + pp.CitizenID + "'", con)) {
+                                com.Parameters.Add("TODAY", dt);
+                                using (OracleDataReader reader = com.ExecuteReader()) {
+                                    while (reader.Read()) {
+                                        if(!reader.IsDBNull(0)) {
+                                            leave = Convert.ToBoolean(reader.GetInt32(0));
+                                        }
+                                        
                                     }
                                 }
                             }
@@ -159,7 +185,10 @@ namespace WEB_PERSONAL {
                             cell.CssClass = "d_ss";
                             lb.Text = "<div>" + dt.Day.ToString() + "</div>";
                         } else {
-                            if (break_day) {
+                            if(leave) {
+                                lb.Text = "<div>" + dt.Day.ToString() + "</div><div>ลาหยุด</div>";
+                                cell.CssClass = "d_leave";
+                            } else if (break_day) {
                                 lb.Text = "<div>" + dt.Day.ToString() + "</div><div>วันหยุด</div>";
                                 cell.CssClass = "d_break";
                             } else if (!have) {
@@ -192,10 +221,15 @@ namespace WEB_PERSONAL {
         }
 
         protected void lbuSearchV2_Click(object sender, EventArgs e) {
-
             Panel1.Controls.Clear();
-            DateTime dt = new DateTime(int.Parse(tbYear.Text)-543, int.Parse(ddlMonth.SelectedValue), 1);
-            LoadCalendar(Panel1, dt);
+            if (tbYear.Text == "") {
+                lbError.Text = "*กรุณากรอกปี";
+            } else {
+                lbError.Text = "";
+                DateTime dt = new DateTime(int.Parse(tbYear.Text) - 543, int.Parse(ddlMonth.SelectedValue), 1);
+                LoadCalendar(Panel1, dt);
+            }
+            
 
         }
     }

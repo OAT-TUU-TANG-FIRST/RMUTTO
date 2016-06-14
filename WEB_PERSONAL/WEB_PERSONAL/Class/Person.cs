@@ -113,6 +113,22 @@ namespace WEB_PERSONAL.Class {
         
         public int NotificationCount;
 
+        public string Grom;
+        public string BloodID;
+        public string BloodName;
+        public string Email;
+        public string WorkTelephone;
+        public string Soi;
+        public string SoiNow;
+        public string PlaceCountryID;
+        public string PlaceCountryName;
+        public string PlaceCountryNowID;
+        public string PlaceCountryNowName;
+        public string PlaceState;
+        public string PlaceStateNow;
+        public string StatusPersonID;
+        public string StatusPersonName;
+
         public string FullName {
             get { return TitleName + FirstName + " " + LastName; }
         }

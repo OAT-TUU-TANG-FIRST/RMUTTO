@@ -216,7 +216,7 @@ namespace WEB_PERSONAL {
 
         }
         private void FuncGVCL() {
-            SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEAVE_ID รหัสการลา, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_DATA.LEAVE_TYPE_ID) ประเภทการลา, REQ_DATE วันที่ข้อมูล,  (SELECT PS_FN_TH || ' ' || PS_LN_TH FROM PS_PERSON WHERE PS_CITIZEN_ID = LEV_DATA.PS_ID) ชื่อผู้ลา, (SELECT TB_POSITION.NAME FROM TB_POSITION, PS_PERSON WHERE TB_POSITION.ID = PS_PERSON.PS_POSITION_ID AND PS_PERSON.PS_CITIZEN_ID = LEV_DATA.PS_ID) ตำแหน่ง, (SELECT ADMIN_POSITION_NAME FROM TB_ADMIN_POSITION, PS_PERSON WHERE ADMIN_POSITION_ID = PS_PERSON.PS_ADMIN_POS_ID AND PS_PERSON.PS_CITIZEN_ID = LEV_DATA.PS_ID) ระดับ, (SELECT LEAVE_STATUS_NAME FROM LEV_STATUS WHERE LEV_STATUS.LEAVE_STATUS_ID = LEV_DATA.LEAVE_STATUS_ID) สถานะ, NVL(CH_ALLOW,0) ผลการอนุมัติ FROM LEV_DATA WHERE CL_ID = '" + loginPerson.CitizenID + "' ORDER BY LEAVE_ID DESC");
+            SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEAVE_ID รหัสการลา, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_DATA.LEAVE_TYPE_ID) ประเภทการลา, REQ_DATE วันที่ข้อมูล,  (SELECT PS_FN_TH || ' ' || PS_LN_TH FROM PS_PERSON WHERE PS_CITIZEN_ID = LEV_DATA.PS_ID) ชื่อผู้ลา, (SELECT TB_POSITION.NAME FROM TB_POSITION, PS_PERSON WHERE TB_POSITION.ID = PS_PERSON.PS_POSITION_ID AND PS_PERSON.PS_CITIZEN_ID = LEV_DATA.PS_ID) ตำแหน่ง, (SELECT ADMIN_POSITION_NAME FROM TB_ADMIN_POSITION, PS_PERSON WHERE ADMIN_POSITION_ID = PS_PERSON.PS_ADMIN_POS_ID AND PS_PERSON.PS_CITIZEN_ID = LEV_DATA.PS_ID) ระดับ, (SELECT LEAVE_STATUS_NAME FROM LEV_STATUS WHERE LEV_STATUS.LEAVE_STATUS_ID = LEV_DATA.LEAVE_STATUS_ID) สถานะ, NVL(CH_ALLOW,-1) ผลการอนุมัติ FROM LEV_DATA WHERE CL_ID = '" + loginPerson.CitizenID + "' ORDER BY LEAVE_ID DESC");
             gvCL.DataSource = sds;
             gvCL.DataBind();
 
@@ -245,6 +245,10 @@ namespace WEB_PERSONAL {
                     cell.Controls.Add(btn);
                     gvCL.Rows[i].Cells.Add(cell);
 
+                    if (Util.StringEqual(gvCL.Rows[i].Cells[7].Text, new string[] { "-1" })) {
+                        gvCL.Rows[i].Cells[7].Text = "-";
+                        gvCL.Rows[i].Cells[7].ForeColor = System.Drawing.Color.Black;
+                    }
                     if (Util.StringEqual(gvCL.Rows[i].Cells[7].Text, new string[] { "0" })) {
                         gvCL.Rows[i].Cells[7].Text = "ไม่อนุมัติ";
                         gvCL.Rows[i].Cells[7].ForeColor = System.Drawing.Color.Red;
@@ -261,7 +265,7 @@ namespace WEB_PERSONAL {
             }
         }
         private void FuncGVCH() {
-            SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEAVE_ID รหัสการลา, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_DATA.LEAVE_TYPE_ID) ประเภทการลา, REQ_DATE วันที่ข้อมูล,  (SELECT PS_FN_TH || ' ' || PS_LN_TH FROM PS_PERSON WHERE PS_CITIZEN_ID = LEV_DATA.PS_ID) ชื่อผู้ลา, (SELECT TB_POSITION.NAME FROM TB_POSITION, PS_PERSON WHERE TB_POSITION.ID = PS_PERSON.PS_POSITION_ID AND PS_PERSON.PS_CITIZEN_ID = LEV_DATA.PS_ID) ตำแหน่ง, (SELECT ADMIN_POSITION_NAME FROM TB_ADMIN_POSITION, PS_PERSON WHERE ADMIN_POSITION_ID = PS_PERSON.PS_ADMIN_POS_ID AND PS_PERSON.PS_CITIZEN_ID = LEV_DATA.PS_ID) ระดับ, (SELECT LEAVE_STATUS_NAME FROM LEV_STATUS WHERE LEV_STATUS.LEAVE_STATUS_ID = LEV_DATA.LEAVE_STATUS_ID) สถานะ, NVL(CH_ALLOW,0) ผลการอนุมัติ FROM LEV_DATA WHERE CH_ID = '" + loginPerson.CitizenID + "' ORDER BY LEAVE_ID DESC");
+            SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEAVE_ID รหัสการลา, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_DATA.LEAVE_TYPE_ID) ประเภทการลา, REQ_DATE วันที่ข้อมูล,  (SELECT PS_FN_TH || ' ' || PS_LN_TH FROM PS_PERSON WHERE PS_CITIZEN_ID = LEV_DATA.PS_ID) ชื่อผู้ลา, (SELECT TB_POSITION.NAME FROM TB_POSITION, PS_PERSON WHERE TB_POSITION.ID = PS_PERSON.PS_POSITION_ID AND PS_PERSON.PS_CITIZEN_ID = LEV_DATA.PS_ID) ตำแหน่ง, (SELECT ADMIN_POSITION_NAME FROM TB_ADMIN_POSITION, PS_PERSON WHERE ADMIN_POSITION_ID = PS_PERSON.PS_ADMIN_POS_ID AND PS_PERSON.PS_CITIZEN_ID = LEV_DATA.PS_ID) ระดับ, (SELECT LEAVE_STATUS_NAME FROM LEV_STATUS WHERE LEV_STATUS.LEAVE_STATUS_ID = LEV_DATA.LEAVE_STATUS_ID) สถานะ, NVL(CH_ALLOW,-1) ผลการอนุมัติ FROM LEV_DATA WHERE CH_ID = '" + loginPerson.CitizenID + "' ORDER BY LEAVE_ID DESC");
             gvCH.DataSource = sds;
             gvCH.DataBind();
 
@@ -290,6 +294,10 @@ namespace WEB_PERSONAL {
                     cell.Controls.Add(btn);
                     gvCH.Rows[i].Cells.Add(cell);
 
+                    if (Util.StringEqual(gvCH.Rows[i].Cells[7].Text, new string[] { "-1" })) {
+                        gvCH.Rows[i].Cells[7].Text = "-";
+                        gvCH.Rows[i].Cells[7].ForeColor = System.Drawing.Color.Black;
+                    }
                     if (Util.StringEqual(gvCH.Rows[i].Cells[7].Text, new string[] { "0" })) {
                         gvCH.Rows[i].Cells[7].Text = "ไม่อนุมัติ";
                         gvCH.Rows[i].Cells[7].ForeColor = System.Drawing.Color.Red;

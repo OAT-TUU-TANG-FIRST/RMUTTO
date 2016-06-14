@@ -460,7 +460,7 @@ namespace WEB_PERSONAL {
                 }
 
                 if(ddlLeaveType.SelectedValue == "1") {
-                    if(totalDay <= 30) {
+                    if(totalDay <= หัวหน้าฝ่ายลาป่วยวัน) {
                         if(loginPerson.AdminPositionID == "8") { //ตำแหน่งอ่ื่นๆ
                             psCHID = DatabaseManager.รหัสหัวหน้าฝ่าย(loginPerson.DivisionID);
                         } else if (loginPerson.AdminPositionID == "10024") { //หัวหน้าฝ่าย
@@ -476,7 +476,7 @@ namespace WEB_PERSONAL {
                         } else if (loginPerson.AdminPositionID == "10021") { //รัฐมนตรีเจ้าสังกัด	
                             psCHID = DatabaseManager.รหัสรัฐมนตรีเจ้าสังกัด();
                         }
-                    } else if (totalDay <= 40) {
+                    } else if (totalDay <= หัวหน้าภาควิชาลาป่วยวัน) {
                         if (loginPerson.AdminPositionID == "8") { //ตำแหน่งอ่ื่นๆ
                             psCLID = DatabaseManager.รหัสหัวหน้าฝ่าย(loginPerson.DivisionID);
                             psCHID = DatabaseManager.รหัสหัวหน้าภาควิชา(loginPerson.DivisionID);
@@ -493,7 +493,7 @@ namespace WEB_PERSONAL {
                         } else if (loginPerson.AdminPositionID == "10021") { //รัฐมนตรีเจ้าสังกัด	
                             psCHID = DatabaseManager.รหัสรัฐมนตรีเจ้าสังกัด();
                         }
-                    } else if (totalDay <= 60) {
+                    } else if (totalDay <= คณะบดีลาป่วยวัน) {
                         if (loginPerson.AdminPositionID == "8") { //ตำแหน่งอ่ื่นๆ
                             psCLID = DatabaseManager.รหัสหัวหน้าฝ่าย(loginPerson.DivisionID);
                             psCHID = DatabaseManager.รหัสคณบดี(loginPerson.FacultyID);
@@ -511,7 +511,7 @@ namespace WEB_PERSONAL {
                         } else if (loginPerson.AdminPositionID == "10021") { //รัฐมนตรีเจ้าสังกัด	
                             psCHID = DatabaseManager.รหัสรัฐมนตรีเจ้าสังกัด();
                         }
-                    } else if (totalDay <= 120) {
+                    } else if (totalDay <= อธิการบดีลาป่วยวัน) {
                         if (loginPerson.AdminPositionID == "8") { //ตำแหน่งอ่ื่นๆ
                             psCLID = DatabaseManager.รหัสหัวหน้าฝ่าย(loginPerson.DivisionID);
                             psCHID = DatabaseManager.รหัสอธิการบดี(loginPerson.CampusID);
@@ -552,7 +552,7 @@ namespace WEB_PERSONAL {
                         }
                     }
                 } else if (ddlLeaveType.SelectedValue == "2") {
-                    if (totalDay <= 15) {
+                    if (totalDay <= หัวหน้าฝ่ายลากิจวัน) {
                         if (loginPerson.AdminPositionID == "8") { //ตำแหน่งอ่ื่นๆ
                             psCHID = DatabaseManager.รหัสหัวหน้าฝ่าย(loginPerson.DivisionID);
                         } else if (loginPerson.AdminPositionID == "10024") { //หัวหน้าฝ่าย
@@ -568,7 +568,7 @@ namespace WEB_PERSONAL {
                         } else if (loginPerson.AdminPositionID == "10021") { //รัฐมนตรีเจ้าสังกัด	
                             psCHID = DatabaseManager.รหัสรัฐมนตรีเจ้าสังกัด();
                         }
-                    } else if (totalDay <= 20) {
+                    } else if (totalDay <= หัวหน้าภาควิชาลากิจวัน) {
                         if (loginPerson.AdminPositionID == "8") { //ตำแหน่งอ่ื่นๆ
                             psCLID = DatabaseManager.รหัสหัวหน้าฝ่าย(loginPerson.DivisionID);
                             psCHID = DatabaseManager.รหัสหัวหน้าภาควิชา(loginPerson.DivisionID);
@@ -585,7 +585,7 @@ namespace WEB_PERSONAL {
                         } else if (loginPerson.AdminPositionID == "10021") { //รัฐมนตรีเจ้าสังกัด	
                             psCHID = DatabaseManager.รหัสรัฐมนตรีเจ้าสังกัด();
                         }
-                    } else if (totalDay <= 30) {
+                    } else if (totalDay <= คณะบดีลากิจวัน) {
                         if (loginPerson.AdminPositionID == "8") { //ตำแหน่งอ่ื่นๆ
                             psCLID = DatabaseManager.รหัสหัวหน้าฝ่าย(loginPerson.DivisionID);
                             psCHID = DatabaseManager.รหัสคณบดี(loginPerson.FacultyID);
@@ -603,7 +603,7 @@ namespace WEB_PERSONAL {
                         } else if (loginPerson.AdminPositionID == "10021") { //รัฐมนตรีเจ้าสังกัด	
                             psCHID = DatabaseManager.รหัสรัฐมนตรีเจ้าสังกัด();
                         }
-                    } else if (totalDay <= 45) {
+                    } else if (totalDay <= อธิการบดีลากิจวัน) {
                         if (loginPerson.AdminPositionID == "8") { //ตำแหน่งอ่ื่นๆ
                             psCLID = DatabaseManager.รหัสหัวหน้าฝ่าย(loginPerson.DivisionID);
                             psCHID = DatabaseManager.รหัสอธิการบดี(loginPerson.CampusID);
@@ -722,6 +722,10 @@ namespace WEB_PERSONAL {
                 Person psCL = DatabaseManager.GetPerson(psCLID);
                 Person psCH = DatabaseManager.GetPerson(psCHID);
 
+                if(psCL == null) {
+                    lbS2CL.Text = "-";
+                }
+
                 //----------- END CL CH--
 
                 LeaveData leaveData = new LeaveData();
@@ -805,6 +809,7 @@ namespace WEB_PERSONAL {
 
         protected void lbuS2Back_Click(object sender, EventArgs e) {
             MultiView1.ActiveViewIndex = 0;
+            ChangeNotification("info", "กรุณากรอกข้อมูล");
         }
 
         protected void lbuS2Finish_Click(object sender, EventArgs e) {

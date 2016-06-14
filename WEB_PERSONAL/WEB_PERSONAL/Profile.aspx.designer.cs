@@ -76,13 +76,13 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.Label lbNation;
         
         /// <summary>
-        /// lbStatus control.
+        /// lbStatusPerson control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbStatus;
+        protected global::System.Web.UI.WebControls.Label lbStatusPerson;
         
         /// <summary>
         /// lbBlood control.
@@ -146,6 +146,15 @@ namespace WEB_PERSONAL {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbCouple;
+        
+        /// <summary>
+        /// lbStatusWork control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbStatusWork;
         
         /// <summary>
         /// lbInWorkDay control.
@@ -407,6 +416,15 @@ namespace WEB_PERSONAL {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbStateNow;
+        
+        /// <summary>
+        /// id1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl id1;
         
         /// <summary>
         /// FileUpload1 control.

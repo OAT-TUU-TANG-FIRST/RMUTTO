@@ -595,7 +595,45 @@ namespace WEB_PERSONAL.Class {
                     com.Parameters.Add("LEAVE_ID", LeaveID);
                     com.ExecuteNonQuery();
                 }
+
+                
                 if(CH_Allow == 1) {
+
+                    DateTime start = FromDate.Value;
+                    DateTime to = ToDate.Value;
+
+                    while (true) {
+                        bool have = false;
+                        using (OracleCommand com = new OracleCommand("SELECT * FROM LEV_WORKTIME WHERE TODAY = :TODAY AND CITIZEN_ID = :CITIZEN_ID", con)) {
+                            com.Parameters.Add("TODAY", start);
+                            com.Parameters.Add("CITIZEN_ID", PS_ID);
+                            using (OracleDataReader reader = com.ExecuteReader()) {
+                                if (reader.Read()) {
+                                    have = true;
+                                }
+                            }
+                        }
+                        if (have) {
+                            using (OracleCommand com = new OracleCommand("UPDATE LEV_WORKTIME SET LEAVE = 1 WHERE TODAY = :TODAY AND CITIZEN_ID = :CITIZEN_ID", con)) {
+                                com.Parameters.Add("TODAY", start);
+                                com.Parameters.Add("CITIZEN_ID", PS_ID);
+                                com.ExecuteNonQuery();
+                            }
+                        } else {
+                            using (OracleCommand com = new OracleCommand("INSERT INTO LEV_WORKTIME (WORKTIME_ID, CITIZEN_ID, TODAY, LEAVE) VALUES(SEQ_WORKTIME_ID.NEXTVAL, :CITIZEN_ID, :TODAY, 1)", con)) {
+                                com.Parameters.Add("CITIZEN_ID", PS_ID);
+                                com.Parameters.Add("TODAY", start);
+                                com.ExecuteNonQuery();
+                            }
+                        }
+
+                        start = start.AddDays(1);
+                        if ((to - start).TotalDays < 0) {
+                            break;
+                        }
+
+                    }
+
                     if (LeaveTypeID == 1) {
                         using (OracleCommand com = new OracleCommand("UPDATE LEV_CLAIM SET SICK_NOW = SICK_REQ WHERE YEAR = " + BudgetYear + " AND PS_CITIZEN_ID = :PS_CITIZEN_ID", con)) {
                             com.Parameters.Add("PS_CITIZEN_ID", PS_ID);
@@ -693,6 +731,25 @@ namespace WEB_PERSONAL.Class {
                     com.ExecuteNonQuery();
                 }
                 if (CH_Allow == 1) {
+
+                    DateTime start = FromDate.Value;
+                    DateTime to = ToDate.Value;
+
+                    while (true) {
+
+                        using (OracleCommand com = new OracleCommand("DELETE LEV_WORKTIME WHERE TODAY = :TODAY AND CITIZEN_ID = :CITIZEN_ID", con)) {
+                            com.Parameters.Add("TODAY", start);
+                            com.Parameters.Add("CITIZEN_ID", PS_ID);
+                            com.ExecuteNonQuery();
+                        }
+
+                        start = start.AddDays(1);
+                        if ((to - start).TotalDays < 0) {
+                            break;
+                        }
+
+                    }
+
                     if (LeaveTypeID == 1) {
                         using (OracleCommand com = new OracleCommand("UPDATE LEV_CLAIM SET SICK_NOW = SICK_REQ WHERE YEAR = " + BudgetYear + " AND PS_CITIZEN_ID = :PS_CITIZEN_ID", con)) {
                             com.Parameters.Add("PS_CITIZEN_ID", PS_ID);

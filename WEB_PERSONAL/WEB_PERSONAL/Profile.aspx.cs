@@ -12,7 +12,17 @@ namespace WEB_PERSONAL {
     public partial class Profile : System.Web.UI.Page {
         protected void Page_Load(object sender, EventArgs e) {
             PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
-            Person pp = ps.LoginPerson;
+            Person pp;
+            if (Request.QueryString["psID"] != null) {
+                pp = DatabaseManager.GetPerson(Request.QueryString["psID"]);
+                id1.Visible = false;
+                if(pp == null) {
+                    pp = ps.LoginPerson;
+                }
+            } else {    
+                pp = ps.LoginPerson;
+            }
+            
 
             profile_images.InnerHtml = "";
 
@@ -62,7 +72,8 @@ namespace WEB_PERSONAL {
                     DatabaseManager.ExecuteNonQuery("UPDATE PS_PERSON_IMAGE SET PRESENT = 1 WHERE CITIZEN_ID = '" + pp.CitizenID + "' AND ID = " + ID);
                     Response.Redirect("Profile.aspx");
                 };
-                p2.Controls.Add(lbSelectImagePresent);
+                if(id1.Visible)
+                    p2.Controls.Add(lbSelectImagePresent);
 
                 LinkButton lbDeleteImagePresent = new LinkButton();
                 lbDeleteImagePresent.CssClass = "ps-button";
@@ -75,7 +86,8 @@ namespace WEB_PERSONAL {
                     DatabaseManager.ExecuteNonQuery("DELETE FROM PS_PERSON_IMAGE WHERE ID = " + ID);
                     Response.Redirect("Profile.aspx");
                 };
-                p2.Controls.Add(lbDeleteImagePresent);
+                if (id1.Visible)
+                    p2.Controls.Add(lbDeleteImagePresent);
             }
 
 
@@ -91,40 +103,41 @@ namespace WEB_PERSONAL {
             lbFaculty.Text = pp.FacultyName;
             lbCampus.Text = pp.CampusName;
             lbMinistry.Text = pp.MinistryName;
-            //lbGrom.Text = pp.Grom;
+            lbGrom.Text = pp.Grom;
             lbRace.Text = pp.RaceName;
             lbNation.Text = pp.NationName;
-            //lbBlood.Text = pp.BloodName;
-            //lbEmail.Text = pp.Email;
-            //lbPhone.Text = pp.Phone;
-            //lbWorkPhone = pp.WorkPhone;
+            lbBlood.Text = pp.BloodName;
+            lbEmail.Text = pp.Email;
+            lbPhone.Text = pp.Telephone;
+            lbWorkPhone.Text = pp.WorkTelephone;
             lbReligion.Text = pp.ReligionName;
-            lbStatus.Text = pp.StatusName;
+            lbStatusPerson.Text = pp.StatusPersonName;
+            lbStatusWork.Text = pp.StatusName;
             lbFather.Text = pp.FatherFirstNameAndLastName;
             lbMother.Text = pp.MotherFirstNameAndLastName;
             lbCouple.Text = pp.CoupleFirstNameAndLastName;
 
             lbHomeAdd.Text = pp.HomeAdd;
-            //lbSoi.Text = pp.Soi;
+            lbSoi.Text = pp.Soi;
             lbMoo.Text = pp.Moo;
             lbStreet.Text = pp.Street;
             lbProvince.Text = pp.ProvinceName;
             lbAmphur.Text = pp.AmphurName;
             lbDistrict.Text = pp.DistrictName;
             lbZipcode.Text = pp.ZipCode;
-            //lbCountry.Text = pp.PlaceCountry;
-            //lbState.Text = pp.PlaceState;
+            lbCountry.Text = pp.PlaceCountryName;
+            lbState.Text = pp.PlaceState;
 
             lbHomeAddNow.Text = pp.HomeAddNow;
-            //lbSoiNow.Text = pp.SoiNow;
+            lbSoiNow.Text = pp.SoiNow;
             lbMooNow.Text = pp.MooNow;
             lbStreetNow.Text = pp.StreetNow;
             lbProvinceNow.Text = pp.ProvinceNameNow;
             lbAmphurNow.Text = pp.AmphurNameNow;
             lbDistrictNow.Text = pp.DistrictNameNow;
             lbZipcodeNow.Text = pp.ZipCodeNow;
-            //lbCountryNow.Text = pp.PlaceCountryNow;
-            //lbStateNow.Text = pp.PlaceStateNow;
+            lbCountryNow.Text = pp.PlaceCountryNowName;
+            lbStateNow.Text = pp.PlaceStateNow;
 
         }
 
