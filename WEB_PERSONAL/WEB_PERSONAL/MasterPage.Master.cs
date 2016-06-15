@@ -169,6 +169,7 @@ namespace WEB_PERSONAL {
 
             noti_ins_none.Visible = false;
             noti_ins.Visible = false;
+            noti_insadminknow.Visible = false;
 
             if (count_cl + count_ch + count_leave_finish == 0) {
                 noti_leave_none.Visible = true;
@@ -184,12 +185,13 @@ namespace WEB_PERSONAL {
                 }
             }
 
-            if (count_ins == 0) {
+            if (count_ins + count_insadminknow == 0) {
                 noti_ins_none.Visible = true;
             } else {
                 if (count_ins != 0) {
                     noti_ins.Visible = true;
-                } else if (count_insadminknow != 0)
+                }
+                if (count_insadminknow != 0)
                 {
                     noti_insadminknow.Visible = true;
                 }
@@ -248,11 +250,10 @@ namespace WEB_PERSONAL {
 
             FuncPermission(cbAddInsig1, loginPerson.CitizenID, 9);
             FuncPermission(cbAddInsig2, loginPerson.CitizenID, 10);
-            FuncPermission(cbAddInsig3, loginPerson.CitizenID, 11);
-            FuncPermission(cbAddInsig4, loginPerson.CitizenID, 12);
+            FuncPermission(cbAddInsig4, loginPerson.CitizenID, 11);
 
-            FuncPermission(cbAddManage1, loginPerson.CitizenID, 13);
-            FuncPermission(cbAddManage2, loginPerson.CitizenID, 14);
+            FuncPermission(cbAddManage1, loginPerson.CitizenID, 12);
+            FuncPermission(cbAddManage2, loginPerson.CitizenID, 13);
 
             //---------
 

@@ -23,31 +23,18 @@ namespace WEB_PERSONAL
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Random r = new Random();
             {
                 Table1.Rows.Clear();
                 TableRow row = new TableRow();
+                
                 {
                     TableHeaderCell cell = new TableHeaderCell();
-                    CheckBox cb = new CheckBox();
-                    cb.AutoPostBack = true;
-                    cb.CheckedChanged += (e2, e3) =>
-                    {
-                        for (int i = 1; i < Table1.Rows.Count; i++)
-                        {
-                            CheckBox cb2 = (CheckBox)Table1.Rows[i].Cells[0].Controls[0];
-                            cb2.Checked = cb.Checked;
-                        }
-                    };
-                    cell.Controls.Add(cb);
-                    Label lb = new Label();
-                    lb.Text = "เลือก";
-                    cell.Controls.Add(lb);
+                    cell.Text = "เครื่องราชที่ขอ";
                     row.Cells.Add(cell);
                 }
                 {
                     TableHeaderCell cell = new TableHeaderCell();
-                    cell.Text = "เครื่องราชที่ขอ";
+                    cell.Text = "รหัสบัตรประชาชน";
                     row.Cells.Add(cell);
                 }
                 {
@@ -85,6 +72,16 @@ namespace WEB_PERSONAL
                     cell.Text = "วันที่เข้าทำงาน";
                     row.Cells.Add(cell);
                 }
+                {
+                    TableHeaderCell cell = new TableHeaderCell();
+                    cell.Text = "ปริ้น";
+                    row.Cells.Add(cell);
+                }
+                {
+                    TableHeaderCell cell = new TableHeaderCell();
+                    cell.Text = "แจ้งผล";
+                    row.Cells.Add(cell);
+                }
 
                 Table1.Rows.Add(row);
             }
@@ -94,6 +91,7 @@ namespace WEB_PERSONAL
                 con.Open();
                 //using (OracleCommand com = new OracleCommand("SELECT IR_CITIZEN_ID รหัสประชาชน, IR_DATE_START วันที่ทำเรื่องขอ, IR_RANK ยศ, IR_TITLE คำนำหน้า, IR_NAME || ' ' || IR_LASTNAME ชื่อ, IR_GENDER เพศ, IR_BIRTHDATE วันเกิด, IR_DATE_INWORK วันที่เข้าทำงาน, IR_START_POSITION, IR_START_DEGREE, IR_CURRENT_POSITION, IR_TYPE, IR_DEGREE, IR_CURRENT_SALARY, IR_POSITION_SALARY FROM TB_INSIG_REQUEST WHERE TB_INSIG_REQUEST.IR_STATUS = 2", con))
                 using (OracleCommand com = new OracleCommand("SELECT (SELECT NAME_GRADEINSIGNIA_THA FROM INS_GRADEINSIGNIA WHERE INS_GRADEINSIGNIA.ID_GRADEINSIGNIA = TB_INSIG_REQUEST.IR_INSIG_ID) ชั้นที่ขอ, IR_CITIZEN_ID รหัสประชาชน, IR_DATE_START วันที่ทำเรื่องขอ, IR_RANK ยศ, IR_TITLE คำนำหน้า, IR_NAME || ' ' || IR_LASTNAME ชื่อ, IR_GENDER เพศ, IR_BIRTHDATE วันเกิด, IR_DATE_INWORK วันที่เข้าทำงาน FROM TB_INSIG_REQUEST WHERE TB_INSIG_REQUEST.IR_STATUS = 2", con))
+                //3 using (OracleCommand com = new OracleCommand("SELECT (SELECT NAME_GRADEINSIGNIA_THA FROM INS_GRADEINSIGNIA WHERE INS_GRADEINSIGNIA.ID_GRADEINSIGNIA = TB_INSIG_REQUEST.IR_INSIG_ID) ชั้นที่ขอ, IR_CITIZEN_ID รหัสประชาชน, IR_DATE_START วันที่ทำเรื่องขอ, IR_RANK ยศ, IR_TITLE คำนำหน้า, IR_NAME || ' ' || IR_LASTNAME ชื่อ, IR_GENDER เพศ, IR_BIRTHDATE วันเกิด, IR_DATE_INWORK วันที่เข้าทำงาน FROM TB_INSIG_REQUEST WHERE TB_INSIG_REQUEST.IR_STATUS = 3", con))
                 {
                     using (OracleDataReader reader = com.ExecuteReader())
                     {
@@ -104,17 +102,18 @@ namespace WEB_PERSONAL
                             string psID = reader.GetString(1);
 
                             {
-                                CheckBox cb = new CheckBox();
-                                TableCell cell = new TableCell();
-                                cell.Controls.Add(cb);
-                                row.Cells.Add(cell);
-                            }
-
-                            {
                                 Label lblInsigName = new Label();
                                 lblInsigName.Text = reader.GetString(0);
                                 TableCell cell = new TableCell();
                                 cell.Controls.Add(lblInsigName);
+                                row.Cells.Add(cell);
+                            }
+
+                            {
+                                Label lblCitizenID = new Label();
+                                lblCitizenID.Text = psID;
+                                TableCell cell = new TableCell();
+                                cell.Controls.Add(lblCitizenID);
                                 row.Cells.Add(cell);
                             }
 
@@ -178,6 +177,28 @@ namespace WEB_PERSONAL
                                 row.Cells.Add(cell);
                             }
 
+                            {
+                                LinkButton lbuPrint = new LinkButton();
+                                lbuPrint.Text = "ปริ้น";
+                                lbuPrint.CssClass = "ps-button";
+                                TableCell cell = new TableCell();
+                                cell.Controls.Add(lbuPrint);
+                                row.Cells.Add(cell);
+                            }
+
+                            {
+                                LinkButton lbuResult = new LinkButton();
+                                lbuResult.Text = "แจ้งผล";
+                                lbuResult.CssClass = "ps-button";
+                                lbuResult.Click += (e2,e3) => 
+                                {
+                                    MultiView1.ActiveViewIndex = 1;
+                                };
+                                TableCell cell = new TableCell();
+                                cell.Controls.Add(lbuResult);
+                                row.Cells.Add(cell);
+                            }
+
                             Table1.Rows.Add(row);
                         }
                     }
@@ -229,5 +250,84 @@ namespace WEB_PERSONAL
 
         }
 
+        protected void lblGet_Click(object sender, EventArgs e)
+        {
+            int id = 0;
+            using (OracleConnection conn = Util.OC())
+            {
+                PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
+                Person loginPerson = ps.LoginPerson;
+                using (OracleCommand command = new OracleCommand("UPDATE TB_INSIG_REQUEST SET IR_STATUS = :IR_STATUS WHERE IR_STATUS = 3", conn))
+                {
+
+                    try
+                    {
+                        if (conn.State != ConnectionState.Open)
+                        {
+                            conn.Open();
+                        }
+
+                        command.Parameters.Add(new OracleParameter("IR_STATUS", 4));
+
+                        id = command.ExecuteNonQuery();
+                    }
+
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+                    finally
+                    {
+                        command.Dispose();
+                        conn.Close();
+                    }
+                }
+            }
+            int id1 = 0;
+            using (OracleConnection conn = Util.OC())
+            {
+                PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
+                Person loginPerson = ps.LoginPerson;
+                using (OracleCommand command = new OracleCommand("INSERT INTO TB_INSIG_USER_GET (IUG_CITIZEN_ID,IUG_INSIG_ID,IUG_INSIG_DATE_GET,IUG_STATUS,IUG_POSITION,IUG_SALARY,IUG_REF) SELECT :IR_CITIZEN_ID,:IR_INSIG_ID,:IUG_INSIG_DATE_GET,:IUG_STATUS,:IR_CURRENT_POSITION,:IR_CURRENT_SALARY,:IUG_REF FROM TB_INSIG_REQUEST ", conn))
+                {
+
+                    try
+                    {
+                        if (conn.State != ConnectionState.Open)
+                        {
+                            conn.Open();
+                        }
+
+                        command.Parameters.Add(new OracleParameter("IR_CITIZEN_ID", ps.LoginPerson.CitizenID));
+                        command.Parameters.Add(new OracleParameter("IR_INSIG_ID", "12"));
+                        command.Parameters.Add(new OracleParameter("IUG_INSIG_DATE_GET", Util.ODT(DateTime.Now.ToString("dd MMM yyyy"))));
+                        command.Parameters.Add(new OracleParameter("IUG_STATUS", 1));
+                        command.Parameters.Add(new OracleParameter("IR_CURRENT_POSITION", "อิอิ"));
+                        command.Parameters.Add(new OracleParameter("IR_CURRENT_SALARY", 20000));
+                        command.Parameters.Add(new OracleParameter("IUG_REF", "เอกสารลับสุดยอด"));
+
+                        id1 = command.ExecuteNonQuery();
+                    }
+
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+                    finally
+                    {
+                        command.Dispose();
+                        conn.Close();
+                    }
+                }
+            }
+
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ได้ทำการรับเรื่องการขอ เรียบร้อยแล้ว !')", true);
+            Response.Redirect("INSG_RequestList.aspx");
+        }
+
+        protected void lbBack_Click(object sender, EventArgs e)
+        {
+            MultiView1.ActiveViewIndex = 0;
+        }
     }
-}
+    }

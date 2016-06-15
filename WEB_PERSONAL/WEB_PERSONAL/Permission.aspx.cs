@@ -47,10 +47,9 @@ namespace WEB_PERSONAL {
                                 else if (type == 8) { cbAddPerson6.Checked = true; }
                                 else if (type == 9) { cbAddInsig1.Checked = true; }
                                 else if (type == 10) { cbAddInsig2.Checked = true; }
-                                else if (type == 11) { cbAddInsig3.Checked = true; }
-                                else if (type == 12) { cbAddInsig4.Checked = true; }
-                                else if (type == 13) { cbAddManage1.Checked = true; }
-                                else if (type == 14) { cbAddManage2.Checked = true; }
+                                else if (type == 11) { cbAddInsig4.Checked = true; }
+                                else if (type == 12) { cbAddManage1.Checked = true; }
+                                else if (type == 13) { cbAddManage2.Checked = true; }
                             }
                         }
                     }
@@ -77,10 +76,9 @@ namespace WEB_PERSONAL {
                 Exe(cbAddPerson6, citizenID, 8);
                 Exe(cbAddInsig1, citizenID, 9);
                 Exe(cbAddInsig2, citizenID, 10);
-                Exe(cbAddInsig3, citizenID, 11);
-                Exe(cbAddInsig4, citizenID, 12);
-                Exe(cbAddManage1, citizenID, 13);
-                Exe(cbAddManage2, citizenID, 14);
+                Exe(cbAddInsig4, citizenID, 11);
+                Exe(cbAddManage1, citizenID, 12);
+                Exe(cbAddManage2, citizenID, 13);
 
                 Page.Response.Redirect(Page.Request.Url.ToString(), true);
 

@@ -263,7 +263,6 @@
                                     <a href="INSG_Request.aspx" id="cbNotInsig1" runat="server"><img src="Image/Small/medal.png" />การขอเครื่องราชฯ</a>                   
                                     <a href="INSG_Qualified.aspx" id="cbAddInsig1" runat="server"><img src="Image/Small/medal.png" />รายชื่อผู้ที่เข้าเกณฑ์การรับเครื่องราชฯ</a>
                                     <a href="INSG_RequestList.aspx" id="cbAddInsig2" runat="server"><img src="Image/Small/medal.png" />รายชื่อการขอเครื่องราชฯ</a>
-                                    <a href="INSG_Result_To_User.aspx" id="cbAddInsig3" runat="server"><img src="Image/Small/medal.png" />แจ้งผลผู้ที่ได้รับเครื่องราชฯ</a>
                                     <a href="INSG_Qualified_Detail.aspx" id="cbNotInsig2" runat="server"><img src="Image/Small/medal.png" />ประวัติการได้รับเครื่องราชฯ</a>
                                     <a href="INSG_Qualified_Detail-ADMIN.aspx" id="cbAddInsig4" runat="server"><img src="Image/Small/medal.png" />จัดการประวัติผู้ที่ได้รับเครื่องราชฯ</a>
                                </div>

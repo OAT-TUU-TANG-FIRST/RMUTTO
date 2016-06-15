@@ -148,15 +148,6 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.CheckBox cbAddInsig2;
         
         /// <summary>
-        /// cbAddInsig3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbAddInsig3;
-        
-        /// <summary>
         /// cbAddInsig4 control.
         /// </summary>
         /// <remarks>

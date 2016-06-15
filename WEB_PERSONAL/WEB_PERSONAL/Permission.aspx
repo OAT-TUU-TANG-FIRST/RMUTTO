@@ -83,8 +83,6 @@
                                 <div>
                                     <asp:CheckBox ID="cbAddInsig2" runat="server" Text="รายชื่อการขอเครื่องราชฯ" /></div>
                                 <div>
-                                    <asp:CheckBox ID="cbAddInsig3" runat="server" Text="แจ้งผลผู้ที่ได้รับเครื่องราชฯ" /></div>
-                                <div>
                                     <asp:CheckBox ID="cbAddInsig4" runat="server" Text="จัดการประวัติผู้ที่ได้รับเครื่องราช" /></div>
                             </div>
                         </div>

@@ -33,18 +33,17 @@ namespace WEB_PERSONAL {
         }
         private void search() {
 
-            if(ddlStaffType.SelectedIndex != 0) {
-                cccStaffType = "AND PS_STAFFTYPE_ID = " + ddlStaffType.SelectedValue;
+            if(ddlStaffType.SelectedIndex > 0 ) {
+                cccStaffType = " AND PS_STAFFTYPE_ID = " + ddlStaffType.SelectedValue;
             }
-            if (ddlCampus.SelectedIndex != 0)
+            if (ddlCampus.SelectedIndex > 0)
             {
-                cccCampus = "AND PS_CAMPUS_ID = " + ddlCampus.SelectedValue;
+                cccCampus = " AND PS_CAMPUS_ID = " + ddlCampus.SelectedValue;
             }
-            if (ddlCampus.SelectedIndex != 0)
+            if (ddlFaculty.SelectedIndex > 0)
             {
-                cccFaculty = "AND PS_FACULTY_ID = " + ddlFaculty.SelectedValue;
+                cccFaculty = " AND PS_FACULTY_ID = " + ddlFaculty.SelectedValue;
             }
-
 
             if (hf1.Value != "") {
                 Random r = new Random();
@@ -122,7 +121,7 @@ namespace WEB_PERSONAL {
                 
                 using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                     con.Open();
-                    using (OracleCommand com = new OracleCommand("SELECT PS_PERSON.PS_CITIZEN_ID รหัสประชาชน, PS_PERSON.PS_FN_TH || ' ' || PS_PERSON.PS_LN_TH ชื่อ, PS_STAFFTYPE_ID, PS_PIG_ID, (SELECT TRUNC((SYSDATE - PS_INWORK_DATE)/365,0) from PS_PERSON A WHERE A.PS_CITIZEN_ID = PS_PERSON.PS_CITIZEN_ID) ปีทำงาน, PS_SALARY, PS_INWORK_DATE, PS_SALARY, (SELECT NAME FROM TB_POSITION WHERE PS_PERSON.PS_POSITION_ID = TB_POSITION.ID) ตำแหน่ง, PS_ACAD_POS_ID, PS_ADMIN_POS_ID, PS_PIE_ID, (SELECT STAFFTYPE_NAME FROM TB_STAFFTYPE WHERE PS_PERSON.PS_STAFFTYPE_ID = TB_STAFFTYPE.STAFFTYPE_ID) ชื่อประเภทบุคลากร, (SELECT CAMPUS_NAME FROM TB_CAMPUS WHERE TB_CAMPUS.CAMPUS_ID = PS_PERSON.PS_CAMPUS_ID) วิทยาเขต, (SELECT FACULTY_NAME FROM TB_FACULTY WHERE TB_FACULTY.FACULTY_ID = PS_PERSON.PS_FACULTY_ID) คณะ FROM PS_PERSON WHERE PS_STAFFTYPE_ID in(1,2,3,6) " + cccStaffType , con)) {
+                    using (OracleCommand com = new OracleCommand("SELECT PS_PERSON.PS_CITIZEN_ID รหัสประชาชน, PS_PERSON.PS_FN_TH || ' ' || PS_PERSON.PS_LN_TH ชื่อ, PS_STAFFTYPE_ID, PS_PIG_ID, (SELECT TRUNC((SYSDATE - PS_INWORK_DATE)/365,0) from PS_PERSON A WHERE A.PS_CITIZEN_ID = PS_PERSON.PS_CITIZEN_ID) ปีทำงาน, PS_SALARY, PS_INWORK_DATE, PS_SALARY, (SELECT NAME FROM TB_POSITION WHERE PS_PERSON.PS_POSITION_ID = TB_POSITION.ID) ตำแหน่ง, PS_ACAD_POS_ID, PS_ADMIN_POS_ID, PS_PIE_ID, (SELECT STAFFTYPE_NAME FROM TB_STAFFTYPE WHERE PS_PERSON.PS_STAFFTYPE_ID = TB_STAFFTYPE.STAFFTYPE_ID) ชื่อประเภทบุคลากร, (SELECT CAMPUS_NAME FROM TB_CAMPUS WHERE TB_CAMPUS.CAMPUS_ID = PS_PERSON.PS_CAMPUS_ID) วิทยาเขต, (SELECT FACULTY_NAME FROM TB_FACULTY WHERE TB_FACULTY.FACULTY_ID = PS_PERSON.PS_FACULTY_ID) คณะ FROM PS_PERSON WHERE PS_STAFFTYPE_ID in(1,2,3,6) " + cccStaffType + cccCampus + cccFaculty, con)) {
                         using (OracleDataReader reader = com.ExecuteReader()) {
                             while (reader.Read()) {
 
@@ -160,6 +159,8 @@ namespace WEB_PERSONAL {
                                     lbName.Click += (e2, e3) => {
                                         Response.Redirect("INSG_Qualified_Detail.aspx?psID=" + psID);
                                     };
+                                    lbName.Attributes.Add("tuu", psID);
+                                    //lbName.Attributes.Add("tuu2", psID);
                                     TableCell cell = new TableCell();
                                     cell.Controls.Add(lbName);
                                     row.Cells.Add(cell);
@@ -1316,41 +1317,47 @@ namespace WEB_PERSONAL {
         }
 
         protected void lbuSend_Click(object sender, EventArgs e) {
-            /*
-            for (int i = 0; i < GridViewStudy.Rows.Count; ++i)
+            
+            for (int i = 1; i < Table1.Rows.Count; ++i)
             {
-                int id = 0;
-                using (OracleConnection conn = Util.OC())
+                CheckBox cb = (CheckBox)Table1.Rows[i].Cells[0].Controls[0];
+                LinkButton lbu = (LinkButton)Table1.Rows[i].Cells[1].Controls[0];
+                if (cb != null && cb.Checked)
                 {
-                    PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
-                    Person loginPerson = ps.LoginPerson;
-                    using (OracleCommand command = new OracleCommand("INSERT INTO TB_INSIG_USER_GET (IR_STATUS,IR_CITIZEN_ID,IR_INSIG_ID) VALUES (:IR_STATUS,:IR_CITIZEN_ID,:IR_INSIG_ID) ", conn))
+                    int id = 0;
+                    using (OracleConnection conn = Util.OC())
                     {
-
-                        try
+                        PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
+                        Person loginPerson = ps.LoginPerson;
+                        using (OracleCommand command = new OracleCommand("INSERT INTO TB_INSIG_REQUEST (IR_STATUS,IR_CITIZEN_ID,IR_INSIG_ID) VALUES (:IR_STATUS,:IR_CITIZEN_ID,:IR_INSIG_ID) ", conn))
                         {
-                            if (conn.State != ConnectionState.Open)
+
+                            try
                             {
-                                conn.Open();
+                                if (conn.State != ConnectionState.Open)
+                                {
+                                    conn.Open();
+                                }
+                                command.Parameters.Add(new OracleParameter("IR_STATUS", 1));
+                                command.Parameters.Add(new OracleParameter("IR_CITIZEN_ID", lbu.Attributes["tuu"]));
+                                command.Parameters.Add(new OracleParameter("IR_INSIG_ID", "12"));
+                                id = command.ExecuteNonQuery();
                             }
-                            command.Parameters.Add(new OracleParameter("IR_STATUS", 1));
-                            command.Parameters.Add(new OracleParameter("IR_CITIZEN_ID", ps.LoginPerson.CitizenID));
-                            command.Parameters.Add(new OracleParameter("IR_INSIG_ID", "12"));
-                            id = command.ExecuteNonQuery();
-                        }
 
-                        catch (Exception ex)
-                        {
-                            throw ex;
-                        }
-                        finally
-                        {
-                            command.Dispose();
-                            conn.Close();
+                            catch (Exception ex)
+                            {
+                                throw ex;
+                            }
+                            finally
+                            {
+                                command.Dispose();
+                                conn.Close();
+                            }
                         }
                     }
-                }
-            }*/
+                } 
+            }
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ส่งรายชื่อเรียบร้อยแล้ว !')", true);
         }
 
         protected void lbuSearchAll_Click(object sender, EventArgs e) {
