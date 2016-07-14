@@ -57,7 +57,7 @@
             <fieldset>
                 <legend>ค้นหาข้อมูล</legend>
                 <div>
-                    ตำแหน่งกลุ่ม :&nbsp<asp:DropDownList ID="ddlSearchPosiGroup" runat="server" CssClass="tb5" Width="150px"></asp:DropDownList>
+                    ตำแหน่งประเภท :&nbsp<asp:DropDownList ID="ddlSearchPosiGroup" runat="server" CssClass="tb5" Width="150px"></asp:DropDownList>
                     ตำแหน่ง :&nbsp<asp:DropDownList ID="ddlSearchPosi" runat="server" CssClass="tb5" Width="150px"></asp:DropDownList>
                     เงินเดือนขั้นต่ำ :&nbsp<asp:TextBox ID="txtSearchSalMin" runat="server" CssClass="tb5" Width="150px"></asp:TextBox>
                     เงินเดือนขั้นสูง :&nbsp<asp:TextBox ID="txtSearchSalMax" runat="server" CssClass="tb5" Width="150px"></asp:TextBox>
@@ -75,7 +75,7 @@
                 <div>
                     <table class="center1">
                         <tr>
-                            <td style="margin-left: auto; margin-right: auto; text-align: center">ตำแหน่งกลุ่ม :</td>
+                            <td style="margin-left: auto; margin-right: auto; text-align: center">ตำแหน่งประเภท :</td>
                             <td style="text-align: left; width: 80px;">
                                 <asp:DropDownList ID="ddlInsertPosiGroup" runat="server" CssClass="tb5" Width="150px"></asp:DropDownList></td>
                             <td style="margin-left: auto; margin-right: auto; text-align: center">ตำแหน่ง :</td>

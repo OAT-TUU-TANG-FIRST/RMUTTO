@@ -112,7 +112,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="404.aspx" />
-    <Content Include="AAA.aspx" />
     <Content Include="About.aspx" />
     <Content Include="AcademicPosition-ADMIN.aspx" />
     <Content Include="Access.aspx" />
@@ -690,7 +689,6 @@
     <Content Include="Budget-ADMIN.aspx" />
     <Content Include="Campus-ADMIN.aspx" />
     <Content Include="ChangePassword.aspx" />
-    <Content Include="CitizenDetails.aspx" />
     <Content Include="Claninsignia-ADMIN.aspx" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -742,7 +740,6 @@
     <Content Include="Division-ADMIN.aspx" />
     <Content Include="Faculty-ADMIN.aspx" />
     <Content Include="Global.asax" />
-    <Content Include="GradCountry-ADMIN.aspx" />
     <Content Include="GradeInsignia-ADMIN.aspx" />
     <Content Include="GradLev-ADMIN.aspx" />
     <Content Include="images\icon\Before_Print.gif" />
@@ -860,23 +857,11 @@
     <Content Include="Image\x32\notification.png" />
     <Content Include="Image\x32\menu2.png" />
     <Content Include="Image\มทร.ตะวันออก.jpg" />
-    <Content Include="INSG_Borrow.aspx" />
     <Content Include="INSG_Qualified.aspx" />
+    <Content Include="INSG_Qualified_Detail-ADMIN.aspx" />
     <Content Include="INSG_Qualified_Detail.aspx" />
     <Content Include="INSG_Request.aspx" />
     <Content Include="INSG_RequestList.aspx" />
-    <Content Include="INSG_Result_To_User.aspx" />
-    <Content Include="INSG_Return.aspx" />
-    <Content Include="insignia_from_add.aspx" />
-    <Content Include="insignia_from_view.aspx" />
-    <Content Include="insignia_maintence.aspx" />
-    <Content Include="insignia_print.aspx" />
-    <Content Include="insignia_recordnote2-ADMIN.aspx" />
-    <Content Include="INS_Request_admin.aspx" />
-    <Content Include="INS_ReturnandPay.aspx" />
-    <Content Include="INS_borrow.aspx" />
-    <Content Include="INS_Request.aspx" />
-    <Content Include="INS_Test_Code.aspx" />
     <Content Include="jquery.mCustomScrollbar\jquery.mCustomScrollbar.css" />
     <Content Include="Default.aspx" />
     <Content Include="Error-Member.aspx" />
@@ -914,7 +899,6 @@
     <Content Include="Image\users6.png" />
     <Content Include="Image\writing-on-paper.jpg" />
     <Content Include="Image\X.png" />
-    <Content Include="insignia_recordnote2.aspx" />
     <Content Include="jQueryCalendarThai\images\add.gif" />
     <Content Include="jQueryCalendarThai\images\ajax-loader.gif" />
     <Content Include="jQueryCalendarThai\images\ajax-loader_blue.gif" />
@@ -982,9 +966,6 @@
     <Content Include="jQueryCalendarThai\jquery-ui-1.10.3.custom.js" />
     <Content Include="jQueryCalendarThai\SpecialDateSheet.css" />
     <Content Include="js\index.js" />
-    <Content Include="insignia_from_edit.aspx" />
-    <Content Include="insignia_citizen.aspx" />
-    <Content Include="insignia_user.aspx" />
     <Content Include="Leave.aspx" />
     <Content Include="LeaveAllow.aspx" />
     <Content Include="LeaveCancel.aspx" />
@@ -1006,7 +987,6 @@
     <Content Include="PosiInsigEMP-ADMIN.aspx" />
     <Content Include="PosiInsigGover-ADMIN.aspx" />
     <Content Include="Position-ADMIN.aspx" />
-    <Content Include="Person-Detail.aspx" />
     <Content Include="personalDataSet.xsc">
       <DependentUpon>personalDataSet.xsd</DependentUpon>
     </Content>
@@ -1016,12 +996,14 @@
     <Content Include="jquery.mCustomScrollbar\jquery.mCustomScrollbar.concat.min.js" />
     <Content Include="PrintLeaveForm.aspx" />
     <Content Include="Province-ADMIN.aspx" />
+    <Content Include="Rank-ADMIN.aspx" />
     <Content Include="Religion-ADMIN.aspx" />
     <Content Include="Report-Custom-Person.aspx" />
     <Content Include="Profile.aspx" />
     <Content Include="Staff-ADMIN.aspx" />
     <Content Include="StaffType-ADMIN.aspx" />
     <Content Include="StatusPerson-ADMIN.aspx" />
+    <Content Include="StatusWork-ADMIN.aspx" />
     <Content Include="SumReport_UpSalary.aspx" />
     <Content Include="TeachISCED-ADMIN.aspx" />
     <Content Include="TestOutput.aspx" />
@@ -1098,13 +1080,6 @@
     </Compile>
     <Compile Include="404.aspx.designer.cs">
       <DependentUpon>404.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="AAA.aspx.cs">
-      <DependentUpon>AAA.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AAA.aspx.designer.cs">
-      <DependentUpon>AAA.aspx</DependentUpon>
     </Compile>
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
@@ -1197,13 +1172,6 @@
     <Compile Include="ChangePassword.aspx.designer.cs">
       <DependentUpon>ChangePassword.aspx</DependentUpon>
     </Compile>
-    <Compile Include="CitizenDetails.aspx.cs">
-      <DependentUpon>CitizenDetails.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CitizenDetails.aspx.designer.cs">
-      <DependentUpon>CitizenDetails.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Claninsignia-ADMIN.aspx.cs">
       <DependentUpon>Claninsignia-ADMIN.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1251,8 +1219,8 @@
     <Compile Include="Division-ADMIN.aspx.designer.cs">
       <DependentUpon>Division-ADMIN.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Entities\Insignia.cs" />
     <Compile Include="Entities\Report.cs" />
-    <Compile Include="Entities\Tuu.cs" />
     <Compile Include="Entities\Personnel.cs" />
     <Compile Include="Entities\Seminar.cs" />
     <Compile Include="Entities\Manage.cs" />
@@ -1280,13 +1248,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="GradCountry-ADMIN.aspx.cs">
-      <DependentUpon>GradCountry-ADMIN.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="GradCountry-ADMIN.aspx.designer.cs">
-      <DependentUpon>GradCountry-ADMIN.aspx</DependentUpon>
-    </Compile>
     <Compile Include="GradeInsignia-ADMIN.aspx.cs">
       <DependentUpon>GradeInsignia-ADMIN.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1301,19 +1262,19 @@
     <Compile Include="GradLev-ADMIN.aspx.designer.cs">
       <DependentUpon>GradLev-ADMIN.aspx</DependentUpon>
     </Compile>
-    <Compile Include="INSG_Borrow.aspx.cs">
-      <DependentUpon>INSG_Borrow.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="INSG_Borrow.aspx.designer.cs">
-      <DependentUpon>INSG_Borrow.aspx</DependentUpon>
-    </Compile>
     <Compile Include="INSG_Qualified.aspx.cs">
       <DependentUpon>INSG_Qualified.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="INSG_Qualified.aspx.designer.cs">
       <DependentUpon>INSG_Qualified.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="INSG_Qualified_Detail-ADMIN.aspx.cs">
+      <DependentUpon>INSG_Qualified_Detail-ADMIN.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="INSG_Qualified_Detail-ADMIN.aspx.designer.cs">
+      <DependentUpon>INSG_Qualified_Detail-ADMIN.aspx</DependentUpon>
     </Compile>
     <Compile Include="INSG_Qualified_Detail.aspx.cs">
       <DependentUpon>INSG_Qualified_Detail.aspx</DependentUpon>
@@ -1335,118 +1296,6 @@
     </Compile>
     <Compile Include="INSG_RequestList.aspx.designer.cs">
       <DependentUpon>INSG_RequestList.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="INSG_Result_To_User.aspx.cs">
-      <DependentUpon>INSG_Result_To_User.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="INSG_Result_To_User.aspx.designer.cs">
-      <DependentUpon>INSG_Result_To_User.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="INSG_Return.aspx.cs">
-      <DependentUpon>INSG_Return.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="INSG_Return.aspx.designer.cs">
-      <DependentUpon>INSG_Return.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="insignia_from_add.aspx.cs">
-      <DependentUpon>insignia_from_add.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="insignia_from_add.aspx.designer.cs">
-      <DependentUpon>insignia_from_add.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="insignia_from_view.aspx.cs">
-      <DependentUpon>insignia_from_view.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="insignia_from_view.aspx.designer.cs">
-      <DependentUpon>insignia_from_view.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="insignia_maintence.aspx.cs">
-      <DependentUpon>insignia_maintence.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="insignia_maintence.aspx.designer.cs">
-      <DependentUpon>insignia_maintence.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="insignia_print.aspx.cs">
-      <DependentUpon>insignia_print.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="insignia_print.aspx.designer.cs">
-      <DependentUpon>insignia_print.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="insignia_recordnote2-ADMIN.aspx.cs">
-      <DependentUpon>insignia_recordnote2-ADMIN.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="insignia_recordnote2-ADMIN.aspx.designer.cs">
-      <DependentUpon>insignia_recordnote2-ADMIN.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="insignia_recordnote2.aspx.cs">
-      <DependentUpon>insignia_recordnote2.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="insignia_recordnote2.aspx.designer.cs">
-      <DependentUpon>insignia_recordnote2.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="INS_Request_admin.aspx.cs">
-      <DependentUpon>INS_Request_admin.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="INS_Request_admin.aspx.designer.cs">
-      <DependentUpon>INS_Request_admin.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="INS_ReturnandPay.aspx.cs">
-      <DependentUpon>INS_ReturnandPay.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="INS_ReturnandPay.aspx.designer.cs">
-      <DependentUpon>INS_ReturnandPay.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="INS_borrow.aspx.cs">
-      <DependentUpon>INS_borrow.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="INS_borrow.aspx.designer.cs">
-      <DependentUpon>INS_borrow.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="INS_Request.aspx.cs">
-      <DependentUpon>INS_Request.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="INS_Request.aspx.designer.cs">
-      <DependentUpon>INS_Request.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="INS_Test_Code.aspx.cs">
-      <DependentUpon>INS_Test_Code.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="INS_Test_Code.aspx.designer.cs">
-      <DependentUpon>INS_Test_Code.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="insignia_from_edit.aspx.cs">
-      <DependentUpon>insignia_from_edit.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="insignia_from_edit.aspx.designer.cs">
-      <DependentUpon>insignia_from_edit.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="insignia_citizen.aspx.cs">
-      <DependentUpon>insignia_citizen.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="insignia_citizen.aspx.designer.cs">
-      <DependentUpon>insignia_citizen.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="insignia_user.aspx.cs">
-      <DependentUpon>insignia_user.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="insignia_user.aspx.designer.cs">
-      <DependentUpon>insignia_user.aspx</DependentUpon>
     </Compile>
     <Compile Include="Leave.aspx.cs">
       <DependentUpon>Leave.aspx</DependentUpon>
@@ -1595,13 +1444,6 @@
     <Compile Include="Position-ADMIN.aspx.designer.cs">
       <DependentUpon>Position-ADMIN.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Person-Detail.aspx.cs">
-      <DependentUpon>Person-Detail.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Person-Detail.aspx.designer.cs">
-      <DependentUpon>Person-Detail.aspx</DependentUpon>
-    </Compile>
     <Compile Include="personalDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1634,6 +1476,13 @@
     </Compile>
     <Compile Include="Province-ADMIN.aspx.designer.cs">
       <DependentUpon>Province-ADMIN.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Rank-ADMIN.aspx.cs">
+      <DependentUpon>Rank-ADMIN.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Rank-ADMIN.aspx.designer.cs">
+      <DependentUpon>Rank-ADMIN.aspx</DependentUpon>
     </Compile>
     <Compile Include="Religion-ADMIN.aspx.cs">
       <DependentUpon>Religion-ADMIN.aspx</DependentUpon>
@@ -1682,6 +1531,13 @@
     </Compile>
     <Compile Include="StaffType-ADMIN.aspx.designer.cs">
       <DependentUpon>StaffType-ADMIN.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StatusWork-ADMIN.aspx.cs">
+      <DependentUpon>StatusWork-ADMIN.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StatusWork-ADMIN.aspx.designer.cs">
+      <DependentUpon>StatusWork-ADMIN.aspx</DependentUpon>
     </Compile>
     <Compile Include="SumReport_UpSalary.aspx.cs">
       <DependentUpon>SumReport_UpSalary.aspx</DependentUpon>

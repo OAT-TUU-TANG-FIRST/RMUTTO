@@ -10,7 +10,7 @@
 namespace WEB_PERSONAL {
     
     
-    public partial class GradCountry_ADMIN {
+    public partial class Rank_ADMIN {
         
         /// <summary>
         /// Panel1 control.
@@ -22,40 +22,31 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.Panel Panel1;
         
         /// <summary>
-        /// txtSearchGradCountry2 control.
+        /// txtSearchRankNameFull control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearchGradCountry2;
+        protected global::System.Web.UI.WebControls.TextBox txtSearchRankNameFull;
         
         /// <summary>
-        /// txtSearchGradCountryShort control.
+        /// txtSearchRankNameSmall control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearchGradCountryShort;
+        protected global::System.Web.UI.WebControls.TextBox txtSearchRankNameSmall;
         
         /// <summary>
-        /// txtSearchGradCountryLong control.
+        /// btnSearchRank control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearchGradCountryLong;
-        
-        /// <summary>
-        /// btnSearchGradCountry control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSearchGradCountry;
+        protected global::System.Web.UI.WebControls.Button btnSearchRank;
         
         /// <summary>
         /// btnSearchRefresh control.
@@ -76,49 +67,40 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.Panel Panel2;
         
         /// <summary>
-        /// txtInsertGradCountry2 control.
+        /// txtInsertRankNameFull control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtInsertGradCountry2;
+        protected global::System.Web.UI.WebControls.TextBox txtInsertRankNameFull;
         
         /// <summary>
-        /// txtInsertGradCountryShort control.
+        /// txtInsertRankNameSmall control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtInsertGradCountryShort;
+        protected global::System.Web.UI.WebControls.TextBox txtInsertRankNameSmall;
         
         /// <summary>
-        /// txtInsertGradCountryLong control.
+        /// btnSubmitRank control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtInsertGradCountryLong;
+        protected global::System.Web.UI.WebControls.Button btnSubmitRank;
         
         /// <summary>
-        /// btnSubmitGradCountry control.
+        /// btnCancelRank control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmitGradCountry;
-        
-        /// <summary>
-        /// btnCancelGradCountry control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancelGradCountry;
+        protected global::System.Web.UI.WebControls.Button btnCancelRank;
         
         /// <summary>
         /// ScriptManager1 control.

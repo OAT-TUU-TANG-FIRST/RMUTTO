@@ -10,7 +10,7 @@
 namespace WEB_PERSONAL {
     
     
-    public partial class INS_Request_admin {
+    public partial class StatusWork_ADMIN {
         
         /// <summary>
         /// Panel1 control.
@@ -22,49 +22,67 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.Panel Panel1;
         
         /// <summary>
-        /// DDLyear control.
+        /// txtSearchStatusWorkName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DDLyear;
+        protected global::System.Web.UI.WebControls.TextBox txtSearchStatusWorkName;
         
         /// <summary>
-        /// DDLstafftype control.
+        /// btnSearchStatusWork control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DDLstafftype;
+        protected global::System.Web.UI.WebControls.Button btnSearchStatusWork;
         
         /// <summary>
-        /// DropDownCampus control.
+        /// btnSearchRefresh control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownCampus;
+        protected global::System.Web.UI.WebControls.Button btnSearchRefresh;
         
         /// <summary>
-        /// DropDownFaculty control.
+        /// Panel2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownFaculty;
+        protected global::System.Web.UI.WebControls.Panel Panel2;
         
         /// <summary>
-        /// Button1 control.
+        /// txtInsertStatusWorkName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.TextBox txtInsertStatusWorkName;
+        
+        /// <summary>
+        /// btnSubmitStatusWork control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSubmitStatusWork;
+        
+        /// <summary>
+        /// btnCancelStatusWork control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCancelStatusWork;
         
         /// <summary>
         /// ScriptManager1 control.
@@ -92,14 +110,5 @@ namespace WEB_PERSONAL {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridView1;
-        
-        /// <summary>
-        /// SqlDataSource1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
     }
 }

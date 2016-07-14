@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Data;
 using System.Web.UI.WebControls;
 using WEB_PERSONAL.Class;
 using Oracle.DataAccess.Client;
@@ -18,10 +19,11 @@ namespace WEB_PERSONAL {
         private Label lb2;
         private bool OK = true;
         private string cccStaffType = "";
+        private string cccCampus = "";
+        private string cccFaculty = "";
 
         protected void Page_Load(object sender, EventArgs e) {
             if(!IsPostBack) {
-                DatabaseManager.BindDropDown(ddlYear, "SELECT * FROM INS_YEAR", "YEAR_ID", "YEAR_ID", "--กรุณาเลือกปี--");
                 DatabaseManager.BindDropDown(ddlStaffType, "SELECT * FROM TB_STAFFTYPE", "STAFFTYPE_NAME", "STAFFTYPE_ID", "--กรุณาประเภทบุคลากร--");
                 DatabaseManager.BindDropDown(ddlCampus, "SELECT * FROM TB_CAMPUS", "CAMPUS_NAME", "CAMPUS_ID", "--กรุณาวิทยาเขต--");
                 DatabaseManager.BindDropDown(ddlFaculty, "SELECT * FROM TB_FACULTY", "FACULTY_NAME", "FACULTY_ID", "--กรุณาเลือกคณะ--");
@@ -31,10 +33,17 @@ namespace WEB_PERSONAL {
         }
         private void search() {
 
-            if(ddlStaffType.SelectedIndex != 0) {
-                cccStaffType = "AND PS_STAFFTYPE_ID = " + ddlStaffType.SelectedValue;
+            if(ddlStaffType.SelectedIndex > 0 ) {
+                cccStaffType = " AND PS_STAFFTYPE_ID = " + ddlStaffType.SelectedValue;
             }
-            
+            if (ddlCampus.SelectedIndex > 0)
+            {
+                cccCampus = " AND PS_CAMPUS_ID = " + ddlCampus.SelectedValue;
+            }
+            if (ddlFaculty.SelectedIndex > 0)
+            {
+                cccFaculty = " AND PS_FACULTY_ID = " + ddlFaculty.SelectedValue;
+            }
 
             if (hf1.Value != "") {
                 Random r = new Random();
@@ -97,12 +106,22 @@ namespace WEB_PERSONAL {
                         cell.Text = "ประเภทบุคลากร";
                         row.Cells.Add(cell);
                     }
+                    {
+                        TableHeaderCell cell = new TableHeaderCell();
+                        cell.Text = "วิทยาเขต";
+                        row.Cells.Add(cell);
+                    }
+                    {
+                        TableHeaderCell cell = new TableHeaderCell();
+                        cell.Text = "สำนัก / สถาบัน / คณะ";
+                        row.Cells.Add(cell);
+                    }
                     Table1.Rows.Add(row);
                 }
-
+                
                 using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                     con.Open();
-                    using (OracleCommand com = new OracleCommand("SELECT PS_PERSON.PS_CITIZEN_ID รหัสประชาชน, PS_PERSON.PS_FN_TH || ' ' || PS_PERSON.PS_LN_TH ชื่อ, PS_STAFFTYPE_ID, PS_PIG_ID, (SELECT TRUNC((SYSDATE - PS_INWORK_DATE)/365,0) from PS_PERSON A WHERE A.PS_CITIZEN_ID = PS_PERSON.PS_CITIZEN_ID) ปีทำงาน, PS_SALARY, PS_INWORK_DATE, PS_SALARY, (SELECT NAME FROM TB_POSITION WHERE PS_PERSON.PS_POSITION_ID = TB_POSITION.ID) ตำแหน่ง, PS_ACAD_POS_ID, PS_ADMIN_POS_ID, PS_PIE_ID, (SELECT STAFFTYPE_NAME FROM TB_STAFFTYPE WHERE PS_PERSON.PS_STAFFTYPE_ID = TB_STAFFTYPE.STAFFTYPE_ID) ชื่อประเภทบุคลากร FROM PS_PERSON WHERE PS_STAFFTYPE_ID in(1,2,3,6) " + cccStaffType, con)) {
+                    using (OracleCommand com = new OracleCommand("SELECT PS_PERSON.PS_CITIZEN_ID รหัสประชาชน, PS_PERSON.PS_FN_TH || ' ' || PS_PERSON.PS_LN_TH ชื่อ, PS_STAFFTYPE_ID, PS_PIG_ID, (SELECT TRUNC((SYSDATE - PS_INWORK_DATE)/365,0) from PS_PERSON A WHERE A.PS_CITIZEN_ID = PS_PERSON.PS_CITIZEN_ID) ปีทำงาน, PS_SALARY, PS_INWORK_DATE, PS_SALARY, (SELECT NAME FROM TB_POSITION WHERE PS_PERSON.PS_POSITION_ID = TB_POSITION.ID) ตำแหน่ง, PS_ACAD_POS_ID, PS_ADMIN_POS_ID, PS_PIE_ID, (SELECT STAFFTYPE_NAME FROM TB_STAFFTYPE WHERE PS_PERSON.PS_STAFFTYPE_ID = TB_STAFFTYPE.STAFFTYPE_ID) ชื่อประเภทบุคลากร, (SELECT CAMPUS_NAME FROM TB_CAMPUS WHERE TB_CAMPUS.CAMPUS_ID = PS_PERSON.PS_CAMPUS_ID) วิทยาเขต, (SELECT FACULTY_NAME FROM TB_FACULTY WHERE TB_FACULTY.FACULTY_ID = PS_PERSON.PS_FACULTY_ID) คณะ FROM PS_PERSON WHERE PS_STAFFTYPE_ID in(1,2,3,6) " + cccStaffType + cccCampus + cccFaculty, con)) {
                         using (OracleDataReader reader = com.ExecuteReader()) {
                             while (reader.Read()) {
 
@@ -140,6 +159,8 @@ namespace WEB_PERSONAL {
                                     lbName.Click += (e2, e3) => {
                                         Response.Redirect("INSG_Qualified_Detail.aspx?psID=" + psID);
                                     };
+                                    lbName.Attributes.Add("tuu", psID);
+                                    //lbName.Attributes.Add("tuu2", psID);
                                     TableCell cell = new TableCell();
                                     cell.Controls.Add(lbName);
                                     row.Cells.Add(cell);
@@ -227,6 +248,22 @@ namespace WEB_PERSONAL {
                                     lblStaffTypeName.Text = reader.GetString(12);
                                     TableCell cell = new TableCell();
                                     cell.Controls.Add(lblStaffTypeName);
+                                    row.Cells.Add(cell);
+                                }
+
+                                {
+                                    Label lblCampus = new Label();
+                                    lblCampus.Text = reader.GetString(13);
+                                    TableCell cell = new TableCell();
+                                    cell.Controls.Add(lblCampus);
+                                    row.Cells.Add(cell);
+                                }
+
+                                {
+                                    Label lblFaculty = new Label();
+                                    lblFaculty.Text = reader.GetString(14);
+                                    TableCell cell = new TableCell();
+                                    cell.Controls.Add(lblFaculty);
                                     row.Cells.Add(cell);
                                 }
 
@@ -319,7 +356,7 @@ namespace WEB_PERSONAL {
                                                 ปีที่ดำรงตำแหน่งระดับปฏิบัติงาน >= 10
                                         }, new string[] {
                                                 "อายุงานครบ 5 ปี",
-                                                "เงินเดือนน้อยกว่าเงินเดือนขั้นต่ำของระดับจำนาญงาน",
+                                                "เงินเดือนน้อยกว่าเงินเดือนขั้นต่ำของระดับชำนาญงาน",
                                                 "ปีที่ดำรงตำแหน่งระดับปฏิบัติงานไม่น้อยกว่า 10 ปี"
                                             });
                                         } else if (รหัสเครืองราชปัจจุบัน == 11) {
@@ -331,7 +368,7 @@ namespace WEB_PERSONAL {
                                                 ปีที่ดำรงตำแหน่งระดับปฏิบัติงาน >= 10
                                         }, new string[] {
                                                 "อายุงานครบ 5 ปี",
-                                                "เงินเดือนมากกว่าเงินเดือนขั้นต่ำของระดับจำนาญงาน",
+                                                "เงินเดือนมากกว่าเงินเดือนขั้นต่ำของระดับชำนาญงาน",
                                                 "ปีที่ดำรงตำแหน่งระดับปฏิบัติงานไม่น้อยกว่า 10 ปี"
                                             });
                                         } else if (รหัสเครืองราชปัจจุบัน == 10) {
@@ -343,7 +380,7 @@ namespace WEB_PERSONAL {
                                                 ปีที่ดำรงตำแหน่งระดับปฏิบัติงาน >= 10
                                         }, new string[] {
                                                 "อายุงานครบ 5 ปี",
-                                                "เงินเดือนมากกว่าเงินเดือนขั้นต่ำของระดับจำนาญงาน",
+                                                "เงินเดือนมากกว่าเงินเดือนขั้นต่ำของระดับชำนาญงาน",
                                                 "ปีที่ดำรงตำแหน่งระดับปฏิบัติงานไม่น้อยกว่า 10 ปี"
                                             });
                                         } else if (รหัสเครืองราชปัจจุบัน == 9) {
@@ -1171,55 +1208,9 @@ namespace WEB_PERSONAL {
                             }
                         }
                     }
-                    
 
                 }
 
-               
-
-
-
-
-                //DatabaseManager.BindGridView(gv1, "SELECT PS_PERSON.PS_CITIZEN_ID รหัสประชาชน, PS_PERSON.PS_FN_TH || ' ' || PS_PERSON.PS_LN_TH ชื่อ, FUNC_AGE(PS_BIRTHDAY_DATE) อายุ, FUNC_SHOW_DATE(PS_INWORK_DATE) วันที่เริ่มรับราชการ, (SELECT STAFFTYPE_NAME FROM TB_STAFFTYPE WHERE TB_STAFFTYPE.STAFFTYPE_ID = PS_PERSON.PS_STAFFTYPE_ID) ประเภทบุคลากร, (SELECT TB_POSITION.NAME FROM TB_POSITION WHERE PS_PERSON.PS_POSITION_ID = TB_POSITION.ID) ตำแหน่ง, (SELECT ADMIN_POSITION_NAME FROM TB_ADMIN_POSITION WHERE TB_ADMIN_POSITION.ADMIN_POSITION_ID = PS_PERSON.PS_ADMIN_POS_ID) ระดับ, (SELECT DIVISION_NAME FROM TB_DIVISION WHERE TB_DIVISION.DIVISION_ID = PS_PERSON.PS_DIVISION_ID) แผนก, (SELECT FACULTY_NAME FROM TB_FACULTY WHERE TB_FACULTY.FACULTY_ID = PS_PERSON.PS_FACULTY_ID) คณะ, (SELECT CAMPUS_NAME FROM TB_CAMPUS WHERE TB_CAMPUS.CAMPUS_ID = PS_PERSON.PS_CAMPUS_ID) วิทยาเขต, PS_SALARY เงินเดือน FROM PS_PERSON");
-                // if (gv1.Rows.Count > 0) {
-
-                /*SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEV_MAIN.LEAVE_ID รหัสการลา, (SELECT PS_FN_TH || ' ' || PS_LN_TH FROM PS_PERSON WHERE PS_CITIZEN_ID = LEV_MAIN.PS_CITIZEN_ID) ชื่อผู้ลา, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_MAIN.LEAVE_TYPE_ID) ประเภทการลา, LEV_MAIN.REQ_DATE วันที่ข้อมูล FROM LEV_MAIN WHERE LEAVE_STATE = 1 AND CL_ID = '" + loginPerson.CitizenID + "'");
-                gv1.DataSource = sds;
-                gv1.DataBind();*/
-
-                //Util.NormalizeGridViewDate(gv1, 3);
-
-                /* TableHeaderCell newHeader = new TableHeaderCell();
-                 newHeader.Text = "เลือก";
-                 gv1.HeaderRow.Cells.Add(newHeader);
-
-                 for (int i = 0; i < gv1.Rows.Count; ++i) {
-
-                     string id = gv1.Rows[i].Cells[0].Text;
-
-                     {
-                         CheckBox cb = new CheckBox();
-                         TableCell cell = new TableCell();
-                         cell.Controls.AddAt(0, cb);
-                         gv1.Rows[i].Cells.Add(cell);
-                     }
-
-
-                     {
-                         LinkButton lbu = new LinkButton();
-                         lbu.Text = "<img src='Image/Small/send-email.png' class='icon_left'/>ส่งอีเมล";
-                         lbu.CssClass = "ps-button";
-                         lbu.Click += (e2, e3) => {
-                             Response.Redirect("Default.aspx");
-                         };
-                         TableCell cell = new TableCell();
-                         cell.Controls.Add(lbu);
-                         gv1.Rows[i].Cells.Add(cell);
-                     }
-
-
-                 }
-             }*/
             }
         }
         private void ConditionExecute(string[] ins) {
@@ -1326,7 +1317,47 @@ namespace WEB_PERSONAL {
         }
 
         protected void lbuSend_Click(object sender, EventArgs e) {
+            
+            for (int i = 1; i < Table1.Rows.Count; ++i)
+            {
+                CheckBox cb = (CheckBox)Table1.Rows[i].Cells[0].Controls[0];
+                LinkButton lbu = (LinkButton)Table1.Rows[i].Cells[1].Controls[0];
+                if (cb != null && cb.Checked)
+                {
+                    int id = 0;
+                    using (OracleConnection conn = Util.OC())
+                    {
+                        PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
+                        Person loginPerson = ps.LoginPerson;
+                        using (OracleCommand command = new OracleCommand("INSERT INTO TB_INSIG_REQUEST (IR_STATUS,IR_CITIZEN_ID,IR_INSIG_ID) VALUES (:IR_STATUS,:IR_CITIZEN_ID,:IR_INSIG_ID) ", conn))
+                        {
 
+                            try
+                            {
+                                if (conn.State != ConnectionState.Open)
+                                {
+                                    conn.Open();
+                                }
+                                command.Parameters.Add(new OracleParameter("IR_STATUS", 1));
+                                command.Parameters.Add(new OracleParameter("IR_CITIZEN_ID", lbu.Attributes["tuu"]));
+                                command.Parameters.Add(new OracleParameter("IR_INSIG_ID", "12"));
+                                id = command.ExecuteNonQuery();
+                            }
+
+                            catch (Exception ex)
+                            {
+                                throw ex;
+                            }
+                            finally
+                            {
+                                command.Dispose();
+                                conn.Close();
+                            }
+                        }
+                    }
+                } 
+            }
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ส่งรายชื่อเรียบร้อยแล้ว !')", true);
         }
 
         protected void lbuSearchAll_Click(object sender, EventArgs e) {

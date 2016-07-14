@@ -231,7 +231,7 @@ namespace WEB_PERSONAL
         {
             if (ddlInsertPosiGroup.SelectedIndex == 0)
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาเลือก ตำแหน่่งกลุ่ม')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาเลือก ตำแหน่งประเภท')", true);
                 return;
             }
             if (ddlInsertPosi.SelectedIndex == 0)

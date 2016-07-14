@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="PosiInsigGover-ADMIN.aspx.cs" Inherits="WEB_PERSONAL.PosiInsigGover_ADMIN" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Rank-ADMIN.aspx.cs" Inherits="WEB_PERSONAL.Rank_ADMIN" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
         .divpan {
@@ -52,39 +52,43 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:Panel ID="Panel1" runat="server" CssClass="divpan" BackColor="White" ForeColor="#6699FF" BorderColor="Tomato" DefaultButton="btnSearchPosiInsigGover">
+    <asp:Panel ID="Panel1" runat="server" CssClass="divpan" BackColor="White" ForeColor="#6699FF" BorderColor="Tomato" DefaultButton="btnSearchRank">
         <div>
             <fieldset>
                 <legend>ค้นหาข้อมูล</legend>
                 <div>
-                    ชื่อระดับตำแหน่งประเภท :&nbsp;<asp:TextBox ID="txtSearchPosiInsigGoverName" runat="server" CssClass="tb5" Width="230px" MaxLength="100"></asp:TextBox>
-                    <asp:Button ID="btnSearchPosiInsigGover" Text="Search" runat="server" CssClass="master_OAT_button" OnClick="btnSearchPosiInsigGover_Click" />
+                    ชื่อยศเต็ม :&nbsp<asp:TextBox ID="txtSearchRankNameFull" runat="server" CssClass="tb5" Width="230px" MaxLength="100"></asp:TextBox>
+                    ชื่อย่อ :&nbsp<asp:TextBox ID="txtSearchRankNameSmall" runat="server" CssClass="tb5" Width="230px" MaxLength="20"></asp:TextBox>
+                    <asp:Button ID="btnSearchRank" Text="Search" runat="server" CssClass="master_OAT_button" OnClick="btnSearchRank_Click" />
                     <asp:Button ID="btnSearchRefresh" Text="Refresh" runat="server" CssClass="master_OAT_button" OnClick="btnSearchRefresh_Click" />
                 </div>
             </fieldset>
         </div>
     </asp:Panel>
-    <asp:Panel ID="Panel2" runat="server" ScrollBars="Horizontal" CssClass="divpan" BackColor="White" ForeColor="#6699FF" BorderColor="Tomato" DefaultButton="btnSubmitPosiInsigGover">
+    <asp:Panel ID="Panel2" runat="server" CssClass="divpan" ScrollBars="Horizontal" BackColor="White" ForeColor="#6699FF" BorderColor="Tomato" DefaultButton="btnSubmitRank">
         <div>
             <fieldset>
                 <legend>เพิ่มข้อมูล</legend>
                 <div>
                     <table class="center1">
                         <tr>
-                            <td style="margin-left: auto; margin-right: auto; text-align: center">ชื่อระดับตำแหน่งประเภท :</td>
-                            <td style="text-align: left; width: 120px;">
-                                <asp:TextBox ID="txtInsertPosiInsigGoverName" runat="server" CssClass="tb5" Width="230px" MaxLength="100"></asp:TextBox></td>
+                            <td style="margin-left: auto; margin-right: auto; text-align: center">ชื่อยศเต็ม :</td>
+                            <td style="text-align: left; width: 100px;">
+                                <asp:TextBox ID="txtInsertRankNameFull" runat="server" CssClass="tb5" MaxLength="10" Width="230px"></asp:TextBox></td>
+                            <td style="margin-left: auto; margin-right: auto; text-align: center">ชื่อยศย่อ :</td>
+                            <td style="text-align: left; width: 100px;">
+                                <asp:TextBox ID="txtInsertRankNameSmall" runat="server" CssClass="tb5" MaxLength="100" Width="230px"></asp:TextBox></td>
                             <td style="text-align: left;">
-                                <asp:Button ID="btnSubmitPosiInsigGover" Text="OK" runat="server" CssClass="master_OAT_button" OnClick="btnSubmitPosiInsigGover_Click" /></td>
+                                <asp:Button ID="btnSubmitRank" Text="OK" runat="server" CssClass="master_OAT_button" OnClick="btnSubmitRank_Click" /></td>
                             <td style="text-align: left;">
-                                <asp:Button ID="btnCancelPosiInsigGover" Text="Cancel" runat="server" CssClass="master_OAT_button" OnClick="btnCancelPosiInsigGover_Click" /></td>
+                                <asp:Button ID="btnCancelRank" Text="Cancel" runat="server" CssClass="master_OAT_button" OnClick="btnCancelRank_Click" /></td>
                         </tr>
                     </table>
                 </div>
             </fieldset>
         </div>
         <div>
-            <fieldset> 
+            <fieldset>
                 <legend>ข้อมูล</legend>
                 <asp:ScriptManager ID="ScriptManager1" runat="server" />
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -92,25 +96,33 @@
                         <asp:GridView ID="GridView1" runat="server" Style="margin-left: auto; margin-right: auto; text-align: center; width: 100%"
                             AutoGenerateColumns="false"
                             AllowPaging="true"
-                            DataKeyNames="PIG_ID"
+                            DataKeyNames="RANK_ID"
                             OnRowEditing="modEditCommand"
                             OnRowCancelingEdit="modCancelCommand"
                             OnRowUpdating="modUpdateCommand"
                             OnRowDeleting="modDeleteCommand"
                             OnRowDataBound="GridView1_RowDataBound"
-                            OnPageIndexChanging="myGridViewPosiInsigGover_PageIndexChanging" PageSize="15" BackColor="White" BorderColor="#999999">
+                            OnPageIndexChanging="myGridViewRank_PageIndexChanging" PageSize="15" BackColor="White" BorderColor="#999999">
                             <Columns>
-                                <asp:TemplateField Visible="false" HeaderText="รหัสชื่อระดับตำแหน่งประเภท" ControlStyle-Width="180" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Tomato">
+                                <asp:TemplateField Visible="false" HeaderText="รหัสยศ" ControlStyle-Width="150" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Tomato">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblPosiInsigGoverIDEdit" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PIG_ID") %>'></asp:Label>
+                                        <asp:Label ID="lblRankIDEdit" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.RANK_ID") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="ชื่อระดับตำแหน่งประเภท" ControlStyle-Width="640" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Tomato">
+                                <asp:TemplateField HeaderText="ชื่อยศเต็ม" ControlStyle-Width="350" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Tomato">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblPosiInsigGoverNameEdit" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PIG_NAME") %>'></asp:Label>
+                                        <asp:Label ID="lblRankNameFullEdit" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.RANK_NAME_TH") %>'></asp:Label>
                                     </ItemTemplate>
                                     <EditItemTemplate>
-                                        <asp:TextBox ID="txtPosiInsigGoverNameEdit" MaxLength="100" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PIG_NAME") %>'></asp:TextBox>
+                                        <asp:TextBox ID="txtRankNameFullEdit" MaxLength="10" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.RANK_NAME_TH") %>'></asp:TextBox>
+                                    </EditItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="ชื่อยศย่อ" ControlStyle-Width="350" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Tomato">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblRankNameSmallEdit" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.RANK_NAME_TH_MIN") %>'></asp:Label>
+                                    </ItemTemplate>
+                                    <EditItemTemplate>
+                                        <asp:TextBox ID="txtRankNameSmallEdit" MaxLength="100" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.RANK_NAME_TH_MIN") %>'></asp:TextBox>
                                     </EditItemTemplate>
                                 </asp:TemplateField>
                                 <asp:CommandField ShowEditButton="True" CancelText="Cancel" DeleteText="Delete" EditText="Edit" UpdateText="Update" HeaderText="แก้ไข" HeaderStyle-BackColor="#F7F6F3" HeaderStyle-ForeColor="Tomato" />

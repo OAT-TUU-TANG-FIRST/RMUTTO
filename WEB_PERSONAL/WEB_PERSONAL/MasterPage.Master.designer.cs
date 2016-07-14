@@ -139,40 +139,85 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.Label lbDepartment;
         
         /// <summary>
-        /// A5 control.
+        /// cbAddPerson1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor A5;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor cbAddPerson1;
         
         /// <summary>
-        /// A6 control.
+        /// cbAddPerson2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor A6;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor cbAddPerson2;
         
         /// <summary>
-        /// A7 control.
+        /// cbAddPerson3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor A7;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor cbAddPerson3;
         
         /// <summary>
-        /// A8 control.
+        /// cbAddPerson4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor A8;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor cbAddPerson4;
+        
+        /// <summary>
+        /// cbAddPerson5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor cbAddPerson5;
+        
+        /// <summary>
+        /// cbNotPerson1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor cbNotPerson1;
+        
+        /// <summary>
+        /// cbAddPerson6 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor cbAddPerson6;
+        
+        /// <summary>
+        /// cbNotPerson2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor cbNotPerson2;
+        
+        /// <summary>
+        /// cbNotPerson3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor cbNotPerson3;
         
         /// <summary>
         /// lbLeaveCommentCount control.
@@ -211,22 +256,76 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor WorkingDay;
         
         /// <summary>
-        /// A2 control.
+        /// cbNotInsig1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor A2;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor cbNotInsig1;
         
         /// <summary>
-        /// Permission control.
+        /// cbAddInsig1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor Permission;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor cbAddInsig1;
+        
+        /// <summary>
+        /// cbAddInsig2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor cbAddInsig2;
+        
+        /// <summary>
+        /// cbNotInsig2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor cbNotInsig2;
+        
+        /// <summary>
+        /// cbAddInsig4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor cbAddInsig4;
+        
+        /// <summary>
+        /// cbAddManage1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor cbAddManage1;
+        
+        /// <summary>
+        /// cbAddManage2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor cbAddManage2;
+        
+        /// <summary>
+        /// cbNotManage1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor cbNotManage1;
         
         /// <summary>
         /// noti_leave_none control.
@@ -281,6 +380,15 @@ namespace WEB_PERSONAL {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl noti_ins;
+        
+        /// <summary>
+        /// noti_insadminknow control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl noti_insadminknow;
         
         /// <summary>
         /// ContentPlaceHolder1 control.

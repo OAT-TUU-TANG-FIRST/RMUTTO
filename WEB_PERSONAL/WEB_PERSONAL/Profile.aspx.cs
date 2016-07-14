@@ -160,6 +160,7 @@ namespace WEB_PERSONAL {
                     }
                 }
             }
+            Page.Response.Redirect(Page.Request.Url.ToString(), true);
         }
 
         

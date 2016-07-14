@@ -31,13 +31,13 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.View View1;
         
         /// <summary>
-        /// gv1 control.
+        /// Table1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gv1;
+        protected global::System.Web.UI.WebControls.Table Table1;
         
         /// <summary>
         /// View2 control.
@@ -49,66 +49,48 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.View View2;
         
         /// <summary>
-        /// lbReqDate control.
+        /// rbGet control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbReqDate;
+        protected global::System.Web.UI.WebControls.RadioButton rbGet;
         
         /// <summary>
-        /// lbCitizenName control.
+        /// rbNotGet control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCitizenName;
+        protected global::System.Web.UI.WebControls.RadioButton rbNotGet;
         
         /// <summary>
-        /// lbInsignia control.
+        /// tbRef control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbInsignia;
+        protected global::System.Web.UI.WebControls.TextBox tbRef;
         
         /// <summary>
-        /// lbState control.
+        /// lbBack control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbState;
+        protected global::System.Web.UI.WebControls.LinkButton lbBack;
         
         /// <summary>
-        /// lbuBack control.
+        /// lbuResult control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbuBack;
-        
-        /// <summary>
-        /// lbuPrint control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbuPrint;
-        
-        /// <summary>
-        /// lbuAccept control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbuAccept;
+        protected global::System.Web.UI.WebControls.LinkButton lbuResult;
     }
 }

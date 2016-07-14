@@ -226,7 +226,7 @@ namespace WEB_PERSONAL.Entities
             query += " SEMINAR_PROBLEM = :SEMINAR_PROBLEM ,";
             query += " SEMINAR_COMMENT = :SEMINAR_COMMENT ,";
             query += " SEMINAR_SIGNED_DATETIME = :SEMINAR_SIGNED_DATETIME ";
-            query += " where SEMINAR_ID  = :SEMINAR_ID";
+            query += " where CITIZEN_ID  = :CITIZEN_ID";
 
             OracleCommand command = new OracleCommand(query, conn);
             try
@@ -259,7 +259,7 @@ namespace WEB_PERSONAL.Entities
                 command.Parameters.Add(new OracleParameter("SEMINAR_PROBLEM", SEMINAR_PROBLEM));
                 command.Parameters.Add(new OracleParameter("SEMINAR_COMMENT", SEMINAR_COMMENT));
                 command.Parameters.Add(new OracleParameter("SEMINAR_SIGNED_DATETIME", SEMINAR_SIGNED_DATETIME));
-                command.Parameters.Add(new OracleParameter("SEMINAR_ID", SEMINAR_ID));
+                command.Parameters.Add(new OracleParameter("CITIZEN_ID", CITIZEN_ID));
                 if (command.ExecuteNonQuery() > 0)
                 {
                     result = true;

@@ -63,7 +63,7 @@ namespace WEB_PERSONAL
         {
             if (string.IsNullOrEmpty(txtInsertPosiInsigGoverName.Text))
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ ชื่่อระดับตำแหน่งประเภท')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาใส่ ชื่อระดับตำแหน่งประเภท')", true);
                 return;
             }
             ClassPositionInsigGover c = new ClassPositionInsigGover();
@@ -130,7 +130,7 @@ namespace WEB_PERSONAL
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 LinkButton lb = (LinkButton)e.Row.FindControl("DeleteButton1");
-                lb.Attributes.Add("onclick", "return confirm('คุณต้องการจะลบชื่่อระดับตำแหน่งประเภท " + DataBinder.Eval(e.Row.DataItem, "PIG_NAME") + " ใช่ไหม ?');");
+                lb.Attributes.Add("onclick", "return confirm('คุณต้องการจะลบชื่อระดับตำแหน่งประเภท " + DataBinder.Eval(e.Row.DataItem, "PIG_NAME") + " ใช่ไหม ?');");
             }
             e.Row.Attributes.Add("style", "cursor:help;");
             if (e.Row.RowType == DataControlRowType.DataRow && e.Row.RowState == DataControlRowState.Alternate)
