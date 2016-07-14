@@ -1862,42 +1862,29 @@ namespace WEB_PERSONAL.Entities
     /// <summary>
     /// ประเทศ
     /// </summary>
-    public class ClassGradCountry
+    public class ClassCountry
     {
-        public int GRAD_COUNTRY_ID { get; set; }
-        public string GRAD_ISO2 { get; set; }
-        public string GRAD_SHORT_NAME { get; set; }
-        public string GRAD_LONG_NAME { get; set; }
+        public int COUNTRY_ID { get; set; }
+        public string COUNTRY_TH { get; set; }
 
-
-        public ClassGradCountry() { }
-        public ClassGradCountry(int GRAD_COUNTRY_ID, string GRAD_ISO2, string GRAD_SHORT_NAME, string GRAD_LONG_NAME)
+        public ClassCountry() { }
+        public ClassCountry(int COUNTRY_ID, string COUNTRY_TH)
         {
-            this.GRAD_COUNTRY_ID = GRAD_COUNTRY_ID;
-            this.GRAD_ISO2 = GRAD_ISO2;
-            this.GRAD_SHORT_NAME = GRAD_SHORT_NAME;
-            this.GRAD_LONG_NAME = GRAD_LONG_NAME;
+            this.COUNTRY_ID = COUNTRY_ID;
+            this.COUNTRY_TH = COUNTRY_TH;
         }
 
-        public DataTable GetGradCountry(string GRAD_ISO2, string GRAD_SHORT_NAME, string GRAD_LONG_NAME)
+        public DataTable GetCountry(string COUNTRY_TH)
         {
             DataTable dt = new DataTable();
             OracleConnection conn = ConnectionDB.GetOracleConnection();
-            string query = "SELECT * FROM TB_GRAD_COUNTRY ";
-            if (!string.IsNullOrEmpty(GRAD_ISO2) || !string.IsNullOrEmpty(GRAD_SHORT_NAME) || !string.IsNullOrEmpty(GRAD_LONG_NAME))
+            string query = "SELECT * FROM TB_COUNTRY ";
+            if (!string.IsNullOrEmpty(COUNTRY_TH))
             {
                 query += " where 1=1 ";
-                if (!string.IsNullOrEmpty(GRAD_ISO2))
+                if (!string.IsNullOrEmpty(COUNTRY_TH))
                 {
-                    query += " and lower(GRAD_ISO2) like lower (:GRAD_ISO2) ";
-                }
-                if (!string.IsNullOrEmpty(GRAD_SHORT_NAME))
-                {
-                    query += " and lower(GRAD_SHORT_NAME) like lower (:GRAD_SHORT_NAME) ";
-                }
-                if (!string.IsNullOrEmpty(GRAD_LONG_NAME))
-                {
-                    query += " and lower(GRAD_LONG_NAME) like lower (:GRAD_LONG_NAME) ";
+                    query += " and COUNTRY_TH like :COUNTRY_TH ";
                 }
             }
             OracleCommand command = new OracleCommand(query, conn);
@@ -1909,76 +1896,9 @@ namespace WEB_PERSONAL.Entities
                     conn.Open();
                 }
 
-                if (!string.IsNullOrEmpty(GRAD_ISO2))
+                if (!string.IsNullOrEmpty(COUNTRY_TH))
                 {
-                    command.Parameters.Add(new OracleParameter("GRAD_ISO2", GRAD_ISO2 + "%"));
-                }
-                if (!string.IsNullOrEmpty(GRAD_SHORT_NAME))
-                {
-                    command.Parameters.Add(new OracleParameter("GRAD_SHORT_NAME", GRAD_SHORT_NAME + "%"));
-                }
-                if (!string.IsNullOrEmpty(GRAD_LONG_NAME))
-                {
-                    command.Parameters.Add(new OracleParameter("GRAD_LONG_NAME", GRAD_LONG_NAME + "%"));
-                }
-                OracleDataAdapter sd = new OracleDataAdapter(command);
-                sd.Fill(dt);
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-            finally
-            {
-                command.Dispose();
-                conn.Close();
-            }
-
-            return dt;
-        }
-
-        public DataTable GetGradCountrySearch(string GRAD_ISO2, string GRAD_SHORT_NAME, string GRAD_LONG_NAME)
-        {
-            DataTable dt = new DataTable();
-            OracleConnection conn = ConnectionDB.GetOracleConnection();
-            string query = "SELECT * FROM TB_GRAD_COUNTRY ";
-            if (!string.IsNullOrEmpty(GRAD_ISO2) || !string.IsNullOrEmpty(GRAD_SHORT_NAME) || !string.IsNullOrEmpty(GRAD_LONG_NAME))
-            {
-                query += " where 1=1 ";
-                if (!string.IsNullOrEmpty(GRAD_ISO2))
-                {
-                    query += " and lower(GRAD_ISO2) like lower (:GRAD_ISO2) ";
-                }
-                if (!string.IsNullOrEmpty(GRAD_SHORT_NAME))
-                {
-                    query += " and lower(GRAD_SHORT_NAME) like lower (:GRAD_SHORT_NAME) ";
-                }
-                if (!string.IsNullOrEmpty(GRAD_LONG_NAME))
-                {
-                    query += " and lower(GRAD_LONG_NAME) like lower (:GRAD_LONG_NAME) ";
-                }
-            }
-            OracleCommand command = new OracleCommand(query, conn);
-            // Create the command
-            try
-            {
-                if (conn.State != ConnectionState.Open)
-                {
-                    conn.Open();
-                }
-
-                if (!string.IsNullOrEmpty(GRAD_ISO2))
-                {
-                    command.Parameters.Add(new OracleParameter("GRAD_ISO2", GRAD_ISO2 + "%"));
-                }
-                if (!string.IsNullOrEmpty(GRAD_SHORT_NAME))
-                {
-                    command.Parameters.Add(new OracleParameter("GRAD_SHORT_NAME", GRAD_SHORT_NAME + "%"));
-                }
-                if (!string.IsNullOrEmpty(GRAD_LONG_NAME))
-                {
-                    command.Parameters.Add(new OracleParameter("GRAD_LONG_NAME", GRAD_LONG_NAME + "%"));
+                    command.Parameters.Add(new OracleParameter("COUNTRY_TH", COUNTRY_TH + "%"));
                 }
                 OracleDataAdapter sd = new OracleDataAdapter(command);
                 sd.Fill(dt);
@@ -2001,16 +1921,14 @@ namespace WEB_PERSONAL.Entities
         {
             int id = 0;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
-            OracleCommand command = new OracleCommand("INSERT INTO TB_GRAD_COUNTRY (GRAD_ISO2,GRAD_SHORT_NAME,GRAD_LONG_NAME) VALUES (:GRAD_ISO2,:GRAD_SHORT_NAME,:GRAD_LONG_NAME)", conn);
+            OracleCommand command = new OracleCommand("INSERT INTO TB_COUNTRY (COUNTRY_TH) VALUES (:COUNTRY_TH)", conn);
             try
             {
                 if (conn.State != ConnectionState.Open)
                 {
                     conn.Open();
                 }
-                command.Parameters.Add(new OracleParameter("GRAD_ISO2", GRAD_ISO2));
-                command.Parameters.Add(new OracleParameter("GRAD_SHORT_NAME", GRAD_SHORT_NAME));
-                command.Parameters.Add(new OracleParameter("GRAD_LONG_NAME", GRAD_LONG_NAME));
+                command.Parameters.Add(new OracleParameter("COUNTRY_TH", COUNTRY_TH));
                 id = command.ExecuteNonQuery();
             }
             catch (Exception ex)
@@ -2029,11 +1947,9 @@ namespace WEB_PERSONAL.Entities
         {
             bool result = false;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
-            string query = "Update TB_GRAD_COUNTRY Set ";
-            query += " GRAD_ISO2 = :GRAD_ISO2,";
-            query += " GRAD_SHORT_NAME = :GRAD_SHORT_NAME,";
-            query += " GRAD_LONG_NAME = :GRAD_LONG_NAME";
-            query += " where GRAD_COUNTRY_ID = :GRAD_COUNTRY_ID";
+            string query = "Update TB_COUNTRY Set ";
+            query += " COUNTRY_TH = :COUNTRY_TH";
+            query += " where COUNTRY_ID = :COUNTRY_ID";
 
             OracleCommand command = new OracleCommand(query, conn);
             try
@@ -2042,10 +1958,8 @@ namespace WEB_PERSONAL.Entities
                 {
                     conn.Open();
                 }
-                command.Parameters.Add(new OracleParameter("GRAD_ISO2", GRAD_ISO2));
-                command.Parameters.Add(new OracleParameter("GRAD_SHORT_NAME", GRAD_SHORT_NAME));
-                command.Parameters.Add(new OracleParameter("GRAD_LONG_NAME", GRAD_LONG_NAME));
-                command.Parameters.Add(new OracleParameter("GRAD_COUNTRY_ID", GRAD_COUNTRY_ID));
+                command.Parameters.Add(new OracleParameter("COUNTRY_ID", COUNTRY_ID));
+                command.Parameters.Add(new OracleParameter("COUNTRY_TH", COUNTRY_TH));
                 if (command.ExecuteNonQuery() > 0)
                 {
                     result = true;
@@ -2066,14 +1980,14 @@ namespace WEB_PERSONAL.Entities
         {
             bool result = false;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
-            OracleCommand command = new OracleCommand("Delete TB_GRAD_COUNTRY where GRAD_COUNTRY_ID = :GRAD_COUNTRY_ID", conn);
+            OracleCommand command = new OracleCommand("Delete TB_COUNTRY where COUNTRY_ID = :COUNTRY_ID", conn);
             try
             {
                 if (conn.State != ConnectionState.Open)
                 {
                     conn.Open();
                 }
-                command.Parameters.Add(new OracleParameter("GRAD_COUNTRY_ID", GRAD_COUNTRY_ID));
+                command.Parameters.Add(new OracleParameter("COUNTRY_ID", COUNTRY_ID));
                 if (command.ExecuteNonQuery() >= 0)
                 {
                     result = true;
@@ -2097,49 +2011,10 @@ namespace WEB_PERSONAL.Entities
             OracleConnection conn = ConnectionDB.GetOracleConnection();
 
             // Create the command
-            OracleCommand command = new OracleCommand("SELECT count(GRAD_ISO2) FROM TB_GRAD_COUNTRY WHERE GRAD_ISO2 = :GRAD_ISO2 or GRAD_SHORT_NAME = :GRAD_SHORT_NAME or GRAD_LONG_NAME = :GRAD_LONG_NAME ", conn);
+            OracleCommand command = new OracleCommand("SELECT count(GRAD_ISO2) FROM TB_COUNTRY WHERE COUNTRY_TH = :COUNTRY_TH", conn);
 
             // Add the parameters.
-            command.Parameters.Add(new OracleParameter("GRAD_ISO2", GRAD_ISO2));
-            command.Parameters.Add(new OracleParameter("GRAD_SHORT_NAME", GRAD_SHORT_NAME));
-            command.Parameters.Add(new OracleParameter("GRAD_LONG_NAME", GRAD_LONG_NAME));
-            try
-            {
-                if (conn.State != ConnectionState.Open)
-                {
-                    conn.Open();
-                }
-                int count = (int)(decimal)command.ExecuteScalar();
-                if (count >= 1)
-                {
-                    result = false;
-                }
-
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                command.Dispose();
-                conn.Close();
-            }
-            return result;
-        }
-
-        public bool CheckUseGradCountryNameUpdate()
-        {
-            bool result = true;
-            OracleConnection conn = ConnectionDB.GetOracleConnection();
-
-            // Create the command
-            OracleCommand command = new OracleCommand("SELECT count(GRAD_ISO2) FROM TB_GRAD_COUNTRY WHERE GRAD_ISO2 = :GRAD_ISO2 and GRAD_SHORT_NAME = :GRAD_SHORT_NAME and GRAD_LONG_NAME = :GRAD_LONG_NAME ", conn);
-
-            // Add the parameters.
-            command.Parameters.Add(new OracleParameter("GRAD_ISO2", GRAD_ISO2));
-            command.Parameters.Add(new OracleParameter("GRAD_SHORT_NAME", GRAD_SHORT_NAME));
-            command.Parameters.Add(new OracleParameter("GRAD_LONG_NAME", GRAD_LONG_NAME));
+            command.Parameters.Add(new OracleParameter("COUNTRY_TH", COUNTRY_TH));
             try
             {
                 if (conn.State != ConnectionState.Open)

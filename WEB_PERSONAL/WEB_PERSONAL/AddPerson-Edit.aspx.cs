@@ -55,9 +55,9 @@ namespace WEB_PERSONAL
                 DatabaseManager.BindDropDown(ddlReligion, "SELECT * FROM TB_RELIGION", "RELIGION_NAME", "RELIGION_ID", "--กรุณาเลือกศาสนา--");
                 //DatabaseManager.BindDropDown(ddlRank, "SELECT * FROM TB_RANK", "RANK_NAME_TH", "RANK_ID", "--กรุณาเลือกยศ--");
                 //view2
-                DatabaseManager.BindDropDown(ddlCountry, "SELECT * FROM TB_GRAD_COUNTRY", "GRAD_SHORT_NAME", "GRAD_COUNTRY_ID", "--กรุณาเลือกประเทศ--");
+                DatabaseManager.BindDropDown(ddlCountry, "SELECT * FROM TB_COUNTRY", "COUNTRY_TH", "COUNTRY_ID", "--กรุณาเลือกประเทศ--");
                 ddlCountry.SelectedValue = "Thailand";
-                DatabaseManager.BindDropDown(ddlCountry2, "SELECT * FROM TB_GRAD_COUNTRY", "GRAD_SHORT_NAME", "GRAD_COUNTRY_ID", "--กรุณาเลือกประเทศ--");
+                DatabaseManager.BindDropDown(ddlCountry2, "SELECT * FROM TB_COUNTRY", "COUNTRY_TH", "COUNTRY_ID", "--กรุณาเลือกประเทศ--");
                 ddlCountry2.SelectedValue = "Thailand";
 
                 //view3
@@ -92,14 +92,14 @@ namespace WEB_PERSONAL
             tbEmail.Text = "";
             tbPhone.Text = "";
             tbTelephone.Text = "";
-            tbFatherName.Text = "";
+            /*tbFatherName.Text = "";
             tbFatherLastName.Text = "";
             tbMotherName.Text = "";
             tbMotherLastName.Text = "";
             tbMotherOldLastName.Text = "";
             tbCoupleName.Text = "";
             tbCoupleLastName.Text = "";
-            tbCoupleOldLastName.Text = "";
+            tbCoupleOldLastName.Text = "";*/
             tbHomeAdd.Text = "";
             tbSoi.Text = "";
             tbMoo.Text = "";
@@ -816,14 +816,14 @@ namespace WEB_PERSONAL
             P0.PS_TELEPHONE_WORK = tbTelephone.Text;
             P0.PS_RELIGION_ID = Convert.ToInt32(ddlReligion.SelectedValue);
             P0.PS_STATUS_ID = Convert.ToInt32(ddlStatus.SelectedValue);
-            P0.PS_DAD_FN = tbFatherName.Text;
+            /*P0.PS_DAD_FN = tbFatherName.Text;
             P0.PS_DAD_LN = tbFatherLastName.Text;
             P0.PS_MOM_FN = tbMotherName.Text;
             P0.PS_MOM_LN = tbMotherLastName.Text;
             P0.PS_MOM_LN_OLD = tbMotherOldLastName.Text;
             P0.PS_LOV_FN = tbCoupleName.Text;
             P0.PS_LOV_LN = tbCoupleLastName.Text;
-            P0.PS_LOV_LN_OLD = tbCoupleOldLastName.Text;
+            P0.PS_LOV_LN_OLD = tbCoupleOldLastName.Text;*/
             //view2/3
             P0.PS_HOMEADD = tbHomeAdd.Text;
             P0.PS_SOI = tbSoi.Text;
@@ -875,45 +875,32 @@ namespace WEB_PERSONAL
             MultiView1.ActiveViewIndex = 0;
         }
 
-        protected void lbCheckUseCitizen_Click(object sender, EventArgs e)
+        protected void btnSearchPerson_Click(object sender, EventArgs e)
         {
-            PS_PERSON P0 = new PS_PERSON();
-            P0.PS_CITIZEN_ID = tbCitizenID.Text;
-            if (string.IsNullOrEmpty(tbCitizenID.Text))
+            if (string.IsNullOrEmpty(txtSearchPersonID.Text))
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอกรหัสบัตรประชาชน')", true);
             }
-            if (tbCitizenID.Text.Length < 13)
+            if (txtSearchPersonID.Text.Length < 13)
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอกรหัสบัตรประชาชนให้ครบ 13 หลัก')", true);
             }
-            if (P0.CheckUseCitizenID())
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('สามารถใช้รหัสบัตรประชาชนนี้')", true);
-            }
-            else
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('รหัสประจำตัวประชาชน ที่กรอกนี้ มีอยู่ในระบบแล้ว !')", true);
-            }
 
-        }
-
-        protected void btnSearchPerson_Click(object sender, EventArgs e)
-        {
             PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
             Person loginPerson = ps.LoginPerson;
 
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
             {
                 con.Open();
-                using (OracleCommand com = new OracleCommand("SELECT PS_CITIZEN_ID,PS_TITLE_ID,PS_FN_TH,PS_FN_EN,PS_LN_TH,PS_LN_EN,PS_GENDER_ID,PS_BIRTHDAY_DATE,PS_RACE_ID,PS_NATION_ID,PS_BLOOD_ID,PS_RELIGION_ID,PS_STATUS_ID,PS_EMAIL,PS_PHONE,PS_TELEPHONE_WORK,PS_DAD_FN,PS_DAD_LN,PS_MOM_FN,PS_MOM_LN,PS_MOM_LN_OLD,PS_LOV_FN,PS_LOV_LN,PS_LOV_LN_OLD,PS_HOMEADD,PS_SOI,PS_MOO,PS_STREET,PS_PROVINCE_ID,PS_AMPHUR_ID,PS_DISTRICT,PS_ZIPCODE,PS_COUNTRY_ID,PS_STATE,PS_HOMEADD_NOW,PS_SOI_NOW,PS_MOO_NOW,PS_STREET_NOW,PS_PROVINCE_ID_NOW,PS_AMPHUR_ID_NOW,PS_DISTRICT_ID_NOW,PS_ZIPCODE_NOW,PS_COUNTRY_ID_NOW,PS_STATE_NOW,PS_CAMPUS_ID,PS_FACULTY_ID,PS_DIVISION_ID,PS_WORK_DIVISION_ID,PS_STAFFTYPE_ID,PS_BUDGET_ID,PS_ADMIN_POS_ID,PS_WORK_POS_ID,PS_ACAD_POS_ID,PS_INWORK_DATE,PS_SPECIAL_WORK,PS_TEACH_ISCED_ID,PS_POSITION_ID,PS_SALARY,PS_PIG_ID,PS_SW_ID,PS_RANK_ID,PS_POSS_SALARY,PS_PIE_ID,PS_PID_ID FROM PS_PERSON WHERE PS_CITIZEN_ID = '" + txtSearchPersonID.Text + "'", con))
+                //using (OracleCommand com = new OracleCommand("SELECT PS_CITIZEN_ID,PS_TITLE_ID,PS_FN_TH,PS_FN_EN,PS_LN_TH,PS_LN_EN,PS_GENDER_ID,PS_BIRTHDAY_DATE,PS_RACE_ID,PS_NATION_ID,PS_BLOOD_ID,PS_RELIGION_ID,PS_STATUS_ID,PS_EMAIL,PS_PHONE,PS_TELEPHONE_WORK,PS_DAD_FN,PS_DAD_LN,PS_MOM_FN,PS_MOM_LN,PS_MOM_LN_OLD,PS_LOV_FN,PS_LOV_LN,PS_LOV_LN_OLD,PS_HOMEADD,PS_SOI,PS_MOO,PS_STREET,PS_PROVINCE_ID,PS_AMPHUR_ID,PS_DISTRICT,PS_ZIPCODE,PS_COUNTRY_ID,PS_STATE,PS_HOMEADD_NOW,PS_SOI_NOW,PS_MOO_NOW,PS_STREET_NOW,PS_PROVINCE_ID_NOW,PS_AMPHUR_ID_NOW,PS_DISTRICT_ID_NOW,PS_ZIPCODE_NOW,PS_COUNTRY_ID_NOW,PS_STATE_NOW,PS_CAMPUS_ID,PS_FACULTY_ID,PS_DIVISION_ID,PS_WORK_DIVISION_ID,PS_STAFFTYPE_ID,PS_BUDGET_ID,PS_ADMIN_POS_ID,PS_WORK_POS_ID,PS_ACAD_POS_ID,PS_INWORK_DATE,PS_SPECIAL_WORK,PS_TEACH_ISCED_ID,PS_POSITION_ID,PS_SALARY,PS_PIG_ID,PS_SW_ID,PS_RANK_ID,PS_POSS_SALARY,PS_PIE_ID,PS_PID_ID FROM PS_PERSON WHERE PS_CITIZEN_ID = '" + txtSearchPersonID.Text + "'", con))
+                using (OracleCommand com = new OracleCommand("SELECT PS_CITIZEN_ID,PS_TITLE_ID,PS_FN_TH,PS_FN_EN,PS_LN_TH,PS_LN_EN,PS_GENDER_ID,PS_BIRTHDAY_DATE,PS_RACE_ID,PS_NATION_ID,PS_BLOOD_ID,PS_RELIGION_ID,PS_STATUS_ID,PS_EMAIL,PS_PHONE,PS_TELEPHONE_WORK,PS_HOMEADD,PS_SOI,PS_MOO,PS_STREET,PS_PROVINCE_ID,PS_AMPHUR_ID,PS_DISTRICT,PS_ZIPCODE,PS_COUNTRY_ID,PS_STATE,PS_HOMEADD_NOW,PS_SOI_NOW,PS_MOO_NOW,PS_STREET_NOW,PS_PROVINCE_ID_NOW,PS_AMPHUR_ID_NOW,PS_DISTRICT_ID_NOW,PS_ZIPCODE_NOW,PS_COUNTRY_ID_NOW,PS_STATE_NOW,PS_CAMPUS_ID,PS_FACULTY_ID,PS_DIVISION_ID,PS_WORK_DIVISION_ID,PS_STAFFTYPE_ID,PS_BUDGET_ID,PS_ADMIN_POS_ID,PS_WORK_POS_ID,PS_ACAD_POS_ID,PS_INWORK_DATE,PS_SPECIAL_WORK,PS_TEACH_ISCED_ID,PS_POSITION_ID,PS_SALARY,PS_PIG_ID,PS_SW_ID,PS_RANK_ID,PS_POSS_SALARY,PS_PIE_ID,PS_PID_ID FROM PS_PERSON WHERE PS_CITIZEN_ID = '" + txtSearchPersonID.Text + "'", con))
                 {
                     using (OracleDataReader reader = com.ExecuteReader())
                     {
                         while (reader.Read())
                         {
                             //view1
-                            tbCitizenID.Text = reader.IsDBNull(0) ? "" : reader.GetString(0);
+                            /*tbCitizenID.Text = reader.IsDBNull(0) ? "" : reader.GetString(0);
                             ddlTitle.SelectedValue = reader.IsDBNull(1) ? "0" : reader.GetInt32(1).ToString();
                             tbNameTH.Text = reader.IsDBNull(2) ? "" : reader.GetString(2);
                             tbLastNameTH.Text = reader.IsDBNull(3) ? "" : reader.GetString(3);
@@ -1010,7 +997,99 @@ namespace WEB_PERSONAL
                             ddlRank.SelectedValue = reader.IsDBNull(60) ? "0" : reader.GetInt32(60).ToString();
                             tbPositionSalary.Text = reader.IsDBNull(61) ? "0" : reader.GetInt32(61).ToString();
                             ddlPosiInsigEMP.SelectedValue = reader.IsDBNull(62) ? "0" : reader.GetInt32(62).ToString();
-                            ddlPosiInsigDegree.SelectedValue = reader.IsDBNull(63) ? "0" : reader.GetInt32(63).ToString();
+                            ddlPosiInsigDegree.SelectedValue = reader.IsDBNull(63) ? "0" : reader.GetInt32(63).ToString();*/
+
+                            //view1
+                            tbCitizenID.Text = reader.IsDBNull(0) ? "" : reader.GetString(0);
+                            ddlTitle.SelectedValue = reader.IsDBNull(1) ? "0" : reader.GetInt32(1).ToString();
+                            tbNameTH.Text = reader.IsDBNull(2) ? "" : reader.GetString(2);
+                            tbLastNameTH.Text = reader.IsDBNull(3) ? "" : reader.GetString(3);
+                            tbNameEN.Text = reader.IsDBNull(4) ? "" : reader.GetString(4);
+                            tbLastNameEN.Text = reader.IsDBNull(5) ? "" : reader.GetString(5);
+                            ddlGender.SelectedValue = reader.IsDBNull(6) ? "0" : reader.GetInt32(6).ToString();
+                            tbBirthday.Text = Util.PureDatabaseToThaiDate(reader.IsDBNull(7) ? "" : reader.GetValue(7).ToString());
+                            ddlRace.SelectedValue = reader.IsDBNull(8) ? "0" : reader.GetInt32(8).ToString();
+                            ddlNation.SelectedValue = reader.IsDBNull(9) ? "" : reader.GetString(9).ToString();
+                            ddlBlood.SelectedValue = reader.IsDBNull(10) ? "0" : reader.GetInt32(10).ToString();
+                            ddlReligion.SelectedValue = reader.IsDBNull(11) ? "0" : reader.GetInt32(11).ToString();
+                            ddlStatus.SelectedValue = reader.IsDBNull(12) ? "0" : reader.GetInt32(12).ToString();
+                            tbEmail.Text = reader.IsDBNull(13) ? "" : reader.GetString(13);
+                            tbPhone.Text = reader.IsDBNull(14) ? "" : reader.GetString(14);
+                            tbTelephone.Text = reader.IsDBNull(15) ? "" : reader.GetString(15);
+                            //view2
+                            tbHomeAdd.Text = reader.IsDBNull(16) ? "" : reader.GetString(16);
+                            tbSoi.Text = reader.IsDBNull(17) ? "" : reader.GetString(17);
+                            tbMoo.Text = reader.IsDBNull(18) ? "" : reader.GetString(18);
+                            tbRoad.Text = reader.IsDBNull(19) ? "" : reader.GetString(19);
+                            ddlProvince.SelectedValue = reader.IsDBNull(20) ? "0" : reader.GetInt32(20).ToString();
+
+                            ddlAmphur.Items.Clear();
+                            string s1 = reader.IsDBNull(21) ? "0" : reader.GetInt32(21).ToString();
+                            DatabaseManager.BindDropDown(ddlAmphur, "SELECT * FROM TB_AMPHUR WHERE PROVINCE_ID = " + ddlProvince.SelectedValue, "AMPHUR_TH", "AMPHUR_ID", "--กรุณาเลือกอำเภอ--");
+                            ddlAmphur.SelectedValue = s1;
+
+                            ddlDistrict.Items.Clear();
+                            string s2 = reader.IsDBNull(22) ? "0" : reader.GetInt32(22).ToString();
+                            DatabaseManager.BindDropDown(ddlDistrict, "SELECT * FROM TB_DISTRICT WHERE AMPHUR_ID = " + ddlAmphur.SelectedValue, "DISTRICT_TH", "DISTRICT_ID", "--กรุณาเลือกตำบล--");
+                            ddlDistrict.SelectedValue = s2;
+
+                            tbZipcode.Text = reader.IsDBNull(23) ? "" : reader.GetString(23);
+                            ddlCountry.SelectedValue = reader.IsDBNull(24) ? "0" : reader.GetInt32(24).ToString();
+                            tbState.Text = reader.IsDBNull(25) ? "" : reader.GetString(25);
+                            tbHomeAdd2.Text = reader.IsDBNull(26) ? "" : reader.GetString(26);
+                            tbSoi2.Text = reader.IsDBNull(27) ? "" : reader.GetString(27);
+                            tbMoo2.Text = reader.IsDBNull(28) ? "" : reader.GetString(28);
+                            tbRoad2.Text = reader.IsDBNull(29) ? "" : reader.GetString(29);
+                            ddlProvince2.SelectedValue = reader.IsDBNull(30) ? "0" : reader.GetInt32(30).ToString();
+
+                            ddlAmphur2.Items.Clear();
+                            string s3 = reader.IsDBNull(31) ? "0" : reader.GetInt32(31).ToString();
+                            DatabaseManager.BindDropDown(ddlAmphur2, "SELECT * FROM TB_AMPHUR WHERE PROVINCE_ID = " + ddlProvince2.SelectedValue, "AMPHUR_TH", "AMPHUR_ID", "--กรุณาเลือกอำเภอ--");
+                            ddlAmphur2.SelectedValue = s3;
+
+                            ddlDistrict2.Items.Clear();
+                            string s4 = reader.IsDBNull(32) ? "0" : reader.GetInt32(32).ToString();
+                            DatabaseManager.BindDropDown(ddlDistrict2, "SELECT * FROM TB_DISTRICT WHERE AMPHUR_ID = " + ddlAmphur2.SelectedValue, "DISTRICT_TH", "DISTRICT_ID", "--กรุณาเลือกตำบล--");
+                            ddlDistrict2.SelectedValue = s4;
+
+                            tbZipcode2.Text = reader.IsDBNull(33) ? "" : reader.GetString(33);
+                            ddlCountry2.SelectedValue = reader.IsDBNull(34) ? "0" : reader.GetInt32(34).ToString();
+                            tbState2.Text = reader.IsDBNull(35) ? "" : reader.GetString(35);
+
+                            //view4
+                            ddlCampus.SelectedValue = reader.IsDBNull(36) ? "0" : reader.GetInt32(36).ToString();
+
+                            ddlFaculty.Items.Clear();
+                            string f1 = reader.IsDBNull(37) ? "0" : reader.GetInt32(37).ToString();
+                            DatabaseManager.BindDropDown(ddlFaculty, "SELECT * FROM TB_FACULTY WHERE CAMPUS_ID = " + ddlCampus.SelectedValue, "FACULTY_NAME", "FACULTY_ID", "--กรุณาเลือกสำนัก / สถาบัน / คณะ--");
+                            ddlFaculty.SelectedValue = f1;
+
+                            ddlDivision.Items.Clear();
+                            string f2 = reader.IsDBNull(38) ? "0" : reader.GetInt32(38).ToString();
+                            DatabaseManager.BindDropDown(ddlDivision, "SELECT * FROM TB_DIVISION WHERE FACULTY_ID = " + ddlFaculty.SelectedValue, "DIVISION_NAME", "DIVISION_ID", "--กรุณาเลือกกอง / สำนักงานเลขา / ภาควิชา--");
+                            ddlDivision.SelectedValue = f2;
+
+                            ddlWorkDivision.Items.Clear();
+                            string f3 = reader.IsDBNull(39) ? "0" : reader.GetInt32(39).ToString();
+                            DatabaseManager.BindDropDown(ddlWorkDivision, "SELECT * FROM TB_WORK_DIVISION WHERE DIVISION_ID = " + ddlDivision.SelectedValue, "WORK_NAME", "WORK_ID", "--กรุณาเลือกงาน / ฝ่าย--");
+                            ddlWorkDivision.SelectedValue = f3;
+
+                            ddlStaffType.SelectedValue = reader.IsDBNull(40) ? "0" : reader.GetInt32(40).ToString();
+                            ddlBudget.SelectedValue = reader.IsDBNull(41) ? "0" : reader.GetInt32(41).ToString();
+                            ddlAdminPosition.SelectedValue = reader.IsDBNull(42) ? "0" : reader.GetInt32(42).ToString();
+                            ddlPositionWork.SelectedValue = reader.IsDBNull(43) ? "0" : reader.GetInt32(43).ToString();
+                            ddlAcademic.SelectedValue = reader.IsDBNull(44) ? "0" : reader.GetInt32(44).ToString();
+                            tbDateInwork.Text = Util.PureDatabaseToThaiDate(reader.IsDBNull(45) ? "" : reader.GetValue(45).ToString());
+                            tbSpecialWork.Text = reader.IsDBNull(46) ? "" : reader.GetString(46);
+                            ddlTeachISCED.SelectedValue = reader.IsDBNull(47) ? "" : reader.GetString(47).ToString();
+                            ddlPosition.SelectedValue = reader.IsDBNull(48) ? "" : reader.GetString(48).ToString();
+                            tbSalary.Text = reader.IsDBNull(49) ? "" : reader.GetInt32(49).ToString();
+                            ddlPosiInsigGover.SelectedValue = reader.IsDBNull(50) ? "0" : reader.GetInt32(50).ToString();
+                            ddlStatusWork.SelectedValue = reader.IsDBNull(51) ? "0" : reader.GetInt32(51).ToString();
+                            ddlRank.SelectedValue = reader.IsDBNull(52) ? "0" : reader.GetInt32(52).ToString();
+                            tbPositionSalary.Text = reader.IsDBNull(53) ? "0" : reader.GetInt32(53).ToString();
+                            ddlPosiInsigEMP.SelectedValue = reader.IsDBNull(54) ? "0" : reader.GetInt32(54).ToString();
+                            ddlPosiInsigDegree.SelectedValue = reader.IsDBNull(55) ? "0" : reader.GetInt32(55).ToString();
 
                         }
                     }
@@ -1021,7 +1100,30 @@ namespace WEB_PERSONAL
         protected void btnSearchRefresh_Click(object sender, EventArgs e)
         {
             ClearText();
+        }
 
+        protected void ddlCountry_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlCountry.SelectedIndex != 234)
+            {
+                tbState.Enabled = false;
+            }
+            else
+            {
+                tbState.Enabled = true;
+            }
+        }
+
+        protected void ddlCountry2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlCountry2.SelectedIndex != 234)
+            {
+                tbState2.Enabled = false;
+            }
+            else
+            {
+                tbState2.Enabled = true;
+            }
         }
     }
     

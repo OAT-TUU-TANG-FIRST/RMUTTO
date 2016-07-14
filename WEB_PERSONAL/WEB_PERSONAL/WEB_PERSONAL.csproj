@@ -740,7 +740,6 @@
     <Content Include="Division-ADMIN.aspx" />
     <Content Include="Faculty-ADMIN.aspx" />
     <Content Include="Global.asax" />
-    <Content Include="GradCountry-ADMIN.aspx" />
     <Content Include="GradeInsignia-ADMIN.aspx" />
     <Content Include="GradLev-ADMIN.aspx" />
     <Content Include="images\icon\Before_Print.gif" />
@@ -1208,7 +1207,6 @@
     </Compile>
     <Compile Include="Entities\Insignia.cs" />
     <Compile Include="Entities\Report.cs" />
-    <Compile Include="Entities\Tuu.cs" />
     <Compile Include="Entities\Personnel.cs" />
     <Compile Include="Entities\Seminar.cs" />
     <Compile Include="Entities\Manage.cs" />
@@ -1235,13 +1233,6 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="GradCountry-ADMIN.aspx.cs">
-      <DependentUpon>GradCountry-ADMIN.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="GradCountry-ADMIN.aspx.designer.cs">
-      <DependentUpon>GradCountry-ADMIN.aspx</DependentUpon>
     </Compile>
     <Compile Include="GradeInsignia-ADMIN.aspx.cs">
       <DependentUpon>GradeInsignia-ADMIN.aspx</DependentUpon>

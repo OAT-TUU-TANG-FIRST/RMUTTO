@@ -100,52 +100,143 @@
             <fieldset>
                 <legend class="TMZ">ข้อมูลที่ค้นหา</legend>
                 <div style="text-align: center">
-                    รหัสบัตรประชาชนของผู้ที่จะแก้ไขข้อมูล :&nbsp<asp:TextBox ID="tbCitizenID" runat="server" CssClass="tb5" MaxLength="13"></asp:TextBox>
+                    ดึงข้อมูล :&nbsp<asp:TextBox ID="tbCitizenIDSearch" runat="server" CssClass="tb5" MaxLength="13" placeholder="เลขบัตรประจำตัวประชาชน"></asp:TextBox>
                     <asp:Button ID="btnSearchPerson" Text="Search" runat="server" CssClass="master_OAT_button" OnClick="btnSearchPerson_Click" />
                     <asp:Button ID="btnSearchRefresh" Text="Refresh" runat="server" CssClass="master_OAT_button" OnClick="btnSearchRefresh_Click" />
                 </div>
-                <div>
-                    <table class="center1">
-                        <tr>
-                            <td class="col3">รหัสบัตรประชาชน</td>
-                            <td class="col4">
-                                <asp:Label ID="lblCitizenID" runat="server"></asp:Label>
-                            </td>
+                    <div style="float: left; display: inline-block; margin-right: 50px;">
+                        <table>
+                            <tr>
+                                <td class="col1">กระทรวง</td>
+                                <td class="col2">
+                                    <asp:DropDownList ID="ddlMinistry" runat="server" CssClass="tb5"></asp:DropDownList>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">คำนำหน้านาม</td>
+                                <td class="col2">
+                                    <asp:DropDownList ID="ddlTitleName" runat="server" CssClass="tb5"></asp:DropDownList>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">ชื่อ</td>
+                                <td class="col2">
+                                    <asp:TextBox ID="tbNameTH" runat="server" CssClass="tb5"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">นามสกุล</td>
+                                <td class="col2">
+                                    <asp:TextBox ID="tbLastNameTH" runat="server" CssClass="tb5"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">วัน เดือน ปีเกิด (dd-mm-yyyy)</td>
+                                <td class="col2">
+                                    <asp:TextBox ID="tbBirthdayDate" runat="server" CssClass="tb5"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">วัน เดือน ปีเกิด (ตัวบรรจง เต็มบรรทัด)</td>
+                                <td class="col2">
+                                    <asp:TextBox ID="tbBirthdayLong" runat="server" CssClass="tb5"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">วันที่บรรจุ (dd-mm-yyyy)</td>
+                                <td class="col2">
+                                    <asp:TextBox ID="tbInworkDate" runat="server" CssClass="tb5"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">วันครบเกษียณอายุ (dd-mm-yyyy)</td>
+                                <td class="col2">
+                                    <asp:TextBox ID="tbRetireDate" runat="server" CssClass="tb5"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">วันครบเกษียณอายุ (ตัวบรรจง เต็มบรรทัด)</td>
+                                <td class="col2">
+                                    <asp:TextBox ID="tbRetireLong" runat="server" CssClass="tb5"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">ประเภทข้าราชการ</td>
+                                <td class="col2">
+                                    <asp:DropDownList ID="ddlStaffType" runat="server" CssClass="tb5"></asp:DropDownList>
+                                </td>
+                            </tr>
+                            <tr>
+                            <td class="col1"></td>
+                            <td class="col2">
+                                <asp:LinkButton ID="lbSubmitEdit" runat="server" CssClass="ps-button" OnClick="lbSubmitEdit_Click">แก้ไขข้อมูลทะเบียนประวัติบุคลากร(ก.พ.7)</asp:LinkButton></td>
                         </tr>
-                        <tr>
-                            <td class="col3">ชื่อ - สกุล</td>
-                            <td class="col4">
-                                <asp:Label ID="lblName" runat="server"></asp:Label>
-                                <asp:Label ID="lblLastName" runat="server"></asp:Label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col3">ประเภทบุคลากร</td>
-                            <td class="col4">
-                                <asp:Label ID="lblStafftype" runat="server" Width="100px"></asp:Label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col3">สังกัด/หน่วยงาน</td>
-                            <td class="col4">
-                                <asp:Label ID="lblUniversity" runat="server">มหาวิทยาลัยเทคโนโลยีราชมงคลตะวันออก > </asp:Label>
-                                <asp:Label ID="lblCampus" runat="server"></asp:Label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col3">ตำแหน่งงาน</td>
-                            <td class="col4">
-                                <asp:Label ID="lblPosition" runat="server" Width="100px"></asp:Label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col3">สถานะ</td>
-                            <td class="col4">
-                                <asp:Label ID="lblStatusPersonWork" runat="server" Width="100px"></asp:Label>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
+                        </table>
+                    </div>
+                    <div style="float: left; display: inline-block;">
+                        <table>
+                            <tr>
+                                <td class="col1">กรม</td>
+                                <td class="col2">
+                                    <asp:TextBox ID="tbGrom" runat="server" CssClass="tb5"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">เลขบัตรประจำตัวประชาชน</td>
+                                <td class="col2">
+                                    <asp:TextBox ID="tbCitizenID" runat="server" CssClass="tb5" Enabled="false"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">ชื่อบิดา</td>
+                                <td class="col2">
+                                    <asp:TextBox ID="tbFatherName" runat="server" CssClass="tb5"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">นามสกุลบิดา</td>
+                                <td class="col2">
+                                    <asp:TextBox ID="tbFatherLastName" runat="server" CssClass="tb5"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">ชื่อมารดา</td>
+                                <td class="col2">
+                                    <asp:TextBox ID="tbMotherName" runat="server" CssClass="tb5"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">นามสกุลมารดา</td>
+                                <td class="col2">
+                                    <asp:TextBox ID="tbMotherLastName" runat="server" CssClass="tb5"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">นามสกุลมารดาเดิม</td>
+                                <td class="col2">
+                                    <asp:TextBox ID="tbMotherOldLastName" runat="server" CssClass="tb5"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">ชื่อคู่สมรส</td>
+                                <td class="col2">
+                                    <asp:TextBox ID="tbCoupleName" runat="server" CssClass="tb5"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">นามสกุลคู่สมรส</td>
+                                <td class="col2">
+                                    <asp:TextBox ID="tbCoupleLastName" runat="server" CssClass="tb5"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">นามสกุลเดิมคู่สมรสเดิม</td>
+                                <td class="col2">
+                                    <asp:TextBox ID="tbCoupleOldLastName" runat="server" CssClass="tb5"></asp:TextBox>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
             </fieldset>
         </div>
     </asp:Panel>

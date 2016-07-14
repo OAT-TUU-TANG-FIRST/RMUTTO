@@ -55,9 +55,9 @@ namespace WEB_PERSONAL
                 DatabaseManager.BindDropDown(ddlReligion, "SELECT * FROM TB_RELIGION", "RELIGION_NAME", "RELIGION_ID", "--กรุณาเลือกศาสนา--");
                 //DatabaseManager.BindDropDown(ddlRank, "SELECT * FROM TB_RANK", "RANK_NAME_TH", "RANK_ID", "--กรุณาเลือกยศ--");
                 //view2
-                DatabaseManager.BindDropDown(ddlCountry, "SELECT * FROM TB_GRAD_COUNTRY", "GRAD_SHORT_NAME", "GRAD_COUNTRY_ID", "--กรุณาเลือกประเทศ--");
+                DatabaseManager.BindDropDown(ddlCountry, "SELECT * FROM TB_COUNTRY", "COUNTRY_TH", "COUNTRY_ID", "--กรุณาเลือกประเทศ--");
                 ddlCountry.SelectedValue = "Thailand";
-                DatabaseManager.BindDropDown(ddlCountry2, "SELECT * FROM TB_GRAD_COUNTRY", "GRAD_SHORT_NAME", "GRAD_COUNTRY_ID", "--กรุณาเลือกประเทศ--");
+                DatabaseManager.BindDropDown(ddlCountry2, "SELECT * FROM TB_COUNTRY", "COUNTRY_TH", "COUNTRY_ID", "--กรุณาเลือกประเทศ--");
                 ddlCountry2.SelectedValue = "Thailand";
 
                 //view3
@@ -92,14 +92,14 @@ namespace WEB_PERSONAL
             tbEmail.Text = "";
             tbPhone.Text = "";
             tbTelephone.Text = "";
-            tbFatherName.Text = "";
+            /*tbFatherName.Text = "";
             tbFatherLastName.Text = "";
             tbMotherName.Text = "";
             tbMotherLastName.Text = "";
             tbMotherOldLastName.Text = "";
             tbCoupleName.Text = "";
             tbCoupleLastName.Text = "";
-            tbCoupleOldLastName.Text = "";
+            tbCoupleOldLastName.Text = "";*/
             tbHomeAdd.Text = "";
             tbSoi.Text = "";
             tbMoo.Text = "";
@@ -816,14 +816,14 @@ namespace WEB_PERSONAL
             P0.PS_TELEPHONE_WORK = tbTelephone.Text;
             P0.PS_RELIGION_ID = Convert.ToInt32(ddlReligion.SelectedValue);
             P0.PS_STATUS_ID = Convert.ToInt32(ddlStatus.SelectedValue);
-            P0.PS_DAD_FN = tbFatherName.Text;
+            /*P0.PS_DAD_FN = tbFatherName.Text;
             P0.PS_DAD_LN = tbFatherLastName.Text;
             P0.PS_MOM_FN = tbMotherName.Text;
             P0.PS_MOM_LN = tbMotherLastName.Text;
             P0.PS_MOM_LN_OLD = tbMotherOldLastName.Text;
             P0.PS_LOV_FN = tbCoupleName.Text;
             P0.PS_LOV_LN = tbCoupleLastName.Text;
-            P0.PS_LOV_LN_OLD = tbCoupleOldLastName.Text;
+            P0.PS_LOV_LN_OLD = tbCoupleOldLastName.Text;*/
             //view2/3
             P0.PS_HOMEADD = tbHomeAdd.Text;
             P0.PS_SOI = tbSoi.Text;
@@ -907,6 +907,30 @@ namespace WEB_PERSONAL
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('รหัสประจำตัวประชาชน ที่กรอกนี้ มีอยู่ในระบบแล้ว !')", true);
             }
             
+        }
+
+        protected void ddlCountry_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlCountry.SelectedIndex != 234)
+            {
+                tbState.Enabled = false;
+            }
+            else
+            {
+                tbState.Enabled = true;
+            }
+        }
+
+        protected void ddlCountry2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlCountry2.SelectedIndex != 234)
+            {
+                tbState2.Enabled = false;
+            }
+            else
+            {
+                tbState2.Enabled = true;
+            }
         }
     }
 }

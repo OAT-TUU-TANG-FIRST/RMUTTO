@@ -104,170 +104,55 @@
                             <tr>
                                 <td class="col1">บัตรประชาชน</td>
                                 <td class="col2">
-                                    <asp:UpdatePanel ID="UpdatetbCitizenID" runat="server">
-                                        <ContentTemplate>
-                                            <asp:TextBox ID="tbCitizenID" runat="server" CssClass="tb5" MaxLength="13" Enabled="false"></asp:TextBox>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="tbCitizenID" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
+                                    <asp:TextBox ID="tbCitizenID" runat="server" CssClass="tb5" MaxLength="13"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">ยศ</td>
+                                <td class="col2">
+                                    <asp:DropDownList ID="ddlRank" runat="server" CssClass="tb5"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">คำนำหน้า</td>
                                 <td class="col2">
-                                    <asp:UpdatePanel ID="UpdateddlTitle" runat="server">
-                                        <ContentTemplate>
-                                            <asp:DropDownList ID="ddlTitle" runat="server" CssClass="tb5"></asp:DropDownList>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="ddlTitle" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
+                                    <asp:DropDownList ID="ddlTitle" runat="server" CssClass="tb5"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">ชื่อ</td>
                                 <td class="col2">
-                                    <asp:UpdatePanel ID="UpdatetbNameTH" runat="server">
-                                        <ContentTemplate>
-                                            <asp:TextBox ID="tbNameTH" runat="server" CssClass="tb5"></asp:TextBox>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="tbNameTH" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
+                                    <asp:TextBox ID="tbNameTH" runat="server" CssClass="tb5"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">นามสกุล</td>
                                 <td class="col2">
-                                    <asp:UpdatePanel ID="UpdatetbLastNameTH" runat="server">
-                                        <ContentTemplate>
-                                            <asp:TextBox ID="tbLastNameTH" runat="server" CssClass="tb5"></asp:TextBox>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="tbLastNameTH" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
+                                    <asp:TextBox ID="tbLastNameTH" runat="server" CssClass="tb5"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">ชื่อ อังกฤษ</td>
                                 <td class="col2">
-                                    <asp:UpdatePanel ID="UpdatetbNameEN" runat="server">
-                                        <ContentTemplate>
-                                            <asp:TextBox ID="tbNameEN" runat="server" CssClass="tb5"></asp:TextBox>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="tbNameEN" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
+                                    <asp:TextBox ID="tbNameEN" runat="server" CssClass="tb5"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">นามสกุล อังกฤษ</td>
                                 <td class="col2">
-                                    <asp:UpdatePanel ID="UpdatetbLastNameEN" runat="server">
-                                        <ContentTemplate>
-                                            <asp:TextBox ID="tbLastNameEN" runat="server" CssClass="tb5"></asp:TextBox>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="tbLastNameEN" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
+                                    <asp:TextBox ID="tbLastNameEN" runat="server" CssClass="tb5"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">เพศ</td>
                                 <td class="col2">
-                                    <asp:UpdatePanel ID="UpdateddlGender" runat="server">
-                                        <ContentTemplate>
-                                            <asp:DropDownList ID="ddlGender" runat="server" CssClass="tb5"></asp:DropDownList>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="ddlGender" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
+                                    <asp:DropDownList ID="ddlGender" runat="server" CssClass="tb5"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">วันเกิด</td>
                                 <td class="col2">
-                                    <asp:UpdatePanel ID="UpdatetbBirthday" runat="server">
-                                        <ContentTemplate>
-                                            <asp:TextBox ID="tbBirthday" runat="server" CssClass="tb5"></asp:TextBox>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="tbBirthday" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col1">เชื้อชาติ</td>
-                                <td class="col2">
-                                    <asp:UpdatePanel ID="UpdateddlRace" runat="server">
-                                        <ContentTemplate>
-                                            <asp:DropDownList ID="ddlRace" runat="server" CssClass="tb5"></asp:DropDownList>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="ddlRace" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col1">สัญชาติ</td>
-                                <td class="col2">
-                                    <asp:UpdatePanel ID="UpdateddlNation" runat="server">
-                                        <ContentTemplate>
-                                            <asp:DropDownList ID="ddlNation" runat="server" CssClass="tb5"></asp:DropDownList>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="ddlNation" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col1">กรุ๊ปเลือด</td>
-                                <td class="col2">
-                                    <asp:UpdatePanel ID="UpdateddlBlood" runat="server">
-                                        <ContentTemplate>
-                                            <asp:DropDownList ID="ddlBlood" runat="server" CssClass="tb5"></asp:DropDownList>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="ddlBlood" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col1">ศาสนา</td>
-                                <td class="col2">
-                                    <asp:UpdatePanel ID="UpdateddlReligion" runat="server">
-                                        <ContentTemplate>
-                                            <asp:DropDownList ID="ddlReligion" runat="server" CssClass="tb5"></asp:DropDownList>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="ddlReligion" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col1">สถานภาพ</td>
-                                <td class="col2">
-                                    <asp:UpdatePanel ID="UpdateddlStatus" runat="server">
-                                        <ContentTemplate>
-                                            <asp:DropDownList ID="ddlStatus" runat="server" CssClass="tb5"></asp:DropDownList>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="ddlStatus" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
+                                    <asp:TextBox ID="tbBirthday" runat="server" CssClass="tb5"></asp:TextBox>
                                 </td>
                             </tr>
                         </table>
@@ -279,167 +164,58 @@
                         </div>
                         <table>
                             <tr>
-                                <td class="col1">ยศ</td>
-                                <td class="col2">
-                                    <asp:UpdatePanel ID="UpdateddlRank" runat="server">
-                                        <ContentTemplate>
-                                            <asp:DropDownList ID="ddlRank" runat="server" CssClass="tb5"></asp:DropDownList>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="ddlRank" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
-                                </td>
-                            </tr>
-                            <tr>
                                 <td class="col1">อีเมล</td>
                                 <td class="col2">
-                                    <asp:UpdatePanel ID="UpdatetbEmail" runat="server">
-                                        <ContentTemplate>
-                                            <asp:TextBox ID="tbEmail" runat="server" CssClass="tb5"></asp:TextBox>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="tbEmail" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
+                                    <asp:TextBox ID="tbEmail" runat="server" CssClass="tb5"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">โทรศัพท์มือถือ</td>
                                 <td class="col2">
-                                    <asp:UpdatePanel ID="UpdatetbPhone" runat="server">
-                                        <ContentTemplate>
-                                            <asp:TextBox ID="tbPhone" runat="server" CssClass="tb5" MaxLength="10"></asp:TextBox>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="tbPhone" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
+                                    <asp:TextBox ID="tbPhone" runat="server" CssClass="tb5" MaxLength="10"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">โทรศัพท์ที่ทำงาน</td>
                                 <td class="col2">
-                                    <asp:UpdatePanel ID="UpdatetbTelephone" runat="server">
-                                        <ContentTemplate>
-                                            <asp:TextBox ID="tbTelephone" runat="server" CssClass="tb5" MaxLength="15"></asp:TextBox>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="tbTelephone" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
+                                    <asp:TextBox ID="tbTelephone" runat="server" CssClass="tb5" MaxLength="15"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="col1">ชื่อบิดา</td>
+                                <td class="col1">เชื้อชาติ</td>
                                 <td class="col2">
-                                    <asp:UpdatePanel ID="UpdatetbFatherName" runat="server">
-                                        <ContentTemplate>
-                                            <asp:TextBox ID="tbFatherName" runat="server" CssClass="tb5"></asp:TextBox>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="tbFatherName" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
+                                    <asp:DropDownList ID="ddlRace" runat="server" CssClass="tb5"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="col1">นามสกุลบิดา</td>
+                                <td class="col1">สัญชาติ</td>
                                 <td class="col2">
-                                    <asp:UpdatePanel ID="UpdatetbFatherLastName" runat="server">
-                                        <ContentTemplate>
-                                            <asp:TextBox ID="tbFatherLastName" runat="server" CssClass="tb5"></asp:TextBox>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="tbFatherLastName" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
+                                    <asp:DropDownList ID="ddlNation" runat="server" CssClass="tb5"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="col1">ชื่อมารดา</td>
+                                <td class="col1">กรุ๊ปเลือด</td>
                                 <td class="col2">
-                                    <asp:UpdatePanel ID="UpdatetbMotherName" runat="server">
-                                        <ContentTemplate>
-                                            <asp:TextBox ID="tbMotherName" runat="server" CssClass="tb5"></asp:TextBox>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="tbMotherName" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
+                                    <asp:DropDownList ID="ddlBlood" runat="server" CssClass="tb5"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="col1">นามสกุลมารดา</td>
+                                <td class="col1">ศาสนา</td>
                                 <td class="col2">
-                                    <asp:UpdatePanel ID="UpdatetbMotherLastName" runat="server">
-                                        <ContentTemplate>
-                                            <asp:TextBox ID="tbMotherLastName" runat="server" CssClass="tb5"></asp:TextBox>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="tbMotherLastName" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
+                                    <asp:DropDownList ID="ddlReligion" runat="server" CssClass="tb5"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="col1">นามสกุลมารดาเดิม</td>
+                                <td class="col1">สถานภาพ</td>
                                 <td class="col2">
-                                    <asp:UpdatePanel ID="UpdatetbMotherOldLastName" runat="server">
-                                        <ContentTemplate>
-                                            <asp:TextBox ID="tbMotherOldLastName" runat="server" CssClass="tb5"></asp:TextBox>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="tbMotherOldLastName" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col1">ชื่อคู่สมรส</td>
-                                <td class="col2">
-                                    <asp:UpdatePanel ID="UpdatetbCoupleName" runat="server">
-                                        <ContentTemplate>
-                                            <asp:TextBox ID="tbCoupleName" runat="server" CssClass="tb5"></asp:TextBox>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="tbCoupleName" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col1">นามสกุลคู่สมรส</td>
-                                <td class="col2">
-                                    <asp:UpdatePanel ID="UpdatetbCoupleLastName" runat="server">
-                                        <ContentTemplate>
-                                            <asp:TextBox ID="tbCoupleLastName" runat="server" CssClass="tb5"></asp:TextBox>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="tbCoupleLastName" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col1">นามสกุลคู่สมรสเดิม</td>
-                                <td class="col2">
-                                    <asp:UpdatePanel ID="UpdatetbCoupleOldLastName" runat="server">
-                                        <ContentTemplate>
-                                            <asp:TextBox ID="tbCoupleOldLastName" runat="server" CssClass="tb5"></asp:TextBox>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="tbCoupleOldLastName" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
+                                    <asp:DropDownList ID="ddlStatus" runat="server" CssClass="tb5"></asp:DropDownList>
                                 </td>
                             </tr>
                         </table>
                     </div>
                     <div style="clear: both;">
-                    
-                    <asp:LinkButton ID="lbuV1Next" runat="server" OnClick="lbuV1Next_Click" CssClass="ps-button">ถัดไป</asp:LinkButton>
-                        </div>
+                        <asp:LinkButton ID="lbuV1Next" runat="server" OnClick="lbuV1Next_Click" CssClass="ps-button">ถัดไป</asp:LinkButton>
+                    </div>
                 </fieldset>
             </asp:View>
             <asp:View ID="View2" runat="server">
@@ -453,131 +229,61 @@
                             <tr>
                                 <td class="col1">บ้านเลขที่</td>
                                 <td class="col2">
-                                    <asp:UpdatePanel ID="UpdatetbHomeAdd" runat="server">
-                                        <ContentTemplate>
-                                            <asp:TextBox ID="tbHomeAdd" runat="server" CssClass="tb5"></asp:TextBox>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="tbHomeAdd" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
+                                    <asp:TextBox ID="tbHomeAdd" runat="server" CssClass="tb5"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">ซอย</td>
                                 <td class="col2">
-                                    <asp:UpdatePanel ID="UpdatetbSoi" runat="server">
-                                        <ContentTemplate>
-                                            <asp:TextBox ID="tbSoi" runat="server" CssClass="tb5"></asp:TextBox>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="tbSoi" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
+                                    <asp:TextBox ID="tbSoi" runat="server" CssClass="tb5"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">หมู่</td>
                                 <td class="col2">
-                                    <asp:UpdatePanel ID="UpdatetbMoo" runat="server">
-                                        <ContentTemplate>
-                                            <asp:TextBox ID="tbMoo" runat="server" CssClass="tb5"></asp:TextBox>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="tbMoo" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
+                                    <asp:TextBox ID="tbMoo" runat="server" CssClass="tb5"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">ถนน</td>
                                 <td class="col2">
-                                    <asp:UpdatePanel ID="UpdatetbRoad" runat="server">
-                                        <ContentTemplate>
-                                            <asp:TextBox ID="tbRoad" runat="server" CssClass="tb5"></asp:TextBox>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="tbRoad" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
+                                    <asp:TextBox ID="tbRoad" runat="server" CssClass="tb5"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">จังหวัด</td>
                                 <td class="col2">
-                                    <asp:UpdatePanel ID="UpdateddlProvince" runat="server">
-                                        <ContentTemplate>
-                                            <asp:DropDownList ID="ddlProvince" runat="server" CssClass="tb5" AutoPostBack="True" OnSelectedIndexChanged="ddlProvince_SelectedIndexChanged"></asp:DropDownList>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="ddlProvince" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
+                                    <asp:DropDownList ID="ddlProvince" runat="server" CssClass="tb5" AutoPostBack="True" OnSelectedIndexChanged="ddlProvince_SelectedIndexChanged"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">อำเภอ / เขต</td>
                                 <td class="col2">
-                                    <asp:UpdatePanel ID="UpdateddlAmphur" runat="server">
-                                        <ContentTemplate>
-                                            <asp:DropDownList ID="ddlAmphur" runat="server" CssClass="tb5" AutoPostBack="True" OnSelectedIndexChanged="ddlAmphur_SelectedIndexChanged"></asp:DropDownList>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="ddlAmphur" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
+                                    <asp:DropDownList ID="ddlAmphur" runat="server" CssClass="tb5" AutoPostBack="True" OnSelectedIndexChanged="ddlAmphur_SelectedIndexChanged"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">ตำบล / แขวง</td>
                                 <td class="col2">
-                                    <asp:UpdatePanel ID="UpdateddlDistrict" runat="server">
-                                        <ContentTemplate>
-                                            <asp:DropDownList ID="ddlDistrict" runat="server" CssClass="tb5" OnSelectedIndexChanged="ddlDistrict_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="ddlDistrict" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
+                                    <asp:DropDownList ID="ddlDistrict" runat="server" CssClass="tb5" OnSelectedIndexChanged="ddlDistrict_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">รหัสไปรณีย์</td>
                                 <td class="col2">
-                                    <asp:UpdatePanel ID="UpdatetbZipcode" runat="server">
-                                        <ContentTemplate>
-                                            <asp:TextBox ID="tbZipcode" runat="server" CssClass="tb5"></asp:TextBox>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="tbZipcode" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
+                                    <asp:TextBox ID="tbZipcode" runat="server" CssClass="tb5"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">ประเทศ</td>
                                 <td class="col2">
-                                    <asp:UpdatePanel ID="UpdateddlCountry" runat="server">
-                                        <ContentTemplate>
-                                            <asp:DropDownList ID="ddlCountry" runat="server" CssClass="tb5"></asp:DropDownList>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="ddlCountry" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
+                                    <asp:DropDownList ID="ddlCountry" runat="server" CssClass="tb5" AutoPostBack="True" OnSelectedIndexChanged="ddlCountry_SelectedIndexChanged"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">รัฐ</td>
                                 <td class="col2">
-                                    <asp:UpdatePanel ID="UpdatetbState" runat="server">
-                                        <ContentTemplate>
-                                            <asp:TextBox ID="tbState" runat="server" CssClass="tb5"></asp:TextBox>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="tbState" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
+                                    <asp:TextBox ID="tbState" runat="server" CssClass="tb5"></asp:TextBox>
                                 </td>
                             </tr>
                         </table>
@@ -591,131 +297,61 @@
                             <tr>
                                 <td class="col1">บ้านเลขที่</td>
                                 <td class="col2">
-                                    <asp:UpdatePanel ID="UpdatetbHomeAdd2" runat="server">
-                                        <ContentTemplate>
-                                            <asp:TextBox ID="tbHomeAdd2" runat="server" CssClass="tb5"></asp:TextBox>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="tbHomeAdd2" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
+                                    <asp:TextBox ID="tbHomeAdd2" runat="server" CssClass="tb5"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">ซอย</td>
                                 <td class="col2">
-                                    <asp:UpdatePanel ID="UpdatetbSoi2" runat="server">
-                                        <ContentTemplate>
-                                            <asp:TextBox ID="tbSoi2" runat="server" CssClass="tb5"></asp:TextBox>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="tbSoi2" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
+                                    <asp:TextBox ID="tbSoi2" runat="server" CssClass="tb5"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">หมู่</td>
                                 <td class="col2">
-                                    <asp:UpdatePanel ID="UpdatetbMoo2" runat="server">
-                                        <ContentTemplate>
-                                            <asp:TextBox ID="tbMoo2" runat="server" CssClass="tb5"></asp:TextBox>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="tbMoo2" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
+                                    <asp:TextBox ID="tbMoo2" runat="server" CssClass="tb5"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">ถนน</td>
                                 <td class="col2">
-                                    <asp:UpdatePanel ID="UpdatetbRoad2" runat="server">
-                                        <ContentTemplate>
-                                            <asp:TextBox ID="tbRoad2" runat="server" CssClass="tb5"></asp:TextBox>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="tbRoad2" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
+                                    <asp:TextBox ID="tbRoad2" runat="server" CssClass="tb5"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">จังหวัด</td>
                                 <td class="col2">
-                                    <asp:UpdatePanel ID="UpdateddlProvince2" runat="server">
-                                        <ContentTemplate>
-                                            <asp:DropDownList ID="ddlProvince2" runat="server" CssClass="tb5" AutoPostBack="True" OnSelectedIndexChanged="ddlProvince2_SelectedIndexChanged"></asp:DropDownList>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="ddlProvince2" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
+                                    <asp:DropDownList ID="ddlProvince2" runat="server" CssClass="tb5" AutoPostBack="True" OnSelectedIndexChanged="ddlProvince2_SelectedIndexChanged"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">อำเภอ / เขต</td>
                                 <td class="col2">
-                                    <asp:UpdatePanel ID="UpdateddlAmphur2" runat="server">
-                                        <ContentTemplate>
-                                            <asp:DropDownList ID="ddlAmphur2" runat="server" CssClass="tb5" AutoPostBack="True" OnSelectedIndexChanged="ddlAmphur2_SelectedIndexChanged"></asp:DropDownList>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="ddlAmphur2" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
+                                    <asp:DropDownList ID="ddlAmphur2" runat="server" CssClass="tb5" AutoPostBack="True" OnSelectedIndexChanged="ddlAmphur2_SelectedIndexChanged"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">ตำบล / แขวง</td>
                                 <td class="col2">
-                                    <asp:UpdatePanel ID="UpdateddlDistrict2" runat="server">
-                                        <ContentTemplate>
-                                            <asp:DropDownList ID="ddlDistrict2" runat="server" CssClass="tb5" OnSelectedIndexChanged="ddlDistrict2_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="ddlDistrict2" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
+                                    <asp:DropDownList ID="ddlDistrict2" runat="server" CssClass="tb5" OnSelectedIndexChanged="ddlDistrict2_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">รหัสไปรณีย์</td>
                                 <td class="col2">
-                                    <asp:UpdatePanel ID="UpdatetbZipcode2" runat="server">
-                                        <ContentTemplate>
-                                            <asp:TextBox ID="tbZipcode2" runat="server" CssClass="tb5"></asp:TextBox>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="tbZipcode2" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
+                                    <asp:TextBox ID="tbZipcode2" runat="server" CssClass="tb5"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">ประเทศ</td>
                                 <td class="col2">
-                                    <asp:UpdatePanel ID="UpdateddlCountry2" runat="server">
-                                        <ContentTemplate>
-                                            <asp:DropDownList ID="ddlCountry2" runat="server" CssClass="tb5"></asp:DropDownList>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="ddlCountry2" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
+                                    <asp:DropDownList ID="ddlCountry2" runat="server" CssClass="tb5" AutoPostBack="True" OnSelectedIndexChanged="ddlCountry2_SelectedIndexChanged"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">รัฐ</td>
                                 <td class="col2">
-                                    <asp:UpdatePanel ID="UpdatetbState2" runat="server">
-                                        <ContentTemplate>
-                                            <asp:TextBox ID="tbState2" runat="server" CssClass="tb5"></asp:TextBox>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="tbState2" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
+                                    <asp:TextBox ID="tbState2" runat="server" CssClass="tb5"></asp:TextBox>
                                 </td>
                             </tr>
                         </table>
@@ -737,135 +373,65 @@
                         </div>
                         <table>
                             <tr>
-                            <td class="col1">วิทยาเขต</td>
-                            <td class="col2">
-                                <asp:UpdatePanel ID="UpdateddlCampus" runat="server">
-                                    <ContentTemplate>
-                                        <asp:DropDownList ID="ddlCampus" runat="server" CssClass="tb5" OnSelectedIndexChanged="ddlCampus_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
-                                    </ContentTemplate>
-                                    <Triggers>
-                                        <asp:AsyncPostBackTrigger ControlID="ddlCampus" />
-                                    </Triggers>
-                                </asp:UpdatePanel>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col1">สำนัก / สถาบัน / คณะ</td>
-                            <td class="col2">
-                                <asp:UpdatePanel ID="UpdateddlFaculty" runat="server">
-                                    <ContentTemplate>
-                                        <asp:DropDownList ID="ddlFaculty" runat="server" CssClass="tb5" OnSelectedIndexChanged="ddlFaculty_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
-                                    </ContentTemplate>
-                                    <Triggers>
-                                        <asp:AsyncPostBackTrigger ControlID="ddlFaculty" />
-                                    </Triggers>
-                                </asp:UpdatePanel>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col1">กอง / สำนักงานเลขา / ภาควิชา</td>
-                            <td class="col2">
-                                <asp:UpdatePanel ID="UpdateddlDivision" runat="server">
-                                    <ContentTemplate>
-                                        <asp:DropDownList ID="ddlDivision" runat="server" CssClass="tb5" OnSelectedIndexChanged="ddlDivision_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
-                                    </ContentTemplate>
-                                    <Triggers>
-                                        <asp:AsyncPostBackTrigger ControlID="ddlDivision" />
-                                    </Triggers>
-                                </asp:UpdatePanel>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col1">งาน / ฝ่าย</td>
-                            <td class="col2">
-                                <asp:UpdatePanel ID="UpdateddlWorkDivision" runat="server">
-                                    <ContentTemplate>
-                                        <asp:DropDownList ID="ddlWorkDivision" runat="server" CssClass="tb5"></asp:DropDownList>
-                                    </ContentTemplate>
-                                    <Triggers>
-                                        <asp:AsyncPostBackTrigger ControlID="ddlWorkDivision" />
-                                    </Triggers>
-                                </asp:UpdatePanel>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col1">ประเภทบุคลากร</td>
-                            <td class="col2">
-                                <asp:UpdatePanel ID="UpdateddlStaffType" runat="server">
-                                    <ContentTemplate>
-                                        <asp:DropDownList ID="ddlStaffType" runat="server" CssClass="tb5"></asp:DropDownList>
-                                    </ContentTemplate>
-                                    <Triggers>
-                                        <asp:AsyncPostBackTrigger ControlID="ddlStaffType" />
-                                    </Triggers>
-                                </asp:UpdatePanel>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col1">ประเภทเงินจ้าง</td>
-                            <td class="col2">
-                                <asp:UpdatePanel ID="UpdateddlBudget" runat="server">
-                                    <ContentTemplate>
-                                        <asp:DropDownList ID="ddlBudget" runat="server" CssClass="tb5"></asp:DropDownList>
-                                    </ContentTemplate>
-                                    <Triggers>
-                                        <asp:AsyncPostBackTrigger ControlID="ddlBudget" />
-                                    </Triggers>
-                                </asp:UpdatePanel>
-                            </td>
-                        </tr>
-                         <tr>
-                            <td class="col1">วันที่บรรจุ</td>
-                            <td class="col2">
-                                <asp:UpdatePanel ID="UpdatetbDateInwork" runat="server">
-                                    <ContentTemplate>
-                                        <asp:TextBox ID="tbDateInwork" runat="server" CssClass="tb5"></asp:TextBox>
-                                    </ContentTemplate>
-                                    <Triggers>
-                                        <asp:AsyncPostBackTrigger ControlID="tbDateInwork" />
-                                    </Triggers>
-                                </asp:UpdatePanel>
-                            </td>
-                        </tr>
+                                <td class="col1">วิทยาเขต</td>
+                                <td class="col2">
+                                    <asp:DropDownList ID="ddlCampus" runat="server" CssClass="tb5" OnSelectedIndexChanged="ddlCampus_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                                </td>
+                            </tr>
                             <tr>
-                            <td class="col1">เงินเดือน</td>
-                            <td class="col2">
-                                <asp:UpdatePanel ID="UpdatetbSalary" runat="server">
-                                    <ContentTemplate>
-                                        <asp:TextBox ID="tbSalary" runat="server" CssClass="tb5"></asp:TextBox>
-                                    </ContentTemplate>
-                                    <Triggers>
-                                        <asp:AsyncPostBackTrigger ControlID="tbSalary" />
-                                    </Triggers>
-                                </asp:UpdatePanel>
-                            </td>
-                        </tr>     
+                                <td class="col1">สำนัก / สถาบัน / คณะ</td>
+                                <td class="col2">
+                                    <asp:DropDownList ID="ddlFaculty" runat="server" CssClass="tb5" OnSelectedIndexChanged="ddlFaculty_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                                </td>
+                            </tr>
                             <tr>
-                            <td class="col1">เงินประจำตำแหน่ง</td>
-                            <td class="col2">
-                                <asp:UpdatePanel ID="UpdatetbPositionSalary" runat="server">
-                                    <ContentTemplate>
-                                        <asp:TextBox ID="tbPositionSalary" runat="server" CssClass="tb5"></asp:TextBox>
-                                    </ContentTemplate>
-                                    <Triggers>
-                                        <asp:AsyncPostBackTrigger ControlID="tbPositionSalary" />
-                                    </Triggers>
-                                </asp:UpdatePanel>
-                            </td>
-                        </tr>      
+                                <td class="col1">กอง / สำนักงานเลขา / ภาควิชา</td>
+                                <td class="col2">
+                                    <asp:DropDownList ID="ddlDivision" runat="server" CssClass="tb5" OnSelectedIndexChanged="ddlDivision_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                                </td>
+                            </tr>
                             <tr>
-                            <td class="col1">สถานะการทำงาน</td>
-                            <td class="col2">
-                                <asp:UpdatePanel ID="UpdateddlStatusWork" runat="server">
-                                    <ContentTemplate>
-                                        <asp:DropDownList ID="ddlStatusWork" runat="server" CssClass="tb5"></asp:DropDownList>
-                                    </ContentTemplate>
-                                    <Triggers>
-                                        <asp:AsyncPostBackTrigger ControlID="ddlStatusWork" />
-                                    </Triggers>
-                                </asp:UpdatePanel>
-                            </td>
-                        </tr>               
+                                <td class="col1">งาน / ฝ่าย</td>
+                                <td class="col2">
+                                    <asp:DropDownList ID="ddlWorkDivision" runat="server" CssClass="tb5"></asp:DropDownList>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">ประเภทบุคลากร</td>
+                                <td class="col2">
+                                    <asp:DropDownList ID="ddlStaffType" runat="server" CssClass="tb5"></asp:DropDownList>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">ประเภทเงินจ้าง</td>
+                                <td class="col2">
+                                    <asp:DropDownList ID="ddlBudget" runat="server" CssClass="tb5"></asp:DropDownList>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">วันที่บรรจุ</td>
+                                <td class="col2">
+                                    <asp:TextBox ID="tbDateInwork" runat="server" CssClass="tb5"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">เงินเดือน</td>
+                                <td class="col2">
+                                    <asp:TextBox ID="tbSalary" runat="server" CssClass="tb5"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">เงินประจำตำแหน่ง</td>
+                                <td class="col2">
+                                    <asp:TextBox ID="tbPositionSalary" runat="server" CssClass="tb5"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">สถานะการทำงาน</td>
+                                <td class="col2">
+                                    <asp:DropDownList ID="ddlStatusWork" runat="server" CssClass="tb5"></asp:DropDownList>
+                                </td>
+                            </tr>
                         </table>
                     </div>
                     <div style="float: left; display: inline-block;">
@@ -875,141 +441,71 @@
                         </div>
                         <table>
                             <tr>
-                            <td class="col1">ตำแหน่งประเภท</td>
-                            <td class="col2">
-                                <asp:UpdatePanel ID="UpdateddlTpyePosition" runat="server">
-                                    <ContentTemplate>
-                                        <asp:DropDownList ID="ddlTpyePosition" runat="server" CssClass="tb5"></asp:DropDownList>
-                                    </ContentTemplate>
-                                    <Triggers>
-                                        <asp:AsyncPostBackTrigger ControlID="ddlTpyePosition" />
-                                    </Triggers>
-                                </asp:UpdatePanel>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col1">ตำแหน่ง</td>
-                            <td class="col2">
-                                <asp:UpdatePanel ID="UpdateddlPosition" runat="server">
-                                    <ContentTemplate>
-                                        <asp:DropDownList ID="ddlPosition" runat="server" CssClass="tb5"></asp:DropDownList>
-                                    </ContentTemplate>
-                                    <Triggers>
-                                        <asp:AsyncPostBackTrigger ControlID="ddlPosition" />
-                                    </Triggers>
-                                </asp:UpdatePanel>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col1">ตำแหน่งบริหาร</td>
-                            <td class="col2">
-                                <asp:UpdatePanel ID="UpdateddlAdminPosition" runat="server">
-                                    <ContentTemplate>
-                                        <asp:DropDownList ID="ddlAdminPosition" runat="server" CssClass="tb5"></asp:DropDownList>
-                                    </ContentTemplate>
-                                    <Triggers>
-                                        <asp:AsyncPostBackTrigger ControlID="ddlAdminPosition" />
-                                    </Triggers>
-                                </asp:UpdatePanel>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col1">ตำแหน่งในสายงาน</td>
-                            <td class="col2">
-                                <asp:UpdatePanel ID="UpdateddlPositionWork" runat="server">
-                                    <ContentTemplate>
-                                        <asp:DropDownList ID="ddlPositionWork" runat="server" CssClass="tb5"></asp:DropDownList>
-                                    </ContentTemplate>
-                                    <Triggers>
-                                        <asp:AsyncPostBackTrigger ControlID="ddlPositionWork" />
-                                    </Triggers>
-                                </asp:UpdatePanel>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col1">ตำแหน่งทางวิชาการ</td>
-                            <td class="col2">
-                                <asp:UpdatePanel ID="UpdateddlAcademic" runat="server">
-                                    <ContentTemplate>
-                                        <asp:DropDownList ID="ddlAcademic" runat="server" CssClass="tb5"></asp:DropDownList>
-                                    </ContentTemplate>
-                                    <Triggers>
-                                        <asp:AsyncPostBackTrigger ControlID="ddlAcademic" />
-                                    </Triggers>
-                                </asp:UpdatePanel>
-                            </td>
-                        </tr>  
-                            
-                        <tr>
-                            <td class="col1">ความเชี่ยวชาญในสายงาน</td>
-                            <td class="col2">
-                                <asp:UpdatePanel ID="UpdatetbSpecialWork" runat="server">
-                                    <ContentTemplate>
-                                        <asp:TextBox ID="tbSpecialWork" runat="server" CssClass="tb5"></asp:TextBox>
-                                    </ContentTemplate>
-                                    <Triggers>
-                                        <asp:AsyncPostBackTrigger ControlID="tbSpecialWork" />
-                                    </Triggers>
-                                </asp:UpdatePanel>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col1">กลุ่มสาขาวิชาที่สอน</td>
-                            <td class="col2">
-                                <asp:UpdatePanel ID="UpdateddlTeachISCED" runat="server">
-                                    <ContentTemplate>
-                                        <asp:DropDownList ID="ddlTeachISCED" runat="server" CssClass="tb5"></asp:DropDownList>
-                                    </ContentTemplate>
-                                    <Triggers>
-                                        <asp:AsyncPostBackTrigger ControlID="ddlTeachISCED" />
-                                    </Triggers>
-                                </asp:UpdatePanel>
-                            </td>
-                        </tr>
+                                <td class="col1">ตำแหน่งประเภท</td>
+                                <td class="col2">
+                                    <asp:DropDownList ID="ddlTpyePosition" runat="server" CssClass="tb5"></asp:DropDownList>
+                                </td>
+                            </tr>
                             <tr>
-                            <td class="col1">ระดับตำแหน่งประเภท</td>
-                            <td class="col2">
-                                <asp:UpdatePanel ID="UpdateddlPosiInsigGover" runat="server">
-                                    <ContentTemplate>
-                                        <asp:DropDownList ID="ddlPosiInsigGover" runat="server" CssClass="tb5"></asp:DropDownList>
-                                    </ContentTemplate>
-                                    <Triggers>
-                                        <asp:AsyncPostBackTrigger ControlID="ddlPosiInsigGover" />
-                                    </Triggers>
-                                </asp:UpdatePanel>
-                            </td>
-                        </tr>
+                                <td class="col1">ตำแหน่ง</td>
+                                <td class="col2">
+                                    <asp:DropDownList ID="ddlPosition" runat="server" CssClass="tb5"></asp:DropDownList>
+                                </td>
+                            </tr>
                             <tr>
-                            <td class="col1">ตำแหน่งระดับ</td>
-                            <td class="col2">
-                                <asp:UpdatePanel ID="UpdateddlPosiInsigDegree" runat="server">
-                                    <ContentTemplate>
-                                        <asp:DropDownList ID="ddlPosiInsigDegree" runat="server" CssClass="tb5"></asp:DropDownList>
-                                    </ContentTemplate>
-                                    <Triggers>
-                                        <asp:AsyncPostBackTrigger ControlID="ddlPosiInsigDegree" />
-                                    </Triggers>
-                                </asp:UpdatePanel>
-                            </td>
-                        </tr>
+                                <td class="col1">ตำแหน่งบริหาร</td>
+                                <td class="col2">
+                                    <asp:DropDownList ID="ddlAdminPosition" runat="server" CssClass="tb5"></asp:DropDownList>
+                                </td>
+                            </tr>
                             <tr>
-                            <td class="col1">ตำแหน่งกลุ่มพนักงานราชการ</td>
-                            <td class="col2">
-                                <asp:UpdatePanel ID="UpdateddlPosiInsigEMP" runat="server">
-                                    <ContentTemplate>
-                                        <asp:DropDownList ID="ddlPosiInsigEMP" runat="server" CssClass="tb5"></asp:DropDownList>
-                                    </ContentTemplate>
-                                    <Triggers>
-                                        <asp:AsyncPostBackTrigger ControlID="ddlPosiInsigEMP" />
-                                    </Triggers>
-                                </asp:UpdatePanel>
-                            </td>
-                        </tr>
+                                <td class="col1">ตำแหน่งในสายงาน</td>
+                                <td class="col2">
+                                    <asp:DropDownList ID="ddlPositionWork" runat="server" CssClass="tb5"></asp:DropDownList>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">ตำแหน่งทางวิชาการ</td>
+                                <td class="col2">
+                                    <asp:DropDownList ID="ddlAcademic" runat="server" CssClass="tb5"></asp:DropDownList>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="col1">ความเชี่ยวชาญในสายงาน</td>
+                                <td class="col2">
+                                    <asp:TextBox ID="tbSpecialWork" runat="server" CssClass="tb5"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">กลุ่มสาขาวิชาที่สอน</td>
+                                <td class="col2">
+                                    <asp:DropDownList ID="ddlTeachISCED" runat="server" CssClass="tb5"></asp:DropDownList>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">ระดับตำแหน่งประเภท</td>
+                                <td class="col2">
+                                    <asp:DropDownList ID="ddlPosiInsigGover" runat="server" CssClass="tb5"></asp:DropDownList>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">ตำแหน่งระดับ</td>
+                                <td class="col2">
+                                    <asp:DropDownList ID="ddlPosiInsigDegree" runat="server" CssClass="tb5"></asp:DropDownList>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">ตำแหน่งกลุ่มพนักงานราชการ</td>
+                                <td class="col2">
+                                    <asp:DropDownList ID="ddlPosiInsigEMP" runat="server" CssClass="tb5"></asp:DropDownList>
+                                </td>
+                            </tr>
                         </table>
-                        </div>
+                    </div>
                     <div style="clear: both;">
                         <asp:LinkButton ID="lbuV3Back" runat="server" CssClass="ps-button" OnClick="lbuV3Back_Click1">ย้อนกลับ</asp:LinkButton>
-                        <asp:LinkButton ID="lbSubmit" runat="server" CssClass="ps-button" OnClick="lbSubmit_Click">อัพเดทข้อมูลบุคลากร</asp:LinkButton>
+                        <asp:LinkButton ID="lbSubmit" runat="server" CssClass="ps-button" OnClick="lbSubmit_Click">เพิ่มข้อมูลบุคลากร</asp:LinkButton>
                     </div>
                 </fieldset>
             </asp:View>

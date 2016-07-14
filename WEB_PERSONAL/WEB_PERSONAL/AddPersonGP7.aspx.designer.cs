@@ -22,13 +22,13 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.Panel Panel0;
         
         /// <summary>
-        /// tbCitizenID control.
+        /// tbCitizenIDSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbCitizenID;
+        protected global::System.Web.UI.WebControls.TextBox tbCitizenIDSearch;
         
         /// <summary>
         /// btnSearchPerson control.
@@ -49,76 +49,184 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.Button btnSearchRefresh;
         
         /// <summary>
-        /// lblCitizenID control.
+        /// tbMinistry control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCitizenID;
+        protected global::System.Web.UI.WebControls.TextBox tbMinistry;
         
         /// <summary>
-        /// lblName control.
+        /// tbTitleName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblName;
+        protected global::System.Web.UI.WebControls.TextBox tbTitleName;
         
         /// <summary>
-        /// lblLastName control.
+        /// tbNameTH control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblLastName;
+        protected global::System.Web.UI.WebControls.TextBox tbNameTH;
         
         /// <summary>
-        /// lblStafftype control.
+        /// tbLastNameTH control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblStafftype;
+        protected global::System.Web.UI.WebControls.TextBox tbLastNameTH;
         
         /// <summary>
-        /// lblUniversity control.
+        /// tbBirthdayDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUniversity;
+        protected global::System.Web.UI.WebControls.TextBox tbBirthdayDate;
         
         /// <summary>
-        /// lblCampus control.
+        /// tbBirthdayLong control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCampus;
+        protected global::System.Web.UI.WebControls.TextBox tbBirthdayLong;
         
         /// <summary>
-        /// lblPosition control.
+        /// tbInworkDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPosition;
+        protected global::System.Web.UI.WebControls.TextBox tbInworkDate;
         
         /// <summary>
-        /// lblStatusPersonWork control.
+        /// tbRetireDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblStatusPersonWork;
+        protected global::System.Web.UI.WebControls.TextBox tbRetireDate;
+        
+        /// <summary>
+        /// tbRetireLong control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbRetireLong;
+        
+        /// <summary>
+        /// tbStaffType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbStaffType;
+        
+        /// <summary>
+        /// tbGrom control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbGrom;
+        
+        /// <summary>
+        /// tbCitizenID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbCitizenID;
+        
+        /// <summary>
+        /// tbFatherName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbFatherName;
+        
+        /// <summary>
+        /// tbFatherLastName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbFatherLastName;
+        
+        /// <summary>
+        /// tbMotherName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbMotherName;
+        
+        /// <summary>
+        /// tbMotherLastName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbMotherLastName;
+        
+        /// <summary>
+        /// tbMotherOldLastName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbMotherOldLastName;
+        
+        /// <summary>
+        /// tbCoupleName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbCoupleName;
+        
+        /// <summary>
+        /// tbCoupleLastName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbCoupleLastName;
+        
+        /// <summary>
+        /// tbCoupleOldLastName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbCoupleOldLastName;
         
         /// <summary>
         /// notification control.
