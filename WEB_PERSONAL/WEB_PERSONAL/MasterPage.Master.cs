@@ -16,6 +16,7 @@ namespace WEB_PERSONAL {
                 Response.Redirect("Access.aspx");
                 return;
             }
+            Session.Timeout = 60;
         }
 
         protected void Page_Load(object sender, EventArgs e) {
@@ -123,6 +124,7 @@ namespace WEB_PERSONAL {
             int count_cl = DatabaseManager.GetLeaveRequiredCountByCommanderLow(loginPerson.CitizenID);
             int count_ch = DatabaseManager.GetLeaveRequiredCountByCommanderHigh(loginPerson.CitizenID);
             int count_leave_finish = 0;
+            OracleConnection.ClearAllPools();
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
                 using (OracleCommand com = new OracleCommand("SELECT COUNT(LEAVE_ID) FROM LEV_DATA WHERE PS_ID = '" + loginPerson.CitizenID + "' AND LEAVE_STATUS_ID in(3,7)", con)) {
@@ -134,6 +136,7 @@ namespace WEB_PERSONAL {
                 }
             }
             int count_ins = 0;
+            OracleConnection.ClearAllPools();
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
                 using (OracleCommand com = new OracleCommand("SELECT COUNT(IR_ID) FROM TB_INSIG_REQUEST WHERE IR_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND IR_STATUS = 1", con)) {
@@ -238,6 +241,7 @@ namespace WEB_PERSONAL {
         private void FuncPermission(Control c, string citizenID, int type) {
             {
                 bool b = false;
+                OracleConnection.ClearAllPools();
                 using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                     con.Open();
                     using (OracleCommand com = new OracleCommand("SELECT * FROM TB_PERMISSION WHERE CITIZEN_ID = '" + citizenID + "' AND PERMISSION_TYPE = " + type, con)) {

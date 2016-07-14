@@ -30,10 +30,9 @@
         <div class="ps-header">
             <img src="Image/Small/table.png" />ข้อมูลการลา
         </div>
-        <div class="ps-box">
-            <div class="ps-box-i0">
-                <div class="ps-box-ct10">
-                    <table class="ps-table-x16" style="display: inline-block; vertical-align: top;">
+            <div>
+                <div class="ps-div-title-red">ข้อมูลการลา</div>
+                    <table class="ps-table-1" style="margin: 0 auto; margin-bottom: 10px;">
                         <tr>
                             <td class="col1">
                                 <img src="Image/Small/ID.png" class="icon_left" />
@@ -262,15 +261,20 @@
                     </table>
 
                     <div id="div_dr_cer" class="dr_cer" runat="server" style="display: inline-block; vertical-align: top;"></div>
-                </div>
-            </div>
-            <div class="ps-box-i0">
-                <div class="ps-box-ct10">
-                    <table class="ps-table-x16" style="display: inline-block; vertical-align: top;">
+                <div style="text-align: center;">
+                    <div class="ps-div-title-red">ผู้บังคับบัญชา</div>
+                    <table class="ps-table-1" style="display: inline-block; margin-bottom: 10px; vertical-align: top; text-align: left;">
                         <tr>
                             <td class="head" colspan="2">
                                 <img src="Image/Small/person2.png" class="icon_left" />
-                                ผู้บังคับบัญชาระดับต่ำ</td>
+                                ผู้บังคับบัญชาระดับกลาง<br />(ผู้ลงความเห็น)</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div style="text-align: center;">
+                                    <img src="Image/no_image.png" id="psCLImage" runat="server" class="ps-ms-main-drop-profile-pic"/>
+                                </div>
+                            </td>
                         </tr>
                         <tr>
                             <td class="col1">
@@ -325,16 +329,23 @@
                             </td>
                         </tr>
                     </table>
-                    <table class="ps-table-x16" style="display: inline-block; vertical-align: top;">
+                    <table class="ps-table-1" style="display: inline-block; margin-bottom: 10px; vertical-align: top; text-align: left;">
                         <tr>
                             <td class="head" colspan="2">
                                 <img src="Image/Small/person2.png" class="icon_left" />
-                                ผู้บังคับบัญชาระดับสูง</td>
+                                ผู้บังคับบัญชาระดับสูง<br />(ผู้อนุมัติ)</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div style="text-align: center;">
+                                    <img src="Image/no_image.png" id="psCHImage" runat="server" class="ps-ms-main-drop-profile-pic"/>
+                                </div>
+                            </td>
                         </tr>
                         <tr>
                             <td class="col1">
                                 <img src="Image/Small/person2.png" class="icon_left" />
-                                ชื่อผู้อนุมัติ
+                                ชื่อ
                             </td>
                             <td class="col2">
                                 <asp:Label ID="lbCHName" runat="server"></asp:Label>
@@ -402,9 +413,9 @@
                             </td>
                         </tr>
                     </table>
-                </div>
-            </div>
+                    </div>
         </div>
+      
 
     </div>
 </asp:Content>

@@ -30,7 +30,8 @@ namespace WEB_PERSONAL {
             } else {
                 error_area.InnerHtml = "กรุณาเลือกรายการที่ต้องการอนุมัติ";
             }
-            error_area.Attributes["class"] = "alert alert_info";
+            error_area.Attributes["class"] = null;
+            error_area.InnerHtml = "";
 
             if (count > 0) {
 
@@ -232,8 +233,8 @@ namespace WEB_PERSONAL {
                         
                         MultiView1.ActiveViewIndex = 1;
 
-                        error_area.Attributes["class"] = "alert alert_info";
-                        error_area.InnerHtml = "กรุณาลงความเห็น";
+                        error_area.Attributes["class"] = null;
+                        error_area.InnerHtml = "";
                     };
                     TableCell cell = new TableCell();
                     cell.Controls.Add(lbu);
@@ -257,9 +258,8 @@ namespace WEB_PERSONAL {
                 }
 
             } else {
-                error_area.Attributes["class"] = "alert alert_success";
+                error_area.Attributes["class"] = null;
                 error_area.InnerHtml = "";
-                error_area.InnerHtml += "<strong>ทำการอนุมัติสำเร็จ!</strong><br>";
                 MultiView1.ActiveViewIndex = 2;
                 int allow = 1;
                 if (rbNotAllow.Checked) {
@@ -311,7 +311,9 @@ namespace WEB_PERSONAL {
             } else {
                 error_area.InnerHtml = "กรุณาเลือกรายการที่ต้องอนุมัติ";
             }
-            error_area.Attributes["class"] = "alert alert_info";
+            //error_area.Attributes["class"] = "alert alert_info";
+            error_area.Attributes["class"] = null;
+            error_area.InnerHtml = "";
             MultiView1.ActiveViewIndex = 0;
         }
     }

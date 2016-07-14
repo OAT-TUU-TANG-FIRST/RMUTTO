@@ -31,7 +31,9 @@ namespace WEB_PERSONAL {
             } else {
                 error_area.InnerHtml = "กรุณาเลือกรายการที่ต้องการลงความเห็น";
             }
-            error_area.Attributes["class"] = "alert alert_info";
+            //error_area.Attributes["class"] = "alert alert_info";
+            error_area.Attributes["class"] = null;
+            error_area.InnerHtml = "";
 
             if (count > 0) {
 
@@ -213,11 +215,11 @@ namespace WEB_PERSONAL {
                         }
 
                         MultiView1.ActiveViewIndex = 1;
-                        
-                        
 
-                        error_area.Attributes["class"] = "alert alert_info";
-                        error_area.InnerHtml = "กรุณาลงความเห็น";
+
+
+                        error_area.Attributes["class"] = null;
+                        error_area.InnerHtml = "";
                     };
                     TableCell cell = new TableCell();
                     cell.Controls.Add(lbu);
@@ -236,9 +238,11 @@ namespace WEB_PERSONAL {
                 error_area.InnerHtml += "<strong>เกิดข้อผิดพลาด!</strong><br>";
                 error_area.InnerHtml += "<div class='hm_tab'></div>- กรุณากรอก <strong>ความเห็น</strong><br>";
             } else {
-                error_area.Attributes["class"] = "alert alert_success";
+                /*error_area.Attributes["class"] = "alert alert_success";
                 error_area.InnerHtml = "";
-                error_area.InnerHtml += "<strong>ลงความเห็นสำเร็จ!</strong><br>";
+                error_area.InnerHtml += "<strong>ลงความเห็นสำเร็จ!</strong><br>";*/
+                error_area.Attributes["class"] = null;
+                error_area.InnerHtml = "";
 
                 MultiView1.ActiveViewIndex = 2;
 
@@ -295,7 +299,9 @@ namespace WEB_PERSONAL {
             } else {
                 error_area.InnerHtml = "กรุณาเลือกรายการที่ต้องการลงความเห็น";
             }
-            error_area.Attributes["class"] = "alert alert_info";
+            //error_area.Attributes["class"] = "alert alert_info";
+            error_area.Attributes["class"] = null;
+            error_area.InnerHtml = "";
 
             MultiView1.ActiveViewIndex = 0;
         }

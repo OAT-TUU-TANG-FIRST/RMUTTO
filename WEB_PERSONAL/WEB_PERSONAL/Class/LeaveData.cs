@@ -89,7 +89,8 @@ namespace WEB_PERSONAL.Class {
         }
         public void Load(int ID) {
             HasData = false;
-            using(OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
+            OracleConnection.ClearAllPools();
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
                 using(OracleCommand com = new OracleCommand("SELECT LEV_DATA.*, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_DATA.LEAVE_TYPE_ID) LEAVE_TYPE_NAME, (SELECT LEAVE_STATUS_NAME FROM LEV_STATUS WHERE LEV_STATUS.LEAVE_STATUS_ID = LEV_DATA.LEAVE_STATUS_ID) LEAVE_STATUS_NAME FROM LEV_DATA WHERE LEAVE_ID = " + ID, con)) {
                     using(OracleDataReader reader = com.ExecuteReader()) {
@@ -261,6 +262,7 @@ namespace WEB_PERSONAL.Class {
             }
         }
         public void Update() {
+            OracleConnection.ClearAllPools();
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
                 using (OracleCommand com = new OracleCommand("UPDATE LEV_DATA SET LEAVE_TYPE_ID = :LEAVE_TYPE_ID", con)) {
@@ -270,6 +272,7 @@ namespace WEB_PERSONAL.Class {
             }
         }
         public void ExecuteCancel() {
+            OracleConnection.ClearAllPools();
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
                 using (OracleCommand com = new OracleCommand("UPDATE LEV_DATA SET CANCEL_DATE = :CANCEL_DATE, CANCEL_REASON = :CANCEL_REASON, LEAVE_STATUS_ID = :LEAVE_STATUS_ID WHERE LEAVE_ID = " + LeaveID, con)) {
@@ -332,6 +335,7 @@ namespace WEB_PERSONAL.Class {
             AddLeave3K();
         }
         public void AddLeave3K() {
+            OracleConnection.ClearAllPools();
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
                 using (OracleCommand com = new OracleCommand("INSERT INTO LEV_DATA (LEAVE_ID, LEAVE_TYPE_ID, LEAVE_STATUS_ID, PS_ID, REQ_DATE, FROM_DATE, TO_DATE, TOTAL_DAY, CL_ID, CL_TT, CL_FN, CL_LN, CL_POS, CL_APOS, CH_ID, CH_TT, CH_FN, CH_LN, CH_POS, CH_APOS, PS_TT, PS_FN, PS_LN, PS_POS, PS_DEPT, PS_APOS, REASON, CONTACT, TELEPHONE, LAST_FROM_DATE, LAST_TO_DATE, LAST_TOTAL_DAY, DR_CER_FILE_NAME, COUNT_PAST, COUNT_NOW, COUNT_TOTAL, BUDGET_YEAR) VALUES (:LEAVE_ID, :LEAVE_TYPE_ID, :LEAVE_STATUS_ID, :PS_ID, :REQ_DATE, :FROM_DATE, :TO_DATE, :TOTAL_DAY, :CL_ID, :CL_TT, :CL_FN, :CL_LN, :CL_POS, :CL_APOS, :CH_ID, :CH_TT, :CH_FN, :CH_LN, :CH_POS, :CH_APOS, :PS_TT, :PS_FN, :PS_LN, :PS_POS, :PS_DEPT, :PS_APOS, :REASON, :CONTACT, :TELEPHONE, :LAST_FROM_DATE, :LAST_TO_DATE, :LAST_TOTAL_DAY, :DR_CER_FILE_NAME, :COUNT_PAST, :COUNT_NOW, :COUNT_TOTAL, :BUDGET_YEAR)", con)) {
@@ -391,6 +395,7 @@ namespace WEB_PERSONAL.Class {
             }
         }
         public void AddLeaveRest() {
+            OracleConnection.ClearAllPools();
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
                 using (OracleCommand com = new OracleCommand("INSERT INTO LEV_DATA (LEAVE_ID, LEAVE_TYPE_ID, LEAVE_STATUS_ID, PS_ID, REQ_DATE, FROM_DATE, TO_DATE, TOTAL_DAY, CL_ID, CL_TT, CL_FN, CL_LN, CL_POS, CL_APOS, CH_ID, CH_TT, CH_FN, CH_LN, CH_POS, CH_APOS, PS_TT, PS_FN, PS_LN, PS_POS, PS_DEPT, PS_APOS, CONTACT, TELEPHONE, COUNT_PAST, COUNT_NOW, COUNT_TOTAL, REST_SAVE, REST_LEFT, REST_TOTAL, BUDGET_YEAR) VALUES (:LEAVE_ID, :LEAVE_TYPE_ID, :LEAVE_STATUS_ID, :PS_ID, :REQ_DATE, :FROM_DATE, :TO_DATE, :TOTAL_DAY, :CL_ID, :CL_TT, :CL_FN, :CL_LN, :CL_POS, :CL_APOS, :CH_ID, :CH_TT, :CH_FN, :CH_LN, :CH_POS, :CH_APOS, :PS_TT, :PS_FN, :PS_LN, :PS_POS, :PS_DEPT, :PS_APOS, :CONTACT, :TELEPHONE, :COUNT_PAST, :COUNT_NOW, :COUNT_TOTAL, :REST_SAVE, :REST_LEFT, :REST_TOTAL, :BUDGET_YEAR)", con)) {
@@ -435,6 +440,7 @@ namespace WEB_PERSONAL.Class {
             }
         }
         public void AddLeaveHelpGiveBirth() {
+            OracleConnection.ClearAllPools();
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
                 using (OracleCommand com = new OracleCommand("INSERT INTO LEV_DATA (LEAVE_ID, LEAVE_TYPE_ID, LEAVE_STATUS_ID, PS_ID, REQ_DATE, FROM_DATE, TO_DATE, TOTAL_DAY, CL_ID, CL_TT, CL_FN, CL_LN, CL_POS, CL_APOS, CH_ID, CH_TT, CH_FN, CH_LN, CH_POS, CH_APOS, PS_TT, PS_FN, PS_LN, PS_POS, PS_DEPT, PS_APOS, CONTACT, TELEPHONE, COUNT_PAST, COUNT_NOW, COUNT_TOTAL, WIFE_FN, WIFE_LN, GB_DATE, BUDGET_YEAR) VALUES (:LEAVE_ID, :LEAVE_TYPE_ID, :LEAVE_STATUS_ID, :PS_ID, :REQ_DATE, :FROM_DATE, :TO_DATE, :TOTAL_DAY, :CL_ID, :CL_TT, :CL_FN, :CL_LN, :CL_POS, :CL_APOS, :CH_ID, :CH_TT, :CH_FN, :CH_LN, :CH_POS, :CH_APOS, :PS_TT, :PS_FN, :PS_LN, :PS_POS, :PS_DEPT, :PS_APOS, :CONTACT, :TELEPHONE, :COUNT_PAST, :COUNT_NOW, :COUNT_TOTAL, :WIFE_FN, :WIFE_LN, :GB_DATE, :BUDGET_YEAR)", con)) {
@@ -479,6 +485,7 @@ namespace WEB_PERSONAL.Class {
             }
         }
         public void AddLeaveOrdain() {
+            OracleConnection.ClearAllPools();
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
                 using (OracleCommand com = new OracleCommand("INSERT INTO LEV_DATA (LEAVE_ID, LEAVE_TYPE_ID, LEAVE_STATUS_ID, PS_ID, REQ_DATE, FROM_DATE, TO_DATE, TOTAL_DAY, CL_ID, CL_TT, CL_FN, CL_LN, CL_POS, CL_APOS, CH_ID, CH_TT, CH_FN, CH_LN, CH_POS, CH_APOS, PS_TT, PS_FN, PS_LN, PS_POS, PS_DEPT, PS_APOS, PS_BIRTHDATE, PS_WORKIN_DATE, TELEPHONE, OD_ED, TP_NAME, TP_LOC, OD_DATE, BUDGET_YEAR) VALUES (:LEAVE_ID, :LEAVE_TYPE_ID, :LEAVE_STATUS_ID, :PS_ID, :REQ_DATE, :FROM_DATE, :TO_DATE, :TOTAL_DAY, :CL_ID, :CL_TT, :CL_FN, :CL_LN, :CL_POS, :CL_APOS, :CH_ID, :CH_TT, :CH_FN, :CH_LN, :CH_POS, :CH_APOS, :PS_TT, :PS_FN, :PS_LN, :PS_POS, :PS_DEPT, :PS_APOS, :PS_BIRTHDATE, :PS_WORKIN_DATE, :TELEPHONE, :OD_ED, :TP_NAME, :TP_LOC, :OD_DATE, :BUDGET_YEAR)", con)) {
@@ -522,6 +529,7 @@ namespace WEB_PERSONAL.Class {
             }
         }
         public void AddLeaveHuj() {
+            OracleConnection.ClearAllPools();
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
                 using (OracleCommand com = new OracleCommand("INSERT INTO LEV_DATA (LEAVE_ID, LEAVE_TYPE_ID, LEAVE_STATUS_ID, PS_ID, REQ_DATE, FROM_DATE, TO_DATE, TOTAL_DAY, CL_ID, CL_TT, CL_FN, CL_LN, CL_POS, CL_APOS, CH_ID, CH_TT, CH_FN, CH_LN, CH_POS, CH_APOS, PS_TT, PS_FN, PS_LN, PS_POS, PS_DEPT, PS_APOS, PS_BIRTHDATE, PS_WORKIN_DATE, HUJ_ED, BUDGET_YEAR) VALUES (:LEAVE_ID, :LEAVE_TYPE_ID, :LEAVE_STATUS_ID, :PS_ID, :REQ_DATE, :FROM_DATE, :TO_DATE, :TOTAL_DAY, :CL_ID, :CL_TT, :CL_FN, :CL_LN, :CL_POS, :CL_APOS, :CH_ID, :CH_TT, :CH_FN, :CH_LN, :CH_POS, :CH_APOS, :PS_TT, :PS_FN, :PS_LN, :PS_POS, :PS_DEPT, :PS_APOS, :PS_BIRTHDATE, :PS_WORKIN_DATE, :HUJ_ED, :BUDGET_YEAR)", con)) {
@@ -561,6 +569,7 @@ namespace WEB_PERSONAL.Class {
             }
         }
         public void ExecuteComment() {
+            OracleConnection.ClearAllPools();
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
                 using (OracleCommand com = new OracleCommand("UPDATE LEV_DATA SET LEAVE_STATUS_ID = :LEAVE_STATUS_ID, CL_COM = :CL_COM, CL_DATE = :CL_DATE WHERE LEAVE_ID = :LEAVE_ID", con)) {
@@ -573,6 +582,7 @@ namespace WEB_PERSONAL.Class {
             }
         }
         public void ExecuteCancelComment() {
+            OracleConnection.ClearAllPools();
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
                 using (OracleCommand com = new OracleCommand("UPDATE LEV_DATA SET LEAVE_STATUS_ID = :LEAVE_STATUS_ID, CL_C_COM = :CL_C_COM, CL_C_DATE = :CL_C_DATE WHERE LEAVE_ID = :LEAVE_ID", con)) {
@@ -585,6 +595,7 @@ namespace WEB_PERSONAL.Class {
             }
         }
         public void ExecuteAllow() {
+            OracleConnection.ClearAllPools();
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
                 using (OracleCommand com = new OracleCommand("UPDATE LEV_DATA SET LEAVE_STATUS_ID = :LEAVE_STATUS_ID, CH_COM = :CH_COM, CH_ALLOW = :CH_ALLOW, CH_DATE = :CH_DATE WHERE LEAVE_ID = :LEAVE_ID", con)) {
@@ -720,6 +731,7 @@ namespace WEB_PERSONAL.Class {
             }
         }
         public void ExecuteCancelAllow() {
+            OracleConnection.ClearAllPools();
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
                 using (OracleCommand com = new OracleCommand("UPDATE LEV_DATA SET LEAVE_STATUS_ID = :LEAVE_STATUS_ID, CH_C_COM = :CH_C_COM, CH_C_ALLOW = :CH_C_ALLOW, CH_C_DATE = :CH_C_DATE WHERE LEAVE_ID = :LEAVE_ID", con)) {
@@ -835,6 +847,67 @@ namespace WEB_PERSONAL.Class {
 
 
             }
+        }
+
+        public void ExecuteCancelByUser() {
+            OracleConnection.ClearAllPools();
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
+                con.Open();
+                using (OracleCommand com = new OracleCommand("UPDATE LEV_DATA SET LEAVE_STATUS_ID = :LEAVE_STATUS_ID WHERE LEAVE_ID = :LEAVE_ID", con)) {
+                    com.Parameters.Add("LEAVE_STATUS_ID", 9);
+                    com.Parameters.Add("LEAVE_ID", LeaveID);
+                    com.ExecuteNonQuery();
+                }
+                
+                DateTime start = FromDate.Value;
+                DateTime to = ToDate.Value;
+
+                if (LeaveTypeID == 1) {
+                    using (OracleCommand com = new OracleCommand("UPDATE LEV_CLAIM SET SICK_NOW = SICK_REQ WHERE YEAR = " + BudgetYear + " AND PS_CITIZEN_ID = :PS_CITIZEN_ID", con)) {
+                        com.Parameters.Add("PS_CITIZEN_ID", PS_ID);
+                        com.ExecuteNonQuery();
+                    }
+                } else if (LeaveTypeID == 2) {
+                    using (OracleCommand com = new OracleCommand("UPDATE LEV_CLAIM SET BUSINESS_NOW = BUSINESS_REQ WHERE YEAR = " + BudgetYear + " AND PS_CITIZEN_ID = :PS_CITIZEN_ID", con)) {
+                        com.Parameters.Add("PS_CITIZEN_ID", PS_ID);
+                        com.ExecuteNonQuery();
+                    }
+                } else if (LeaveTypeID == 3) {
+                    using (OracleCommand com = new OracleCommand("UPDATE LEV_CLAIM SET GB_NOW = GB_REQ WHERE YEAR = " + BudgetYear + " AND PS_CITIZEN_ID = :PS_CITIZEN_ID", con)) {
+                        com.Parameters.Add("PS_CITIZEN_ID", PS_ID);
+                        com.ExecuteNonQuery();
+                    }
+                } else if (LeaveTypeID == 4) {
+                    int _restSave = DatabaseManager.ExecuteInt("SELECT REST_SAVE FROM LEV_CLAIM WHERE PS_CITIZEN_ID = '" + PS_ID + "' AND YEAR = " + BudgetYear);
+                    int _restThis = DatabaseManager.ExecuteInt("SELECT REST_THIS FROM LEV_CLAIM WHERE PS_CITIZEN_ID = '" + PS_ID + "' AND YEAR = " + BudgetYear);
+                    int _restThisFix = DatabaseManager.ExecuteInt("SELECT REST_THIS_FIX FROM LEV_CLAIM WHERE PS_CITIZEN_ID = '" + PS_ID + "' AND YEAR = " + BudgetYear);
+                    _restThis += TotalDay;
+                    if (_restThis > _restThisFix) {
+                        _restSave += _restThisFix - _restThis;
+                        _restThis = _restThisFix;
+                    }
+                    using (OracleCommand com = new OracleCommand("UPDATE LEV_CLAIM SET REST_NOW = REST_REQ, REST_SAVE = " + _restSave + ", REST_THIS = " + _restThis + " WHERE YEAR = " + BudgetYear + " AND PS_CITIZEN_ID = :PS_CITIZEN_ID", con)) {
+                        com.Parameters.Add("PS_CITIZEN_ID", PS_ID);
+                        com.ExecuteNonQuery();
+                    }
+                } else if (LeaveTypeID == 5) {
+                    using (OracleCommand com = new OracleCommand("UPDATE LEV_CLAIM SET HGB_NOW = HGB_REQ WHERE YEAR = " + BudgetYear + " AND PS_CITIZEN_ID = :PS_CITIZEN_ID", con)) {
+                        com.Parameters.Add("PS_CITIZEN_ID", PS_ID);
+                        com.ExecuteNonQuery();
+                    }
+                } else if (LeaveTypeID == 6) {
+                    using (OracleCommand com = new OracleCommand("UPDATE LEV_CLAIM SET ORDAIN_NOW = ORDAIN_REQ WHERE YEAR = " + BudgetYear + " AND PS_CITIZEN_ID = :PS_CITIZEN_ID", con)) {
+                        com.Parameters.Add("PS_CITIZEN_ID", PS_ID);
+                        com.ExecuteNonQuery();
+                    }
+                } else if (LeaveTypeID == 7) {
+                    using (OracleCommand com = new OracleCommand("UPDATE LEV_CLAIM SET HUJ_NOW = HUJ_REQ WHERE YEAR = " + BudgetYear + " AND PS_CITIZEN_ID = :PS_CITIZEN_ID", con)) {
+                        com.Parameters.Add("PS_CITIZEN_ID", PS_ID);
+                        com.ExecuteNonQuery();
+                    }
+                }
+            }
+
         }
 
     }

@@ -20,22 +20,15 @@
 
         <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex="0">
             <asp:View ID="View1" runat="server">
-                <div class="ps-box-il">
-                    <div class="ps-box-i0">
-                        <div class="ps-box-ct10">
-                            <asp:GridView ID="GridView1" runat="server" CssClass="ps-gridview-x16"></asp:GridView>
-                        </div>
-                    </div>
+                <div>
+                    <div class="ps-div-title-red">กรุณาเลือกรายการที่ต้องการอนุมัติการลา</div>
+                    <asp:GridView ID="GridView1" runat="server" CssClass="ps-table-1" style="margin: 0 auto; margin-bottom: 20px;"></asp:GridView>
                 </div>
             </asp:View>
             <asp:View ID="View2" runat="server">
-                <div class="ps-box-il">
-                    <div class="ps-box-i0">
-                        <div class="ps-box-ct10">
-                            <table class="ps-table-x16">
-                    <tr>
-                        <td class="head" colspan="2">ข้อมูลการลา</td>
-                    </tr>
+                <div>
+                    <div class="ps-div-title-red">ข้อมูลการลา</div>
+                            <table class="ps-table-1" style="margin: 0 auto; margin-bottom: 10px;">
                     <tr>
                     <td class="col1">
                         <img src="Image/Small/ID.png" class="icon_left" />
@@ -288,26 +281,25 @@
                             <asp:RadioButton ID="rbNotAllow" runat="server" GroupName="allow" Text="ไม่อนุญาต" />
                         </td>
                     </tr>
-                                <tr>
-                                    <td class="bottom" colspan="2">
-                                        <asp:LinkButton ID="lbuBack" runat="server" CssClass="ps-button" OnClick="lbuBack_Click"><img src="Image/Small/back.png" class="icon_left"/>ย้อนกลับ</asp:LinkButton>
-                            <asp:LinkButton ID="lbuAddComment" runat="server" CssClass="ps-button" OnClick="lbuAddComment_Click">ยืนยันการอนุมัติ<img src="Image/Small/next.png" class="icon_right"/></asp:LinkButton>
-                                    </td>
-                                </tr>
                 </table>
-                        </div>
+                    <div style="text-align: center; margin-bottom: 10px;">
+                        <asp:LinkButton ID="lbuBack" runat="server" CssClass="ps-button" OnClick="lbuBack_Click"><img src="Image/Small/back.png" class="icon_left"/>ย้อนกลับ</asp:LinkButton>
+                        <asp:LinkButton ID="lbuAddComment" runat="server" CssClass="ps-button" OnClick="lbuAddComment_Click">ยืนยันการอนุมัติ<img src="Image/Small/next.png" class="icon_right"/></asp:LinkButton>
                     </div>
                 </div>
 
                 
             </asp:View>
             <asp:View ID="View3" runat="server">
-                <asp:LinkButton ID="lbu1" runat="server" CssClass="ps-button" OnClick="lbu1_Click"><img src="Image/Small/back.png" class="icon_left"/>กลับหน้าหลัก</asp:LinkButton>
-                <asp:LinkButton ID="lbu2" runat="server" CssClass="ps-button" OnClick="lbu2_Click">อนุมัติการลาต่อ<img src="Image/Small/next.png" class="icon_right"/></asp:LinkButton>
+                <div class="ps-div-title-red">อนุมัติการลาสำเร็จ</div>
+                <div style="text-align: center; margin-bottom: 10px;">
+                    <asp:LinkButton ID="lbu1" runat="server" CssClass="ps-button" OnClick="lbu1_Click"><img src="Image/Small/back.png" class="icon_left"/>กลับหน้าหลัก</asp:LinkButton>
+                    <asp:LinkButton ID="lbu2" runat="server" CssClass="ps-button" OnClick="lbu2_Click">อนุมัติการลาต่อ<img src="Image/Small/next.png" class="icon_right"/></asp:LinkButton>
+                </div>
             </asp:View>
         </asp:MultiView>
 
-
+        <div class="ps-separator"></div>
 
 
 

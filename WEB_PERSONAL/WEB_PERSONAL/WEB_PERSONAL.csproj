@@ -999,6 +999,7 @@
     <Content Include="National-ADMIN.aspx" />
     <Content Include="packages.config" />
     <Content Include="Permission.aspx" />
+    <Content Include="PersonBranch.aspx" />
     <Content Include="PosiGoverAcad-ADMIN.aspx" />
     <Content Include="PosiGoverSalary-ADMIN.aspx" />
     <Content Include="PosiInsigDegree-ADMIN.aspx" />
@@ -1025,6 +1026,17 @@
     <Content Include="TeachISCED-ADMIN.aspx" />
     <Content Include="TestOutput.aspx" />
     <Content Include="UploadList.aspx" />
+    <Content Include="Upload\DrCer\0eu9ksfy2r6imt93n6vc0l0u.jpg" />
+    <Content Include="Upload\DrCer\3hxshqkfv83d9zmj1llqngmg.jpg" />
+    <Content Include="Upload\DrCer\6atwt1boqhp5m2j1z5eeztey.jpg" />
+    <Content Include="Upload\DrCer\pvklsh4n84zad8hpkoi0wi2q.jpg" />
+    <Content Include="Upload\DrCer\r0sw2t43ohyj4ukoi0cgx3a4.jpg" />
+    <Content Include="Upload\DrCer\zsvzddv9wa52bqcqnfp528sa.jpg" />
+    <Content Include="Upload\PersonImage\1o2nxze8rz2i3x7dpknezugc.jpg" />
+    <Content Include="Upload\PersonImage\7ux6hd4fjmj4csh4sksvlbuy.png" />
+    <Content Include="Upload\PersonImage\i1.png" />
+    <Content Include="Upload\PersonImage\i1_.jpg" />
+    <Content Include="Upload\PersonImage\wmh0nsle2aaq5yw8v9odygaw.png" />
     <Content Include="ViewLeaveForm.aspx" />
     <Content Include="WorkDivision-ADMIN.aspx" />
     <Content Include="WorkingDay.aspx" />
@@ -1058,6 +1070,8 @@
       <DependentUpon>personalDataSet.xsd</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\ORCL.pubxml" />
+    <Content Include="Upload\Character.zip" />
+    <Content Include="Upload\Roboto.zip" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1531,6 +1545,13 @@
     </Compile>
     <Compile Include="Permission.aspx.designer.cs">
       <DependentUpon>Permission.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PersonBranch.aspx.cs">
+      <DependentUpon>PersonBranch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PersonBranch.aspx.designer.cs">
+      <DependentUpon>PersonBranch.aspx</DependentUpon>
     </Compile>
     <Compile Include="PosiGoverAcad-ADMIN.aspx.cs">
       <DependentUpon>PosiGoverAcad-ADMIN.aspx</DependentUpon>

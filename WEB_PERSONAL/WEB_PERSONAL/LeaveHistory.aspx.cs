@@ -166,7 +166,7 @@ namespace WEB_PERSONAL {
         }
         private void FuncGVHistory() {
 
-            SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEAVE_ID รหัสการลา, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_DATA.LEAVE_TYPE_ID) ประเภทการลา, REQ_DATE วันที่ข้อมูล, FROM_DATE จากวันที่, TO_DATE ถึงวันที่, TOTAL_DAY รวมวัน, (SELECT LEAVE_STATUS_NAME FROM LEV_STATUS WHERE LEV_STATUS.LEAVE_STATUS_ID = LEV_DATA.LEAVE_STATUS_ID) สถานะ, NVL(CH_ALLOW,0) ผลการอนุมัติ FROM LEV_DATA WHERE LEAVE_STATUS_ID in(4,8) AND PS_ID = '" + loginPerson.CitizenID + "' ORDER BY LEAVE_ID DESC");
+            SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEAVE_ID รหัสการลา, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_DATA.LEAVE_TYPE_ID) ประเภทการลา, REQ_DATE วันที่ข้อมูล, FROM_DATE จากวันที่, TO_DATE ถึงวันที่, TOTAL_DAY รวมวัน, (SELECT LEAVE_STATUS_NAME FROM LEV_STATUS WHERE LEV_STATUS.LEAVE_STATUS_ID = LEV_DATA.LEAVE_STATUS_ID) สถานะ, NVL(CH_ALLOW,-1) ผลการอนุมัติ FROM LEV_DATA WHERE LEAVE_STATUS_ID in(4,8,9) AND PS_ID = '" + loginPerson.CitizenID + "' ORDER BY LEAVE_ID DESC");
             gvHistory.DataSource = sds;
             gvHistory.DataBind();
 
@@ -196,6 +196,10 @@ namespace WEB_PERSONAL {
                     cell.Controls.Add(btn);
                     gvHistory.Rows[i].Cells.Add(cell);
 
+                    if (Util.StringEqual(gvHistory.Rows[i].Cells[7].Text, new string[] { "-1" })) {
+                        gvHistory.Rows[i].Cells[7].Text = "-";
+                        gvHistory.Rows[i].Cells[7].ForeColor = System.Drawing.Color.Black;
+                    }
                     if (Util.StringEqual(gvHistory.Rows[i].Cells[7].Text, new string[] { "0" })) {
                         gvHistory.Rows[i].Cells[7].Text = "ไม่อนุมัติ";
                         gvHistory.Rows[i].Cells[7].ForeColor = System.Drawing.Color.Red;

@@ -260,7 +260,7 @@ namespace WEB_PERSONAL {
             }
             for (int i = 2; i < tb.Rows.Count; i++) {
                 for (int j = 0; j < 15; j++) {
-                    tb.Rows[i].Cells[j].Style.Add("border-bottom", "1px solid #000000");
+                    tb.Rows[i].Cells[j].Style.Add("border", "1px solid #000000");
                 }
                 
             }

@@ -220,6 +220,15 @@ namespace WEB_PERSONAL {
                     }
 
                 }
+
+                string _psCLImage = DatabaseManager.GetPersonImageFileName(leaveData.CL_ID);
+                string _psCHImage = DatabaseManager.GetPersonImageFileName(leaveData.CH_ID);
+                if (_psCLImage != "") {
+                    psCLImage.Src = "Upload/PersonImage/" + _psCLImage;
+                }
+                if (_psCHImage != "") {
+                    psCHImage.Src = "Upload/PersonImage/" + _psCHImage;
+                }
             }
 
             

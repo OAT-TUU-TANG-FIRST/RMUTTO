@@ -50,77 +50,42 @@
     <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex="0">
         <asp:View ID="View1" runat="server">
 
-            <div class="ps-box-mt10">
-                <div class="ps-box-i0">
-                    <div class="ps-box-hd10">
-                        <img src="Image/Small/correct.png" />รายการที่เสร็จสิ้น
-                    </div>
-                    <div class="ps-box-ct10">
-                        <asp:Label ID="lbFinish" runat="server" Text="ไม่มีข้อมูล" CssClass="lbGV"></asp:Label>
-                        <asp:GridView ID="gvFinish" runat="server" CssClass="ps-gridview-x16" AllowPaging="True" PageSize="10" OnPageIndexChanging="gvFinish_PageIndexChanging"></asp:GridView>
-                    </div>
-                </div>
+            <div>
 
-                <div class="ps-box-i0">
-                    <div class="ps-box-hd10">
-                        <img src="Image/Small/progress.png" />รายการที่อยู่ระหว่างการดำเนินการ
-                    </div>
-                    <div class="ps-box-ct10">
-                        <asp:Label ID="lbProgressing" runat="server" Text="ไม่มีข้อมูล" CssClass="lbGV"></asp:Label>
-                        <asp:GridView ID="gvProgressing" runat="server" CssClass="ps-gridview-x16" AllowPaging="True" PageSize="10" OnPageIndexChanging="gvProgressing_PageIndexChanging"></asp:GridView>
-                    </div>
-                </div>
+                <div class="ps-div-title-red-left">รายการที่เสร็จสิ้น</div>
+                <asp:Label ID="lbFinish" runat="server" Text="ไม่มีข้อมูล" CssClass="lbGV"></asp:Label>
+                <asp:GridView ID="gvFinish" runat="server" CssClass="ps-table-1" style="margin-bottom: 20px;" AllowPaging="True" PageSize="10" OnPageIndexChanging="gvFinish_PageIndexChanging"></asp:GridView>
 
-                <div class="ps-box-i0">
-
-                    <div class="ps-box-hd10">
-                        <img src="Image/Small/table.png" />ประวัติการลา
-                    </div>
-                    <div class="ps-box-ct10">
-                        <asp:Label ID="lbHistory" runat="server" Text="ไม่พบข้อมูล" CssClass="lbGV"></asp:Label>
-                        <asp:GridView ID="gvHistory" runat="server" CssClass="ps-gridview-x16" AllowPaging="True" PageSize="10" OnPageIndexChanging="gvHistory_PageIndexChanging"></asp:GridView>
-                    </div>
-                </div>
+                <div class="ps-div-title-red-left">รายการที่อยู่ระหว่างการดำเนินการ</div>
+                <asp:Label ID="lbProgressing" runat="server" Text="ไม่มีข้อมูล" CssClass="lbGV"></asp:Label>
+                <asp:GridView ID="gvProgressing" runat="server" CssClass="ps-table-1" style="margin-bottom: 20px;" AllowPaging="True" PageSize="10" OnPageIndexChanging="gvProgressing_PageIndexChanging"></asp:GridView>
+    
+                <div class="ps-div-title-red-left">ประวัติการลา</div>
+                <asp:Label ID="lbHistory" runat="server" Text="ไม่พบข้อมูล" CssClass="lbGV"></asp:Label>
+                <asp:GridView ID="gvHistory" runat="server" CssClass="ps-table-1" style="margin-bottom: 20px;" AllowPaging="True" PageSize="10" OnPageIndexChanging="gvHistory_PageIndexChanging"></asp:GridView>
+  
             </div>
 
 
         </asp:View>
         <asp:View ID="View2" runat="server">
-            <div class="ps-box-mt10">
+            <div>
 
-           
-            <div class="ps-box-i0">
-                <div class="ps-box-hd10">
-                    <img src="Image/Small/pencil_y.png" />ประวัติการลาที่เป็นผู้ลงความเห็น
-                </div>
-                <div class="ps-box-ct10">
-                    <asp:Label ID="lbCL" runat="server" Text="ไม่มีข้อมูล" CssClass="lbGV"></asp:Label>
-                    <asp:GridView ID="gvCL" runat="server" CssClass="ps-gridview-x16" AllowPaging="True" PageSize="10" OnPageIndexChanging="gvCL_PageIndexChanging"></asp:GridView>
+                <div class="ps-div-title-red-left">ประวัติการลาที่เป็นผู้ลงความเห็น</div>
+                <asp:Label ID="lbCL" runat="server" Text="ไม่มีข้อมูล" CssClass="lbGV"></asp:Label>
+                <asp:GridView ID="gvCL" runat="server" CssClass="ps-table-1" style="margin-bottom: 20px;" AllowPaging="True" PageSize="10" OnPageIndexChanging="gvCL_PageIndexChanging"></asp:GridView>
 
-                </div>
+                <div class="ps-div-title-red-left">ประวัติการลาที่เป็นผู้อนุมัติ</div>
+                <asp:Label ID="lbCH" runat="server" Text="ไม่มีข้อมูล" CssClass="lbGV"></asp:Label>
+                <asp:GridView ID="gvCH" runat="server" CssClass="ps-table-1" style="margin-bottom: 20px;" AllowPaging="True" PageSize="10" OnPageIndexChanging="gvCH_PageIndexChanging"></asp:GridView>
+
             </div>
-            <div class="ps-box-i0">
-                <div class="ps-box-hd10">
-                    <img src="Image/Small/correct.png" />ประวัติการลาที่เป็นผู้อนุมัติ
-                </div>
-                <div class="ps-box-ct10">
-                    <asp:Label ID="lbCH" runat="server" Text="ไม่มีข้อมูล" CssClass="lbGV"></asp:Label>
-                    <asp:GridView ID="gvCH" runat="server" CssClass="ps-gridview-x16" AllowPaging="True" PageSize="10" OnPageIndexChanging="gvCH_PageIndexChanging"></asp:GridView>
-
-                </div>
-            </div>
-                 </div>
             
         </asp:View>
         <asp:View ID="View3" runat="server">
 
-            <div class="ps-box">
-                <div class="ps-box-i0">
-                    <div class="ps-box-hd10">
-                        จำนวนวันที่ลา
-                    </div>
-                    <div class="ps-box-ct10">
-                        <asp:Table ID="Table1" runat="server" CssClass="ps-gridview">
+            <div>
+                        <asp:Table ID="Table1" runat="server" CssClass="ps-table-1 ps-table-1se">
                 <asp:TableHeaderRow>
                     <asp:TableHeaderCell></asp:TableHeaderCell>
                     <asp:TableHeaderCell ColumnSpan="3">ลาป่วย</asp:TableHeaderCell>
@@ -158,8 +123,6 @@
                     <asp:TableHeaderCell>สูงสุด</asp:TableHeaderCell>
                 </asp:TableHeaderRow>
             </asp:Table>
-                    </div>
-                </div>
             </div>
 
         </asp:View>
