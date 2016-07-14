@@ -1239,3 +1239,7 @@ input[type=radio] + label {
 .ps-table-1se td {
     padding: 5px;
 }
+.ps-person-display {
+    display: inline-block;
+    margin: 10px 40px;
+}

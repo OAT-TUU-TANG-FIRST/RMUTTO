@@ -248,7 +248,7 @@ namespace WEB_PERSONAL {
             FuncPermission(cbAddPerson2, loginPerson.CitizenID, 4);
             FuncPermission(cbAddPerson3, loginPerson.CitizenID, 5);
             FuncPermission(cbAddPerson4, loginPerson.CitizenID, 6);
-            FuncPermission(cbAddPerson5, loginPerson.CitizenID, 7);
+            //FuncPermission(cbAddPerson5, loginPerson.CitizenID, 7);
             FuncPermission(cbAddPerson6, loginPerson.CitizenID, 8);
 
             FuncPermission(cbAddInsig1, loginPerson.CitizenID, 9);
@@ -257,6 +257,8 @@ namespace WEB_PERSONAL {
 
             FuncPermission(cbAddManage1, loginPerson.CitizenID, 12);
             FuncPermission(cbAddManage2, loginPerson.CitizenID, 13);
+
+            FuncPermission(cbPersonPosition, loginPerson.CitizenID, 14);
 
             //---------
 

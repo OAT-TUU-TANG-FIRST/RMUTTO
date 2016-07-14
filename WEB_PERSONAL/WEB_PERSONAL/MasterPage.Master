@@ -163,7 +163,7 @@
                             </div>
                             <div class="ps-box-i0">
                                 <div class="ps-box-ct10">
-                                    <div>เวอร์ชั่น : v1.1.0</div>
+                                    <div>เวอร์ชั่น : v1.2.0</div>
                                     <div style="display: none;">ตัวนับ : <span id="s_counter" runat="server"></span></div>
                                 </div>
                             </div>
@@ -229,7 +229,9 @@
                                     <a href="ListPerson-ADMIN.aspx" id="cbAddPerson5" runat="server"><img src="Image/Small/person2.png" />รายชื่อบุคลากร</a>
                                     <a href="SEMINAR-GENERAL.aspx" id="cbNotPerson1" runat="server"><img src="Image/Small/person2.png" />การเพิ่มพัฒนาบุคลากร</a>
                                     <a href="SEMINAR-ADMIN.aspx" id="cbAddPerson6" runat="server"><img src="Image/Small/person2.png" />การแก้ไขพัฒนาบุคลากร</a>
-                                    <a href="Report-Custom-Person.aspx" id="cbNotPerson2" runat="server"><img src="Image/Small/report.png" />ออกรายงานบุคลากร</a>
+                                    <a href="PersonBranch.aspx" id="cbPersonMap" runat="server"><img src="Image/Small/person2.png" />แผนผังบุคลากร</a>
+                                    <a href="PersonPositionManagement.aspx" id="cbPersonPosition" runat="server"><img src="Image/Small/person2.png" />จัดการตำแหน่งบุคลากร</a>
+                                    <a href="PersonReport.aspx" id="cbNotPerson2" runat="server"><img src="Image/Small/report.png" />ออกรายงานบุคลากร</a>
                                     <a href="Report-Custom-Person.aspx" id="cbNotPerson3" runat="server"><img src="Image/Small/report.png" />ออกรายงานพัฒนาบุคลากร</a>
                                 </div>
                             </div>

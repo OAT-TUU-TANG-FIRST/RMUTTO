@@ -981,6 +981,8 @@
     <Content Include="packages.config" />
     <Content Include="Permission.aspx" />
     <Content Include="PersonBranch.aspx" />
+    <Content Include="PersonPositionManagement.aspx" />
+    <Content Include="PersonReport.aspx" />
     <Content Include="PosiGoverAcad-ADMIN.aspx" />
     <Content Include="PosiGoverSalary-ADMIN.aspx" />
     <Content Include="PosiInsigDegree-ADMIN.aspx" />
@@ -1401,6 +1403,20 @@
     </Compile>
     <Compile Include="PersonBranch.aspx.designer.cs">
       <DependentUpon>PersonBranch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PersonPositionManagement.aspx.cs">
+      <DependentUpon>PersonPositionManagement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PersonPositionManagement.aspx.designer.cs">
+      <DependentUpon>PersonPositionManagement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PersonReport.aspx.cs">
+      <DependentUpon>PersonReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PersonReport.aspx.designer.cs">
+      <DependentUpon>PersonReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="PosiGoverAcad-ADMIN.aspx.cs">
       <DependentUpon>PosiGoverAcad-ADMIN.aspx</DependentUpon>

@@ -202,6 +202,24 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor cbAddPerson6;
         
         /// <summary>
+        /// cbPersonMap control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor cbPersonMap;
+        
+        /// <summary>
+        /// cbPersonPosition control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor cbPersonPosition;
+        
+        /// <summary>
         /// cbNotPerson2 control.
         /// </summary>
         /// <remarks>
