@@ -40,256 +40,159 @@ namespace WEB_PERSONAL {
                 profile_pic.Src = "Image/Small/person2.png";
             }
 
-            int v1 = DatabaseManager.GetLeaveRequiredCountByCommanderLow(loginPerson.CitizenID);
-            if (v1 != 0) {
-                lbLeaveCommentCount.Text = "" + v1;
-                lbLeaveCommentCount.Visible = true;
-            } else {
-                lbLeaveCommentCount.Text = "";
-                lbLeaveCommentCount.Visible = false;
-            }
-
-            int v2 = DatabaseManager.GetLeaveRequiredCountByCommanderHigh(loginPerson.CitizenID);
-            if (v2 != 0) {
-                lbLeaveAllowCount.Text = "" + v2;
-                lbLeaveAllowCount.Visible = true;
-            } else {
-                lbLeaveAllowCount.Text = "";
-                lbLeaveAllowCount.Visible = false;
-            }
-
-            /*if(v1 + v2 == 0) {
-                lbN1.Text = "ไม่มีการแจ้งเตือนการลา";
-            } else {
-                lbN1.Text = "คุณมี " + (v1 + v2) + " การแจ้งเตือนการลา";
-            }*/
-
-            /*
-            int count = 0;
-            using (OleDbConnection con = new OleDbConnection(DatabaseManager.CONNECTION_STRING)) {
-                con.Open();
-                using (OleDbCommand com = new OleDbCommand("SELECT COUNT(*) FROM TB_VIEW_PERMISSION WHERE PS_CITIZEN_ID = '" + loginPerson.CitizenID + "'", con)) {
-                    using (OleDbDataReader reader = com.ExecuteReader()) {
-                        while (reader.Read()) {
-                            count = int.Parse(reader.GetValue(0).ToString());
-                        }
-                    }
-                }
-            }
-            if(count == 0) {
-                LinkAddPerson.Visible = false;
-                LinkDropDown.Visible = false;
-                LinkDeveloper.Visible = false;
-                LinkUpload.Visible = false;
-                LinkEditPerson.Visible = false;
-                LinkWorkingTime.Visible = false;
-            } else {
-                using (OleDbConnection con = new OleDbConnection(DatabaseManager.CONNECTION_STRING)) {
-                    con.Open();
-                    using (OleDbCommand com = new OleDbCommand("SELECT * FROM TB_VIEW_PERMISSION WHERE PS_CITIZEN_ID = '" + loginPerson.CitizenID + "'", con)) {
-                        using (OleDbDataReader reader = com.ExecuteReader()) {
-                            while (reader.Read()) {
-                                string b_addPerson = reader.GetValue(3).ToString();
-                                string b_dropdown = reader.GetValue(4).ToString();
-                                string b_developer = reader.GetValue(5).ToString();
-                                string b_upload = reader.GetValue(6).ToString();
-                                string b_editPerson = reader.GetValue(7).ToString();
-                                string b_workingTime = reader.GetValue(8).ToString();
-                                if (b_addPerson == "0") {
-                                    LinkAddPerson.Visible = false;
-                                }
-                                if (b_dropdown == "0") {
-                                    LinkDropDown.Visible = false;
-                                }
-                                if (b_developer == "0") {
-                                    LinkDeveloper.Visible = false;
-                                }
-                                if (b_upload == "0") {
-                                    LinkUpload.Visible = false;
-                                }
-                                if (b_editPerson == "0") {
-                                    LinkEditPerson.Visible = false;
-                                }
-                                if (b_workingTime == "0") {
-                                    LinkWorkingTime.Visible = false;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            */
-
             //---------
-            int count_cl = DatabaseManager.GetLeaveRequiredCountByCommanderLow(loginPerson.CitizenID);
-            int count_ch = DatabaseManager.GetLeaveRequiredCountByCommanderHigh(loginPerson.CitizenID);
+            int count_cl = 0;
+            int count_ch = 0;
             int count_leave_finish = 0;
+            int count_ins = 0;
+            int count_insadminknow = 0;
             OracleConnection.ClearAllPools();
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
+                using (OracleCommand com = new OracleCommand("SELECT COUNT(LEAVE_ID) FROM LEV_DATA WHERE LEAVE_STATUS_ID in(1,5) AND CL_ID = '" + loginPerson.CitizenID + "'", con)) {
+                    using (OracleDataReader reader = com.ExecuteReader()) {
+                        while (reader.Read()) {
+                            count_cl = reader.GetInt32(0);
+                        }
+                    }
+                }
+                if (count_cl != 0) {
+                    lbLeaveCommentCount.Text = "" + count_cl;
+                    lbLeaveCommentCount.Visible = true;
+                } else {
+                    lbLeaveCommentCount.Text = "";
+                    lbLeaveCommentCount.Visible = false;
+                }
+
+                using (OracleCommand com = new OracleCommand("SELECT COUNT(LEAVE_ID) FROM LEV_DATA WHERE LEAVE_STATUS_ID in(2,6) AND CH_ID = '" + loginPerson.CitizenID + "'", con)) {
+                    using (OracleDataReader reader = com.ExecuteReader()) {
+                        while (reader.Read()) {
+                            count_ch = reader.GetInt32(0);
+                        }
+                    }
+                }
+                if (count_ch != 0) {
+                    lbLeaveAllowCount.Text = "" + count_ch;
+                    lbLeaveAllowCount.Visible = true;
+                } else {
+                    lbLeaveAllowCount.Text = "";
+                    lbLeaveAllowCount.Visible = false;
+                }
+
                 using (OracleCommand com = new OracleCommand("SELECT COUNT(LEAVE_ID) FROM LEV_DATA WHERE PS_ID = '" + loginPerson.CitizenID + "' AND LEAVE_STATUS_ID in(3,7)", con)) {
                     using (OracleDataReader reader = com.ExecuteReader()) {
                         while (reader.Read()) {
-                            count_leave_finish = int.Parse(reader.GetValue(0).ToString());
+                            count_leave_finish = reader.GetInt32(0);
                         }
                     }
                 }
-            }
-            int count_ins = 0;
-            OracleConnection.ClearAllPools();
-            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
-                con.Open();
                 using (OracleCommand com = new OracleCommand("SELECT COUNT(IR_ID) FROM TB_INSIG_REQUEST WHERE IR_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND IR_STATUS = 1", con)) {
                     using (OracleDataReader reader = com.ExecuteReader()) {
                         while (reader.Read()) {
-                            count_ins = int.Parse(reader.GetValue(0).ToString());
+                            count_ins = reader.GetInt32(0);
                         }
                     }
                 }
-            }
-            int count_insadminknow = 0;
-            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
-            {
-                con.Open();
-                using (OracleCommand com = new OracleCommand("SELECT COUNT(IR_STATUS) FROM TB_INSIG_REQUEST WHERE IR_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND IR_STATUS = 2", con))
-                {
-                    using (OracleDataReader reader = com.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            count_insadminknow = int.Parse(reader.GetValue(0).ToString());
+                using (OracleCommand com = new OracleCommand("SELECT COUNT(IR_STATUS) FROM TB_INSIG_REQUEST WHERE IR_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND IR_STATUS = 2", con)) {
+                    using (OracleDataReader reader = com.ExecuteReader()) {
+                        while (reader.Read()) {
+                            count_insadminknow = reader.GetInt32(0);
                         }
                     }
                 }
-            }
 
-            int count = count_cl + count_ch + count_leave_finish + count_ins + count_insadminknow;
+                int count = count_cl + count_ch + count_leave_finish + count_ins + count_insadminknow;
 
-            noti_leave_none.Visible = false;
-            noti_cl.Visible = false;
-            noti_ch.Visible = false;
-            noti_leave_finish.Visible = false;
+                noti_leave_none.Visible = false;
+                noti_cl.Visible = false;
+                noti_ch.Visible = false;
+                noti_leave_finish.Visible = false;
 
-            noti_ins_none.Visible = false;
-            noti_ins.Visible = false;
-            noti_insadminknow.Visible = false;
+                noti_ins_none.Visible = false;
+                noti_ins.Visible = false;
+                noti_insadminknow.Visible = false;
 
-            if (count_cl + count_ch + count_leave_finish == 0) {
-                noti_leave_none.Visible = true;
-            } else {
-                if (count_cl != 0) {
-                    noti_cl.Visible = true;
-                }
-                if (count_ch != 0) {
-                    noti_ch.Visible = true;
-                }
-                if (count_leave_finish != 0) {
-                    noti_leave_finish.Visible = true;
-                }
-            }
-
-            if (count_ins + count_insadminknow == 0) {
-                noti_ins_none.Visible = true;
-            } else {
-                if (count_ins != 0) {
-                    noti_ins.Visible = true;
-                }
-                if (count_insadminknow != 0)
-                {
-                    noti_insadminknow.Visible = true;
-                }
-            }
-
-            if (count > 0) {
-                noti_alert.InnerText = "" + count;
-                noti_alert.Attributes["class"] = "ps-ms-main-hd-noti-alert";
-            }
-            //---------
-            /*{
-                bool จัดการวันปฏิบัติราชการ = false;
-                using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
-                    con.Open();
-                    using (OracleCommand com = new OracleCommand("SELECT * FROM TB_PERMISSION WHERE CITIZEN_ID = '" + loginPerson.CitizenID + "' AND PERMISSION_TYPE = 1", con)) {
-                        using (OracleDataReader reader = com.ExecuteReader()) {
-                            while (reader.Read()) {
-                                จัดการวันปฏิบัติราชการ = true;
-                            }
-                        }
-                    }
-                }
-                if (จัดการวันปฏิบัติราชการ) {
-                    WorkingDay.Visible = true;
+                if (count_cl + count_ch + count_leave_finish == 0) {
+                    noti_leave_none.Visible = true;
                 } else {
-                    WorkingDay.Visible = false;
+                    if (count_cl != 0) {
+                        noti_cl.Visible = true;
+                    }
+                    if (count_ch != 0) {
+                        noti_ch.Visible = true;
+                    }
+                    if (count_leave_finish != 0) {
+                        noti_leave_finish.Visible = true;
+                    }
                 }
-            }
-            {
-                bool ออกรายงานการลา = false;
-                using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
-                    con.Open();
-                    using (OracleCommand com = new OracleCommand("SELECT * FROM TB_PERMISSION WHERE CITIZEN_ID = '" + loginPerson.CitizenID + "' AND PERMISSION_TYPE = 2", con)) {
-                        using (OracleDataReader reader = com.ExecuteReader()) {
-                            while (reader.Read()) {
-                                ออกรายงานการลา = true;
-                            }
+
+                if (count_ins + count_insadminknow == 0) {
+                    noti_ins_none.Visible = true;
+                } else {
+                    if (count_ins != 0) {
+                        noti_ins.Visible = true;
+                    }
+                    if (count_insadminknow != 0) {
+                        noti_insadminknow.Visible = true;
+                    }
+                }
+
+                if (count > 0) {
+                    noti_alert.InnerText = "" + count;
+                    noti_alert.Attributes["class"] = "ps-ms-main-hd-noti-alert";
+                }
+
+                //--Permission--
+
+                WorkingDay.Visible = false;
+                LeaveReport.Visible = false;
+                cbAddPerson1.Visible = false;
+                cbAddPerson2.Visible = false;
+                cbAddPerson3.Visible = false;
+                cbAddPerson4.Visible = false;
+                cbAddPerson6.Visible = false;
+                cbAddInsig1.Visible = false;
+                cbAddInsig2.Visible = false;
+                cbAddInsig4.Visible = false;
+                cbAddManage1.Visible = false;
+                cbAddManage2.Visible = false;
+                cbPersonPosition.Visible = false;
+
+                using (OracleCommand com = new OracleCommand("SELECT PERMISSION_TYPE FROM TB_PERMISSION WHERE CITIZEN_ID = '" + loginPerson.CitizenID + "'", con)) {
+                    using (OracleDataReader reader = com.ExecuteReader()) {
+                        while (reader.Read()) {
+                            int type = reader.GetInt32(0);
+                            if (type == 1) WorkingDay.Visible = true;
+                            else if (type == 2) LeaveReport.Visible = true;
+                            else if (type == 3) cbAddPerson1.Visible = true;
+                            else if (type == 4) cbAddPerson2.Visible = true;
+                            else if (type == 5) cbAddPerson3.Visible = true;
+                            else if (type == 6) cbAddPerson4.Visible = true;
+                            else if (type == 8) cbAddPerson6.Visible = true;
+                            else if (type == 9) cbAddInsig1.Visible = true;
+                            else if (type == 10) cbAddInsig2.Visible = true;
+                            else if (type == 11) cbAddInsig4.Visible = true;
+                            else if (type == 12) cbAddManage1.Visible = true;
+                            else if (type == 13) cbAddManage2.Visible = true;
+                            else if (type == 14) cbPersonPosition.Visible = true;
+
                         }
                     }
                 }
-                if (ออกรายงานการลา) {
-                    LeaveReport.Visible = true;
-                } else {
-                    LeaveReport.Visible = false;
+
+                if (!IsPostBack) {
+                    using (OracleCommand com = new OracleCommand("UPDATE TB_WEB SET COUNTER = COUNTER+1 WHERE ID = 1", con)) {
+                        com.ExecuteNonQuery();
+                    }
+                    //s_counter.InnerText = "" + DatabaseManager.GetCounter().ToString("#,###");
                 }
-            }
-            */
-            FuncPermission(WorkingDay, loginPerson.CitizenID, 1);
-            FuncPermission(LeaveReport, loginPerson.CitizenID, 2);
-            FuncPermission(cbAddPerson1, loginPerson.CitizenID, 3);
-            FuncPermission(cbAddPerson2, loginPerson.CitizenID, 4);
-            FuncPermission(cbAddPerson3, loginPerson.CitizenID, 5);
-            FuncPermission(cbAddPerson4, loginPerson.CitizenID, 6);
-            //FuncPermission(cbAddPerson5, loginPerson.CitizenID, 7);
-            FuncPermission(cbAddPerson6, loginPerson.CitizenID, 8);
 
-            FuncPermission(cbAddInsig1, loginPerson.CitizenID, 9);
-            FuncPermission(cbAddInsig2, loginPerson.CitizenID, 10);
-            FuncPermission(cbAddInsig4, loginPerson.CitizenID, 11);
+            }      
 
-            FuncPermission(cbAddManage1, loginPerson.CitizenID, 12);
-            FuncPermission(cbAddManage2, loginPerson.CitizenID, 13);
-
-            FuncPermission(cbPersonPosition, loginPerson.CitizenID, 14);
-
-            //---------
-
-            if (!IsPostBack) {
-                DatabaseManager.AddCounter();
-            }
-            s_counter.InnerText = "" + DatabaseManager.GetCounter().ToString("#,###");
+            
         }
 
-        private void FuncPermission(Control c, string citizenID, int type) {
-            {
-                bool b = false;
-                OracleConnection.ClearAllPools();
-                using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
-                    con.Open();
-                    using (OracleCommand com = new OracleCommand("SELECT * FROM TB_PERMISSION WHERE CITIZEN_ID = '" + citizenID + "' AND PERMISSION_TYPE = " + type, con)) {
-                        using (OracleDataReader reader = com.ExecuteReader()) {
-                            while (reader.Read()) {
-                                b = true;
-                            }
-                        }
-                    }
-                }
-                if (b) {
-                    c.Visible = true;
-                } else {
-                    c.Visible = false;
-                }
-            }
-        }
-
+        
         protected void LinkButton4_Click(object sender, EventArgs e) {
             /*Response.Redirect("Salary.aspx");*/
         }

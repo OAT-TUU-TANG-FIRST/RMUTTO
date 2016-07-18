@@ -258,7 +258,7 @@
             </asp:View>
 
             <asp:View ID="View3" runat="server">
-                <div class="ps-div-title-red">"<strong>ทำการลาสำเร็จ!</strong> คุณสามารถตรวจสอบสถานะการลาได้ที่เมนู การลา -> ประวัติการลา"</div>
+                <div class="ps-div-title-red"><img src="Image/Small/pencil_y.png" class="icon_left"/>ลงความเห็นการลาสำเร็จ</div>
                 <div style="text-align: center; margin-bottom: 10px;">
                     <asp:LinkButton ID="lbu1" runat="server" CssClass="ps-button" OnClick="lbu1_Click"><img src="Image/Small/back.png" class="icon_left"/>กลับหน้าหลัก</asp:LinkButton>
                     <asp:LinkButton ID="lbu2" runat="server" CssClass="ps-button" OnClick="lbu2_Click">ลงความเห็นต่อ<img src="Image/Small/next.png" class="icon_right"/></asp:LinkButton>

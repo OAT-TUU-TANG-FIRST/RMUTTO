@@ -145,7 +145,7 @@ input[type=radio] + label {
 }
 .ps-ms-main-drop a {
     display: block;
-    padding: 4px 5px;
+    padding: 2px 5px;
     text-decoration: none;
     text-align: left;
     color: #ffffff;

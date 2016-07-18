@@ -213,6 +213,7 @@ namespace WEB_PERSONAL {
             }
         }
         public static OracleConnection OC() {
+            OracleConnection.ClearAllPools();
             OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING);
             con.Open();
             return con;
@@ -275,6 +276,7 @@ namespace WEB_PERSONAL {
         }
         public static string TodayDatabaseToDate() {
             string s = "-";
+            OracleConnection.ClearAllPools();
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
                 using (OracleCommand com = new OracleCommand("SELECT TO_CHAR(CURRENT_DATE, 'DD/MM/YYYY') FROM DUAL", con)) {
