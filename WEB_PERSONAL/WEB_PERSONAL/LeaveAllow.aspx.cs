@@ -288,7 +288,7 @@ namespace WEB_PERSONAL {
         }
 
         protected void lbu2_Click(object sender, EventArgs e) {
-            Response.Redirect("LeaveComment.aspx");
+            Response.Redirect("LeaveAllow.aspx");
         }
 
         protected void lbuBack_Click(object sender, EventArgs e) {

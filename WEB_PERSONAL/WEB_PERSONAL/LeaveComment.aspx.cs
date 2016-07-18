@@ -284,6 +284,7 @@ namespace WEB_PERSONAL {
             Person loginPerson = ps.LoginPerson;
 
             int count = 0;
+            OracleConnection.ClearAllPools();
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
                 using (OracleCommand com = new OracleCommand("SELECT COUNT(LEAVE_ID) FROM LEV_LEAVE WHERE CMD_LOW_ID = '" + loginPerson.CitizenID + "' AND LEV_LEAVE.STATE_ID = 1", con)) {
