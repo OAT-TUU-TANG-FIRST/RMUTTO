@@ -85,6 +85,33 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.LinkButton lbuSearch;
         
         /// <summary>
+        /// txtSearchCitizenID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSearchCitizenID;
+        
+        /// <summary>
+        /// LinkButton1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
+        
+        /// <summary>
+        /// lbuRefresh control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbuRefresh;
+        
+        /// <summary>
         /// divState1 control.
         /// </summary>
         /// <remarks>

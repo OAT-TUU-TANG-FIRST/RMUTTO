@@ -42,6 +42,13 @@
             </table>
         </div>
 
+        <div class="ps-div-title-red">
+        <div class="ps-div-title-red"><img src="Image/Small/search.png" class="icon_left"/>ค้นหารายชื่อพนักงาน</div>
+        รหัสบัตรประชาชน :&nbsp;<asp:TextBox ID="txtSearchCitizenID" runat="server" CssClass="ps-div-title-red" Width="230px" MaxLength="13"></asp:TextBox>
+        <asp:LinkButton ID="LinkButton1" runat="server" CssClass="ps-button"><img src="Image/Small/search.png" class="icon_left"/>ค้นหา</asp:LinkButton>
+        <asp:LinkButton ID="lbuRefresh" runat="server" CssClass="ps-button"><img src="Image/Small/refresh.png" class="icon_left"/>รีเฟรช</asp:LinkButton>
+        </div>
+
         <div id="divState1" runat="server">
             <div class="ps-div-title-red">รายชื่อบุคลากร</div>
             <asp:Table ID="tbPerson" runat="server" CssClass="ps-table-1" style="margin: 0 auto;"></asp:Table>

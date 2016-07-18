@@ -13,6 +13,33 @@ namespace WEB_PERSONAL {
     public partial class ListPerson_ADMIN {
         
         /// <summary>
+        /// txtSearchCitizenID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSearchCitizenID;
+        
+        /// <summary>
+        /// lbuSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbuSearch;
+        
+        /// <summary>
+        /// lbuRefresh control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbuRefresh;
+        
+        /// <summary>
         /// GridView1 control.
         /// </summary>
         /// <remarks>
