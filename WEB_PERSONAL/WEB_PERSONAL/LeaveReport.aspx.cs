@@ -73,123 +73,186 @@ namespace WEB_PERSONAL {
                 tb.Rows.Add(row);
             }
 
-            List<Person> persons = new List<Person>();
+            List<string> persons = new List<string>();
+            OracleConnection.ClearAllPools();
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
-                using (OracleCommand command = new OracleCommand("SELECT PS_CITIZEN_ID FROM PS_PERSON ORDER BY PS_CITIZEN_ID ASC", con)) {
-                    using (OracleDataReader reader = command.ExecuteReader()) {
+                using (OracleCommand com = new OracleCommand("SELECT PS_CITIZEN_ID FROM PS_PERSON ORDER BY PS_CITIZEN_ID ASC", con)) {
+                    using (OracleDataReader reader = com.ExecuteReader()) {
                         while (reader.Read()) {
-                            Person ps = DatabaseManager.GetPerson(reader.GetString(0));
-                            persons.Add(ps);
+                            //Person ps = DatabaseManager.GetPerson(reader.GetString(0));
+                            //persons.Add(ps);
+                            persons.Add(reader.GetString(0));
                         }
                     }
                 }
-            }
 
-            int budgetYear = int.Parse(DropDownList1.SelectedValue) - 543;
+                int budgetYear = int.Parse(DropDownList1.SelectedValue) - 543;
 
-            for (int i = 0; i < persons.Count; i++) {
-                Person ps = persons[i];
-                TableRow row = new TableRow();
-                {
-                    TableCell cell = new TableCell();
-                    cell.Text = "" + (i + 1);
-                    row.Cells.Add(cell);
-                }
-                {
-                    TableCell cell = new TableCell();
-                    cell.Text = ps.FirstNameAndLastName;
-                    row.Cells.Add(cell);
-                }
-                {
-                    TableCell cell = new TableCell();
-                    cell.Text = ps.PositionName;
-                    row.Cells.Add(cell);
-                }
-                {
-                    TableCell cell = new TableCell();
-                    cell.Text = "" + DatabaseManager.ExecuteInt("SELECT NVL(COUNT(LEAVE_ID),0) FROM LEV_DATA WHERE LEAVE_TYPE_ID = 1 AND PS_ID = '" + ps.CitizenID + "' AND BUDGET_YEAR = " + budgetYear);
-                    row.Cells.Add(cell);
-                }
-                {
-                    TableCell cell = new TableCell();
-                    cell.Text = "" + DatabaseManager.ExecuteInt("SELECT NVL(SUM(TOTAL_DAY),0) FROM LEV_DATA WHERE LEAVE_TYPE_ID = 1 AND PS_ID = '" + ps.CitizenID + "' AND BUDGET_YEAR = " + budgetYear);
-                    row.Cells.Add(cell);
-                }
-                {
-                    TableCell cell = new TableCell();
-                    cell.Text = "" + DatabaseManager.ExecuteInt("SELECT NVL(COUNT(LEAVE_ID),0) FROM LEV_DATA WHERE LEAVE_TYPE_ID = 2 AND PS_ID = '" + ps.CitizenID + "' AND BUDGET_YEAR = " + budgetYear);
-                    row.Cells.Add(cell);
-                }
-                {
-                    TableCell cell = new TableCell();
-                    cell.Text = "" + DatabaseManager.ExecuteInt("SELECT NVL(SUM(TOTAL_DAY),0) FROM LEV_DATA WHERE LEAVE_TYPE_ID = 2 AND PS_ID = '" + ps.CitizenID + "' AND BUDGET_YEAR = " + budgetYear);
-                    row.Cells.Add(cell);
-                }
-                {
-                    TableCell cell = new TableCell();
-                    cell.Text = "" + DatabaseManager.ExecuteInt("SELECT NVL(COUNT(LEAVE_ID),0) FROM LEV_DATA WHERE LEAVE_TYPE_ID = 4 AND PS_ID = '" + ps.CitizenID + "' AND BUDGET_YEAR = " + budgetYear);
-                    row.Cells.Add(cell);
-                }
-                {
-                    TableCell cell = new TableCell();
-                    cell.Text = "" + DatabaseManager.ExecuteInt("SELECT NVL(SUM(TOTAL_DAY),0) FROM LEV_DATA WHERE LEAVE_TYPE_ID = 4 AND PS_ID = '" + ps.CitizenID + "' AND BUDGET_YEAR = " + budgetYear);
-                    row.Cells.Add(cell);
-                }
-                {
-                    TableCell cell = new TableCell();
-                    cell.Text = "" + DatabaseManager.ExecuteInt("SELECT NVL(COUNT(WORKTIME_ID),0) FROM LEV_WORKTIME WHERE LATE = 1 AND CITIZEN_ID = '" + ps.CitizenID + "' AND TODAY > TO_DATE('30-09-" + (budgetYear-1) + "', 'DD-MM-YYYY') AND TODAY < TO_DATE('01-10-" + (budgetYear) + "', 'DD-MM-YYYY')");
-                    row.Cells.Add(cell);
-                }
-                {
-                    TableCell cell = new TableCell();
-                    cell.Text = "" + DatabaseManager.ExecuteInt("SELECT NVL(COUNT(WORKTIME_ID),0) FROM LEV_WORKTIME WHERE ABSENT = 1 AND CITIZEN_ID = '" + ps.CitizenID + "' AND TODAY > TO_DATE('30-09-" + (budgetYear-1) + "', 'DD-MM-YYYY') AND TODAY < TO_DATE('01-10-" + (budgetYear) + "', 'DD-MM-YYYY')");
-                    row.Cells.Add(cell);
-                }
-                {
-                    TableCell cell = new TableCell();
-                    cell.Text = "";
-                    row.Cells.Add(cell);
-                }
-                {
-                   
-                    using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
-                        con.Open();
-                        {
-                            TableCell cell = new TableCell();
-                            cell.Text = "";
-                            using (OracleCommand command = new OracleCommand("SELECT FROM_DATE FROM LEV_DATA WHERE PS_ID = '" + ps.CitizenID + "' AND LEAVE_TYPE_ID = 3 ORDER BY LEAVE_ID DESC", con)) {
-                                using (OracleDataReader reader = command.ExecuteReader()) {
-                                    if (reader.Read()) {
-                                        cell.Text = reader.GetDateTime(0).ToLongDateString();
-                                    }
+                for (int i = 0; i < persons.Count; i++) {
+                    //Person ps = persons[i];
+                    string citizenID = persons[i];
+                    TableRow row = new TableRow();
+                    {
+                        TableCell cell = new TableCell();
+                        cell.Text = "" + (i + 1);
+                        row.Cells.Add(cell);
+                    }
+                    {
+                        TableCell cell = new TableCell();
+                        //cell.Text = ps.FirstNameAndLastName;
+                        using (OracleCommand com = new OracleCommand("SELECT PS_FN_TH || ' ' || PS_LN_TH FROM PS_PERSON WHERE PS_CITIZEN_ID = '" + citizenID + "'", con)) {
+                            using (OracleDataReader reader = com.ExecuteReader()) {
+                                while (reader.Read()) {
+                                    cell.Text = reader.GetString(0);
                                 }
                             }
-                            row.Cells.Add(cell);
                         }
-                        {
-                            TableCell cell = new TableCell();
-                            cell.Text = "";
-                            using (OracleCommand command = new OracleCommand("SELECT FROM_DATE FROM LEV_DATA WHERE PS_ID = '" + ps.CitizenID + "' AND LEAVE_TYPE_ID = 6 ORDER BY LEAVE_ID DESC", con)) {
-                                using (OracleDataReader reader = command.ExecuteReader()) {
-                                    if (reader.Read()) {
-                                        cell.Text = reader.GetDateTime(0).ToLongDateString();
-                                    }
+                        row.Cells.Add(cell);
+                    }
+                    {
+                        TableCell cell = new TableCell();
+                        //cell.Text = ps.PositionName;
+                        using (OracleCommand com = new OracleCommand("SELECT TB_POSITION.NAME FROM PS_PERSON, TB_POSITION WHERE PS_CITIZEN_ID = '" + citizenID + "' AND PS_POSITION_ID = TB_POSITION.ID", con)) {
+                            using (OracleDataReader reader = com.ExecuteReader()) {
+                                while (reader.Read()) {
+                                    cell.Text = reader.GetString(0);
                                 }
                             }
-                            row.Cells.Add(cell);
                         }
-
+                        row.Cells.Add(cell);
+                    }
+                    {
+                        TableCell cell = new TableCell();
+                        using (OracleCommand com = new OracleCommand("SELECT NVL(COUNT(LEAVE_ID),0) FROM LEV_DATA WHERE LEAVE_TYPE_ID = 1 AND PS_ID = '" + citizenID + "' AND BUDGET_YEAR = " + budgetYear, con)) {
+                            using(OracleDataReader reader = com.ExecuteReader()) {
+                                while(reader.Read()) {
+                                    cell.Text = "" + reader.GetInt32(0);
+                                }
+                            }
+                        }
+                        row.Cells.Add(cell);
+                    }
+                    {
+                        TableCell cell = new TableCell();
+                        using (OracleCommand com = new OracleCommand("SELECT NVL(SUM(TOTAL_DAY),0) FROM LEV_DATA WHERE LEAVE_TYPE_ID = 1 AND PS_ID = '" + citizenID + "' AND BUDGET_YEAR = " + budgetYear, con)) {
+                            using (OracleDataReader reader = com.ExecuteReader()) {
+                                while (reader.Read()) {
+                                    cell.Text = "" + reader.GetInt32(0);
+                                }
+                            }
+                        }
+                        row.Cells.Add(cell);
+                    }
+                    {
+                        TableCell cell = new TableCell();
+                        using (OracleCommand com = new OracleCommand("SELECT NVL(COUNT(LEAVE_ID),0) FROM LEV_DATA WHERE LEAVE_TYPE_ID = 2 AND PS_ID = '" + citizenID + "' AND BUDGET_YEAR = " + budgetYear, con)) {
+                            using (OracleDataReader reader = com.ExecuteReader()) {
+                                while (reader.Read()) {
+                                    cell.Text = "" + reader.GetInt32(0);
+                                }
+                            }
+                        }
+                        row.Cells.Add(cell);
+                    }
+                    {
+                        TableCell cell = new TableCell();
+                        using (OracleCommand com = new OracleCommand("SELECT NVL(SUM(TOTAL_DAY),0) FROM LEV_DATA WHERE LEAVE_TYPE_ID = 2 AND PS_ID = '" + citizenID + "' AND BUDGET_YEAR = " + budgetYear, con)) {
+                            using (OracleDataReader reader = com.ExecuteReader()) {
+                                while (reader.Read()) {
+                                    cell.Text = "" + reader.GetInt32(0);
+                                }
+                            }
+                        }
+                        row.Cells.Add(cell);
+                    }
+                    {
+                        TableCell cell = new TableCell();
+                        using (OracleCommand com = new OracleCommand("SELECT NVL(COUNT(LEAVE_ID),0) FROM LEV_DATA WHERE LEAVE_TYPE_ID = 4 AND PS_ID = '" + citizenID + "' AND BUDGET_YEAR = " + budgetYear, con)) {
+                            using (OracleDataReader reader = com.ExecuteReader()) {
+                                while (reader.Read()) {
+                                    cell.Text = "" + reader.GetInt32(0);
+                                }
+                            }
+                        }
+                        row.Cells.Add(cell);
+                    }
+                    {
+                        TableCell cell = new TableCell();
+                        using (OracleCommand com = new OracleCommand("SELECT NVL(SUM(TOTAL_DAY),0) FROM LEV_DATA WHERE LEAVE_TYPE_ID = 4 AND PS_ID = '" + citizenID + "' AND BUDGET_YEAR = " + budgetYear, con)) {
+                            using (OracleDataReader reader = com.ExecuteReader()) {
+                                while (reader.Read()) {
+                                    cell.Text = "" + reader.GetInt32(0);
+                                }
+                            }
+                        }
+                        row.Cells.Add(cell);
+                    }
+                    {
+                        TableCell cell = new TableCell();
+                        using (OracleCommand com = new OracleCommand("SELECT NVL(COUNT(WORKTIME_ID),0) FROM LEV_WORKTIME WHERE LATE = 1 AND CITIZEN_ID = '" + citizenID + "' AND TODAY > TO_DATE('30-09-" + (budgetYear - 1) + "', 'DD-MM-YYYY') AND TODAY < TO_DATE('01-10-" + (budgetYear) + "', 'DD-MM-YYYY')", con)) {
+                            using (OracleDataReader reader = com.ExecuteReader()) {
+                                while (reader.Read()) {
+                                    cell.Text = "" + reader.GetInt32(0);
+                                }
+                            }
+                        }
+                        row.Cells.Add(cell);
+                    }
+                    {
+                        TableCell cell = new TableCell();
+                        using (OracleCommand com = new OracleCommand("SELECT NVL(COUNT(WORKTIME_ID),0) FROM LEV_WORKTIME WHERE ABSENT = 1 AND CITIZEN_ID = '" + citizenID + "' AND TODAY > TO_DATE('30-09-" + (budgetYear - 1) + "', 'DD-MM-YYYY') AND TODAY < TO_DATE('01-10-" + (budgetYear) + "', 'DD-MM-YYYY')", con)) {
+                            using (OracleDataReader reader = com.ExecuteReader()) {
+                                while (reader.Read()) {
+                                    cell.Text = "" + reader.GetInt32(0);
+                                }
+                            }
+                        }
+                        row.Cells.Add(cell);
+                    }
+                    {
+                        TableCell cell = new TableCell();
+                        cell.Text = "";
+                        row.Cells.Add(cell);
                     }
                     
+
+
+                    {
+                        TableCell cell = new TableCell();
+                        cell.Text = "";
+                        using (OracleCommand command = new OracleCommand("SELECT FROM_DATE FROM LEV_DATA WHERE PS_ID = '" + citizenID + "' AND LEAVE_TYPE_ID = 3 ORDER BY LEAVE_ID DESC", con)) {
+                            using (OracleDataReader reader = command.ExecuteReader()) {
+                                if (reader.Read()) {
+                                    cell.Text = reader.GetDateTime(0).ToLongDateString();
+                                }
+                            }
+                        }
+                        row.Cells.Add(cell);
+                    }
+                    {
+                        TableCell cell = new TableCell();
+                        cell.Text = "";
+                        using (OracleCommand command = new OracleCommand("SELECT FROM_DATE FROM LEV_DATA WHERE PS_ID = '" + citizenID + "' AND LEAVE_TYPE_ID = 6 ORDER BY LEAVE_ID DESC", con)) {
+                            using (OracleDataReader reader = command.ExecuteReader()) {
+                                if (reader.Read()) {
+                                    cell.Text = reader.GetDateTime(0).ToLongDateString();
+                                }
+                            }
+                        }
+                        row.Cells.Add(cell);
+                    }
+
+                    {
+                        TableCell cell = new TableCell();
+                        cell.Text = "";
+                        row.Cells.Add(cell);
+                    }
+                     tb.Rows.Add(row);
+                    
+
                 }
-                
-                {
-                    TableCell cell = new TableCell();
-                    cell.Text = "";
-                    row.Cells.Add(cell);
-                }
-                tb.Rows.Add(row);
+
             }
 
             if (tb.Rows.Count > 2) {

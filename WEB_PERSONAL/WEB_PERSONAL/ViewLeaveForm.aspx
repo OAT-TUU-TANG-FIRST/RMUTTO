@@ -267,7 +267,7 @@
                         <tr>
                             <td class="head" colspan="2">
                                 <img src="Image/Small/person2.png" class="icon_left" />
-                                ผู้บังคับบัญชาระดับกลาง<br />(ผู้ลงความเห็น)</td>
+                                ผู้บังคับบัญชาระดับต้น<br />(ผู้ลงความเห็น)</td>
                         </tr>
                         <tr>
                             <td colspan="2">

@@ -688,7 +688,7 @@ namespace WEB_PERSONAL.Class {
                             com.ExecuteNonQuery();
                         }
                     }
-                } else if(CH_Allow == 0) {
+                } else if(CH_Allow == 2) {
                     if (LeaveTypeID == 1) {
                         using (OracleCommand com = new OracleCommand("UPDATE LEV_CLAIM SET SICK_REQ = SICK_NOW WHERE YEAR = " + BudgetYear + " AND PS_CITIZEN_ID = :PS_CITIZEN_ID", con)) {
                             com.Parameters.Add("PS_CITIZEN_ID", PS_ID);

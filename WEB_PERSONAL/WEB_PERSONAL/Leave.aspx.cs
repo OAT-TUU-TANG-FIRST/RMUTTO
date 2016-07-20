@@ -15,28 +15,38 @@ using Oracle.DataAccess.Client;
 namespace WEB_PERSONAL {
     public partial class Leave : System.Web.UI.Page {
 
+        private Person loginPerson;
         private int businessBeforeDay = 3;
         private int restBeforeDay = 3;
-        private int giveBirthBeforeDay = 3;
-        private int helpGiveBirthBeforeDay = 3;
+        private int giveBirthAfterDay = 30;
+        private int helpGiveBirthAfterDay = 30;
         private int ordainBeforeDay = 60;
         private int hujBeforeDay = 60;
 
         protected void Page_Load(object sender, EventArgs e) {
-            /*if (!IsPostBack) {
-                DatabaseManager.BindDropDown(ddlLeaveType, "SELECT * FROM LEV_TYPE", "LEAVE_TYPE_NAME", "LEAVE_TYPE_ID", "-- กรุณาเลือกประเภทการลา --");
-            }*/
+
+            PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
+            loginPerson = ps.LoginPerson;
+
+            lbReqBusinessDay.Text = businessBeforeDay.ToString();
+            lbReqRestDay.Text = restBeforeDay.ToString();
+            lbReqGiveBirthDay.Text = giveBirthAfterDay.ToString();
+            lbReqHelpGiveBirthDay.Text = helpGiveBirthAfterDay.ToString();
+            lbReqOrdainDay.Text = ordainBeforeDay.ToString();
+            lbReqHujDay.Text = hujBeforeDay.ToString();
+
             DateTime dt = DateTime.Today;
-            lb1.Text = dt.AddDays(60).ToLongDateString();
-            lb4.Text = dt.AddDays(60).ToLongDateString();
-            lb2.Text = dt.AddDays(3).ToLongDateString();
-            lb3.Text = dt.AddDays(3).ToLongDateString();
-            lb5.Text = dt.AddDays(3).ToLongDateString();
-            lb6.Text = dt.AddDays(3).ToLongDateString();
+            lbReqBusinessDate.Text = dt.AddDays(businessBeforeDay).ToLongDateString();
+            lbReqRestDate.Text = dt.AddDays(restBeforeDay).ToLongDateString();
+            lbReqGiveBirthDate.Text = dt.AddDays(-giveBirthAfterDay).ToLongDateString();
+            lbReqHelpGiveBirthDate.Text = dt.AddDays(-helpGiveBirthAfterDay).ToLongDateString();
+            lbReqOrdainDate.Text = dt.AddDays(ordainBeforeDay).ToLongDateString();
+            lbReqHujDate.Text = dt.AddDays(hujBeforeDay).ToLongDateString();
+                
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 OracleConnection.ClearAllPools();
                 con.Open();
-                using (OracleCommand com = new OracleCommand("SELECT SICK_MAX - SICK_NOW, BUSINESS_MAX - BUSINESS_NOW, REST_MAX - REST_NOW, ORDAIN_MAX - ORDAIN_NOW, HUJ_MAX - HUJ_NOW FROM LEV_CLAIM WHERE YEAR = " + Util.BudgetYear(), con)) {
+                using (OracleCommand com = new OracleCommand("SELECT SICK_MAX - SICK_NOW, BUSINESS_MAX - BUSINESS_NOW, REST_MAX - REST_NOW, ORDAIN_MAX - ORDAIN_NOW, HUJ_MAX - HUJ_NOW FROM LEV_CLAIM WHERE PS_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND YEAR = " + Util.BudgetYear(), con)) {
                     using (OracleDataReader reader = com.ExecuteReader()) {
                         while(reader.Read()) {
                             lbSickLeftDay.Text = reader.GetInt32(0).ToString();
@@ -47,14 +57,26 @@ namespace WEB_PERSONAL {
                         }
                     }
                 }
+                using (OracleCommand com = new OracleCommand("SELECT TO_DATE FROM LEV_DATA WHERE PS_ID = '" + loginPerson.CitizenID + "' AND LEAVE_TYPE_ID = 1 AND EXTRACT(YEAR FROM FROM_DATE) = " + Util.BudgetYear() + " AND CH_ALLOW = 1 ORDER BY LEAVE_ID DESC", con)) {
+                    using (OracleDataReader reader = com.ExecuteReader()) {
+                        if (reader.Read()) {
+                            divSickFrom.Visible = true;
+                            DateTime dtLastToDate = reader.GetDateTime(0);
+                            dtLastToDate = dtLastToDate.AddDays(1);
+                            lbSickFrom.Text = dtLastToDate.ToLongDateString();
+                        } else {
+                            divSickFrom.Visible = false;
+                        }
+                    }
+                }
             }
         }
 
         protected void lbuS1Check_Click(object sender, EventArgs e) {
 
             ClearNotification();
-            PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
-            Person loginPerson = ps.LoginPerson;
+            //PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
+            //Person loginPerson = ps.LoginPerson;
 
             trS2BirthDate.Visible = false;
             trS2WorkInDate.Visible = false;
@@ -123,6 +145,10 @@ namespace WEB_PERSONAL {
                     ChangeNotification("danger", "วันที่ไม่ถูกต้อง");
                     return;
                 }
+                if((dtFromDate - DateTime.Today).TotalDays >= 90) {
+                    ChangeNotification("danger", "ไม่สามารถลาล่วงหน้ามากกว่า 3 เดือน");
+                    return;
+                }
                 int sick_now = -1;
                 int sick_max = -1;
                 int business_now = -1;
@@ -168,8 +194,9 @@ namespace WEB_PERSONAL {
                     }
                 }
                 if (hfLeaveTypeID.Value == "3") {
-                    if (fromToNowtotalDay < giveBirthBeforeDay) {
-                        ChangeNotification("danger", "ต้องลาล่วงหน้ามากกว่า " + giveBirthBeforeDay + " วัน");
+                    DateTime dt1 = DateTime.Today.AddDays(-giveBirthAfterDay);
+                    if ((dtFromDate - dt1).TotalDays < 0) {
+                        ChangeNotification("danger", "ไม่สามารถลาย้อนหลังได้มากกว่า " + giveBirthAfterDay + " วัน");
                         return;
                     }
                 }
@@ -180,8 +207,9 @@ namespace WEB_PERSONAL {
                     }
                 }
                 if (hfLeaveTypeID.Value == "5") {
-                    if (fromToNowtotalDay < helpGiveBirthBeforeDay) {
-                        ChangeNotification("danger", "ต้องลาล่วงหน้ามากกว่า " + helpGiveBirthBeforeDay + " วัน");
+                    DateTime dt1 = DateTime.Today.AddDays(-helpGiveBirthAfterDay);
+                    if ((dtFromDate - dt1).TotalDays < 0) {
+                        ChangeNotification("danger", "ไม่สามารถลาย้อนหลังได้มากกว่า " + helpGiveBirthAfterDay + " วัน");
                         return;
                     }
                 }
@@ -204,6 +232,37 @@ namespace WEB_PERSONAL {
                         return;
                     }
                 }
+
+                {
+                    
+                    OracleConnection.ClearAllPools();
+                    using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
+                        con.Open();
+                        using (OracleCommand com = new OracleCommand("SELECT LEAVE_ID FROM LEV_DATA WHERE " + Util.DatabaseToDateSearch(tbS1FromDate.Text) + " <= TO_DATE AND " + Util.DatabaseToDateSearch(tbS1ToDate.Text) + " >= FROM_DATE AND PS_ID = '" + loginPerson.CitizenID + "' AND BUDGET_YEAR = " + Util.BudgetYear() + " AND LEAVE_STATUS_ID IN(3,4) AND CH_ALLOW = 1", con)) {
+                            using (OracleDataReader reader = com.ExecuteReader()) {
+                                while (reader.Read()) {
+                                    LeaveData leaveData = new LeaveData();
+                                    leaveData.Load(reader.GetInt32(0));
+                                    ChangeNotification("danger", "ไม่สามารถลาได้ พบวันลาซ้อนทับกัน (รหัสการลา " + leaveData.LeaveID + ", " + leaveData.FromDate.Value.ToLongDateString() + " ถึง " + leaveData.ToDate.Value.ToLongDateString() + ")");
+                                    return;
+                                }
+                            }
+                        }
+                        using (OracleCommand com = new OracleCommand("SELECT TO_DATE FROM LEV_DATA WHERE PS_ID = '" + loginPerson.CitizenID + "' AND LEAVE_TYPE_ID = " + hfLeaveTypeID.Value + " AND EXTRACT(YEAR FROM FROM_DATE) = " + Util.BudgetYear() + " AND LEAVE_STATUS_ID IN(3,4) AND CH_ALLOW = 1 ORDER BY LEAVE_ID DESC", con)) {
+                            using (OracleDataReader reader = com.ExecuteReader()) {
+                                if (reader.Read()) {
+                                    DateTime dtLastToDate = reader.GetDateTime(0);
+                                    if((dtFromDate - dtLastToDate).TotalDays <= 0) {
+                                        ChangeNotification("danger", "ไม่สามารถลาก่อนวันที่ลาล่าสุดได้ (" + dtLastToDate.ToLongDateString() + ")");
+                                        return;
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+                }
+
             }
 
             if(hfLeaveTypeID.Value == "1" || hfLeaveTypeID.Value == "2" || hfLeaveTypeID.Value == "3") {

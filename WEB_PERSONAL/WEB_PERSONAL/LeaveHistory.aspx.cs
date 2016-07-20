@@ -109,7 +109,7 @@ namespace WEB_PERSONAL {
                     cell.Controls.Add(btn);
                     gvFinish.Rows[i].Cells.Add(cell);
 
-                    if (Util.StringEqual(gvFinish.Rows[i].Cells[7].Text, new string[] { "0" })) {
+                    if (Util.StringEqual(gvFinish.Rows[i].Cells[7].Text, new string[] { "2" })) {
                         gvFinish.Rows[i].Cells[7].Text = "ไม่อนุมัติ";
                         gvFinish.Rows[i].Cells[7].ForeColor = System.Drawing.Color.Red;
                     }
@@ -202,7 +202,7 @@ namespace WEB_PERSONAL {
                         gvHistory.Rows[i].Cells[7].Text = "-";
                         gvHistory.Rows[i].Cells[7].ForeColor = System.Drawing.Color.Black;
                     }
-                    if (Util.StringEqual(gvHistory.Rows[i].Cells[7].Text, new string[] { "0" })) {
+                    if (Util.StringEqual(gvHistory.Rows[i].Cells[7].Text, new string[] { "2" })) {
                         gvHistory.Rows[i].Cells[7].Text = "ไม่อนุมัติ";
                         gvHistory.Rows[i].Cells[7].ForeColor = System.Drawing.Color.Red;
                     }
@@ -256,7 +256,7 @@ namespace WEB_PERSONAL {
                         gvCL.Rows[i].Cells[7].Text = "-";
                         gvCL.Rows[i].Cells[7].ForeColor = System.Drawing.Color.Black;
                     }
-                    if (Util.StringEqual(gvCL.Rows[i].Cells[7].Text, new string[] { "0" })) {
+                    if (Util.StringEqual(gvCL.Rows[i].Cells[7].Text, new string[] { "2" })) {
                         gvCL.Rows[i].Cells[7].Text = "ไม่อนุมัติ";
                         gvCL.Rows[i].Cells[7].ForeColor = System.Drawing.Color.Red;
                     }
@@ -306,7 +306,7 @@ namespace WEB_PERSONAL {
                         gvCH.Rows[i].Cells[7].Text = "-";
                         gvCH.Rows[i].Cells[7].ForeColor = System.Drawing.Color.Black;
                     }
-                    if (Util.StringEqual(gvCH.Rows[i].Cells[7].Text, new string[] { "0" })) {
+                    if (Util.StringEqual(gvCH.Rows[i].Cells[7].Text, new string[] { "2" })) {
                         gvCH.Rows[i].Cells[7].Text = "ไม่อนุมัติ";
                         gvCH.Rows[i].Cells[7].ForeColor = System.Drawing.Color.Red;
                     }

@@ -33,6 +33,7 @@
                 <tr id="trReqSick" runat="server">
                     <td><div class="ps-lb-blue-b">ลาป่วย</div></td>
                     <td>
+                        <div id="divSickFrom" runat="server">สามารถลาได้ตั้งแต่ <asp:Label ID="lbSickFrom" runat="server" Text="Label" CssClass="ps-lb-red-b"></asp:Label> เป็นต้นไป</div>
                         <div>ลาตั้งแต่ <span class="ps-lb-red-b">30</span> วันขึ้นไป จำเป็นต้องแนบ <span style="color: rgb(206,91,91); font-weight: bold;">ใบรับรองแพทย์</span></div>
                         <div>สามารถลาได้อีก <asp:Label ID="lbSickLeftDay" runat="server" Text="?" CssClass="ps-lb-red-b"></asp:Label> วัน</div>
                     </td>
@@ -40,40 +41,40 @@
                 <tr id="trReqBusiness" runat="server">
                     <td><div class="ps-lb-blue-b">ลากิจ</div></td>
                     <td>
-                        <div>จะต้องลาล่วงหน้า <span class="ps-lb-red-b">3</span> วันหรือตั้งแต่วันที่ <asp:Label ID="lb2" runat="server" Text="Label" CssClass="ps-lb-red-b"></asp:Label> เป็นต้นไป</div>
+                        <div>จะต้องลาล่วงหน้า <asp:Label ID="lbReqBusinessDay" runat="server" Text="?" CssClass="ps-lb-red-b"></asp:Label> วันหรือตั้งแต่วันที่ <asp:Label ID="lbReqBusinessDate" runat="server" Text="?" CssClass="ps-lb-red-b"></asp:Label> เป็นต้นไป</div>
                         <div>สามารถลาได้อีก <asp:Label ID="lbBusinessLeftDay" runat="server" Text="?" CssClass="ps-lb-red-b"></asp:Label> วัน</div>
                     </td>
                 </tr>
                 <tr id="trReqRest" runat="server">
                     <td><div class="ps-lb-blue-b">ลาพักผ่อน</div></td>
                     <td>
-                        <div>จะต้องลาล่วงหน้า <span class="ps-lb-red-b">3</span> วันหรือตั้งแต่วันที่ <asp:Label ID="lb3" runat="server" Text="Label" CssClass="ps-lb-red-b"></asp:Label> เป็นต้นไป</div>
+                        <div>จะต้องลาล่วงหน้า <asp:Label ID="lbReqRestDay" runat="server" Text="?" CssClass="ps-lb-red-b"></asp:Label> วันหรือตั้งแต่วันที่ <asp:Label ID="lbReqRestDate" runat="server" Text="?" CssClass="ps-lb-red-b"></asp:Label> เป็นต้นไป</div>
                         <div>สามารถลาได้อีก <asp:Label ID="lbRestLeftDay" runat="server" Text="?" CssClass="ps-lb-red-b"></asp:Label> วัน</div>
                     </td>
                 </tr>
                 <tr id="trReqGiveBirth" runat="server">
                     <td><div class="ps-lb-blue-b">ลาคลอดบุตร</div></td>
                     <td>
-                         <div>จะต้องลาล่วงหน้า <span class="ps-lb-red-b">3</span> วันหรือตั้งแต่วันที่ <asp:Label ID="lb5" runat="server" Text="Label" CssClass="ps-lb-red-b"></asp:Label> เป็นต้นไป</div>
+                         <div>สามารถลาย้อนหลังได้ <asp:Label ID="lbReqGiveBirthDay" runat="server" Text="?" CssClass="ps-lb-red-b"></asp:Label> วันหรือตั้งแต่วันที่ <asp:Label ID="lbReqGiveBirthDate" runat="server" Text="?" CssClass="ps-lb-red-b"></asp:Label> เป็นต้นไป</div>
                     </td>
                 </tr>
                 <tr id="trReqHelpGiveBirth" runat="server">
                     <td><div class="ps-lb-blue-b">ลาไปช่วยเหลือภริยาที่คลอดบุตร</div></td>
                     <td>
-                        <div>จะต้องลาล่วงหน้า <span class="ps-lb-red-b">3</span> วันหรือตั้งแต่วันที่ <asp:Label ID="lb6" runat="server" Text="Label" CssClass="ps-lb-red-b"></asp:Label> เป็นต้นไป</div>
+                        <div>สามารถลาย้อนหลังได้ <asp:Label ID="lbReqHelpGiveBirthDay" runat="server" Text="?" CssClass="ps-lb-red-b"></asp:Label> วันหรือตั้งแต่วันที่ <asp:Label ID="lbReqHelpGiveBirthDate" runat="server" Text="?" CssClass="ps-lb-red-b"></asp:Label> เป็นต้นไป</div>
                     </td>
                 </tr>
                 <tr id="trReqOrdain" runat="server">
                     <td><div class="ps-lb-blue-b">ลาไปอุปสมบท</div></td>
                     <td>
-                        <div>จะต้องลาล่วงหน้า <span class="ps-lb-red-b">60</span> วัน หรือตั้งแต่วันที่ <asp:Label ID="lb4" runat="server" Text="Label" CssClass="ps-lb-red-b"></asp:Label> เป็นต้นไป</div>
+                        <div>จะต้องลาล่วงหน้า <asp:Label ID="lbReqOrdainDay" runat="server" Text="?" CssClass="ps-lb-red-b"></asp:Label> วัน หรือตั้งแต่วันที่ <asp:Label ID="lbReqOrdainDate" runat="server" Text="?" CssClass="ps-lb-red-b"></asp:Label> เป็นต้นไป</div>
                         <div>สามารถลาได้อีก <asp:Label ID="lbOrdainLeftDay" runat="server" Text="?" CssClass="ps-lb-red-b"></asp:Label> วัน</div>
                     </td>
                 </tr>
                 <tr id="trReqHuj" runat="server">
                     <td><div class="ps-lb-blue-b">ลาไปประกอบพิธีฮัจญ์</div></td>
                     <td>
-                        <div>จะต้องลาล่วงหน้า <span class="ps-lb-red-b">60</span> วัน หรือตั้งแต่วันที่ <asp:Label ID="lb1" runat="server" Text="Label" CssClass="ps-lb-red-b"></asp:Label> เป็นต้นไป</div>
+                        <div>จะต้องลาล่วงหน้า <asp:Label ID="lbReqHujDay" runat="server" Text="?" CssClass="ps-lb-red-b"></asp:Label> วัน หรือตั้งแต่วันที่ <asp:Label ID="lbReqHujDate" runat="server" Text="?" CssClass="ps-lb-red-b"></asp:Label> เป็นต้นไป</div>
                         <div>สามารถลาได้อีก <asp:Label ID="lbHujLeftDay" runat="server" Text="?" CssClass="ps-lb-red-b"></asp:Label> วัน</div>
                     </td>
                 </tr>
@@ -398,7 +399,7 @@
                     <div class="ps-div-title-red" style="margin-top: 10px;">ผู้บังคับบัญชา</div>
                     <table class="ps-table-1" style="margin: 0 auto;">
                         <tr>
-                            <td><img src="Image/Small/person2.png" class="icon_left" />ผู้บังคับบัญชาระดับกลาง<br />(ผู้ลงความเห็น)</td>
+                            <td><img src="Image/Small/person2.png" class="icon_left" />ผู้บังคับบัญชาระดับต้น<br />(ผู้ลงความเห็น)</td>
                             <td><img src="Image/Small/person2.png" class="icon_left" />ผู้บังคับบัญชาระดับสูง<br />(ผู้อนุมัติ)</td>
                         </tr>
                         <tr>
