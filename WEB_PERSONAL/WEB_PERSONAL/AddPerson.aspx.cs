@@ -31,7 +31,6 @@ namespace WEB_PERSONAL
                 SqlddlPosiInsigGover();
                 SqlddlPosiInsigDegree();
                 SqlddlPosiInsigEMP();
-                SqlddlStatusWork();
 
                 tbCitizenID.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
                 tbPhone.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
@@ -129,7 +128,6 @@ namespace WEB_PERSONAL
             tbDateInwork.Text = "";
             tbSalary.Text = "";
             tbPositionSalary.Text = "";
-            ddlStatusWork.SelectedIndex = 0;
             ddlTpyePosition.SelectedIndex = 0;
             ddlPosition.SelectedIndex = 0;
             ddlAdminPosition.SelectedIndex = 0;
@@ -406,33 +404,6 @@ namespace WEB_PERSONAL
                         sqlConn.Close();
 
                         ddlPosiInsigEMP.Items.Insert(0, new ListItem("--กรุณาเลือกตำแหน่งกลุ่มพนักงานราชการ--", "0"));
-                    }
-                }
-            }
-            catch { }
-        }
-
-        protected void SqlddlStatusWork()
-        {
-            try
-            {
-                using (OracleConnection sqlConn = new OracleConnection(strConn))
-                {
-                    using (OracleCommand sqlCmd = new OracleCommand())
-                    {
-                        sqlCmd.CommandText = "select * from TB_STATUS_WORK";
-                        sqlCmd.Connection = sqlConn;
-                        sqlConn.Open();
-                        OracleDataAdapter da = new OracleDataAdapter(sqlCmd);
-                        DataTable dt = new DataTable();
-                        da.Fill(dt);
-                        ddlStatusWork.DataSource = dt;
-                        ddlStatusWork.DataValueField = "SW_ID";
-                        ddlStatusWork.DataTextField = "SW_NAME";
-                        ddlStatusWork.DataBind();
-                        sqlConn.Close();
-
-                        ddlStatusWork.Items.Insert(0, new ListItem("--กรุณาเลือกสถานะการทำงาน--", "0"));
                     }
                 }
             }
@@ -864,7 +835,7 @@ namespace WEB_PERSONAL
             P0.PS_POSITION_ID = ddlPosition.SelectedValue;
             P0.PS_SALARY = Convert.ToInt32(tbPositionSalary.Text);
             P0.PS_PIG_ID = Convert.ToInt32(ddlPosiInsigGover.SelectedValue);
-            P0.PS_SW_ID = Convert.ToInt32(ddlStatusWork.SelectedValue);
+            P0.PS_SW_ID = 6;
             P0.PS_RANK_ID = Convert.ToInt32(ddlRank.SelectedValue);
             P0.PS_POSS_SALARY = Convert.ToInt32(tbPositionSalary.Text);
             P0.PS_PIE_ID = Convert.ToInt32(ddlPosiInsigEMP.SelectedValue);

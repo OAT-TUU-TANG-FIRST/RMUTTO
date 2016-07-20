@@ -307,7 +307,6 @@ namespace WEB_PERSONAL.Entities {
             query += " PS_POSITION_ID = :PS_POSITION_ID ,";
             query += " PS_SALARY = :PS_SALARY ,";
             query += " PS_PIG_ID = :PS_PIG_ID ,";
-            query += " PS_SW_ID = :PS_SW_ID ,";
             query += " PS_RANK_ID = :PS_RANK_ID ,";
             query += " PS_POSS_SALARY = :PS_POSS_SALARY ,";
             query += " PS_PIE_ID = :PS_PIE_ID ,";
@@ -376,7 +375,6 @@ namespace WEB_PERSONAL.Entities {
                 command.Parameters.Add(new OracleParameter("PS_POSITION_ID", PS_POSITION_ID));
                 command.Parameters.Add(new OracleParameter("PS_SALARY", PS_SALARY));
                 command.Parameters.Add(new OracleParameter("PS_PIG_ID", PS_PIG_ID));
-                command.Parameters.Add(new OracleParameter("PS_SW_ID", PS_SW_ID));
                 command.Parameters.Add(new OracleParameter("PS_RANK_ID", PS_RANK_ID));
                 command.Parameters.Add(new OracleParameter("PS_POSS_SALARY", PS_POSS_SALARY));
                 command.Parameters.Add(new OracleParameter("PS_PIE_ID", PS_PIE_ID));

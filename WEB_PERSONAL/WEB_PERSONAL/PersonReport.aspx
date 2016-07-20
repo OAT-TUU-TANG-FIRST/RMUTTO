@@ -15,7 +15,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div>
         <div>
-            <div class="ps-div-title-red">เลือกไอเทม</div>
+            <div class="ps-div-title-red">เลือกข้อมูลที่ต้องการออกรายงาน</div>
             <div style="text-align: center;">
                 <input type="checkbox" onclick="toggle(this, 'item');"/> <b>เลือกทั้งหมด</b> 
                 <asp:CheckBox ID="cbPsID" runat="server" name="item"/> ลำดับ
@@ -25,8 +25,9 @@
                 <asp:CheckBox ID="cbAge" runat="server" name="item" /> อายุ
                 <asp:CheckBox ID="cbCampus" runat="server" name="item" /> วิทยาเขต
                 <asp:CheckBox ID="cbBirthdayDate" runat="server" name="item" /> วันเกิด
+                <asp:CheckBox ID="cbStatusWork" runat="server" name="item" /> สถานะการทำงาน
             </div>
-            <div class="ps-div-title-red" style="margin-top: 10px;">เลือกเงื่อนไช</div>
+            <div class="ps-div-title-red" style="margin-top: 10px;">เลือกเงื่อนไข</div>
             <div style="text-align: center;">
                 <div>
                     <input type="checkbox" onclick="toggle(this, 'condition');"/> <b>เลือกทั้งหมด</b> 
@@ -50,6 +51,10 @@
                     <asp:TextBox ID="tbBirthdayDateFrom" runat="server"></asp:TextBox> <span style="color: #808080;">ถึง</span>
                     <asp:TextBox ID="tbBirthdayDateTo" runat="server"></asp:TextBox>
                 </div>
+                <div>
+                    <asp:CheckBox ID="cbStatusWorkCondition" runat="server" name="condition" /> สถานะการทำงาน
+                    <asp:DropDownList ID="ddlStatusWork" runat="server"></asp:DropDownList>
+                </div>
             </div>
             <div style="text-align: center; margin-top: 10px;">
                 <asp:LinkButton ID="lbuSearch" runat="server" CssClass="ps-button" OnClick="lbuSearch_Click">ค้นหา</asp:LinkButton>
@@ -58,6 +63,7 @@
         </div>
         <div>
             <asp:LinkButton ID="lbuExport" runat="server" CssClass="ps-button" OnClick="lbuExport_Click"><img src="Image/Small/excel.png" class="icon_left"/>Export</asp:LinkButton>
+            <asp:LinkButton ID="lbuExport2" runat="server" CssClass="ps-button" OnClick="lbuExport2_Click"><img src="Image/Small/word.png" class="icon_left"/>Export</asp:LinkButton>
         </div>
         <div>
             <asp:Table ID="tb" runat="server" CssClass="ps-table-1" style="margin-top: 10px;"></asp:Table>

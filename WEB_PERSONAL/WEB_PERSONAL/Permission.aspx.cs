@@ -51,6 +51,8 @@ namespace WEB_PERSONAL {
                                 else if (type == 12) { cbAddManage1.Checked = true; }
                                 else if (type == 13) { cbAddManage2.Checked = true; }
                                 else if (type == 14) { cbPersonPosition.Checked = true; }
+                                else if (type == 15) { cbPosition.Checked = true; }
+                                else if (type == 16) { cbStatusPerson.Checked = true; }
                             }
                         }
                     }
@@ -81,6 +83,8 @@ namespace WEB_PERSONAL {
                 Exe(cbAddManage1, citizenID, 12);
                 Exe(cbAddManage2, citizenID, 13);
                 Exe(cbPersonPosition, citizenID, 14);
+                Exe(cbPosition, citizenID, 15);
+                Exe(cbStatusPerson, citizenID, 16);
 
                 Page.Response.Redirect(Page.Request.Url.ToString(), true);
 

@@ -14,6 +14,7 @@ namespace WEB_PERSONAL {
         protected void Page_Load(object sender, EventArgs e) {
             if(!IsPostBack) {
                 DatabaseManager.BindDropDown(ddlCampus, "SELECT * FROM TB_CAMPUS", "CAMPUS_NAME", "CAMPUS_ID", "-กรุณาเลือกวิทยาเขต-");
+                DatabaseManager.BindDropDown(ddlStatusWork, "SELECT * FROM TB_STATUS_WORK", "SW_NAME", "SW_ID", "-กรุณาเลือกสถานะการทำงาน-");
             }
         }
 
@@ -21,8 +22,8 @@ namespace WEB_PERSONAL {
 
             //--
 
-            if(!cbPsID.Checked && !cbCitizenID.Checked && !cbPsName.Checked && !cbGender.Checked && !cbAge.Checked && !cbCampus.Checked && !cbBirthdayDate.Checked) {
-                Util.Alert(this, "กรุณาเลือกสักอย่างเกุิิดิดิดด++++");
+            if(!cbPsID.Checked && !cbCitizenID.Checked && !cbPsName.Checked && !cbGender.Checked && !cbAge.Checked && !cbCampus.Checked && !cbBirthdayDate.Checked && !cbStatusWork.Checked) {
+                Util.Alert(this, "กรุณาเลือกข้อมูลที่ต้องการออกรายงานอย่างน้อย 1 ช่อง");
                 return;
             }
 
@@ -74,6 +75,12 @@ namespace WEB_PERSONAL {
                 headList.Add("วันเกิด");
                 typeList.Add(3);
             }
+            if (cbStatusWork.Checked)
+            {
+                select += ", (SELECT SW_NAME FROM TB_STATUS_WORK WHERE SW_ID = PS_SW_ID)";
+                headList.Add("สถานะการทำงาน");
+                typeList.Add(2);
+            }
             select = select.Replace("SELECT,", "SELECT ");
 
             ///---------
@@ -90,9 +97,12 @@ namespace WEB_PERSONAL {
             if (cbBirthdayDateCondition.Checked) {
                 where += " AND PS_BIRTHDAY_DATE >= " + Util.DatabaseToDateSearch(tbBirthdayDateFrom.Text) + " AND PS_BIRTHDAY_DATE <= " + Util.DatabaseToDateSearch(tbBirthdayDateTo.Text);
             }
+            if (cbStatusWorkCondition.Checked)
+            {
+                where += " AND PS_SW_ID = " + ddlStatusWork.SelectedValue;
+            }
             tb.Rows.Clear();
-
-            
+  
             {
                 TableHeaderRow row = new TableHeaderRow();
                 if (seq) {
@@ -108,7 +118,6 @@ namespace WEB_PERSONAL {
                 tb.Rows.Add(row);
             }
             
-
             OracleConnection.ClearAllPools();
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
@@ -154,22 +163,48 @@ namespace WEB_PERSONAL {
                 for (int j = 0; j < 15; j++) {
                     tb.Rows[i].Cells[j].Style.Add("border", "1px solid #000000");
                 }
-
             }*/
 
+             Response.ContentType = "application/x-msexcel";
+             Response.AddHeader("Content-Disposition", "attachment;filename=PersonReport.xls");
+             Response.ContentEncoding = Encoding.UTF8;
+             StringWriter tw = new StringWriter();
+             HtmlTextWriter hw = new HtmlTextWriter(tw);
+             ((Table)Session["PersonReportTable"]).RenderControl(hw);
+             Response.Write(tw.ToString());
+             Response.End();
+        }
+        public override void VerifyRenderingInServerForm(Control control) {
+            /* Confirms that an HtmlForm control is rendered for the specified ASP.NET
+               server control at run time. */
+        }
 
-            Response.ContentType = "application/x-msexcel";
-            Response.AddHeader("Content-Disposition", "attachment;filename=PersonReport.xls");
+        protected void lbuExport2_Click(object sender, EventArgs e)
+        {
+            /*for (int i = 0; i < 5; i++)
+            {
+                tb.Rows[0].Cells[i].Style.Add("border", "1px solid #000000");
+            }
+            for (int i = 0; i < 15; i++)
+            {
+                tb.Rows[1].Cells[i].Style.Add("border", "1px solid #000000");
+            }
+            for (int i = 2; i < tb.Rows.Count; i++)
+            {
+                for (int j = 0; j < 15; j++)
+                {
+                    tb.Rows[i].Cells[j].Style.Add("border", "1px solid #000000");
+                }
+            }*/
+
+            Response.ContentType = "application/x-msword";
+            Response.AddHeader("Content-Disposition", "attachment;filename=PersonReport.doc");
             Response.ContentEncoding = Encoding.UTF8;
             StringWriter tw = new StringWriter();
             HtmlTextWriter hw = new HtmlTextWriter(tw);
             ((Table)Session["PersonReportTable"]).RenderControl(hw);
             Response.Write(tw.ToString());
             Response.End();
-        }
-        public override void VerifyRenderingInServerForm(Control control) {
-            /* Confirms that an HtmlForm control is rendered for the specified ASP.NET
-               server control at run time. */
         }
     }
 }

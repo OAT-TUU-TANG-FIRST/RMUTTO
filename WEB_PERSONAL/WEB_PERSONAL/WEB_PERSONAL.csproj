@@ -732,6 +732,7 @@
     <Content Include="Content\themes\base\minified\images\ui-icons_454545_256x240.png" />
     <Content Include="Content\themes\base\minified\images\ui-icons_888888_256x240.png" />
     <Content Include="Content\themes\base\minified\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Country-ADMIN.aspx" />
     <Content Include="CSS\Access.css" />
     <Content Include="CSS\Print.css" />
     <Content Include="DataManager.aspx" />
@@ -812,6 +813,7 @@
     <Content Include="Image\Small\printer.png" />
     <Content Include="Image\Small\progress.png" />
     <Content Include="Image\Small\question.png" />
+    <Content Include="Image\Small\refresh.png" />
     <Content Include="Image\Small\report.png" />
     <Content Include="Image\loading_spinner.gif" />
     <Content Include="Image\login.png" />
@@ -843,6 +845,7 @@
     <Content Include="Image\Small\unlock.png" />
     <Content Include="Image\Small\upload.png" />
     <Content Include="Image\Small\web.png" />
+    <Content Include="Image\Small\word.png" />
     <Content Include="Image\Small\wrench.png" />
     <Content Include="Image\Small\yellow_alert.png" />
     <Content Include="Image\stickman.png" />
@@ -994,6 +997,7 @@
     </Content>
     <Content Include="Plugins\EPPlus.dll" />
     <Content Include="Plugins\EPPlus.XML" />
+    <Content Include="PositionPerson.aspx" />
     <Content Include="PositionWork-ADMIN.aspx" />
     <Content Include="jquery.mCustomScrollbar\jquery.mCustomScrollbar.concat.min.js" />
     <Content Include="PrintLeaveForm.aspx" />
@@ -1005,6 +1009,7 @@
     <Content Include="Staff-ADMIN.aspx" />
     <Content Include="StaffType-ADMIN.aspx" />
     <Content Include="StatusPerson-ADMIN.aspx" />
+    <Content Include="StatusPerson.aspx" />
     <Content Include="StatusWork-ADMIN.aspx" />
     <Content Include="SumReport_UpSalary.aspx" />
     <Content Include="TeachISCED-ADMIN.aspx" />
@@ -1186,6 +1191,13 @@
     <Compile Include="Class\Person.cs" />
     <Compile Include="Class\PersonnelSystem.cs" />
     <Compile Include="Connection\ConnectionDB.cs" />
+    <Compile Include="Country-ADMIN.aspx.cs">
+      <DependentUpon>Country-ADMIN.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Country-ADMIN.aspx.designer.cs">
+      <DependentUpon>Country-ADMIN.aspx</DependentUpon>
+    </Compile>
     <Compile Include="DataManager.aspx.cs">
       <DependentUpon>DataManager.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1465,6 +1477,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>personalDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="PositionPerson.aspx.cs">
+      <DependentUpon>PositionPerson.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PositionPerson.aspx.designer.cs">
+      <DependentUpon>PositionPerson.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PositionWork-ADMIN.aspx.cs">
       <DependentUpon>PositionWork-ADMIN.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1547,6 +1566,13 @@
     </Compile>
     <Compile Include="StaffType-ADMIN.aspx.designer.cs">
       <DependentUpon>StaffType-ADMIN.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StatusPerson.aspx.cs">
+      <DependentUpon>StatusPerson.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StatusPerson.aspx.designer.cs">
+      <DependentUpon>StatusPerson.aspx</DependentUpon>
     </Compile>
     <Compile Include="StatusWork-ADMIN.aspx.cs">
       <DependentUpon>StatusWork-ADMIN.aspx</DependentUpon>

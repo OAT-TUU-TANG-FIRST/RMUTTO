@@ -1917,7 +1917,7 @@ namespace WEB_PERSONAL.Entities
             return dt;
         }
 
-        public int InsertGradCountry()
+        public int InsertCountry()
         {
             int id = 0;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
@@ -1943,7 +1943,7 @@ namespace WEB_PERSONAL.Entities
             return id;
         }
 
-        public bool UpdateGradCountry()
+        public bool UpdateCountry()
         {
             bool result = false;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
@@ -1976,7 +1976,7 @@ namespace WEB_PERSONAL.Entities
             return result;
         }
 
-        public bool DeleteGradCountry()
+        public bool DeleteCountry()
         {
             bool result = false;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
@@ -2005,13 +2005,13 @@ namespace WEB_PERSONAL.Entities
             return result;
         }
 
-        public bool CheckUseGradCountryNameInsert()
+        public bool CheckUseCountryName()
         {
             bool result = true;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
 
             // Create the command
-            OracleCommand command = new OracleCommand("SELECT count(GRAD_ISO2) FROM TB_COUNTRY WHERE COUNTRY_TH = :COUNTRY_TH", conn);
+            OracleCommand command = new OracleCommand("SELECT count(COUNTRY_TH) FROM TB_COUNTRY WHERE COUNTRY_TH = :COUNTRY_TH", conn);
 
             // Add the parameters.
             command.Parameters.Add(new OracleParameter("COUNTRY_TH", COUNTRY_TH));

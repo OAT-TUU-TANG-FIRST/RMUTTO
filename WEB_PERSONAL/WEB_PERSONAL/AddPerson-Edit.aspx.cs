@@ -31,7 +31,6 @@ namespace WEB_PERSONAL
                 SqlddlPosiInsigGover();
                 SqlddlPosiInsigDegree();
                 SqlddlPosiInsigEMP();
-                SqlddlStatusWork();
 
                 tbCitizenID.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
                 tbPhone.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
@@ -129,7 +128,6 @@ namespace WEB_PERSONAL
             tbDateInwork.Text = "";
             tbSalary.Text = "";
             tbPositionSalary.Text = "";
-            ddlStatusWork.SelectedIndex = 0;
             ddlTpyePosition.SelectedIndex = 0;
             ddlPosition.SelectedIndex = 0;
             ddlAdminPosition.SelectedIndex = 0;
@@ -406,33 +404,6 @@ namespace WEB_PERSONAL
                         sqlConn.Close();
 
                         ddlPosiInsigEMP.Items.Insert(0, new ListItem("--กรุณาเลือกตำแหน่งกลุ่มพนักงานราชการ--", "0"));
-                    }
-                }
-            }
-            catch { }
-        }
-
-        protected void SqlddlStatusWork()
-        {
-            try
-            {
-                using (OracleConnection sqlConn = new OracleConnection(strConn))
-                {
-                    using (OracleCommand sqlCmd = new OracleCommand())
-                    {
-                        sqlCmd.CommandText = "select * from TB_STATUS_WORK";
-                        sqlCmd.Connection = sqlConn;
-                        sqlConn.Open();
-                        OracleDataAdapter da = new OracleDataAdapter(sqlCmd);
-                        DataTable dt = new DataTable();
-                        da.Fill(dt);
-                        ddlStatusWork.DataSource = dt;
-                        ddlStatusWork.DataValueField = "SW_ID";
-                        ddlStatusWork.DataTextField = "SW_NAME";
-                        ddlStatusWork.DataBind();
-                        sqlConn.Close();
-
-                        ddlStatusWork.Items.Insert(0, new ListItem("--กรุณาเลือกสถานะการทำงาน--", "0"));
                     }
                 }
             }
@@ -864,7 +835,6 @@ namespace WEB_PERSONAL
             P0.PS_POSITION_ID = ddlPosition.SelectedValue;
             P0.PS_SALARY = Convert.ToInt32(tbPositionSalary.Text);
             P0.PS_PIG_ID = Convert.ToInt32(ddlPosiInsigGover.SelectedValue);
-            P0.PS_SW_ID = Convert.ToInt32(ddlStatusWork.SelectedValue);
             P0.PS_RANK_ID = Convert.ToInt32(ddlRank.SelectedValue);
             P0.PS_POSS_SALARY = Convert.ToInt32(tbPositionSalary.Text);
             P0.PS_PIE_ID = Convert.ToInt32(ddlPosiInsigEMP.SelectedValue);
@@ -893,7 +863,7 @@ namespace WEB_PERSONAL
             {
                 con.Open();
                 //using (OracleCommand com = new OracleCommand("SELECT PS_CITIZEN_ID,PS_TITLE_ID,PS_FN_TH,PS_FN_EN,PS_LN_TH,PS_LN_EN,PS_GENDER_ID,PS_BIRTHDAY_DATE,PS_RACE_ID,PS_NATION_ID,PS_BLOOD_ID,PS_RELIGION_ID,PS_STATUS_ID,PS_EMAIL,PS_PHONE,PS_TELEPHONE_WORK,PS_DAD_FN,PS_DAD_LN,PS_MOM_FN,PS_MOM_LN,PS_MOM_LN_OLD,PS_LOV_FN,PS_LOV_LN,PS_LOV_LN_OLD,PS_HOMEADD,PS_SOI,PS_MOO,PS_STREET,PS_PROVINCE_ID,PS_AMPHUR_ID,PS_DISTRICT,PS_ZIPCODE,PS_COUNTRY_ID,PS_STATE,PS_HOMEADD_NOW,PS_SOI_NOW,PS_MOO_NOW,PS_STREET_NOW,PS_PROVINCE_ID_NOW,PS_AMPHUR_ID_NOW,PS_DISTRICT_ID_NOW,PS_ZIPCODE_NOW,PS_COUNTRY_ID_NOW,PS_STATE_NOW,PS_CAMPUS_ID,PS_FACULTY_ID,PS_DIVISION_ID,PS_WORK_DIVISION_ID,PS_STAFFTYPE_ID,PS_BUDGET_ID,PS_ADMIN_POS_ID,PS_WORK_POS_ID,PS_ACAD_POS_ID,PS_INWORK_DATE,PS_SPECIAL_WORK,PS_TEACH_ISCED_ID,PS_POSITION_ID,PS_SALARY,PS_PIG_ID,PS_SW_ID,PS_RANK_ID,PS_POSS_SALARY,PS_PIE_ID,PS_PID_ID FROM PS_PERSON WHERE PS_CITIZEN_ID = '" + txtSearchPersonID.Text + "'", con))
-                using (OracleCommand com = new OracleCommand("SELECT PS_CITIZEN_ID,PS_TITLE_ID,PS_FN_TH,PS_FN_EN,PS_LN_TH,PS_LN_EN,PS_GENDER_ID,PS_BIRTHDAY_DATE,PS_RACE_ID,PS_NATION_ID,PS_BLOOD_ID,PS_RELIGION_ID,PS_STATUS_ID,PS_EMAIL,PS_PHONE,PS_TELEPHONE_WORK,PS_HOMEADD,PS_SOI,PS_MOO,PS_STREET,PS_PROVINCE_ID,PS_AMPHUR_ID,PS_DISTRICT,PS_ZIPCODE,PS_COUNTRY_ID,PS_STATE,PS_HOMEADD_NOW,PS_SOI_NOW,PS_MOO_NOW,PS_STREET_NOW,PS_PROVINCE_ID_NOW,PS_AMPHUR_ID_NOW,PS_DISTRICT_ID_NOW,PS_ZIPCODE_NOW,PS_COUNTRY_ID_NOW,PS_STATE_NOW,PS_CAMPUS_ID,PS_FACULTY_ID,PS_DIVISION_ID,PS_WORK_DIVISION_ID,PS_STAFFTYPE_ID,PS_BUDGET_ID,PS_ADMIN_POS_ID,PS_WORK_POS_ID,PS_ACAD_POS_ID,PS_INWORK_DATE,PS_SPECIAL_WORK,PS_TEACH_ISCED_ID,PS_POSITION_ID,PS_SALARY,PS_PIG_ID,PS_SW_ID,PS_RANK_ID,PS_POSS_SALARY,PS_PIE_ID,PS_PID_ID FROM PS_PERSON WHERE PS_CITIZEN_ID = '" + txtSearchPersonID.Text + "'", con))
+                using (OracleCommand com = new OracleCommand("SELECT PS_CITIZEN_ID,PS_TITLE_ID,PS_FN_TH,PS_FN_EN,PS_LN_TH,PS_LN_EN,PS_GENDER_ID,PS_BIRTHDAY_DATE,PS_RACE_ID,PS_NATION_ID,PS_BLOOD_ID,PS_RELIGION_ID,PS_STATUS_ID,PS_EMAIL,PS_PHONE,PS_TELEPHONE_WORK,PS_HOMEADD,PS_SOI,PS_MOO,PS_STREET,PS_PROVINCE_ID,PS_AMPHUR_ID,PS_DISTRICT,PS_ZIPCODE,PS_COUNTRY_ID,PS_STATE,PS_HOMEADD_NOW,PS_SOI_NOW,PS_MOO_NOW,PS_STREET_NOW,PS_PROVINCE_ID_NOW,PS_AMPHUR_ID_NOW,PS_DISTRICT_ID_NOW,PS_ZIPCODE_NOW,PS_COUNTRY_ID_NOW,PS_STATE_NOW,PS_CAMPUS_ID,PS_FACULTY_ID,PS_DIVISION_ID,PS_WORK_DIVISION_ID,PS_STAFFTYPE_ID,PS_BUDGET_ID,PS_ADMIN_POS_ID,PS_WORK_POS_ID,PS_ACAD_POS_ID,PS_INWORK_DATE,PS_SPECIAL_WORK,PS_TEACH_ISCED_ID,PS_POSITION_ID,PS_SALARY,PS_PIG_ID,PS_RANK_ID,PS_POSS_SALARY,PS_PIE_ID,PS_PID_ID FROM PS_PERSON WHERE PS_CITIZEN_ID = '" + txtSearchPersonID.Text + "'", con))
                 {
                     using (OracleDataReader reader = com.ExecuteReader())
                     {
@@ -1085,11 +1055,10 @@ namespace WEB_PERSONAL
                             ddlPosition.SelectedValue = reader.IsDBNull(48) ? "" : reader.GetString(48).ToString();
                             tbSalary.Text = reader.IsDBNull(49) ? "" : reader.GetInt32(49).ToString();
                             ddlPosiInsigGover.SelectedValue = reader.IsDBNull(50) ? "0" : reader.GetInt32(50).ToString();
-                            ddlStatusWork.SelectedValue = reader.IsDBNull(51) ? "0" : reader.GetInt32(51).ToString();
-                            ddlRank.SelectedValue = reader.IsDBNull(52) ? "0" : reader.GetInt32(52).ToString();
-                            tbPositionSalary.Text = reader.IsDBNull(53) ? "0" : reader.GetInt32(53).ToString();
-                            ddlPosiInsigEMP.SelectedValue = reader.IsDBNull(54) ? "0" : reader.GetInt32(54).ToString();
-                            ddlPosiInsigDegree.SelectedValue = reader.IsDBNull(55) ? "0" : reader.GetInt32(55).ToString();
+                            ddlRank.SelectedValue = reader.IsDBNull(51) ? "0" : reader.GetInt32(51).ToString();
+                            tbPositionSalary.Text = reader.IsDBNull(52) ? "0" : reader.GetInt32(52).ToString();
+                            ddlPosiInsigEMP.SelectedValue = reader.IsDBNull(53) ? "0" : reader.GetInt32(53).ToString();
+                            ddlPosiInsigDegree.SelectedValue = reader.IsDBNull(54) ? "0" : reader.GetInt32(54).ToString();
 
                         }
                     }

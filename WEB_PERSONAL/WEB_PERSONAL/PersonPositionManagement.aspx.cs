@@ -19,7 +19,6 @@ namespace WEB_PERSONAL {
         string workDivisionName;
         string state;
 
-
         protected void Page_Load(object sender, EventArgs e) {
             if (!IsPostBack) {
                 SQLCampus();
