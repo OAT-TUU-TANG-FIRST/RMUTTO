@@ -157,6 +157,8 @@ namespace WEB_PERSONAL {
                 cbAddManage1.Visible = false;
                 cbAddManage2.Visible = false;
                 cbPersonPosition.Visible = false;
+                cbPosition.Visible = false;
+                cbStatusPerson.Visible = false;
 
                 using (OracleCommand com = new OracleCommand("SELECT PERMISSION_TYPE FROM TB_PERMISSION WHERE CITIZEN_ID = '" + loginPerson.CitizenID + "'", con)) {
                     using (OracleDataReader reader = com.ExecuteReader()) {
@@ -175,6 +177,8 @@ namespace WEB_PERSONAL {
                             else if (type == 12) cbAddManage1.Visible = true;
                             else if (type == 13) cbAddManage2.Visible = true;
                             else if (type == 14) cbPersonPosition.Visible = true;
+                            else if (type == 15) cbPosition.Visible = true;
+                            else if (type == 16) cbStatusPerson.Visible = true;
 
                         }
                     }

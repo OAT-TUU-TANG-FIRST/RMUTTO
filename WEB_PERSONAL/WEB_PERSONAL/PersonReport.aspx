@@ -25,6 +25,7 @@
                 <asp:CheckBox ID="cbAge" runat="server" name="item" /> อายุ
                 <asp:CheckBox ID="cbCampus" runat="server" name="item" /> วิทยาเขต
                 <asp:CheckBox ID="cbBirthdayDate" runat="server" name="item" /> วันเกิด
+                <asp:CheckBox ID="cbStatusWork" runat="server" name="item" /> สถานะการทำงาน
             </div>
             <div class="ps-div-title-red" style="margin-top: 10px;">เลือกเงื่อนไข</div>
             <div style="text-align: center;">
@@ -49,6 +50,10 @@
                     <asp:CheckBox ID="cbBirthdayDateCondition" runat="server" name="condition" /> วันเกิด
                     <asp:TextBox ID="tbBirthdayDateFrom" runat="server"></asp:TextBox> <span style="color: #808080;">ถึง</span>
                     <asp:TextBox ID="tbBirthdayDateTo" runat="server"></asp:TextBox>
+                </div>
+                <div>
+                    <asp:CheckBox ID="cbStatusWorkCondition" runat="server" name="condition" /> สถานะการทำงาน
+                    <asp:DropDownList ID="ddlStatusWork" runat="server"></asp:DropDownList>
                 </div>
             </div>
             <div style="text-align: center; margin-top: 10px;">

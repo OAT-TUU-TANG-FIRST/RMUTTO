@@ -5,13 +5,13 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="ps-div-title-red">
-        <div class="ps-div-title-red"><img src="Image/Small/search.png" class="icon_left"/>ค้นหารายชื่อพนักงาน</div>
+        <div class="ps-div-title-red"><img src="Image/Small/search.png" class="icon_left"/>ค้นหารายชื่อ</div>
         รหัสบัตรประชาชน :&nbsp;<asp:TextBox ID="txtSearchCitizenID" runat="server" CssClass="ps-div-title-red" Width="230px" MaxLength="13"></asp:TextBox>
         <asp:LinkButton ID="lbuSearch" runat="server" OnClick="lbuSearch_Click" CssClass="ps-button"><img src="Image/Small/search.png" class="icon_left"/>ค้นหา</asp:LinkButton>
         <asp:LinkButton ID="lbuRefresh" runat="server" OnClick="lbuRefresh_Click" CssClass="ps-button"><img src="Image/Small/refresh.png" class="icon_left"/>รีเฟรช</asp:LinkButton>
     </div>
     <div>
-        <div class="ps-div-title-red"><img src="Image/Small/person2.png" class="icon_left"/>รายชื่อพนักงาน</div>
+        <div class="ps-div-title-red"><img src="Image/Small/person2.png" class="icon_left"/>รายชื่อ</div>
 
         <asp:GridView ID="GridView1" runat="server" EnableViewState="True" AutoGenerateColumns="False" DataKeyNames="PS_CITIZEN_ID" DataSourceID="SqlDataSource1" AllowPaging="True" AllowSorting="True" PageSize="50" Width="1220px" CssClass="ps-table-1">
             <Columns>

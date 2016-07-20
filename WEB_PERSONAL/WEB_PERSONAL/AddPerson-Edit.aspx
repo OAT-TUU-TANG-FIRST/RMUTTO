@@ -426,12 +426,6 @@
                                     <asp:TextBox ID="tbPositionSalary" runat="server" CssClass="tb5"></asp:TextBox>
                                 </td>
                             </tr>
-                            <tr>
-                                <td class="col1">สถานะการทำงาน</td>
-                                <td class="col2">
-                                    <asp:DropDownList ID="ddlStatusWork" runat="server" CssClass="tb5"></asp:DropDownList>
-                                </td>
-                            </tr>
                         </table>
                     </div>
                     <div style="float: left; display: inline-block;">

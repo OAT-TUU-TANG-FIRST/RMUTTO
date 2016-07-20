@@ -997,6 +997,7 @@
     </Content>
     <Content Include="Plugins\EPPlus.dll" />
     <Content Include="Plugins\EPPlus.XML" />
+    <Content Include="PositionPerson.aspx" />
     <Content Include="PositionWork-ADMIN.aspx" />
     <Content Include="jquery.mCustomScrollbar\jquery.mCustomScrollbar.concat.min.js" />
     <Content Include="PrintLeaveForm.aspx" />
@@ -1008,6 +1009,7 @@
     <Content Include="Staff-ADMIN.aspx" />
     <Content Include="StaffType-ADMIN.aspx" />
     <Content Include="StatusPerson-ADMIN.aspx" />
+    <Content Include="StatusPerson.aspx" />
     <Content Include="StatusWork-ADMIN.aspx" />
     <Content Include="SumReport_UpSalary.aspx" />
     <Content Include="TeachISCED-ADMIN.aspx" />
@@ -1475,6 +1477,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>personalDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="PositionPerson.aspx.cs">
+      <DependentUpon>PositionPerson.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PositionPerson.aspx.designer.cs">
+      <DependentUpon>PositionPerson.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PositionWork-ADMIN.aspx.cs">
       <DependentUpon>PositionWork-ADMIN.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1557,6 +1566,13 @@
     </Compile>
     <Compile Include="StaffType-ADMIN.aspx.designer.cs">
       <DependentUpon>StaffType-ADMIN.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StatusPerson.aspx.cs">
+      <DependentUpon>StatusPerson.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StatusPerson.aspx.designer.cs">
+      <DependentUpon>StatusPerson.aspx</DependentUpon>
     </Compile>
     <Compile Include="StatusWork-ADMIN.aspx.cs">
       <DependentUpon>StatusWork-ADMIN.aspx</DependentUpon>

@@ -76,6 +76,15 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.CheckBox cbBirthdayDate;
         
         /// <summary>
+        /// cbStatusWork control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbStatusWork;
+        
+        /// <summary>
         /// cbGenderCondition control.
         /// </summary>
         /// <remarks>
@@ -173,6 +182,24 @@ namespace WEB_PERSONAL {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbBirthdayDateTo;
+        
+        /// <summary>
+        /// cbStatusWorkCondition control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbStatusWorkCondition;
+        
+        /// <summary>
+        /// ddlStatusWork control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlStatusWork;
         
         /// <summary>
         /// lbuSearch control.
