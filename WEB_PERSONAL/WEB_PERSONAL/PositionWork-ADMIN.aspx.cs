@@ -59,7 +59,7 @@ namespace WEB_PERSONAL
             txtInsertPositionWorkName.Text = "";
         }
 
-        protected void btnSubmitPositionWork_Click(object sender, EventArgs e)
+        protected void lbuSubmit_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtInsertPositionWorkName.Text))
             {
@@ -130,25 +130,6 @@ namespace WEB_PERSONAL
                 LinkButton lb = (LinkButton)e.Row.FindControl("DeleteButton1");
                 lb.Attributes.Add("onclick", "return confirm('คุณต้องการจะลบชื่อตำแหน่งในสายงาน " + DataBinder.Eval(e.Row.DataItem, "POSITION_WORK_NAME") + " ใช่ไหม ?');");
             }
-            e.Row.Attributes.Add("style", "cursor:help;");
-            if (e.Row.RowType == DataControlRowType.DataRow && e.Row.RowState == DataControlRowState.Alternate)
-            {
-                if (e.Row.RowType == DataControlRowType.DataRow)
-                {
-                    e.Row.Attributes.Add("onmouseover", "this.style.backgroundColor='#ffb3b3'");
-                    e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor='#ffe6e6'");
-                    e.Row.BackColor = System.Drawing.Color.FromName("#ffe6e6");
-                }
-            }
-            else
-            {
-                if (e.Row.RowType == DataControlRowType.DataRow)
-                {
-                    e.Row.Attributes.Add("onmouseover", "this.style.backgroundColor='#ffcc80'");
-                    e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor='#ffebcc'");
-                    e.Row.BackColor = System.Drawing.Color.FromName("#ffebcc");
-                }
-            }
         }
         protected void myGridViewPositionWork_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
@@ -157,7 +138,7 @@ namespace WEB_PERSONAL
             GridView1.DataBind();
         }
 
-        protected void btnCancelPositionWork_Click(object sender, EventArgs e)
+        protected void lbuCancel_Click(object sender, EventArgs e)
         {
             ClearData();
             ClassPositionWork pw = new ClassPositionWork();
@@ -167,7 +148,7 @@ namespace WEB_PERSONAL
             SetViewState(dt);
         }
 
-        protected void btnSearchPositionWork_Click(object sender, EventArgs e)
+        protected void lbuSearch_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtSearchPositionWorkName.Text))
             {
@@ -184,7 +165,7 @@ namespace WEB_PERSONAL
             }
         }
 
-        protected void btnSearchRefresh_Click(object sender, EventArgs e)
+        protected void lbuRefresh_Click(object sender, EventArgs e)
         {
             ClearData();
             ClassPositionWork pw = new ClassPositionWork();

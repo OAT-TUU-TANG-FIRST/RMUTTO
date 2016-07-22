@@ -31,22 +31,22 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.TextBox txtSearchCampusName;
         
         /// <summary>
-        /// btnSearchCampus control.
+        /// lbuSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSearchCampus;
+        protected global::System.Web.UI.WebControls.LinkButton lbuSearch;
         
         /// <summary>
-        /// btnSearchRefresh control.
+        /// lbuRefresh control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSearchRefresh;
+        protected global::System.Web.UI.WebControls.LinkButton lbuRefresh;
         
         /// <summary>
         /// Panel2 control.
@@ -67,22 +67,22 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.TextBox txtInsertCampusName;
         
         /// <summary>
-        /// btnSubmitCampus control.
+        /// lbuSubmit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmitCampus;
+        protected global::System.Web.UI.WebControls.LinkButton lbuSubmit;
         
         /// <summary>
-        /// btnCancelCampus control.
+        /// lbuCancel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancelCampus;
+        protected global::System.Web.UI.WebControls.LinkButton lbuCancel;
         
         /// <summary>
         /// ScriptManager1 control.

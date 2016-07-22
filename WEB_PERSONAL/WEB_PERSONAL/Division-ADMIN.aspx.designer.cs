@@ -49,22 +49,22 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.DropDownList ddlSearchFaculty;
         
         /// <summary>
-        /// btnSearchDivision control.
+        /// lbuSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSearchDivision;
+        protected global::System.Web.UI.WebControls.LinkButton lbuSearch;
         
         /// <summary>
-        /// btnSearchRefresh control.
+        /// lbuRefresh control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSearchRefresh;
+        protected global::System.Web.UI.WebControls.LinkButton lbuRefresh;
         
         /// <summary>
         /// Panel2 control.
@@ -103,22 +103,22 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.DropDownList ddlInsertFaculty;
         
         /// <summary>
-        /// btnSubmitDivision control.
+        /// lbuSubmit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmitDivision;
+        protected global::System.Web.UI.WebControls.LinkButton lbuSubmit;
         
         /// <summary>
-        /// btnCancelDivision control.
+        /// lbuCancel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancelDivision;
+        protected global::System.Web.UI.WebControls.LinkButton lbuCancel;
         
         /// <summary>
         /// ScriptManager1 control.

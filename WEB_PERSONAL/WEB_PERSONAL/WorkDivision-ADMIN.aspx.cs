@@ -268,7 +268,7 @@ namespace WEB_PERSONAL
             ddlInsertDivision.SelectedIndex = 0;
         }
 
-        protected void btnSubmitWorkDivision_Click(object sender, EventArgs e)
+        protected void lbuSubmit_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtInsertWorkDivisionName.Text))
             {
@@ -462,25 +462,6 @@ namespace WEB_PERSONAL
                     }
                 }
             }
-            e.Row.Attributes.Add("style", "cursor:help;");
-            if (e.Row.RowType == DataControlRowType.DataRow && e.Row.RowState == DataControlRowState.Alternate)
-            {
-                if (e.Row.RowType == DataControlRowType.DataRow)
-                {
-                    e.Row.Attributes.Add("onmouseover", "this.style.backgroundColor='#ffb3b3'");
-                    e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor='#ffe6e6'");
-                    e.Row.BackColor = System.Drawing.Color.FromName("#ffe6e6");
-                }
-            }
-            else
-            {
-                if (e.Row.RowType == DataControlRowType.DataRow)
-                {
-                    e.Row.Attributes.Add("onmouseover", "this.style.backgroundColor='#ffcc80'");
-                    e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor='#ffebcc'");
-                    e.Row.BackColor = System.Drawing.Color.FromName("#ffebcc");
-                }
-            }
         }
         protected void myGridViewWorkDivision_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
@@ -489,7 +470,7 @@ namespace WEB_PERSONAL
             GridView1.DataBind();
         }
 
-        protected void btnCancelWorkDivision_Click(object sender, EventArgs e)
+        protected void lbuCancel_Click(object sender, EventArgs e)
         {
             ClearData();
             ClassWorkDivision wd = new ClassWorkDivision();
@@ -499,7 +480,7 @@ namespace WEB_PERSONAL
             SetViewState(dt);
         }
 
-        protected void btnSearchWorkDivision_Click(object sender, EventArgs e)
+        protected void lbuSearch_Click(object sender, EventArgs e)
         {
 
             if (string.IsNullOrEmpty(txtSearchWorkDivisionName.Text) && ddlSearchCampus.SelectedIndex == 0 && ddlSearchFaculty.SelectedIndex == 0 && ddlSearchDivision.SelectedIndex == 0)
@@ -545,7 +526,7 @@ namespace WEB_PERSONAL
             }
         }
 
-        protected void btnSearchRefresh_Click(object sender, EventArgs e)
+        protected void lbuRefresh_Click(object sender, EventArgs e)
         {
             ClearData();
             ClassWorkDivision wd = new ClassWorkDivision();

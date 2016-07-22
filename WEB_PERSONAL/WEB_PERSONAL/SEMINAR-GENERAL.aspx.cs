@@ -136,7 +136,7 @@ namespace WEB_PERSONAL {
             }
             return false;
         }
-        protected void btnSubmitSeminar_Click(object sender, EventArgs e) {
+        protected void lbuSubmit_Click(object sender, EventArgs e) {
             // if (NeedData()) { return; };
 
             Seminar S = new Seminar();
@@ -181,7 +181,7 @@ namespace WEB_PERSONAL {
         }
 
 
-        protected void btnCancelSeminar_Click(object sender, EventArgs e)
+        protected void lbuBackV1_Click(object sender, EventArgs e)
         {
             MultiView1.ActiveViewIndex = 0;
         }
@@ -226,7 +226,7 @@ namespace WEB_PERSONAL {
             }
         }
 
-        protected void lblNextV1_Click(object sender, EventArgs e)
+        protected void lbuNextV1_Click(object sender, EventArgs e)
         {
             MultiView1.ActiveViewIndex = 1;
         }
