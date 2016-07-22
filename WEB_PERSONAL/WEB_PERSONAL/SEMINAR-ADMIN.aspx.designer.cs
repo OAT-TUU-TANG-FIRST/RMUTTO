@@ -40,22 +40,22 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.TextBox txtSearchSeminarCitizen;
         
         /// <summary>
-        /// btnSearchSeminar control.
+        /// lbuSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSearchSeminar;
+        protected global::System.Web.UI.WebControls.LinkButton lbuSearch;
         
         /// <summary>
-        /// btnSearchRefresh control.
+        /// lbuRefresh control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSearchRefresh;
+        protected global::System.Web.UI.WebControls.LinkButton lbuRefresh;
         
         /// <summary>
         /// UpdateGridview1 control.
@@ -310,13 +310,13 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.TextBox txtCertificate;
         
         /// <summary>
-        /// lblNextV1 control.
+        /// lbuNextV1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button lblNextV1;
+        protected global::System.Web.UI.WebControls.LinkButton lbuNextV1;
         
         /// <summary>
         /// View2 control.
@@ -400,21 +400,21 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.TextBox txtComment;
         
         /// <summary>
-        /// btnCancelSeminar control.
+        /// lbuBackV1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancelSeminar;
+        protected global::System.Web.UI.WebControls.LinkButton lbuBackV1;
         
         /// <summary>
-        /// btnSaveSeminar control.
+        /// lbuSubmit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSaveSeminar;
+        protected global::System.Web.UI.WebControls.LinkButton lbuSubmit;
     }
 }

@@ -780,6 +780,7 @@
     <Content Include="Image\Small\bell.png" />
     <Content Include="Image\Small\bin.png" />
     <Content Include="Image\Small\calendar.png" />
+    <Content Include="Image\Small\cancel.png" />
     <Content Include="Image\Small\clip.png" />
     <Content Include="Image\Small\clock-history.png" />
     <Content Include="Image\Small\clock.png" />

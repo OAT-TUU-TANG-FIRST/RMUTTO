@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+
 namespace WEB_PERSONAL
 {
     public partial class Claninsignia_ADMIN : System.Web.UI.Page
@@ -58,7 +59,7 @@ namespace WEB_PERSONAL
             txtInsertClanInsigName.Text = "";
         }
 
-        protected void btnSubmitClanInsig_Click(object sender, EventArgs e)
+        protected void lbuSubmit_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtInsertClanInsigName.Text))
             {
@@ -131,25 +132,6 @@ namespace WEB_PERSONAL
                 LinkButton lb = (LinkButton)e.Row.FindControl("DeleteButton1");
                 lb.Attributes.Add("onclick", "return confirm('คุณต้องการจะลบชื่อกลุ่มเครื่องราชฯ " + DataBinder.Eval(e.Row.DataItem, "NAME_CLANINSIGNIA_THA") + " ใช่ไหม ?');");
             }
-            e.Row.Attributes.Add("style", "cursor:help;");
-            if (e.Row.RowType == DataControlRowType.DataRow && e.Row.RowState == DataControlRowState.Alternate)
-            {
-                if (e.Row.RowType == DataControlRowType.DataRow)
-                {
-                    e.Row.Attributes.Add("onmouseover", "this.style.backgroundColor='#ffb3b3'");
-                    e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor='#ffe6e6'");
-                    e.Row.BackColor = System.Drawing.Color.FromName("#ffe6e6");
-                }
-            }
-            else
-            {
-                if (e.Row.RowType == DataControlRowType.DataRow)
-                {
-                    e.Row.Attributes.Add("onmouseover", "this.style.backgroundColor='#ffcc80'");
-                    e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor='#ffebcc'");
-                    e.Row.BackColor = System.Drawing.Color.FromName("#ffebcc");
-                }
-            }
         }
         protected void myGridViewClanInsig_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
@@ -158,7 +140,7 @@ namespace WEB_PERSONAL
             GridView1.DataBind();
         }
 
-        protected void btnCancelClanInsig_Click(object sender, EventArgs e)
+        protected void lbuCancel_Click(object sender, EventArgs e)
         {
             ClearData();
             ClassClanInsignia ci = new ClassClanInsignia();
@@ -168,7 +150,7 @@ namespace WEB_PERSONAL
             SetViewState(dt);
         }
 
-        protected void btnSearchClanInsig_Click(object sender, EventArgs e)
+        protected void lbuSearch_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtSearchClanInsigName.Text))
             {
@@ -185,7 +167,7 @@ namespace WEB_PERSONAL
             }
         }
 
-        protected void btnSearchRefresh_Click(object sender, EventArgs e)
+        protected void lbuRefresh_Click(object sender, EventArgs e)
         {
             ClearData();
             ClassClanInsignia ci = new ClassClanInsignia();

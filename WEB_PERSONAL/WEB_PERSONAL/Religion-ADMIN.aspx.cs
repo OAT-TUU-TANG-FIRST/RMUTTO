@@ -59,7 +59,7 @@ namespace WEB_PERSONAL
             txtInsertReligionName.Text = "";
         }
 
-        protected void btnSubmitReligion_Click(object sender, EventArgs e)
+        protected void lbuSubmit_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtInsertReligionName.Text))
             {
@@ -132,25 +132,6 @@ namespace WEB_PERSONAL
                 LinkButton lb = (LinkButton)e.Row.FindControl("DeleteButton1");
                 lb.Attributes.Add("onclick", "return confirm('คุณต้องการจะลบชื่อศาสนา " + DataBinder.Eval(e.Row.DataItem, "Religion_NAME") + " ใช่ไหม ?');");
             }
-            e.Row.Attributes.Add("style", "cursor:help;");
-            if (e.Row.RowType == DataControlRowType.DataRow && e.Row.RowState == DataControlRowState.Alternate)
-            {
-                if (e.Row.RowType == DataControlRowType.DataRow)
-                {
-                    e.Row.Attributes.Add("onmouseover", "this.style.backgroundColor='#ffb3b3'");
-                    e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor='#ffe6e6'");
-                    e.Row.BackColor = System.Drawing.Color.FromName("#ffe6e6");
-                }
-            }
-            else
-            {
-                if (e.Row.RowType == DataControlRowType.DataRow)
-                {
-                    e.Row.Attributes.Add("onmouseover", "this.style.backgroundColor='#ffcc80'");
-                    e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor='#ffebcc'");
-                    e.Row.BackColor = System.Drawing.Color.FromName("#ffebcc");
-                }
-            }
         }
         protected void myGridViewReligion_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
@@ -159,7 +140,7 @@ namespace WEB_PERSONAL
             GridView1.DataBind();
         }
 
-        protected void btnCancelReligion_Click(object sender, EventArgs e)
+        protected void lbuCancel_Click(object sender, EventArgs e)
         {
             ClearData();
             ClassReligion r = new ClassReligion();
@@ -169,7 +150,7 @@ namespace WEB_PERSONAL
             SetViewState(dt);
         }
 
-        protected void btnSearchReligion_Click(object sender, EventArgs e)
+        protected void lbuSearch_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtSearchReligionName.Text))
             {
@@ -186,7 +167,7 @@ namespace WEB_PERSONAL
             }
         }
 
-        protected void btnSearchRefresh_Click(object sender, EventArgs e)
+        protected void lbuRefresh_Click(object sender, EventArgs e)
         {
             ClearData();
             ClassReligion r = new ClassReligion();
