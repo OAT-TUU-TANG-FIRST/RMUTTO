@@ -180,11 +180,11 @@ namespace WEB_PERSONAL {
             MultiView1.ActiveViewIndex = 0;
         }
 
-
+/*
         protected void lbuBackV1_Click(object sender, EventArgs e)
         {
             MultiView1.ActiveViewIndex = 0;
-        }
+        }*/
 
 
         protected void txtDateTO_TextChanged(object sender, EventArgs e) {
@@ -226,9 +226,9 @@ namespace WEB_PERSONAL {
             }
         }
 
-        protected void lbuNextV1_Click(object sender, EventArgs e)
+       /* protected void lbuNextV1_Click(object sender, EventArgs e)
         {
             MultiView1.ActiveViewIndex = 1;
-        }
+        }*/
     }
 }

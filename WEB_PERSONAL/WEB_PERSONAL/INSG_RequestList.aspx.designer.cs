@@ -13,6 +13,15 @@ namespace WEB_PERSONAL {
     public partial class INSG_RequestList {
         
         /// <summary>
+        /// hfIRID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfIRID;
+        
+        /// <summary>
         /// MultiView1 control.
         /// </summary>
         /// <remarks>
@@ -67,6 +76,15 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.RadioButton rbNotGet;
         
         /// <summary>
+        /// tbDateGet control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbDateGet;
+        
+        /// <summary>
         /// tbRef control.
         /// </summary>
         /// <remarks>
@@ -85,12 +103,21 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.LinkButton lbBack;
         
         /// <summary>
-        /// lbuResult control.
+        /// lbuSave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbuResult;
+        protected global::System.Web.UI.WebControls.LinkButton lbuSave;
+        
+        /// <summary>
+        /// View3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View View3;
     }
 }

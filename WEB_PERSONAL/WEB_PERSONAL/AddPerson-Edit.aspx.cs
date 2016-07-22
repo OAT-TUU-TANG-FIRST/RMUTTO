@@ -112,11 +112,13 @@ namespace WEB_PERSONAL
             divTab2.Visible = false;
             divTab3.Visible = false;
             divTab4.Visible = false;
+            divTab5.Visible = false;
             lbuTab1.CssClass = "ps-tab-unselected";
             lbuTab2.CssClass = "ps-tab-unselected";
             lbuTab3.CssClass = "ps-tab-unselected";
             lbuTab4.CssClass = "ps-tab-unselected";
-            if(_tab == "0") {
+            lbuTab5.CssClass = "ps-tab-unselected";
+            if (_tab == "0") {
                 divState1.Visible = true;
             } else if (_tab == "1") {
                 divTab1.Visible = true;
@@ -130,6 +132,31 @@ namespace WEB_PERSONAL
             } else if (_tab == "4") {
                 divTab4.Visible = true;
                 lbuTab4.CssClass = "ps-tab-selected";
+
+                using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
+                    con.Open();
+                    int staffTypeID = -1;
+                    using (OracleCommand com = new OracleCommand("SELECT PS_STAFFTYPE_ID FROM PS_PERSON WHERE PS_CITIZEN_ID = '" + p + "'", con)) {
+                        using (OracleDataReader reader = com.ExecuteReader()) {
+                            while (reader.Read()) {
+                                staffTypeID = reader.GetInt32(0);
+
+                            }
+                        }
+                    }
+                    tbGover.Visible = false;
+                    tbOfficeGover.Visible = false;
+                    if (staffTypeID == 1) {
+                        tbGover.Visible = true;
+                    } else if (staffTypeID == 6) {
+                        tbOfficeGover.Visible = true;
+                    }
+                }
+
+            } else if (_tab == "5") {
+                divTab5.Visible = true;
+                lbuTab5.CssClass = "ps-tab-selected";
+                
             }
         }
 
@@ -144,6 +171,9 @@ namespace WEB_PERSONAL
         } 
         protected void lbuTab4_Click(object sender, EventArgs e) {
             selectTab("4");
+        }
+        protected void lbuTab5_Click(object sender, EventArgs e) {
+            selectTab("5");
         }
         protected void lbuTab1Save_Click(object sender, EventArgs e) {
 
@@ -241,7 +271,34 @@ namespace WEB_PERSONAL
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('อัพเดทข้อมูลการทำงานสำเร็จ')", true);
         }
         protected void lbuTab4Save_Click(object sender, EventArgs e) {
-            //---
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
+                con.Open();
+                int staffTypeID = -1;
+                using (OracleCommand com = new OracleCommand("SELECT PS_STAFFTYPE_ID FROM PS_PERSON WHERE PS_CITIZEN_ID = '" + p + "'", con)) {
+                    using (OracleDataReader reader = com.ExecuteReader()) {
+                        while (reader.Read()) {
+                            staffTypeID = reader.GetInt32(0);
+
+                        }
+                    }
+                }
+                tbGover.Visible = false;
+                tbOfficeGover.Visible = false;
+
+                //
+                {
+                    //บันทึก 2 ตตัว
+                }
+
+                if (staffTypeID == 1) {
+                    //กลาง
+                } else if (staffTypeID == 6) {
+                    //ขวา
+                }
+            }
+        }
+        protected void lbuTab5Save_Click(object sender, EventArgs e) {
+
         }
 
         private void BindView1() {

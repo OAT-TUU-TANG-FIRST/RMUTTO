@@ -174,7 +174,7 @@ input[type=radio] + label {
 }
 .ps-ms-main-drop-profile-pic {
     width: 150px;
-    height: 140px;
+    height: 130px;
     object-fit: contain;
 }
 .ps-ms-logout {

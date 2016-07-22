@@ -4,24 +4,25 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="default_page_style">
         <div class="ps-header"><img src="Image/Small/medal.png" />รายชื่อผู้มีสิทธิได้รับเครื่องราชฯ</div>
-        <div>
-            <table class="ps-table">
+        <div style="text-align: center;">
+            <div class="ps-div-title-red"><img src="Image/Small/search.png"/ class="icon_left">ค้นหาข้อมูล</div>
+            <table class="ps-table-1" style="display: inline-block; text-align: left;">
                 <tr>
                     <td class="col1">ประเภทบุคลากร</td>
                     <td class="col2">
-                        <asp:DropDownList ID="ddlStaffType" runat="server"></asp:DropDownList>
+                        <asp:DropDownList ID="ddlStaffType" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">วิทยาเขต</td>
                     <td class="col2">
-                        <asp:DropDownList ID="ddlCampus" runat="server"></asp:DropDownList>
+                        <asp:DropDownList ID="ddlCampus" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">สำนัก / สถาบัน / คณะ</td>
                     <td class="col2">
-                        <asp:DropDownList ID="ddlFaculty" runat="server"></asp:DropDownList>
+                        <asp:DropDownList ID="ddlFaculty" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
                     </td>
                 </tr>
                 <tr>
@@ -35,7 +36,7 @@
         </div>
         <div class="ps-separator"></div>
         <asp:LinkButton ID="lbuSend" runat="server" CssClass="ps-button" OnClick="lbuSend_Click"><img src='Image/Small/send-email.png' class='icon_left'/>ส่งการแจ้งเตือน</asp:LinkButton>
-        <asp:Table ID="Table1" runat="server" CssClass="ps-ins-table"></asp:Table>
+        <asp:Table ID="Table1" runat="server" CssClass="ps-table-1" style="margin-top: 10px;"></asp:Table>
         <asp:HiddenField ID="hf1" runat="server" />
     </div>
 </asp:Content>

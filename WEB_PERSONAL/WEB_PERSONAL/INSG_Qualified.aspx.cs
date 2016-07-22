@@ -45,8 +45,11 @@ namespace WEB_PERSONAL {
                 cccFaculty = " AND PS_FACULTY_ID = " + ddlFaculty.SelectedValue;
             }
 
+            lbuSend.Visible = false;
+
             if (hf1.Value != "") {
-                Random r = new Random();
+                //Random r = new Random();
+                lbuSend.Visible = true;
                 {
                     Table1.Rows.Clear();
                     TableRow row = new TableRow();
@@ -121,7 +124,26 @@ namespace WEB_PERSONAL {
                 
                 using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                     con.Open();
-                    using (OracleCommand com = new OracleCommand("SELECT PS_PERSON.PS_CITIZEN_ID รหัสประชาชน, PS_PERSON.PS_FN_TH || ' ' || PS_PERSON.PS_LN_TH ชื่อ, PS_STAFFTYPE_ID, PS_PIG_ID, (SELECT TRUNC((SYSDATE - PS_INWORK_DATE)/365,0) from PS_PERSON A WHERE A.PS_CITIZEN_ID = PS_PERSON.PS_CITIZEN_ID) ปีทำงาน, PS_SALARY, PS_INWORK_DATE, PS_SALARY, (SELECT NAME FROM TB_POSITION WHERE PS_PERSON.PS_POSITION_ID = TB_POSITION.ID) ตำแหน่ง, PS_ACAD_POS_ID, PS_ADMIN_POS_ID, PS_PIE_ID, (SELECT STAFFTYPE_NAME FROM TB_STAFFTYPE WHERE PS_PERSON.PS_STAFFTYPE_ID = TB_STAFFTYPE.STAFFTYPE_ID) ชื่อประเภทบุคลากร, (SELECT CAMPUS_NAME FROM TB_CAMPUS WHERE TB_CAMPUS.CAMPUS_ID = PS_PERSON.PS_CAMPUS_ID) วิทยาเขต, (SELECT FACULTY_NAME FROM TB_FACULTY WHERE TB_FACULTY.FACULTY_ID = PS_PERSON.PS_FACULTY_ID) คณะ FROM PS_PERSON WHERE PS_STAFFTYPE_ID in(1,2,3,6) " + cccStaffType + cccCampus + cccFaculty, con)) {
+                    using (OracleCommand com = new OracleCommand(
+                        "SELECT PS_PERSON.PS_CITIZEN_ID รหัสประชาชน" //0
+                        + ", PS_PERSON.PS_FN_TH || ' ' || PS_PERSON.PS_LN_TH ชื่อ" //1
+                        + ", PS_STAFFTYPE_ID" //2
+                        + ", (SELECT TRUNC((SYSDATE - PS_INWORK_DATE)/365,0) from PS_PERSON A WHERE A.PS_CITIZEN_ID = PS_PERSON.PS_CITIZEN_ID) ปีทำงาน" //3
+                        + ", PS_SALARY" //4
+                        + ", PS_INWORK_DATE" //5
+                        + ", PS_SALARY" //6
+                        + ", (SELECT POSITION_WORK_NAME FROM TB_POSITION_WORK WHERE PS_PERSON.PS_WORK_POS_ID = TB_POSITION_WORK.POSITION_WORK_ID) ตำแหน่ง" //7
+                        + ", PS_ACAD_POS_ID" //8
+                        + ", PS_ADMIN_POS_ID" //9
+                        + ", (SELECT STAFFTYPE_NAME FROM TB_STAFFTYPE WHERE PS_PERSON.PS_STAFFTYPE_ID = TB_STAFFTYPE.STAFFTYPE_ID) ชื่อประเภทบุคลากร" //10
+                        + ", (SELECT CAMPUS_NAME FROM TB_CAMPUS WHERE TB_CAMPUS.CAMPUS_ID = PS_PERSON.PS_CAMPUS_ID) วิทยาเขต" //11
+                        + ", (SELECT FACULTY_NAME FROM TB_FACULTY WHERE TB_FACULTY.FACULTY_ID = PS_PERSON.PS_FACULTY_ID) คณะ" //12
+                        + ", PS_POSI_ADMIN" //13
+                        + ", PS_POSI_DIRECT" //14
+                        + ", PS_POSI_ACAD" //15
+                        + ", PS_POSI_GENERAL" //16
+                        + ", PS_POSI_EMP_GROUP" //17
+                        + " FROM PS_PERSON WHERE PS_STAFFTYPE_ID in(1,2,3,6) " + cccStaffType + cccCampus + cccFaculty, con)) {
                         using (OracleDataReader reader = com.ExecuteReader()) {
                             while (reader.Read()) {
 
@@ -129,7 +151,7 @@ namespace WEB_PERSONAL {
                                 string psID = reader.GetString(0);
 
                                 TableRow row = new TableRow();
-                                row.CssClass = "ps-ins-item";
+                                //row.CssClass = "ps-ins-item";
 
                                 img1 = new Image();
                                 img2 = new Image();
@@ -153,14 +175,15 @@ namespace WEB_PERSONAL {
                                     row.Cells.Add(cell);
                                 }
 
+                                LinkButton lbName = new LinkButton();
                                 {
-                                    LinkButton lbName = new LinkButton();
+                                    
                                     lbName.Text = reader.GetString(1);
                                     lbName.Click += (e2, e3) => {
                                         Response.Redirect("INSG_Qualified_Detail.aspx?psID=" + psID);
                                     };
                                     lbName.Attributes.Add("tuu", psID);
-                                    //lbName.Attributes.Add("tuu2", psID);
+                                    
                                     TableCell cell = new TableCell();
                                     cell.Controls.Add(lbName);
                                     row.Cells.Add(cell);
@@ -221,7 +244,7 @@ namespace WEB_PERSONAL {
 
                                 {
                                     Label lblDateInwork = new Label();
-                                    lblDateInwork.Text = reader.GetDateTime(6).ToString("dd MMM yyyy");
+                                    lblDateInwork.Text = reader.GetDateTime(5).ToString("dd MMM yyyy");
                                     TableCell cell = new TableCell();
                                     cell.Controls.Add(lblDateInwork);
                                     row.Cells.Add(cell);
@@ -229,7 +252,7 @@ namespace WEB_PERSONAL {
 
                                 {
                                     Label lblSalary = new Label();
-                                    lblSalary.Text = reader.GetInt32(7).ToString("#,###");
+                                    lblSalary.Text = reader.GetInt32(6).ToString("#,###");
                                     TableCell cell = new TableCell();
                                     cell.Controls.Add(lblSalary);
                                     row.Cells.Add(cell);
@@ -237,7 +260,7 @@ namespace WEB_PERSONAL {
 
                                 {
                                     Label lblPosition = new Label();
-                                    lblPosition.Text = reader.GetString(8);
+                                    lblPosition.Text = reader.GetString(7);
                                     TableCell cell = new TableCell();
                                     cell.Controls.Add(lblPosition);
                                     row.Cells.Add(cell);
@@ -245,7 +268,7 @@ namespace WEB_PERSONAL {
 
                                 {
                                     Label lblStaffTypeName = new Label();
-                                    lblStaffTypeName.Text = reader.GetString(12);
+                                    lblStaffTypeName.Text = reader.GetString(10);
                                     TableCell cell = new TableCell();
                                     cell.Controls.Add(lblStaffTypeName);
                                     row.Cells.Add(cell);
@@ -253,7 +276,7 @@ namespace WEB_PERSONAL {
 
                                 {
                                     Label lblCampus = new Label();
-                                    lblCampus.Text = reader.GetString(13);
+                                    lblCampus.Text = reader.GetString(11);
                                     TableCell cell = new TableCell();
                                     cell.Controls.Add(lblCampus);
                                     row.Cells.Add(cell);
@@ -261,7 +284,7 @@ namespace WEB_PERSONAL {
 
                                 {
                                     Label lblFaculty = new Label();
-                                    lblFaculty.Text = reader.GetString(14);
+                                    lblFaculty.Text = reader.GetString(12);
                                     TableCell cell = new TableCell();
                                     cell.Controls.Add(lblFaculty);
                                     row.Cells.Add(cell);
@@ -270,22 +293,31 @@ namespace WEB_PERSONAL {
                                 //Table1.Rows.Add(row);
 
                                 int รหัสประเภทบุคลากร = reader.GetInt32(2);
-                                int รหัสระดับตำแหน่ง = reader.GetInt32(3);
-                                int รหัสตำแหน่งทางวิชาการ = reader.GetInt32(9);
-                                int รหัสตำแหน่งทางบริหาร = reader.GetInt32(10);
-                                int รหัสกลุ่มงานพนักงานราชการ = reader.GetInt32(11);
+                                //int รหัสระดับตำแหน่ง = reader.GetInt32(3);
+                                int รหัสตำแหน่งทางวิชาการ = reader.GetInt32(8);
+                                int รหัสตำแหน่งทางบริหาร = reader.GetInt32(9);
+
+                                
+
+                                int รหัสตำแหน่งประเภททางบริหาร = reader.GetInt32(13);
+                                int รหัสตำแหน่งประเภททางอำนวยการ = reader.GetInt32(14);
+                                int รหัสตำแหน่งประเภททางวิชาการ = reader.GetInt32(15);
+                                int รหัสตำแหน่งประเภททางทั่วไป = reader.GetInt32(16);
+
+                                int รหัสกลุ่มงานพนักงานราชการ = reader.GetInt32(17);
+
                                 int รหัสเครืองราชปัจจุบัน = -1;
-                                using (OracleCommand com2 = new OracleCommand("SELECT IUG_INSIG_ID FROM TB_INSIG_USER_GET WHERE IUG_STATUS = 1 AND IUG_CITIZEN_ID = '" + psID + "'", con)) {
+                                using (OracleCommand com2 = new OracleCommand("SELECT IR_INSIG_ID FROM TB_INSIG_REQUEST WHERE IR_STATUS IN(3,4) AND IR_CITIZEN_ID = '" + psID + "' AND IR_GET_STATUS = 1 ORDER BY IR_ID DESC", con)) {
                                     using (OracleDataReader reader2 = com2.ExecuteReader()) {
-                                        while (reader2.Read()) {
+                                        if (reader2.Read()) {
                                             รหัสเครืองราชปัจจุบัน = reader2.GetInt32(0);
                                         }
 
                                     }
                                 }
 
-                                int ปีที่ทำงาน = reader.GetInt32(4);
-                                int เงินเดือนปัจจุบัน = reader.GetInt32(5);
+                                int ปีที่ทำงาน = reader.GetInt32(3);
+                                int เงินเดือนปัจจุบัน = reader.GetInt32(4);
 
                                 int เงินเดือนขั้นต่ำของระดับชำนาญงาน = -1;
                                 using (OracleCommand com2 = new OracleCommand("SELECT P_SAL_MIN FROM TB_POSITION_SAL_MINMAX WHERE P_POS_ID = 14102", con)) {
@@ -298,7 +330,7 @@ namespace WEB_PERSONAL {
                                 }
 
                                 int ปีที่ดำรงตำแหน่งระดับปฏิบัติงาน = -1;
-                                using (OracleCommand com2 = new OracleCommand("SELECT TRUNC((CURRENT_DATE - PDH_DATE_START)/365,0) FROM TB_POSITION_DEGREE_HISTORY WHERE PID_ID = 1 AND PDH_CITIZEN_ID = '" + psID + "'", con)) {
+                                using (OracleCommand com2 = new OracleCommand("SELECT TRUNC((CURRENT_DATE - PDH_DATE_START)/365,0) FROM TB_POSITION_DEGREE_HISTORY WHERE PDH_POSI_ID = 10 AND PDH_CITIZEN_ID = '" + psID + "'", con)) {
                                     using (OracleDataReader reader2 = com2.ExecuteReader()) {
                                         while (reader2.Read()) {
                                             ปีที่ดำรงตำแหน่งระดับปฏิบัติงาน = reader2.GetInt32(0);
@@ -308,7 +340,7 @@ namespace WEB_PERSONAL {
                                 }
 
                                 int ปีที่ดำรงตำแหน่งระดับชำนาญงาน = -1;
-                                using (OracleCommand com2 = new OracleCommand("SELECT TRUNC((CURRENT_DATE - PDH_DATE_START)/365,0) FROM TB_POSITION_DEGREE_HISTORY WHERE PID_ID = 2 AND PDH_CITIZEN_ID = '" + psID + "'", con)) {
+                                using (OracleCommand com2 = new OracleCommand("SELECT TRUNC((CURRENT_DATE - PDH_DATE_START)/365,0) FROM TB_POSITION_DEGREE_HISTORY WHERE PDH_POSI_ID = 11 AND PDH_CITIZEN_ID = '" + psID + "'", con)) {
                                     using (OracleDataReader reader2 = com2.ExecuteReader()) {
                                         while (reader2.Read()) {
                                             ปีที่ดำรงตำแหน่งระดับชำนาญงาน = reader2.GetInt32(0);
@@ -318,7 +350,7 @@ namespace WEB_PERSONAL {
                                 }
 
                                 int ปีที่ดำรงตำแหน่งระดับอาวุโส = -1;
-                                using (OracleCommand com2 = new OracleCommand("SELECT TRUNC((CURRENT_DATE - PDH_DATE_START)/365,0) FROM TB_POSITION_DEGREE_HISTORY WHERE PID_ID = 3 AND PDH_CITIZEN_ID = '" + psID + "'", con)) {
+                                using (OracleCommand com2 = new OracleCommand("SELECT TRUNC((CURRENT_DATE - PDH_DATE_START)/365,0) FROM TB_POSITION_DEGREE_HISTORY WHERE PDH_POSI_ID = 12 AND PDH_CITIZEN_ID = '" + psID + "'", con)) {
                                     using (OracleDataReader reader2 = com2.ExecuteReader()) {
                                         while (reader2.Read()) {
                                             ปีที่ดำรงตำแหน่งระดับอาวุโส = reader2.GetInt32(0);
@@ -337,8 +369,46 @@ namespace WEB_PERSONAL {
                                     }
                                 }
 
+                                int ปีที่ได้รับบม = -1;
+                                int ปีที่ได้รับบช = -1;
+                                int ปีที่ได้รับจม = -1;
+                                int ปีที่ได้รับจช = -1;
+                                int ปีที่ได้รับตม = -1;
+                                int ปีที่ได้รับตช = -1;
+                                int ปีที่ได้รับทม = -1;
+                                int ปีที่ได้รับทช = -1;
+                                int ปีที่ได้รับปม = -1;
+                                int ปีที่ได้รับปช = -1;
+                                int ปีที่ได้รับมวม = -1;
+                                int ปีที่ได้รับมปช = -1;
+
+                                for (int i = 1; i <= 12; i++) {
+                                    using (OracleCommand com2 = new OracleCommand("SELECT TRUNC((CURRENT_DATE - IUG_INSIG_DATE_GET)/365,0) FROM TB_INSIG_USER_GET WHERE IUG_INSIG_ID = " + i + " AND IUG_CITIZEN_ID = '" + psID + "'", con)) {
+                                        using (OracleDataReader reader2 = com2.ExecuteReader()) {
+                                            while (reader2.Read()) {
+                                                int year = reader2.GetInt32(0);
+                                                if (i == 1) { ปีที่ได้รับบม = year; }
+                                                else if (i == 2) { ปีที่ได้รับบช = year; }
+                                                else if (i == 3) { ปีที่ได้รับจม = year; }
+                                                else if (i == 4) { ปีที่ได้รับจช = year; }
+                                                else if (i == 5) { ปีที่ได้รับตม = year; }
+                                                else if (i == 6) { ปีที่ได้รับตช = year; }
+                                                else if (i == 7) { ปีที่ได้รับทม = year; }
+                                                else if (i == 8) { ปีที่ได้รับทช = year; }
+                                                else if (i == 9) { ปีที่ได้รับปม = year; }
+                                                else if (i == 10) { ปีที่ได้รับปช = year; }
+                                                else if (i == 11) { ปีที่ได้รับมวม = year; }
+                                                else if (i == 12) { ปีที่ได้รับมปช = year; }
+
+                                            }
+
+                                        }
+                                    }
+                                }
+
+
                                 if (รหัสประเภทบุคลากร == 1) {//ข้าราชการ
-                                    if (รหัสระดับตำแหน่ง == 1) {//ระดับปฏิบัติงาน
+                                    if (รหัสตำแหน่งประเภททางทั่วไป == 10) {//ระดับปฏิบัติงาน
                                         if (รหัสเครืองราชปัจจุบัน == -1) {
                                             ConditionExecute(new string[] {
                                                 "","บ.ม."
@@ -347,6 +417,7 @@ namespace WEB_PERSONAL {
                                             }, new string[] {
                                                 "อายุงานครบ 5 ปี"
                                             });
+                                            lbName.Attributes.Add("tuu2", "12");
                                         } else if (รหัสเครืองราชปัจจุบัน == 12) {
                                             ConditionExecute(new string[] {
                                                 "บ.ม.","บ.ช."
@@ -359,6 +430,7 @@ namespace WEB_PERSONAL {
                                                 "เงินเดือนน้อยกว่าเงินเดือนขั้นต่ำของระดับชำนาญงาน",
                                                 "ปีที่ดำรงตำแหน่งระดับปฏิบัติงานไม่น้อยกว่า 10 ปี"
                                             });
+                                            lbName.Attributes.Add("tuu2", "11");
                                         } else if (รหัสเครืองราชปัจจุบัน == 11) {
                                             ConditionExecute(new string[] {
                                                 "บ.ช.","จ.ม."
@@ -371,6 +443,7 @@ namespace WEB_PERSONAL {
                                                 "เงินเดือนมากกว่าเงินเดือนขั้นต่ำของระดับชำนาญงาน",
                                                 "ปีที่ดำรงตำแหน่งระดับปฏิบัติงานไม่น้อยกว่า 10 ปี"
                                             });
+                                            lbName.Attributes.Add("tuu2", "10");
                                         } else if (รหัสเครืองราชปัจจุบัน == 10) {
                                             ConditionExecute(new string[] {
                                                 "จ.ม.","จ.ช."
@@ -383,10 +456,12 @@ namespace WEB_PERSONAL {
                                                 "เงินเดือนมากกว่าเงินเดือนขั้นต่ำของระดับชำนาญงาน",
                                                 "ปีที่ดำรงตำแหน่งระดับปฏิบัติงานไม่น้อยกว่า 10 ปี"
                                             });
+                                            lbName.Attributes.Add("tuu2", "9");
                                         } else if (รหัสเครืองราชปัจจุบัน == 9) {
                                             ConditionExecute(new string[] { "จ.ช.", "" });
+                                            lbName.Attributes.Add("tuu2", "0");
                                         }
-                                    } else if (รหัสระดับตำแหน่ง == 2) {//ระดับชำนาญงาน
+                                    } else if (รหัสตำแหน่งประเภททางทั่วไป == 11) {//ระดับชำนาญงาน
                                         if (รหัสเครืองราชปัจจุบัน == -1) {
                                             ConditionExecute(new string[] {
                                                 "","ต.ม."
@@ -395,6 +470,7 @@ namespace WEB_PERSONAL {
                                             }, new string[] {
                                                 "อายุงานครบ 5 ปี"
                                             });
+                                            lbName.Attributes.Add("tuu2", "8");
                                         } else if (รหัสเครืองราชปัจจุบัน == 8) {
                                             ConditionExecute(new string[] {
                                                 "ต.ม.","ต.ช."
@@ -405,10 +481,12 @@ namespace WEB_PERSONAL {
                                                 "อายุงานครบ 5 ปี",
                                                 "ปีที่ดำรงตำแหน่งระดับชำนาญงานไม่น้อยกว่า 5 ปี"
                                             });
+                                            lbName.Attributes.Add("tuu2", "7");
                                         } else if (รหัสเครืองราชปัจจุบัน == 7) {
                                             ConditionExecute(new string[] { "ต.ช.", "" });
+                                            lbName.Attributes.Add("tuu2", "0");
                                         }
-                                    } else if (รหัสระดับตำแหน่ง == 3) {//ระดับอาวุโส
+                                    } else if (รหัสตำแหน่งประเภททางทั่วไป == 12) {//ระดับอาวุโส
                                         if (รหัสเครืองราชปัจจุบัน == -1) {
                                             ConditionExecute(new string[] {
                                                 "","ท.ม."
@@ -417,6 +495,7 @@ namespace WEB_PERSONAL {
                                             }, new string[] {
                                                 "อายุงานครบ 5 ปี"
                                             });
+                                            lbName.Attributes.Add("tuu2", "6");
                                         } else if (รหัสเครืองราชปัจจุบัน == 6) {
                                             ConditionExecute(new string[] {
                                                 "ท.ม.","ท.ช."
@@ -427,10 +506,32 @@ namespace WEB_PERSONAL {
                                                 "อายุงานครบ 5 ปี",
                                                 "ปีที่ดำรงตำแหน่งระดับอาวุโสไม่น้อยกว่า 5 ปี"
                                             });
+                                            lbName.Attributes.Add("tuu2", "5");
                                         } else if (รหัสเครืองราชปัจจุบัน == 5) {
                                             ConditionExecute(new string[] { "ท.ช.", "" });
+                                            lbName.Attributes.Add("tuu2", "0");
                                         }
-                                    } else if (รหัสระดับตำแหน่ง == 4) {//ระดับปฏิบัติการ
+                                    } else if (รหัสตำแหน่งประเภททางทั่วไป == 13) {//ระดับทักษะพิเศษ
+                                        if (รหัสเครืองราชปัจจุบัน == 3) {
+                                            ConditionExecute(new string[] {
+                                                "ป.ช.","ม.ว.ม"
+                                            }, new bool[] {
+                                                ปีที่ทำงาน >= 5,
+                                                ปีที่ได้รับทช >= 3,
+                                                ปีที่ได้รับปม >= 3,
+                                                ปีที่ได้รับปช >= 5
+                                            }, new string[] {
+                                                "อายุงานครบ 5 ปี",
+                                                "ได้ ท.ช. มาแล้วไม่น้อยกว่า 3 ปี",
+                                                "ได้ ป.ม. มาแล้วไม่น้อยกว่า 3 ปี",
+                                                "ได้ ป.ช. มาแล้วไม่น้อยกว่า 5 ปี"
+                                            });
+                                            lbName.Attributes.Add("tuu2", "8");
+                                        } else if (รหัสเครืองราชปัจจุบัน == 8) {
+                                            ConditionExecute(new string[] { "ต.ม.", "" });
+                                            lbName.Attributes.Add("tuu2", "0");
+                                        }
+                                    } else if (รหัสตำแหน่งประเภททางวิชาการ == 5) {//ระดับปฏิบัติการ
                                         if (รหัสเครืองราชปัจจุบัน == -1) {
                                             ConditionExecute(new string[] {
                                                 "","ต.ม."
@@ -439,10 +540,12 @@ namespace WEB_PERSONAL {
                                             }, new string[] {
                                                 "อายุงานครบ 5 ปี"
                                             });
+                                            lbName.Attributes.Add("tuu2", "8");
                                         } else if (รหัสเครืองราชปัจจุบัน == 8) {
                                             ConditionExecute(new string[] { "ต.ม.", "" });
+                                            lbName.Attributes.Add("tuu2", "0");
                                         }
-                                    } else if (รหัสระดับตำแหน่ง == 5) {//ระดับชำนาญการ
+                                    } else if (รหัสตำแหน่งประเภททางวิชาการ == 6) {//ระดับชำนาญการ
                                         if (รหัสเครืองราชปัจจุบัน == -1) {
                                             ConditionExecute(new string[] {
                                                 "","ต.ช."
@@ -451,6 +554,7 @@ namespace WEB_PERSONAL {
                                             }, new string[] {
                                                 "อายุงานครบ 5 ปี"
                                             });
+                                            lbName.Attributes.Add("tuu2", "7");
                                         } else if (รหัสเครืองราชปัจจุบัน == 7) {
                                             ConditionExecute(new string[] {
                                                 "ต.ช.","ท.ม."
@@ -461,6 +565,7 @@ namespace WEB_PERSONAL {
                                                 "อายุงานครบ 5 ปี",
                                                 "เงินเดือนมากกว่าเงินเดือนขั้นต่ำของระดับชำนาญการพิเศษ"
                                             });
+                                            lbName.Attributes.Add("tuu2", "6");
                                         } else if (รหัสเครืองราชปัจจุบัน == 6) {
                                             ConditionExecute(new string[] {
                                                 "ท.ม.","ท.ช."
@@ -473,10 +578,12 @@ namespace WEB_PERSONAL {
                                                 "เงินเดือนมากกว่าเงินเดือนขั้นต่ำของระดับชำนาญการพิเศษ",
                                                 "ได้รับเงินเดือนไม่ต่ำกว่าขั้นต่ำของระดับชำนาญการพิเศษมาแล้วไม่น้อยกว่า 5 ปี"
                                             });
+                                            lbName.Attributes.Add("tuu2", "5");
                                         } else if (รหัสเครืองราชปัจจุบัน == 5) {
                                             ConditionExecute(new string[] { "ท.ช.", "" });
+                                            lbName.Attributes.Add("tuu2", "0");
                                         }
-                                    } else if (รหัสระดับตำแหน่ง == 6) {//ระดับชำนาญการพิเศษ
+                                    } else if (รหัสตำแหน่งประเภททางวิชาการ == 7) {//ระดับชำนาญการพิเศษ
                                         if (รหัสเครืองราชปัจจุบัน == -1) {
                                             ConditionExecute(new string[] {
                                                 "","ท.ช."
@@ -485,58 +592,65 @@ namespace WEB_PERSONAL {
                                             }, new string[] {
                                                 "อายุงานครบ 5 ปี"
                                             });
+                                            lbName.Attributes.Add("tuu2", "5");
                                         } else if (รหัสเครืองราชปัจจุบัน == 5) {
                                             ConditionExecute(new string[] {
                                                 "ท.ช.","ป.ม."
                                             }, new bool[] {
                                                 ปีที่ทำงาน >= 5,
                                                 เงินเดือนปัจจุบัน > เงินเดือนขั้นต่ำของระดับชำนาญการพิเศษ,
-                                                1 == 1 /*--------------------------*/
+                                                ปีที่ได้รับทช >= 5 /*--------------------------*/
                                         }, new string[] {
                                                 "อายุงานครบ 5 ปี",
                                                 "เงินเดือนมากกว่าเงินเดือนขั้นต่ำของระดับชำนาญการพิเศษ",
                                                 "ได้รับเงินเดือนขั้นสูงและได้ ท.ช. มาแล้วไม่น้อยกว่า 5 ปี"
                                             });
+                                            lbName.Attributes.Add("tuu2", "4");
                                         } else if (รหัสเครืองราชปัจจุบัน == 4) {
                                             ConditionExecute(new string[] { "ป.ม.", "" });
+                                            lbName.Attributes.Add("tuu2", "0");
                                         }
-                                    } else if (รหัสระดับตำแหน่ง == 7) {//ระดับเชี่ยวชาญ
+                                    } else if (รหัสตำแหน่งประเภททางวิชาการ == 8) {//ระดับเชี่ยวชาญ
                                         if (รหัสเครืองราชปัจจุบัน == -1) {
                                             ConditionExecute(new string[] {
                                                 "","ม.ว.ม."
                                             }, new bool[] {
                                                 ปีที่ทำงาน >= 5,
-                                                1 == 1,
-                                                1 == 1,
-                                                1 == 1
+                                                ปีที่ได้รับทช >= 3,
+                                                ปีที่ได้รับปม >= 3,
+                                                ปีที่ได้รับปช >= 5
                                             }, new string[] {
                                                 "อายุงานครบ 5 ปี",
                                                 "ได้ ท.ช. มาแล้วไม่น้อยกว่า 3 ปี",
                                                 "ได้ ป.ม. มาแล้วไม่น้อยกว่า 3 ปี",
                                                 "ได้ ป.ช. มาแล้วไม่น้อยกว่า 5 ปี",
                                             });
+                                            lbName.Attributes.Add("tuu2", "2");
                                         } else if (รหัสเครืองราชปัจจุบัน == 2) {
                                             ConditionExecute(new string[] { "ม.ว.ม.", "" });
+                                            lbName.Attributes.Add("tuu2", "0");
                                         }
-                                    } else if (รหัสระดับตำแหน่ง == 8) {//ระดับทรงคุณวุฒิ 13000
+                                    } else if (รหัสตำแหน่งประเภททางวิชาการ == 9) {//ระดับทรงคุณวุฒิ 13000
                                         if (รหัสเครืองราชปัจจุบัน == -1) {
                                             ConditionExecute(new string[] {
                                                 "","ม.ป.ช."
                                             }, new bool[] {
                                                 ปีที่ทำงาน >= 5,
-                                                1 == 1,
-                                                1 == 1,
-                                                1 == 1
+                                                ปีที่ได้รับปม >= 3,
+                                                ปีที่ได้รับปช >= 3,
+                                                ปีที่ได้รับมวม >= 5
                                             }, new string[] {
                                                 "อายุงานครบ 5 ปี",
                                                 "ได้ ป.ม. มาแล้วไม่น้อยกว่า 3 ปี",
                                                 "ได้ ป.ช. มาแล้วไม่น้อยกว่า 3 ปี",
                                                 "ได้ ม.ว.ม. มาแล้วไม่น้อยกว่า 5 ปี",
                                             });
+                                            lbName.Attributes.Add("tuu2", "2");
                                         } else if (รหัสเครืองราชปัจจุบัน == 2) {
                                             ConditionExecute(new string[] { "ม.ป.ช.", "" });
+                                            lbName.Attributes.Add("tuu2", "0");
                                         }
-                                    } else if (รหัสระดับตำแหน่ง == 10) {//อำนวยการ ระดับต้น
+                                    } else if (รหัสตำแหน่งประเภททางอำนวยการ == 3) {//อำนวยการ ระดับต้น
                                         if (รหัสเครืองราชปัจจุบัน == -1) {
                                             ConditionExecute(new string[] {
                                                 "","ท.ช."
@@ -545,42 +659,47 @@ namespace WEB_PERSONAL {
                                             }, new string[] {
                                                 "อายุงานครบ 5 ปี",
                                             });
+                                            lbName.Attributes.Add("tuu2", "5");
                                         } else if (รหัสเครืองราชปัจจุบัน == 5) {
                                             ConditionExecute(new string[] {
                                                 "ท.ช.","ป.ม."
                                             }, new bool[] {
                                                 ปีที่ทำงาน >= 5,
                                                 เงินเดือนปัจจุบัน > เงินเดือนขั้นต่ำของระดับชำนาญการพิเศษ,
-                                                1 == 1 , /*--------------------------*/
+                                                ปีที่ได้รับทช >= 3 , /*--------------------------*/
                                         }, new string[] {
                                                 "อายุงานครบ 5 ปี",
                                                 "เงินเดือนมากกว่าเงินเดือนขั้นต่ำของระดับชำนาญการพิเศษ",
                                                 "ได้รับเงินเดือนขั้นสูงและได้ ท.ช. มาแล้วไม่น้อยกว่า 3 ปี"
                                             });
+                                            lbName.Attributes.Add("tuu2", "4");
                                         } else if (รหัสเครืองราชปัจจุบัน == 4) {
                                             ConditionExecute(new string[] { "ป.ม.", "" });
+                                            lbName.Attributes.Add("tuu2", "0");
                                         }
-                                    } else if (รหัสระดับตำแหน่ง == 11) {//อำนวยการ ระดับสูง
+                                    } else if (รหัสตำแหน่งประเภททางอำนวยการ == 4) {//อำนวยการ ระดับสูง
                                         if (รหัสเครืองราชปัจจุบัน == -1) {
                                             ConditionExecute(new string[] {
                                                 "","ม.ว.ม."
                                             }, new bool[] {
                                                 ปีที่ทำงาน >= 5,
-                                                1 == 1,
-                                                1 == 1,
-                                                1 == 1
+                                                ปีที่ได้รับทช >= 3,
+                                                ปีที่ได้รับปม >= 3,
+                                                ปีที่ได้รับปช >= 5
                                             }, new string[] {
                                                 "อายุงานครบ 5 ปี",
                                                 "ได้ ท.ช. มาแล้วไม่น้อยกว่า 3 ปี",
                                                 "ได้ ป.ม. มาแล้วไม่น้อยกว่า 3 ปี",
                                                 "ได้ ป.ช. มาแล้วไม่น้อยกว่า 5 ปี",
                                             });
+                                            lbName.Attributes.Add("tuu2", "2");
                                         } else if (รหัสเครืองราชปัจจุบัน == 2) {
                                             ConditionExecute(new string[] { "ม.ว.ม.", "" });
+                                            lbName.Attributes.Add("tuu2", "0");
                                         }
                                     }
                                 } else if (รหัสประเภทบุคลากร == 2) {//พนง ในสถาบัน
-                                    if (รหัสตำแหน่งทางบริหาร == 10024) {// 2.หัวหน้าแผนก / ฝ่าย
+                                    if (รหัสตำแหน่งทางบริหาร == 4) {// 2.หัวหน้าแผนก / ฝ่าย
                                         if (รหัสเครืองราชปัจจุบัน == -1) {
                                             ConditionExecute(new string[] {
                                                 "","จ.ม."
@@ -589,6 +708,7 @@ namespace WEB_PERSONAL {
                                             }, new string[] {
                                                 "อายุงานครบ 5 ปี"
                                             });
+                                            lbName.Attributes.Add("tuu2", "10");
                                         } else if (รหัสเครืองราชปัจจุบัน == 10) {
                                             ConditionExecute(new string[] {
                                                 "จ.ม.","จ.ช."
@@ -597,6 +717,7 @@ namespace WEB_PERSONAL {
                                         }, new string[] {
                                                 "อายุงานครบ 5 ปี",
                                             });
+                                            lbName.Attributes.Add("tuu2", "9");
                                         } else if (รหัสเครืองราชปัจจุบัน == 9) {
                                             ConditionExecute(new string[] {
                                                 "จ.ช.","ต.ม."
@@ -605,8 +726,10 @@ namespace WEB_PERSONAL {
                                         }, new string[] {
                                                 "อายุงานครบ 5 ปี",
                                             });
+                                            lbName.Attributes.Add("tuu2", "8");
                                         } else if (รหัสเครืองราชปัจจุบัน == 8) {
                                             ConditionExecute(new string[] { "ต.ม.", "" });
+                                            lbName.Attributes.Add("tuu2", "0");
                                         }
                                     } else if (รหัสตำแหน่งทางวิชาการ == 1 || รหัสตำแหน่งทางวิชาการ == 2) {// 3.ผศ. หรือ อาจารย์
                                         if (รหัสเครืองราชปัจจุบัน == -1) {
@@ -617,6 +740,7 @@ namespace WEB_PERSONAL {
                                             }, new string[] {
                                                 "อายุงานครบ 5 ปี"
                                             });
+                                            lbName.Attributes.Add("tuu2", "9");
                                         } else if (รหัสเครืองราชปัจจุบัน == 9) {
                                             ConditionExecute(new string[] {
                                                 "จ.ช.","ต.ม."
@@ -625,6 +749,7 @@ namespace WEB_PERSONAL {
                                         }, new string[] {
                                                 "อายุงานครบ 5 ปี",
                                             });
+                                            lbName.Attributes.Add("tuu2", "8");
                                         } else if (รหัสเครืองราชปัจจุบัน == 8) {
                                             ConditionExecute(new string[] {
                                                 "ต.ม.","ต.ช."
@@ -633,6 +758,7 @@ namespace WEB_PERSONAL {
                                         }, new string[] {
                                                 "อายุงานครบ 5 ปี",
                                             });
+                                            lbName.Attributes.Add("tuu2", "7");
                                         } else if (รหัสเครืองราชปัจจุบัน == 7) {
                                             ConditionExecute(new string[] {
                                                 "ต.ช.","ท.ม."
@@ -641,8 +767,10 @@ namespace WEB_PERSONAL {
                                         }, new string[] {
                                                 "อายุงานครบ 5 ปี",
                                             });
+                                            lbName.Attributes.Add("tuu2", "6");
                                         } else if (รหัสเครืองราชปัจจุบัน == 6) {
                                             ConditionExecute(new string[] { "ท.ม.", "" });
+                                            lbName.Attributes.Add("tuu2", "0");
                                         }
                                     } else if (รหัสตำแหน่งทางบริหาร == 5 || รหัสตำแหน่งทางบริหาร == 6) {// 4.ผช อธิการบดี หรือ รอง คณบดี
                                         if (รหัสเครืองราชปัจจุบัน == -1) {
@@ -653,6 +781,7 @@ namespace WEB_PERSONAL {
                                             }, new string[] {
                                                 "อายุงานครบ 5 ปี"
                                             });
+                                            lbName.Attributes.Add("tuu2", "8");
                                         } else if (รหัสเครืองราชปัจจุบัน == 8) {
                                             ConditionExecute(new string[] {
                                                 "ต.ม.","ต.ช."
@@ -661,6 +790,7 @@ namespace WEB_PERSONAL {
                                         }, new string[] {
                                                 "อายุงานครบ 5 ปี",
                                             });
+                                            lbName.Attributes.Add("tuu2", "7");
                                         } else if (รหัสเครืองราชปัจจุบัน == 7) {
                                             ConditionExecute(new string[] {
                                                 "ต.ช.","ท.ม."
@@ -669,10 +799,12 @@ namespace WEB_PERSONAL {
                                         }, new string[] {
                                                 "อายุงานครบ 5 ปี",
                                             });
+                                            lbName.Attributes.Add("tuu2", "6");
                                         } else if (รหัสเครืองราชปัจจุบัน == 6) {
                                             ConditionExecute(new string[] { "ท.ม.", "" });
+                                            lbName.Attributes.Add("tuu2", "0");
                                         }
-                                    } else if (รหัสตำแหน่งทางบริหาร == 5 || รหัสตำแหน่งทางบริหาร == 6) {// 5.รศ
+                                    } else if (รหัสตำแหน่งทางวิชาการ == 3) {// 5.รศ
                                         if (รหัสเครืองราชปัจจุบัน == -1) {
                                             ConditionExecute(new string[] {
                                                 "","ต.ม."
@@ -681,6 +813,7 @@ namespace WEB_PERSONAL {
                                             }, new string[] {
                                                 "อายุงานครบ 5 ปี"
                                             });
+                                            lbName.Attributes.Add("tuu2", "8");
                                         } else if (รหัสเครืองราชปัจจุบัน == 8) {
                                             ConditionExecute(new string[] {
                                                 "ต.ม.","ต.ช."
@@ -689,6 +822,7 @@ namespace WEB_PERSONAL {
                                         }, new string[] {
                                                 "อายุงานครบ 5 ปี",
                                             });
+                                            lbName.Attributes.Add("tuu2", "7");
                                         } else if (รหัสเครืองราชปัจจุบัน == 7) {
                                             ConditionExecute(new string[] {
                                                 "ต.ช.","ท.ม."
@@ -697,6 +831,7 @@ namespace WEB_PERSONAL {
                                         }, new string[] {
                                                 "อายุงานครบ 5 ปี",
                                             });
+                                            lbName.Attributes.Add("tuu2", "6");
                                         } else if (รหัสเครืองราชปัจจุบัน == 6) {
                                             ConditionExecute(new string[] {
                                                 "ท.ม.","ท.ช."
@@ -705,6 +840,7 @@ namespace WEB_PERSONAL {
                                         }, new string[] {
                                                 "อายุงานครบ 5 ปี",
                                             });
+                                            lbName.Attributes.Add("tuu2", "5");
                                         } else if (รหัสเครืองราชปัจจุบัน == 5) {
                                             ConditionExecute(new string[] {
                                                 "ท.ช.","ป.ม."
@@ -713,10 +849,12 @@ namespace WEB_PERSONAL {
                                         }, new string[] {
                                                 "อายุงานครบ 5 ปี",
                                             });
+                                            lbName.Attributes.Add("tuu2", "4");
                                         } else if (รหัสเครืองราชปัจจุบัน == 4) {
                                             ConditionExecute(new string[] { "ป.ม.", "" });
+                                            lbName.Attributes.Add("tuu2", "0");
                                         }
-                                    } else if (รหัสตำแหน่งทางบริหาร == 5 || รหัสตำแหน่งทางบริหาร == 6) {// 6.รองอธิการบดี คณบดี
+                                    } else if (รหัสตำแหน่งทางบริหาร == 2 || รหัสตำแหน่งทางบริหาร == 3) {// 6.รองอธิการบดี คณบดี
                                         if (รหัสเครืองราชปัจจุบัน == -1) {
                                             ConditionExecute(new string[] {
                                                 "","ท.ม."
@@ -725,6 +863,7 @@ namespace WEB_PERSONAL {
                                             }, new string[] {
                                                 "อายุงานครบ 5 ปี"
                                             });
+                                            lbName.Attributes.Add("tuu2", "6");
                                         } else if (รหัสเครืองราชปัจจุบัน == 6) {
                                             ConditionExecute(new string[] {
                                                 "ท.ม.","ท.ช."
@@ -733,8 +872,10 @@ namespace WEB_PERSONAL {
                                         }, new string[] {
                                                 "อายุงานครบ 5 ปี",
                                             });
+                                            lbName.Attributes.Add("tuu2", "5");
                                         } else if (รหัสเครืองราชปัจจุบัน == 5) {
                                             ConditionExecute(new string[] { "ท.ช.", "" });
+                                            lbName.Attributes.Add("tuu2", "0");
                                         }
                                     } else if (รหัสตำแหน่งทางวิชาการ == 4) {// 7.ศาสตราจารย์
                                         if (รหัสเครืองราชปัจจุบัน == -1) {
@@ -745,6 +886,7 @@ namespace WEB_PERSONAL {
                                             }, new string[] {
                                                 "อายุงานครบ 5 ปี"
                                             });
+                                            lbName.Attributes.Add("tuu2", "6");
                                         } else if (รหัสเครืองราชปัจจุบัน == 6) {
                                             ConditionExecute(new string[] {
                                                 "ท.ม.","ท.ช."
@@ -753,6 +895,7 @@ namespace WEB_PERSONAL {
                                         }, new string[] {
                                                 "อายุงานครบ 5 ปี",
                                             });
+                                            lbName.Attributes.Add("tuu2", "5");
                                         } else if (รหัสเครืองราชปัจจุบัน == 5) {
                                             ConditionExecute(new string[] {
                                                 "ท.ช.","ป.ม."
@@ -761,6 +904,7 @@ namespace WEB_PERSONAL {
                                         }, new string[] {
                                                 "อายุงานครบ 5 ปี",
                                             });
+                                            lbName.Attributes.Add("tuu2", "4");
                                         } else if (รหัสเครืองราชปัจจุบัน == 4) {
                                             ConditionExecute(new string[] {
                                                 "ป.ม.","ป.ช."
@@ -769,8 +913,10 @@ namespace WEB_PERSONAL {
                                         }, new string[] {
                                                 "อายุงานครบ 5 ปี",
                                             });
+                                            lbName.Attributes.Add("tuu2", "3");
                                         } else if (รหัสเครืองราชปัจจุบัน == 3) {
                                             ConditionExecute(new string[] { "ป.ช.", "" });
+                                            lbName.Attributes.Add("tuu2", "0");
                                         }
                                     } else if (รหัสตำแหน่งทางบริหาร == 1) {// 8.อธิการบดี
                                         if (รหัสเครืองราชปัจจุบัน == -1) {
@@ -781,6 +927,7 @@ namespace WEB_PERSONAL {
                                             }, new string[] {
                                                 "อายุงานครบ 5 ปี"
                                             });
+                                            lbName.Attributes.Add("tuu2", "6");
                                         } else if (รหัสเครืองราชปัจจุบัน == 6) {
                                             ConditionExecute(new string[] {
                                                 "ท.ม.","ท.ช."
@@ -789,6 +936,7 @@ namespace WEB_PERSONAL {
                                         }, new string[] {
                                                 "อายุงานครบ 5 ปี",
                                             });
+                                            lbName.Attributes.Add("tuu2", "5");
                                         } else if (รหัสเครืองราชปัจจุบัน == 5) {
                                             ConditionExecute(new string[] {
                                                 "ท.ช.","ป.ม."
@@ -797,8 +945,10 @@ namespace WEB_PERSONAL {
                                         }, new string[] {
                                                 "อายุงานครบ 5 ปี",
                                             });
+                                            lbName.Attributes.Add("tuu2", "4");
                                         } else if (รหัสเครืองราชปัจจุบัน == 4) {
                                             ConditionExecute(new string[] { "ป.ม.", "" });
+                                            lbName.Attributes.Add("tuu2", "0");
                                         }
                                     } else {
                                         if (รหัสเครืองราชปัจจุบัน == -1) {
@@ -809,6 +959,7 @@ namespace WEB_PERSONAL {
                                             }, new string[] {
                                                 "อายุงานครบ 5 ปี"
                                             });
+                                            lbName.Attributes.Add("tuu2", "12");
                                         } else if (รหัสเครืองราชปัจจุบัน == 12) {
                                             ConditionExecute(new string[] {
                                                 "บ.ม.","บ.ช."
@@ -817,6 +968,7 @@ namespace WEB_PERSONAL {
                                         }, new string[] {
                                                 "อายุงานครบ 5 ปี",
                                             });
+                                            lbName.Attributes.Add("tuu2", "11");
                                         } else if (รหัสเครืองราชปัจจุบัน == 11) {
                                             ConditionExecute(new string[] {
                                                 "บ.ช.","จ.ม."
@@ -825,6 +977,7 @@ namespace WEB_PERSONAL {
                                         }, new string[] {
                                                 "อายุงานครบ 5 ปี",
                                             });
+                                            lbName.Attributes.Add("tuu2", "10");
                                         } else if (รหัสเครืองราชปัจจุบัน == 10) {
                                             ConditionExecute(new string[] {
                                                 "จ.ม.","จ.ช."
@@ -833,12 +986,13 @@ namespace WEB_PERSONAL {
                                         }, new string[] {
                                                 "อายุงานครบ 5 ปี",
                                             });
+                                            lbName.Attributes.Add("tuu2", "9");
                                         } else if (รหัสเครืองราชปัจจุบัน == 9) {
                                             ConditionExecute(new string[] { "จ.ช.", "" });
                                         }
                                     }
                                 } else if (รหัสประเภทบุคลากร == 6) {//พนักงานราชการ
-                                    if (รหัสกลุ่มงานพนักงานราชการ == 1 || รหัสกลุ่มงานพนักงานราชการ == 2) {
+                                    if (รหัสกลุ่มงานพนักงานราชการ == 14 || รหัสกลุ่มงานพนักงานราชการ == 15) { //บริการ เทคนิค
                                         if (รหัสเครืองราชปัจจุบัน == -1) { //1
                                             ConditionExecute(new string[] {
                                                 "","บ.ม."
@@ -847,40 +1001,45 @@ namespace WEB_PERSONAL {
                                             }, new string[] {
                                                 "อายุงานครบ 5 ปี"
                                             });
+                                            lbName.Attributes.Add("tuu2", "12");
                                         } else if (รหัสเครืองราชปัจจุบัน == 12) {
                                             ConditionExecute(new string[] {
                                                 "บ.ม.","บ.ช."
                                             }, new bool[] {
                                                 ปีที่ทำงาน >= 5,
-                                                1 == 1
+                                                ปีที่ได้รับบม >= 5
                                         }, new string[] {
                                                 "อายุงานครบ 5 ปี",
                                                 "ได้ บ.ม. มาแล้วไม่น้อยกว่า 5 ปี",
                                             });
+                                            lbName.Attributes.Add("tuu2", "11");
                                         } else if (รหัสเครืองราชปัจจุบัน == 11) {
                                             ConditionExecute(new string[] {
                                                 "บ.ช.","จ.ม."
                                             }, new bool[] {
                                                 ปีที่ทำงาน >= 5,
-                                                1 == 1,
+                                                ปีที่ได้รับบช >= 5
                                         }, new string[] {
                                                 "อายุงานครบ 5 ปี",
-                                                "ได้ บ.ช. มาแล้วไม่น้อยกว่า 5 ปี",
+                                                "ได้ บ.ช. มาแล้วไม่น้อยกว่า 5 ปี"
                                             });
+                                            lbName.Attributes.Add("tuu2", "10");
                                         } else if (รหัสเครืองราชปัจจุบัน == 10) {
                                             ConditionExecute(new string[] {
                                                 "จ.ม.","จ.ช."
                                             }, new bool[] {
                                                 ปีที่ทำงาน >= 5,
-                                                1 == 1,
+                                                ปีที่ได้รับจม >= 5
                                         }, new string[] {
                                                 "อายุงานครบ 5 ปี",
-                                                "ได้ จ.ม. มาแล้วไม่น้อยกว่า 5 ปี",
+                                                "ได้ จ.ม. มาแล้วไม่น้อยกว่า 5 ปี"
                                             });
+                                            lbName.Attributes.Add("tuu2", "9");
                                         } else if (รหัสเครืองราชปัจจุบัน == 9) {
                                             ConditionExecute(new string[] { "จ.ช.", "" });
+                                            lbName.Attributes.Add("tuu2", "0");
                                         }
-                                    } else if (รหัสกลุ่มงานพนักงานราชการ == 3) { //2
+                                    } else if (รหัสกลุ่มงานพนักงานราชการ == 16) { //2 บริหารงานทั่วไป
                                         if (รหัสเครืองราชปัจจุบัน == -1) {
                                             ConditionExecute(new string[] {
                                                 "","บ.ช."
@@ -889,40 +1048,44 @@ namespace WEB_PERSONAL {
                                             }, new string[] {
                                                 "อายุงานครบ 5 ปี"
                                             });
+                                            lbName.Attributes.Add("tuu2", "11");
                                         } else if (รหัสเครืองราชปัจจุบัน == 11) {
                                             ConditionExecute(new string[] {
                                                 "บ.ช.","จ.ม."
                                             }, new bool[] {
                                                 ปีที่ทำงาน >= 5,
-                                                1 == 1
+                                                ปีที่ได้รับบช >= 5
                                         }, new string[] {
                                                 "อายุงานครบ 5 ปี",
                                                 "ได้ บ.ช. มาแล้วไม่น้อยกว่า 5 ปี",
                                             });
+                                            lbName.Attributes.Add("tuu2", "10");
                                         } else if (รหัสเครืองราชปัจจุบัน == 10) {
                                             ConditionExecute(new string[] {
                                                 "จ.ม.","จ.ช."
                                             }, new bool[] {
                                                 ปีที่ทำงาน >= 5,
-                                                1 == 1,
+                                                ปีที่ได้รับจม >= 5
                                         }, new string[] {
                                                 "อายุงานครบ 5 ปี",
-                                                "ได้ จ.ม. มาแล้วไม่น้อยกว่า 5 ปี",
+                                                "ได้ จ.ม. มาแล้วไม่น้อยกว่า 5 ปี"
                                             });
+                                            lbName.Attributes.Add("tuu2", "9");
                                         } else if (รหัสเครืองราชปัจจุบัน == 9) {
                                             ConditionExecute(new string[] {
                                                 "จ.ช.","ต.ม."
                                             }, new bool[] {
                                                 ปีที่ทำงาน >= 5,
-                                                1 == 1,
+                                                ปีที่ได้รับจช >= 5
                                         }, new string[] {
                                                 "อายุงานครบ 5 ปี",
-                                                "ได้ จ.ช. มาแล้วไม่น้อยกว่า 5 ปี",
+                                                "ได้ จ.ช. มาแล้วไม่น้อยกว่า 5 ปี"
                                             });
                                         } else if (รหัสเครืองราชปัจจุบัน == 8) {
                                             ConditionExecute(new string[] { "ต.ม.", "" });
+                                            lbName.Attributes.Add("tuu2", "0");
                                         }
-                                    } else if (รหัสกลุ่มงานพนักงานราชการ == 4) { //3
+                                    } else if (รหัสกลุ่มงานพนักงานราชการ == 17) { //3 กลุ่มงานวิชาชีพเฉพาะ
                                         if (รหัสเครืองราชปัจจุบัน == -1) {
                                             ConditionExecute(new string[] {
                                                 "","จ.ม."
@@ -931,40 +1094,45 @@ namespace WEB_PERSONAL {
                                             }, new string[] {
                                                 "อายุงานครบ 5 ปี"
                                             });
+                                            lbName.Attributes.Add("tuu2", "10");
                                         } else if (รหัสเครืองราชปัจจุบัน == 10) {
                                             ConditionExecute(new string[] {
                                                 "จ.ม.","จ.ช."
                                             }, new bool[] {
                                                 ปีที่ทำงาน >= 5,
-                                                1 == 1
+                                                ปีที่ได้รับจม >= 5
                                         }, new string[] {
                                                 "อายุงานครบ 5 ปี",
-                                                "ได้ จ.ม. มาแล้วไม่น้อยกว่า 5 ปี",
+                                                "ได้ จ.ม. มาแล้วไม่น้อยกว่า 5 ปี"
                                             });
+                                            lbName.Attributes.Add("tuu2", "9");
                                         } else if (รหัสเครืองราชปัจจุบัน == 9) {
                                             ConditionExecute(new string[] {
                                                 "จ.ช.","ต.ม."
                                             }, new bool[] {
                                                 ปีที่ทำงาน >= 5,
-                                                1 == 1,
+                                                ปีที่ได้รับจช >= 5
                                         }, new string[] {
                                                 "อายุงานครบ 5 ปี",
-                                                "ได้ จ.ช. มาแล้วไม่น้อยกว่า 5 ปี",
+                                                "ได้ จ.ช. มาแล้วไม่น้อยกว่า 5 ปี"
                                             });
+                                            lbName.Attributes.Add("tuu2", "8");
                                         } else if (รหัสเครืองราชปัจจุบัน == 8) {
                                             ConditionExecute(new string[] {
                                                 "ต.ม.","ต.ช."
                                             }, new bool[] {
                                                 ปีที่ทำงาน >= 5,
-                                                1 == 1,
+                                                ปีที่ได้รับตม >= 5
                                         }, new string[] {
                                                 "อายุงานครบ 5 ปี",
-                                                "ได้ ต.ม. มาแล้วไม่น้อยกว่า 5 ปี",
+                                                "ได้ ต.ม. มาแล้วไม่น้อยกว่า 5 ปี"
                                             });
+                                            lbName.Attributes.Add("tuu2", "7");
                                         } else if (รหัสเครืองราชปัจจุบัน == 7) {
                                             ConditionExecute(new string[] { "ต.ช.", "" });
+                                            lbName.Attributes.Add("tuu2", "0");
                                         }
-                                    } else if (รหัสกลุ่มงานพนักงานราชการ == 5) { //4
+                                    } else if (รหัสกลุ่มงานพนักงานราชการ == 18) { //4 กลุ่มงานเชี่ยวชาญเฉพาะ
                                         if (รหัสเครืองราชปัจจุบัน == -1) {
                                             ConditionExecute(new string[] {
                                                 "","จ.ช."
@@ -973,40 +1141,45 @@ namespace WEB_PERSONAL {
                                             }, new string[] {
                                                 "อายุงานครบ 5 ปี"
                                             });
+                                            lbName.Attributes.Add("tuu2", "9");
                                         } else if (รหัสเครืองราชปัจจุบัน == 9) {
                                             ConditionExecute(new string[] {
                                                 "จ.ช.","ต.ม."
                                             }, new bool[] {
                                                 ปีที่ทำงาน >= 5,
-                                                1 == 1,
+                                                ปีที่ได้รับจช >= 5
                                         }, new string[] {
                                                 "อายุงานครบ 5 ปี",
-                                                "ได้ จ.ช. มาแล้วไม่น้อยกว่า 5 ปี",
+                                                "ได้ จ.ช. มาแล้วไม่น้อยกว่า 5 ปี"
                                             });
+                                            lbName.Attributes.Add("tuu2", "8");
                                         } else if (รหัสเครืองราชปัจจุบัน == 8) {
                                             ConditionExecute(new string[] {
                                                 "ต.ม.","ต.ช."
                                             }, new bool[] {
                                                 ปีที่ทำงาน >= 5,
-                                                1 == 1,
+                                                ปีที่ได้รับตม >= 5
                                         }, new string[] {
                                                 "อายุงานครบ 5 ปี",
-                                                "ได้ ต.ม. มาแล้วไม่น้อยกว่า 5 ปี",
+                                                "ได้ ต.ม. มาแล้วไม่น้อยกว่า 5 ปี"
                                             });
+                                            lbName.Attributes.Add("tuu2", "7");
                                         } else if (รหัสเครืองราชปัจจุบัน == 7) {
                                             ConditionExecute(new string[] {
                                                 "ต.ช.","ท.ม."
                                             }, new bool[] {
                                                 ปีที่ทำงาน >= 5,
-                                                1 == 1,
+                                                ปีที่ได้รับตช >= 5
                                         }, new string[] {
                                                 "อายุงานครบ 5 ปี",
-                                                "ได้ ต.ช. มาแล้วไม่น้อยกว่า 5 ปี",
+                                                "ได้ ต.ช. มาแล้วไม่น้อยกว่า 5 ปี"
                                             });
+                                            lbName.Attributes.Add("tuu2", "6");
                                         } else if (รหัสเครืองราชปัจจุบัน == 6) {
                                             ConditionExecute(new string[] { "ท.ม.", "" });
+                                            lbName.Attributes.Add("tuu2", "0");
                                         }
-                                    } else if (รหัสกลุ่มงานพนักงานราชการ == 6) { //5
+                                    } else if (รหัสกลุ่มงานพนักงานราชการ == 19) { //5 กลุ่มงานเชี่ยวชาญพิเศษ ทั่วไป
                                         if (รหัสเครืองราชปัจจุบัน == -1) {
                                             ConditionExecute(new string[] {
                                                 "","ต.ม."
@@ -1015,40 +1188,45 @@ namespace WEB_PERSONAL {
                                             }, new string[] {
                                                 "อายุงานครบ 5 ปี"
                                             });
+                                            lbName.Attributes.Add("tuu2", "8");
                                         } else if (รหัสเครืองราชปัจจุบัน == 8) {
                                             ConditionExecute(new string[] {
                                                 "ต.ม.","ต.ช."
                                             }, new bool[] {
                                                 ปีที่ทำงาน >= 5,
-                                                1 == 1,
+                                                ปีที่ได้รับตม >= 5
                                         }, new string[] {
                                                 "อายุงานครบ 5 ปี",
-                                                "ได้ ต.ม. มาแล้วไม่น้อยกว่า 5 ปี",
+                                                "ได้ ต.ม. มาแล้วไม่น้อยกว่า 5 ปี"
                                             });
+                                            lbName.Attributes.Add("tuu2", "7");
                                         } else if (รหัสเครืองราชปัจจุบัน == 7) {
                                             ConditionExecute(new string[] {
                                                 "ต.ช.","ท.ม."
                                             }, new bool[] {
                                                 ปีที่ทำงาน >= 5,
-                                                1 == 1,
+                                                ปีที่ได้รับตช >= 5
                                         }, new string[] {
                                                 "อายุงานครบ 5 ปี",
-                                                "ได้ ต.ช. มาแล้วไม่น้อยกว่า 5 ปี",
+                                                "ได้ ต.ช. มาแล้วไม่น้อยกว่า 5 ปี"
                                             });
+                                            lbName.Attributes.Add("tuu2", "6");
                                         } else if (รหัสเครืองราชปัจจุบัน == 6) {
                                             ConditionExecute(new string[] {
                                                 "ท.ม.","ท.ช."
                                             }, new bool[] {
                                                 ปีที่ทำงาน >= 5,
-                                                1 == 1,
+                                                ปีที่ได้รับทม >= 5
                                         }, new string[] {
                                                 "อายุงานครบ 5 ปี",
-                                                "ได้ ท.ม. มาแล้วไม่น้อยกว่า 5 ปี",
+                                                "ได้ ท.ม. มาแล้วไม่น้อยกว่า 5 ปี"
                                             });
-                                        } else if (รหัสเครืองราชปัจจุบัน == 6) {
+                                            lbName.Attributes.Add("tuu2", "5");
+                                        } else if (รหัสเครืองราชปัจจุบัน == 5) {
                                             ConditionExecute(new string[] { "ท.ช.", "" });
+                                            lbName.Attributes.Add("tuu2", "0");
                                         }
-                                    } else if (รหัสกลุ่มงานพนักงานราชการ == 7) { //6
+                                    } else if (รหัสกลุ่มงานพนักงานราชการ == 20) { //6 กลุ่มงานเชี่ยวชาญพิเศษ ประเทศ
                                         if (รหัสเครืองราชปัจจุบัน == -1) {
                                             ConditionExecute(new string[] {
                                                 "","ต.ช."
@@ -1057,40 +1235,45 @@ namespace WEB_PERSONAL {
                                             }, new string[] {
                                                 "อายุงานครบ 5 ปี"
                                             });
+                                            lbName.Attributes.Add("tuu2", "7");
                                         } else if (รหัสเครืองราชปัจจุบัน == 7) {
                                             ConditionExecute(new string[] {
                                                 "ต.ช.","ท.ม."
                                             }, new bool[] {
                                                 ปีที่ทำงาน >= 5,
-                                                1 == 1,
+                                                ปีที่ได้รับตช >= 5
                                         }, new string[] {
                                                 "อายุงานครบ 5 ปี",
-                                                "ได้ ต.ช. มาแล้วไม่น้อยกว่า 5 ปี",
+                                                "ได้ ต.ช. มาแล้วไม่น้อยกว่า 5 ปี"
                                             });
+                                            lbName.Attributes.Add("tuu2", "6");
                                         } else if (รหัสเครืองราชปัจจุบัน == 6) {
                                             ConditionExecute(new string[] {
                                                 "ท.ม.","ท.ช."
                                             }, new bool[] {
                                                 ปีที่ทำงาน >= 5,
-                                                1 == 1,
+                                                ปีที่ได้รับทม >= 5
                                         }, new string[] {
                                                 "อายุงานครบ 5 ปี",
-                                                "ได้ ท.ม. มาแล้วไม่น้อยกว่า 5 ปี",
+                                                "ได้ ท.ม. มาแล้วไม่น้อยกว่า 5 ปี"
                                             });
+                                            lbName.Attributes.Add("tuu2", "5");
                                         } else if (รหัสเครืองราชปัจจุบัน == 5) {
                                             ConditionExecute(new string[] {
                                                 "ท.ช.","ป.ม."
                                             }, new bool[] {
                                                 ปีที่ทำงาน >= 5,
-                                                1 == 1,
+                                                ปีที่ได้รับทช >= 3
                                         }, new string[] {
                                                 "อายุงานครบ 5 ปี",
-                                                "ได้ ท.ช. มาแล้วไม่น้อยกว่า 3 ปี",
+                                                "ได้ ท.ช. มาแล้วไม่น้อยกว่า 3 ปี"
                                             });
+                                            lbName.Attributes.Add("tuu2", "4");
                                         } else if (รหัสเครืองราชปัจจุบัน == 4) {
                                             ConditionExecute(new string[] { "ป.ม.", "" });
+                                            lbName.Attributes.Add("tuu2", "0");
                                         }
-                                    } else if (รหัสกลุ่มงานพนักงานราชการ == 8) { //7
+                                    } else if (รหัสกลุ่มงานพนักงานราชการ == 21) { //7 กลุ่มงานเชี่ยวชาญพิเศษ สากล
                                         if (รหัสเครืองราชปัจจุบัน == -1) {
                                             ConditionExecute(new string[] {
                                                 "","ท.ม."
@@ -1099,38 +1282,43 @@ namespace WEB_PERSONAL {
                                             }, new string[] {
                                                 "อายุงานครบ 5 ปี"
                                             });
+                                            lbName.Attributes.Add("tuu2", "6");
                                         } else if (รหัสเครืองราชปัจจุบัน == 6) {
                                             ConditionExecute(new string[] {
                                                 "ท.ม.","ท.ช."
                                             }, new bool[] {
                                                 ปีที่ทำงาน >= 5,
-                                                1 == 1,
+                                                ปีที่ได้รับทม >= 5
                                         }, new string[] {
                                                 "อายุงานครบ 5 ปี",
-                                                "ได้ ท.ม. มาแล้วไม่น้อยกว่า 5 ปี",
+                                                "ได้ ท.ม. มาแล้วไม่น้อยกว่า 5 ปี"
                                             });
+                                            lbName.Attributes.Add("tuu2", "5");
                                         } else if (รหัสเครืองราชปัจจุบัน == 5) {
                                             ConditionExecute(new string[] {
                                                 "ท.ช.","ป.ม."
                                             }, new bool[] {
                                                 ปีที่ทำงาน >= 5,
-                                                1 == 1,
+                                                ปีที่ได้รับทช >= 3
                                         }, new string[] {
                                                 "อายุงานครบ 5 ปี",
-                                                "ได้ ท.ช. มาแล้วไม่น้อยกว่า 3 ปี",
+                                                "ได้ ท.ช. มาแล้วไม่น้อยกว่า 3 ปี"
                                             });
+                                            lbName.Attributes.Add("tuu2", "4");
                                         } else if (รหัสเครืองราชปัจจุบัน == 4) {
                                             ConditionExecute(new string[] {
                                                 "ป.ม.","ป.ช."
                                             }, new bool[] {
                                                 ปีที่ทำงาน >= 5,
-                                                1 == 1,
+                                                ปีที่ได้รับปม >= 3
                                         }, new string[] {
                                                 "อายุงานครบ 5 ปี",
-                                                "ได้ ป.ม. มาแล้วไม่น้อยกว่า 3 ปี",
+                                                "ได้ ป.ม. มาแล้วไม่น้อยกว่า 3 ปี"
                                             });
+                                            lbName.Attributes.Add("tuu2", "3");
                                         } else if (รหัสเครืองราชปัจจุบัน == 3) {
                                             ConditionExecute(new string[] { "ป.ช.", "" });
+                                            lbName.Attributes.Add("tuu2", "0");
                                         }
                                     }
                                 } else if (รหัสประเภทบุคลากร == 3) {//ลูกจ้างประจำ
@@ -1143,28 +1331,32 @@ namespace WEB_PERSONAL {
                                             }, new string[] {
                                                 "อายุงานครบ 6 ปี"
                                             });
+                                            lbName.Attributes.Add("tuu2", "12");
                                         } else if (รหัสเครืองราชปัจจุบัน == 12) {
                                             ConditionExecute(new string[] {
                                                 "บ.ม.","บ.ช."
                                             }, new bool[] {
                                                 ปีที่ทำงาน >= 6,
-                                                1 == 1,
+                                                ปีที่ได้รับบม >= 5
                                         }, new string[] {
                                                 "อายุงานครบ 6 ปี",
-                                                "ได้ บ.ม. มาแล้วไม่น้อยกว่า 5 ปี",
+                                                "ได้ บ.ม. มาแล้วไม่น้อยกว่า 5 ปี"
                                             });
+                                            lbName.Attributes.Add("tuu2", "11");
                                         } else if (รหัสเครืองราชปัจจุบัน == 11) {
                                             ConditionExecute(new string[] {
                                                 "บ.ช.","จ.ม."
                                             }, new bool[] {
                                                 ปีที่ทำงาน >= 6,
-                                                1 == 1,
+                                                ปีที่ได้รับบช >= 5
                                         }, new string[] {
                                                 "อายุงานครบ 6 ปี",
-                                                "ได้ บ.ช. มาแล้วไม่น้อยกว่า 5 ปี",
+                                                "ได้ บ.ช. มาแล้วไม่น้อยกว่า 5 ปี"
                                             });
+                                            lbName.Attributes.Add("tuu2", "10");
                                         } else if (รหัสเครืองราชปัจจุบัน == 10) {
                                             ConditionExecute(new string[] { "จ.ม.", "" });
+                                            lbName.Attributes.Add("tuu2", "0");
                                         }
                                     } else if (เงินเดือนปัจจุบัน >= 15050) {
                                         if (รหัสเครืองราชปัจจุบัน == -1) {
@@ -1175,33 +1367,50 @@ namespace WEB_PERSONAL {
                                             }, new string[] {
                                                 "อายุงานครบ 6 ปี"
                                             });
+                                            lbName.Attributes.Add("tuu2", "11");
                                         } else if (รหัสเครืองราชปัจจุบัน == 11) {
                                             ConditionExecute(new string[] {
                                                 "บ.ช.","จ.ม."
                                             }, new bool[] {
                                                 ปีที่ทำงาน >= 6,
-                                                1 == 1,
+                                                ปีที่ได้รับบช >= 5
                                         }, new string[] {
                                                 "อายุงานครบ 6 ปี",
-                                                "ได้ บ.ช. มาแล้วไม่น้อยกว่า 5 ปี",
+                                                "ได้ บ.ช. มาแล้วไม่น้อยกว่า 5 ปี"
                                             });
+                                            lbName.Attributes.Add("tuu2", "10");
                                         } else if (รหัสเครืองราชปัจจุบัน == 10) {
                                             ConditionExecute(new string[] {
                                                 "จ.ม.","จ.ช."
                                             }, new bool[] {
                                                 ปีที่ทำงาน >= 6,
-                                                1 == 1,
+                                                ปีที่ได้รับจม >= 5
                                         }, new string[] {
                                                 "อายุงานครบ 6 ปี",
                                                 "ได้ จ.ม. มาแล้วไม่น้อยกว่า 5 ปี",
                                             });
+                                            lbName.Attributes.Add("tuu2", "9");
                                         } else if (รหัสเครืองราชปัจจุบัน == 9) {
                                             ConditionExecute(new string[] { "จ.ช.", "" });
+                                            lbName.Attributes.Add("tuu2", "0");
                                         }
                                     }
                                 }
+                                
+                                int insID = int.Parse(lbName.Attributes["tuu2"]);
+                                using (OracleCommand com2 = new OracleCommand("SELECT COUNT(*) FROM TB_INSIG_REQUEST WHERE IR_STATUS IN(1,2) AND IR_CITIZEN_ID = '" + psID + "'", con)) {
+                                    using (OracleDataReader reader2 = com2.ExecuteReader()) {
+                                        while (reader2.Read()) {
+                                            if(reader2.GetInt32(0) != 0) {
+                                                OK = false;
+                                            }
+                                        }
 
-                                    if (OK) {
+                                    }
+                                }
+
+
+                                if (OK) {
                                     Table1.Rows.Add(row);
                                 }
 
@@ -1215,14 +1424,14 @@ namespace WEB_PERSONAL {
         }
         private void ConditionExecute(string[] ins) {
             if (ins[0] == "") {
-                img1.Attributes["src"] = "";
+                img1.Visible = false;
                 lb1.Text = "ไม่เคยได้รับ";
             } else {
                 img1.Attributes["src"] = "Image/Insignia/" + ins[0] + ".png";
                 lb1.Text = ins[0];
             }
             if (ins[1] == "") {
-                img2.Attributes["src"] = "";
+                img2.Visible = false;
                 lb2.Text = "-";
             } else {
                 img2.Attributes["src"] = "Image/Insignia/" + ins[1] + ".png";
@@ -1231,14 +1440,14 @@ namespace WEB_PERSONAL {
         }
         private void ConditionExecute(string[] ins, bool[] b, string[] s) {
             if(ins[0] == "") {
-                img1.Attributes["src"] = "";
+                img1.Visible = false;
                 lb1.Text = "ไม่เคยได้รับ";
             } else {
                 img1.Attributes["src"] = "Image/Insignia/" + ins[0] + ".png";
                 lb1.Text = ins[0];
             }
             if (ins[1] == "") {
-                img2.Attributes["src"] = "";
+                img2.Visible = false;
                 lb2.Text = "-";
             } else {
                 img2.Attributes["src"] = "Image/Insignia/" + ins[1] + ".png";
@@ -1340,7 +1549,7 @@ namespace WEB_PERSONAL {
                                 }
                                 command.Parameters.Add(new OracleParameter("IR_STATUS", 1));
                                 command.Parameters.Add(new OracleParameter("IR_CITIZEN_ID", lbu.Attributes["tuu"]));
-                                command.Parameters.Add(new OracleParameter("IR_INSIG_ID", "12"));
+                                command.Parameters.Add(new OracleParameter("IR_INSIG_ID", lbu.Attributes["tuu2"]));
                                 id = command.ExecuteNonQuery();
                             }
 

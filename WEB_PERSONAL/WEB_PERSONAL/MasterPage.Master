@@ -163,7 +163,7 @@
                             </div>
                             <div class="ps-box-i0">
                                 <div class="ps-box-ct10">
-                                    <div>เวอร์ชั่น : v1.2.3</div>
+                                    <div>เวอร์ชั่น : v1.2.4</div>
                                     <div style="display: none;">ตัวนับ : <span id="s_counter" runat="server"></span></div>
                                 </div>
                             </div>
@@ -224,14 +224,13 @@
                                 <div class="ps-box-ct10">
                                     <a href="AddPerson.aspx" id="cbAddPerson1" runat="server"><img src="Image/Small/person2.png" />เพิ่มข้อมูลบุคลากร</a>
                                     <a href="AddPerson-Edit.aspx" id="cbAddPerson2" runat="server"><img src="Image/Small/edit.png" />แก้ไขข้อมูลบุคลากร</a>
-                                    <a href="AddPersonGP7.aspx" id="cbAddPerson3" runat="server"><img src="Image/Small/person2.png" />เพิ่มข้อมูลบุคลากร(ก.พ.7)</a>
-                                    <a href="AddPersonGP7-Edit.aspx" id="cbAddPerson4" runat="server"><img src="Image/Small/edit.png" />แก้ไขข้อมูลบุคลากร(ก.พ.7)</a>
+                                    
                                     <a href="ListPerson-ADMIN.aspx" id="cbAddPerson5" runat="server"><img src="Image/Small/person2.png" />รายชื่อบุคลากร</a>
                                     <a href="SEMINAR-GENERAL.aspx" id="cbNotPerson1" runat="server"><img src="Image/Small/person2.png" />การเพิ่มพัฒนาบุคลากร</a>
                                     <a href="SEMINAR-ADMIN.aspx" id="cbAddPerson6" runat="server"><img src="Image/Small/edit.png" />การแก้ไขพัฒนาบุคลากร</a>
                                     <a href="PersonBranch.aspx" id="cbPersonMap" runat="server"><img src="Image/Small/person2.png" />แผนผังบุคลากร</a>
                                     <a href="PersonPositionManagement.aspx" id="cbPersonPosition" runat="server"><img src="Image/Small/person2.png" />จัดการแต่งตั้งหัวหน้า</a>
-                                    <a href="PositionPerson.aspx" id="cbPosition" runat="server"><img src="Image/Small/person2.png" />จัดการตำแหน่งบุคลากร</a>
+                                    
                                     
                                     <a href="PersonReport.aspx" id="cbNotPerson2" runat="server"><img src="Image/Small/report.png" />ออกรายงานบุคลากร</a>
                                     <a href="Report-Custom-Person.aspx" id="cbNotPerson3" runat="server"><img src="Image/Small/report.png" />ออกรายงานพัฒนาบุคลากร</a>
@@ -268,7 +267,7 @@
                                     <a href="INSG_Qualified.aspx" id="cbAddInsig1" runat="server"><img src="Image/Small/medal.png" />รายชื่อผู้ที่เข้าเกณฑ์การรับเครื่องราชฯ</a>
                                     <a href="INSG_RequestList.aspx" id="cbAddInsig2" runat="server"><img src="Image/Small/medal.png" />รายชื่อการขอเครื่องราชฯ</a>
                                     <a href="INSG_Qualified_Detail.aspx" id="cbNotInsig2" runat="server"><img src="Image/Small/medal.png" />ประวัติการได้รับเครื่องราชฯ</a>
-                                    <a href="INSG_Qualified_Detail-ADMIN.aspx" id="cbAddInsig4" runat="server"><img src="Image/Small/medal.png" />จัดการประวัติผู้ที่ได้รับเครื่องราชฯ</a>
+                                    
                                </div>
                             </div>
                         </div>
@@ -331,14 +330,13 @@
                                     <div><a href='INSG_Request.aspx'>ไปหน้าการขอเครื่องราชฯ<img src='Image/Small/next.png' class='icon_right' /></a></div>
                                 </div>
                             </div>
-
-                            <div class="ps-box-i0" id="noti_insadminknow" runat="server">
+                            <div class="ps-box-i0" id="noti_get_ins" runat="server">
                                 <div class="ps-box-ct10-cen">
-                                    <div><img src='Image/Small/medal.png' class='icon_left' />มีการแจ้งเตือนการขอเครื่องราชฯ</div><br />
-                                    <div><a href='INSG_RequestList.aspx'>ไปหน้าการรับเรื่องเครื่องราชฯ<img src='Image/Small/next.png' class='icon_right' /></a></div>
+                                    <div><img src='Image/Small/medal.png' class='icon_left' />คุณได้รับการแจ้งผลการขอเครื่องราชฯ</div><br />
+                                    <div><a href='INSG_Qualified_Detail.aspx'>ไปหน้าประวัติการได้รับเครื่องราชฯ<img src='Image/Small/next.png' class='icon_right' /></a></div>
                                 </div>
-
                             </div>
+
 
                         </div>
                     </div>

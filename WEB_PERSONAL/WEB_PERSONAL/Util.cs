@@ -149,6 +149,25 @@ namespace WEB_PERSONAL {
                 default: return "[ERROR]";
             }
         }
+        public static string ToShortMonth(string full) {
+            string[] split = full.Split(' ');
+            switch (split[1]) {
+                case "มกราคม": split[1] = "ม.ค."; break;
+                case "กุมภาพันธ์": split[1] = "ก.พ."; break;
+                case "มีนาคม": split[1] = "มี.ค."; break;
+                case "เมษายน": split[1] = "เม.ย."; break;
+                case "พฤษภาคม": split[1] = "พ.ค."; break;
+                case "มิถุนายน": split[1] = "มิ.ย."; break;
+                case "กรกฎาคม": split[1] = "ก.ค."; break;
+                case "สิงหาคม": split[1] = "ส.ค."; break;
+                case "กันยายน": split[1] = "ก.ย."; break;
+                case "ตุลาคม": split[1] = "ต.ค."; break;
+                case "พฤศจิกายน": split[1] = "พ.ย."; break;
+                case "ธันวาคม": split[1] = "ธ.ค."; break;
+                default: split[1] =  "[ERROR]"; break;
+            }
+            return split[0] + " " + split[1] + " " + split[2];
+        }
         public static int MonthToNumber(string s) {
 
             switch (s) {

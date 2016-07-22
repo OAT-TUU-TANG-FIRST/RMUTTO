@@ -88,7 +88,7 @@
             <asp:LinkButton ID="lbuTab2" runat="server" OnClick="lbuTab2_Click" CssClass="ps-tab-unselected">ที่อยู่</asp:LinkButton>
             <asp:LinkButton ID="lbuTab3" runat="server" OnClick="lbuTab3_Click" CssClass="ps-tab-unselected">ข้อมูลการทำงาน</asp:LinkButton>
             <asp:LinkButton ID="lbuTab4" runat="server" OnClick="lbuTab4_Click" CssClass="ps-tab-unselected">ตำแหน่งข้าราชการ</asp:LinkButton>
-
+            <asp:LinkButton ID="lbuTab5" runat="server" OnClick="lbuTab5_Click" CssClass="ps-tab-unselected">ประวัติการศึกษา</asp:LinkButton>
         </div>
 
 
@@ -500,8 +500,28 @@
         </div>
 
         <div id="divTab4" runat="server">
-            <div>
-                <table class="ps-table-1" style="margin: 0 auto; margin-bottom: 20px;">
+            <div style="text-align: center;">
+                 <table class="ps-table-1" style="margin-bottom: 20px; display: inline-block; vertical-align: top;">
+                     <tr>
+                         <th colspan="2">ตำแหน่ง</th>
+                     </tr>
+                     <tr>
+                         <td>ตำแหน่งในสายงาน</td>
+                         <td>
+                             <asp:DropDownList ID="ddlTab4PositionWork" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>ตำแหน่งทางบริหาร</td>
+                         <td>
+                             <asp:DropDownList ID="ddlTab4AdminPositionDegree" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
+                         </td>
+                     </tr>
+                 </table>
+                <table class="ps-table-1" style="margin-bottom: 20px; display: inline-block; vertical-align: top;" id="tbGover" runat="server">
+                    <tr>
+                        <th colspan="2">ตำแหน่งข้าราชการ</th>
+                    </tr>
                    <tr>
                             <td class="col1">ตำแหน่งประเภทบริหาร</td>
                             <td class="col2">
@@ -526,20 +546,78 @@
                                 <asp:DropDownList ID="ddlTab4GeneralPosition" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
                             </td>
                         </tr>
+                </table>
+                <table class="ps-table-1" style="margin-bottom: 20px; display: inline-block; vertical-align: top;" id="tbOfficeGover" runat="server">
+                    <tr>
+                        <th colspan="2">ตำแหน่งพนักงานราชการ</th>
+                    </tr>
+                    <tr>
+                        <td class="col1">ตำแหน่งพนักงานราชการ</td>
+                        <td class="col2">
+                            <asp:DropDownList ID="DropDownList1" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
+                        </td>
+                    </tr>
+                </table>
+                <div style="text-align: center; margin-top: 10px;">
+                    <asp:LinkButton ID="lbuTab4Save" runat="server" OnClick="lbuTab4Save_Click" CssClass="ps-button"><img src="Image/Small/save.png" class="icon_left"/>บันทึก</asp:LinkButton>
+                </div>
+            </div>
+            <div class="ps-separator"></div>
+        </div>
+
+        <div id="divTab5" runat="server" style="text-align: center;">
+            <div class="default_header">
+                        <img src="Image/Small/table.png" class="icon_left" />ประวัติการศึกษา
+                    </div>
+                    <table>
+                        <tr>
+                            <td class="col1">ระดับการศึกษา</td>
+                            <td class="col2">
+                                <asp:DropDownList ID="ddlDegree10" runat="server" CssClass="tb5"></asp:DropDownList>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col1">สถานศึกษา</td>
+                            <td class="col2">
+                                <asp:TextBox ID="tbUnivName10" runat="server" CssClass="tb5"></asp:TextBox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col1">ตั้งแต่ - ถึง (เดือน ปี)</td>
+                            <td class="col2">
+                                <asp:DropDownList ID="ddlMonth10From" runat="server" CssClass="tb5" Width="70px"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlYear10From" runat="server" CssClass="tb5" Width="70px"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlMonth10To" runat="server" CssClass="tb5" Width="70px"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlYear10To" runat="server" CssClass="tb5" Width="70px"></asp:DropDownList>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col1">วุฒิ</td>
+                            <td class="col2">
+                                <asp:TextBox ID="tbQualification10" runat="server" CssClass="tb5"></asp:TextBox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col1">สาขาวิชาเอก</td>
+                            <td class="col2">
+                                <asp:TextBox ID="tbMajor10" runat="server" CssClass="tb5"></asp:TextBox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col1">ประเทศที่จบ</td>
+                            <td class="col2">
+                                <asp:DropDownList ID="ddlCountrySuccess10" runat="server" CssClass="tb5"></asp:DropDownList>
+                            </td>
+                        </tr>
                         <tr>
                             <td class="col1"></td>
                             <td class="col2">
-                                <asp:LinkButton ID="lbuAddPosition" runat="server" CssClass="ps-button">เพิ่มข้อมูลตำแหน่ง</asp:LinkButton></td>
+                                <asp:LinkButton ID="lbuTab5Save" runat="server" OnClick="lbuTab5Save_Click" CssClass="ps-button"><img src="Image/Small/save.png" class="icon_left"/>บันทึก</asp:LinkButton>
                         </tr>
-                    <tr>
-                        <td colspan="2" style="text-align: right;">
-                            <asp:LinkButton ID="lbuTab4Save" runat="server" OnClick="lbuTab4Save_Click" CssClass="ps-button"><img src="Image/Small/save.png" class="icon_left"/>บันทึก</asp:LinkButton>
-                        </td>
-
-                    </tr>
-                </table>
-            </div>
-            <div class="ps-separator"></div>
+                    </table>
+                    <asp:GridView ID="GridViewStudy" runat="server" Width="100%" Visible="false"></asp:GridView>
+                    <asp:GridView ID="GridViewStudyShow" runat="server" Width="100%"></asp:GridView>
+                  
         </div>
 
     </div>

@@ -90,7 +90,7 @@ namespace WEB_PERSONAL
             {
                 con.Open();
                 //using (OracleCommand com = new OracleCommand("SELECT IR_CITIZEN_ID รหัสประชาชน, IR_DATE_START วันที่ทำเรื่องขอ, IR_RANK ยศ, IR_TITLE คำนำหน้า, IR_NAME || ' ' || IR_LASTNAME ชื่อ, IR_GENDER เพศ, IR_BIRTHDATE วันเกิด, IR_DATE_INWORK วันที่เข้าทำงาน, IR_START_POSITION, IR_START_DEGREE, IR_CURRENT_POSITION, IR_TYPE, IR_DEGREE, IR_CURRENT_SALARY, IR_POSITION_SALARY FROM TB_INSIG_REQUEST WHERE TB_INSIG_REQUEST.IR_STATUS = 2", con))
-                using (OracleCommand com = new OracleCommand("SELECT (SELECT NAME_GRADEINSIGNIA_THA FROM INS_GRADEINSIGNIA WHERE INS_GRADEINSIGNIA.ID_GRADEINSIGNIA = TB_INSIG_REQUEST.IR_INSIG_ID) ชั้นที่ขอ, IR_CITIZEN_ID รหัสประชาชน, IR_DATE_START วันที่ทำเรื่องขอ, IR_RANK ยศ, IR_TITLE คำนำหน้า, IR_NAME || ' ' || IR_LASTNAME ชื่อ, IR_GENDER เพศ, IR_BIRTHDATE วันเกิด, IR_DATE_INWORK วันที่เข้าทำงาน FROM TB_INSIG_REQUEST WHERE TB_INSIG_REQUEST.IR_STATUS = 2", con))
+                using (OracleCommand com = new OracleCommand("SELECT (SELECT NAME_GRADEINSIGNIA_THA FROM INS_GRADEINSIGNIA WHERE INS_GRADEINSIGNIA.ID_GRADEINSIGNIA = TB_INSIG_REQUEST.IR_INSIG_ID) ชั้นที่ขอ, IR_CITIZEN_ID รหัสประชาชน, IR_DATE_START วันที่ทำเรื่องขอ, IR_RANK ยศ, IR_TITLE คำนำหน้า, IR_NAME || ' ' || IR_LASTNAME ชื่อ, IR_GENDER เพศ, IR_BIRTHDATE วันเกิด, IR_DATE_INWORK วันที่เข้าทำงาน, IR_ID FROM TB_INSIG_REQUEST WHERE TB_INSIG_REQUEST.IR_STATUS = 2", con))
                 //3 using (OracleCommand com = new OracleCommand("SELECT (SELECT NAME_GRADEINSIGNIA_THA FROM INS_GRADEINSIGNIA WHERE INS_GRADEINSIGNIA.ID_GRADEINSIGNIA = TB_INSIG_REQUEST.IR_INSIG_ID) ชั้นที่ขอ, IR_CITIZEN_ID รหัสประชาชน, IR_DATE_START วันที่ทำเรื่องขอ, IR_RANK ยศ, IR_TITLE คำนำหน้า, IR_NAME || ' ' || IR_LASTNAME ชื่อ, IR_GENDER เพศ, IR_BIRTHDATE วันเกิด, IR_DATE_INWORK วันที่เข้าทำงาน FROM TB_INSIG_REQUEST WHERE TB_INSIG_REQUEST.IR_STATUS = 3", con))
                 {
                     using (OracleDataReader reader = com.ExecuteReader())
@@ -98,8 +98,9 @@ namespace WEB_PERSONAL
                         while (reader.Read())
                         {
                             TableRow row = new TableRow();
-                            row.CssClass = "ps-ins-item";
+                            //row.CssClass = "ps-ins-item";
                             string psID = reader.GetString(1);
+                            int IRID = reader.GetInt32(9);
 
                             {
                                 Label lblInsigName = new Label();
@@ -192,6 +193,7 @@ namespace WEB_PERSONAL
                                 lbuResult.CssClass = "ps-button";
                                 lbuResult.Click += (e2,e3) => 
                                 {
+                                    hfIRID.Value = "" + IRID;
                                     MultiView1.ActiveViewIndex = 1;
                                 };
                                 TableCell cell = new TableCell();
@@ -206,128 +208,49 @@ namespace WEB_PERSONAL
             }
         }
 
-        protected void lbuAccept_Click(object sender, EventArgs e)
-        {
-            int id = 0;
-            using (OracleConnection conn = Util.OC())
-            {
-                PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
-                Person loginPerson = ps.LoginPerson;
-                using (OracleCommand command = new OracleCommand("UPDATE TB_INSIG_REQUEST SET IR_STATUS = :IR_STATUS WHERE IR_STATUS = 2", conn))
-                {
-
-                    try
-                    {
-                        if (conn.State != ConnectionState.Open)
-                        {
-                            conn.Open();
-                        }
-
-                        command.Parameters.Add(new OracleParameter("IR_STATUS", 3));
-
-                        id = command.ExecuteNonQuery();
-                    }
-
-                    catch (Exception ex)
-                    {
-                        throw ex;
-                    }
-                    finally
-                    {
-                        command.Dispose();
-                        conn.Close();
-                    }
-                }
-            }
-
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ได้ทำการรับเรื่องการขอ เรียบร้อยแล้ว !')", true);
-            Response.Redirect("INSG_RequestList.aspx");
-
-        }
-
         protected void lbuPrint_Click(object sender, EventArgs e)
         {
 
-        }
-
-        protected void lblGet_Click(object sender, EventArgs e)
-        {
-            int id = 0;
-            using (OracleConnection conn = Util.OC())
-            {
-                PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
-                Person loginPerson = ps.LoginPerson;
-                using (OracleCommand command = new OracleCommand("UPDATE TB_INSIG_REQUEST SET IR_STATUS = :IR_STATUS WHERE IR_STATUS = 3", conn))
-                {
-
-                    try
-                    {
-                        if (conn.State != ConnectionState.Open)
-                        {
-                            conn.Open();
-                        }
-
-                        command.Parameters.Add(new OracleParameter("IR_STATUS", 4));
-
-                        id = command.ExecuteNonQuery();
-                    }
-
-                    catch (Exception ex)
-                    {
-                        throw ex;
-                    }
-                    finally
-                    {
-                        command.Dispose();
-                        conn.Close();
-                    }
-                }
-            }
-            int id1 = 0;
-            using (OracleConnection conn = Util.OC())
-            {
-                PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
-                Person loginPerson = ps.LoginPerson;
-                using (OracleCommand command = new OracleCommand("INSERT INTO TB_INSIG_USER_GET (IUG_CITIZEN_ID,IUG_INSIG_ID,IUG_INSIG_DATE_GET,IUG_STATUS,IUG_POSITION,IUG_SALARY,IUG_REF) SELECT :IR_CITIZEN_ID,:IR_INSIG_ID,:IUG_INSIG_DATE_GET,:IUG_STATUS,:IR_CURRENT_POSITION,:IR_CURRENT_SALARY,:IUG_REF FROM TB_INSIG_REQUEST ", conn))
-                {
-
-                    try
-                    {
-                        if (conn.State != ConnectionState.Open)
-                        {
-                            conn.Open();
-                        }
-
-                        command.Parameters.Add(new OracleParameter("IR_CITIZEN_ID", ps.LoginPerson.CitizenID));
-                        command.Parameters.Add(new OracleParameter("IR_INSIG_ID", "12"));
-                        command.Parameters.Add(new OracleParameter("IUG_INSIG_DATE_GET", Util.ODT(DateTime.Now.ToString("dd MMM yyyy"))));
-                        command.Parameters.Add(new OracleParameter("IUG_STATUS", 1));
-                        command.Parameters.Add(new OracleParameter("IR_CURRENT_POSITION", "อิอิ"));
-                        command.Parameters.Add(new OracleParameter("IR_CURRENT_SALARY", 20000));
-                        command.Parameters.Add(new OracleParameter("IUG_REF", "เอกสารลับสุดยอด"));
-
-                        id1 = command.ExecuteNonQuery();
-                    }
-
-                    catch (Exception ex)
-                    {
-                        throw ex;
-                    }
-                    finally
-                    {
-                        command.Dispose();
-                        conn.Close();
-                    }
-                }
-            }
-
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ได้ทำการรับเรื่องการขอ เรียบร้อยแล้ว !')", true);
-            Response.Redirect("INSG_RequestList.aspx");
         }
 
         protected void lbBack_Click(object sender, EventArgs e)
         {
             MultiView1.ActiveViewIndex = 0;
         }
+
+        protected void lbuSave_Click(object sender, EventArgs e) {
+            int IRID = int.Parse(hfIRID.Value);
+            int res = 1;
+            if (rbNotGet.Checked) {
+                res = 2;
+            }
+
+            
+
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
+                con.Open();
+                if (res == 1) {
+                    using (OracleCommand com = new OracleCommand("UPDATE TB_INSIG_REQUEST SET IR_STATUS = :IR_STATUS, IR_DATE_GET_INSIG = :IR_DATE_GET_INSIG, IR_GET_STATUS = :IR_GET_STATUS, IR_REFERENCE = :IR_REFERENCE WHERE IR_ID = :IR_ID", con)) {
+                        com.Parameters.Add("IR_STATUS", 3);
+                        com.Parameters.Add("IR_DATE_GET_INSIG", Util.ToDateTimeOracle(tbDateGet.Text));
+                        com.Parameters.Add("IR_GET_STATUS", res);
+                        com.Parameters.Add("IR_REFERENCE", tbRef.Text);
+                        com.Parameters.Add("IR_ID", IRID);
+                        com.ExecuteNonQuery();
+                    }
+                } else {
+                    using (OracleCommand com = new OracleCommand("UPDATE TB_INSIG_REQUEST SET IR_STATUS = :IR_STATUS, IR_GET_STATUS = :IR_GET_STATUS WHERE IR_ID = :IR_ID", con)) {
+                        com.Parameters.Add("IR_STATUS", 3);
+                        com.Parameters.Add("IR_GET_STATUS", res);
+                        com.Parameters.Add("IR_ID", IRID);
+                        com.ExecuteNonQuery();
+                    }
+                }
+
+                
+            }
+            MultiView1.ActiveViewIndex = 2;
+        }
     }
-    }
+    
+}

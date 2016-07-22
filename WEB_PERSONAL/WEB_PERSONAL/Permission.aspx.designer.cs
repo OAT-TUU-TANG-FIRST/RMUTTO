@@ -76,24 +76,6 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.CheckBox cbAddPerson2;
         
         /// <summary>
-        /// cbAddPerson3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbAddPerson3;
-        
-        /// <summary>
-        /// cbAddPerson4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbAddPerson4;
-        
-        /// <summary>
         /// cbAddPerson6 control.
         /// </summary>
         /// <remarks>
@@ -110,15 +92,6 @@ namespace WEB_PERSONAL {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox cbPersonPosition;
-        
-        /// <summary>
-        /// cbPosition control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbPosition;
         
         /// <summary>
         /// cbStatusPerson control.
@@ -164,15 +137,6 @@ namespace WEB_PERSONAL {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox cbAddInsig2;
-        
-        /// <summary>
-        /// cbAddInsig4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbAddInsig4;
         
         /// <summary>
         /// cbAddManage1 control.

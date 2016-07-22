@@ -31,301 +31,193 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.MultiView MultiView1;
         
         /// <summary>
-        /// View2 control.
+        /// View0 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View View2;
+        protected global::System.Web.UI.WebControls.View View0;
         
         /// <summary>
-        /// UpdatetbRank control.
+        /// View1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetbRank;
+        protected global::System.Web.UI.WebControls.View View1;
         
         /// <summary>
-        /// tbRank control.
+        /// lbRank control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbRank;
+        protected global::System.Web.UI.WebControls.Label lbRank;
         
         /// <summary>
-        /// UpdatetbTitleName control.
+        /// lbTitleName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetbTitleName;
+        protected global::System.Web.UI.WebControls.Label lbTitleName;
         
         /// <summary>
-        /// tbTitleName control.
+        /// lbName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbTitleName;
+        protected global::System.Web.UI.WebControls.Label lbName;
         
         /// <summary>
-        /// UpdatetbName control.
+        /// lbLastName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetbName;
+        protected global::System.Web.UI.WebControls.Label lbLastName;
         
         /// <summary>
-        /// tbName control.
+        /// lbGender control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbName;
+        protected global::System.Web.UI.WebControls.Label lbGender;
         
         /// <summary>
-        /// UpdatetbLastName control.
+        /// lbBirthDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetbLastName;
+        protected global::System.Web.UI.WebControls.Label lbBirthDate;
         
         /// <summary>
-        /// tbLastName control.
+        /// lbDateInwork control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbLastName;
+        protected global::System.Web.UI.WebControls.Label lbDateInwork;
         
         /// <summary>
-        /// UpdatetbGender control.
+        /// lbPosiDateInwork control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetbGender;
+        protected global::System.Web.UI.WebControls.Label lbPosiDateInwork;
         
         /// <summary>
-        /// tbGender control.
+        /// lbDegreeDateInwork control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbGender;
+        protected global::System.Web.UI.WebControls.Label lbDegreeDateInwork;
         
         /// <summary>
-        /// UpdatetbBirthDate control.
+        /// lbPositionCurrent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetbBirthDate;
+        protected global::System.Web.UI.WebControls.Label lbPositionCurrent;
         
         /// <summary>
-        /// tbBirthDate control.
+        /// lbType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbBirthDate;
+        protected global::System.Web.UI.WebControls.Label lbType;
         
         /// <summary>
-        /// UpdatetbDateInwork control.
+        /// lbDegree control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetbDateInwork;
+        protected global::System.Web.UI.WebControls.Label lbDegree;
         
         /// <summary>
-        /// tbDateInwork control.
+        /// lbSalaryCurrent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbDateInwork;
+        protected global::System.Web.UI.WebControls.Label lbSalaryCurrent;
         
         /// <summary>
-        /// UpdatetbPosiDateInwork control.
+        /// lbPositionSalary control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetbPosiDateInwork;
+        protected global::System.Web.UI.WebControls.Label lbPositionSalary;
         
         /// <summary>
-        /// tbPosiDateInwork control.
+        /// lbCitizen control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbPosiDateInwork;
+        protected global::System.Web.UI.WebControls.Label lbCitizen;
         
         /// <summary>
-        /// UpdatetbDegreeDateInwork control.
+        /// imgOldInsig control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetbDegreeDateInwork;
+        protected global::System.Web.UI.HtmlControls.HtmlImage imgOldInsig;
         
         /// <summary>
-        /// tbDegreeDateInwork control.
+        /// imgNewInsig control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbDegreeDateInwork;
+        protected global::System.Web.UI.HtmlControls.HtmlImage imgNewInsig;
         
         /// <summary>
-        /// UpdatetbPositionCurrent control.
+        /// lbOldInsigName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetbPositionCurrent;
+        protected global::System.Web.UI.WebControls.Label lbOldInsigName;
         
         /// <summary>
-        /// tbPositionCurrent control.
+        /// lbNewInsigName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbPositionCurrent;
-        
-        /// <summary>
-        /// UpdatetbType control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetbType;
-        
-        /// <summary>
-        /// tbType control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbType;
-        
-        /// <summary>
-        /// UpdatetbDegree control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetbDegree;
-        
-        /// <summary>
-        /// tbDegree control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbDegree;
-        
-        /// <summary>
-        /// UpdatetbSalaryCurrent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetbSalaryCurrent;
-        
-        /// <summary>
-        /// tbSalaryCurrent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbSalaryCurrent;
-        
-        /// <summary>
-        /// UpdatetbPositionSalary control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetbPositionSalary;
-        
-        /// <summary>
-        /// tbPositionSalary control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbPositionSalary;
-        
-        /// <summary>
-        /// UpdatetbInsig control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetbInsig;
-        
-        /// <summary>
-        /// tbInsig control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbInsig;
-        
-        /// <summary>
-        /// UpdatetbCitizen control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatetbCitizen;
-        
-        /// <summary>
-        /// tbCitizen control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbCitizen;
+        protected global::System.Web.UI.WebControls.Label lbNewInsigName;
         
         /// <summary>
         /// lbuSubmitView2 control.
@@ -335,5 +227,14 @@ namespace WEB_PERSONAL {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lbuSubmitView2;
+        
+        /// <summary>
+        /// View2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View View2;
     }
 }

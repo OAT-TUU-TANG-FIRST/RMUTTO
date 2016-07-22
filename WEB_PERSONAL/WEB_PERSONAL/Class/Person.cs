@@ -132,6 +132,11 @@ namespace WEB_PERSONAL.Class {
         public string WorkDivisionID;
         public string WorkDivisionName;
 
+        public string StartAdminPositionID;
+        public string StartAdminPositionName;
+
+        public string PositionSalary;
+
         public string FullName {
             get { return TitleName + FirstName + " " + LastName; }
         }

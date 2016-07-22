@@ -43,15 +43,9 @@
                                 <div>
                                     <asp:CheckBox ID="cbAddPerson2" runat="server" Text="แก้ไขข้อมูลบุคลากร" /></div>
                                 <div>
-                                    <asp:CheckBox ID="cbAddPerson3" runat="server" Text="เพิ่มข้อมูลบุคลากร(ก.พ.7)" /></div>
-                                <div>
-                                    <asp:CheckBox ID="cbAddPerson4" runat="server" Text="แก้ไขข้อมูลบุคลากร(ก.พ.7)" /></div>
-                                <div>
                                     <asp:CheckBox ID="cbAddPerson6" runat="server" Text="การแก้ไขพัฒนาบุคลากร" /></div>
                                 <div>
                                     <asp:CheckBox ID="cbPersonPosition" runat="server" Text="จัดการแต่งตั้งหัวหน้า" /></div>
-                                <div>
-                                    <asp:CheckBox ID="cbPosition" runat="server" Text="จัดการตำแหน่งบุคลากร" /></div>
                                 <div>
                                     <asp:CheckBox ID="cbStatusPerson" runat="server" Text="ปรับเปลี่ยนสถานะการทำงาน" /></div>
                             </div>
@@ -84,8 +78,6 @@
                                     <asp:CheckBox ID="cbAddInsig1" runat="server" Text="รายชื่อผู้ที่เข้าเกณฑ์การรับเครื่องราชฯ" /></div>
                                 <div>
                                     <asp:CheckBox ID="cbAddInsig2" runat="server" Text="รายชื่อการขอเครื่องราชฯ" /></div>
-                                <div>
-                                    <asp:CheckBox ID="cbAddInsig4" runat="server" Text="จัดการประวัติผู้ที่ได้รับเครื่องราช" /></div>
                             </div>
                         </div>
 

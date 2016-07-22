@@ -548,24 +548,23 @@ namespace WEB_PERSONAL {
         }
 
         protected void lbuExport_Click(object sender, EventArgs e) {
-            /*for (int i = 0; i < 5; i++) {
+            Table tb = ((Table)Session["PersonReportTable"]);
+            int cols = tb.Rows[0].Cells.Count;
+            for (int i = 0; i < cols; i++) {
                 tb.Rows[0].Cells[i].Style.Add("border", "1px solid #000000");
             }
-            for (int i = 0; i < 15; i++) {
-                tb.Rows[1].Cells[i].Style.Add("border", "1px solid #000000");
-            }
-            for (int i = 2; i < tb.Rows.Count; i++) {
-                for (int j = 0; j < 15; j++) {
+            for (int i = 1; i < tb.Rows.Count; i++) {
+                for (int j = 0; j < cols; j++) {
                     tb.Rows[i].Cells[j].Style.Add("border", "1px solid #000000");
                 }
-            }*/
+            }
 
              Response.ContentType = "application/x-msexcel";
              Response.AddHeader("Content-Disposition", "attachment;filename=PersonReport.xls");
              Response.ContentEncoding = Encoding.UTF8;
              StringWriter tw = new StringWriter();
              HtmlTextWriter hw = new HtmlTextWriter(tw);
-             ((Table)Session["PersonReportTable"]).RenderControl(hw);
+             tb.RenderControl(hw);
              Response.Write(tw.ToString());
              Response.End();
         }

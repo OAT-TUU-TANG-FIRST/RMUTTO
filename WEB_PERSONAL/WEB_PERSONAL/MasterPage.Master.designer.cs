@@ -157,24 +157,6 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor cbAddPerson2;
         
         /// <summary>
-        /// cbAddPerson3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor cbAddPerson3;
-        
-        /// <summary>
-        /// cbAddPerson4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor cbAddPerson4;
-        
-        /// <summary>
         /// cbAddPerson5 control.
         /// </summary>
         /// <remarks>
@@ -218,15 +200,6 @@ namespace WEB_PERSONAL {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor cbPersonPosition;
-        
-        /// <summary>
-        /// cbPosition control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor cbPosition;
         
         /// <summary>
         /// cbNotPerson2 control.
@@ -319,15 +292,6 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor cbNotInsig2;
         
         /// <summary>
-        /// cbAddInsig4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor cbAddInsig4;
-        
-        /// <summary>
         /// cbAddManage1 control.
         /// </summary>
         /// <remarks>
@@ -409,13 +373,13 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl noti_ins;
         
         /// <summary>
-        /// noti_insadminknow control.
+        /// noti_get_ins control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl noti_insadminknow;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl noti_get_ins;
         
         /// <summary>
         /// ContentPlaceHolder1 control.

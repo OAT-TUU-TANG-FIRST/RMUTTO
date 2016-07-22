@@ -45,7 +45,8 @@ namespace WEB_PERSONAL {
             int count_ch = 0;
             int count_leave_finish = 0;
             int count_ins = 0;
-            int count_insadminknow = 0;
+            int count_get_ins = 0;
+
             OracleConnection.ClearAllPools();
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
@@ -93,15 +94,16 @@ namespace WEB_PERSONAL {
                         }
                     }
                 }
-                using (OracleCommand com = new OracleCommand("SELECT COUNT(IR_STATUS) FROM TB_INSIG_REQUEST WHERE IR_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND IR_STATUS = 2", con)) {
+                using (OracleCommand com = new OracleCommand("SELECT COUNT(IR_ID) FROM TB_INSIG_REQUEST WHERE IR_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND IR_STATUS = 3", con)) {
                     using (OracleDataReader reader = com.ExecuteReader()) {
                         while (reader.Read()) {
-                            count_insadminknow = reader.GetInt32(0);
+                            count_get_ins = reader.GetInt32(0);
                         }
                     }
                 }
 
-                int count = count_cl + count_ch + count_leave_finish + count_ins + count_insadminknow;
+
+                int count = count_cl + count_ch + count_leave_finish + count_ins + count_get_ins;
 
                 noti_leave_none.Visible = false;
                 noti_cl.Visible = false;
@@ -110,7 +112,7 @@ namespace WEB_PERSONAL {
 
                 noti_ins_none.Visible = false;
                 noti_ins.Visible = false;
-                noti_insadminknow.Visible = false;
+                noti_get_ins.Visible = false;
 
                 if (count_cl + count_ch + count_leave_finish == 0) {
                     noti_leave_none.Visible = true;
@@ -126,14 +128,14 @@ namespace WEB_PERSONAL {
                     }
                 }
 
-                if (count_ins + count_insadminknow == 0) {
+                if (count_ins + count_get_ins == 0) {
                     noti_ins_none.Visible = true;
                 } else {
                     if (count_ins != 0) {
                         noti_ins.Visible = true;
                     }
-                    if (count_insadminknow != 0) {
-                        noti_insadminknow.Visible = true;
+                    if (count_get_ins != 0) {
+                        noti_get_ins.Visible = true;
                     }
                 }
 
@@ -148,16 +150,13 @@ namespace WEB_PERSONAL {
                 LeaveReport.Visible = false;
                 cbAddPerson1.Visible = false;
                 cbAddPerson2.Visible = false;
-                cbAddPerson3.Visible = false;
-                cbAddPerson4.Visible = false;
                 cbAddPerson6.Visible = false;
                 cbAddInsig1.Visible = false;
                 cbAddInsig2.Visible = false;
-                cbAddInsig4.Visible = false;
+                
                 cbAddManage1.Visible = false;
                 cbAddManage2.Visible = false;
                 cbPersonPosition.Visible = false;
-                cbPosition.Visible = false;
                 
 
                 using (OracleCommand com = new OracleCommand("SELECT PERMISSION_TYPE FROM TB_PERMISSION WHERE CITIZEN_ID = '" + loginPerson.CitizenID + "'", con)) {
@@ -168,16 +167,16 @@ namespace WEB_PERSONAL {
                             else if (type == 2) LeaveReport.Visible = true;
                             else if (type == 3) cbAddPerson1.Visible = true;
                             else if (type == 4) cbAddPerson2.Visible = true;
-                            else if (type == 5) cbAddPerson3.Visible = true;
-                            else if (type == 6) cbAddPerson4.Visible = true;
+                            //else if (type == 5) cbAddPerson3.Visible = true;
+                            //else if (type == 6) cbAddPerson4.Visible = true;
                             else if (type == 8) cbAddPerson6.Visible = true;
                             else if (type == 9) cbAddInsig1.Visible = true;
                             else if (type == 10) cbAddInsig2.Visible = true;
-                            else if (type == 11) cbAddInsig4.Visible = true;
+                            //else if (type == 11) cbAddInsig4.Visible = true;
                             else if (type == 12) cbAddManage1.Visible = true;
                             else if (type == 13) cbAddManage2.Visible = true;
                             else if (type == 14) cbPersonPosition.Visible = true;
-                            else if (type == 15) cbPosition.Visible = true;
+                            //else if (type == 15) cbPosition.Visible = true;
                             
 
                         }
