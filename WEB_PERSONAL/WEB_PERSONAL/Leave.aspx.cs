@@ -145,8 +145,16 @@ namespace WEB_PERSONAL {
                     ChangeNotification("danger", "วันที่ไม่ถูกต้อง");
                     return;
                 }
-                if((dtFromDate - DateTime.Today).TotalDays >= 90) {
+                if ((DateTime.Today - dtFromDate).TotalDays >= 90) {
+                    ChangeNotification("danger", "ไม่สามารถลาย้อนหลังมากกว่า 3 เดือน");
+                    return;
+                }
+                if ((dtFromDate - DateTime.Today).TotalDays >= 90) {
                     ChangeNotification("danger", "ไม่สามารถลาล่วงหน้ามากกว่า 3 เดือน");
+                    return;
+                }
+                if (dtFromDate.DayOfWeek == DayOfWeek.Saturday || dtFromDate.DayOfWeek == DayOfWeek.Sunday || dtToDate.DayOfWeek == DayOfWeek.Saturday || dtToDate.DayOfWeek == DayOfWeek.Sunday) {
+                    ChangeNotification("danger", "ไม่สามารถเรื่มหรือจบการลาในวันเสาร์หรือาทิตย์ได้");
                     return;
                 }
                 int sick_now = -1;
@@ -436,7 +444,7 @@ namespace WEB_PERSONAL {
 
 
                 lbS2PSName.Text = loginPerson.FullName;
-                lbS2PSPos.Text = loginPerson.PositionName;
+                lbS2PSPos.Text = loginPerson.PositionWorkName;
                 lbS2PSAPos.Text = loginPerson.AdminPositionName;
                 lbS2PSDept.Text = loginPerson.DivisionName;
                 lbS2PSBirthDate.Text = loginPerson.BirthDate.Value.ToLongDateString();
@@ -553,14 +561,14 @@ namespace WEB_PERSONAL {
                                     คณะบดีลาช่วยเหลือภริยาคลอดบุตร = Convert.ToBoolean(reader.GetInt32(5));
                                     คณะบดีลาพักผ่อน = Convert.ToBoolean(reader.GetInt32(6));
                                     คณะบดีลาอุปสมบทฮัจญ์ = Convert.ToBoolean(reader.GetInt32(7));
-                                } else if (APID == 10023) {
+                                } else if (APID == 7) {
                                     หัวหน้าภาควิชาลาป่วยวัน = reader.GetInt32(2);
                                     หัวหน้าภาควิชาลากิจวัน = reader.GetInt32(3);
                                     หัวหน้าภาควิชาลาคลอดบุตร = Convert.ToBoolean(reader.GetInt32(4));
                                     หัวหน้าภาควิชาลาช่วยเหลือภริยาคลอดบุตร = Convert.ToBoolean(reader.GetInt32(5));
                                     หัวหน้าภาควิชาลาพักผ่อน = Convert.ToBoolean(reader.GetInt32(6));
                                     หัวหน้าภาควิชาลาอุปสมบทฮัจญ์ = Convert.ToBoolean(reader.GetInt32(7));
-                                } else if (APID == 10024) {
+                                } else if (APID == 4) {
                                     หัวหน้าฝ่ายลาป่วยวัน = reader.GetInt32(2);
                                     หัวหน้าฝ่ายลากิจวัน = reader.GetInt32(3);
                                     หัวหน้าฝ่ายลาคลอดบุตร = Convert.ToBoolean(reader.GetInt32(4));
@@ -576,15 +584,15 @@ namespace WEB_PERSONAL {
 
                 if(hfLeaveTypeID.Value == "1") {
                     if(totalDay <= หัวหน้าฝ่ายลาป่วยวัน) {
-                        if(loginPerson.AdminPositionID == "8") { //ตำแหน่งอ่ื่นๆ
-                            psCHID = DatabaseManager.รหัสหัวหน้าฝ่าย(loginPerson.DivisionID);
-                        } else if (loginPerson.AdminPositionID == "10024") { //หัวหน้าฝ่าย
+                        if(loginPerson.AdminPositionID == "0" || loginPerson.AdminPositionID == "8") { //ไม่มี
+                            psCHID = DatabaseManager.รหัสหัวหน้าฝ่าย(loginPerson.WorkDivisionID);
+                        } else if (loginPerson.AdminPositionID == "4") { //หัวหน้าฝ่าย
                             psCHID = DatabaseManager.รหัสหัวหน้าภาควิชา(loginPerson.DivisionID);
-                        } else if (loginPerson.AdminPositionID == "10023") { //หัวหน้าภาควิชา
+                        } else if (loginPerson.AdminPositionID == "7") { //หัวหน้าภาควิชา
                             psCHID = DatabaseManager.รหัสคณบดี(loginPerson.FacultyID);
-                        } else if (loginPerson.AdminPositionID == "3") { //คณบดี
+                        } else if (loginPerson.AdminPositionID == "3" || loginPerson.AdminPositionID == "6") { //คณบดี
                             psCHID = DatabaseManager.รหัสอธิการบดี(loginPerson.CampusID);
-                        } else if (loginPerson.AdminPositionID == "1") { //อธิการบดี
+                        } else if (loginPerson.AdminPositionID == "1" || loginPerson.AdminPositionID == "2" || loginPerson.AdminPositionID == "5") { //อธิการบดี
                             psCHID = DatabaseManager.รหัสเลขาธิการคณะกรรมการ();
                         } else if (loginPerson.AdminPositionID == "10022") { //เลขาธิการคณะกรรมการ	
                             psCHID = DatabaseManager.รหัสรัฐมนตรีเจ้าสังกัด();
@@ -592,16 +600,16 @@ namespace WEB_PERSONAL {
                             psCHID = DatabaseManager.รหัสรัฐมนตรีเจ้าสังกัด();
                         }
                     } else if (totalDay <= หัวหน้าภาควิชาลาป่วยวัน) {
-                        if (loginPerson.AdminPositionID == "8") { //ตำแหน่งอ่ื่นๆ
-                            psCLID = DatabaseManager.รหัสหัวหน้าฝ่าย(loginPerson.DivisionID);
+                        if (loginPerson.AdminPositionID == "0" || loginPerson.AdminPositionID == "8") { //ไม่มี
+                            psCLID = DatabaseManager.รหัสหัวหน้าฝ่าย(loginPerson.WorkDivisionID);
                             psCHID = DatabaseManager.รหัสหัวหน้าภาควิชา(loginPerson.DivisionID);
-                        } else if (loginPerson.AdminPositionID == "10024") { //หัวหน้าฝ่าย
+                        } else if (loginPerson.AdminPositionID == "4") { //หัวหน้าฝ่าย
                             psCHID = DatabaseManager.รหัสหัวหน้าภาควิชา(loginPerson.DivisionID);
-                        } else if (loginPerson.AdminPositionID == "10023") { //หัวหน้าภาควิชา
+                        } else if (loginPerson.AdminPositionID == "7") { //หัวหน้าภาควิชา
                             psCHID = DatabaseManager.รหัสคณบดี(loginPerson.FacultyID);
-                        } else if (loginPerson.AdminPositionID == "3") { //คณบดี
+                        } else if (loginPerson.AdminPositionID == "3" || loginPerson.AdminPositionID == "6") { //คณบดี
                             psCHID = DatabaseManager.รหัสอธิการบดี(loginPerson.CampusID);
-                        } else if (loginPerson.AdminPositionID == "1") { //อธิการบดี
+                        } else if (loginPerson.AdminPositionID == "1" || loginPerson.AdminPositionID == "2" || loginPerson.AdminPositionID == "5") { //อธิการบดี
                             psCHID = DatabaseManager.รหัสเลขาธิการคณะกรรมการ();
                         } else if (loginPerson.AdminPositionID == "10022") { //เลขาธิการคณะกรรมการ	
                             psCHID = DatabaseManager.รหัสรัฐมนตรีเจ้าสังกัด();
@@ -609,17 +617,17 @@ namespace WEB_PERSONAL {
                             psCHID = DatabaseManager.รหัสรัฐมนตรีเจ้าสังกัด();
                         }
                     } else if (totalDay <= คณะบดีลาป่วยวัน) {
-                        if (loginPerson.AdminPositionID == "8") { //ตำแหน่งอ่ื่นๆ
-                            psCLID = DatabaseManager.รหัสหัวหน้าฝ่าย(loginPerson.DivisionID);
+                        if (loginPerson.AdminPositionID == "0" || loginPerson.AdminPositionID == "8") { //ไม่มี
+                            psCLID = DatabaseManager.รหัสหัวหน้าฝ่าย(loginPerson.WorkDivisionID);
                             psCHID = DatabaseManager.รหัสคณบดี(loginPerson.FacultyID);
-                        } else if (loginPerson.AdminPositionID == "10024") { //หัวหน้าฝ่าย
+                        } else if (loginPerson.AdminPositionID == "4") { //หัวหน้าฝ่าย
                             psCLID = DatabaseManager.รหัสหัวหน้าภาควิชา(loginPerson.DivisionID);
                             psCHID = DatabaseManager.รหัสคณบดี(loginPerson.FacultyID);
-                        } else if (loginPerson.AdminPositionID == "10023") { //หัวหน้าภาควิชา
+                        } else if (loginPerson.AdminPositionID == "7") { //หัวหน้าภาควิชา
                             psCHID = DatabaseManager.รหัสคณบดี(loginPerson.FacultyID);
-                        } else if (loginPerson.AdminPositionID == "3") { //คณบดี
+                        } else if (loginPerson.AdminPositionID == "3" || loginPerson.AdminPositionID == "6") { //คณบดี
                             psCHID = DatabaseManager.รหัสอธิการบดี(loginPerson.CampusID);
-                        } else if (loginPerson.AdminPositionID == "1") { //อธิการบดี
+                        } else if (loginPerson.AdminPositionID == "1" || loginPerson.AdminPositionID == "2" || loginPerson.AdminPositionID == "5") { //อธิการบดี
                             psCHID = DatabaseManager.รหัสเลขาธิการคณะกรรมการ();
                         } else if (loginPerson.AdminPositionID == "10022") { //เลขาธิการคณะกรรมการ	
                             psCHID = DatabaseManager.รหัสรัฐมนตรีเจ้าสังกัด();
@@ -627,18 +635,18 @@ namespace WEB_PERSONAL {
                             psCHID = DatabaseManager.รหัสรัฐมนตรีเจ้าสังกัด();
                         }
                     } else if (totalDay <= อธิการบดีลาป่วยวัน) {
-                        if (loginPerson.AdminPositionID == "8") { //ตำแหน่งอ่ื่นๆ
-                            psCLID = DatabaseManager.รหัสหัวหน้าฝ่าย(loginPerson.DivisionID);
+                        if (loginPerson.AdminPositionID == "0" || loginPerson.AdminPositionID == "8") { //ไม่มี
+                            psCLID = DatabaseManager.รหัสหัวหน้าฝ่าย(loginPerson.WorkDivisionID);
                             psCHID = DatabaseManager.รหัสอธิการบดี(loginPerson.CampusID);
-                        } else if (loginPerson.AdminPositionID == "10024") { //หัวหน้าฝ่าย
+                        } else if (loginPerson.AdminPositionID == "4") { //หัวหน้าฝ่าย
                             psCLID = DatabaseManager.รหัสหัวหน้าภาควิชา(loginPerson.DivisionID);
                             psCHID = DatabaseManager.รหัสอธิการบดี(loginPerson.CampusID);
-                        } else if (loginPerson.AdminPositionID == "10023") { //หัวหน้าภาควิชา
+                        } else if (loginPerson.AdminPositionID == "7") { //หัวหน้าภาควิชา
                             psCLID = DatabaseManager.รหัสคณบดี(loginPerson.FacultyID);
                             psCHID = DatabaseManager.รหัสอธิการบดี(loginPerson.CampusID);
-                        } else if (loginPerson.AdminPositionID == "3") { //คณบดี
+                        } else if (loginPerson.AdminPositionID == "3" || loginPerson.AdminPositionID == "6") { //คณบดี
                             psCHID = DatabaseManager.รหัสอธิการบดี(loginPerson.CampusID);
-                        } else if (loginPerson.AdminPositionID == "1") { //อธิการบดี
+                        } else if (loginPerson.AdminPositionID == "1" || loginPerson.AdminPositionID == "2" || loginPerson.AdminPositionID == "5") { //อธิการบดี
                             psCHID = DatabaseManager.รหัสเลขาธิการคณะกรรมการ();
                         } else if (loginPerson.AdminPositionID == "10022") { //เลขาธิการคณะกรรมการ	
                             psCHID = DatabaseManager.รหัสรัฐมนตรีเจ้าสังกัด();
@@ -646,19 +654,19 @@ namespace WEB_PERSONAL {
                             psCHID = DatabaseManager.รหัสรัฐมนตรีเจ้าสังกัด();
                         }
                     } else {
-                        if (loginPerson.AdminPositionID == "8") { //ตำแหน่งอ่ื่นๆ
-                            psCLID = DatabaseManager.รหัสหัวหน้าฝ่าย(loginPerson.DivisionID);
+                        if (loginPerson.AdminPositionID == "0" || loginPerson.AdminPositionID == "8") { //ไม่มี
+                            psCLID = DatabaseManager.รหัสหัวหน้าฝ่าย(loginPerson.WorkDivisionID);
                             psCHID = DatabaseManager.รหัสเลขาธิการคณะกรรมการ();
-                        } else if (loginPerson.AdminPositionID == "10024") { //หัวหน้าฝ่าย
+                        } else if (loginPerson.AdminPositionID == "4") { //หัวหน้าฝ่าย
                             psCLID = DatabaseManager.รหัสหัวหน้าภาควิชา(loginPerson.DivisionID);
                             psCHID = DatabaseManager.รหัสเลขาธิการคณะกรรมการ();
-                        } else if (loginPerson.AdminPositionID == "10023") { //หัวหน้าภาควิชา
+                        } else if (loginPerson.AdminPositionID == "7") { //หัวหน้าภาควิชา
                             psCLID = DatabaseManager.รหัสคณบดี(loginPerson.FacultyID);
                             psCHID = DatabaseManager.รหัสเลขาธิการคณะกรรมการ();
-                        } else if (loginPerson.AdminPositionID == "3") { //คณบดี
+                        } else if (loginPerson.AdminPositionID == "3" || loginPerson.AdminPositionID == "6") { //คณบดี
                             psCLID = DatabaseManager.รหัสอธิการบดี(loginPerson.CampusID);
                             psCHID = DatabaseManager.รหัสเลขาธิการคณะกรรมการ();
-                        } else if (loginPerson.AdminPositionID == "1") { //อธิการบดี
+                        } else if (loginPerson.AdminPositionID == "1" || loginPerson.AdminPositionID == "2" || loginPerson.AdminPositionID == "5") { //อธิการบดี
                             psCHID = DatabaseManager.รหัสเลขาธิการคณะกรรมการ();
                         } else if (loginPerson.AdminPositionID == "10022") { //เลขาธิการคณะกรรมการ	
                             psCHID = DatabaseManager.รหัสรัฐมนตรีเจ้าสังกัด();
@@ -668,15 +676,15 @@ namespace WEB_PERSONAL {
                     }
                 } else if (hfLeaveTypeID.Value == "2") {
                     if (totalDay <= หัวหน้าฝ่ายลากิจวัน) {
-                        if (loginPerson.AdminPositionID == "8") { //ตำแหน่งอ่ื่นๆ
-                            psCHID = DatabaseManager.รหัสหัวหน้าฝ่าย(loginPerson.DivisionID);
-                        } else if (loginPerson.AdminPositionID == "10024") { //หัวหน้าฝ่าย
+                        if (loginPerson.AdminPositionID == "0" || loginPerson.AdminPositionID == "8") { //ไม่มี
+                            psCHID = DatabaseManager.รหัสหัวหน้าฝ่าย(loginPerson.WorkDivisionID);
+                        } else if (loginPerson.AdminPositionID == "4") { //หัวหน้าฝ่าย
                             psCHID = DatabaseManager.รหัสหัวหน้าภาควิชา(loginPerson.DivisionID);
-                        } else if (loginPerson.AdminPositionID == "10023") { //หัวหน้าภาควิชา
+                        } else if (loginPerson.AdminPositionID == "7") { //หัวหน้าภาควิชา
                             psCHID = DatabaseManager.รหัสคณบดี(loginPerson.FacultyID);
-                        } else if (loginPerson.AdminPositionID == "3") { //คณบดี
+                        } else if (loginPerson.AdminPositionID == "3" || loginPerson.AdminPositionID == "6") { //คณบดี
                             psCHID = DatabaseManager.รหัสอธิการบดี(loginPerson.CampusID);
-                        } else if (loginPerson.AdminPositionID == "1") { //อธิการบดี
+                        } else if (loginPerson.AdminPositionID == "1" || loginPerson.AdminPositionID == "2" || loginPerson.AdminPositionID == "5") { //อธิการบดี
                             psCHID = DatabaseManager.รหัสเลขาธิการคณะกรรมการ();
                         } else if (loginPerson.AdminPositionID == "10022") { //เลขาธิการคณะกรรมการ	
                             psCHID = DatabaseManager.รหัสรัฐมนตรีเจ้าสังกัด();
@@ -684,16 +692,16 @@ namespace WEB_PERSONAL {
                             psCHID = DatabaseManager.รหัสรัฐมนตรีเจ้าสังกัด();
                         }
                     } else if (totalDay <= หัวหน้าภาควิชาลากิจวัน) {
-                        if (loginPerson.AdminPositionID == "8") { //ตำแหน่งอ่ื่นๆ
-                            psCLID = DatabaseManager.รหัสหัวหน้าฝ่าย(loginPerson.DivisionID);
+                        if (loginPerson.AdminPositionID == "0" || loginPerson.AdminPositionID == "8") { //ไม่มี
+                            psCLID = DatabaseManager.รหัสหัวหน้าฝ่าย(loginPerson.WorkDivisionID);
                             psCHID = DatabaseManager.รหัสหัวหน้าภาควิชา(loginPerson.DivisionID);
-                        } else if (loginPerson.AdminPositionID == "10024") { //หัวหน้าฝ่าย
+                        } else if (loginPerson.AdminPositionID == "4") { //หัวหน้าฝ่าย
                             psCHID = DatabaseManager.รหัสหัวหน้าภาควิชา(loginPerson.DivisionID);
-                        } else if (loginPerson.AdminPositionID == "10023") { //หัวหน้าภาควิชา
+                        } else if (loginPerson.AdminPositionID == "7") { //หัวหน้าภาควิชา
                             psCHID = DatabaseManager.รหัสคณบดี(loginPerson.FacultyID);
-                        } else if (loginPerson.AdminPositionID == "3") { //คณบดี
+                        } else if (loginPerson.AdminPositionID == "3" || loginPerson.AdminPositionID == "6") { //คณบดี
                             psCHID = DatabaseManager.รหัสอธิการบดี(loginPerson.CampusID);
-                        } else if (loginPerson.AdminPositionID == "1") { //อธิการบดี
+                        } else if (loginPerson.AdminPositionID == "1" || loginPerson.AdminPositionID == "2" || loginPerson.AdminPositionID == "5") { //อธิการบดี
                             psCHID = DatabaseManager.รหัสเลขาธิการคณะกรรมการ();
                         } else if (loginPerson.AdminPositionID == "10022") { //เลขาธิการคณะกรรมการ	
                             psCHID = DatabaseManager.รหัสรัฐมนตรีเจ้าสังกัด();
@@ -701,17 +709,17 @@ namespace WEB_PERSONAL {
                             psCHID = DatabaseManager.รหัสรัฐมนตรีเจ้าสังกัด();
                         }
                     } else if (totalDay <= คณะบดีลากิจวัน) {
-                        if (loginPerson.AdminPositionID == "8") { //ตำแหน่งอ่ื่นๆ
-                            psCLID = DatabaseManager.รหัสหัวหน้าฝ่าย(loginPerson.DivisionID);
+                        if (loginPerson.AdminPositionID == "0" || loginPerson.AdminPositionID == "8") { //ไม่มี
+                            psCLID = DatabaseManager.รหัสหัวหน้าฝ่าย(loginPerson.WorkDivisionID);
                             psCHID = DatabaseManager.รหัสคณบดี(loginPerson.FacultyID);
-                        } else if (loginPerson.AdminPositionID == "10024") { //หัวหน้าฝ่าย
+                        } else if (loginPerson.AdminPositionID == "4") { //หัวหน้าฝ่าย
                             psCLID = DatabaseManager.รหัสหัวหน้าภาควิชา(loginPerson.DivisionID);
                             psCHID = DatabaseManager.รหัสคณบดี(loginPerson.FacultyID);
-                        } else if (loginPerson.AdminPositionID == "10023") { //หัวหน้าภาควิชา
+                        } else if (loginPerson.AdminPositionID == "7") { //หัวหน้าภาควิชา
                             psCHID = DatabaseManager.รหัสคณบดี(loginPerson.FacultyID);
-                        } else if (loginPerson.AdminPositionID == "3") { //คณบดี
+                        } else if (loginPerson.AdminPositionID == "3" || loginPerson.AdminPositionID == "6") { //คณบดี
                             psCHID = DatabaseManager.รหัสอธิการบดี(loginPerson.CampusID);
-                        } else if (loginPerson.AdminPositionID == "1") { //อธิการบดี
+                        } else if (loginPerson.AdminPositionID == "1" || loginPerson.AdminPositionID == "2" || loginPerson.AdminPositionID == "5") { //อธิการบดี
                             psCHID = DatabaseManager.รหัสเลขาธิการคณะกรรมการ();
                         } else if (loginPerson.AdminPositionID == "10022") { //เลขาธิการคณะกรรมการ	
                             psCHID = DatabaseManager.รหัสรัฐมนตรีเจ้าสังกัด();
@@ -719,18 +727,18 @@ namespace WEB_PERSONAL {
                             psCHID = DatabaseManager.รหัสรัฐมนตรีเจ้าสังกัด();
                         }
                     } else if (totalDay <= อธิการบดีลากิจวัน) {
-                        if (loginPerson.AdminPositionID == "8") { //ตำแหน่งอ่ื่นๆ
-                            psCLID = DatabaseManager.รหัสหัวหน้าฝ่าย(loginPerson.DivisionID);
+                        if (loginPerson.AdminPositionID == "0" || loginPerson.AdminPositionID == "8") { //ไม่มี
+                            psCLID = DatabaseManager.รหัสหัวหน้าฝ่าย(loginPerson.WorkDivisionID);
                             psCHID = DatabaseManager.รหัสอธิการบดี(loginPerson.CampusID);
-                        } else if (loginPerson.AdminPositionID == "10024") { //หัวหน้าฝ่าย
+                        } else if (loginPerson.AdminPositionID == "4") { //หัวหน้าฝ่าย
                             psCLID = DatabaseManager.รหัสหัวหน้าภาควิชา(loginPerson.DivisionID);
                             psCHID = DatabaseManager.รหัสอธิการบดี(loginPerson.CampusID);
-                        } else if (loginPerson.AdminPositionID == "10023") { //หัวหน้าภาควิชา
+                        } else if (loginPerson.AdminPositionID == "7") { //หัวหน้าภาควิชา
                             psCLID = DatabaseManager.รหัสคณบดี(loginPerson.FacultyID);
                             psCHID = DatabaseManager.รหัสอธิการบดี(loginPerson.CampusID);
-                        } else if (loginPerson.AdminPositionID == "3") { //คณบดี
+                        } else if (loginPerson.AdminPositionID == "3" || loginPerson.AdminPositionID == "6") { //คณบดี
                             psCHID = DatabaseManager.รหัสอธิการบดี(loginPerson.CampusID);
-                        } else if (loginPerson.AdminPositionID == "1") { //อธิการบดี
+                        } else if (loginPerson.AdminPositionID == "1" || loginPerson.AdminPositionID == "2" || loginPerson.AdminPositionID == "5") { //อธิการบดี
                             psCHID = DatabaseManager.รหัสเลขาธิการคณะกรรมการ();
                         } else if (loginPerson.AdminPositionID == "10022") { //เลขาธิการคณะกรรมการ	
                             psCHID = DatabaseManager.รหัสรัฐมนตรีเจ้าสังกัด();
@@ -738,19 +746,19 @@ namespace WEB_PERSONAL {
                             psCHID = DatabaseManager.รหัสรัฐมนตรีเจ้าสังกัด();
                         }
                     } else {
-                        if (loginPerson.AdminPositionID == "8") { //ตำแหน่งอ่ื่นๆ
-                            psCLID = DatabaseManager.รหัสหัวหน้าฝ่าย(loginPerson.DivisionID);
+                        if (loginPerson.AdminPositionID == "0" || loginPerson.AdminPositionID == "8") { //ไม่มี
+                            psCLID = DatabaseManager.รหัสหัวหน้าฝ่าย(loginPerson.WorkDivisionID);
                             psCHID = DatabaseManager.รหัสเลขาธิการคณะกรรมการ();
-                        } else if (loginPerson.AdminPositionID == "10024") { //หัวหน้าฝ่าย
+                        } else if (loginPerson.AdminPositionID == "4") { //หัวหน้าฝ่าย
                             psCLID = DatabaseManager.รหัสหัวหน้าภาควิชา(loginPerson.DivisionID);
                             psCHID = DatabaseManager.รหัสเลขาธิการคณะกรรมการ();
-                        } else if (loginPerson.AdminPositionID == "10023") { //หัวหน้าภาควิชา
+                        } else if (loginPerson.AdminPositionID == "7") { //หัวหน้าภาควิชา
                             psCLID = DatabaseManager.รหัสคณบดี(loginPerson.FacultyID);
                             psCHID = DatabaseManager.รหัสเลขาธิการคณะกรรมการ();
-                        } else if (loginPerson.AdminPositionID == "3") { //คณบดี
+                        } else if (loginPerson.AdminPositionID == "3" || loginPerson.AdminPositionID == "6") { //คณบดี
                             psCLID = DatabaseManager.รหัสอธิการบดี(loginPerson.CampusID);
                             psCHID = DatabaseManager.รหัสเลขาธิการคณะกรรมการ();
-                        } else if (loginPerson.AdminPositionID == "1") { //อธิการบดี
+                        } else if (loginPerson.AdminPositionID == "1" || loginPerson.AdminPositionID == "2" || loginPerson.AdminPositionID == "5") { //อธิการบดี
                             psCHID = DatabaseManager.รหัสเลขาธิการคณะกรรมการ();
                         } else if (loginPerson.AdminPositionID == "10022") { //เลขาธิการคณะกรรมการ	
                             psCHID = DatabaseManager.รหัสรัฐมนตรีเจ้าสังกัด();
@@ -759,16 +767,16 @@ namespace WEB_PERSONAL {
                         }
                     }
                 } else if (hfLeaveTypeID.Value == "3") {
-                    if (loginPerson.AdminPositionID == "8") { //ตำแหน่งอ่ื่นๆ
-                        psCLID = DatabaseManager.รหัสหัวหน้าฝ่าย(loginPerson.DivisionID);
+                    if (loginPerson.AdminPositionID == "0" || loginPerson.AdminPositionID == "8") { //ไม่มี
+                        psCLID = DatabaseManager.รหัสหัวหน้าฝ่าย(loginPerson.WorkDivisionID);
                         psCHID = DatabaseManager.รหัสหัวหน้าภาควิชา(loginPerson.DivisionID);
-                    } else if (loginPerson.AdminPositionID == "10024") { //หัวหน้าฝ่าย
+                    } else if (loginPerson.AdminPositionID == "4") { //หัวหน้าฝ่าย
                         psCHID = DatabaseManager.รหัสหัวหน้าภาควิชา(loginPerson.DivisionID);
-                    } else if (loginPerson.AdminPositionID == "10023") { //หัวหน้าภาควิชา
+                    } else if (loginPerson.AdminPositionID == "7") { //หัวหน้าภาควิชา
                         psCHID = DatabaseManager.รหัสคณบดี(loginPerson.FacultyID);
-                    } else if (loginPerson.AdminPositionID == "3") { //คณบดี
+                    } else if (loginPerson.AdminPositionID == "3" || loginPerson.AdminPositionID == "6") { //คณบดี
                         psCHID = DatabaseManager.รหัสอธิการบดี(loginPerson.CampusID);
-                    } else if (loginPerson.AdminPositionID == "1") { //อธิการบดี
+                    } else if (loginPerson.AdminPositionID == "1" || loginPerson.AdminPositionID == "2" || loginPerson.AdminPositionID == "5") { //อธิการบดี
                         psCHID = DatabaseManager.รหัสเลขาธิการคณะกรรมการ();
                     } else if (loginPerson.AdminPositionID == "10022") { //เลขาธิการคณะกรรมการ	
                         psCHID = DatabaseManager.รหัสรัฐมนตรีเจ้าสังกัด();
@@ -776,16 +784,16 @@ namespace WEB_PERSONAL {
                         psCHID = DatabaseManager.รหัสรัฐมนตรีเจ้าสังกัด();
                     }
                 } else if (hfLeaveTypeID.Value == "4") {
-                    if (loginPerson.AdminPositionID == "8") { //ตำแหน่งอ่ื่นๆ
-                        psCLID = DatabaseManager.รหัสหัวหน้าฝ่าย(loginPerson.DivisionID);
+                    if (loginPerson.AdminPositionID == "0" || loginPerson.AdminPositionID == "8") { //ไม่มี
+                        psCLID = DatabaseManager.รหัสหัวหน้าฝ่าย(loginPerson.WorkDivisionID);
                         psCHID = DatabaseManager.รหัสหัวหน้าภาควิชา(loginPerson.DivisionID);
-                    } else if (loginPerson.AdminPositionID == "10024") { //หัวหน้าฝ่าย
+                    } else if (loginPerson.AdminPositionID == "4") { //หัวหน้าฝ่าย
                         psCHID = DatabaseManager.รหัสหัวหน้าภาควิชา(loginPerson.DivisionID);
-                    } else if (loginPerson.AdminPositionID == "10023") { //หัวหน้าภาควิชา
+                    } else if (loginPerson.AdminPositionID == "7") { //หัวหน้าภาควิชา
                         psCHID = DatabaseManager.รหัสคณบดี(loginPerson.FacultyID);
-                    } else if (loginPerson.AdminPositionID == "3") { //คณบดี
+                    } else if (loginPerson.AdminPositionID == "3" || loginPerson.AdminPositionID == "6") { //คณบดี
                         psCHID = DatabaseManager.รหัสอธิการบดี(loginPerson.CampusID);
-                    } else if (loginPerson.AdminPositionID == "1") { //อธิการบดี
+                    } else if (loginPerson.AdminPositionID == "1" || loginPerson.AdminPositionID == "2" || loginPerson.AdminPositionID == "5") { //อธิการบดี
                         psCHID = DatabaseManager.รหัสเลขาธิการคณะกรรมการ();
                     } else if (loginPerson.AdminPositionID == "10022") { //เลขาธิการคณะกรรมการ	
                         psCHID = DatabaseManager.รหัสรัฐมนตรีเจ้าสังกัด();
@@ -793,18 +801,18 @@ namespace WEB_PERSONAL {
                         psCHID = DatabaseManager.รหัสรัฐมนตรีเจ้าสังกัด();
                     }
                 } else if (hfLeaveTypeID.Value == "5") {
-                    if (loginPerson.AdminPositionID == "8") { //ตำแหน่งอ่ื่นๆ
-                        psCLID = DatabaseManager.รหัสหัวหน้าฝ่าย(loginPerson.DivisionID);
+                    if (loginPerson.AdminPositionID == "0" || loginPerson.AdminPositionID == "8") { //ไม่มี
+                        psCLID = DatabaseManager.รหัสหัวหน้าฝ่าย(loginPerson.WorkDivisionID);
                         psCHID = DatabaseManager.รหัสอธิการบดี(loginPerson.CampusID);
-                    } else if (loginPerson.AdminPositionID == "10024") { //หัวหน้าฝ่าย
+                    } else if (loginPerson.AdminPositionID == "4") { //หัวหน้าฝ่าย
                         psCLID = DatabaseManager.รหัสหัวหน้าภาควิชา(loginPerson.DivisionID);
                         psCHID = DatabaseManager.รหัสอธิการบดี(loginPerson.CampusID);
-                    } else if (loginPerson.AdminPositionID == "10023") { //หัวหน้าภาควิชา
+                    } else if (loginPerson.AdminPositionID == "7") { //หัวหน้าภาควิชา
                         psCLID = DatabaseManager.รหัสคณบดี(loginPerson.FacultyID);
                         psCHID = DatabaseManager.รหัสอธิการบดี(loginPerson.CampusID);
-                    } else if (loginPerson.AdminPositionID == "3") { //คณบดี
+                    } else if (loginPerson.AdminPositionID == "3" || loginPerson.AdminPositionID == "6") { //คณบดี
                         psCHID = DatabaseManager.รหัสอธิการบดี(loginPerson.CampusID);
-                    } else if (loginPerson.AdminPositionID == "1") { //อธิการบดี
+                    } else if (loginPerson.AdminPositionID == "1" || loginPerson.AdminPositionID == "2" || loginPerson.AdminPositionID == "5") { //อธิการบดี
                         psCHID = DatabaseManager.รหัสเลขาธิการคณะกรรมการ();
                     } else if (loginPerson.AdminPositionID == "10022") { //เลขาธิการคณะกรรมการ	
                         psCHID = DatabaseManager.รหัสรัฐมนตรีเจ้าสังกัด();
@@ -812,19 +820,19 @@ namespace WEB_PERSONAL {
                         psCHID = DatabaseManager.รหัสรัฐมนตรีเจ้าสังกัด();
                     }
                 } else if (hfLeaveTypeID.Value == "6" || hfLeaveTypeID.Value == "7") {
-                    if (loginPerson.AdminPositionID == "8") { //ตำแหน่งอ่ื่นๆ
-                        psCLID = DatabaseManager.รหัสหัวหน้าฝ่าย(loginPerson.DivisionID);
+                    if (loginPerson.AdminPositionID == "0" || loginPerson.AdminPositionID == "8") { //ไม่มี
+                        psCLID = DatabaseManager.รหัสหัวหน้าฝ่าย(loginPerson.WorkDivisionID);
                         psCHID = DatabaseManager.รหัสเลขาธิการคณะกรรมการ();
-                    } else if (loginPerson.AdminPositionID == "10024") { //หัวหน้าฝ่าย
+                    } else if (loginPerson.AdminPositionID == "4") { //หัวหน้าฝ่าย
                         psCLID = DatabaseManager.รหัสหัวหน้าภาควิชา(loginPerson.DivisionID);
                         psCHID = DatabaseManager.รหัสเลขาธิการคณะกรรมการ();
-                    } else if (loginPerson.AdminPositionID == "10023") { //หัวหน้าภาควิชา
+                    } else if (loginPerson.AdminPositionID == "7") { //หัวหน้าภาควิชา
                         psCLID = DatabaseManager.รหัสคณบดี(loginPerson.FacultyID);
                         psCHID = DatabaseManager.รหัสเลขาธิการคณะกรรมการ();
-                    } else if (loginPerson.AdminPositionID == "3") { //คณบดี
+                    } else if (loginPerson.AdminPositionID == "3" || loginPerson.AdminPositionID == "6") { //คณบดี
                         psCLID = DatabaseManager.รหัสอธิการบดี(loginPerson.CampusID);
                         psCHID = DatabaseManager.รหัสเลขาธิการคณะกรรมการ();
-                    } else if (loginPerson.AdminPositionID == "1") { //อธิการบดี
+                    } else if (loginPerson.AdminPositionID == "1" || loginPerson.AdminPositionID == "2" || loginPerson.AdminPositionID == "5") { //อธิการบดี
                         psCHID = DatabaseManager.รหัสเลขาธิการคณะกรรมการ();
                     } else if (loginPerson.AdminPositionID == "10022") { //เลขาธิการคณะกรรมการ	
                         psCHID = DatabaseManager.รหัสรัฐมนตรีเจ้าสังกัด();
@@ -834,11 +842,41 @@ namespace WEB_PERSONAL {
                 }
 
 
-                //Person psCL = DatabaseManager.GetPerson(psCLID);
-                //Person psCH = DatabaseManager.GetPerson(psCHID);
+                Person psCL = DatabaseManager.GetPerson(psCLID);
+                Person psCH = DatabaseManager.GetPerson(psCHID);
 
-                Person psCL = DatabaseManager.GetPerson("1700070000701");
-                Person psCH = DatabaseManager.GetPerson("1700070000702");
+                if(psCL == null) {
+                    lbS2CL.Text = "ไม่มี";
+                    psCLImage.Visible = false;
+                }
+
+                if ( (psCLID != "" && psCL == null) || (psCHID != "" && psCH == null)) {
+
+                    if (psCLID != "" && psCL == null) {
+                        psCLImage.Visible = false;
+                        lbS2CL.Text = "พบข้อผิดพลาด<br />ไม่พบพนักงาน";
+                        lbS2CL.ForeColor = Color.Red;
+                    }
+
+                    if (psCHID != "" && psCH == null) {
+                        psCHImage.Visible = false;
+                        lbS2CH.Text = "พบข้อผิดพลาด<br />ไม่พบพนักงาน";
+                        lbS2CH.ForeColor = Color.Red;
+                    }
+
+
+                    lbuS2Finish.Visible = false;
+                    return;
+                }
+
+                psCLImage.Visible = true;
+                psCHImage.Visible = true;
+                lbS2CL.ForeColor = Color.Black;
+                lbS2CH.ForeColor = Color.Black;
+                lbuS2Finish.Visible = true;
+
+                //Person psCL = DatabaseManager.GetPerson("1700070000701");
+                //Person psCH = DatabaseManager.GetPerson("1700070000702");
 
                 if (psCL == null) {
                     lbS2CL.Text = "-";
@@ -860,9 +898,10 @@ namespace WEB_PERSONAL {
                     leaveData.CL_Title = psCL.TitleName;
                     leaveData.CL_FirstName = psCL.FirstName;
                     leaveData.CL_LastName = psCL.LastName;
-                    leaveData.CL_Position = psCL.PositionName;
+                    leaveData.CL_Position = psCL.PositionWorkName;
                     leaveData.CL_AdminPosition = psCL.AdminPositionName;
-                    lbS2CL.Text = "<span class='ps-lb-red-b'>" + psCL.FirstNameAndLastName + "</span><br />" + psCL.CitizenID + "<br />" + psCL.PositionName + "<br />" + psCL.AdminPositionName;
+                    lbS2CL.Text = "<span class='ps-lb-red-b'>" + psCL.FirstNameAndLastName + "</span><br />" + psCL.CitizenID + "<br />" + psCL.PositionWorkName + "<br />" + psCL.AdminPositionName;
+                    psCLImage.Visible = true;
                 } else {
                     leaveData.CL_ID = "";
                     leaveData.CL_Title = "";
@@ -871,20 +910,22 @@ namespace WEB_PERSONAL {
                     leaveData.CL_Position = "";
                     leaveData.CL_AdminPosition = "";
                     leaveData.LeaveStatusID = 2;
+                    lbS2CL.Text = "ไม่มี";
+                    psCLImage.Visible = false;
                 }
                 
                 leaveData.CH_ID = psCH.CitizenID;
                 leaveData.CH_Title = psCH.TitleName;
                 leaveData.CH_FirstName = psCH.FirstName;
                 leaveData.CH_LastName = psCH.LastName;
-                leaveData.CH_Position = psCH.PositionName;
+                leaveData.CH_Position = psCH.PositionWorkName;
                 leaveData.CH_AdminPosition = psCH.AdminPositionName;
-                lbS2CH.Text = "<span class='ps-lb-red-b'>" + psCH.FirstNameAndLastName + "</span><br />" + psCH.CitizenID + "<br />" + psCH.PositionName + "<br />" + psCH.AdminPositionName;
+                lbS2CH.Text = "<span class='ps-lb-red-b'>" + psCH.FirstNameAndLastName + "</span><br />" + psCH.CitizenID + "<br />" + psCH.PositionWorkName + "<br />" + psCH.AdminPositionName;
 
                 leaveData.PS_Title = loginPerson.TitleName;
                 leaveData.PS_FirstName = loginPerson.FirstName;
                 leaveData.PS_LastName = loginPerson.LastName;
-                leaveData.PS_Position = loginPerson.PositionName;
+                leaveData.PS_Position = loginPerson.PositionWorkName;
                 leaveData.PS_Department = loginPerson.DivisionName;
                 leaveData.PS_AdminPosition = loginPerson.AdminPositionName;
                 leaveData.PS_BirthDate = loginPerson.BirthDate;
@@ -919,11 +960,14 @@ namespace WEB_PERSONAL {
 
                 hfFileUploadName.Value = drCer;
 
-                string _psCLImage = DatabaseManager.GetPersonImageFileName(psCL.CitizenID);
-                string _psCHImage = DatabaseManager.GetPersonImageFileName(psCH.CitizenID);
-                if (_psCLImage != "") {
-                    psCLImage.Src = "Upload/PersonImage/" + _psCLImage;
+                if(psCL != null) {
+                    string _psCLImage = DatabaseManager.GetPersonImageFileName(psCL.CitizenID);
+                    if (_psCLImage != "") {
+                        psCLImage.Src = "Upload/PersonImage/" + _psCLImage;
+                    }
                 }
+                
+                string _psCHImage = DatabaseManager.GetPersonImageFileName(psCH.CitizenID);
                 if (_psCHImage != "") {
                     psCHImage.Src = "Upload/PersonImage/" + _psCHImage;
                 }

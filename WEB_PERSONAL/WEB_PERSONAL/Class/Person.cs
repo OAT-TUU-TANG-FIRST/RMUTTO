@@ -129,6 +129,9 @@ namespace WEB_PERSONAL.Class {
         public string StatusPersonID;
         public string StatusPersonName;
 
+        public string WorkDivisionID;
+        public string WorkDivisionName;
+
         public string FullName {
             get { return TitleName + FirstName + " " + LastName; }
         }

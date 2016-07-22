@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="ViewLeaveForm.aspx.cs" Inherits="WEB_PERSONAL.ViewLeaveForm" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-
+    
     <style type="text/css">
         .c1 table {
             vertical-align: top;
@@ -415,7 +415,7 @@
                     </table>
                     </div>
         </div>
-      
+
 
     </div>
 </asp:Content>

@@ -1221,6 +1221,16 @@ input[type=radio] + label {
     border: 1px solid #e0e0e0;
     background-color: #f0f0f0;
     padding: 5px 10px;
+    background-color: #f8f8f8;
+    color: rgb(206,91,91);
+    border-top: 1px solid rgb(234, 192, 192);
+    border-bottom: 1px solid rgb(209, 171, 171);
+}
+.ps-table-1 th:first-child {
+    border-left: 1px solid rgb(211, 184, 184);
+}
+.ps-table-1 th:last-child {
+    border-right: 1px solid rgb(211, 184, 184);
 }
 .ps-table-1 td {
     vertical-align: middle;
@@ -1242,4 +1252,41 @@ input[type=radio] + label {
 .ps-person-display {
     display: inline-block;
     margin: 10px 40px;
+}
+.ps-tab-container {
+    background-color: #ffffff;
+    border-bottom: 1px solid #f0f0f0;
+    margin: 10px;
+    font-size: 16px;
+}
+.ps-tab-container-center {
+    background-color: #ffffff;
+    border-bottom: 1px solid #f0f0f0;
+    margin: 10px;
+    font-size: 16px;
+    text-align: center;
+}
+.ps-tab-container a, .ps-tab-container-center a {
+    text-decoration: none;
+    display: inline-block;
+    padding: 3px 10px;
+}
+.ps-tab-selected {
+    color: rgb(91,161,207);
+    border-bottom: 2px solid rgb(91,161,207);
+}
+.ps-tab-unselected {
+    color: #808080;
+    border-bottom: 2px solid transparent;
+}
+.ps-tab-unselected:hover {
+    color: #000000;
+}
+.ps-link {
+    display: inline-block;
+    text-decoration: none;
+    color: #00a2e8;
+}
+.ps-link:hover {
+    text-decoration: underline;
 }

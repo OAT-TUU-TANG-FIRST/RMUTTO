@@ -76,434 +76,471 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server" />
-    <div class="default_page_style">
+
+    <asp:HiddenField ID="hfpsID" runat="server" />
+
+    <div>
+
+        <div class="ps-header"><img src="Image/Small/person2.png" />แก้ไขข้อมูลบุคลากร</div>
+
+        <div id="divTab" runat="server" class="ps-tab-container">
+            <asp:LinkButton ID="lbuTab1" runat="server" OnClick="lbuTab1_Click" CssClass="ps-tab-unselected">ข้อมูลพื้นฐาน</asp:LinkButton>
+            <asp:LinkButton ID="lbuTab2" runat="server" OnClick="lbuTab2_Click" CssClass="ps-tab-unselected">ที่อยู่</asp:LinkButton>
+            <asp:LinkButton ID="lbuTab3" runat="server" OnClick="lbuTab3_Click" CssClass="ps-tab-unselected">ข้อมูลการทำงาน</asp:LinkButton>
+            <asp:LinkButton ID="lbuTab4" runat="server" OnClick="lbuTab4_Click" CssClass="ps-tab-unselected">ตำแหน่งข้าราชการ</asp:LinkButton>
+
+        </div>
+
+
         <div id="notification" runat="server"></div>
 
-        <asp:Panel ID="Panel0" runat="server" CssClass="divpan" BackColor="White" ForeColor="#6699FF" BorderColor="tomato" DefaultButton="btnSearchPerson">
-            <div>
-                <fieldset>
-                    <legend class="TMZ">ค้นหา</legend>
-                    <div style="text-align: center">
-                        เลขบัตรประจำตัวประชาชน 13 หลัก :&nbsp<asp:TextBox ID="txtSearchPersonID" runat="server" CssClass="tb5" Width="230px" MaxLength="13"></asp:TextBox>
-                        <asp:Button ID="btnSearchPerson" Text="Search" runat="server" CssClass="master_OAT_button" OnClick="btnSearchPerson_Click" />
-                        <asp:Button ID="btnSearchRefresh" Text="Refresh" runat="server" CssClass="master_OAT_button" OnClick="btnSearchRefresh_Click" />
-                    </div>
-                </fieldset>
-            </div>
-        </asp:Panel>
+        <div id="divState1" runat="server">
+            <asp:Panel ID="pPerson" runat="server"></asp:Panel>
+        </div>
 
-        <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex="0">
-            <asp:View ID="View1" runat="server">
-                <fieldset>
-                    <legend class="TMZ">(1/3)</legend>
-                    <div style="float: left; display: inline-block; margin-right: 50px;">
-                        <div class="default_header">
-                            <img src="Image/Small/table.png" class="icon_left" />ข้อมูลส่วนตัว
-                        </div>
-                        <table>
+        <div id="divTab1" runat="server" style="text-align: center;">
+                    <div style="display: inline-block; margin-right: 20px; vertical-align: top;">
+                        <table class="ps-table-1">
                             <tr>
                                 <td class="col1">บัตรประชาชน</td>
                                 <td class="col2">
-                                    <asp:TextBox ID="tbCitizenID" runat="server" CssClass="tb5" MaxLength="13"></asp:TextBox>
+                                    <asp:TextBox ID="tbCitizenID" runat="server" CssClass="ps-textbox" MaxLength="13"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">ยศ</td>
                                 <td class="col2">
-                                    <asp:DropDownList ID="ddlRank" runat="server" CssClass="tb5"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlRank" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">คำนำหน้า</td>
                                 <td class="col2">
-                                    <asp:DropDownList ID="ddlTitle" runat="server" CssClass="tb5"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlTitle" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">ชื่อ</td>
                                 <td class="col2">
-                                    <asp:TextBox ID="tbNameTH" runat="server" CssClass="tb5"></asp:TextBox>
+                                    <asp:TextBox ID="tbNameTH" runat="server" CssClass="ps-textbox"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">นามสกุล</td>
                                 <td class="col2">
-                                    <asp:TextBox ID="tbLastNameTH" runat="server" CssClass="tb5"></asp:TextBox>
+                                    <asp:TextBox ID="tbLastNameTH" runat="server" CssClass="ps-textbox"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">ชื่อ อังกฤษ</td>
                                 <td class="col2">
-                                    <asp:TextBox ID="tbNameEN" runat="server" CssClass="tb5"></asp:TextBox>
+                                    <asp:TextBox ID="tbNameEN" runat="server" CssClass="ps-textbox"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">นามสกุล อังกฤษ</td>
                                 <td class="col2">
-                                    <asp:TextBox ID="tbLastNameEN" runat="server" CssClass="tb5"></asp:TextBox>
+                                    <asp:TextBox ID="tbLastNameEN" runat="server" CssClass="ps-textbox"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">เพศ</td>
                                 <td class="col2">
-                                    <asp:DropDownList ID="ddlGender" runat="server" CssClass="tb5"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlGender" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">วันเกิด</td>
                                 <td class="col2">
-                                    <asp:TextBox ID="tbBirthday" runat="server" CssClass="tb5"></asp:TextBox>
+                                    <asp:TextBox ID="tbBirthday" runat="server" CssClass="ps-textbox"></asp:TextBox>
                                 </td>
                             </tr>
                         </table>
                     </div>
-                    <div style="float: left; display: inline-block;">
-                        <div class="default_header">
-                            <img src="Image/Small/table.png" class="icon_left" />ข้อมูลส่วนตัว
-                        
-                        </div>
-                        <table>
+                    <div style="display: inline-block; vertical-align: top;">
+                        <table class="ps-table-1">
                             <tr>
                                 <td class="col1">อีเมล</td>
                                 <td class="col2">
-                                    <asp:TextBox ID="tbEmail" runat="server" CssClass="tb5"></asp:TextBox>
+                                    <asp:TextBox ID="tbEmail" runat="server" CssClass="ps-textbox"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">โทรศัพท์มือถือ</td>
                                 <td class="col2">
-                                    <asp:TextBox ID="tbPhone" runat="server" CssClass="tb5" MaxLength="10"></asp:TextBox>
+                                    <asp:TextBox ID="tbPhone" runat="server" CssClass="ps-textbox" MaxLength="10"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">โทรศัพท์ที่ทำงาน</td>
                                 <td class="col2">
-                                    <asp:TextBox ID="tbTelephone" runat="server" CssClass="tb5" MaxLength="15"></asp:TextBox>
+                                    <asp:TextBox ID="tbTelephone" runat="server" CssClass="ps-textbox" MaxLength="15"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">เชื้อชาติ</td>
                                 <td class="col2">
-                                    <asp:DropDownList ID="ddlRace" runat="server" CssClass="tb5"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlRace" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">สัญชาติ</td>
                                 <td class="col2">
-                                    <asp:DropDownList ID="ddlNation" runat="server" CssClass="tb5"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlNation" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">กรุ๊ปเลือด</td>
                                 <td class="col2">
-                                    <asp:DropDownList ID="ddlBlood" runat="server" CssClass="tb5"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlBlood" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">ศาสนา</td>
                                 <td class="col2">
-                                    <asp:DropDownList ID="ddlReligion" runat="server" CssClass="tb5"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlReligion" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">สถานภาพ</td>
                                 <td class="col2">
-                                    <asp:DropDownList ID="ddlStatus" runat="server" CssClass="tb5"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlStatus" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
                                 </td>
                             </tr>
                         </table>
                     </div>
-                    <div style="clear: both;">
-                        <asp:LinkButton ID="lbuV1Next" runat="server" OnClick="lbuV1Next_Click" CssClass="ps-button">ถัดไป</asp:LinkButton>
+                    <div style="margin-top: 10px;">
+                        <asp:LinkButton ID="lbuTab1Save" runat="server" OnClick="lbuTab1Save_Click" CssClass="ps-button"><img src="Image/Small/save.png" class="icon_left"/>บันทึก</asp:LinkButton>
                     </div>
-                </fieldset>
-            </asp:View>
-            <asp:View ID="View2" runat="server">
-                <fieldset>
-                    <legend class="TMZ">(2/3)</legend>
-                    <div style="float: left; display: inline-block; margin-right: 50px;">
-                        <div class="default_header">
-                            <img src="Image/Small/table.png" class="icon_left" />ที่อยู่ตามทะเบียนบ้าน
-                        </div>
-                        <table>
-                            <tr>
-                                <td class="col1">บ้านเลขที่</td>
-                                <td class="col2">
-                                    <asp:TextBox ID="tbHomeAdd" runat="server" CssClass="tb5"></asp:TextBox>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col1">ซอย</td>
-                                <td class="col2">
-                                    <asp:TextBox ID="tbSoi" runat="server" CssClass="tb5"></asp:TextBox>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col1">หมู่</td>
-                                <td class="col2">
-                                    <asp:TextBox ID="tbMoo" runat="server" CssClass="tb5"></asp:TextBox>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col1">ถนน</td>
-                                <td class="col2">
-                                    <asp:TextBox ID="tbRoad" runat="server" CssClass="tb5"></asp:TextBox>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col1">จังหวัด</td>
-                                <td class="col2">
-                                    <asp:DropDownList ID="ddlProvince" runat="server" CssClass="tb5" AutoPostBack="True" OnSelectedIndexChanged="ddlProvince_SelectedIndexChanged"></asp:DropDownList>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col1">อำเภอ / เขต</td>
-                                <td class="col2">
-                                    <asp:DropDownList ID="ddlAmphur" runat="server" CssClass="tb5" AutoPostBack="True" OnSelectedIndexChanged="ddlAmphur_SelectedIndexChanged"></asp:DropDownList>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col1">ตำบล / แขวง</td>
-                                <td class="col2">
-                                    <asp:DropDownList ID="ddlDistrict" runat="server" CssClass="tb5" OnSelectedIndexChanged="ddlDistrict_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col1">รหัสไปรณีย์</td>
-                                <td class="col2">
-                                    <asp:TextBox ID="tbZipcode" runat="server" CssClass="tb5"></asp:TextBox>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col1">ประเทศ</td>
-                                <td class="col2">
-                                    <asp:DropDownList ID="ddlCountry" runat="server" CssClass="tb5" AutoPostBack="True" OnSelectedIndexChanged="ddlCountry_SelectedIndexChanged"></asp:DropDownList>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col1">รัฐ</td>
-                                <td class="col2">
-                                    <asp:TextBox ID="tbState" runat="server" CssClass="tb5"></asp:TextBox>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div style="float: left; display: inline-block;">
-                        <div class="default_header">
-                            <img src="Image/Small/table.png" class="icon_left" />ที่อยู่ที่ติดต่อได้
-                        
-                        </div>
-                        <table>
-                            <tr>
-                                <td class="col1">บ้านเลขที่</td>
-                                <td class="col2">
-                                    <asp:TextBox ID="tbHomeAdd2" runat="server" CssClass="tb5"></asp:TextBox>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col1">ซอย</td>
-                                <td class="col2">
-                                    <asp:TextBox ID="tbSoi2" runat="server" CssClass="tb5"></asp:TextBox>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col1">หมู่</td>
-                                <td class="col2">
-                                    <asp:TextBox ID="tbMoo2" runat="server" CssClass="tb5"></asp:TextBox>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col1">ถนน</td>
-                                <td class="col2">
-                                    <asp:TextBox ID="tbRoad2" runat="server" CssClass="tb5"></asp:TextBox>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col1">จังหวัด</td>
-                                <td class="col2">
-                                    <asp:DropDownList ID="ddlProvince2" runat="server" CssClass="tb5" AutoPostBack="True" OnSelectedIndexChanged="ddlProvince2_SelectedIndexChanged"></asp:DropDownList>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col1">อำเภอ / เขต</td>
-                                <td class="col2">
-                                    <asp:DropDownList ID="ddlAmphur2" runat="server" CssClass="tb5" AutoPostBack="True" OnSelectedIndexChanged="ddlAmphur2_SelectedIndexChanged"></asp:DropDownList>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col1">ตำบล / แขวง</td>
-                                <td class="col2">
-                                    <asp:DropDownList ID="ddlDistrict2" runat="server" CssClass="tb5" OnSelectedIndexChanged="ddlDistrict2_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col1">รหัสไปรณีย์</td>
-                                <td class="col2">
-                                    <asp:TextBox ID="tbZipcode2" runat="server" CssClass="tb5"></asp:TextBox>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col1">ประเทศ</td>
-                                <td class="col2">
-                                    <asp:DropDownList ID="ddlCountry2" runat="server" CssClass="tb5" AutoPostBack="True" OnSelectedIndexChanged="ddlCountry2_SelectedIndexChanged"></asp:DropDownList>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col1">รัฐ</td>
-                                <td class="col2">
-                                    <asp:TextBox ID="tbState2" runat="server" CssClass="tb5"></asp:TextBox>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div style="clear: both;">
-                        <asp:LinkButton ID="lbuV2Back" runat="server" OnClick="lbuV2Back_Click" CssClass="ps-button">ย้อนกลับ</asp:LinkButton>
-                        <asp:LinkButton ID="lbuV2Next" runat="server" CssClass="ps-button" OnClick="lbuV2Next_Click">ถัดไป</asp:LinkButton>
-                        <asp:LinkButton ID="lbuAddressFetch" runat="server" CssClass="ps-button" OnClick="lbuAddressFetch_Click">ดึงข้อมูลที่อยู่ตามทะเบียนบ้าน</asp:LinkButton>
-                    </div>
-                </fieldset>
-            </asp:View>
+            <div class="ps-separator"></div>
 
-            <asp:View ID="View3" runat="server">
-                <fieldset>
-                    <legend class="TMZ">(3/3)</legend>
-                    <div style="float: left; display: inline-block; margin-right: 50px;">
-                        <div class="default_header">
-                            <img src="Image/Small/table.png" class="icon_left" />ข้อมูลการทำงาน
-                        </div>
-                        <table>
+        </div>
+        <div id="divTab2" runat="server" style="text-align: center;">
+
+                    <div style="display: inline-block; margin-right: 20px;">
+                        <table class="ps-table-1">
+                            <tr>
+                                <th colspan="2">
+                                    <img src="Image/Small/table.png" class="icon_left" />ที่อยู่ตามทะเบียนบ้าน
+                                </th>
+                            </tr>
+                            <tr>
+                                <td class="col1">บ้านเลขที่</td>
+                                <td class="col2">
+                                    <asp:TextBox ID="tbHomeAdd" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">ซอย</td>
+                                <td class="col2">
+                                    <asp:TextBox ID="tbSoi" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">หมู่</td>
+                                <td class="col2">
+                                    <asp:TextBox ID="tbMoo" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">ถนน</td>
+                                <td class="col2">
+                                    <asp:TextBox ID="tbRoad" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">จังหวัด</td>
+                                <td class="col2">
+                                    <asp:DropDownList ID="ddlProvince" runat="server" CssClass="ps-dropdown" AutoPostBack="True" OnSelectedIndexChanged="ddlProvince_SelectedIndexChanged"></asp:DropDownList>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">อำเภอ / เขต</td>
+                                <td class="col2">
+                                    <asp:DropDownList ID="ddlAmphur" runat="server" CssClass="ps-dropdown" AutoPostBack="True" OnSelectedIndexChanged="ddlAmphur_SelectedIndexChanged"></asp:DropDownList>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">ตำบล / แขวง</td>
+                                <td class="col2">
+                                    <asp:DropDownList ID="ddlDistrict" runat="server" CssClass="ps-dropdown" OnSelectedIndexChanged="ddlDistrict_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">รหัสไปรณีย์</td>
+                                <td class="col2">
+                                    <asp:TextBox ID="tbZipcode" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">ประเทศ</td>
+                                <td class="col2">
+                                    <asp:DropDownList ID="ddlCountry" runat="server" CssClass="ps-dropdown" AutoPostBack="True" OnSelectedIndexChanged="ddlCountry_SelectedIndexChanged"></asp:DropDownList>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">รัฐ</td>
+                                <td class="col2">
+                                    <asp:TextBox ID="tbState" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div style="display: inline-block;">
+                        <table class="ps-table-1">
+                            <tr>
+                                <th colspan="2">
+                                    <img src="Image/Small/table.png" class="icon_left" />ที่อยู่ที่ติดต่อได้
+                                </th>
+                            </tr>
+                            <tr>
+                                <td class="col1">บ้านเลขที่</td>
+                                <td class="col2">
+                                    <asp:TextBox ID="tbHomeAdd2" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">ซอย</td>
+                                <td class="col2">
+                                    <asp:TextBox ID="tbSoi2" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">หมู่</td>
+                                <td class="col2">
+                                    <asp:TextBox ID="tbMoo2" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">ถนน</td>
+                                <td class="col2">
+                                    <asp:TextBox ID="tbRoad2" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">จังหวัด</td>
+                                <td class="col2">
+                                    <asp:DropDownList ID="ddlProvince2" runat="server" CssClass="ps-dropdown" AutoPostBack="True" OnSelectedIndexChanged="ddlProvince2_SelectedIndexChanged"></asp:DropDownList>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">อำเภอ / เขต</td>
+                                <td class="col2">
+                                    <asp:DropDownList ID="ddlAmphur2" runat="server" CssClass="ps-dropdown" AutoPostBack="True" OnSelectedIndexChanged="ddlAmphur2_SelectedIndexChanged"></asp:DropDownList>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">ตำบล / แขวง</td>
+                                <td class="col2">
+                                    <asp:DropDownList ID="ddlDistrict2" runat="server" CssClass="ps-dropdown" OnSelectedIndexChanged="ddlDistrict2_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">รหัสไปรณีย์</td>
+                                <td class="col2">
+                                    <asp:TextBox ID="tbZipcode2" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">ประเทศ</td>
+                                <td class="col2">
+                                    <asp:DropDownList ID="ddlCountry2" runat="server" CssClass="ps-dropdown" AutoPostBack="True" OnSelectedIndexChanged="ddlCountry2_SelectedIndexChanged"></asp:DropDownList>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col1">รัฐ</td>
+                                <td class="col2">
+                                    <asp:TextBox ID="tbState2" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div style="margin-top: 10px;">
+                        <asp:LinkButton ID="lbuTab2Save" runat="server" OnClick="lbuTab2Save_Click" CssClass="ps-button"><img src="Image/Small/save.png" class="icon_left"/>บันทึก</asp:LinkButton>
+                    </div>
+            <div class="ps-separator"></div>
+        </div>
+
+        <div id="divTab3" runat="server" style="text-align: center;">
+          
+    
+                    <div style="display: inline-block; margin-right: 20px; vertical-align: top;">
+                        <table class="ps-table-1">
                             <tr>
                                 <td class="col1">วิทยาเขต</td>
                                 <td class="col2">
-                                    <asp:DropDownList ID="ddlCampus" runat="server" CssClass="tb5" OnSelectedIndexChanged="ddlCampus_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlCampus" runat="server" CssClass="ps-dropdown" OnSelectedIndexChanged="ddlCampus_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">สำนัก / สถาบัน / คณะ</td>
                                 <td class="col2">
-                                    <asp:DropDownList ID="ddlFaculty" runat="server" CssClass="tb5" OnSelectedIndexChanged="ddlFaculty_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlFaculty" runat="server" CssClass="ps-dropdown" OnSelectedIndexChanged="ddlFaculty_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">กอง / สำนักงานเลขา / ภาควิชา</td>
                                 <td class="col2">
-                                    <asp:DropDownList ID="ddlDivision" runat="server" CssClass="tb5" OnSelectedIndexChanged="ddlDivision_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlDivision" runat="server" CssClass="ps-dropdown" OnSelectedIndexChanged="ddlDivision_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">งาน / ฝ่าย</td>
                                 <td class="col2">
-                                    <asp:DropDownList ID="ddlWorkDivision" runat="server" CssClass="tb5"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlWorkDivision" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">ประเภทบุคลากร</td>
                                 <td class="col2">
-                                    <asp:DropDownList ID="ddlStaffType" runat="server" CssClass="tb5"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlStaffType" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">ประเภทเงินจ้าง</td>
                                 <td class="col2">
-                                    <asp:DropDownList ID="ddlBudget" runat="server" CssClass="tb5"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlBudget" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">วันที่บรรจุ</td>
                                 <td class="col2">
-                                    <asp:TextBox ID="tbDateInwork" runat="server" CssClass="tb5"></asp:TextBox>
+                                    <asp:TextBox ID="tbDateInwork" runat="server" CssClass="ps-textbox"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">เงินเดือน</td>
                                 <td class="col2">
-                                    <asp:TextBox ID="tbSalary" runat="server" CssClass="tb5"></asp:TextBox>
+                                    <asp:TextBox ID="tbSalary" runat="server" CssClass="ps-textbox"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">เงินประจำตำแหน่ง</td>
                                 <td class="col2">
-                                    <asp:TextBox ID="tbPositionSalary" runat="server" CssClass="tb5"></asp:TextBox>
+                                    <asp:TextBox ID="tbPositionSalary" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                                </td>
+                            </tr>
+                             <tr>
+                                <td class="col1">สถานะบุคลากร</td>
+                                <td class="col2">
+                                    <asp:DropDownList ID="ddlTab10StatusWork" runat="server" CssClass="ps-dropdown" AutoPostBack="true"></asp:DropDownList>
                                 </td>
                             </tr>
                         </table>
                     </div>
-                    <div style="float: left; display: inline-block;">
-                        <div class="default_header">
-                            <img src="Image/Small/table.png" class="icon_left" />ข้อมูลการทำงาน
-                        
-                        </div>
-                        <table>
+                    <div style="display: inline-block; vertical-align: top;">
+                        <table class="ps-table-1">
                             <tr>
                                 <td class="col1">ตำแหน่งประเภท</td>
                                 <td class="col2">
-                                    <asp:DropDownList ID="ddlTpyePosition" runat="server" CssClass="tb5"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlTpyePosition" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">ตำแหน่ง</td>
                                 <td class="col2">
-                                    <asp:DropDownList ID="ddlPosition" runat="server" CssClass="tb5"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlPosition" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">ตำแหน่งบริหาร</td>
                                 <td class="col2">
-                                    <asp:DropDownList ID="ddlAdminPosition" runat="server" CssClass="tb5"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlAdminPosition" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">ตำแหน่งในสายงาน</td>
                                 <td class="col2">
-                                    <asp:DropDownList ID="ddlPositionWork" runat="server" CssClass="tb5"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlPositionWork" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">ตำแหน่งทางวิชาการ</td>
                                 <td class="col2">
-                                    <asp:DropDownList ID="ddlAcademic" runat="server" CssClass="tb5"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlAcademic" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
                                 </td>
                             </tr>
 
                             <tr>
                                 <td class="col1">ความเชี่ยวชาญในสายงาน</td>
                                 <td class="col2">
-                                    <asp:TextBox ID="tbSpecialWork" runat="server" CssClass="tb5"></asp:TextBox>
+                                    <asp:TextBox ID="tbSpecialWork" runat="server" CssClass="ps-textbox"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">กลุ่มสาขาวิชาที่สอน</td>
                                 <td class="col2">
-                                    <asp:DropDownList ID="ddlTeachISCED" runat="server" CssClass="tb5"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlTeachISCED" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">ระดับตำแหน่งประเภท</td>
                                 <td class="col2">
-                                    <asp:DropDownList ID="ddlPosiInsigGover" runat="server" CssClass="tb5"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlPosiInsigGover" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">ตำแหน่งระดับ</td>
                                 <td class="col2">
-                                    <asp:DropDownList ID="ddlPosiInsigDegree" runat="server" CssClass="tb5"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlPosiInsigDegree" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">ตำแหน่งกลุ่มพนักงานราชการ</td>
                                 <td class="col2">
-                                    <asp:DropDownList ID="ddlPosiInsigEMP" runat="server" CssClass="tb5"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlPosiInsigEMP" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
                                 </td>
                             </tr>
                         </table>
                     </div>
-                    <div style="clear: both;">
-                        <asp:LinkButton ID="lbuV3Back" runat="server" CssClass="ps-button" OnClick="lbuV3Back_Click1">ย้อนกลับ</asp:LinkButton>
-                        <asp:LinkButton ID="lbSubmit" runat="server" CssClass="ps-button" OnClick="lbSubmit_Click">เพิ่มข้อมูลบุคลากร</asp:LinkButton>
+                    <div style="margin-top: 10px;">
+                        <asp:LinkButton ID="lbuTab3Save" runat="server" OnClick="lbuTab3Save_Click" CssClass="ps-button"><img src="Image/Small/save.png" class="icon_left"/>บันทึก</asp:LinkButton>
                     </div>
-                </fieldset>
-            </asp:View>
+            <div class="ps-separator"></div>
+        </div>
 
-        </asp:MultiView>
+        <div id="divTab4" runat="server">
+            <div>
+                <table class="ps-table-1" style="margin: 0 auto; margin-bottom: 20px;">
+                   <tr>
+                            <td class="col1">ตำแหน่งประเภทบริหาร</td>
+                            <td class="col2">
+                                <asp:DropDownList ID="ddlTab4AdminPosition" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col1">ตำแหน่งประเภทอำนวยการ</td>
+                            <td class="col2">
+                                <asp:DropDownList ID="ddlTab4DirectPosition" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col1">ตำแหน่งประเภทวิชาการ</td>
+                            <td class="col2">
+                                <asp:DropDownList ID="ddlTab4AcadPosition" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col1">ตำแหน่งประเภททั่วไป</td>
+                            <td class="col2">
+                                <asp:DropDownList ID="ddlTab4GeneralPosition" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col1"></td>
+                            <td class="col2">
+                                <asp:LinkButton ID="lbuAddPosition" runat="server" CssClass="ps-button">เพิ่มข้อมูลตำแหน่ง</asp:LinkButton></td>
+                        </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: right;">
+                            <asp:LinkButton ID="lbuTab4Save" runat="server" OnClick="lbuTab4Save_Click" CssClass="ps-button"><img src="Image/Small/save.png" class="icon_left"/>บันทึก</asp:LinkButton>
+                        </td>
+
+                    </tr>
+                </table>
+            </div>
+            <div class="ps-separator"></div>
+        </div>
+
     </div>
 </asp:Content>

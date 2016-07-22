@@ -21,27 +21,31 @@ namespace WEB_PERSONAL {
             FuncGVCL();
             FuncGVCH();
             FuncLeaveClaim();
+
+            if(!IsPostBack) {
+                lbuVS1.CssClass = "ps-tab-selected";
+            }
         }
 
         protected void lbuVS1_Click(object sender, EventArgs e) {
             MultiView1.ActiveViewIndex = 0;
-            lbuVS1.CssClass = "ps-vs-sel";
-            lbuVS2.CssClass = "ps-vs";
-            lbuVS3.CssClass = "ps-vs";
+            lbuVS1.CssClass = "ps-tab-selected";
+            lbuVS2.CssClass = "ps-tab-unselected";
+            lbuVS3.CssClass = "ps-tab-unselected";
         }
 
         protected void lbuVS2_Click(object sender, EventArgs e) {
             MultiView1.ActiveViewIndex = 1;
-            lbuVS1.CssClass = "ps-vs";
-            lbuVS2.CssClass = "ps-vs-sel";
-            lbuVS3.CssClass = "ps-vs";
+            lbuVS1.CssClass = "ps-tab-unselected";
+            lbuVS2.CssClass = "ps-tab-selected";
+            lbuVS3.CssClass = "ps-tab-unselected";
         }
 
         protected void lbuVS3_Click(object sender, EventArgs e) {
             MultiView1.ActiveViewIndex = 2;
-            lbuVS1.CssClass = "ps-vs";
-            lbuVS2.CssClass = "ps-vs";
-            lbuVS3.CssClass = "ps-vs-sel";
+            lbuVS1.CssClass = "ps-tab-unselected";
+            lbuVS2.CssClass = "ps-tab-unselected";
+            lbuVS3.CssClass = "ps-tab-selected";
         }
 
         protected void gvHistory_PageIndexChanging(object sender, GridViewPageEventArgs e) {

@@ -45,6 +45,12 @@ namespace WEB_PERSONAL {
                     }
                 }*/
             
+            if(Request.QueryString["q"] != null && Request.QueryString["t"] != null) {
+                string q = Request.QueryString["q"];
+                string t = Request.QueryString["t"];
+                funcSearch(q, t);
+            }
+            
         }
 
         protected void SQLCampus() {
@@ -163,49 +169,85 @@ namespace WEB_PERSONAL {
         }
 
         protected void lbuSearch_Click(object sender, EventArgs e) {
+            if (ddlWorkDivision.Visible) {
+                Response.Redirect("PersonBranch.aspx?q=" + ddlWorkDivision.SelectedValue + "&t=WD");
+            } else {
+                Response.Redirect("PersonBranch.aspx?q=" + ddlDivision.SelectedValue + "&t=DV");
+            }
+            
+        }
 
+        private void funcSearch(string id, string type) {
             ccc.Style.Add("display", "block");
 
-            string searchID;
-            string searchName;
+            string searchID = id;
+            string searchName = "";
             string searchWhere;
-            string searchBossType;
-            if (ddlWorkDivision.Visible) {
-                searchID = ddlWorkDivision.SelectedValue;
-                searchName = ddlWorkDivision.SelectedItem.Text;
+            //string searchBossType;
+            string searchAdminPosID;
+
+            if (type == "WD") {
+                //searchID = ddlWorkDivision.SelectedValue;
+                //searchName = ddlWorkDivision.SelectedItem.Text;
                 searchWhere = "PS_WORK_DIVISION_ID";
-                searchBossType = "WD";
+                //searchBossType = "WD";
+                searchAdminPosID = "4";
             } else {
-                searchID = ddlDivision.SelectedValue;
-                searchName = ddlDivision.SelectedItem.Text;
+                //searchID = ddlDivision.SelectedValue;
+                //searchName = ddlDivision.SelectedItem.Text;
                 searchWhere = "PS_DIVISION_ID";
-                searchBossType = "DV";
+                //searchBossType = "DV";
+                searchAdminPosID = "7";
             }
 
-            
+
 
             OracleConnection.ClearAllPools();
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
-                using (OracleCommand com = new OracleCommand("SELECT (SELECT URL FROM PS_PERSON_IMAGE WHERE PS_PERSON.PS_CITIZEN_ID = PS_PERSON_IMAGE.CITIZEN_ID AND PRESENT = 1) URL, PS_PERSON.PS_FN_TH || ' ' || PS_PERSON.PS_LN_TH NAME, PS_EMAIL, PS_CITIZEN_ID FROM PS_PERSON WHERE " + searchWhere + " = " + searchID, con)) {
+
+                if (type == "WD") {
+                    using (OracleCommand com = new OracleCommand("SELECT WORK_NAME FROM TB_WORK_DIVISION WHERE WORK_ID = " + id, con)) {
+                        using (OracleDataReader reader = com.ExecuteReader()) {
+                            while (reader.Read()) {
+                                searchName = reader.GetString(0);
+                            }
+                        }
+                    }
+                } else {
+                    using (OracleCommand com = new OracleCommand("SELECT DIVISION_NAME FROM TB_DIVISION WHERE DIVISION_ID = " + id, con)) {
+                        using (OracleDataReader reader = com.ExecuteReader()) {
+                            while (reader.Read()) {
+                                searchName = reader.GetString(0);
+                            }
+                        }
+                    }
+                }
+
+                using (OracleCommand com = new OracleCommand("SELECT (SELECT URL FROM PS_PERSON_IMAGE WHERE PS_PERSON.PS_CITIZEN_ID = PS_PERSON_IMAGE.CITIZEN_ID AND PRESENT = 1) URL, PS_PERSON.PS_FN_TH || ' ' || PS_PERSON.PS_LN_TH NAME, PS_EMAIL, PS_CITIZEN_ID, (SELECT POSITION_WORK_NAME FROM TB_POSITION_WORK WHERE TB_POSITION_WORK.POSITION_WORK_ID = PS_PERSON.PS_WORK_POS_ID), (SELECT ADMIN_POSITION_NAME FROM TB_ADMIN_POSITION WHERE TB_ADMIN_POSITION.ADMIN_POSITION_ID = PS_PERSON.PS_ADMIN_POS_ID) FROM PS_PERSON WHERE " + searchWhere + " = " + searchID, con)) {
                     using (OracleDataReader reader = com.ExecuteReader()) {
                         while (reader.Read()) {
 
                             string citizenID = reader.GetString(3);
+                            string workPositionName = reader.GetString(4);
+                            string adminPositionName = reader.GetString(5);
                             bool isBoss = false;
 
-                            using (OracleCommand com2 = new OracleCommand("SELECT COUNT(*) FROM PS_BOSS WHERE CITIZEN_ID = '" + citizenID + "' AND BOS_TYPE = '" + searchBossType + "' AND BOS_TYPE_ID = " + searchID, con)) {
+                            //using (OracleCommand com2 = new OracleCommand("SELECT COUNT(*) FROM PS_BOSS WHERE CITIZEN_ID = '" + citizenID + "' AND BOS_TYPE = '" + searchBossType + "' AND BOS_TYPE_ID = " + searchID, con)) {
+                            using (OracleCommand com2 = new OracleCommand("SELECT PS_ADMIN_POS_ID FROM PS_PERSON WHERE PS_CITIZEN_ID = '" + citizenID + "'", con)) {
                                 using (OracleDataReader reader2 = com2.ExecuteReader()) {
                                     while (reader2.Read()) {
-                                        if(reader2.GetInt32(0) == 1) {
+                                        if(reader2.GetInt32(0) == 4 && type == "WD") {
+                                            isBoss = true;
+                                        } else if (reader2.GetInt32(0) == 7 && type == "DV") {
                                             isBoss = true;
                                         }
-                                        
+
                                     }
                                 }
                             }
 
-                            
+
 
                             Panel pm = new Panel();
                             pm.CssClass = "ps-person-display";
@@ -220,7 +262,7 @@ namespace WEB_PERSONAL {
                                 Panel p1 = new Panel();
                                 Image img = new Image();
                                 img.CssClass = "ps-ms-main-drop-profile-pic";
-                                    if (imageURL != null) {
+                                if (imageURL != null) {
                                     img.Attributes["src"] = "Upload/PersonImage/" + imageURL;
                                 } else {
                                     img.Attributes["src"] = "Image/no_image.png";
@@ -231,21 +273,21 @@ namespace WEB_PERSONAL {
 
                             {
                                 Label lb = new Label();
-                                lb.Text = reader.GetString(1) + "<br />" + reader.GetString(2);
+                                lb.Text = reader.GetString(1) + "<br /><span style='color:#808080'>" + reader.GetString(2) + "</span><br /><span style='color:#404040'>ตำแหน่ง : " + workPositionName + "</span><br /><span style='color:#404040'>ระดับ : " + adminPositionName + "</span>";
                                 pm.Controls.Add(lb);
                             }
-                            if(isBoss) {
+                            if (isBoss) {
                                 pBoss.Controls.Add(pm);
                             } else {
                                 pMember.Controls.Add(pm);
                             }
-                            
+
 
                         }
                     }
                 }
-            }
 
+            }
         }
     }
 }

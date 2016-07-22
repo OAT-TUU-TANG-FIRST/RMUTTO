@@ -7,6 +7,8 @@ using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
 using WEB_PERSONAL.Class;
 using System.Data.OleDb;
+using System.Text;
+using System.IO;
 
 namespace WEB_PERSONAL {
     public partial class ViewLeaveForm : System.Web.UI.Page {
@@ -235,6 +237,8 @@ namespace WEB_PERSONAL {
 
 
         }
+
+        
 
         /*protected void lbuPrint_Click(object sender, EventArgs e) {
             Response.Redirect("PrintLeaveForm.aspx?LeaveID=" + Request.QueryString["LeaveID"].ToString());

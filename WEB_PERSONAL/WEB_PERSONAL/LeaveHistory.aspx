@@ -30,8 +30,9 @@
         }
 
         .lbGV {
-            display: inline-block;
+            display: block;
             margin-bottom: 5px;
+            text-align: center;
         }
     </style>
 </asp:Content>
@@ -41,10 +42,10 @@
         <img src="Image/Small/clock-history.png" />ประวัติการลา
     </div>
 
-    <div class="ps-vs-main">
-        <asp:LinkButton ID="lbuVS1" runat="server" CssClass="ps-vs-sel" OnClick="lbuVS1_Click">รายการที่ลา</asp:LinkButton>
-        <asp:LinkButton ID="lbuVS2" runat="server" CssClass="ps-vs" OnClick="lbuVS2_Click">รายการที่มีส่วนเกี่ยวข้อง</asp:LinkButton>
-        <asp:LinkButton ID="lbuVS3" runat="server" CssClass="ps-vs" OnClick="lbuVS3_Click">สถิติการลา</asp:LinkButton>
+    <div class="ps-tab-container">
+        <asp:LinkButton ID="lbuVS1" runat="server" CssClass="ps-tab-unselected" OnClick="lbuVS1_Click">รายการที่ลา</asp:LinkButton>
+        <asp:LinkButton ID="lbuVS2" runat="server" CssClass="ps-tab-unselected" OnClick="lbuVS2_Click">รายการที่มีส่วนเกี่ยวข้อง</asp:LinkButton>
+        <asp:LinkButton ID="lbuVS3" runat="server" CssClass="ps-tab-unselected" OnClick="lbuVS3_Click">สถิติการลา</asp:LinkButton>
     </div>
 
     <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex="0">
@@ -52,17 +53,17 @@
 
             <div>
 
-                <div class="ps-div-title-red-left">รายการที่เสร็จสิ้น</div>
+                <div class="ps-div-title-red">รายการที่เสร็จสิ้น</div>
                 <asp:Label ID="lbFinish" runat="server" Text="ไม่มีข้อมูล" CssClass="lbGV"></asp:Label>
-                <asp:GridView ID="gvFinish" runat="server" CssClass="ps-table-1" style="margin-bottom: 20px;" AllowPaging="True" PageSize="10" OnPageIndexChanging="gvFinish_PageIndexChanging"></asp:GridView>
+                <asp:GridView ID="gvFinish" runat="server" CssClass="ps-table-1" style="margin: 0 auto; margin-bottom: 20px;" AllowPaging="True" PageSize="10" OnPageIndexChanging="gvFinish_PageIndexChanging"></asp:GridView>
 
-                <div class="ps-div-title-red-left">รายการที่อยู่ระหว่างการดำเนินการ</div>
+                <div class="ps-div-title-red">รายการที่อยู่ระหว่างการดำเนินการ</div>
                 <asp:Label ID="lbProgressing" runat="server" Text="ไม่มีข้อมูล" CssClass="lbGV"></asp:Label>
-                <asp:GridView ID="gvProgressing" runat="server" CssClass="ps-table-1" style="margin-bottom: 20px;" AllowPaging="True" PageSize="10" OnPageIndexChanging="gvProgressing_PageIndexChanging"></asp:GridView>
+                <asp:GridView ID="gvProgressing" runat="server" CssClass="ps-table-1" style="margin: 0 auto; margin-bottom: 20px;" AllowPaging="True" PageSize="10" OnPageIndexChanging="gvProgressing_PageIndexChanging"></asp:GridView>
     
-                <div class="ps-div-title-red-left">ประวัติการลา</div>
+                <div class="ps-div-title-red">ประวัติการลา</div>
                 <asp:Label ID="lbHistory" runat="server" Text="ไม่พบข้อมูล" CssClass="lbGV"></asp:Label>
-                <asp:GridView ID="gvHistory" runat="server" CssClass="ps-table-1" style="margin-bottom: 20px;" AllowPaging="True" PageSize="10" OnPageIndexChanging="gvHistory_PageIndexChanging"></asp:GridView>
+                <asp:GridView ID="gvHistory" runat="server" CssClass="ps-table-1" style="margin: 0 auto; margin-bottom: 20px;" AllowPaging="True" PageSize="10" OnPageIndexChanging="gvHistory_PageIndexChanging"></asp:GridView>
   
             </div>
 
@@ -71,13 +72,13 @@
         <asp:View ID="View2" runat="server">
             <div>
 
-                <div class="ps-div-title-red-left">ประวัติการลาที่เป็นผู้ลงความเห็น</div>
+                <div class="ps-div-title-red">ประวัติการลาที่เป็นผู้ลงความเห็น</div>
                 <asp:Label ID="lbCL" runat="server" Text="ไม่มีข้อมูล" CssClass="lbGV"></asp:Label>
-                <asp:GridView ID="gvCL" runat="server" CssClass="ps-table-1" style="margin-bottom: 20px;" AllowPaging="True" PageSize="10" OnPageIndexChanging="gvCL_PageIndexChanging"></asp:GridView>
+                <asp:GridView ID="gvCL" runat="server" CssClass="ps-table-1" style="margin: 0 auto; margin-bottom: 20px;" AllowPaging="True" PageSize="10" OnPageIndexChanging="gvCL_PageIndexChanging"></asp:GridView>
 
-                <div class="ps-div-title-red-left">ประวัติการลาที่เป็นผู้อนุมัติ</div>
+                <div class="ps-div-title-red">ประวัติการลาที่เป็นผู้อนุมัติ</div>
                 <asp:Label ID="lbCH" runat="server" Text="ไม่มีข้อมูล" CssClass="lbGV"></asp:Label>
-                <asp:GridView ID="gvCH" runat="server" CssClass="ps-table-1" style="margin-bottom: 20px;" AllowPaging="True" PageSize="10" OnPageIndexChanging="gvCH_PageIndexChanging"></asp:GridView>
+                <asp:GridView ID="gvCH" runat="server" CssClass="ps-table-1" style="margin: 0 auto; margin-bottom: 20px;" AllowPaging="True" PageSize="10" OnPageIndexChanging="gvCH_PageIndexChanging"></asp:GridView>
 
             </div>
             
@@ -85,7 +86,7 @@
         <asp:View ID="View3" runat="server">
 
             <div>
-                        <asp:Table ID="Table1" runat="server" CssClass="ps-table-1 ps-table-1se">
+                        <asp:Table ID="Table1" runat="server" CssClass="ps-table-1 ps-table-1se" style="margin: 0 auto;">
                 <asp:TableHeaderRow>
                     <asp:TableHeaderCell></asp:TableHeaderCell>
                     <asp:TableHeaderCell ColumnSpan="3">ลาป่วย</asp:TableHeaderCell>

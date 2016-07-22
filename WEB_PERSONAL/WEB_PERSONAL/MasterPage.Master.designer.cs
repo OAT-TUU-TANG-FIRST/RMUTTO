@@ -229,15 +229,6 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor cbPosition;
         
         /// <summary>
-        /// cbStatusPerson control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor cbStatusPerson;
-        
-        /// <summary>
         /// cbNotPerson2 control.
         /// </summary>
         /// <remarks>

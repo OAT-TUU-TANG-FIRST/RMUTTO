@@ -585,140 +585,218 @@ namespace WEB_PERSONAL {
             }
             return budgetYear;
         }
-        public void Insig() {
 
-            string ประเภทบุคลากร = "";
-            string ตำแหน่งประเภท = "";
-            string ระดับ = "";
-            int เงินเดือน = 0;
-            int ปี = 0;
-            int เครื่องราชที่จะขอ = 0;
-            int เงินเดือนขั้นต่ำชำนาญงาน = 0;
-            int เงินเดือนขั้นต่ำชำนาญงานพิเศษ = 0;
-            int ปีทช = 0;
-            int ปีปม = 0;
-            int ปีปช = 0;
-            int ปีมวม = 0;
+        public static bool CreateSelectPersonPageLoad(Page page, Panel pPerson, string pageURL) {
 
-            if (ประเภทบุคลากร == "ข้าราชการ") {
-                if(ตำแหน่งประเภท == "ระดับทั่วไป") {
-                    if (ระดับ == "ระดับปฏิบัติงาน") {
-                        if (เครื่องราชที่จะขอ == 12) { //บม
-                            if (ปี >= 5) {
-                                //ขอได้
-                            }
-                        }
-                        if (เครื่องราชที่จะขอ == 11) { //บช
-                            if (ปี >= 10 && เงินเดือน < เงินเดือนขั้นต่ำชำนาญงาน) {
-                                //ขอได้
-                            }
-                        }
-                        if (เครื่องราชที่จะขอ == 10) { //จม
-                            if (ปี >= 10 && เงินเดือน > เงินเดือนขั้นต่ำชำนาญงาน) {
-                                //ขอได้
-                            }
-                        }
-                        if (เครื่องราชที่จะขอ == 9) { //จช
-                            if (ปี >= 10 && เงินเดือน > เงินเดือนขั้นต่ำชำนาญงาน) {
-                                //ขอได้
-                            }
-                        }
-                    }
-                    if (ระดับ == "ระดับชำนาญงาน") {
-                        if (เครื่องราชที่จะขอ == 8) { //ตม
-                            if (ปี >= 5) {
-                                //ขอได้
-                            }
-                        }
-                        if (เครื่องราชที่จะขอ == 7) { //ตช
-                            if (ปี >= 5) {
-                                //ขอได้
-                            }
-                        }
-                    }
-                    if (ระดับ == "ระดับอาวุโส") {
-                        if (เครื่องราชที่จะขอ == 6) { //ทม
-                            if (ปี >= 5) {
-                                //ขอได้
-                            }
-                        }
-                        if (เครื่องราชที่จะขอ == 5) { //ทช
-                            if (ปี >= 5) {
-                                //ขอได้
-                            }
-                        }
-                    }
-                }
-                if (ตำแหน่งประเภท == "ประเภทวิชาการ") {
-                    if (ระดับ == "ระดับวิชาการ") {
-                        if (เครื่องราชที่จะขอ == 8) { //ทม
-                            if (ปี >= 5) {
-                                //ขอได้
-                            }
-                        }
-                    }
-                    if (ระดับ == "ระดับชำนาญการ") {
-                        if (เครื่องราชที่จะขอ == 7) { //ตช
-                            if (ปี >= 5) {
-                                //ขอได้
-                            }
-                        }
-                        if (เครื่องราชที่จะขอ == 6) { //ทม
-                            if (ปี >= 5 && เงินเดือน > เงินเดือนขั้นต่ำชำนาญงานพิเศษ) {
-                                //ขอได้
-                            }
-                        }
-                        if (เครื่องราชที่จะขอ == 5) { //ทช
-                            if (ปี >= 5 && เงินเดือน > เงินเดือนขั้นต่ำชำนาญงานพิเศษ) {
-                                //ขอได้
-                            }
-                        }
-                    }
-                    if (ระดับ == "ระดับชำนาญการพิเศษ") {
-                        if (เครื่องราชที่จะขอ == 5) { //ทช
-                            if (ปี >= 5) {
-                                //ขอได้
-                            }
-                        }
-                        if (เครื่องราชที่จะขอ == 4) { //ปม
-                            if (ปี >= 5 && ปีทช >= 5 && เงินเดือน > เงินเดือนขั้นต่ำชำนาญงานพิเศษ /*และได้รับเงินเดือนขั้นสูง*/) {
-                                //ขอได้
-                            }
-                        }
-                    }
-                    if (ระดับ == "ระดับเชี่ยวชาญ") {
-                        if (เครื่องราชที่จะขอ == 2) { //มวม
-                            if (ปี >= 5 && ปีทช >= 3 && ปีปม >= 3 && ปีปช >= 3) {
-                                //ขอได้
-                            }
-                        }
-                    }
-                    if (ระดับ == "ระดับทรงคุณวุฒิ" && เงินเดือน == 13000) {
-                        if (เครื่องราชที่จะขอ == 1) { //มปช
-                            if (ปี >= 5 && ปีปม >= 3 && ปีปช >= 3 && ปีมวม >= 5) {
-                                //ขอได้
-                            }
-                        }
-                    }
-                    if (ระดับ == "ระดับทรงคุณวุฒิ" && เงินเดือน == 15600) {
-                        if (เครื่องราชที่จะขอ == 1) { //มปช
-                            if (ปี >= 5 && ปีปม >= 3 && ปีปช >= 3 && ปีมวม >= 3) {
-                                //ขอได้
-                            }
-                        }
-                    }
-                }
-                if (ตำแหน่งประเภท == "ประเภทอำนวยการ") {
+            string p = null;
+            string ps = null;
+            if (page.Request.QueryString["p"] != null) {
+                p = page.Request.QueryString["p"];
+            }
+            if (page.Request.QueryString["ps"] != null) {
+                ps = page.Request.QueryString["ps"];
+            }
 
-                }
-                
+            if (ps != null) {
+                CreateSelectPersonPanel(page, pPerson, pageURL, ps);
+                return true;
+            }
+            if (p == null) {
+                CreateSelectPersonPanel(page, pPerson, pageURL);
+                return true;
+            }
+            return false;
+        }
+        public static void CreateSelectPersonPanel(Page page, Panel panel, string pageURL) {
+            CreateSelectPersonPanel(page, panel, pageURL, null);
+        }
+        public static void CreateSelectPersonPanel(Page page, Panel panel, string pageURL, string ps) {
+            Panel pp = new Panel();
+            panel.Controls.Add(pp);
+
+            {
+                Panel ppp = new Panel();
+                ppp.CssClass = "ps-div-title-red";
+                pp.Controls.Add(ppp);
+
+                Image img = new Image();
+                img.Attributes["src"] = "Image/Small/Search.png";
+                img.CssClass = "icon_left";
+                ppp.Controls.Add(img);
+
+                Label lb = new Label();
+                lb.Text = "ค้นหารายชื่อพนักงาน";
+                ppp.Controls.Add(lb);
+            }
+            {
+                Panel ppp = new Panel();
+                ppp.Style.Add("text-align", "center");
+                ppp.DefaultButton = "pppSearch";
+                pp.Controls.Add(ppp);
+
+                Label lb = new Label();
+                lb.Text = "รหัสบัตรประชาชน : ";
+                ppp.Controls.Add(lb);
+
+                TextBox tbSearchCitizenID = new TextBox();
+                tbSearchCitizenID.Style.Add("margin-right", "5px");
+                tbSearchCitizenID.CssClass = "ps-textbox";
+                tbSearchCitizenID.MaxLength = 13;
+                ppp.Controls.Add(tbSearchCitizenID);
+
+                LinkButton lbuSearchPerson = new LinkButton();
+                lbuSearchPerson.ID = "pppSearch";
+                lbuSearchPerson.Style.Add("margin-right", "5px");
+                lbuSearchPerson.CssClass = "ps-button";
+                lbuSearchPerson.Click += (ee, eee) => {
+                    page.Response.Redirect(pageURL + "?ps=" + tbSearchCitizenID.Text);
+                };
+                lbuSearchPerson.Text = "<img src='Image/Small/search.png' class='icon_left'/>ค้นหา";
+                ppp.Controls.Add(lbuSearchPerson);
+
+                LinkButton lbuRefresh = new LinkButton();
+                lbuRefresh.CssClass = "ps-button";
+                lbuRefresh.Click += (ee, eee) => {
+                    page.Response.Redirect(pageURL);
+                };
+                lbuRefresh.Text = "<img src='Image/Small/refresh.png' class='icon_left'/>รีเฟรช";
+                ppp.Controls.Add(lbuRefresh);
+
+                Panel pSeparator = new Panel();
+                pSeparator.CssClass = "ps-separator";
+                ppp.Controls.Add(pSeparator);
 
             }
 
 
+            Table tbPerson = new Table();
+            tbPerson.CssClass = "ps-table-1";
+            tbPerson.Style.Add("margin", "0 auto");
+            pp.Controls.Add(tbPerson);
+            {
+                TableHeaderRow row = new TableHeaderRow();
+                tbPerson.Rows.Add(row);
+                {
+                    TableHeaderCell cell = new TableHeaderCell();
+                    cell.Text = "ลำดับ";
+                    row.Cells.Add(cell);
+                }
+                {
+                    TableHeaderCell cell = new TableHeaderCell();
+                    cell.Text = "เลขประจำตัวประชาชน";
+                    row.Cells.Add(cell);
+                }
+                {
+                    TableHeaderCell cell = new TableHeaderCell();
+                    cell.Text = "ชื่อ";
+                    row.Cells.Add(cell);
+                }
+                {
+                    TableHeaderCell cell = new TableHeaderCell();
+                    cell.Text = "วิทยาเขต";
+                    row.Cells.Add(cell);
+                }
+                {
+                    TableHeaderCell cell = new TableHeaderCell();
+                    cell.Text = "สำนัก / สถาบัน / คณะ";
+                    row.Cells.Add(cell);
+                }
+                {
+                    TableHeaderCell cell = new TableHeaderCell();
+                    cell.Text = "กอง / สำนักงานเลขา / ภาควิชา";
+                    row.Cells.Add(cell);
+                }
+                {
+                    TableHeaderCell cell = new TableHeaderCell();
+                    cell.Text = "งาน / ฝ่าย";
+                    row.Cells.Add(cell);
+                }
+                {
+                    TableHeaderCell cell = new TableHeaderCell();
+                    cell.Text = "เลือก";
+                    row.Cells.Add(cell);
+                }
+            }
+
+            string select = "SELECT"
+                + " PS_ID" //0
+                + ", PS_CITIZEN_ID" //1
+                + ", PS_FN_TH || ' ' || PS_LN_TH" //2
+                + ", (SELECT CAMPUS_NAME FROM TB_CAMPUS WHERE PS_CAMPUS_ID = CAMPUS_ID)" //3
+                + ", (SELECT FACULTY_NAME FROM TB_FACULTY WHERE PS_FACULTY_ID = FACULTY_ID)" //4
+                + ", NVL((SELECT DIVISION_NAME FROM TB_DIVISION WHERE PS_DIVISION_ID = DIVISION_ID),'-')" //5
+                + ", NVL((SELECT WORK_NAME FROM TB_WORK_DIVISION WHERE PS_WORK_DIVISION_ID = WORK_ID),'-')" //6
+                + " FROM PS_PERSON";
+            if (ps != null) {
+                select += " WHERE PS_CITIZEN_ID = '" + ps + "'";
+            }
 
 
+            OracleConnection.ClearAllPools();
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
+                con.Open();
+                using (OracleCommand com = new OracleCommand(select, con)) {
+                    using (OracleDataReader reader = com.ExecuteReader()) {
+                        while (reader.Read()) {
+                            string psID = reader.GetString(1);
 
+                            TableRow row = new TableRow();
+                            tbPerson.Rows.Add(row);
+
+                            {
+                                TableCell cell = new TableCell();
+                                cell.Text = reader.GetInt32(0).ToString();
+                                row.Cells.Add(cell);
+                            }
+                            {
+                                TableCell cell = new TableCell();
+                                cell.Text = reader.GetString(1);
+                                row.Cells.Add(cell);
+                            }
+                            {
+                                TableCell cell = new TableCell();
+                                cell.Text = reader.GetString(2);
+                                row.Cells.Add(cell);
+                            }
+                            {
+                                TableCell cell = new TableCell();
+                                cell.Text = reader.GetString(3);
+                                row.Cells.Add(cell);
+                            }
+                            {
+                                TableCell cell = new TableCell();
+                                cell.Text = reader.GetString(4);
+                                row.Cells.Add(cell);
+                            }
+                            {
+                                TableCell cell = new TableCell();
+                                cell.Text = reader.GetString(5);
+                                row.Cells.Add(cell);
+                            }
+                            {
+                                TableCell cell = new TableCell();
+                                cell.Text = reader.GetString(6);
+                                row.Cells.Add(cell);
+                            }
+                            {
+                                TableCell cell = new TableCell();
+                                LinkButton lbu = new LinkButton();
+                                lbu.CssClass = "ps-button";
+                                lbu.Text = "เลือก";
+                                lbu.Click += (e1, e2) => {
+                                    page.Response.Redirect(pageURL + "?p=" + psID + "&state=2");
+                                };
+                                cell.Controls.Add(lbu);
+                                row.Cells.Add(cell);
+                            }
+                        }
+
+                    }
+                }
+
+            }
+
+            
         }
     }
 

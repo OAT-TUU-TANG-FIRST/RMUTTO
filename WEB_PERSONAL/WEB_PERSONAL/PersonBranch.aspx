@@ -43,6 +43,7 @@
         <div id="ccc" runat="server" style="display: none;">
             <div class="ps-div-title-red">หัวหน้า<span id="spWorkDivisionName" runat="server"></span></div>
             <asp:Panel ID="pBoss" runat="server" style="text-align: center;"></asp:Panel>
+            <div class="ps-separator"></div>
             <div class="ps-div-title-red" style="margin-top: 20px;">บุคลากร</div>
             <asp:Panel ID="pMember" runat="server" style="text-align: center;"></asp:Panel>
         </div>
