@@ -22,8 +22,11 @@ namespace WEB_PERSONAL {
                 DatabaseManager.BindDropDown(ddlBloodCondition, "SELECT * FROM TB_BLOOD", "BLOOD_NAME", "BLOOD_ID", "--กรุณาเลือกกรุ๊ปเลือด--");
                 //Row2
                 DatabaseManager.BindDropDown(ddlReligionCondition, "SELECT * FROM TB_RELIGION", "RELIGION_NAME", "RELIGION_ID", "--กรุณาเลือกศาสนา--");
-                //
-                DatabaseManager.BindDropDown(ddlCampus, "SELECT * FROM TB_CAMPUS", "CAMPUS_NAME", "CAMPUS_ID", "-กรุณาเลือกวิทยาเขต-");
+                //Row3
+                SQLCampus();
+                DatabaseManager.BindDropDown(ddlStafftypeCondition, "SELECT * FROM TB_STAFFTYPE", "STAFFTYPE_NAME", "STAFFTYPE_ID", "--กรุณาเลือกประเภทบุคลากร--");
+                DatabaseManager.BindDropDown(ddlBudgetCondition, "SELECT * FROM TB_BUDGET", "BUDGET_NAME", "BUDGET_ID", "--กรุณาเลือกประเภทเงินจ้าง--");
+
                 DatabaseManager.BindDropDown(ddlStatusWork, "SELECT * FROM TB_STATUS_WORK", "SW_NAME", "SW_ID", "-กรุณาเลือกสถานะการทำงาน-");
             }
         }
@@ -51,24 +54,6 @@ namespace WEB_PERSONAL {
                         ddlAddressProvinceCondition.Items.Insert(0, new ListItem("--กรุณาเลือก จังหวัด--", "0"));
                         ddlAddressAmphurCondition.Items.Insert(0, new ListItem("--กรุณาเลือก อำเภอ--", "0"));
                         ddlAddressDistrictCondition.Items.Insert(0, new ListItem("--กรุณาเลือก ตำบล--", "0"));
-                    }
-                    using (OracleCommand sqlCmd = new OracleCommand())
-                    {
-                        sqlCmd.CommandText = "select * from TB_PROVINCE";
-                        sqlCmd.Connection = sqlConn;
-                        sqlConn.Open();
-                        OracleDataAdapter da = new OracleDataAdapter(sqlCmd);
-                        DataTable dt = new DataTable();
-                        da.Fill(dt);
-                        ddlAddressProvinceCondition2.DataSource = dt;
-                        ddlAddressProvinceCondition2.DataValueField = "PROVINCE_ID";
-                        ddlAddressProvinceCondition2.DataTextField = "PROVINCE_TH";
-                        ddlAddressProvinceCondition2.DataBind();
-                        sqlConn.Close();
-
-                        ddlAddressProvinceCondition2.Items.Insert(0, new ListItem("--กรุณาเลือก จังหวัด--", "0"));
-                        ddlAddressAmphurCondition2.Items.Insert(0, new ListItem("--กรุณาเลือก อำเภอ--", "0"));
-                        ddlAddressDistrictCondition2.Items.Insert(0, new ListItem("--กรุณาเลือก ตำบล--", "0"));
                     }
                 }
             }
@@ -127,6 +112,123 @@ namespace WEB_PERSONAL {
 
                         ddlAddressDistrictCondition.Items.Insert(0, new ListItem("--กรุณาเลือก ตำบล--", "0"));
 
+                    }
+                }
+            }
+            catch { }
+        }
+
+        protected void SQLCampus()
+        {
+            try
+            {
+                using (OracleConnection sqlConn = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+                {
+                    using (OracleCommand sqlCmd = new OracleCommand())
+                    {
+                        sqlCmd.CommandText = "select * from TB_CAMPUS";
+                        sqlCmd.Connection = sqlConn;
+                        sqlConn.Open();
+                        OracleDataAdapter da = new OracleDataAdapter(sqlCmd);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        ddlCampus.DataSource = dt;
+                        ddlCampus.DataValueField = "CAMPUS_ID";
+                        ddlCampus.DataTextField = "CAMPUS_NAME";
+                        ddlCampus.DataBind();
+                        sqlConn.Close();
+
+                        ddlCampus.Items.Insert(0, new ListItem("--กรุณาเลือกวิทยาเขต--", "0"));
+                        ddlFaculty.Items.Insert(0, new ListItem("--กรุณาเลือกสำนัก / สถาบัน / คณะ--", "0"));
+                        ddlDivision.Items.Insert(0, new ListItem("--กรุณาเลือกกอง / สำนักงานเลขา / ภาควิชา--", "0"));
+                        ddlWorkDivision.Items.Insert(0, new ListItem("--กรุณาเลือกงาน / ฝ่าย--", "0"));
+                    }
+                }
+            }
+            catch { }
+        }
+
+        protected void ddlCampus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                using (OracleConnection sqlConn = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+                {
+                    using (OracleCommand sqlCmd = new OracleCommand())
+                    {
+                        sqlCmd.CommandText = "select * from TB_FACULTY where CAMPUS_ID = " + ddlCampus.SelectedValue;
+                        sqlCmd.Connection = sqlConn;
+                        sqlConn.Open();
+                        OracleDataAdapter da = new OracleDataAdapter(sqlCmd);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        ddlFaculty.DataSource = dt;
+                        ddlFaculty.DataValueField = "FACULTY_ID";
+                        ddlFaculty.DataTextField = "FACULTY_NAME";
+                        ddlFaculty.DataBind();
+                        sqlConn.Close();
+
+                        ddlFaculty.Items.Insert(0, new ListItem("--กรุณาเลือกสำนัก / สถาบัน / คณะ--", "0"));
+                        ddlDivision.Items.Clear();
+                        ddlDivision.Items.Insert(0, new ListItem("--กรุณาเลือกกอง / สำนักงานเลขา / ภาควิชา--", "0"));
+                        ddlWorkDivision.Items.Clear();
+                        ddlWorkDivision.Items.Insert(0, new ListItem("--กรุณาเลือกงาน / ฝ่าย--", "0"));
+                    }
+                }
+            }
+            catch { }
+        }
+
+        protected void ddlFaculty_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                using (OracleConnection sqlConn = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+                {
+                    using (OracleCommand sqlCmd = new OracleCommand())
+                    {
+                        sqlCmd.CommandText = "select * from TB_DIVISION where FACULTY_ID = " + ddlFaculty.SelectedValue;
+                        sqlCmd.Connection = sqlConn;
+                        sqlConn.Open();
+                        OracleDataAdapter da = new OracleDataAdapter(sqlCmd);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        ddlDivision.DataSource = dt;
+                        ddlDivision.DataValueField = "DIVISION_ID";
+                        ddlDivision.DataTextField = "DIVISION_NAME";
+                        ddlDivision.DataBind();
+                        sqlConn.Close();
+
+                        ddlDivision.Items.Insert(0, new ListItem("--กรุณาเลือกกอง / สำนักงานเลขา / ภาควิชา--", "0"));
+                        ddlWorkDivision.Items.Clear();
+                        ddlWorkDivision.Items.Insert(0, new ListItem("--กรุณาเลือกงาน / ฝ่าย--", "0"));
+                    }
+                }
+            }
+            catch { }
+        }
+
+        protected void ddlDivision_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                using (OracleConnection sqlConn = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+                {
+                    using (OracleCommand sqlCmd = new OracleCommand())
+                    {
+                        sqlCmd.CommandText = "select * from TB_WORK_DIVISION where DIVISION_ID = " + ddlDivision.SelectedValue;
+                        sqlCmd.Connection = sqlConn;
+                        sqlConn.Open();
+                        OracleDataAdapter da = new OracleDataAdapter(sqlCmd);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        ddlWorkDivision.DataSource = dt;
+                        ddlWorkDivision.DataValueField = "WORK_ID";
+                        ddlWorkDivision.DataTextField = "WORK_NAME";
+                        ddlWorkDivision.DataBind();
+                        sqlConn.Close();
+
+                        ddlWorkDivision.Items.Insert(0, new ListItem("--กรุณาเลือกงาน / ฝ่าย--", "0"));
                     }
                 }
             }
@@ -473,29 +575,72 @@ namespace WEB_PERSONAL {
             {
                 where += " AND PS_DISTRICT = " + ddlAddressDistrictCondition.SelectedValue;
             }
-            //ที่อยู่ตามทะเบียนบ้าน
-            //ที่อยู๋ปัจจุบัน
-            //วิทยาเขต
-            //สำนัก / สถาบัน / คณะ
-            //กอง / สำนักงานเลขา / ภาควิชา
-            //งาน / ฝ่าย
-            //ประเภทบุคลากร
-            //ประเภทเงินจ้าง
-            //วันที่เข้าทำงาน
-            //วันที่เกษียณ
-            //อายุ
-            //สถานะการทำงาน
-            if (cbAgeCondition.Checked) {
-                where += " AND FUNC_AGE(PS_BIRTHDAY_DATE) >= " + tbAgeConditionFrom.Text + " AND FUNC_AGE(PS_BIRTHDAY_DATE) <= " + tbAgeConditionTo.Text;
+            //ที่อยู๋ปัจจุบัน จังหวัด
+            if (cbAddressCondition2.Checked && ddlAddressProvinceCondition.SelectedIndex != 0)
+            {
+                where += " AND PS_PROVINCE_ID_NOW = " + ddlAddressProvinceCondition.SelectedValue;
             }
-            if (cbCampusCondition.Checked) {
+            //ที่อยู๋ปัจจุบัน อำเภอ
+            if (cbAddressCondition2.Checked && ddlAddressAmphurCondition.SelectedIndex != 0)
+            {
+                where += " AND PS_AMPHUR_ID_NOW = " + ddlAddressAmphurCondition.SelectedValue;
+            }
+            //ที่อยู๋ปัจจุบัน ตำบล
+            if (cbAddressCondition2.Checked && ddlAddressDistrictCondition.SelectedIndex != 0)
+            {
+                where += " AND PS_DISTRICT_ID_NOW = " + ddlAddressDistrictCondition.SelectedValue;
+            }
+            //วิทยาเขต
+            if (cbCampusCondition.Checked && ddlCampus.SelectedIndex != 0)
+            {
                 where += " AND PS_CAMPUS_ID = " + ddlCampus.SelectedValue;
             }
-            
+            //สำนัก / สถาบัน / คณะ
+            if (cbCampusCondition.Checked && ddlFaculty.SelectedIndex != 0)
+            {
+                where += " AND PS_FACULTY_ID = " + ddlFaculty.SelectedValue;
+            }
+            //กอง / สำนักงานเลขา / ภาควิชา
+            if (cbCampusCondition.Checked && ddlDivision.SelectedIndex != 0)
+            {
+                where += " AND PS_DIVISION_ID = " + ddlDivision.SelectedValue;
+            }
+            //งาน / ฝ่าย
+            if (cbCampusCondition.Checked && ddlWorkDivision.SelectedIndex != 0)
+            {
+                where += " AND PS_WORK_DIVISION_ID = " + ddlWorkDivision.SelectedValue;
+            }
+            //ประเภทบุคลากร
+            if (cbStafftypeCondition.Checked)
+            {
+                where += " AND PS_STAFFTYPE_ID = " + ddlStafftypeCondition.SelectedValue;
+            }
+            //ประเภทเงินจ้าง
+            if (cbBudgetCondition.Checked)
+            {
+                where += " AND PS_BUDGET_ID = " + ddlBudgetCondition.SelectedValue;
+            }
+            //วันที่เข้าทำงาน
+            if (cbInworkDateCondition.Checked)
+            {
+                where += " AND PS_INWORK_DATE >= " + Util.DatabaseToDateSearch(tbInworkDateFrom.Text) + " AND PS_INWORK_DATE <= " + Util.DatabaseToDateSearch(tbInworkDateTo.Text);
+            }
+            //วันที่เกษียณ
+            if (cbRetireDateCondition.Checked)
+            {
+                where += " AND PS_RETIRE_DATE >= " + Util.DatabaseToDateSearch(tbRetireDateFrom.Text) + " AND PS_RETIRE_DATE <= " + Util.DatabaseToDateSearch(tbRetireDateTo.Text);
+            }
+            //อายุ
+            if (cbAgeCondition.Checked)
+            {
+                where += " AND FUNC_AGE(PS_BIRTHDAY_DATE) >= " + tbAgeConditionFrom.Text + " AND FUNC_AGE(PS_BIRTHDAY_DATE) <= " + tbAgeConditionTo.Text;
+            }
+            //สถานะการทำงาน
             if (cbStatusWorkCondition.Checked)
             {
                 where += " AND PS_SW_ID = " + ddlStatusWork.SelectedValue;
             }
+
             tb.Rows.Clear();
   
             {
@@ -575,21 +720,19 @@ namespace WEB_PERSONAL {
 
         protected void lbuExport2_Click(object sender, EventArgs e)
         {
-            /*for (int i = 0; i < 5; i++)
+            Table tb = ((Table)Session["PersonReportTable"]);
+            int cols = tb.Rows[0].Cells.Count;
+            for (int i = 0; i < cols; i++)
             {
                 tb.Rows[0].Cells[i].Style.Add("border", "1px solid #000000");
             }
-            for (int i = 0; i < 15; i++)
+            for (int i = 1; i < tb.Rows.Count; i++)
             {
-                tb.Rows[1].Cells[i].Style.Add("border", "1px solid #000000");
-            }
-            for (int i = 2; i < tb.Rows.Count; i++)
-            {
-                for (int j = 0; j < 15; j++)
+                for (int j = 0; j < cols; j++)
                 {
                     tb.Rows[i].Cells[j].Style.Add("border", "1px solid #000000");
                 }
-            }*/
+            }
 
             Response.ContentType = "application/x-msword";
             Response.AddHeader("Content-Disposition", "attachment;filename=PersonReport.doc");

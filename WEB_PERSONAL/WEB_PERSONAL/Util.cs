@@ -507,7 +507,7 @@ namespace WEB_PERSONAL {
         }
         public static string MinusYear543(string date) {
             string[] ss = date.Split(' ');
-            return ss[0] + " " + ss[1] + " " + (int.Parse(ss[2]) - 543);
+            return ss[0] + " " + ss[1] + " " + (int.Parse(ss[2]));
         }
         public static string ToThaiWordBirthday(string birthday) {
             return ToThaiWord(MinusYear543(birthday));

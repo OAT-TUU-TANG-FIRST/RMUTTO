@@ -5,13 +5,6 @@
             text-align: center;
         }
 
-        .panin {
-            border: 1px solid black;
-            margin: 20px;
-            background-color: rgba(255,255,255,0.6);
-            border-radius: 5px;
-        }
-
         .center1 {
             display: inline-block;
         }
@@ -28,23 +21,23 @@
                     <tr>
                         <td style="text-align: right; margin-right: 5px;">รหัสกลุ่มสาขาวิชาที่สอน :&nbsp;</td>
                         <td style="text-align: left; width: 120px;">
-                            <asp:TextBox ID="txtSearchISCED_ID" runat="server" CssClass="tb5" MaxLength="8"></asp:TextBox>
+                            <asp:TextBox ID="txtSearchISCED_ID" runat="server" CssClass="ps-textbox" MaxLength="8"></asp:TextBox>
                         </td>
                         <td style="text-align: left; width: 30px;"></td>
                         <td style="text-align: right; margin-right: 5px;">รหัสกลุ่มสาขาวิชาที่สอนเก่า :&nbsp;</td>
                         <td style="text-align: left;">
-                            <asp:TextBox ID="txtSearchISCED_ID_OLD" runat="server" CssClass="tb5" MaxLength="4"></asp:TextBox></td>
+                            <asp:TextBox ID="txtSearchISCED_ID_OLD" runat="server" CssClass="ps-textbox" MaxLength="4"></asp:TextBox></td>
 
                     </tr>
                     <tr>
                         <td style="text-align: right; margin-right: 5px;">ชื่อกลุ่มสาขาวิชาที่สอนภาษาไทย :&nbsp;</td>
                         <td style="text-align: left; width: 120px;">
-                            <asp:TextBox ID="txtSearchISCED_NAME_TH" runat="server" CssClass="tb5" MaxLength="250"></asp:TextBox>
+                            <asp:TextBox ID="txtSearchISCED_NAME_TH" runat="server" CssClass="ps-textbox" MaxLength="250"></asp:TextBox>
                         </td>
                         <td style="text-align: left; width: 10px;"></td>
                         <td style="text-align: right; margin-right: 5px;">ชื่อกลุ่มสาขาวิชาที่สอนภาษาอังกฤษ :&nbsp;</td>
                         <td style="text-align: left;">
-                            <asp:TextBox ID="txtSearchISCED_NAME_ENG" runat="server" CssClass="tb5" MaxLength="250"></asp:TextBox></td>
+                            <asp:TextBox ID="txtSearchISCED_NAME_ENG" runat="server" CssClass="ps-textbox" MaxLength="250"></asp:TextBox></td>
                         <td style="text-align: left;">
                             <asp:LinkButton ID="lbuSearch" runat="server" OnClick="lbuSearch_Click" CssClass="ps-button"><img src="Image/Small/search.png" class="icon_left"/>ค้นหา</asp:LinkButton></td>
                         <td style="text-align: left;">
@@ -64,23 +57,23 @@
                     <tr>
                         <td style="text-align: right; margin-right: 5px;">รหัสกลุ่มสาขาวิชาที่สอน :&nbsp;</td>
                         <td style="text-align: left; width: 120px;">
-                            <asp:TextBox ID="txtInsertISCED_ID" runat="server" CssClass="tb5" MaxLength="8"></asp:TextBox>
+                            <asp:TextBox ID="txtInsertISCED_ID" runat="server" CssClass="ps-textbox" MaxLength="8"></asp:TextBox>
                         </td>
                         <td style="text-align: left; width: 30px;"></td>
                         <td style="text-align: right; margin-right: 5px;">รหัสกลุ่มสาขาวิชาที่สอนเก่า :&nbsp;</td>
                         <td style="text-align: left;">
-                            <asp:TextBox ID="txtInsertISCED_ID_OLD" runat="server" CssClass="tb5" MaxLength="4"></asp:TextBox></td>
+                            <asp:TextBox ID="txtInsertISCED_ID_OLD" runat="server" CssClass="ps-textbox" MaxLength="4"></asp:TextBox></td>
 
                     </tr>
                     <tr>
                         <td style="text-align: right; margin-right: 5px;">ชื่อกลุ่มสาขาวิชาที่สอนภาษาไทย :&nbsp;</td>
                         <td style="text-align: left; width: 120px;">
-                            <asp:TextBox ID="txtInsertISCED_NAME_TH" runat="server" CssClass="tb5" MaxLength="250"></asp:TextBox>
+                            <asp:TextBox ID="txtInsertISCED_NAME_TH" runat="server" CssClass="ps-textbox" MaxLength="250"></asp:TextBox>
                         </td>
                         <td style="text-align: left; width: 10px;"></td>
                         <td style="text-align: right; margin-right: 5px;">ชื่อกลุ่มสาขาวิชาที่สอนภาษาอังกฤษ :&nbsp;</td>
                         <td style="text-align: left;">
-                            <asp:TextBox ID="txtInsertISCED_NAME_ENG" runat="server" CssClass="tb5" MaxLength="250"></asp:TextBox></td>
+                            <asp:TextBox ID="txtInsertISCED_NAME_ENG" runat="server" CssClass="ps-textbox" MaxLength="250"></asp:TextBox></td>
                         <td style="text-align: left;">
                             <asp:LinkButton ID="lbuSubmit" runat="server" OnClick="lbuSubmit_Click" CssClass="ps-button"><img src="Image/Small/save.png" class="icon_left"/>ตกลง</asp:LinkButton></td>
                         <td style="text-align: left;">

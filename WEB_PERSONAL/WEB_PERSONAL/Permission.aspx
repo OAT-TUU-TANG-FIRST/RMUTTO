@@ -14,7 +14,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div>
         <div class="ps-header">
-            <img src="Image/Small/wrench.png" />จัดการสิทธิใช้งานระบบ</div>
+            <img src="Image/Small/wrench.png" />จัดการสิทธิ์ใช้งานระบบ</div>
         <div class="ps-box">
             <div class="ps-box-i0">
                 <div class="ps-box-hd10">
@@ -27,7 +27,7 @@
             </div>
             <div class="ps-box-i0" id="d1" runat="server" style="display: none;">
                 <div class="ps-box-hd10">
-                    กำหนดสิทธิการใช้งานระบบให้
+                    กำหนดสิทธิ์การใช้งานระบบให้
                     <asp:Label ID="lbName" runat="server" Text=""></asp:Label>
                 </div>
                 <div class="ps-box-ct10">
@@ -46,8 +46,6 @@
                                     <asp:CheckBox ID="cbAddPerson6" runat="server" Text="การแก้ไขพัฒนาบุคลากร" /></div>
                                 <div>
                                     <asp:CheckBox ID="cbPersonPosition" runat="server" Text="จัดการแต่งตั้งหัวหน้า" /></div>
-                                <div>
-                                    <asp:CheckBox ID="cbStatusPerson" runat="server" Text="ปรับเปลี่ยนสถานะการทำงาน" /></div>
                             </div>
                         </div>
                     </div>

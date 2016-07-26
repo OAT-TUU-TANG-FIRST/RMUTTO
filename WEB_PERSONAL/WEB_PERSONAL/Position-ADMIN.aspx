@@ -5,13 +5,6 @@
             text-align: center;
         }
 
-        .panin {
-            border: 1px solid black;
-            margin: 20px;
-            background-color: rgba(255,255,255,0.6);
-            border-radius: 5px;
-        }
-
         .center1 {
             display: inline-block;
         }
@@ -24,9 +17,9 @@
                 <img src="Image/Small/search.png" />ค้นหาข้อมูล
             </div>
             <div>
-                รหัสระดับ   :&nbsp<asp:TextBox ID="txtSearchPositionID" runat="server" CssClass="tb5" Width="130px" MaxLength="5"></asp:TextBox>
-                ชื่อระดับ   :&nbsp<asp:TextBox ID="txtSearchPositionName" runat="server" CssClass="tb5" Width="230px" MaxLength="100"></asp:TextBox>
-                ตำแหน่งประเภท  :&nbsp<asp:DropDownList ID="ddlSearchPositionSTID" runat="server" CssClass="tb5" Width="150px"></asp:DropDownList>
+                รหัสระดับ   :&nbsp<asp:TextBox ID="txtSearchPositionID" runat="server" CssClass="ps-textbox" Width="130px" MaxLength="5"></asp:TextBox>
+                ชื่อระดับ   :&nbsp<asp:TextBox ID="txtSearchPositionName" runat="server" CssClass="ps-textbox" Width="230px" MaxLength="100"></asp:TextBox>
+                ตำแหน่งประเภท  :&nbsp<asp:DropDownList ID="ddlSearchPositionSTID" runat="server" CssClass="ps-dropdown" Width="150px"></asp:DropDownList>
                 <asp:LinkButton ID="lbuSearch" runat="server" OnClick="lbuSearch_Click" CssClass="ps-button"><img src="Image/Small/search.png" class="icon_left"/>ค้นหา</asp:LinkButton>
                 <asp:LinkButton ID="lbuRefresh" runat="server" OnClick="lbuRefresh_Click" CssClass="ps-button"><img src="Image/Small/refresh.png" class="icon_left"/>รีเฟรช</asp:LinkButton>
 
@@ -43,13 +36,13 @@
                     <tr>
                         <td style="margin-left: auto; margin-right: auto; text-align: center">รหัสระดับ :</td>
                         <td style="text-align: left; width: 80px;">
-                            <asp:TextBox ID="txtInsertPositionID" Width="130px" runat="server" CssClass="tb5" MaxLength="5"></asp:TextBox></td>
+                            <asp:TextBox ID="txtInsertPositionID" Width="130px" runat="server" CssClass="ps-textbox" MaxLength="5"></asp:TextBox></td>
                         <td style="margin-left: auto; margin-right: auto; text-align: center">ชื่อระดับ :</td>
                         <td style="text-align: left; width: 80px;">
-                            <asp:TextBox ID="txtInsertPositionName" Width="230px" runat="server" CssClass="tb5" MaxLength="100"></asp:TextBox></td>
+                            <asp:TextBox ID="txtInsertPositionName" Width="230px" runat="server" CssClass="ps-textbox" MaxLength="100"></asp:TextBox></td>
                         <td style="margin-left: auto; margin-right: auto; text-align: center">ตำแหน่งประเภท :</td>
                         <td style="text-align: left; width: 80px;">
-                            <asp:DropDownList ID="ddlInsertPositionSTID" runat="server" CssClass="tb5" Width="150px"></asp:DropDownList></td>
+                            <asp:DropDownList ID="ddlInsertPositionSTID" runat="server" CssClass="ps-dropdown" Width="150px"></asp:DropDownList></td>
                         <td style="text-align: left;">
                             <asp:LinkButton ID="lbuSubmit" runat="server" OnClick="lbuSubmit_Click" CssClass="ps-button"><img src="Image/Small/save.png" class="icon_left"/>ตกลง</asp:LinkButton></td>
                         <td style="text-align: left;">

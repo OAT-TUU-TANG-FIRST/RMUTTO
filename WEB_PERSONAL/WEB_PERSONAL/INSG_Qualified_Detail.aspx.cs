@@ -54,11 +54,10 @@ namespace WEB_PERSONAL
             Person loginPerson = ps.LoginPerson;
 
             string psID = Request.QueryString["psID"];
-            if(psID == null) {
+            if (psID == null)
+            {
                 psID = loginPerson.CitizenID;
             }
-
-            //Person pp = DatabaseManager.GetPerson(psID);
 
             OracleConnection.ClearAllPools();
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
@@ -80,7 +79,6 @@ namespace WEB_PERSONAL
                         }
                     }
                 }
-            
 
                 using (OracleCommand com = new OracleCommand("SELECT (SELECT NAME_GRADEINSIGNIA_THA FROM INS_GRADEINSIGNIA WHERE ID_GRADEINSIGNIA = TB_INSIG_REQUEST.IR_INSIG_ID) ชื่อเครื่องราช,IR_DATE_GET_INSIG, IR_CURRENT_POSITION ,IR_CURRENT_SALARY,IR_REFERENCE, IR_INSIG_ID FROM TB_INSIG_REQUEST WHERE IR_CITIZEN_ID = '" + psID + "' AND IR_STATUS IN(3,4) AND IR_GET_STATUS = 1", con))
                 {
@@ -106,7 +104,8 @@ namespace WEB_PERSONAL
                                 img.Style.Add("height", "50px");
                                 img.Style.Add("object-fit", "contain");
                                 string fileName;
-                                switch (reader.GetInt32(5)) {
+                                switch (reader.GetInt32(5))
+                                {
                                     case 12: fileName = "บ.ม."; break;
                                     case 11: fileName = "บ.ช."; break;
                                     case 10: fileName = "จ.ม."; break;
@@ -160,16 +159,17 @@ namespace WEB_PERSONAL
                         }
                     }
                 }
-                
-                if(Request.QueryString["psID"] == null) {
-                    using (OracleCommand com = new OracleCommand("UPDATE TB_INSIG_REQUEST SET IR_STATUS = 4 WHERE IR_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND IR_STATUS = 3", con)) {
+
+                if (Request.QueryString["psID"] == null)
+                {
+                    using (OracleCommand com = new OracleCommand("UPDATE TB_INSIG_REQUEST SET IR_STATUS = 4 WHERE IR_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND IR_STATUS = 3", con))
+                    {
                         com.ExecuteNonQuery();
                     }
                 }
-                
+
             }
         }
+    }
 
-    }
-            
-    }
+}

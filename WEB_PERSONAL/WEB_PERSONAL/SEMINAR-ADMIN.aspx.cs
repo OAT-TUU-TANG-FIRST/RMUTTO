@@ -47,6 +47,15 @@ namespace WEB_PERSONAL
             }
         }
 
+        void BindData1()
+        {
+            Seminar S = new Seminar();
+            DataTable dt = S.GetSEMINAR(txtSearchSeminarCitizen.Text, "", "", "", "");
+            GridView1.DataSource = dt;
+            GridView1.DataBind();
+            SetViewState(dt);
+        }
+
         protected void ClearData()
         {
             txtName.Text = "";
@@ -74,114 +83,125 @@ namespace WEB_PERSONAL
             txtComment.Text = "";
         }
 
-        protected bool NeedData()
-        {
-            if (string.IsNullOrEmpty(txtName.Text))
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก ชื่อ')", true);
-                return true;
-            }
-            if (string.IsNullOrEmpty(txtLastName.Text))
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก นามสกุล')", true);
-                return true;
-            }
-            if (string.IsNullOrEmpty(txtPosition.Text))
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก ตำแหน่ง')", true);
-                return true;
-            }
-            if (string.IsNullOrEmpty(txtDegree.Text))
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก ระดับ')", true);
-                return true;
-            }
-            if (string.IsNullOrEmpty(txtCampus.Text))
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก สังกัด')", true);
-                return true;
-            }
-            if (string.IsNullOrEmpty(txtNameOfProject.Text))
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก ชื่อโครงการฝึกอบรม/สัมมนา/ดูงาน')", true);
-                return true;
-            }
-            if (string.IsNullOrEmpty(txtPlace.Text))
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก สถานที่ฝึกอบรม/สัมมนา/ดูงาน')", true);
-                return true;
-            }
-            if (string.IsNullOrEmpty(txtDateFrom.Text))
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก วันที่เริ่ม')", true);
-                return true;
-            }
-            if (string.IsNullOrEmpty(txtDateTO.Text))
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก วันที่สิ้นสุด')", true);
-                return true;
-            }
-            if (string.IsNullOrEmpty(txtBudget.Text))
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก ค่าใช้จ่ายตลอดโครงการ')", true);
-                return true;
-            }
-            if (string.IsNullOrEmpty(txtSupportBudget.Text))
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก แหล่งงบประมาณที่ได้รับการสนับสนุน')", true);
-                return true;
-            }
-            if (string.IsNullOrEmpty(txtCertificate.Text))
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก ประกาศนียบัตรที่ได้รับ')", true);
-                return true;
-            }
-            if (string.IsNullOrEmpty(txtAbstract.Text))
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก สรุปผลการฝึกอบรม/สัมมนา/ดูงาน')", true);
-                return true;
-            }
-            if (string.IsNullOrEmpty(txtResult.Text))
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก ผลที่ได้รับจากการฝึกอบรม/สัมมนา/ดูงาน')", true);
-                return true;
-            }
-            if (string.IsNullOrEmpty(txtShow1.Text))
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก การนำผลงานที่ได้รับจากการฝึกอบรม/สัมมนา/ดูงาน : ด้านการเรียนการสอน')", true);
-                return true;
-            }
-            if (string.IsNullOrEmpty(txtShow2.Text))
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก การนำผลงานที่ได้รับจากการฝึกอบรม/สัมมนา/ดูงาน : ด้านการวิจัย')", true);
-                return true;
-            }
-            if (string.IsNullOrEmpty(txtShow3.Text))
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก การนำผลงานที่ได้รับจากการฝึกอบรม/สัมมนา/ดูงาน : ด้านการบริการวิชาการ')", true);
-                return true;
-            }
-            if (string.IsNullOrEmpty(txtShow4.Text))
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก การนำผลงานที่ได้รับจากการฝึกอบรม/สัมมนา/ดูงาน : ด้านอื่นๆ')", true);
-                return true;
-            }
-            if (string.IsNullOrEmpty(txtProblem.Text))
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก ปัญหาอุปสรรคในการฝึกอบรม/สัมมนา/ดูงาน')", true);
-                return true;
-            }
-            if (string.IsNullOrEmpty(txtComment.Text))
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก ความคิดเห็น/ข้อเสนอแนะอื่นๆ')", true);
-                return true;
-            }
-            return false;
-        }
-
         protected void lbuSubmit_Click(object sender, EventArgs e)
         {
-            // if (NeedData()) { return; };
+            if (txtName.Text == "")
+            {
+                notification.Attributes["class"] = "alert alert_danger";
+                notification.InnerHtml = "";
+                notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
+                notification.InnerHtml += "<div>กรุณากรอกชื่อ</div>";
+                return;
+            }
+            else
+            {
+                notification.Attributes["class"] = "none";
+                notification.InnerHtml = "";
+            }
+            if (txtLastName.Text == "")
+            {
+                notification.Attributes["class"] = "alert alert_danger";
+                notification.InnerHtml = "";
+                notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
+                notification.InnerHtml += "<div>กรุณากรอกนามสกุล</div>";
+                return;
+            }
+            else
+            {
+                notification.Attributes["class"] = "none";
+                notification.InnerHtml = "";
+            }
+            if (txtPosition.Text == "")
+            {
+                notification.Attributes["class"] = "alert alert_danger";
+                notification.InnerHtml = "";
+                notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
+                notification.InnerHtml += "<div>กรุณากรอกตำแหน่ง</div>";
+                return;
+            }
+            else
+            {
+                notification.Attributes["class"] = "none";
+                notification.InnerHtml = "";
+            }
+            if (txtDegree.Text == "")
+            {
+                notification.Attributes["class"] = "alert alert_danger";
+                notification.InnerHtml = "";
+                notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
+                notification.InnerHtml += "<div>กรุณากรอกระดับ</div>";
+                return;
+            }
+            else
+            {
+                notification.Attributes["class"] = "none";
+                notification.InnerHtml = "";
+            }
+            if (txtCampus.Text == "")
+            {
+                notification.Attributes["class"] = "alert alert_danger";
+                notification.InnerHtml = "";
+                notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
+                notification.InnerHtml += "<div>กรุณากรอกสังกัด</div>";
+                return;
+            }
+            else
+            {
+                notification.Attributes["class"] = "none";
+                notification.InnerHtml = "";
+            }
+            if (txtNameOfProject.Text == "")
+            {
+                notification.Attributes["class"] = "alert alert_danger";
+                notification.InnerHtml = "";
+                notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
+                notification.InnerHtml += "<div>กรุณากรอกชื่อโครงการฝึกอบรม/สัมมนา/ดูงาน</div>";
+                return;
+            }
+            else
+            {
+                notification.Attributes["class"] = "none";
+                notification.InnerHtml = "";
+            }
+            if (txtPlace.Text == "")
+            {
+                notification.Attributes["class"] = "alert alert_danger";
+                notification.InnerHtml = "";
+                notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
+                notification.InnerHtml += "<div>กรุณากรอกสถานที่ฝึกอบรม/สัมมนา/ดูงาน</div>";
+                return;
+            }
+            else
+            {
+                notification.Attributes["class"] = "none";
+                notification.InnerHtml = "";
+            }
+            if (txtDateFrom.Text == "" && txtDateTO.Text == "")
+            {
+                notification.Attributes["class"] = "alert alert_danger";
+                notification.InnerHtml = "";
+                notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
+                notification.InnerHtml += "<div>กรุณากรอกระยะเวลาการฝึกอบรม/สัมมนา/ดูงาน ตั้งแต่วันที่ - ถึงวันที่</div>";
+                return;
+            }
+            else
+            {
+                notification.Attributes["class"] = "none";
+                notification.InnerHtml = "";
+            }
+            if (txtSupportBudget.Text == "")
+            {
+                notification.Attributes["class"] = "alert alert_danger";
+                notification.InnerHtml = "";
+                notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
+                notification.InnerHtml += "<div>กรุณากรอกแหล่งงบประมาณที่ได้รับการสนับสนุน</div>";
+                return;
+            }
+            else
+            {
+                notification.Attributes["class"] = "none";
+                notification.InnerHtml = "";
+            }
 
             Seminar S = new Seminar();
             PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
@@ -221,11 +241,6 @@ namespace WEB_PERSONAL
             S.UpdateSEMINAR();
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('อัพเดทข้อมูลเรียบร้อย')", true);
             ClearData();
-            MultiView1.ActiveViewIndex = 0;
-        }
-
-        protected void lbuBackV1_Click(object sender, EventArgs e)
-        {
             MultiView1.ActiveViewIndex = 0;
         }
 
@@ -289,26 +304,22 @@ namespace WEB_PERSONAL
             }
         }
 
-        protected void modUpdateCommand(object sender, GridViewUpdateEventArgs e)
-        {
-            GridViewRow row = Gridview1.SelectedRow;
-            txtName.Text = row.Cells[0].Text;
-        }
         protected void modDeleteCommand(Object sender, GridViewDeleteEventArgs e)
         {
-            int id = Convert.ToInt32(Gridview1.DataKeys[e.RowIndex].Value);
+            int id = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Value);
             Seminar s = new Seminar();
             s.SEMINAR_ID = id;
             s.DeleteSEMINAR();
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ลบข้อมูลเรียบร้อย')", true);
 
-            Gridview1.EditIndex = -1;
+            GridView1.EditIndex = -1;
+            BindData1();
         }
         protected void myGridViewSeminar_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            Gridview1.PageIndex = e.NewPageIndex;
-            Gridview1.DataSource = GetViewState();
-            Gridview1.DataBind();
+            GridView1.PageIndex = e.NewPageIndex;
+            GridView1.DataSource = GetViewState();
+            GridView1.DataBind();
         }
         protected void lbuSearch_Click(object sender, EventArgs e)
         {
@@ -321,66 +332,10 @@ namespace WEB_PERSONAL
             {
                 Seminar s = new Seminar();
                 DataTable dt = s.GetSEMINAR(txtSearchSeminarCitizen.Text,"", "","","");
-                Gridview1.DataSource = dt;
-                Gridview1.DataBind();
+                GridView1.DataSource = dt;
+                GridView1.DataBind();
                 SetViewState(dt);
             }
-            //
-            /*if (string.IsNullOrEmpty(txtSearchSeminarName.Text))
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก ชื่อ')", true);
-                return;
-            }
-            else
-            {
-                Seminar s = new Seminar();
-                DataTable dt = s.GetSEMINAR("", txtSearchSeminarName.Text, "", "", "");
-                Gridview1.DataSource = dt;
-                Gridview1.DataBind();
-                SetViewState(dt);
-            }
-            //
-            if (string.IsNullOrEmpty(txtSearchSeminarLastName.Text))
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก นามสกุล')", true);
-                return;
-            }
-            else
-            {
-                Seminar s = new Seminar();
-                DataTable dt = s.GetSEMINAR("", "", txtSearchSeminarLastName.Text, "", "");
-                Gridview1.DataSource = dt;
-                Gridview1.DataBind();
-                SetViewState(dt);
-            }
-            //
-            if (string.IsNullOrEmpty(txtSearchSeminarNameOfProject.Text))
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก ชื่อโครงการฝึกอบรม/สัมมนา/ดูงาน')", true);
-                return;
-            }
-            else
-            {
-                Seminar s = new Seminar();
-                DataTable dt = s.GetSEMINAR("", "", "", txtSearchSeminarNameOfProject.Text, "");
-                Gridview1.DataSource = dt;
-                Gridview1.DataBind();
-                SetViewState(dt);
-            }
-            //
-            if (string.IsNullOrEmpty(txtSearchSeminarPlace.Text))
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก สถานที่ฝึกอบรม/สัมมนา/ดูงาน')", true);
-                return;
-            }
-            else
-            {
-                Seminar s = new Seminar();
-                DataTable dt = s.GetSEMINAR("", "", "", "", txtSearchSeminarPlace.Text);
-                Gridview1.DataSource = dt;
-                Gridview1.DataBind();
-                SetViewState(dt);
-            }*/
         } 
 
         protected void lbuRefresh_Click(object sender, EventArgs e)
@@ -388,9 +343,42 @@ namespace WEB_PERSONAL
             ClearData();
             Seminar s = new Seminar();
             DataTable dt = s.GetSEMINAR("","","","","");
-            Gridview1.DataSource = dt;
-            Gridview1.DataBind();
+            GridView1.DataSource = dt;
+            GridView1.DataBind();
             SetViewState(dt);
+        }
+
+        protected void GridView1_SelectedIndexChanged1(object sender, EventArgs e)
+        {
+            //GridViewRow row = GridView1.SelectedRow;
+            //txtName.Text = row.Cells[0].Text;
+            //txtLastName.Text = row.Cells[1].Text;
+
+            //txtName.Text = GridView1.SelectedRow.Cells[1].Text;
+
+            txtName.Text = GridView1.SelectedRow.Cells[0].Text;
+            txtLastName.Text = GridView1.SelectedRow.Cells[1].Text;
+            txtPosition.Text = GridView1.SelectedRow.Cells[2].Text;
+            txtDegree.Text = GridView1.SelectedRow.Cells[3].Text;
+            txtCampus.Text = GridView1.SelectedRow.Cells[4].Text;
+            txtNameOfProject.Text = GridView1.SelectedRow.Cells[5].Text;
+            txtPlace.Text = GridView1.SelectedRow.Cells[6].Text;
+            txtDateFrom.Text = GridView1.SelectedRow.Cells[7].Text;
+            /*txtDateTO.Text = GridView1.SelectedRow.Cells[8].Text;
+            txtDay.Text = GridView1.SelectedRow.Cells[9].Text;
+            txtMonth.Text = GridView1.SelectedRow.Cells[10].Text;
+            txtYear.Text = GridView1.SelectedRow.Cells[11].Text;
+            txtBudget.Text = GridView1.SelectedRow.Cells[12].Text;
+            txtSupportBudget.Text = GridView1.SelectedRow.Cells[13].Text;
+            txtCertificate.Text = GridView1.SelectedRow.Cells[14].Text;
+            txtAbstract.Text = GridView1.SelectedRow.Cells[15].Text;
+            txtResult.Text = GridView1.SelectedRow.Cells[16].Text;
+            txtShow1.Text = GridView1.SelectedRow.Cells[17].Text;
+            txtShow2.Text = GridView1.SelectedRow.Cells[18].Text;
+            txtShow3.Text = GridView1.SelectedRow.Cells[19].Text;
+            txtShow4.Text = GridView1.SelectedRow.Cells[20].Text;
+            txtProblem.Text = GridView1.SelectedRow.Cells[21].Text;
+            txtComment.Text = GridView1.SelectedRow.Cells[22].Text;*/
         }
     }
 }

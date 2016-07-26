@@ -3,7 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="default_page_style">
-        <div class="ps-header"><img src="Image/Small/medal.png" />รายชื่อผู้มีสิทธิได้รับเครื่องราชฯ</div>
+        <div class="ps-header"><img src="Image/Small/medal.png" />รายชื่อผู้มีสิทธิ์ได้รับเครื่องราชฯ</div>
         <div style="text-align: center;">
             <div class="ps-div-title-red"><img src="Image/Small/search.png"/ class="icon_left">ค้นหาข้อมูล</div>
             <table class="ps-table-1" style="display: inline-block; text-align: left;">

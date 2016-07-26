@@ -2,7 +2,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script>
         $(function () {
+            
             $("#ContentPlaceHolder1_tbBirthdayDateFrom, #ContentPlaceHolder1_tbBirthdayDateTo").datepicker($.datepicker.regional["th"]);
+            $("#ContentPlaceHolder1_tbInworkDateFrom, #ContentPlaceHolder1_tbInworkDateTo").datepicker($.datepicker.regional["th"]);
+            $("#ContentPlaceHolder1_tbRetireDateFrom, #ContentPlaceHolder1_tbRetireDateTo").datepicker($.datepicker.regional["th"]);
+            $("#ContentPlaceHolder1_tbAgeConditionFrom, #ContentPlaceHolder1_tbAgeConditionTo").datepicker($.datepicker.regional["th"]);
         });
         function toggle(source, type) {
             var checkboxes = document.getElementsByName(type);
@@ -14,7 +18,6 @@
             var checkbox1 = document.getElementById(id);
             var checkbox2 = document.getElementById(source);
             checkbox1.checked = checkbox2.checked;
-
         }
     </script>
 </asp:Content>
@@ -200,11 +203,11 @@
                         <b>เลือกทั้งหมด</b>
                     </div>
                     <div>
-                        <asp:CheckBox ID="cbCitizenIDCondition" runat="server" name="condition" onchange="match('ContentPlaceHolder1_cbCitizenIDCondition', 'ContentPlaceHolder1_cbCitizenID')" />เลขบัตรประชาชน
+                        <asp:CheckBox ID="cbCitizenIDCondition" runat="server" name="condition" />เลขบัตรประชาชน
                         <asp:textbox ID="tbCitizenIDCondition" runat="server" MaxLength="13" CssClass="ps-textbox" placeholder="เลขบัตรประชาชน"></asp:textbox>
                     </div>
                     <div>
-                        <asp:CheckBox ID="cbRankCondition" runat="server" name="condition" onchange="match('ContentPlaceHolder1_cbRankCondition', 'ContentPlaceHolder1_cbRank')"/>ยศ
+                        <asp:CheckBox ID="cbRankCondition" runat="server" name="condition" />ยศ
                         <asp:DropDownList ID="ddlRank" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
                     </div>
                     <div>
@@ -240,7 +243,9 @@
                         <asp:CheckBox ID="cbBloodCondition" runat="server" name="condition" />กรุ๊ปเลือด
                         <asp:DropDownList ID="ddlBloodCondition" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
                     </div>
+
                     <div class="ps-separator-black"></div>
+
                     <div>
                         <asp:CheckBox ID="cbEmailCondition" runat="server" name="condition" />อีเมล
                         <asp:textbox ID="tbEmailCondition" runat="server" CssClass="ps-textbox" placeholder="abcd1234@gmail.com"></asp:textbox>
@@ -281,25 +286,41 @@
                     </div>
                     <div>
                         <asp:CheckBox ID="cbAddressCondition" runat="server" name="condition" />ที่อยู่ตามทะเบียนบ้าน
+                        <asp:CheckBox ID="cbAddressCondition2" runat="server" name="condition" />ที่อยู่ปัจจุบัน
                         <asp:DropDownList ID="ddlAddressProvinceCondition" runat="server" CssClass="ps-dropdown" AutoPostBack="True" OnSelectedIndexChanged="ddlProvince_SelectedIndexChanged"></asp:DropDownList>
                         <asp:DropDownList ID="ddlAddressAmphurCondition" runat="server" CssClass="ps-dropdown" AutoPostBack="True" OnSelectedIndexChanged="ddlAmphur_SelectedIndexChanged"></asp:DropDownList>
                         <asp:DropDownList ID="ddlAddressDistrictCondition" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
                     </div>
-                    <div>
-                        <asp:CheckBox ID="cbAddressCondition2" runat="server" name="condition" />ที่อยู่ปัจจุบัน
-                        <asp:DropDownList ID="ddlAddressProvinceCondition2" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
-                        <asp:DropDownList ID="ddlAddressAmphurCondition2" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
-                        <asp:DropDownList ID="ddlAddressDistrictCondition2" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
-                    </div>
+                    
                     <div class="ps-separator-black"></div>
 
-
-
-
-
-
-
-
+                    <div>
+                        <asp:CheckBox ID="cbCampusCondition" runat="server" name="condition" />วิทยาเขต
+                        <asp:DropDownList ID="ddlCampus" runat="server" CssClass="ps-dropdown" OnSelectedIndexChanged="ddlCampus_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                        <asp:DropDownList ID="ddlFaculty" runat="server" CssClass="ps-dropdown" OnSelectedIndexChanged="ddlFaculty_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                        <asp:DropDownList ID="ddlDivision" runat="server" CssClass="ps-dropdown" OnSelectedIndexChanged="ddlDivision_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                        <asp:DropDownList ID="ddlWorkDivision" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
+                    </div>
+                    <div>
+                        <asp:CheckBox ID="cbStafftypeCondition" runat="server" name="condition" />ประเภทบุคลากร
+                        <asp:DropDownList ID="ddlStafftypeCondition" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
+                    </div>
+                    <div>
+                        <asp:CheckBox ID="cbBudgetCondition" runat="server" name="condition" />ประเภทเงินจ้าง
+                        <asp:DropDownList ID="ddlBudgetCondition" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
+                    </div>
+                    <div>
+                        <asp:CheckBox ID="cbInworkDateCondition" runat="server" name="condition" />วันที่เข้าทำงาน
+                        <asp:TextBox ID="tbInworkDateFrom" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                        <span style="color: #808080;">ถึง</span>
+                        <asp:TextBox ID="tbInworkDateTo" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                    </div>
+                    <div>
+                        <asp:CheckBox ID="cbRetireDateCondition" runat="server" name="condition" />วันที่เกษียณ
+                        <asp:TextBox ID="tbRetireDateFrom" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                        <span style="color: #808080;">ถึง</span>
+                        <asp:TextBox ID="tbRetireDateTo" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                    </div>
                     <div>
                         <asp:CheckBox ID="cbAgeCondition" runat="server" name="condition" />อายุ
                         <asp:TextBox ID="tbAgeConditionFrom" runat="server" Width="50" CssClass="ps-textbox"></asp:TextBox>
@@ -307,15 +328,11 @@
                         <asp:TextBox ID="tbAgeConditionTo" runat="server" Width="50" CssClass="ps-textbox"></asp:TextBox>
                     </div>
                     <div>
-                        <asp:CheckBox ID="cbCampusCondition" runat="server" name="condition" />วิทยาเขต
-                        <asp:DropDownList ID="ddlCampus" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
-                    </div>
-                    
-                    <div>
                         <asp:CheckBox ID="cbStatusWorkCondition" runat="server" name="condition" />สถานะการทำงาน
                         <asp:DropDownList ID="ddlStatusWork" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
                     </div>
                 </div>
+
             </div>
             <div style="text-align: center; margin-top: 10px;">
                 <asp:LinkButton ID="lbuSearch" runat="server" OnClick="lbuSearch_Click" CssClass="ps-button"><img src="Image/Small/search.png" class="icon_left"/>ค้นหา</asp:LinkButton>
@@ -326,7 +343,7 @@
             <asp:LinkButton ID="lbuExport" runat="server" CssClass="ps-button" OnClick="lbuExport_Click"><img src="Image/Small/excel.png" class="icon_left"/>Export</asp:LinkButton>
             <asp:LinkButton ID="lbuExport2" runat="server" CssClass="ps-button" OnClick="lbuExport2_Click"><img src="Image/Small/word.png" class="icon_left"/>Export</asp:LinkButton>
         </div>
-        <div style="overflow-x:auto; width:1200px">
+        <div style="overflow-x:auto; width:4600px">
             <asp:Table ID="tb" runat="server" CssClass="ps-table-1" Style="margin-top: 10px;"></asp:Table>
         </div>
     </div>
