@@ -796,6 +796,15 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.HtmlControls.HtmlTable idPositionShowGover;
         
         /// <summary>
+        /// tbDateGetPositionGoverTab4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbDateGetPositionGoverTab4;
+        
+        /// <summary>
         /// ddlTab4AdminPositionDegreeRow2 control.
         /// </summary>
         /// <remarks>
@@ -839,6 +848,15 @@ namespace WEB_PERSONAL {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlTable idPositionShowOfficeEmp;
+        
+        /// <summary>
+        /// tbDateGetPositionEMPTab4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbDateGetPositionEMPTab4;
         
         /// <summary>
         /// ddlTab4EmpPositionRow3 control.

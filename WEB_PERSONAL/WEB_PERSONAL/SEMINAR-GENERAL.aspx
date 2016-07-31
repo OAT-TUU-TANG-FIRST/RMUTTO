@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="SEMINAR-GENERAL.aspx.cs" Inherits="WEB_PERSONAL.SEMINAR_GENERAL" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="SEMINAR-GENERAL.aspx.cs" Inherits="WEB_PERSONAL.SEMINAR_GENERAL" MaintainScrollPositionOnPostback="true" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script>
         function pageLoad(sender, args) {
@@ -12,10 +12,9 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div>
-        <div class="ps-header">
-            <img src="Image/Small/list.png" />ข้อมูลการฝึกอบรม/สัมมนา/ดูงาน
-        </div>
+    <asp:Panel ID="Panel0" runat="server" DefaultButton="lbuSubmit">
+        <div class="ps-header"><img src="Image/Small/add.png" />เพิ่มข้อมูลการพัฒนาบุคลากร</div>
+    </asp:Panel>
         <asp:ScriptManager ID="ScriptManager1" runat="server" />
         <div id="notification" runat="server"></div>
         <div>
@@ -68,8 +67,8 @@
                             <tr>
                                 <td>ระยะเวลาการฝึกอบรม/สัมมนา/ดูงาน</td>
                                 <td>
-                                    ตั้งแต่วันที่ <asp:TextBox ID="txtDateFrom" runat="server" Width="180px" MaxLength="12" CssClass="ps-textbox" OnTextChanged="txtDateFrom_TextChanged" AutoPostBack="True" ></asp:TextBox>
-                                    ถึงวันที่ <asp:TextBox ID="txtDateTO" runat="server" MaxLength="12" Width="180px" OnTextChanged="txtDateTO_TextChanged" CssClass="ps-textbox" AutoPostBack="True" ></asp:TextBox><span class="textred">*</span>
+                                    ตั้งแต่วันที่ <asp:TextBox ID="txtDateFrom" runat="server" Width="180px" MaxLength="12" CssClass="ps-textbox" AutoPostBack="True" ></asp:TextBox>
+                                    ถึงวันที่ <asp:TextBox ID="txtDateTO" runat="server" MaxLength="12" Width="180px" OnTextChanged="txtDateTO_TextChanged" CssClass="ps-textbox" AutoPostBack="True" style="height: 21px" ></asp:TextBox><span class="textred">*</span>
                                 </td>
                             </tr>
                             <tr>
@@ -172,5 +171,5 @@
 
             </asp:MultiView>
         </div>
-    </div>
+    
 </asp:Content>

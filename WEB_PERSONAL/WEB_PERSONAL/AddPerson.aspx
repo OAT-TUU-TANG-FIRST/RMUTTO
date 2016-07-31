@@ -23,8 +23,7 @@
     <asp:ScriptManager ID="ScriptManager1" runat="server" />
     <div class="default_page_style">
 
-        <div class="ps-header">
-            <img src="Image/Small/person2.png" />เพิ่มข้อมูลบุคลากร</div>
+        <div class="ps-header"><img src="Image/Small/add.png" />เพิ่มข้อมูลบุคลากร</div>
 
         <div id="notification" runat="server"></div>
 

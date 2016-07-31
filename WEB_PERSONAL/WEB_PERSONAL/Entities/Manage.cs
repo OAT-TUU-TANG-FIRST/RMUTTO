@@ -158,7 +158,7 @@ namespace WEB_PERSONAL.Entities
 
         public bool CheckUseTitleName()
         {
-            bool result = true;
+            bool result = false;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
 
             // Create the command
@@ -175,7 +175,7 @@ namespace WEB_PERSONAL.Entities
                 int count = (int)(decimal)command.ExecuteScalar();
                 if (count >= 1)
                 {
-                    result = false;
+                    result = true;
                 }
 
             }

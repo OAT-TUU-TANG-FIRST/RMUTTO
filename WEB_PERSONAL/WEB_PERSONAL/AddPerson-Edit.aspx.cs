@@ -113,6 +113,20 @@ namespace WEB_PERSONAL
             
         }
 
+        protected void ClearMiddleTab4()
+        {
+            tbDateGetPositionGoverTab4.Text = "";
+            ddlTab4AdminPositionDegreeRow2.SelectedIndex = 0;
+            ddlTab4DirectPositionDegreeRow2.SelectedIndex = 0;
+            ddlTab4AcadPositionDegreeRow2.SelectedIndex = 0;
+            ddlTab4GeneralPositionDegreeRow2.SelectedIndex = 0;
+        }
+        protected void ClearRightTab4()
+        {
+            tbDateGetPositionEMPTab4.Text = "";
+            ddlTab4EmpPositionRow3.SelectedIndex = 0;
+        }
+
         private void selectTab(string _tab) {
             divState1.Visible = false;
             divTab1.Visible = false;
@@ -700,7 +714,8 @@ namespace WEB_PERSONAL
                     }
                     else
                     {
-                        //กลาง
+                        //ก่อนที่จะเริ่มใหม่
+                        //กลาง ////////////////////////////
                         PS_PERSON P0 = new PS_PERSON();
                         P0.PS_WORK_POS_ID = Convert.ToInt32(ddlTab4PositionWorkRow1.SelectedValue);
                         P0.PS_ADMIN_POS_ID = Convert.ToInt32(ddlTab4AdminPositionRow1.SelectedValue);
@@ -714,13 +729,14 @@ namespace WEB_PERSONAL
 
                         TB_POSITION_DEGREE_HISTORY_GOVER P1 = new TB_POSITION_DEGREE_HISTORY_GOVER();
                         P1.PDH_CITIZEN_ID = p;
-                        P1.PDH_DATE_START = DateTime.Now;
+                        P1.PDH_DATE_START = Util.ODT(tbDateGetPositionGoverTab4.Text);
                         P1.POSI_ADMIN = Convert.ToInt32(ddlTab4AdminPositionDegreeRow2.SelectedValue);
                         P1.POSI_DIRECT = Convert.ToInt32(ddlTab4DirectPositionDegreeRow2.SelectedValue);
                         P1.POSI_ACAD = Convert.ToInt32(ddlTab4AcadPositionDegreeRow2.SelectedValue);
                         P1.POSI_GENERAL = Convert.ToInt32(ddlTab4GeneralPositionDegreeRow2.SelectedValue);
                         P1.INSERT_POSI_GOVER_ONLY();
 
+                        ClearMiddleTab4();
                         DataTable dt = P1.SELECT_POSI_GOVER_ONLY(p, "", "", "", "", "");
                         GridviewPDHgover.DataSource = dt;
                         GridviewPDHgover.DataBind();
@@ -807,10 +823,11 @@ namespace WEB_PERSONAL
 
                         TB_POSITION_DEGREE_HISTORY_EMP P2 = new TB_POSITION_DEGREE_HISTORY_EMP();
                         P2.PDH_CITIZEN_ID = p;
-                        P2.PDH_DATE_START = DateTime.Now;
+                        P2.PDH_DATE_START = Util.ODT(tbDateGetPositionEMPTab4.Text);
                         P2.POSI_EMP_GROUP = Convert.ToInt32(ddlTab4EmpPositionRow3.SelectedValue);
                         P2.INSERT_POSI_EMP_ONLY();
 
+                        ClearRightTab4();
                         DataTable dt = P2.SELECT_POSI_EMP_ONLY(p, "", "");
                         GridviewPDHemp.DataSource = dt;
                         GridviewPDHemp.DataBind();
@@ -1440,7 +1457,7 @@ namespace WEB_PERSONAL
                 ppp.Controls.Add(img);
 
                 Label lb = new Label();
-                lb.Text = "ค้นหารายชื่อพนักงาน";
+                lb.Text = "ค้นหารายชื่อ";
                 ppp.Controls.Add(lb);
             }
             {
@@ -1450,13 +1467,14 @@ namespace WEB_PERSONAL
                 pp.Controls.Add(ppp);
 
                 Label lb = new Label();
-                lb.Text = "รหัสบัตรประชาชน : ";
+                lb.Text = "เลขบัตรประจำตัวประชาชน 13 หลัก : ";
                 ppp.Controls.Add(lb);
 
                 TextBox tbSearchCitizenID = new TextBox();
                 tbSearchCitizenID.Style.Add("margin-right", "5px");
                 tbSearchCitizenID.CssClass = "ps-textbox";
                 tbSearchCitizenID.MaxLength = 13;
+                tbSearchCitizenID.Width = Unit.Parse("230px");
                 ppp.Controls.Add(tbSearchCitizenID);
 
                 LinkButton lbuSearchPerson = new LinkButton();

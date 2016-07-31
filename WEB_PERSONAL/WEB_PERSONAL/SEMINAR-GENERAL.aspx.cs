@@ -172,6 +172,20 @@ namespace WEB_PERSONAL {
                 notification.Attributes["class"] = "none";
                 notification.InnerHtml = "";
             }
+
+            // วันที่ติดลบ ไม่ให้
+            DateTime dtFromDate = Util.ToDateTimeOracle(txtDateFrom.Text);
+            DateTime dtToDate = Util.ToDateTimeOracle(txtDateTO.Text);
+            int totalDay = (int)(dtToDate - dtFromDate).TotalDays + 1;
+            if (totalDay <= 0)
+            {
+                notification.Attributes["class"] = "alert alert_danger";
+                notification.InnerHtml = "";
+                notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
+                notification.InnerHtml += "<div> - ระยะเวลาการฝึกอบรม/สัมมนา/ดูงาน ตั้งแต่วันที่ - ถึงวันที่ : วันที่ไม่ถูกต้อง</div>";
+                return;
+            }
+
             if (txtSupportBudget.Text == "")
             {
                 notification.Attributes["class"] = "alert alert_danger";
@@ -186,6 +200,8 @@ namespace WEB_PERSONAL {
                 notification.InnerHtml = "";
             }
 
+            Panel0.Visible = false;
+
             Seminar S = new Seminar();
             PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
             Person PP = ps.LoginPerson;
@@ -196,8 +212,8 @@ namespace WEB_PERSONAL {
             S.SEMINAR_CAMPUS = txtCampus.Text;
             S.SEMINAR_NAMEOFPROJECT = txtNameOfProject.Text;
             S.SEMINAR_PLACE = txtPlace.Text;
-            S.SEMINAR_DATETIME_FROM = DateTime.Parse(txtDateFrom.Text);
-            S.SEMINAR_DATETIME_TO = DateTime.Parse(txtDateTO.Text);
+            S.SEMINAR_DATETIME_FROM = Util.ODT(txtDateFrom.Text);
+            S.SEMINAR_DATETIME_TO = Util.ODT(txtDateTO.Text);
             S.SEMINAR_YEAR = Convert.ToInt32(txtYear.Text);
             S.SEMINAR_MONTH = Convert.ToInt32(txtMonth.Text);
             S.SEMINAR_DAY = Convert.ToInt32(txtDay.Text);
@@ -215,33 +231,29 @@ namespace WEB_PERSONAL {
             S.SEMINAR_SIGNED_DATETIME = DateTime.Now;
             S.CITIZEN_ID = PP.CitizenID;
 
-            string[] splitDate1 = txtDateFrom.Text.Split(' ');
-            string[] splitDate2 = txtDateTO.Text.Split(' ');
-            S.SEMINAR_DATETIME_FROM = new DateTime(Convert.ToInt32(splitDate1[2]), Util.MonthToNumber(splitDate1[1]), Convert.ToInt32(splitDate1[0]));
-            S.SEMINAR_DATETIME_TO = new DateTime(Convert.ToInt32(splitDate2[2]), Util.MonthToNumber(splitDate2[1]), Convert.ToInt32(splitDate2[0]));
-
-            DateTime SEMINAR_SIGNED_DATETIME = DateTime.Now;
             S.InsertSEMINAR();
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('เพิ่มข้อมูลเรียบร้อย')", true);
             ClearData();
-            MultiView1.ActiveViewIndex = 0;
+            MultiView1.ActiveViewIndex = 1;
         }
 
         protected void txtDateTO_TextChanged(object sender, EventArgs e) {
-            DateTime df = DateTime.Parse(txtDateFrom.Text);
-            DateTime dt = DateTime.Parse(txtDateTO.Text);
-            int day = (int)(dt - df).TotalDays + 1;
+            DateTime dtFromDate = Util.ToDateTimeOracle(txtDateFrom.Text);
+            DateTime dtToDate = Util.ToDateTimeOracle(txtDateTO.Text);
+            int totalDay = (int)(dtToDate - dtFromDate).TotalDays + 1;
+            if (totalDay <= 0)
+            {
+                notification.Attributes["class"] = "alert alert_danger";
+                notification.InnerHtml = "";
+                notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
+                notification.InnerHtml += "<div> - ระยะเวลาการฝึกอบรม/สัมมนา/ดูงาน ตั้งแต่วันที่ - ถึงวันที่ : วันที่ไม่ถูกต้อง</div>";
+                return;
+            }
+            else
+            {
+                notification.Attributes["class"] = "none";
+                notification.InnerHtml = "";
+            }
 
-            int year = (day / 365);
-            int month = (day % 365) / 30;
-            day = (day % 365) % 30;
-
-            txtYear.Text = "" + year;
-            txtMonth.Text = "" + month;
-            txtDay.Text = "" + day;
-        }
-
-        protected void txtDateFrom_TextChanged(object sender, EventArgs e) {
             DateTime df = DateTime.Parse(txtDateFrom.Text);
             DateTime dt = DateTime.Parse(txtDateTO.Text);
             int day = (int)(dt - df).TotalDays + 1;
@@ -256,7 +268,6 @@ namespace WEB_PERSONAL {
         }
 
         protected void chkBox_CheckedChanged(object sender, EventArgs e) {
-            txtSupportBudget.Text = chkBox.Checked.ToString();
             if (chkBox.Checked) {
                 txtCertificate.Enabled = true;
                 txtCertificate.Text = "";

@@ -19,6 +19,7 @@ namespace WEB_PERSONAL
 
             if (!IsPostBack)
             {
+                txtSearchSeminarCitizen.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
                 txtBudget.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
             }
 
@@ -85,6 +86,19 @@ namespace WEB_PERSONAL
 
         protected void lbuSubmit_Click(object sender, EventArgs e)
         {
+            if(GridView1.SelectedRow == null)
+            {
+                notification.Attributes["class"] = "alert alert_danger";
+                notification.InnerHtml = "";
+                notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณาทำการค้นหารายชื่อ และเลือกข้อมูลที่ต้องการจะแก้ไข</strong></div>";
+                notification.InnerHtml += "<div>กรุณากรอกรหัสบัตรประชาชน 13 หลักที่ช่องค้นหาและเลือกข้อมูลที่ต้องการแก้ไข เมื่อแก้ไขเสร็จแล้วให้กดปุ่มบันทึกอีกครั้ง</div>";
+                return;
+            }
+            else
+            {
+                notification.Attributes["class"] = "none";
+                notification.InnerHtml = "";
+            }
             if (txtName.Text == "")
             {
                 notification.Attributes["class"] = "alert alert_danger";
@@ -189,6 +203,20 @@ namespace WEB_PERSONAL
                 notification.Attributes["class"] = "none";
                 notification.InnerHtml = "";
             }
+
+            // วันที่ติดลบ ไม่ให้
+            DateTime dtFromDate = Util.ToDateTimeOracle(txtDateFrom.Text);
+            DateTime dtToDate = Util.ToDateTimeOracle(txtDateTO.Text);
+            int totalDay = (int)(dtToDate - dtFromDate).TotalDays + 1;
+            if (totalDay <= 0)
+            {
+                notification.Attributes["class"] = "alert alert_danger";
+                notification.InnerHtml = "";
+                notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
+                notification.InnerHtml += "<div> - ระยะเวลาการฝึกอบรม/สัมมนา/ดูงาน ตั้งแต่วันที่ - ถึงวันที่ : วันที่ไม่ถูกต้อง</div>";
+                return;
+            }
+
             if (txtSupportBudget.Text == "")
             {
                 notification.Attributes["class"] = "alert alert_danger";
@@ -203,9 +231,10 @@ namespace WEB_PERSONAL
                 notification.InnerHtml = "";
             }
 
+            Panel2.Visible = false;
+            Panel3.Visible = false;
+
             Seminar S = new Seminar();
-            PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
-            Person PP = ps.LoginPerson;
             S.SEMINAR_NAME = txtName.Text;
             S.SEMINAR_LASTNAME = txtLastName.Text;
             S.SEMINAR_POSITION = txtPosition.Text;
@@ -213,8 +242,8 @@ namespace WEB_PERSONAL
             S.SEMINAR_CAMPUS = txtCampus.Text;
             S.SEMINAR_NAMEOFPROJECT = txtNameOfProject.Text;
             S.SEMINAR_PLACE = txtPlace.Text;
-            S.SEMINAR_DATETIME_FROM = DateTime.Parse(txtDateFrom.Text);
-            S.SEMINAR_DATETIME_TO = DateTime.Parse(txtDateTO.Text);
+            S.SEMINAR_DATETIME_FROM = Util.ODT(txtDateFrom.Text);
+            S.SEMINAR_DATETIME_TO = Util.ODT(txtDateTO.Text);
             S.SEMINAR_YEAR = Convert.ToInt32(txtYear.Text);
             S.SEMINAR_MONTH = Convert.ToInt32(txtMonth.Text);
             S.SEMINAR_DAY = Convert.ToInt32(txtDay.Text);
@@ -229,38 +258,38 @@ namespace WEB_PERSONAL
             S.SEMINAR_SHOW_4 = txtShow4.Text;
             S.SEMINAR_PROBLEM = txtProblem.Text;
             S.SEMINAR_COMMENT = txtComment.Text;
-            S.SEMINAR_SIGNED_DATETIME = DateTime.Now;
-            S.CITIZEN_ID = PP.CitizenID;
 
-            string[] splitDate1 = txtDateFrom.Text.Split(' ');
-            string[] splitDate2 = txtDateTO.Text.Split(' ');
-            S.SEMINAR_DATETIME_FROM = new DateTime(Convert.ToInt32(splitDate1[2]), Util.MonthToNumber(splitDate1[1]), Convert.ToInt32(splitDate1[0]));
-            S.SEMINAR_DATETIME_TO = new DateTime(Convert.ToInt32(splitDate2[2]), Util.MonthToNumber(splitDate2[1]), Convert.ToInt32(splitDate2[0]));
+            GridViewRow row = GridView1.SelectedRow;
+            Label LabelID = row.FindControl("lblSEidEDIT") as Label;
+            S.SEMINAR_ID = Convert.ToInt32(LabelID.Text);
 
-            DateTime SEMINAR_SIGNED_DATETIME = DateTime.Now;
+            Label LabelCitizenID = row.FindControl("lblSECitizenIDEDIT") as Label;
+            S.CITIZEN_ID = LabelCitizenID.Text;
+
             S.UpdateSEMINAR();
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('อัพเดทข้อมูลเรียบร้อย')", true);
             ClearData();
-            MultiView1.ActiveViewIndex = 0;
+            MultiView1.ActiveViewIndex = 1;
         }
 
         protected void txtDateTO_TextChanged(object sender, EventArgs e)
         {
-            DateTime df = DateTime.Parse(txtDateFrom.Text);
-            DateTime dt = DateTime.Parse(txtDateTO.Text);
-            int day = (int)(dt - df).TotalDays + 1;
+            DateTime dtFromDate = Util.ToDateTimeOracle(txtDateFrom.Text);
+            DateTime dtToDate = Util.ToDateTimeOracle(txtDateTO.Text);
+            int totalDay = (int)(dtToDate - dtFromDate).TotalDays + 1;
+            if (totalDay <= 0)
+            {
+                notification.Attributes["class"] = "alert alert_danger";
+                notification.InnerHtml = "";
+                notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
+                notification.InnerHtml += "<div> - ระยะเวลาการฝึกอบรม/สัมมนา/ดูงาน ตั้งแต่วันที่ - ถึงวันที่ : วันที่ไม่ถูกต้อง</div>";
+                return;
+            }
+            else
+            {
+                notification.Attributes["class"] = "none";
+                notification.InnerHtml = "";
+            }
 
-            int year = (day / 365);
-            int month = (day % 365) / 30;
-            day = (day % 365) % 30;
-
-            txtYear.Text = "" + year;
-            txtMonth.Text = "" + month;
-            txtDay.Text = "" + day;
-        }
-
-        protected void txtDateFrom_TextChanged(object sender, EventArgs e)
-        {
             DateTime df = DateTime.Parse(txtDateFrom.Text);
             DateTime dt = DateTime.Parse(txtDateTO.Text);
             int day = (int)(dt - df).TotalDays + 1;
@@ -276,16 +305,18 @@ namespace WEB_PERSONAL
 
         protected void chkBox_CheckedChanged(object sender, EventArgs e)
         {
-            txtSupportBudget.Text = chkBox.Checked.ToString();
-            if (chkBox.Checked)
+            if(GridView1.SelectedRow != null)
             {
-                txtCertificate.Enabled = true;
-                txtCertificate.Text = "";
-            }
-            else
-            {
-                txtCertificate.Enabled = false;
-                txtCertificate.Text = "ไม่มี";
+                if (chkBox.Checked)
+                {
+                    txtCertificate.Enabled = true;
+                    txtCertificate.Text = "";
+                }
+                else
+                {
+                    txtCertificate.Enabled = false;
+                    txtCertificate.Text = "ไม่มี";
+                }
             }
         }
 
@@ -325,60 +356,127 @@ namespace WEB_PERSONAL
         {
             if (string.IsNullOrEmpty(txtSearchSeminarCitizen.Text))
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก รหัสบัตรประชาชน')", true);
+                notification.Attributes["class"] = "alert alert_danger";
+                notification.InnerHtml = "";
+                notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>แจ้งเตือน</strong></div>";
+                notification.InnerHtml += "<div> - กรุณากรอกรหัสบัตรประชาชนในช่องคำค้นหา</div>";
                 return;
             }
             else
             {
-                Seminar s = new Seminar();
-                DataTable dt = s.GetSEMINAR(txtSearchSeminarCitizen.Text,"", "","","");
-                GridView1.DataSource = dt;
-                GridView1.DataBind();
-                SetViewState(dt);
+                notification.Attributes["class"] = "none";
+                notification.InnerHtml = "";
             }
-        } 
+            if (txtSearchSeminarCitizen.Text.Length < 13)
+            {
+                notification.Attributes["class"] = "alert alert_danger";
+                notification.InnerHtml = "";
+                notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>แจ้งเตือน</strong></div>";
+                notification.InnerHtml += "<div> - กรุณากรอกรหัสบัตรประชาชนในช่องค้นหาให้ครบ 13 หลัก</div>";
+                return;
+            }
+            else
+            {
+                notification.Attributes["class"] = "none";
+                notification.InnerHtml = "";
+            }
+
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+            {
+                con.Open();
+                string result = "";
+                using (OracleCommand com = new OracleCommand("SELECT CITIZEN_ID FROM TB_SEMINAR WHERE CITIZEN_ID = '" + txtSearchSeminarCitizen.Text + "'", con))
+                {
+                    using (OracleDataReader reader = com.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            result = reader.GetString(0);
+                        }
+                    }
+                }
+
+                if (result == txtSearchSeminarCitizen.Text)
+                {
+                    Seminar s = new Seminar();
+                    DataTable dt = s.GetSEMINAR(txtSearchSeminarCitizen.Text, "", "", "", "");
+                    GridView1.DataSource = dt;
+                    GridView1.DataBind();
+                    SetViewState(dt);
+
+                    notification.Attributes["class"] = "none";
+                    notification.InnerHtml = "";
+                }
+                else
+                {
+                    notification.Attributes["class"] = "alert alert_danger";
+                    notification.InnerHtml = "";
+                    notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>แจ้งเตือน</strong></div>";
+                    notification.InnerHtml += "<div> - ไม่พบข้อมูลของรหัสบัตรประชาชนดังกล่าว</div>";
+                    return;
+                }
+            }
+
+        }
 
         protected void lbuRefresh_Click(object sender, EventArgs e)
         {
-            ClearData();
-            Seminar s = new Seminar();
-            DataTable dt = s.GetSEMINAR("","","","","");
-            GridView1.DataSource = dt;
-            GridView1.DataBind();
-            SetViewState(dt);
+            Response.Redirect("SEMINAR-ADMIN.aspx");
         }
 
         protected void GridView1_SelectedIndexChanged1(object sender, EventArgs e)
         {
-            //GridViewRow row = GridView1.SelectedRow;
-            //txtName.Text = row.Cells[0].Text;
-            //txtLastName.Text = row.Cells[1].Text;
-
-            //txtName.Text = GridView1.SelectedRow.Cells[1].Text;
-
-            txtName.Text = GridView1.SelectedRow.Cells[0].Text;
-            txtLastName.Text = GridView1.SelectedRow.Cells[1].Text;
-            txtPosition.Text = GridView1.SelectedRow.Cells[2].Text;
-            txtDegree.Text = GridView1.SelectedRow.Cells[3].Text;
-            txtCampus.Text = GridView1.SelectedRow.Cells[4].Text;
-            txtNameOfProject.Text = GridView1.SelectedRow.Cells[5].Text;
-            txtPlace.Text = GridView1.SelectedRow.Cells[6].Text;
-            txtDateFrom.Text = GridView1.SelectedRow.Cells[7].Text;
-            /*txtDateTO.Text = GridView1.SelectedRow.Cells[8].Text;
-            txtDay.Text = GridView1.SelectedRow.Cells[9].Text;
-            txtMonth.Text = GridView1.SelectedRow.Cells[10].Text;
-            txtYear.Text = GridView1.SelectedRow.Cells[11].Text;
-            txtBudget.Text = GridView1.SelectedRow.Cells[12].Text;
-            txtSupportBudget.Text = GridView1.SelectedRow.Cells[13].Text;
-            txtCertificate.Text = GridView1.SelectedRow.Cells[14].Text;
-            txtAbstract.Text = GridView1.SelectedRow.Cells[15].Text;
-            txtResult.Text = GridView1.SelectedRow.Cells[16].Text;
-            txtShow1.Text = GridView1.SelectedRow.Cells[17].Text;
-            txtShow2.Text = GridView1.SelectedRow.Cells[18].Text;
-            txtShow3.Text = GridView1.SelectedRow.Cells[19].Text;
-            txtShow4.Text = GridView1.SelectedRow.Cells[20].Text;
-            txtProblem.Text = GridView1.SelectedRow.Cells[21].Text;
-            txtComment.Text = GridView1.SelectedRow.Cells[22].Text;*/
+            GridViewRow row = GridView1.SelectedRow;
+            Label LabelCitizenID = row.FindControl("lblSECitizenIDEDIT") as Label;
+            Label LabelName = row.FindControl("lblSEnameEDIT") as Label;
+            Label LabelLastName = row.FindControl("lblSElastnameEDIT") as Label;
+            Label LabelNameOfProject = row.FindControl("lblSEnameofprojectEDIT") as Label;
+            Label LabelPlace = row.FindControl("lblSEplaceEDIT") as Label;
+            Label LabelPosition = row.FindControl("lblSEpositionEDIT") as Label;
+            Label LabelDegree = row.FindControl("lblSEdegreeEDIT") as Label;
+            Label LabelCampus = row.FindControl("lblSEcampusEDIT") as Label;
+            Label LabelDateFrom = row.FindControl("lblSEdatetimefromEDIT") as Label;
+            Label LabelDateTo = row.FindControl("lblSEdatetimetoEDIT") as Label;
+            Label LabelDay = row.FindControl("lblSEdayEDIT") as Label;
+            Label LabelMonth = row.FindControl("lblSEmonthEDIT") as Label;
+            Label LabelYear = row.FindControl("lblSEyearEDIT") as Label;
+            Label LabelBudget = row.FindControl("lblSEbudgetEDIT") as Label;
+            Label LabelSupportBudget = row.FindControl("lblSEsupportbudgetEDIT") as Label;
+            Label LabelCertificate = row.FindControl("lblSEcertificateEDIT") as Label;
+            Label LabelAbstract = row.FindControl("lblSEabstractEDIT") as Label;
+            Label LabelResult = row.FindControl("lblSEresultEDIT") as Label;
+            Label LabelShow1 = row.FindControl("lblSEshow1EDIT") as Label;
+            Label LabelShow2 = row.FindControl("lblSEshow2EDIT") as Label;
+            Label LabelShow3 = row.FindControl("lblSEshow3EDIT") as Label;
+            Label LabelShow4 = row.FindControl("lblSEshow4EDIT") as Label;
+            Label LabelProblem = row.FindControl("lblSEproblemEDIT") as Label;
+            Label LabelComment = row.FindControl("lblSEcommentEDIT") as Label;
+            Label LabelSignedDatetime = row.FindControl("lblSEsigneddatetimeEDIT") as Label;
+            
+            txtName.Text = LabelName.Text;
+            txtLastName.Text = LabelLastName.Text;
+            txtPosition.Text = LabelPosition.Text;
+            txtDegree.Text = LabelDegree.Text;
+            txtCampus.Text = LabelCampus.Text;
+            txtNameOfProject.Text = LabelNameOfProject.Text;
+            txtPlace.Text = LabelPlace.Text;
+            txtDateFrom.Text = LabelDateFrom.Text;
+            txtDateTO.Text = LabelDateTo.Text;
+            txtDay.Text = LabelDay.Text;
+            txtMonth.Text = LabelMonth.Text;
+            txtYear.Text = LabelYear.Text;
+            txtBudget.Text = LabelBudget.Text;
+            txtSupportBudget.Text = LabelSupportBudget.Text;
+            txtCertificate.Text = LabelCertificate.Text;
+            txtAbstract.Text = LabelAbstract.Text;
+            txtResult.Text = LabelResult.Text;
+            txtShow1.Text = LabelShow1.Text;
+            txtShow2.Text = LabelShow2.Text;
+            txtShow3.Text = LabelShow3.Text;
+            txtShow4.Text = LabelShow4.Text;
+            txtProblem.Text = LabelProblem.Text;
+            txtComment.Text = LabelComment.Text;
+            
         }
     }
 }

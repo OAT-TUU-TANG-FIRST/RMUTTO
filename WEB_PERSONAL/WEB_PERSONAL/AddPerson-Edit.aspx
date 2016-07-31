@@ -15,7 +15,7 @@
     <script>
         function pageLoad(sender, args) {
             $("#ContentPlaceHolder1_tbBirthday,#ContentPlaceHolder1_tbDateInwork,#ContentPlaceHolder1_tbUseDate11,#ContentPlaceHolder1_tbDate14").datepicker($.datepicker.regional["th"]);
-            $("#ContentPlaceHolder1_tbDateInwork").datepicker($.datepicker.regional["th"]);
+            $("#ContentPlaceHolder1_tbDateInwork,#ContentPlaceHolder1_tbDateGetPositionGoverTab4,#ContentPlaceHolder1_tbDateGetPositionEMPTab4").datepicker($.datepicker.regional["th"]);
             $('document').ready(function () {
                 $(".date").datepicker($.datepicker.regional["th"]);
             });
@@ -29,9 +29,7 @@
 
     <div>
 
-        <div class="ps-header">
-            <img src="Image/Small/person2.png" />แก้ไขข้อมูลบุคลากร
-        </div>
+        <div class="ps-header"><img src="Image/Small/edit.png" />แก้ไขข้อมูลบุคลากร</div>
 
         <div id="divTab" runat="server" class="ps-tab-container">
             <asp:LinkButton ID="lbuTab1" runat="server" OnClick="lbuTab1_Click" CssClass="ps-tab-unselected">ข้อมูลพื้นฐาน</asp:LinkButton>
@@ -459,10 +457,10 @@
             <div class="ps-separator"></div>
         </div>
 
-        <div id="divTab4" runat="server">
+        <div id="divTab4" runat="server" style="text-align: center;">
             <div class="ps-div-title-red">ข้อมูลตำแหน่ง</div>
-            <div style="text-align: center;">
-                <table class="ps-table-1" style="margin-bottom: 20px; display: inline-block; margin-right: 20px; vertical-align: top;" id="idPositionShowAll" runat="server">
+            <div style="display: inline-block;">
+                <table class="ps-table-1" style="margin-bottom: 20px; display: inline-block; margin-right: 20px; vertical-align: top; text-align:left;" id="idPositionShowAll" runat="server">
                     <tr>
                         <th colspan="2">ตำแหน่ง</th>
                     </tr>
@@ -487,9 +485,15 @@
                         </td>
                     </tr>
                 </table>
-                <table class="ps-table-1" style="margin-bottom: 20px; display: inline-block; margin-right: 20px; vertical-align: top;" id="idPositionShowGover" runat="server">
+                <table class="ps-table-1" style="margin-bottom: 20px; display: inline-block; margin-right: 20px; vertical-align: top; text-align:left;" id="idPositionShowGover" runat="server">
                     <tr>
                         <th colspan="2">ตำแหน่งข้าราชการ</th>
+                    </tr>
+                    <tr>
+                        <td class="col1">วันที่ได้รับตำแหน่ง</td>
+                        <td>
+                            <asp:TextBox ID="tbDateGetPositionGoverTab4" runat="server" CssClass="ps-textbox" MaxLength="10"></asp:TextBox>
+                        </td>
                     </tr>
                     <tr>
                         <td class="col1">ตำแหน่งประเภทบริหาร</td>
@@ -516,9 +520,15 @@
                         </td>
                     </tr>
                 </table>
-                <table class="ps-table-1" style="margin-bottom: 20px; display: inline-block; vertical-align: top;" id="idPositionShowOfficeEmp" runat="server">
+                <table class="ps-table-1" style="margin-bottom: 20px; display: inline-block; vertical-align: top; text-align:left;" id="idPositionShowOfficeEmp" runat="server">
                     <tr>
                         <th colspan="2">ตำแหน่งพนักงานราชการ</th>
+                    </tr>
+                    <tr>
+                        <td class="col1">วันที่ได้รับตำแหน่ง</td>
+                        <td>
+                            <asp:TextBox ID="tbDateGetPositionEMPTab4" runat="server" CssClass="ps-textbox" MaxLength="10"></asp:TextBox>
+                        </td>
                     </tr>
                     <tr>
                         <td class="col1">ตำแหน่งพนักงานราชการ</td>
@@ -552,7 +562,7 @@
                                 <asp:Label ID="lblPDHcitizenID" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PDH_CITIZEN_ID") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="วันที่ได้รับตำแหน่งประเภท" ControlStyle-Width="100" >
+                        <asp:TemplateField HeaderText="วันที่ได้รับตำแหน่ง" ControlStyle-Width="100" >
                             <ItemTemplate>
                                 <asp:Label ID="lblPDHdate" runat="server" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "PDH_DATE_START")).ToString("dd MMM yyyy", System.Globalization.CultureInfo.CreateSpecificCulture("th-TH")) %>'></asp:Label>
                             </ItemTemplate>

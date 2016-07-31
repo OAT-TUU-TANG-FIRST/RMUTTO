@@ -4,10 +4,12 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div class="ps-header"><img src="Image/Small/list.png" />รายชื่อบุคลากร</div>
+    <div id="notification" runat="server"></div>
     <div>
         <div class="ps-div-title-red"><img src="Image/Small/search.png" class="icon_left"/>ค้นหารายชื่อ</div>
         <div style="text-align: center;">
-            รหัสบัตรประชาชน :&nbsp;<asp:TextBox ID="txtSearchCitizenID" runat="server" CssClass="ps-textbox" MaxLength="13"></asp:TextBox>
+            เลขบัตรประจำตัวประชาชน 13 หลัก :&nbsp<asp:TextBox ID="txtSearchCitizenID" runat="server" CssClass="ps-textbox" Width="230px" MaxLength="13"></asp:TextBox>
             <asp:LinkButton ID="lbuSearch" runat="server" OnClick="lbuSearch_Click" CssClass="ps-button"><img src="Image/Small/search.png" class="icon_left"/>ค้นหา</asp:LinkButton>
             <asp:LinkButton ID="lbuRefresh" runat="server" OnClick="lbuRefresh_Click" CssClass="ps-button"><img src="Image/Small/refresh.png" class="icon_left"/>รีเฟรช</asp:LinkButton>
         </div>

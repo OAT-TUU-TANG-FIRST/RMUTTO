@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="SEMINAR-ADMIN.aspx.cs" Inherits="WEB_PERSONAL.SEMINAR_ADMIN" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="SEMINAR-ADMIN.aspx.cs" Inherits="WEB_PERSONAL.SEMINAR_ADMIN" MaintainScrollPositionOnPostback="true" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script>
         function pageLoad(sender, args) {
@@ -6,30 +6,27 @@
         };
     </script>
     <style type="text/css">
-        .divpan {
-            text-align: center;
-        }
-
         .textred {
             color: red;
         }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:Panel ID="Panel2" runat="server" CssClass="divpan" DefaultButton="lbuSearch">
-        <div class="ps-header">
-            <img src="Image/Small/list.png" />ค้นหา ข้อมูลการฝึกอบรม/สัมมนา/ดูงาน
-        </div>
+    
+    <asp:Panel ID="Panel2" runat="server" DefaultButton="lbuSearch">
+        <div class="ps-header"><img src="Image/Small/search.png" />ค้นหาข้อมูลการพัฒนาบุคลากร</div>
         <asp:ScriptManager ID="ScriptManager1" runat="server" />
+        <div id="notification" runat="server"></div>
         <div>
-            <div id="notification" runat="server"></div>
-            <div>
+            
+            <div style="margin-bottom: 20px; text-align:center">
+                <div class="ps-div-title-red"><img src="Image/Small/search.png" class="icon_left"/>ค้นหารายชื่อ</div>
                 เลขบัตรประจำตัวประชาชน 13 หลัก :&nbsp<asp:TextBox ID="txtSearchSeminarCitizen" runat="server" CssClass="ps-textbox" Width="230px" MaxLength="13"></asp:TextBox>
                 <asp:LinkButton ID="lbuSearch" runat="server" OnClick="lbuSearch_Click" CssClass="ps-button"><img src="Image/Small/search.png" class="icon_left"/>ค้นหา</asp:LinkButton>
                 <asp:LinkButton ID="lbuRefresh" runat="server" OnClick="lbuRefresh_Click" CssClass="ps-button"><img src="Image/Small/refresh.png" class="icon_left"/>รีเฟรช</asp:LinkButton>
             </div>
 
-            <asp:GridView ID="GridView1" runat="server" Style="margin-left: auto; margin-right: auto; text-align: center;"
+            <asp:GridView ID="GridView1" runat="server" style="margin-bottom: 20px; margin-right: 20px; vertical-align: top; text-align: center;"
                 AutoGenerateColumns="false"
                 AllowPaging="true"
                 DataKeyNames="SEMINAR_ID"
@@ -37,7 +34,7 @@
                 OnRowDataBound="GridView1_RowDataBound"
                 OnPageIndexChanging="myGridViewSeminar_PageIndexChanging" PageSize="10" CssClass="ps-table-1" OnSelectedIndexChanged="GridView1_SelectedIndexChanged1">
                 <Columns>
-                    <asp:TemplateField Visible="false" HeaderText="SEMENAR_ID" ControlStyle-Width="180">
+                    <asp:TemplateField Visible="false" HeaderText="SEMENAR_ID">
                         <ItemTemplate>
                             <asp:Label ID="lblSEidEDIT" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.SEMINAR_ID") %>'></asp:Label>
                         </ItemTemplate>
@@ -67,6 +64,106 @@
                             <asp:Label ID="lblSEplaceEDIT" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.SEMINAR_PLACE") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
+                    <asp:TemplateField Visible="false" HeaderText="SEMINAR_POSITION">
+                        <ItemTemplate>
+                            <asp:Label ID="lblSEpositionEDIT" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.SEMINAR_POSITION") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField Visible="false" HeaderText="SEMINAR_DEGREE">
+                        <ItemTemplate>
+                            <asp:Label ID="lblSEdegreeEDIT" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.SEMINAR_DEGREE") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField Visible="false" HeaderText="SEMINAR_CAMPUS">
+                        <ItemTemplate>
+                            <asp:Label ID="lblSEcampusEDIT" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.SEMINAR_CAMPUS") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField Visible="false" HeaderText="SEMINAR_DATETIME_FROM">
+                        <ItemTemplate>
+                                <asp:Label ID="lblSEdatetimefromEDIT" runat="server" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "SEMINAR_DATETIME_FROM")).ToString("dd MMM yyyy", System.Globalization.CultureInfo.CreateSpecificCulture("th-TH")) %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField Visible="false" HeaderText="SEMINAR_DATETIME_TO">
+                        <ItemTemplate>
+                                <asp:Label ID="lblSEdatetimetoEDIT" runat="server" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "SEMINAR_DATETIME_TO")).ToString("dd MMM yyyy", System.Globalization.CultureInfo.CreateSpecificCulture("th-TH")) %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField Visible="false" HeaderText="SEMINAR_DAY">
+                        <ItemTemplate>
+                            <asp:Label ID="lblSEdayEDIT" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.SEMINAR_DAY") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField Visible="false" HeaderText="SEMINAR_MONTH">
+                        <ItemTemplate>
+                            <asp:Label ID="lblSEmonthEDIT" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.SEMINAR_MONTH") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField Visible="false" HeaderText="SEMINAR_YEAR">
+                        <ItemTemplate>
+                            <asp:Label ID="lblSEyearEDIT" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.SEMINAR_YEAR") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField Visible="false" HeaderText="SEMINAR_BUDGET">
+                        <ItemTemplate>
+                            <asp:Label ID="lblSEbudgetEDIT" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.SEMINAR_BUDGET") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField Visible="false" HeaderText="SEMINAR_SUPPORT_BUDGET">
+                        <ItemTemplate>
+                            <asp:Label ID="lblSEsupportbudgetEDIT" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.SEMINAR_SUPPORT_BUDGET") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField Visible="false" HeaderText="SEMINAR_CERTIFICATE">
+                        <ItemTemplate>
+                            <asp:Label ID="lblSEcertificateEDIT" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.SEMINAR_CERTIFICATE") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField Visible="false" HeaderText="SEMINAR_ABSTRACT">
+                        <ItemTemplate>
+                            <asp:Label ID="lblSEabstractEDIT" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.SEMINAR_ABSTRACT") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField Visible="false" HeaderText="SEMINAR_RESULT">
+                        <ItemTemplate>
+                            <asp:Label ID="lblSEresultEDIT" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.SEMINAR_RESULT") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField Visible="false" HeaderText="SEMINAR_SHOW_1">
+                        <ItemTemplate>
+                            <asp:Label ID="lblSEshow1EDIT" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.SEMINAR_SHOW_1") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField Visible="false" HeaderText="SEMINAR_SHOW_2">
+                        <ItemTemplate>
+                            <asp:Label ID="lblSEshow2EDIT" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.SEMINAR_SHOW_2") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField Visible="false" HeaderText="SEMINAR_SHOW_3">
+                        <ItemTemplate>
+                            <asp:Label ID="lblSEshow3EDIT" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.SEMINAR_SHOW_3") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField Visible="false" HeaderText="SEMINAR_SHOW_4">
+                        <ItemTemplate>
+                            <asp:Label ID="lblSEshow4EDIT" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.SEMINAR_SHOW_4") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField Visible="false" HeaderText="SEMINAR_PROBLEM">
+                        <ItemTemplate>
+                            <asp:Label ID="lblSEproblemEDIT" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.SEMINAR_PROBLEM") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField Visible="false" HeaderText="SEMINAR_COMMENT">
+                        <ItemTemplate>
+                            <asp:Label ID="lblSEcommentEDIT" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.SEMINAR_COMMENT") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField Visible="false" HeaderText="SEMINAR_SIGNED_DATETIME">
+                        <ItemTemplate>
+                            <asp:Label ID="lblSEsigneddatetimeEDIT" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.SEMINAR_SIGNED_DATETIME") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
                     <asp:CommandField DeleteText="Delete" ShowSelectButton="true" ControlStyle-ForeColor="Red" SelectText="Select" HeaderText="เลือก" />
                     <asp:TemplateField HeaderText="ลบ">
                         <ItemTemplate>
@@ -77,11 +174,13 @@
             </asp:GridView>
         </div>
     </asp:Panel>
-
-    <asp:Panel ID="Panel1" runat="server" CssClass="divpan" DefaultButton="lbuSubmit">
+    <asp:Panel ID="Panel3" runat="server" CssClass="divpan" DefaultButton="lbuSubmit">
         <div class="ps-header">
-            <img src="Image/Small/list.png" />ข้อมูลการฝึกอบรม/สัมมนา/ดูงาน
+            <img src="Image/Small/edit.png" />แก้ไขข้อมูลการพัฒนาบุคลากร
         </div>
+    </asp:Panel>
+    <asp:Panel ID="Panel1" runat="server" CssClass="divpan" DefaultButton="lbuSubmit">
+        
         <div>
             <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex="0">
                 <asp:View ID="View1" runat="server">
@@ -132,7 +231,7 @@
                             <tr>
                                 <td>ระยะเวลาการฝึกอบรม/สัมมนา/ดูงาน</td>
                                 <td>ตั้งแต่วันที่
-                                    <asp:TextBox ID="txtDateFrom" runat="server" Width="180px" MaxLength="12" CssClass="ps-textbox" OnTextChanged="txtDateFrom_TextChanged" AutoPostBack="True"></asp:TextBox>
+                                    <asp:TextBox ID="txtDateFrom" runat="server" Width="180px" MaxLength="12" CssClass="ps-textbox" AutoPostBack="True"></asp:TextBox>
                                     ถึงวันที่
                                     <asp:TextBox ID="txtDateTO" runat="server" MaxLength="12" Width="180px" OnTextChanged="txtDateTO_TextChanged" CssClass="ps-textbox" AutoPostBack="True"></asp:TextBox><span class="textred">*</span>
                                 </td>
@@ -230,7 +329,7 @@
                 <asp:View ID="View2" runat="server">
 
                     <div>
-                        <div class="ps-div-title-red">การเพิ่มข้อมูลพัฒนาบุคลากรสำเร็จ</div>
+                        <div class="ps-div-title-red">การแก้ไขข้อมูลพัฒนาบุคลากรสำเร็จ</div>
                         <div style="color: #808080; margin-top: 10px; text-align: center;">
                             ระบบได้ทำการบันทึกข้อมูลสำเร็จเรียบร้อย
                         </div>
