@@ -1696,34 +1696,28 @@ namespace WEB_PERSONAL.Entities {
         }
     }
 
-    public class TB_POSITION_DEGREE_HISTORY_GOVER
+    public class TB_PDH_GOVER
     {
         public int PDH_ID { get; set; }
         public string PDH_CITIZEN_ID { get; set; }
         public DateTime PDH_DATE_START { get; set; }
-        public int POSI_ADMIN { get; set; }
-        public int POSI_DIRECT { get; set; }
-        public int POSI_ACAD { get; set; }
-        public int POSI_GENERAL { get; set; }
+        public int PDH_POSITION_GET { get; set; }
 
-        public TB_POSITION_DEGREE_HISTORY_GOVER() { }
-        public TB_POSITION_DEGREE_HISTORY_GOVER(int PDH_ID, string PDH_CITIZEN_ID, DateTime PDH_DATE_START, int POSI_ADMIN, int POSI_DIRECT, int POSI_ACAD, int POSI_GENERAL)
+        public TB_PDH_GOVER() { }
+        public TB_PDH_GOVER(int PDH_ID, string PDH_CITIZEN_ID, DateTime PDH_DATE_START, int PDH_POSITION_GET)
         {
             this.PDH_ID = PDH_ID;
             this.PDH_CITIZEN_ID = PDH_CITIZEN_ID;
             this.PDH_DATE_START = PDH_DATE_START;
-            this.POSI_ADMIN = POSI_ADMIN;
-            this.POSI_DIRECT = POSI_DIRECT;
-            this.POSI_ACAD = POSI_ACAD;
-            this.POSI_GENERAL = POSI_GENERAL;
+            this.PDH_POSITION_GET = PDH_POSITION_GET;
         }
 
-        public DataTable SELECT_POSI_GOVER_ONLY(string PDH_CITIZEN_ID, string PDH_DATE_START, string POSI_ADMIN, string POSI_DIRECT, string POSI_ACAD, string POSI_GENERAL)
+        public DataTable SELECT_POSI_GOVER_ONLY(string PDH_CITIZEN_ID, string PDH_DATE_START, string PDH_POSITION_GET)
         {
             DataTable dt = new DataTable();
             OracleConnection conn = ConnectionDB.GetOracleConnection();
-            string query = "SELECT * FROM TB_POSITION_DEGREE_HISTORY ";
-            if (!string.IsNullOrEmpty(PDH_CITIZEN_ID) || !string.IsNullOrEmpty(PDH_DATE_START) || !string.IsNullOrEmpty(POSI_ADMIN) || !string.IsNullOrEmpty(POSI_DIRECT) || !string.IsNullOrEmpty(POSI_ACAD) || !string.IsNullOrEmpty(POSI_GENERAL))
+            string query = "SELECT * FROM TB_PDH_GOVER ";
+            if (!string.IsNullOrEmpty(PDH_CITIZEN_ID) || !string.IsNullOrEmpty(PDH_DATE_START) || !string.IsNullOrEmpty(PDH_POSITION_GET))
             {
                 query += " where 1=1 ";
                 if (!string.IsNullOrEmpty(PDH_CITIZEN_ID))
@@ -1734,21 +1728,9 @@ namespace WEB_PERSONAL.Entities {
                 {
                     query += " and PDH_DATE_START like :PDH_DATE_START ";
                 }
-                if (!string.IsNullOrEmpty(POSI_ADMIN))
+                if (!string.IsNullOrEmpty(PDH_POSITION_GET))
                 {
-                    query += " and POSI_ADMIN like :POSI_ADMIN ";
-                }
-                if (!string.IsNullOrEmpty(POSI_DIRECT))
-                {
-                    query += " and POSI_DIRECT like :POSI_DIRECT ";
-                }
-                if (!string.IsNullOrEmpty(POSI_ACAD))
-                {
-                    query += " and POSI_ACAD like :POSI_ACAD ";
-                }
-                if (!string.IsNullOrEmpty(POSI_GENERAL))
-                {
-                    query += " and POSI_GENERAL like :POSI_GENERAL ";
+                    query += " and PDH_POSITION_GET like :PDH_POSITION_GET ";
                 }
             }
             OracleCommand command = new OracleCommand(query, conn);
@@ -1767,21 +1749,9 @@ namespace WEB_PERSONAL.Entities {
                 {
                     command.Parameters.Add(new OracleParameter("PDH_DATE_START", PDH_DATE_START));
                 }
-                if (!string.IsNullOrEmpty(POSI_ADMIN))
+                if (!string.IsNullOrEmpty(PDH_POSITION_GET))
                 {
-                    command.Parameters.Add(new OracleParameter("POSI_ADMIN", POSI_ADMIN));
-                }
-                if (!string.IsNullOrEmpty(POSI_DIRECT))
-                {
-                    command.Parameters.Add(new OracleParameter("POSI_DIRECT", POSI_DIRECT));
-                }
-                if (!string.IsNullOrEmpty(POSI_ACAD))
-                {
-                    command.Parameters.Add(new OracleParameter("POSI_ACAD", POSI_ACAD));
-                }
-                if (!string.IsNullOrEmpty(POSI_GENERAL))
-                {
-                    command.Parameters.Add(new OracleParameter("POSI_GENERAL", POSI_GENERAL));
+                    command.Parameters.Add(new OracleParameter("PDH_POSITION_GET", PDH_POSITION_GET));
                 }
                 OracleDataAdapter sd = new OracleDataAdapter(command);
                 sd.Fill(dt);
@@ -1804,7 +1774,7 @@ namespace WEB_PERSONAL.Entities {
         {
             int id = 0;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
-            OracleCommand command = new OracleCommand("INSERT INTO TB_POSITION_DEGREE_HISTORY (PDH_CITIZEN_ID,PDH_DATE_START,POSI_ADMIN,POSI_DIRECT,POSI_ACAD,POSI_GENERAL) VALUES (:PDH_CITIZEN_ID,:PDH_DATE_START,:POSI_ADMIN,:POSI_DIRECT,:POSI_ACAD,:POSI_GENERAL)", conn);
+            OracleCommand command = new OracleCommand("INSERT INTO TB_PDH_GOVER (PDH_CITIZEN_ID,PDH_DATE_START,PDH_POSITION_GET) VALUES (:PDH_CITIZEN_ID,:PDH_DATE_START,:PDH_POSITION_GET)", conn);
 
             try
             {
@@ -1814,10 +1784,7 @@ namespace WEB_PERSONAL.Entities {
                 }
                 command.Parameters.Add(new OracleParameter("PDH_CITIZEN_ID", PDH_CITIZEN_ID));
                 command.Parameters.Add(new OracleParameter("PDH_DATE_START", PDH_DATE_START));
-                command.Parameters.Add(new OracleParameter("POSI_ADMIN", POSI_ADMIN));
-                command.Parameters.Add(new OracleParameter("POSI_DIRECT", POSI_DIRECT));
-                command.Parameters.Add(new OracleParameter("POSI_ACAD", POSI_ACAD));
-                command.Parameters.Add(new OracleParameter("POSI_GENERAL", POSI_GENERAL));
+                command.Parameters.Add(new OracleParameter("PDH_POSITION_GET", PDH_POSITION_GET));
 
                 id = command.ExecuteNonQuery();
             }
@@ -1837,13 +1804,10 @@ namespace WEB_PERSONAL.Entities {
         {
             bool result = false;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
-            string query = "Update TB_POSITION_DEGREE_HISTORY Set ";
+            string query = "Update TB_PDH_GOVER Set ";
             query += " PDH_CITIZEN_ID = :PDH_CITIZEN_ID ,";
             query += " PDH_DATE_START = :PDH_DATE_START ,";
-            query += " POSI_ADMIN = :POSI_ADMIN ,";
-            query += " POSI_DIRECT = :POSI_DIRECT ,";
-            query += " POSI_ACAD = :POSI_ACAD ,";
-            query += " POSI_GENERAL = :POSI_GENERAL ";
+            query += " PDH_POSITION_GET = :PDH_POSITION_GET ";
             query += " where PDH_ID = :PDH_ID ";
 
             OracleCommand command = new OracleCommand(query, conn);
@@ -1856,10 +1820,7 @@ namespace WEB_PERSONAL.Entities {
 
                 command.Parameters.Add(new OracleParameter("PDH_CITIZEN_ID", PDH_CITIZEN_ID));
                 command.Parameters.Add(new OracleParameter("PDH_DATE_START", PDH_DATE_START));
-                command.Parameters.Add(new OracleParameter("POSI_ADMIN", POSI_ADMIN));
-                command.Parameters.Add(new OracleParameter("POSI_DIRECT", POSI_DIRECT));
-                command.Parameters.Add(new OracleParameter("POSI_ACAD", POSI_ACAD));
-                command.Parameters.Add(new OracleParameter("POSI_GENERAL", POSI_GENERAL));
+                command.Parameters.Add(new OracleParameter("PDH_POSITION_GET", PDH_POSITION_GET));
                 command.Parameters.Add(new OracleParameter("PDH_ID", PDH_ID));
 
                 if (command.ExecuteNonQuery() > 0)
@@ -1883,7 +1844,7 @@ namespace WEB_PERSONAL.Entities {
         {
             bool result = false;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
-            OracleCommand command = new OracleCommand("Delete TB_POSITION_DEGREE_HISTORY where PDH_ID = :PDH_ID", conn);
+            OracleCommand command = new OracleCommand("Delete TB_PDH_GOVER where PDH_ID = :PDH_ID", conn);
             try
             {
                 if (conn.State != ConnectionState.Open)
@@ -1909,28 +1870,28 @@ namespace WEB_PERSONAL.Entities {
         }
     }
 
-    public class TB_POSITION_DEGREE_HISTORY_EMP
+    public class TB_PDH_EMP
     {
         public int PDH_ID { get; set; }
         public string PDH_CITIZEN_ID { get; set; }
         public DateTime PDH_DATE_START { get; set; }
-        public int POSI_EMP_GROUP { get; set; }
+        public int PDH_POSITION_GET { get; set; }
 
-        public TB_POSITION_DEGREE_HISTORY_EMP() { }
-        public TB_POSITION_DEGREE_HISTORY_EMP(int PDH_ID, string PDH_CITIZEN_ID, DateTime PDH_DATE_START, int POSI_EMP_GROUP)
+        public TB_PDH_EMP() { }
+        public TB_PDH_EMP(int PDH_ID, string PDH_CITIZEN_ID, DateTime PDH_DATE_START, int PDH_POSITION_GET)
         {
             this.PDH_ID = PDH_ID;
             this.PDH_CITIZEN_ID = PDH_CITIZEN_ID;
             this.PDH_DATE_START = PDH_DATE_START;
-            this.POSI_EMP_GROUP = POSI_EMP_GROUP;
+            this.PDH_POSITION_GET = PDH_POSITION_GET;
         }
 
-        public DataTable SELECT_POSI_EMP_ONLY(string PDH_CITIZEN_ID, string PDH_DATE_START, string POSI_EMP_GROUP)
+        public DataTable SELECT_POSI_EMP_ONLY(string PDH_CITIZEN_ID, string PDH_DATE_START, string PDH_POSITION_GET)
         {
             DataTable dt = new DataTable();
             OracleConnection conn = ConnectionDB.GetOracleConnection();
-            string query = "SELECT * FROM TB_POSITION_DEGREE_HISTORY ";
-            if (!string.IsNullOrEmpty(PDH_CITIZEN_ID) || !string.IsNullOrEmpty(PDH_DATE_START) || !string.IsNullOrEmpty(POSI_EMP_GROUP))
+            string query = "SELECT * FROM TB_PDH_EMP ";
+            if (!string.IsNullOrEmpty(PDH_CITIZEN_ID) || !string.IsNullOrEmpty(PDH_DATE_START) || !string.IsNullOrEmpty(PDH_POSITION_GET))
             {
                 query += " where 1=1 ";
                 if (!string.IsNullOrEmpty(PDH_CITIZEN_ID))
@@ -1941,9 +1902,9 @@ namespace WEB_PERSONAL.Entities {
                 {
                     query += " and PDH_DATE_START like :PDH_DATE_START ";
                 }
-                if (!string.IsNullOrEmpty(POSI_EMP_GROUP))
+                if (!string.IsNullOrEmpty(PDH_POSITION_GET))
                 {
-                    query += " and POSI_EMP_GROUP like :POSI_EMP_GROUP ";
+                    query += " and PDH_POSITION_GET like :PDH_POSITION_GET ";
                 }
             }
             OracleCommand command = new OracleCommand(query, conn);
@@ -1962,9 +1923,9 @@ namespace WEB_PERSONAL.Entities {
                 {
                     command.Parameters.Add(new OracleParameter("PDH_DATE_START", PDH_DATE_START));
                 }
-                if (!string.IsNullOrEmpty(POSI_EMP_GROUP))
+                if (!string.IsNullOrEmpty(PDH_POSITION_GET))
                 {
-                    command.Parameters.Add(new OracleParameter("POSI_EMP_GROUP", POSI_EMP_GROUP));
+                    command.Parameters.Add(new OracleParameter("PDH_POSITION_GET", PDH_POSITION_GET));
                 }
                 OracleDataAdapter sd = new OracleDataAdapter(command);
                 sd.Fill(dt);
@@ -1987,7 +1948,7 @@ namespace WEB_PERSONAL.Entities {
         {
             int id = 0;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
-            OracleCommand command = new OracleCommand("INSERT INTO TB_POSITION_DEGREE_HISTORY (PDH_CITIZEN_ID,PDH_DATE_START,POSI_EMP_GROUP) VALUES (:PDH_CITIZEN_ID,:PDH_DATE_START,:POSI_EMP_GROUP)", conn);
+            OracleCommand command = new OracleCommand("INSERT INTO TB_PDH_EMP (PDH_CITIZEN_ID,PDH_DATE_START,PDH_POSITION_GET) VALUES (:PDH_CITIZEN_ID,:PDH_DATE_START,:PDH_POSITION_GET)", conn);
 
             try
             {
@@ -1997,7 +1958,7 @@ namespace WEB_PERSONAL.Entities {
                 }
                 command.Parameters.Add(new OracleParameter("PDH_CITIZEN_ID", PDH_CITIZEN_ID));
                 command.Parameters.Add(new OracleParameter("PDH_DATE_START", PDH_DATE_START));
-                command.Parameters.Add(new OracleParameter("POSI_EMP_GROUP", POSI_EMP_GROUP));
+                command.Parameters.Add(new OracleParameter("PDH_POSITION_GET", PDH_POSITION_GET));
 
                 id = command.ExecuteNonQuery();
             }
@@ -2017,10 +1978,10 @@ namespace WEB_PERSONAL.Entities {
         {
             bool result = false;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
-            string query = "Update TB_POSITION_DEGREE_HISTORY Set ";
+            string query = "Update TB_PDH_EMP Set ";
             query += " PDH_CITIZEN_ID = :PDH_CITIZEN_ID ,";
             query += " PDH_DATE_START = :PDH_DATE_START ,";
-            query += " POSI_EMP_GROUP = :POSI_EMP_GROUP ";
+            query += " PDH_POSITION_GET = :PDH_POSITION_GET ";
             query += " where PDH_ID = :PDH_ID ";
 
             OracleCommand command = new OracleCommand(query, conn);
@@ -2033,7 +1994,7 @@ namespace WEB_PERSONAL.Entities {
 
                 command.Parameters.Add(new OracleParameter("PDH_CITIZEN_ID", PDH_CITIZEN_ID));
                 command.Parameters.Add(new OracleParameter("PDH_DATE_START", PDH_DATE_START));
-                command.Parameters.Add(new OracleParameter("POSI_EMP_GROUP", POSI_EMP_GROUP));
+                command.Parameters.Add(new OracleParameter("PDH_POSITION_GET", PDH_POSITION_GET));
                 command.Parameters.Add(new OracleParameter("PDH_ID", PDH_ID));
 
                 if (command.ExecuteNonQuery() > 0)
@@ -2057,7 +2018,7 @@ namespace WEB_PERSONAL.Entities {
         {
             bool result = false;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
-            OracleCommand command = new OracleCommand("Delete TB_POSITION_DEGREE_HISTORY where PDH_ID = :PDH_ID", conn);
+            OracleCommand command = new OracleCommand("Delete TB_PDH_EMP where PDH_ID = :PDH_ID", conn);
             try
             {
                 if (conn.State != ConnectionState.Open)

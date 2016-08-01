@@ -856,9 +856,12 @@
     <Content Include="Image\TUUbg4.jpg" />
     <Content Include="Image\TUUbg5.jpg" />
     <Content Include="Image\white1.png" />
+    <Content Include="Image\x32\Excel32.png" />
     <Content Include="Image\x32\menu.png" />
     <Content Include="Image\x32\notification.png" />
     <Content Include="Image\x32\menu2.png" />
+    <Content Include="Image\x32\PDF32.png" />
+    <Content Include="Image\x32\Word32.png" />
     <Content Include="Image\มทร.ตะวันออก.jpg" />
     <Content Include="INSG_Qualified.aspx" />
     <Content Include="INSG_Qualified_Detail.aspx" />
@@ -1045,6 +1048,17 @@
     <Content Include="Font\Roboto\Roboto-Regular.ttf" />
     <Content Include="Font\Roboto\Roboto-Thin.ttf" />
     <Content Include="Font\Roboto\Roboto-ThinItalic.ttf" />
+    <Content Include="DTpersonnel.xsc">
+      <DependentUpon>DTpersonnel.xsd</DependentUpon>
+    </Content>
+    <None Include="DTpersonnel.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DTpersonnel.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="DTpersonnel.xss">
+      <DependentUpon>DTpersonnel.xsd</DependentUpon>
+    </Content>
     <None Include="personalDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>personalDataSet.Designer.cs</LastGenOutput>
@@ -1213,6 +1227,11 @@
     </Compile>
     <Compile Include="Division-ADMIN.aspx.designer.cs">
       <DependentUpon>Division-ADMIN.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DTpersonnel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DTpersonnel.xsd</DependentUpon>
     </Compile>
     <Compile Include="Entities\Report.cs" />
     <Compile Include="Entities\Personnel.cs" />
@@ -1484,6 +1503,18 @@
       <DependentUpon>CrystalReport1.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\Personnel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Personnel.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Personnel1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Personnel1.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="SEMINAR-ADMIN.aspx.cs">
       <DependentUpon>SEMINAR-ADMIN.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1645,6 +1676,14 @@
     <EmbeddedResource Include="Reports\CrystalReport1.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CrystalReport1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Personnel.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Personnel.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Personnel1.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Personnel1.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

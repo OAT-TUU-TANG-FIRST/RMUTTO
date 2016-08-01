@@ -284,7 +284,7 @@
                             <asp:DropDownList ID="ddlCountry" runat="server" CssClass="ps-dropdown" AutoPostBack="True" OnSelectedIndexChanged="ddlCountry_SelectedIndexChanged"></asp:DropDownList>
                         </td>
                     </tr>
-                    <tr>
+                    <tr id="id1Tab2City1" runat="server">
                         <td class="col1">รัฐ</td>
                         <td class="col2">
                             <asp:TextBox ID="tbState" runat="server" CssClass="ps-textbox"></asp:TextBox>
@@ -353,7 +353,7 @@
                             <asp:DropDownList ID="ddlCountry2" runat="server" CssClass="ps-dropdown" AutoPostBack="True" OnSelectedIndexChanged="ddlCountry2_SelectedIndexChanged"></asp:DropDownList>
                         </td>
                     </tr>
-                    <tr>
+                    <tr id="id2Tab2City2" runat="server">
                         <td class="col1">รัฐ</td>
                         <td class="col2">
                             <asp:TextBox ID="tbState2" runat="server" CssClass="ps-textbox"></asp:TextBox>
@@ -434,13 +434,13 @@
                     <tr>
                         <td class="col1">เงินเดือน</td>
                         <td class="col2">
-                            <asp:TextBox ID="tbSalary" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                            <asp:Label ID="lblSalary" runat="server"></asp:Label>
                         </td>
                     </tr>
                     <tr>
                         <td class="col1">เงินประจำตำแหน่ง</td>
                         <td class="col2">
-                            <asp:TextBox ID="tbPositionSalary" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                            <asp:Label ID="lblPositionSalary" runat="server"></asp:Label>
                         </td>
                     </tr>
                     <tr>
@@ -459,64 +459,70 @@
 
         <div id="divTab4" runat="server" style="text-align: center;">
             <div class="ps-div-title-red">ข้อมูลตำแหน่ง</div>
-            <div style="display: inline-block;">
-                <table class="ps-table-1" style="margin-bottom: 20px; display: inline-block; margin-right: 20px; vertical-align: top; text-align:left;" id="idPositionShowAll" runat="server">
+            <div style="display: inline-block; margin-right: 20px;">
+                <table class="ps-table-1" style="margin-bottom: 20px; display: inline-block; margin-right: 20px; vertical-align: top; " id="idPositionShowAll" runat="server">
                     <tr>
                         <th colspan="2">ตำแหน่ง</th>
                     </tr>
                     <tr>
-                        <td>ตำแหน่งในสายงาน</td>
-                        <td>
+                        <td class="col1">ตำแหน่งในสายงาน</td>
+                        <td class="col2">
                             <asp:DropDownList ID="ddlTab4PositionWorkRow1" runat="server" CssClass="ps-dropdown"></asp:DropDownList><span class="textred">*</span>
                             <asp:CheckBox ID="chkBoxWorkPosition" runat="server" Text="กรณีเป็นเลือกตำแหน่งในสายงานครั้งแรก"></asp:CheckBox>
                         </td>
                     </tr>
                     <tr>
-                        <td>ตำแหน่งทางบริหาร</td>
-                        <td>
+                        <td class="col1">ตำแหน่งทางบริหาร</td>
+                        <td class="col2">
                             <asp:DropDownList ID="ddlTab4AdminPositionRow1" runat="server" CssClass="ps-dropdown"></asp:DropDownList><span class="textred">*</span>
                             <asp:CheckBox ID="chkBoxAdminPosition" runat="server" Text="กรณีเป็นเลือกตำแหน่งทางบริหารครั้งแรก"></asp:CheckBox>
                         </td>
                     </tr>
                     <tr>
-                        <td>ตำแหน่งทางวิชาการ</td>
-                        <td>
+                        <td class="col1">ตำแหน่งทางวิชาการ</td>
+                        <td class="col2">
                             <asp:DropDownList ID="ddlTab4AcadPositionRow1" runat="server" CssClass="ps-dropdown"></asp:DropDownList><span class="textred">*</span>
                         </td>
                     </tr>
                 </table>
-                <table class="ps-table-1" style="margin-bottom: 20px; display: inline-block; margin-right: 20px; vertical-align: top; text-align:left;" id="idPositionShowGover" runat="server">
+                <table class="ps-table-1" style="margin-bottom: 20px; display: inline-block; margin-right: 20px; vertical-align: top;" id="idPositionShowGover" runat="server">
                     <tr>
                         <th colspan="2">ตำแหน่งข้าราชการ</th>
                     </tr>
                     <tr>
                         <td class="col1">วันที่ได้รับตำแหน่ง</td>
-                        <td>
-                            <asp:TextBox ID="tbDateGetPositionGoverTab4" runat="server" CssClass="ps-textbox" MaxLength="10"></asp:TextBox>
+                        <td class="col2">
+                            <asp:TextBox ID="tbDateGetPositionGoverTab4" runat="server" CssClass="ps-textbox" MaxLength="12"></asp:TextBox><span class="textred">*</span>
                         </td>
                     </tr>
                     <tr>
+                        <td class="col1">ตำแหน่งข้าราชการ</td>
+                        <td class="col2">
+                            <asp:DropDownList ID="ddlShowMenuGoverTab4" runat="server" CssClass="ps-dropdown" AutoPostBack="true"></asp:DropDownList>
+                        </td>
+                    </tr>
+                    <tr id="id1tab4middle" runat="server">
                         <td class="col1">ตำแหน่งประเภทบริหาร</td>
                         <td class="col2">
-                            <asp:DropDownList ID="ddlTab4AdminPositionDegreeRow2" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlTab4AdminPositionDegreeRow2" runat="server" CssClass="ps-dropdown"></asp:DropDownList><span class="textred">*</span>
                         </td>
                     </tr>
-                    <tr>
+                    <tr id="id2tab4middle" runat="server">
                         <td class="col1">ตำแหน่งประเภทอำนวยการ</td>
                         <td class="col2">
-                            <asp:DropDownList ID="ddlTab4DirectPositionDegreeRow2" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlTab4DirectPositionDegreeRow2" runat="server" CssClass="ps-dropdown"></asp:DropDownList><span class="textred">*</span>
                         </td>
                     </tr>
-                    <tr>
+                    <tr id="id3tab4middle" runat="server">
                         <td class="col1">ตำแหน่งประเภทวิชาการ</td>
                         <td class="col2">
-                            <asp:DropDownList ID="ddlTab4AcadPositionDegreeRow2" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlTab4AcadPositionDegreeRow2" runat="server" CssClass="ps-dropdown"></asp:DropDownList><span class="textred">*</span>
                         </td>
                     </tr>
-                    <tr>
+                    <tr id="id4tab4middle" runat="server">
                         <td class="col1">ตำแหน่งประเภททั่วไป</td>
                         <td class="col2">
-                            <asp:DropDownList ID="ddlTab4GeneralPositionDegreeRow2" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlTab4GeneralPositionDegreeRow2" runat="server" CssClass="ps-dropdown"></asp:DropDownList><span class="textred">*</span>
                         </td>
                     </tr>
                 </table>
@@ -526,8 +532,8 @@
                     </tr>
                     <tr>
                         <td class="col1">วันที่ได้รับตำแหน่ง</td>
-                        <td>
-                            <asp:TextBox ID="tbDateGetPositionEMPTab4" runat="server" CssClass="ps-textbox" MaxLength="10"></asp:TextBox>
+                        <td class="col2">
+                            <asp:TextBox ID="tbDateGetPositionEMPTab4" runat="server" CssClass="ps-textbox" MaxLength="12"></asp:TextBox><span class="textred">*</span>
                         </td>
                     </tr>
                     <tr>
@@ -537,7 +543,7 @@
                         </td>
                     </tr>
                 </table>
-                <div style="text-align: center; margin-top: 10px;">
+                <div style="text-align: center; margin-top: 10px; margin-bottom:20px">
                     <asp:LinkButton ID="lbuTab4Save" runat="server" OnClick="lbuTab4Save_Click" CssClass="ps-button"><img src="Image/Small/save.png" class="icon_left"/>บันทึก</asp:LinkButton>
                 </div>
                 <div style="margin-top: 10px; overflow-x: auto; width: 1200px">
@@ -554,52 +560,28 @@
                     <Columns>
                         <asp:TemplateField HeaderText="PDH_ID" Visible="false">
                             <ItemTemplate>
-                                <asp:Label ID="lblPDHid" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PDH_ID") %>'></asp:Label>
+                                <asp:Label ID="lblPDHidGover" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PDH_ID") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="PDH_CITIZEN_ID" Visible="false">
+                        <asp:TemplateField HeaderText="รหัสบัตรประชาชน">
                             <ItemTemplate>
-                                <asp:Label ID="lblPDHcitizenID" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PDH_CITIZEN_ID") %>'></asp:Label>
+                                <asp:Label ID="lblPDHcitizenIDGover" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PDH_CITIZEN_ID") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="วันที่ได้รับตำแหน่ง" ControlStyle-Width="100" >
+                        <asp:TemplateField HeaderText="วันที่ได้รับตำแหน่ง" ControlStyle-Width="200" >
                             <ItemTemplate>
-                                <asp:Label ID="lblPDHdate" runat="server" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "PDH_DATE_START")).ToString("dd MMM yyyy", System.Globalization.CultureInfo.CreateSpecificCulture("th-TH")) %>'></asp:Label>
+                                <asp:Label ID="lblPDHdateGover" runat="server" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "PDH_DATE_START")).ToString("dd MMM yyyy", System.Globalization.CultureInfo.CreateSpecificCulture("th-TH")) %>'></asp:Label>
                             </ItemTemplate>
                             <EditItemTemplate>
-                                <asp:TextBox ID="txtPDHdate" MaxLength="12" runat="server" CssClass="date" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "PDH_DATE_START")).ToString("dd MMM yyyy", System.Globalization.CultureInfo.CreateSpecificCulture("th-TH")) %>'></asp:TextBox>
+                                <asp:TextBox ID="txtPDHdateGover" MaxLength="12" runat="server" CssClass="date" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "PDH_DATE_START")).ToString("dd MMM yyyy", System.Globalization.CultureInfo.CreateSpecificCulture("th-TH")) %>'></asp:TextBox>
                             </EditItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="ตำแหน่งประเภทบริหาร" ControlStyle-Width="200" >
+                        <asp:TemplateField HeaderText="ชื่อตำแหน่งที่ได้รับ" ControlStyle-Width="200" >
                             <ItemTemplate>
-                                <asp:Label ID="lblPDHposiAdmin" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.POSI_ADMIN") %>'></asp:Label>
+                                <asp:Label ID="lblPDHpositionGetGover" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PDH_POSITION_GET") %>'></asp:Label>
                             </ItemTemplate>
                             <EditItemTemplate>
-                                <asp:DropDownList ID="ddlPDHposiAdmin" runat="server"></asp:DropDownList>
-                            </EditItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="ตำแหน่งประเภทอำนวยการ" ControlStyle-Width="180" >
-                            <ItemTemplate>
-                                <asp:Label ID="lblPDHposiDirect" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.POSI_DIRECT") %>'></asp:Label>
-                            </ItemTemplate>
-                            <EditItemTemplate>
-                                <asp:DropDownList ID="ddlPDHposiDirect" runat="server"></asp:DropDownList>
-                            </EditItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="ตำแหน่งประเภทวิชาการ" ControlStyle-Width="180" >
-                            <ItemTemplate>
-                                <asp:Label ID="lblPDHposiAcad" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.POSI_ACAD") %>'></asp:Label>
-                            </ItemTemplate>
-                            <EditItemTemplate>
-                                <asp:DropDownList ID="ddlPDHposiAcad" runat="server"></asp:DropDownList>
-                            </EditItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="ตำแหน่งประเภททั่วไป" ControlStyle-Width="180" >
-                            <ItemTemplate>
-                                <asp:Label ID="lblPDHposiGeneral" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.POSI_GENERAL") %>'></asp:Label>
-                            </ItemTemplate>
-                            <EditItemTemplate>
-                                <asp:DropDownList ID="ddlPDHposiGeneral" runat="server"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlPDHpositionGetGover" runat="server"></asp:DropDownList>
                             </EditItemTemplate>
                         </asp:TemplateField>
                         <asp:CommandField ShowEditButton="True" CancelText="Cancel" DeleteText="Delete" EditText="Edit" UpdateText="Update" HeaderText="แก้ไข"  />
@@ -626,28 +608,28 @@
                     <Columns>
                         <asp:TemplateField HeaderText="PDH_ID" Visible="false">
                             <ItemTemplate>
-                                <asp:Label ID="lblPDHid" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PDH_ID") %>'></asp:Label>
+                                <asp:Label ID="lblPDHidEmp" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PDH_ID") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="PDH_CITIZEN_ID" Visible="false">
+                        <asp:TemplateField HeaderText="รหัสบัตรประชาชน">
                             <ItemTemplate>
-                                <asp:Label ID="lblPDHcitizenID" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PDH_CITIZEN_ID") %>'></asp:Label>
+                                <asp:Label ID="lblPDHcitizenIDEmp" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PDH_CITIZEN_ID") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="วันที่ได้รับตำแหน่งประเภท" ControlStyle-Width="200" >
                             <ItemTemplate>
-                                <asp:Label ID="lblPDHdate" runat="server" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "PDH_DATE_START")).ToString("dd MMM yyyy", System.Globalization.CultureInfo.CreateSpecificCulture("th-TH")) %>'></asp:Label>
+                                <asp:Label ID="lblPDHdateEmp" runat="server" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "PDH_DATE_START")).ToString("dd MMM yyyy", System.Globalization.CultureInfo.CreateSpecificCulture("th-TH")) %>'></asp:Label>
                             </ItemTemplate>
                             <EditItemTemplate>
-                                <asp:TextBox ID="txtPDHdate" MaxLength="12" runat="server" CssClass="date" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "PDH_DATE_START")).ToString("dd MMM yyyy", System.Globalization.CultureInfo.CreateSpecificCulture("th-TH")) %>'></asp:TextBox>
+                                <asp:TextBox ID="txtPDHdateEmp" MaxLength="12" runat="server" CssClass="date" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "PDH_DATE_START")).ToString("dd MMM yyyy", System.Globalization.CultureInfo.CreateSpecificCulture("th-TH")) %>'></asp:TextBox>
                             </EditItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="ตำแหน่งพนักงานราชการ" ControlStyle-Width="200" >
                             <ItemTemplate>
-                                <asp:Label ID="lblPDHempGroup" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.POSI_EMP_GROUP") %>'></asp:Label>
+                                <asp:Label ID="lblPDHpositionGetEmp" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PDH_POSITION_GET") %>'></asp:Label>
                             </ItemTemplate>
                             <EditItemTemplate>
-                                <asp:DropDownList ID="ddlPDHempGroup" runat="server"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlPDHpositionGetEmp" runat="server"></asp:DropDownList>
                             </EditItemTemplate>
                         </asp:TemplateField>
                         <asp:CommandField ShowEditButton="True" CancelText="Cancel" DeleteText="Delete" EditText="Edit" UpdateText="Update" HeaderText="แก้ไข"  />

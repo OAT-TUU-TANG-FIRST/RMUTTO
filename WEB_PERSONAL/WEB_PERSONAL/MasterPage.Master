@@ -230,6 +230,7 @@
                                     <a href="PersonBranch.aspx" id="cbPersonMap" runat="server"><img src="Image/Small/list.png" />แผนผังบุคลากร</a>
                                     <a href="PersonPositionManagement.aspx" id="cbPersonPosition" runat="server"><img src="Image/Small/person2.png" />จัดการแต่งตั้งหัวหน้า</a>
                                     <a href="PersonReport.aspx" id="cbNotPerson2" runat="server"><img src="Image/Small/report.png" />ออกรายงานบุคลากร</a>
+                                    <a href="Report-Custom-Person.aspx" id="A1" runat="server"><img src="Image/Small/report.png" />ออกรายงานบุคลากรV2</a>
                                 </div>
                             </div>
                         </div>

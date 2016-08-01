@@ -33,10 +33,36 @@ namespace WEB_PERSONAL
 
             if(!IsPostBack) {
                 BindDropDown();
-
             }
-            
+
+            ShowTab4MiddleGover();
         }
+
+        protected void ShowTab4MiddleGover()
+        {
+            id1tab4middle.Visible = false;
+            id2tab4middle.Visible = false;
+            id3tab4middle.Visible = false;
+            id4tab4middle.Visible = false;
+
+            if (ddlShowMenuGoverTab4.SelectedIndex == 1)
+            {
+                id1tab4middle.Visible = true;
+            }
+            else if (ddlShowMenuGoverTab4.SelectedIndex == 2)
+            {
+                id2tab4middle.Visible = true;
+            }
+            else if (ddlShowMenuGoverTab4.SelectedIndex == 3)
+            {
+                id3tab4middle.Visible = true;
+            }
+            else if (ddlShowMenuGoverTab4.SelectedIndex == 4)
+            {
+                id4tab4middle.Visible = true;
+            }
+        }
+
 
         private void BindDropDown() {
             //tab1
@@ -78,6 +104,12 @@ namespace WEB_PERSONAL
             DatabaseManager.BindDropDown(ddlTab4GeneralPositionDegreeRow2, "SELECT * FROM PS_POSITION WHERE P_GROUP = 4", "P_NAME", "P_ID", "--กรุณาเลือกตำแหน่งประเภททั่วไป--");
             DatabaseManager.BindDropDown(ddlTab4EmpPositionRow3, "SELECT * FROM PS_POSITION WHERE P_GROUP = 5", "P_NAME", "P_ID", "--กรุณาเลือกตำแหน่งประเภททั่วไป--");
 
+            ddlShowMenuGoverTab4.Items.Insert(0, new ListItem("--กรุณาเลือกตำแหน่งข้าราชการ--", "0"));
+            ddlShowMenuGoverTab4.Items.Add(new ListItem("ตำแหน่งประเภทบริหาร", "1"));
+            ddlShowMenuGoverTab4.Items.Add(new ListItem("ตำแหน่งประเภทอำนวยการ", "2"));
+            ddlShowMenuGoverTab4.Items.Add(new ListItem("ตำแหน่งประเภทวิชาการ", "3"));
+            ddlShowMenuGoverTab4.Items.Add(new ListItem("ตำแหน่งประเภททั่วไป", "4"));
+
             //tab5
             DatabaseManager.BindDropDown(ddlDegree10, "SELECT * FROM TB_GRAD_LEV", "GRAD_LEV_NAME", "GRAD_LEV_ID", "--กรุณาเลือกระดับการศึกษา--");
             DatabaseManager.BindDropDown(ddlMonth10From, "SELECT * FROM TB_MONTH", "MONTH_SHORT", "MONTH_ID", "--เดือน--");
@@ -108,8 +140,6 @@ namespace WEB_PERSONAL
             tbTelephone.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
             tbZipcode.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
             tbZipcode2.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
-            tbSalary.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
-            tbPositionSalary.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
             
         }
 
@@ -517,8 +547,8 @@ namespace WEB_PERSONAL
             P0.PS_SPECIAL_WORK = tbSpecialWork.Text;
             P0.PS_TEACH_ISCED_ID = ddlTeachISCED.SelectedValue;
             P0.PS_INWORK_DATE = Util.ODT(tbDateInwork.Text);
-            P0.PS_SALARY = Convert.ToInt32(tbPositionSalary.Text);
-            P0.PS_POSS_SALARY = Convert.ToInt32(tbPositionSalary.Text);
+            P0.PS_SALARY = Convert.ToInt32(lblPositionSalary.Text);
+            P0.PS_POSS_SALARY = Convert.ToInt32(lblPositionSalary.Text);
             P0.PS_SW_ID = Convert.ToInt32(ddlTab10StatusWork.SelectedValue);
             P0.PS_CITIZEN_ID = p;
 
@@ -648,6 +678,8 @@ namespace WEB_PERSONAL
                 }
 
                 if (staffTypeID == 1) {
+                    
+
                     if (ddlTab4PositionWorkRow1.SelectedIndex == 0)
                     {
                         notification.Attributes["class"] = "alert alert_danger";
@@ -688,11 +720,185 @@ namespace WEB_PERSONAL
                         notification.InnerHtml = "";
                     }
 
-                    if(ddlTab4AdminPositionDegreeRow2.SelectedIndex == 0 && ddlTab4DirectPositionDegreeRow2.SelectedIndex == 0 && ddlTab4AcadPositionDegreeRow2.SelectedIndex == 0 && ddlTab4GeneralPositionDegreeRow2.SelectedIndex == 0)
+                    //ถ้าเลือกดรอป ต้องกรอกวันที่
+                    if (ddlShowMenuGoverTab4.SelectedIndex == 1)
+                    {
+                        if (tbDateGetPositionGoverTab4.Text == "" || ddlTab4AdminPositionDegreeRow2.SelectedIndex == 0)
+                        {
+                            notification.Attributes["class"] = "alert alert_danger";
+                            notification.InnerHtml = "";
+                            notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
+                            notification.InnerHtml += "<div>กรุณากรอกวันที่ได้รับตำแหน่งและเลือกตำแหน่งประเภทบริหาร</div>";
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        notification.Attributes["class"] = "none";
+                        notification.InnerHtml = "";
+                    }
+                    if (ddlShowMenuGoverTab4.SelectedIndex == 2)
+                    {
+                        if (tbDateGetPositionGoverTab4.Text == "" || ddlTab4DirectPositionDegreeRow2.SelectedIndex == 0)
+                        {
+                            notification.Attributes["class"] = "alert alert_danger";
+                            notification.InnerHtml = "";
+                            notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
+                            notification.InnerHtml += "<div>กรุณากรอกวันที่ได้รับตำแหน่งและเลือกตำแหน่งประเภทอำนวยการ</div>";
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        notification.Attributes["class"] = "none";
+                        notification.InnerHtml = "";
+                    }
+                    if (ddlShowMenuGoverTab4.SelectedIndex == 3)
+                    {
+                        if (tbDateGetPositionGoverTab4.Text == "" || ddlTab4AcadPositionDegreeRow2.SelectedIndex == 0)
+                        {
+                            notification.Attributes["class"] = "alert alert_danger";
+                            notification.InnerHtml = "";
+                            notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
+                            notification.InnerHtml += "<div>กรุณากรอกวันที่ได้รับตำแหน่งและเลือกตำแหน่งประเภทวิชาการ</div>";
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        notification.Attributes["class"] = "none";
+                        notification.InnerHtml = "";
+                    }
+                    if (ddlShowMenuGoverTab4.SelectedIndex == 4)
+                    {
+                        if (tbDateGetPositionGoverTab4.Text == "" || ddlTab4GeneralPositionDegreeRow2.SelectedIndex == 0)
+                        {
+                            notification.Attributes["class"] = "alert alert_danger";
+                            notification.InnerHtml = "";
+                            notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
+                            notification.InnerHtml += "<div>กรุณากรอกวันที่ได้รับตำแหน่งและเลือกตำแหน่งประเภททั่วไป</div>";
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        notification.Attributes["class"] = "none";
+                        notification.InnerHtml = "";
+                    }
+
+                    //เลือกได้แค่ 1 อัน
+                    //***
+
+                    ddlShowMenuGoverTab4.SelectedIndex = 0;
+
+                    //มีอยู่แล้วในระบบ ห้ามเลือกซ้ำ
+                    //DropMiddle1 - ตำแหน่งประเภทบริหาร
+                    string result1 = "";
+                    using (OracleCommand com = new OracleCommand("SELECT PDH_POSITION_GET FROM TB_PDH_GOVER WHERE PDH_POSITION_GET = '" + ddlTab4AdminPositionDegreeRow2.SelectedValue + "'", con))
+                    {
+                        using (OracleDataReader reader = com.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                result1 = reader.GetInt32(0).ToString();
+                            }
+                        }
+                    }
+                    if (result1 == ddlTab4AdminPositionDegreeRow2.SelectedValue)
+                    {
+                        notification.Attributes["class"] = "alert alert_danger";
+                        notification.InnerHtml = "";
+                        notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>แจ้งเตือน</strong></div>";
+                        notification.InnerHtml += "<div> - มีข้อมูลตำแหน่งข้าราชการที่คุณเลือกนี้อยู่แล้วในระบบ</div>";
+                        return;
+                    }
+                    else
+                    {
+                        notification.Attributes["class"] = "none";
+                        notification.InnerHtml = "";
+                    }
+                    //DropMiddle2 - ตำแหน่งประเภทอำนวยการ
+                    string result2 = "";
+                    using (OracleCommand com = new OracleCommand("SELECT PDH_POSITION_GET FROM TB_PDH_GOVER WHERE PDH_POSITION_GET = '" + ddlTab4DirectPositionDegreeRow2.SelectedValue + "'", con))
+                    {
+                        using (OracleDataReader reader = com.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                result2 = reader.GetInt32(0).ToString();
+                            }
+                        }
+                    }
+                    if (result2 == ddlTab4DirectPositionDegreeRow2.SelectedValue)
+                    {
+                        notification.Attributes["class"] = "alert alert_danger";
+                        notification.InnerHtml = "";
+                        notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>แจ้งเตือน</strong></div>";
+                        notification.InnerHtml += "<div> - มีข้อมูลตำแหน่งข้าราชการที่คุณเลือกนี้อยู่แล้วในระบบ</div>";
+                        return;
+                    }
+                    else
+                    {
+                        notification.Attributes["class"] = "none";
+                        notification.InnerHtml = "";
+                    }
+                    //DropMiddle3 - ตำแหน่งประเภทวิชาการ
+                    string result3 = "";
+                    using (OracleCommand com = new OracleCommand("SELECT PDH_POSITION_GET FROM TB_PDH_GOVER WHERE PDH_POSITION_GET = '" + ddlTab4AcadPositionDegreeRow2.SelectedValue + "'", con))
+                    {
+                        using (OracleDataReader reader = com.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                result3 = reader.GetInt32(0).ToString();
+                            }
+                        }
+                    }
+                    if (result3 == ddlTab4AcadPositionDegreeRow2.SelectedValue)
+                    {
+                        notification.Attributes["class"] = "alert alert_danger";
+                        notification.InnerHtml = "";
+                        notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>แจ้งเตือน</strong></div>";
+                        notification.InnerHtml += "<div> - มีข้อมูลตำแหน่งข้าราชการที่คุณเลือกนี้อยู่แล้วในระบบ</div>";
+                        return;
+                    }
+                    else
+                    {
+                        notification.Attributes["class"] = "none";
+                        notification.InnerHtml = "";
+                    }
+                    //DropMiddle4 - ตำแหน่งประเภททั่วไป
+                    string result4 = "";
+                    using (OracleCommand com = new OracleCommand("SELECT PDH_POSITION_GET FROM TB_PDH_GOVER WHERE PDH_POSITION_GET = '" + ddlTab4GeneralPositionDegreeRow2.SelectedValue + "'", con))
+                    {
+                        using (OracleDataReader reader = com.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                result4 = reader.GetInt32(0).ToString();
+                            }
+                        }
+                    }
+                    if (result4 == ddlTab4GeneralPositionDegreeRow2.SelectedValue)
+                    {
+                        notification.Attributes["class"] = "alert alert_danger";
+                        notification.InnerHtml = "";
+                        notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>แจ้งเตือน</strong></div>";
+                        notification.InnerHtml += "<div> - มีข้อมูลตำแหน่งข้าราชการที่คุณเลือกนี้อยู่แล้วในระบบ</div>";
+                        return;
+                    }
+                    else
+                    {
+                        notification.Attributes["class"] = "none";
+                        notification.InnerHtml = "";
+                    }
+
+
+                    if (ddlTab4AdminPositionDegreeRow2.SelectedIndex == 0 && ddlTab4DirectPositionDegreeRow2.SelectedIndex == 0 && ddlTab4AcadPositionDegreeRow2.SelectedIndex == 0 && ddlTab4GeneralPositionDegreeRow2.SelectedIndex == 0)
                     {
                         //กลาง
                         PS_PERSON P0 = new PS_PERSON();
-                        TB_POSITION_DEGREE_HISTORY_GOVER P1 = new TB_POSITION_DEGREE_HISTORY_GOVER();
+                        TB_PDH_GOVER P1 = new TB_PDH_GOVER();
                         P0.PS_WORK_POS_ID = Convert.ToInt32(ddlTab4PositionWorkRow1.SelectedValue);
                         P0.PS_ADMIN_POS_ID = Convert.ToInt32(ddlTab4AdminPositionRow1.SelectedValue);
                         P0.PS_ACAD_POS_ID = Convert.ToInt32(ddlTab4AcadPositionRow1.SelectedValue);
@@ -703,7 +909,7 @@ namespace WEB_PERSONAL
                         P0.PS_CITIZEN_ID = p;
                         P0.UPDATE_PS_PERSON_TAB4_EVERYONE_GOVER();
 
-                        DataTable dt = P1.SELECT_POSI_GOVER_ONLY(p, "", "", "", "", "");
+                        DataTable dt = P1.SELECT_POSI_GOVER_ONLY(p, "", "");
                         GridviewPDHgover.DataSource = dt;
                         GridviewPDHgover.DataBind();
                         SetViewState(dt);
@@ -714,7 +920,6 @@ namespace WEB_PERSONAL
                     }
                     else
                     {
-                        //ก่อนที่จะเริ่มใหม่
                         //กลาง ////////////////////////////
                         PS_PERSON P0 = new PS_PERSON();
                         P0.PS_WORK_POS_ID = Convert.ToInt32(ddlTab4PositionWorkRow1.SelectedValue);
@@ -727,17 +932,31 @@ namespace WEB_PERSONAL
                         P0.PS_CITIZEN_ID = p;
                         P0.UPDATE_PS_PERSON_TAB4_EVERYONE_GOVER();
 
-                        TB_POSITION_DEGREE_HISTORY_GOVER P1 = new TB_POSITION_DEGREE_HISTORY_GOVER();
+                        TB_PDH_GOVER P1 = new TB_PDH_GOVER();
                         P1.PDH_CITIZEN_ID = p;
                         P1.PDH_DATE_START = Util.ODT(tbDateGetPositionGoverTab4.Text);
-                        P1.POSI_ADMIN = Convert.ToInt32(ddlTab4AdminPositionDegreeRow2.SelectedValue);
-                        P1.POSI_DIRECT = Convert.ToInt32(ddlTab4DirectPositionDegreeRow2.SelectedValue);
-                        P1.POSI_ACAD = Convert.ToInt32(ddlTab4AcadPositionDegreeRow2.SelectedValue);
-                        P1.POSI_GENERAL = Convert.ToInt32(ddlTab4GeneralPositionDegreeRow2.SelectedValue);
+
+                        if(ddlTab4AdminPositionDegreeRow2.SelectedIndex != 0)
+                        {
+                            P1.PDH_POSITION_GET = Convert.ToInt32(ddlTab4AdminPositionDegreeRow2.SelectedValue);
+                        }
+                        if (ddlTab4DirectPositionDegreeRow2.SelectedIndex != 0)
+                        {
+                            P1.PDH_POSITION_GET = Convert.ToInt32(ddlTab4DirectPositionDegreeRow2.SelectedValue);
+                        }
+                        if (ddlTab4AcadPositionDegreeRow2.SelectedIndex != 0)
+                        {
+                            P1.PDH_POSITION_GET = Convert.ToInt32(ddlTab4AcadPositionDegreeRow2.SelectedValue);
+                        }
+                        if (ddlTab4GeneralPositionDegreeRow2.SelectedIndex != 0)
+                        {
+                            P1.PDH_POSITION_GET = Convert.ToInt32(ddlTab4GeneralPositionDegreeRow2.SelectedValue);
+                        }
+
                         P1.INSERT_POSI_GOVER_ONLY();
 
                         ClearMiddleTab4();
-                        DataTable dt = P1.SELECT_POSI_GOVER_ONLY(p, "", "", "", "", "");
+                        DataTable dt = P1.SELECT_POSI_GOVER_ONLY(p, "", "");
                         GridviewPDHgover.DataSource = dt;
                         GridviewPDHgover.DataBind();
                         SetViewState(dt);
@@ -789,11 +1008,55 @@ namespace WEB_PERSONAL
                         notification.InnerHtml = "";
                     }
 
-                    if(ddlTab4EmpPositionRow3.SelectedIndex == 0)
+                    //ถ้าเลือกดรอป ต้องกรอกวันที่
+                    if (ddlTab4EmpPositionRow3.SelectedIndex != 0)
+                    {
+                        if (tbDateGetPositionEMPTab4.Text == "")
+                        {
+                            notification.Attributes["class"] = "alert alert_danger";
+                            notification.InnerHtml = "";
+                            notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
+                            notification.InnerHtml += "<div>กรุณากรอกวันที่ได้รับตำแหน่ง</div>";
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        notification.Attributes["class"] = "none";
+                        notification.InnerHtml = "";
+                    }
+
+                    //DropRight1 - ตำแหน่งพนักงานราชการ
+                    string result5 = "";
+                    using (OracleCommand com = new OracleCommand("SELECT PDH_POSITION_GET FROM TB_PDH_EMP WHERE PDH_POSITION_GET = '" + ddlTab4EmpPositionRow3.SelectedValue + "'", con))
+                    {
+                        using (OracleDataReader reader = com.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                result5 = reader.GetInt32(0).ToString();
+                            }
+                        }
+                    }
+                    if (result5 == ddlTab4EmpPositionRow3.SelectedValue)
+                    {
+                        notification.Attributes["class"] = "alert alert_danger";
+                        notification.InnerHtml = "";
+                        notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>แจ้งเตือน</strong></div>";
+                        notification.InnerHtml += "<div> - มีข้อมูลตำแหน่งพนักงานราชการที่คุณเลือกนี้อยู่แล้วในระบบ</div>";
+                        return;
+                    }
+                    else
+                    {
+                        notification.Attributes["class"] = "none";
+                        notification.InnerHtml = "";
+                    }
+
+                    if (ddlTab4EmpPositionRow3.SelectedIndex == 0)
                     {
                         //ขวา
                         PS_PERSON P0 = new PS_PERSON();
-                        TB_POSITION_DEGREE_HISTORY_EMP P2 = new TB_POSITION_DEGREE_HISTORY_EMP();
+                        TB_PDH_EMP P2 = new TB_PDH_EMP();
                         P0.PS_WORK_POS_ID = Convert.ToInt32(ddlTab4PositionWorkRow1.SelectedValue);
                         P0.PS_ADMIN_POS_ID = Convert.ToInt32(ddlTab4AdminPositionRow1.SelectedValue);
                         P0.PS_ACAD_POS_ID = Convert.ToInt32(ddlTab4AcadPositionRow1.SelectedValue);
@@ -821,10 +1084,15 @@ namespace WEB_PERSONAL
                         P0.PS_CITIZEN_ID = p;
                         P0.UPDATE_PS_PERSON_TAB4_EVERYONE_EMP();
 
-                        TB_POSITION_DEGREE_HISTORY_EMP P2 = new TB_POSITION_DEGREE_HISTORY_EMP();
+                        TB_PDH_EMP P2 = new TB_PDH_EMP();
                         P2.PDH_CITIZEN_ID = p;
                         P2.PDH_DATE_START = Util.ODT(tbDateGetPositionEMPTab4.Text);
-                        P2.POSI_EMP_GROUP = Convert.ToInt32(ddlTab4EmpPositionRow3.SelectedValue);
+
+                        if (ddlTab4EmpPositionRow3.SelectedIndex != 0)
+                        {
+                            P2.PDH_POSITION_GET = Convert.ToInt32(ddlTab4EmpPositionRow3.SelectedValue);
+                        }
+
                         P2.INSERT_POSI_EMP_ONLY();
 
                         ClearRightTab4();
@@ -1391,8 +1659,8 @@ namespace WEB_PERSONAL
                             tbSpecialWork.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
                             ddlTeachISCED.SelectedValue = reader.IsDBNull(i) ? "0" : reader.GetInt32(i).ToString(); ++i;
                             tbDateInwork.Text = Util.PureDatabaseToThaiDate(reader.IsDBNull(i) ? "" : reader.GetValue(i).ToString()); ++i;
-                            tbSalary.Text = reader.IsDBNull(i) ? "" : reader.GetInt32(i).ToString(); ++i;
-                            tbPositionSalary.Text = reader.IsDBNull(i) ? "0" : reader.GetInt32(i).ToString(); ++i;
+                            lblSalary.Text = reader.IsDBNull(i) ? "" : reader.GetInt32(i).ToString(); ++i;
+                            lblPositionSalary.Text = reader.IsDBNull(i) ? "0" : reader.GetInt32(i).ToString(); ++i;
                             ddlTab10StatusWork.SelectedValue = reader.IsDBNull(i) ? "0" : reader.GetInt32(i).ToString(); ++i;
                         }
                     }
@@ -1640,13 +1908,13 @@ namespace WEB_PERSONAL
             GridViewPAS.DataBind();
             SetViewState(dt5);
             //GridViewPositionDegreeHistoryGover
-            TB_POSITION_DEGREE_HISTORY_GOVER PDHgover = new TB_POSITION_DEGREE_HISTORY_GOVER();
-            DataTable dt6 = PDHgover.SELECT_POSI_GOVER_ONLY(p, "", "", "", "", "");
+            TB_PDH_GOVER PDHgover = new TB_PDH_GOVER();
+            DataTable dt6 = PDHgover.SELECT_POSI_GOVER_ONLY(p, "", "");
             GridviewPDHgover.DataSource = dt6;
             GridviewPDHgover.DataBind();
             SetViewState(dt6);
             //GridViewPositionDegreeHistoryEMP
-            TB_POSITION_DEGREE_HISTORY_EMP PDHemp = new TB_POSITION_DEGREE_HISTORY_EMP();
+            TB_PDH_EMP PDHemp = new TB_PDH_EMP();
             DataTable dt7 = PDHemp.SELECT_POSI_EMP_ONLY(p, "", "");
             GridviewPDHemp.DataSource = dt7;
             GridviewPDHemp.DataBind();
@@ -1685,13 +1953,13 @@ namespace WEB_PERSONAL
             GridViewPAS.DataBind();
             SetViewState(dt5);
 
-            TB_POSITION_DEGREE_HISTORY_GOVER PDHgover = new TB_POSITION_DEGREE_HISTORY_GOVER();
-            DataTable dt6 = PDHgover.SELECT_POSI_GOVER_ONLY(labelCitizenID.Text, "", "", "", "", "");
+            TB_PDH_GOVER PDHgover = new TB_PDH_GOVER();
+            DataTable dt6 = PDHgover.SELECT_POSI_GOVER_ONLY(labelCitizenID.Text, "", "");
             GridviewPDHgover.DataSource = dt6;
             GridviewPDHgover.DataBind();
             SetViewState(dt6);
 
-            TB_POSITION_DEGREE_HISTORY_EMP PDHemp = new TB_POSITION_DEGREE_HISTORY_EMP();
+            TB_PDH_EMP PDHemp = new TB_PDH_EMP();
             DataTable dt7 = PDHemp.SELECT_POSI_EMP_ONLY(labelCitizenID.Text, "", "");
             GridviewPDHemp.DataSource = dt7;
             GridviewPDHemp.DataBind();
@@ -2900,7 +3168,7 @@ namespace WEB_PERSONAL
         protected void modDeleteCommandGover(Object sender, GridViewDeleteEventArgs e)
         {
             int id = Convert.ToInt32(GridviewPDHgover.DataKeys[e.RowIndex].Value);
-            TB_POSITION_DEGREE_HISTORY_GOVER PDHgover = new TB_POSITION_DEGREE_HISTORY_GOVER();
+            TB_PDH_GOVER PDHgover = new TB_PDH_GOVER();
             PDHgover.PDH_ID = id;
             PDHgover.DELETE_PS_PROFESSIONAL_LICENSE();
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ลบข้อมูลเรียบร้อย')", true);
@@ -2918,21 +3186,15 @@ namespace WEB_PERSONAL
         }
         protected void modUpdateCommandGover(Object sender, GridViewUpdateEventArgs e)
         {
-            Label lblPDHid = (Label)GridviewPDHgover.Rows[e.RowIndex].FindControl("lblPDHid");
-            Label lblPDHcitizenID = (Label)GridviewPDHgover.Rows[e.RowIndex].FindControl("lblPDHcitizenID");
-            TextBox txtPDHdate = (TextBox)GridviewPDHgover.Rows[e.RowIndex].FindControl("txtPDHdate");
-            DropDownList ddlPDHposiAdmin = (DropDownList)GridviewPDHgover.Rows[e.RowIndex].FindControl("ddlPDHposiAdmin");
-            DropDownList ddlPDHposiDirect = (DropDownList)GridviewPDHgover.Rows[e.RowIndex].FindControl("ddlPDHposiDirect");
-            DropDownList ddlPDHposiAcad = (DropDownList)GridviewPDHgover.Rows[e.RowIndex].FindControl("ddlPDHposiAcad");
-            DropDownList ddlPDHposiGeneral = (DropDownList)GridviewPDHgover.Rows[e.RowIndex].FindControl("ddlPDHposiGeneral");
+            Label lblPDHidGover = (Label)GridviewPDHgover.Rows[e.RowIndex].FindControl("lblPDHidGover");
+            Label lblPDHcitizenIDGover = (Label)GridviewPDHgover.Rows[e.RowIndex].FindControl("lblPDHcitizenIDGover");
+            TextBox txtPDHdateGover = (TextBox)GridviewPDHgover.Rows[e.RowIndex].FindControl("txtPDHdateGover");
+            DropDownList ddlPDHpositionGetGover = (DropDownList)GridviewPDHgover.Rows[e.RowIndex].FindControl("ddlPDHpositionGetGover");
 
-            TB_POSITION_DEGREE_HISTORY_GOVER PDHgover = new TB_POSITION_DEGREE_HISTORY_GOVER(Convert.ToInt32(lblPDHid.Text)
-                , lblPDHcitizenID.Text
-                , Util.ODT(txtPDHdate.Text)
-                , Convert.ToInt32(ddlPDHposiAdmin.SelectedValue)
-                , Convert.ToInt32(ddlPDHposiDirect.SelectedValue)
-                , Convert.ToInt32(ddlPDHposiAcad.SelectedValue)
-                , Convert.ToInt32(ddlPDHposiGeneral.SelectedValue));
+            TB_PDH_GOVER PDHgover = new TB_PDH_GOVER(Convert.ToInt32(lblPDHidGover.Text)
+                , lblPDHcitizenIDGover.Text
+                , Util.ODT(txtPDHdateGover.Text)
+                , Convert.ToInt32(ddlPDHpositionGetGover.SelectedValue));
 
             PDHgover.UPDATE_POSI_GOVER_ONLY();
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('อัพเดทข้อมูลเรียบร้อย')", true);
@@ -2961,96 +3223,25 @@ namespace WEB_PERSONAL
                     {
                         using (OracleCommand sqlCmd = new OracleCommand())
                         {
-                            DropDownList ddlPDHposiAdmin = (DropDownList)e.Row.FindControl("ddlPDHposiAdmin");
+                            DropDownList ddlPDHpositionGetGover = (DropDownList)e.Row.FindControl("ddlPDHpositionGetGover");
 
-                            sqlCmd.CommandText = "select * from PS_POSITION WHERE P_GROUP = 1";
+                            sqlCmd.CommandText = "select * from PS_POSITION WHERE P_GROUP IN (1,2,3,4)";
                             sqlCmd.Connection = sqlConn;
                             sqlConn.Open();
                             OracleDataAdapter da1 = new OracleDataAdapter(sqlCmd);
                             DataTable dt = new DataTable();
                             da1.Fill(dt);
-                            ddlPDHposiAdmin.DataSource = dt;
-                            //ddlPDHposiAdminEdit.SelectedValue = DataBinder.Eval(e.Row.DataItem, "POSI_ADMIN").ToString();
-                            ddlPDHposiAdmin.DataValueField = "P_ID";
-                            ddlPDHposiAdmin.DataTextField = "P_NAME";
-                            ddlPDHposiAdmin.DataBind();
+                            ddlPDHpositionGetGover.DataSource = dt;
+                            ddlPDHpositionGetGover.SelectedValue = DataBinder.Eval(e.Row.DataItem, "PDH_POSITION_GET").ToString();
+                            ddlPDHpositionGetGover.DataValueField = "P_ID";
+                            ddlPDHpositionGetGover.DataTextField = "P_NAME";
+                            ddlPDHpositionGetGover.DataBind();
                             sqlConn.Close();
 
-                            ddlPDHposiAdmin.Items.Insert(0, new ListItem("--ตำแหน่งประเภทบริหาร--", "0"));
+                            ddlPDHpositionGetGover.Items.Insert(0, new ListItem("--ตำแหน่งข้าราชการ--", "0"));
                             DataRowView dr = e.Row.DataItem as DataRowView;
                         }
                     }
-                    using (OracleConnection sqlConn = new OracleConnection(DatabaseManager.CONNECTION_STRING))
-                    {
-                        using (OracleCommand sqlCmd = new OracleCommand())
-                        {
-                            DropDownList ddlPDHposiDirect = (DropDownList)e.Row.FindControl("ddlPDHposiDirect");
-
-                            sqlCmd.CommandText = "select * from PS_POSITION WHERE P_GROUP = 2";
-                            sqlCmd.Connection = sqlConn;
-                            sqlConn.Open();
-                            OracleDataAdapter da1 = new OracleDataAdapter(sqlCmd);
-                            DataTable dt = new DataTable();
-                            da1.Fill(dt);
-                            ddlPDHposiDirect.DataSource = dt;
-                            //ddlPDHposiDirect.SelectedValue = DataBinder.Eval(e.Row.DataItem, "POSI_ADMIN").ToString();
-                            ddlPDHposiDirect.DataValueField = "P_ID";
-                            ddlPDHposiDirect.DataTextField = "P_NAME";
-                            ddlPDHposiDirect.DataBind();
-                            sqlConn.Close();
-
-                            ddlPDHposiDirect.Items.Insert(0, new ListItem("--ตำแหน่งประเภทอำนวยการ--", "0"));
-                            DataRowView dr = e.Row.DataItem as DataRowView;
-                        }
-                    }
-                    using (OracleConnection sqlConn = new OracleConnection(DatabaseManager.CONNECTION_STRING))
-                    {
-                        using (OracleCommand sqlCmd = new OracleCommand())
-                        {
-                            DropDownList ddlPDHposiAcad = (DropDownList)e.Row.FindControl("ddlPDHposiAcad");
-
-                            sqlCmd.CommandText = "select * from PS_POSITION WHERE P_GROUP = 3";
-                            sqlCmd.Connection = sqlConn;
-                            sqlConn.Open();
-                            OracleDataAdapter da1 = new OracleDataAdapter(sqlCmd);
-                            DataTable dt = new DataTable();
-                            da1.Fill(dt);
-                            ddlPDHposiAcad.DataSource = dt;
-                            //ddlPDHposiAcad.SelectedValue = DataBinder.Eval(e.Row.DataItem, "POSI_ADMIN").ToString();
-                            ddlPDHposiAcad.DataValueField = "P_ID";
-                            ddlPDHposiAcad.DataTextField = "P_NAME";
-                            ddlPDHposiAcad.DataBind();
-                            sqlConn.Close();
-
-                            ddlPDHposiAcad.Items.Insert(0, new ListItem("--ตำแหน่งประเภทวิชาการ--", "0"));
-                            DataRowView dr = e.Row.DataItem as DataRowView;
-                        }
-                    }
-                    using (OracleConnection sqlConn = new OracleConnection(DatabaseManager.CONNECTION_STRING))
-                    {
-                        using (OracleCommand sqlCmd = new OracleCommand())
-                        {
-                            DropDownList ddlPDHposiGeneral = (DropDownList)e.Row.FindControl("ddlPDHposiGeneral");
-
-                            sqlCmd.CommandText = "select * from PS_POSITION WHERE P_GROUP = 4";
-                            sqlCmd.Connection = sqlConn;
-                            sqlConn.Open();
-                            OracleDataAdapter da1 = new OracleDataAdapter(sqlCmd);
-                            DataTable dt = new DataTable();
-                            da1.Fill(dt);
-                            ddlPDHposiGeneral.DataSource = dt;
-                            //ddlPDHposiGeneral.SelectedValue = DataBinder.Eval(e.Row.DataItem, "POSI_ADMIN").ToString();
-                            ddlPDHposiGeneral.DataValueField = "P_ID";
-                            ddlPDHposiGeneral.DataTextField = "P_NAME";
-                            ddlPDHposiGeneral.DataBind();
-                            sqlConn.Close();
-
-                            ddlPDHposiGeneral.Items.Insert(0, new ListItem("--ตำแหน่งประเภททั่วไป--", "0"));
-                            DataRowView dr = e.Row.DataItem as DataRowView;
-                        }
-                    }
-
-
                 }
             }
         }
@@ -3091,7 +3282,7 @@ namespace WEB_PERSONAL
         protected void modDeleteCommandEmp(Object sender, GridViewDeleteEventArgs e)
         {
             int id = Convert.ToInt32(GridviewPDHemp.DataKeys[e.RowIndex].Value);
-            TB_POSITION_DEGREE_HISTORY_EMP PDHemp = new TB_POSITION_DEGREE_HISTORY_EMP();
+            TB_PDH_EMP PDHemp = new TB_PDH_EMP();
             PDHemp.PDH_ID = id;
             PDHemp.DELETE_PS_PROFESSIONAL_LICENSE();
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ลบข้อมูลเรียบร้อย')", true);
@@ -3109,16 +3300,16 @@ namespace WEB_PERSONAL
         }
         protected void modUpdateCommandEmp(Object sender, GridViewUpdateEventArgs e)
         {
-            Label lblPDHid = (Label)GridviewPDHemp.Rows[e.RowIndex].FindControl("lblPDHid");
-            Label lblPDHcitizenID = (Label)GridviewPDHemp.Rows[e.RowIndex].FindControl("lblPDHcitizenID");
-            TextBox txtPDHdate = (TextBox)GridviewPDHemp.Rows[e.RowIndex].FindControl("txtPDHdate");
-            DropDownList ddlPDHposiAdmin = (DropDownList)GridviewPDHemp.Rows[e.RowIndex].FindControl("ddlPDHposiAdmin");
+            Label lblPDHidEmp = (Label)GridviewPDHemp.Rows[e.RowIndex].FindControl("lblPDHidEmp");
+            Label lblPDHcitizenIDEmp = (Label)GridviewPDHemp.Rows[e.RowIndex].FindControl("lblPDHcitizenIDEmp");
+            TextBox txtPDHdateEmp = (TextBox)GridviewPDHemp.Rows[e.RowIndex].FindControl("txtPDHdateEmp");
+            DropDownList ddlPDHpositionGetEmp = (DropDownList)GridviewPDHemp.Rows[e.RowIndex].FindControl("ddlPDHpositionGetEmp");
 
 
-            TB_POSITION_DEGREE_HISTORY_EMP PDHemp = new TB_POSITION_DEGREE_HISTORY_EMP(Convert.ToInt32(lblPDHid.Text)
-                , lblPDHcitizenID.Text
-                , Util.ODT(txtPDHdate.Text)
-                , Convert.ToInt32(ddlPDHposiAdmin.SelectedValue));
+            TB_PDH_EMP PDHemp = new TB_PDH_EMP(Convert.ToInt32(lblPDHidEmp.Text)
+                , lblPDHcitizenIDEmp.Text
+                , Util.ODT(txtPDHdateEmp.Text)
+                , Convert.ToInt32(ddlPDHpositionGetEmp.SelectedValue));
 
             PDHemp.UPDATE_POSI_EMP_ONLY();
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('อัพเดทข้อมูลเรียบร้อย')", true);
@@ -3147,7 +3338,7 @@ namespace WEB_PERSONAL
                     {
                         using (OracleCommand sqlCmd = new OracleCommand())
                         {
-                            DropDownList ddlPDHempGroup = (DropDownList)e.Row.FindControl("ddlPDHempGroup");
+                            DropDownList ddlPDHpositionGetEmp = (DropDownList)e.Row.FindControl("ddlPDHpositionGetEmp");
 
                             sqlCmd.CommandText = "select * from PS_POSITION WHERE P_GROUP = 5";
                             sqlCmd.Connection = sqlConn;
@@ -3155,14 +3346,14 @@ namespace WEB_PERSONAL
                             OracleDataAdapter da1 = new OracleDataAdapter(sqlCmd);
                             DataTable dt = new DataTable();
                             da1.Fill(dt);
-                            ddlPDHempGroup.DataSource = dt;
-                            //ddlPDHempGroup.SelectedValue = DataBinder.Eval(e.Row.DataItem, "POSI_ADMIN").ToString();
-                            ddlPDHempGroup.DataValueField = "P_ID";
-                            ddlPDHempGroup.DataTextField = "P_NAME";
-                            ddlPDHempGroup.DataBind();
+                            ddlPDHpositionGetEmp.DataSource = dt;
+                            ddlPDHpositionGetEmp.SelectedValue = DataBinder.Eval(e.Row.DataItem, "PDH_POSITION_GET").ToString();
+                            ddlPDHpositionGetEmp.DataValueField = "P_ID";
+                            ddlPDHpositionGetEmp.DataTextField = "P_NAME";
+                            ddlPDHpositionGetEmp.DataBind();
                             sqlConn.Close();
 
-                            ddlPDHempGroup.Items.Insert(0, new ListItem("--ตำแหน่งพนักงานราชการ--", "0"));
+                            ddlPDHpositionGetEmp.Items.Insert(0, new ListItem("--ตำแหน่งพนักงานราชการ--", "0"));
                             DataRowView dr = e.Row.DataItem as DataRowView;
                         }
                     }
@@ -3512,6 +3703,12 @@ namespace WEB_PERSONAL
             ddlAmphur2.SelectedIndex = ddlAmphur.SelectedIndex;
             ddlDistrict2.SelectedIndex = ddlDistrict.SelectedIndex;
             ddlCountry2.SelectedIndex = ddlCountry.SelectedIndex;
+
+            if(id1Tab2City1.Visible == true){
+                id2Tab2City2.Visible = true;
+            }else if(id1Tab2City1.Visible == false){
+                id2Tab2City2.Visible = false;
+            }
         }
 
         protected void ddlCountry_SelectedIndexChanged(object sender, EventArgs e)
@@ -3520,24 +3717,24 @@ namespace WEB_PERSONAL
             {
                 con.Open();
                 string CountryName = "";
-                using (OracleCommand com = new OracleCommand("SELECT COUNTRY_TH FROM TB_COUNTRY WHERE COUNTRY_TH = '" + ddlCountry.SelectedValue + "'", con))
+                using (OracleCommand com = new OracleCommand("SELECT COUNTRY_ID FROM TB_COUNTRY WHERE COUNTRY_ID = 236", con))
                 {
                     using (OracleDataReader reader = com.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            CountryName = reader.GetString(0);
+                            CountryName = reader.GetInt32(0).ToString();
                         }
                     }
                 }
                 
-                if (CountryName == "ไทย")
+                if (CountryName == ddlCountry.SelectedValue)
                 {
-                    tbState.Visible = true;
+                    id1Tab2City1.Visible = false;
                 }
-                else if(CountryName != "ไทย")
+                else if(CountryName != ddlCountry.SelectedValue)
                 {
-                    tbState.Visible = false;
+                    id1Tab2City1.Visible = true;
                 }
                 
             }
@@ -3548,30 +3745,28 @@ namespace WEB_PERSONAL
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
             {
                 con.Open();
-                string CountryName2 = "";
-                using (OracleCommand com = new OracleCommand("SELECT COUNTRY_TH FROM TB_COUNTRY WHERE COUNTRY_TH = '" + ddlCountry2.SelectedValue + "'", con))
+                string CountryName = "";
+                using (OracleCommand com = new OracleCommand("SELECT COUNTRY_ID FROM TB_COUNTRY WHERE COUNTRY_ID = 236", con))
                 {
                     using (OracleDataReader reader = com.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            CountryName2 = reader.GetString(0);
+                            CountryName = reader.GetInt32(0).ToString();
                         }
                     }
                 }
-                tbState2.Visible = false;
 
-                if (CountryName2 == "ไทย")
+                if (CountryName == ddlCountry2.SelectedValue)
                 {
-                    tbState2.Visible = true;
+                    id2Tab2City2.Visible = false;
                 }
-                else if (CountryName2 != "ไทย")
+                else if (CountryName != ddlCountry2.SelectedValue)
                 {
-                    tbState2.Visible = false;
+                    id2Tab2City2.Visible = true;
                 }
             }
         }
-
         
     }
 }

@@ -481,6 +481,15 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.DropDownList ddlCountry;
         
         /// <summary>
+        /// id1Tab2City1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow id1Tab2City1;
+        
+        /// <summary>
         /// tbState control.
         /// </summary>
         /// <remarks>
@@ -569,6 +578,15 @@ namespace WEB_PERSONAL {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlCountry2;
+        
+        /// <summary>
+        /// id2Tab2City2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow id2Tab2City2;
         
         /// <summary>
         /// tbState2 control.
@@ -688,22 +706,22 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.TextBox tbDateInwork;
         
         /// <summary>
-        /// tbSalary control.
+        /// lblSalary control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbSalary;
+        protected global::System.Web.UI.WebControls.Label lblSalary;
         
         /// <summary>
-        /// tbPositionSalary control.
+        /// lblPositionSalary control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbPositionSalary;
+        protected global::System.Web.UI.WebControls.Label lblPositionSalary;
         
         /// <summary>
         /// ddlTab10StatusWork control.
@@ -805,6 +823,24 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.TextBox tbDateGetPositionGoverTab4;
         
         /// <summary>
+        /// ddlShowMenuGoverTab4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlShowMenuGoverTab4;
+        
+        /// <summary>
+        /// id1tab4middle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow id1tab4middle;
+        
+        /// <summary>
         /// ddlTab4AdminPositionDegreeRow2 control.
         /// </summary>
         /// <remarks>
@@ -812,6 +848,15 @@ namespace WEB_PERSONAL {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlTab4AdminPositionDegreeRow2;
+        
+        /// <summary>
+        /// id2tab4middle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow id2tab4middle;
         
         /// <summary>
         /// ddlTab4DirectPositionDegreeRow2 control.
@@ -823,6 +868,15 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.DropDownList ddlTab4DirectPositionDegreeRow2;
         
         /// <summary>
+        /// id3tab4middle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow id3tab4middle;
+        
+        /// <summary>
         /// ddlTab4AcadPositionDegreeRow2 control.
         /// </summary>
         /// <remarks>
@@ -830,6 +884,15 @@ namespace WEB_PERSONAL {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlTab4AcadPositionDegreeRow2;
+        
+        /// <summary>
+        /// id4tab4middle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow id4tab4middle;
         
         /// <summary>
         /// ddlTab4GeneralPositionDegreeRow2 control.
