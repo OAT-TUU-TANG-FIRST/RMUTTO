@@ -10,7 +10,7 @@
 namespace WEB_PERSONAL {
     
     
-    public partial class PosiInsigGover_ADMIN {
+    public partial class psPerson_ADMIN {
         
         /// <summary>
         /// Panel1 control.
@@ -22,31 +22,58 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.Panel Panel1;
         
         /// <summary>
-        /// txtSearchPosiInsigGoverName control.
+        /// txtSearchDegree control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearchPosiInsigGoverName;
+        protected global::System.Web.UI.WebControls.TextBox txtSearchDegree;
         
         /// <summary>
-        /// btnSearchPosiInsigGover control.
+        /// ddlSearchGroup control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSearchPosiInsigGover;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSearchGroup;
         
         /// <summary>
-        /// btnSearchRefresh control.
+        /// ddlSearchNameGroup control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSearchRefresh;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSearchNameGroup;
+        
+        /// <summary>
+        /// ddlSearchTypeName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSearchTypeName;
+        
+        /// <summary>
+        /// lbuSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbuSearch;
+        
+        /// <summary>
+        /// lbuRefresh control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbuRefresh;
         
         /// <summary>
         /// Panel2 control.
@@ -58,31 +85,58 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.Panel Panel2;
         
         /// <summary>
-        /// txtInsertPosiInsigGoverName control.
+        /// txtInsertDegree control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtInsertPosiInsigGoverName;
+        protected global::System.Web.UI.WebControls.TextBox txtInsertDegree;
         
         /// <summary>
-        /// btnSubmitPosiInsigGover control.
+        /// ddlInsertGroup control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmitPosiInsigGover;
+        protected global::System.Web.UI.WebControls.DropDownList ddlInsertGroup;
         
         /// <summary>
-        /// btnCancelPosiInsigGover control.
+        /// ddlInsertNameGroup control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancelPosiInsigGover;
+        protected global::System.Web.UI.WebControls.DropDownList ddlInsertNameGroup;
+        
+        /// <summary>
+        /// ddlInsertTypeName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlInsertTypeName;
+        
+        /// <summary>
+        /// lbuSubmit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbuSubmit;
+        
+        /// <summary>
+        /// lbuCancel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbuCancel;
         
         /// <summary>
         /// ScriptManager1 control.

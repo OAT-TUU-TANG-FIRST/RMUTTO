@@ -89,16 +89,13 @@ namespace WEB_PERSONAL
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
             {
                 con.Open();
-                //using (OracleCommand com = new OracleCommand("SELECT IR_CITIZEN_ID รหัสประชาชน, IR_DATE_START วันที่ทำเรื่องขอ, IR_RANK ยศ, IR_TITLE คำนำหน้า, IR_NAME || ' ' || IR_LASTNAME ชื่อ, IR_GENDER เพศ, IR_BIRTHDATE วันเกิด, IR_DATE_INWORK วันที่เข้าทำงาน, IR_START_POSITION, IR_START_DEGREE, IR_CURRENT_POSITION, IR_TYPE, IR_DEGREE, IR_CURRENT_SALARY, IR_POSITION_SALARY FROM TB_INSIG_REQUEST WHERE TB_INSIG_REQUEST.IR_STATUS = 2", con))
                 using (OracleCommand com = new OracleCommand("SELECT (SELECT NAME_GRADEINSIGNIA_THA FROM INS_GRADEINSIGNIA WHERE INS_GRADEINSIGNIA.ID_GRADEINSIGNIA = TB_INSIG_REQUEST.IR_INSIG_ID) ชั้นที่ขอ, IR_CITIZEN_ID รหัสประชาชน, IR_DATE_START วันที่ทำเรื่องขอ, IR_RANK ยศ, IR_TITLE คำนำหน้า, IR_NAME || ' ' || IR_LASTNAME ชื่อ, IR_GENDER เพศ, IR_BIRTHDATE วันเกิด, IR_DATE_INWORK วันที่เข้าทำงาน, IR_ID FROM TB_INSIG_REQUEST WHERE TB_INSIG_REQUEST.IR_STATUS = 2", con))
-                //3 using (OracleCommand com = new OracleCommand("SELECT (SELECT NAME_GRADEINSIGNIA_THA FROM INS_GRADEINSIGNIA WHERE INS_GRADEINSIGNIA.ID_GRADEINSIGNIA = TB_INSIG_REQUEST.IR_INSIG_ID) ชั้นที่ขอ, IR_CITIZEN_ID รหัสประชาชน, IR_DATE_START วันที่ทำเรื่องขอ, IR_RANK ยศ, IR_TITLE คำนำหน้า, IR_NAME || ' ' || IR_LASTNAME ชื่อ, IR_GENDER เพศ, IR_BIRTHDATE วันเกิด, IR_DATE_INWORK วันที่เข้าทำงาน FROM TB_INSIG_REQUEST WHERE TB_INSIG_REQUEST.IR_STATUS = 3", con))
                 {
                     using (OracleDataReader reader = com.ExecuteReader())
                     {
                         while (reader.Read())
                         {
                             TableRow row = new TableRow();
-                            //row.CssClass = "ps-ins-item";
                             string psID = reader.GetString(1);
                             int IRID = reader.GetInt32(9);
 
@@ -225,8 +222,6 @@ namespace WEB_PERSONAL
                 res = 2;
             }
 
-            
-
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
                 if (res == 1) {
@@ -246,7 +241,6 @@ namespace WEB_PERSONAL
                         com.ExecuteNonQuery();
                     }
                 }
-
                 
             }
             MultiView1.ActiveViewIndex = 2;

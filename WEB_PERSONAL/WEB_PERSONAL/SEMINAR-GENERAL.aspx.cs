@@ -13,17 +13,32 @@ using Oracle.DataAccess.Client;
 namespace WEB_PERSONAL {
     public partial class SEMINAR_GENERAL : System.Web.UI.Page {
         protected void Page_Load(object sender, EventArgs e) {
-            BindData();
+
+            PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
+            Person loginPerson = ps.LoginPerson;
+
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+            {
+                con.Open();
+                using (OracleCommand com = new OracleCommand("SELECT PS_FN_TH, PS_LN_TH, (SELECT POSITION_WORK_NAME FROM TB_POSITION_WORK WHERE POSITION_WORK_ID = PS_WORK_POS_ID), (SELECT ADMIN_POSITION_NAME FROM TB_ADMIN_POSITION WHERE ADMIN_POSITION_ID = PS_ACAD_POS_ID), (SELECT CAMPUS_NAME FROM TB_CAMPUS WHERE CAMPUS_ID = PS_CAMPUS_ID) || ' ' || (SELECT FACULTY_NAME FROM TB_FACULTY WHERE FACULTY_ID = PS_FACULTY_ID) || ' ' || (SELECT DIVISION_NAME FROM TB_DIVISION WHERE DIVISION_ID = PS_DIVISION_ID) || ' ' || (SELECT WORK_NAME FROM TB_WORK_DIVISION WHERE WORK_ID = PS_WORK_DIVISION_ID) FROM PS_PERSON WHERE PS_CITIZEN_ID = '" + loginPerson.CitizenID + "'", con))
+                {
+                    using (OracleDataReader reader = com.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int i = 0;
+                            txtName.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
+                            txtLastName.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
+                            txtPosition.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
+                            txtDegree.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
+                            txtCampus.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
+                        }
+                    }
+                }
+            }
 
             if (!IsPostBack) {
                 txtBudget.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
-            }
-        }
-
-        void BindData() {
-            if (Session["PersonnelSystem"] == null) {
-                Response.Redirect("Access.aspx");
-                return;
             }
         }
 
@@ -42,7 +57,6 @@ namespace WEB_PERSONAL {
             txtDay.Text = "";
             txtBudget.Text = "";
             txtSupportBudget.Text = "";
-
             txtAbstract.Text = "";
             txtResult.Text = "";
             txtShow1.Text = "";
@@ -53,91 +67,140 @@ namespace WEB_PERSONAL {
             txtComment.Text = "";
         }
 
-        protected bool NeedData() {
-            if (string.IsNullOrEmpty(txtName.Text)) {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก ชื่อ')", true);
-                return true;
-            }
-            if (string.IsNullOrEmpty(txtLastName.Text)) {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก นามสกุล')", true);
-                return true;
-            }
-            if (string.IsNullOrEmpty(txtPosition.Text)) {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก ตำแหน่ง')", true);
-                return true;
-            }
-            if (string.IsNullOrEmpty(txtDegree.Text)) {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก ระดับ')", true);
-                return true;
-            }
-            if (string.IsNullOrEmpty(txtCampus.Text)) {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก สังกัด')", true);
-                return true;
-            }
-            if (string.IsNullOrEmpty(txtNameOfProject.Text)) {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก ชื่อโครงการฝึกอบรม/สัมมนา/ดูงาน')", true);
-                return true;
-            }
-            if (string.IsNullOrEmpty(txtPlace.Text)) {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก สถานที่ฝึกอบรม/สัมมนา/ดูงาน')", true);
-                return true;
-            }
-            if (string.IsNullOrEmpty(txtDateFrom.Text)) {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก วันที่เริ่ม')", true);
-                return true;
-            }
-            if (string.IsNullOrEmpty(txtDateTO.Text)) {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก วันที่สิ้นสุด')", true);
-                return true;
-            }
-            if (string.IsNullOrEmpty(txtBudget.Text)) {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก ค่าใช้จ่ายตลอดโครงการ')", true);
-                return true;
-            }
-            if (string.IsNullOrEmpty(txtSupportBudget.Text)) {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก แหล่งงบประมาณที่ได้รับการสนับสนุน')", true);
-                return true;
-            }
-            if (string.IsNullOrEmpty(txtCertificate.Text)) {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก ประกาศนียบัตรที่ได้รับ')", true);
-                return true;
-            }
-            if (string.IsNullOrEmpty(txtAbstract.Text)) {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก สรุปผลการฝึกอบรม/สัมมนา/ดูงาน')", true);
-                return true;
-            }
-            if (string.IsNullOrEmpty(txtResult.Text)) {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก ผลที่ได้รับจากการฝึกอบรม/สัมมนา/ดูงาน')", true);
-                return true;
-            }
-            if (string.IsNullOrEmpty(txtShow1.Text)) {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก การนำผลงานที่ได้รับจากการฝึกอบรม/สัมมนา/ดูงาน : ด้านการเรียนการสอน')", true);
-                return true;
-            }
-            if (string.IsNullOrEmpty(txtShow2.Text)) {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก การนำผลงานที่ได้รับจากการฝึกอบรม/สัมมนา/ดูงาน : ด้านการวิจัย')", true);
-                return true;
-            }
-            if (string.IsNullOrEmpty(txtShow3.Text)) {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก การนำผลงานที่ได้รับจากการฝึกอบรม/สัมมนา/ดูงาน : ด้านการบริการวิชาการ')", true);
-                return true;
-            }
-            if (string.IsNullOrEmpty(txtShow4.Text)) {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก การนำผลงานที่ได้รับจากการฝึกอบรม/สัมมนา/ดูงาน : ด้านอื่นๆ')", true);
-                return true;
-            }
-            if (string.IsNullOrEmpty(txtProblem.Text)) {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก ปัญหาอุปสรรคในการฝึกอบรม/สัมมนา/ดูงาน')", true);
-                return true;
-            }
-            if (string.IsNullOrEmpty(txtComment.Text)) {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณากรอก ความคิดเห็น/ข้อเสนอแนะอื่นๆ')", true);
-                return true;
-            }
-            return false;
-        }
         protected void lbuSubmit_Click(object sender, EventArgs e) {
-            // if (NeedData()) { return; };
+            if (txtName.Text == "")
+            {
+                notification.Attributes["class"] = "alert alert_danger";
+                notification.InnerHtml = "";
+                notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
+                notification.InnerHtml += "<div>กรุณากรอกชื่อ</div>";
+                return;
+            }
+            else
+            {
+                notification.Attributes["class"] = "none";
+                notification.InnerHtml = "";
+            }
+            if (txtLastName.Text == "")
+            {
+                notification.Attributes["class"] = "alert alert_danger";
+                notification.InnerHtml = "";
+                notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
+                notification.InnerHtml += "<div>กรุณากรอกนามสกุล</div>";
+                return;
+            }
+            else
+            {
+                notification.Attributes["class"] = "none";
+                notification.InnerHtml = "";
+            }
+            if (txtPosition.Text == "")
+            {
+                notification.Attributes["class"] = "alert alert_danger";
+                notification.InnerHtml = "";
+                notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
+                notification.InnerHtml += "<div>กรุณากรอกตำแหน่ง</div>";
+                return;
+            }
+            else
+            {
+                notification.Attributes["class"] = "none";
+                notification.InnerHtml = "";
+            }
+            if (txtDegree.Text == "")
+            {
+                notification.Attributes["class"] = "alert alert_danger";
+                notification.InnerHtml = "";
+                notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
+                notification.InnerHtml += "<div>กรุณากรอกระดับ</div>";
+                return;
+            }
+            else
+            {
+                notification.Attributes["class"] = "none";
+                notification.InnerHtml = "";
+            }
+            if (txtCampus.Text == "")
+            {
+                notification.Attributes["class"] = "alert alert_danger";
+                notification.InnerHtml = "";
+                notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
+                notification.InnerHtml += "<div>กรุณากรอกสังกัด</div>";
+                return;
+            }
+            else
+            {
+                notification.Attributes["class"] = "none";
+                notification.InnerHtml = "";
+            }
+            if (txtNameOfProject.Text == "")
+            {
+                notification.Attributes["class"] = "alert alert_danger";
+                notification.InnerHtml = "";
+                notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
+                notification.InnerHtml += "<div>กรุณากรอกชื่อโครงการฝึกอบรม/สัมมนา/ดูงาน</div>";
+                return;
+            }
+            else
+            {
+                notification.Attributes["class"] = "none";
+                notification.InnerHtml = "";
+            }
+            if (txtPlace.Text == "")
+            {
+                notification.Attributes["class"] = "alert alert_danger";
+                notification.InnerHtml = "";
+                notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
+                notification.InnerHtml += "<div>กรุณากรอกสถานที่ฝึกอบรม/สัมมนา/ดูงาน</div>";
+                return;
+            }
+            else
+            {
+                notification.Attributes["class"] = "none";
+                notification.InnerHtml = "";
+            }
+            if (txtDateFrom.Text == "" && txtDateTO.Text == "")
+            {
+                notification.Attributes["class"] = "alert alert_danger";
+                notification.InnerHtml = "";
+                notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
+                notification.InnerHtml += "<div>กรุณากรอกระยะเวลาการฝึกอบรม/สัมมนา/ดูงาน ตั้งแต่วันที่ - ถึงวันที่</div>";
+                return;
+            }
+            else
+            {
+                notification.Attributes["class"] = "none";
+                notification.InnerHtml = "";
+            }
+
+            // วันที่ติดลบ ไม่ให้
+            DateTime dtFromDate = Util.ToDateTimeOracle(txtDateFrom.Text);
+            DateTime dtToDate = Util.ToDateTimeOracle(txtDateTO.Text);
+            int totalDay = (int)(dtToDate - dtFromDate).TotalDays + 1;
+            if (totalDay <= 0)
+            {
+                notification.Attributes["class"] = "alert alert_danger";
+                notification.InnerHtml = "";
+                notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
+                notification.InnerHtml += "<div> - ระยะเวลาการฝึกอบรม/สัมมนา/ดูงาน ตั้งแต่วันที่ - ถึงวันที่ : วันที่ไม่ถูกต้อง</div>";
+                return;
+            }
+
+            if (txtSupportBudget.Text == "")
+            {
+                notification.Attributes["class"] = "alert alert_danger";
+                notification.InnerHtml = "";
+                notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
+                notification.InnerHtml += "<div>กรุณากรอกแหล่งงบประมาณที่ได้รับการสนับสนุน</div>";
+                return;
+            }
+            else
+            {
+                notification.Attributes["class"] = "none";
+                notification.InnerHtml = "";
+            }
+
+            Panel0.Visible = false;
 
             Seminar S = new Seminar();
             PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
@@ -149,8 +212,8 @@ namespace WEB_PERSONAL {
             S.SEMINAR_CAMPUS = txtCampus.Text;
             S.SEMINAR_NAMEOFPROJECT = txtNameOfProject.Text;
             S.SEMINAR_PLACE = txtPlace.Text;
-            S.SEMINAR_DATETIME_FROM = DateTime.Parse(txtDateFrom.Text);
-            S.SEMINAR_DATETIME_TO = DateTime.Parse(txtDateTO.Text);
+            S.SEMINAR_DATETIME_FROM = Util.ODT(txtDateFrom.Text);
+            S.SEMINAR_DATETIME_TO = Util.ODT(txtDateTO.Text);
             S.SEMINAR_YEAR = Convert.ToInt32(txtYear.Text);
             S.SEMINAR_MONTH = Convert.ToInt32(txtMonth.Text);
             S.SEMINAR_DAY = Convert.ToInt32(txtDay.Text);
@@ -168,40 +231,29 @@ namespace WEB_PERSONAL {
             S.SEMINAR_SIGNED_DATETIME = DateTime.Now;
             S.CITIZEN_ID = PP.CitizenID;
 
-            string[] splitDate1 = txtDateFrom.Text.Split(' ');
-            string[] splitDate2 = txtDateTO.Text.Split(' ');
-            S.SEMINAR_DATETIME_FROM = new DateTime(Convert.ToInt32(splitDate1[2]), Util.MonthToNumber(splitDate1[1]), Convert.ToInt32(splitDate1[0]));
-            S.SEMINAR_DATETIME_TO = new DateTime(Convert.ToInt32(splitDate2[2]), Util.MonthToNumber(splitDate2[1]), Convert.ToInt32(splitDate2[0]));
-
-            DateTime SEMINAR_SIGNED_DATETIME = DateTime.Now;
             S.InsertSEMINAR();
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('เพิ่มข้อมูลเรียบร้อย')", true);
             ClearData();
-            MultiView1.ActiveViewIndex = 0;
+            MultiView1.ActiveViewIndex = 1;
         }
-
-/*
-        protected void lbuBackV1_Click(object sender, EventArgs e)
-        {
-            MultiView1.ActiveViewIndex = 0;
-        }*/
-
 
         protected void txtDateTO_TextChanged(object sender, EventArgs e) {
-            DateTime df = DateTime.Parse(txtDateFrom.Text);
-            DateTime dt = DateTime.Parse(txtDateTO.Text);
-            int day = (int)(dt - df).TotalDays + 1;
+            DateTime dtFromDate = Util.ToDateTimeOracle(txtDateFrom.Text);
+            DateTime dtToDate = Util.ToDateTimeOracle(txtDateTO.Text);
+            int totalDay = (int)(dtToDate - dtFromDate).TotalDays + 1;
+            if (totalDay <= 0)
+            {
+                notification.Attributes["class"] = "alert alert_danger";
+                notification.InnerHtml = "";
+                notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
+                notification.InnerHtml += "<div> - ระยะเวลาการฝึกอบรม/สัมมนา/ดูงาน ตั้งแต่วันที่ - ถึงวันที่ : วันที่ไม่ถูกต้อง</div>";
+                return;
+            }
+            else
+            {
+                notification.Attributes["class"] = "none";
+                notification.InnerHtml = "";
+            }
 
-            int year = (day / 365);
-            int month = (day % 365) / 30;
-            day = (day % 365) % 30;
-
-            txtYear.Text = "" + year;
-            txtMonth.Text = "" + month;
-            txtDay.Text = "" + day;
-        }
-
-        protected void txtDateFrom_TextChanged(object sender, EventArgs e) {
             DateTime df = DateTime.Parse(txtDateFrom.Text);
             DateTime dt = DateTime.Parse(txtDateTO.Text);
             int day = (int)(dt - df).TotalDays + 1;
@@ -216,7 +268,6 @@ namespace WEB_PERSONAL {
         }
 
         protected void chkBox_CheckedChanged(object sender, EventArgs e) {
-            txtSupportBudget.Text = chkBox.Checked.ToString();
             if (chkBox.Checked) {
                 txtCertificate.Enabled = true;
                 txtCertificate.Text = "";
@@ -226,9 +277,5 @@ namespace WEB_PERSONAL {
             }
         }
 
-       /* protected void lbuNextV1_Click(object sender, EventArgs e)
-        {
-            MultiView1.ActiveViewIndex = 1;
-        }*/
     }
 }

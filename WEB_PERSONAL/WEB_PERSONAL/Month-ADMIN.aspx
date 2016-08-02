@@ -5,13 +5,6 @@
             text-align: center;
         }
 
-        .panin {
-            border: 1px solid black;
-            margin: 20px;
-            background-color: rgba(255,255,255,0.6);
-            border-radius: 5px;
-        }
-
         .center1 {
             display: inline-block;
         }
@@ -24,8 +17,8 @@
                 <img src="Image/Small/search.png" />ค้นหาข้อมูล
             </div>
             <div>
-                ชื่อเดือนย่อ :&nbsp<asp:TextBox ID="txtSearchMonthNameSmall" runat="server" CssClass="tb5" Width="230px" MaxLength="10"></asp:TextBox>
-                ชื่อเดือนเต็ม :&nbsp<asp:TextBox ID="txtSearchMonthNameFull" runat="server" CssClass="tb5" Width="230px" MaxLength="100"></asp:TextBox>
+                ชื่อเดือนย่อ :&nbsp<asp:TextBox ID="txtSearchMonthNameSmall" runat="server" CssClass="ps-textbox" Width="230px" MaxLength="10"></asp:TextBox>
+                ชื่อเดือนเต็ม :&nbsp<asp:TextBox ID="txtSearchMonthNameFull" runat="server" CssClass="ps-textbox" Width="230px" MaxLength="100"></asp:TextBox>
                 <asp:LinkButton ID="lbuSearch" runat="server" OnClick="lbuSearch_Click" CssClass="ps-button"><img src="Image/Small/search.png" class="icon_left"/>ค้นหา</asp:LinkButton>
                 <asp:LinkButton ID="lbuRefresh" runat="server" OnClick="lbuRefresh_Click" CssClass="ps-button"><img src="Image/Small/refresh.png" class="icon_left"/>รีเฟรช</asp:LinkButton>
             </div>
@@ -41,10 +34,10 @@
                     <tr>
                         <td style="margin-left: auto; margin-right: auto; text-align: center">ชื่อเดือนย่อ :</td>
                         <td style="text-align: left; width: 100px;">
-                            <asp:TextBox ID="txtInsertMonthNameSmall" runat="server" CssClass="tb5" MaxLength="10" Width="230px"></asp:TextBox></td>
+                            <asp:TextBox ID="txtInsertMonthNameSmall" runat="server" CssClass="ps-textbox" MaxLength="10" Width="230px"></asp:TextBox></td>
                         <td style="margin-left: auto; margin-right: auto; text-align: center">ชื่อเดือนเต็ม :</td>
                         <td style="text-align: left; width: 100px;">
-                            <asp:TextBox ID="txtInsertMonthNameFull" runat="server" CssClass="tb5" MaxLength="100" Width="230px"></asp:TextBox></td>
+                            <asp:TextBox ID="txtInsertMonthNameFull" runat="server" CssClass="ps-textbox" MaxLength="100" Width="230px"></asp:TextBox></td>
                         <td style="text-align: left;">
                             <asp:LinkButton ID="lbuSubmit" runat="server" OnClick="lbuSubmit_Click" CssClass="ps-button"><img src="Image/Small/save.png" class="icon_left"/>ตกลง</asp:LinkButton></td>
                         <td style="text-align: left;">

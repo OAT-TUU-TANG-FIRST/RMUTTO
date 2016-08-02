@@ -5,13 +5,6 @@
             text-align: center;
         }
 
-        .panin {
-            border: 1px solid black;
-            margin: 20px;
-            background-color: rgba(255,255,255,0.6);
-            border-radius: 5px;
-        }
-
         .center1 {
             display: inline-block;
         }
@@ -24,9 +17,9 @@
                 <img src="Image/Small/search.png" />ค้นหาข้อมูล
             </div>
             <div>
-                ชื่อกอง / สำนักงานเลขา / ภาควิชา :&nbsp<asp:TextBox ID="txtSearchDivisionName" runat="server" CssClass="tb5" Width="150px" MaxLength="100"></asp:TextBox>
-                วิทยาเขต :&nbsp<asp:DropDownList ID="ddlSearchCampus" runat="server" CssClass="tb5" Width="150px"></asp:DropDownList>
-                สำนัก / สถาบัน / คณะ :&nbsp<asp:DropDownList ID="ddlSearchFaculty" runat="server" CssClass="tb5" Width="150px"></asp:DropDownList>
+                ชื่อกอง / สำนักงานเลขา / ภาควิชา :&nbsp<asp:TextBox ID="txtSearchDivisionName" runat="server" CssClass="ps-textbox" Width="150px" MaxLength="100"></asp:TextBox>
+                วิทยาเขต :&nbsp<asp:DropDownList ID="ddlSearchCampus" runat="server" CssClass="ps-dropdown" Width="150px"></asp:DropDownList>
+                สำนัก / สถาบัน / คณะ :&nbsp<asp:DropDownList ID="ddlSearchFaculty" runat="server" CssClass="ps-dropdown" Width="150px"></asp:DropDownList>
                 <asp:LinkButton ID="lbuSearch" runat="server" OnClick="lbuSearch_Click" CssClass="ps-button"><img src="Image/Small/search.png" class="icon_left"/>ค้นหา</asp:LinkButton>
                 <asp:LinkButton ID="lbuRefresh" runat="server" OnClick="lbuRefresh_Click" CssClass="ps-button"><img src="Image/Small/refresh.png" class="icon_left"/>รีเฟรช</asp:LinkButton>
             </div>
@@ -42,13 +35,13 @@
                     <tr>
                         <td style="margin-left: auto; margin-right: auto; text-align: center">ชื่อกอง / สำนักงานเลขา / ภาควิชา :</td>
                         <td style="text-align: left; width: 50px;">
-                            <asp:TextBox ID="txtInsertDivisionName" runat="server" CssClass="tb5" MaxLength="100" Width="150px"></asp:TextBox></td>
+                            <asp:TextBox ID="txtInsertDivisionName" runat="server" CssClass="ps-textbox" MaxLength="100" Width="150px"></asp:TextBox></td>
                         <td style="margin-left: auto; margin-right: auto; text-align: center">วิทยาเขต :</td>
                         <td style="text-align: left; width: 40px;">
-                            <asp:DropDownList ID="ddlInsertCampus" runat="server" CssClass="tb5" Width="150px"></asp:DropDownList></td>
+                            <asp:DropDownList ID="ddlInsertCampus" runat="server" CssClass="ps-dropdown" Width="150px"></asp:DropDownList></td>
                         <td style="margin-left: auto; margin-right: auto; text-align: center">สำนัก / สถาบัน / คณะ :</td>
                         <td style="text-align: left; width: 50px;">
-                            <asp:DropDownList ID="ddlInsertFaculty" runat="server" CssClass="tb5" Width="150px"></asp:DropDownList></td>
+                            <asp:DropDownList ID="ddlInsertFaculty" runat="server" CssClass="ps-dropdown" Width="150px"></asp:DropDownList></td>
                         <td style="text-align: left;">
                             <asp:LinkButton ID="lbuSubmit" runat="server" OnClick="lbuSubmit_Click" CssClass="ps-button"><img src="Image/Small/save.png" class="icon_left"/>ตกลง</asp:LinkButton></td>
                         <td style="text-align: left;">

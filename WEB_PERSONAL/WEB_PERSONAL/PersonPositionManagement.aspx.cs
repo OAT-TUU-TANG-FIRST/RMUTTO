@@ -10,12 +10,9 @@ using WEB_PERSONAL.Class;
 
 namespace WEB_PERSONAL {
     public partial class PersonPositionManagement : System.Web.UI.Page {
-
         string ps;
         string p;
         string t;
-
-
 
         string divisionID;
         //string divisionName;
@@ -26,7 +23,6 @@ namespace WEB_PERSONAL {
         protected void Page_Load(object sender, EventArgs e) {
             if (!IsPostBack) {
                 SQLCampus();
-                //DatabaseManager.BindDropDown(ddlState2Tab2Campus, "SELECT * FROM TB_CAMPUS", "CAMPUS_NAME", "CAMPUS_ID", "--กรุณาเลือกวิทยาเขต--");
             }
 
             if (Request.QueryString["ps"] != null) {
@@ -38,8 +34,6 @@ namespace WEB_PERSONAL {
             if (Request.QueryString["t"] != null) {
                 t = Request.QueryString["t"];
             }
-
-
 
 
             if (Request.QueryString["DIV"] != null) {
@@ -64,6 +58,8 @@ namespace WEB_PERSONAL {
                 divState1.Visible = true;
                 divState2.Visible = false;
                 divState3.Visible = false;
+                divState4.Visible = false;
+                divTab.Visible = false;
                 Util.CreateSelectPersonPanel(this, pPerson, "PersonPositionManagement.aspx", ps);
                 //createState1Table(q);
                 return;
@@ -827,8 +823,6 @@ namespace WEB_PERSONAL {
         protected void lbuState4Tab6OK_Click(object sender, EventArgs e) {
             Response.Redirect("PersonPositionManagement.aspx");
         }
-
-        
 
         
     }

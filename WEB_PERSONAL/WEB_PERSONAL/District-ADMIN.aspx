@@ -5,13 +5,6 @@
             text-align: center;
         }
 
-        .panin {
-            border: 1px solid black;
-            margin: 20px;
-            background-color: rgba(255,255,255,0.6);
-            border-radius: 5px;
-        }
-
         .center1 {
             display: inline-block;
         }
@@ -28,26 +21,26 @@
                     <tr>
                         <td style="margin-left: auto; margin-right: auto; text-align: center">ชื่อตำบลภาษาไทย :</td>
                         <td style="text-align: left; width: 90px;">
-                            <asp:TextBox ID="txtSearchDistrictTH" runat="server" CssClass="tb5" MaxLength="100" Width="150px"></asp:TextBox></td>
+                            <asp:TextBox ID="txtSearchDistrictTH" runat="server" CssClass="ps-textbox" MaxLength="100" Width="150px"></asp:TextBox></td>
                         <td style="margin-left: auto; margin-right: auto; text-align: center">ชื่อตำบลภาษาอังกฤษ :</td>
                         <td style="text-align: left; width: 80px;">
-                            <asp:TextBox ID="txtSearchDistrictEN" runat="server" CssClass="tb5" MaxLength="100" Width="150px"></asp:TextBox></td>
+                            <asp:TextBox ID="txtSearchDistrictEN" runat="server" CssClass="ps-textbox" MaxLength="100" Width="150px"></asp:TextBox></td>
                     </tr>
                 </table>
                 <table class="center1">
                     <tr>
                         <td style="margin-left: auto; margin-right: auto; text-align: center">อำเภอ :</td>
                         <td style="text-align: left; width: 50px;">
-                            <asp:DropDownList ID="ddlSearchAmphur" runat="server" CssClass="tb5" Width="150px"></asp:DropDownList></td>
+                            <asp:DropDownList ID="ddlSearchAmphur" runat="server" CssClass="ps-dropdown" Width="150px"></asp:DropDownList></td>
                         <td style="margin-left: auto; margin-right: auto; text-align: center">จังหวัด :</td>
                         <td style="text-align: left; width: 50px;">
-                            <asp:DropDownList ID="ddlSearchProvince" runat="server" CssClass="tb5" Width="150px"></asp:DropDownList></td>
+                            <asp:DropDownList ID="ddlSearchProvince" runat="server" CssClass="ps-dropdown" Width="150px"></asp:DropDownList></td>
                         <td style="margin-left: auto; margin-right: auto; text-align: center">รหัสไปรษณีย์ :</td>
                         <td style="text-align: left; width: 50px;">
-                            <asp:TextBox ID="txtSearchPostCode" runat="server" CssClass="tb5" MaxLength="5" Width="50px"></asp:TextBox></td>
+                            <asp:TextBox ID="txtSearchPostCode" runat="server" CssClass="ps-textbox" MaxLength="5" Width="50px"></asp:TextBox></td>
                         <td style="margin-left: auto; margin-right: auto; text-align: center">บันทึกข้อความ :</td>
                         <td style="text-align: left; width: 150px;">
-                            <asp:TextBox ID="txtSearchNote" runat="server" CssClass="tb5" MaxLength="100" Width="150px"></asp:TextBox></td>
+                            <asp:TextBox ID="txtSearchNote" runat="server" CssClass="ps-textbox" MaxLength="100" Width="150px"></asp:TextBox></td>
 
                         <td style="text-align: left;">
                             <asp:LinkButton ID="lbuSearch" runat="server" OnClick="lbuSearch_Click" CssClass="ps-button"><img src="Image/Small/search.png" class="icon_left"/>ค้นหา</asp:LinkButton></td>
@@ -68,10 +61,10 @@
                     <tr>
                         <td style="margin-left: auto; margin-right: auto; text-align: center">ชื่อตำบลภาษาไทย :</td>
                         <td style="text-align: left; width: 90px;">
-                            <asp:TextBox ID="txtInsertDistrictTH" runat="server" CssClass="tb5" MaxLength="100" Width="150px"></asp:TextBox></td>
+                            <asp:TextBox ID="txtInsertDistrictTH" runat="server" CssClass="ps-textbox" MaxLength="100" Width="150px"></asp:TextBox></td>
                         <td style="margin-left: auto; margin-right: auto; text-align: center">ชื่อตำบลภาษาอังกฤษ :</td>
                         <td style="text-align: left; width: 80px;">
-                            <asp:TextBox ID="txtInsertDistrictEN" runat="server" CssClass="tb5" MaxLength="100" Width="150px"></asp:TextBox></td>
+                            <asp:TextBox ID="txtInsertDistrictEN" runat="server" CssClass="ps-textbox" MaxLength="100" Width="150px"></asp:TextBox></td>
 
                     </tr>
                 </table>
@@ -79,16 +72,16 @@
                     <tr>
                         <td style="margin-left: auto; margin-right: auto; text-align: center">อำเภอ :</td>
                         <td style="text-align: left; width: 50px;">
-                            <asp:DropDownList ID="ddlInsertAmphur" runat="server" CssClass="tb5" Width="150px"></asp:DropDownList></td>
+                            <asp:DropDownList ID="ddlInsertAmphur" runat="server" CssClass="ps-dropdown" Width="150px"></asp:DropDownList></td>
                         <td style="margin-left: auto; margin-right: auto; text-align: center">จังหวัด :</td>
                         <td style="text-align: left; width: 50px;">
-                            <asp:DropDownList ID="ddlInsertProvince" runat="server" CssClass="tb5" Width="150px"></asp:DropDownList></td>
+                            <asp:DropDownList ID="ddlInsertProvince" runat="server" CssClass="ps-dropdown" Width="150px"></asp:DropDownList></td>
                         <td style="margin-left: auto; margin-right: auto; text-align: center">รหัสไปรษณีย์ :</td>
                         <td style="text-align: left; width: 50px;">
-                            <asp:TextBox ID="txtInsertPostCode" runat="server" CssClass="tb5" MaxLength="5" Width="50px"></asp:TextBox></td>
+                            <asp:TextBox ID="txtInsertPostCode" runat="server" CssClass="ps-textbox" MaxLength="5" Width="50px"></asp:TextBox></td>
                         <td style="margin-left: auto; margin-right: auto; text-align: center">บันทึกข้อความ :</td>
                         <td style="text-align: left; width: 150px;">
-                            <asp:TextBox ID="txtInsertNote" runat="server" CssClass="tb5" MaxLength="100" Width="150px"></asp:TextBox></td>
+                            <asp:TextBox ID="txtInsertNote" runat="server" CssClass="ps-textbox" MaxLength="100" Width="150px"></asp:TextBox></td>
 
                         <td style="text-align: left;">
                             <asp:LinkButton ID="lbuSubmit" runat="server" OnClick="lbuSubmit_Click" CssClass="ps-button"><img src="Image/Small/save.png" class="icon_left"/>ตกลง</asp:LinkButton></td>

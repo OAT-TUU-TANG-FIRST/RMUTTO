@@ -688,6 +688,15 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.CheckBox cbAddressCondition;
         
         /// <summary>
+        /// cbAddressCondition2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbAddressCondition2;
+        
+        /// <summary>
         /// ddlAddressProvinceCondition control.
         /// </summary>
         /// <remarks>
@@ -715,40 +724,139 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.DropDownList ddlAddressDistrictCondition;
         
         /// <summary>
-        /// cbAddressCondition2 control.
+        /// cbCampusCondition control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbAddressCondition2;
+        protected global::System.Web.UI.WebControls.CheckBox cbCampusCondition;
         
         /// <summary>
-        /// ddlAddressProvinceCondition2 control.
+        /// ddlCampus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlAddressProvinceCondition2;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCampus;
         
         /// <summary>
-        /// ddlAddressAmphurCondition2 control.
+        /// ddlFaculty control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlAddressAmphurCondition2;
+        protected global::System.Web.UI.WebControls.DropDownList ddlFaculty;
         
         /// <summary>
-        /// ddlAddressDistrictCondition2 control.
+        /// ddlDivision control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlAddressDistrictCondition2;
+        protected global::System.Web.UI.WebControls.DropDownList ddlDivision;
+        
+        /// <summary>
+        /// ddlWorkDivision control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlWorkDivision;
+        
+        /// <summary>
+        /// cbStafftypeCondition control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbStafftypeCondition;
+        
+        /// <summary>
+        /// ddlStafftypeCondition control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlStafftypeCondition;
+        
+        /// <summary>
+        /// cbBudgetCondition control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbBudgetCondition;
+        
+        /// <summary>
+        /// ddlBudgetCondition control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlBudgetCondition;
+        
+        /// <summary>
+        /// cbInworkDateCondition control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbInworkDateCondition;
+        
+        /// <summary>
+        /// tbInworkDateFrom control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbInworkDateFrom;
+        
+        /// <summary>
+        /// tbInworkDateTo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbInworkDateTo;
+        
+        /// <summary>
+        /// cbRetireDateCondition control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbRetireDateCondition;
+        
+        /// <summary>
+        /// tbRetireDateFrom control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbRetireDateFrom;
+        
+        /// <summary>
+        /// tbRetireDateTo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbRetireDateTo;
         
         /// <summary>
         /// cbAgeCondition control.
@@ -776,24 +884,6 @@ namespace WEB_PERSONAL {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbAgeConditionTo;
-        
-        /// <summary>
-        /// cbCampusCondition control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbCampusCondition;
-        
-        /// <summary>
-        /// ddlCampus control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCampus;
         
         /// <summary>
         /// cbStatusWorkCondition control.

@@ -224,13 +224,17 @@ namespace WEB_PERSONAL {
                     }
                 }
 
-                using (OracleCommand com = new OracleCommand("SELECT (SELECT URL FROM PS_PERSON_IMAGE WHERE PS_PERSON.PS_CITIZEN_ID = PS_PERSON_IMAGE.CITIZEN_ID AND PRESENT = 1) URL, PS_PERSON.PS_FN_TH || ' ' || PS_PERSON.PS_LN_TH NAME, PS_EMAIL, PS_CITIZEN_ID, (SELECT POSITION_WORK_NAME FROM TB_POSITION_WORK WHERE TB_POSITION_WORK.POSITION_WORK_ID = PS_PERSON.PS_WORK_POS_ID), (SELECT ADMIN_POSITION_NAME FROM TB_ADMIN_POSITION WHERE TB_ADMIN_POSITION.ADMIN_POSITION_ID = PS_PERSON.PS_ADMIN_POS_ID) FROM PS_PERSON WHERE " + searchWhere + " = " + searchID, con)) {
+                using (OracleCommand com = new OracleCommand("SELECT (SELECT URL FROM PS_PERSON_IMAGE WHERE PS_PERSON.PS_CITIZEN_ID = PS_PERSON_IMAGE.CITIZEN_ID AND PRESENT = 1) URL, PS_PERSON.PS_FN_TH || ' ' || PS_PERSON.PS_LN_TH NAME, PS_EMAIL, PS_CITIZEN_ID, (SELECT POSITION_WORK_NAME FROM TB_POSITION_WORK WHERE TB_POSITION_WORK.POSITION_WORK_ID = PS_PERSON.PS_WORK_POS_ID), (SELECT ADMIN_POSITION_NAME FROM TB_ADMIN_POSITION WHERE TB_ADMIN_POSITION.ADMIN_POSITION_ID = PS_PERSON.PS_ADMIN_POS_ID), (SELECT CAMPUS_NAME FROM TB_CAMPUS WHERE PS_PERSON.PS_CAMPUS_ID = TB_CAMPUS.CAMPUS_ID), (SELECT FACULTY_NAME FROM TB_FACULTY WHERE PS_PERSON.PS_FACULTY_ID = TB_FACULTY.FACULTY_ID), (SELECT DIVISION_NAME FROM TB_DIVISION WHERE PS_PERSON.PS_DIVISION_ID = TB_DIVISION.DIVISION_ID), (SELECT WORK_NAME FROM TB_WORK_DIVISION WHERE PS_PERSON.PS_WORK_DIVISION_ID = TB_WORK_DIVISION.WORK_ID) FROM PS_PERSON WHERE " + searchWhere + " = " + searchID, con)) {
                     using (OracleDataReader reader = com.ExecuteReader()) {
                         while (reader.Read()) {
 
                             string citizenID = reader.GetString(3);
-                            string workPositionName = reader.GetString(4);
-                            string adminPositionName = reader.GetString(5);
+                            string workPositionName = reader.IsDBNull(4) ? "" : reader.GetString(4);
+                            string adminPositionName = reader.IsDBNull(5) ? "" : reader.GetString(5);
+                            string campusName = reader.IsDBNull(6) ? "" : reader.GetString(6);
+                            string FacultyName = reader.IsDBNull(7) ? "" : reader.GetString(7);
+                            string DivisionName = reader.IsDBNull(8) ? "" : reader.GetString(8);
+                            string WorkDivisionName = reader.IsDBNull(9) ? "" : reader.GetString(9);
                             bool isBoss = false;
 
                             //using (OracleCommand com2 = new OracleCommand("SELECT COUNT(*) FROM PS_BOSS WHERE CITIZEN_ID = '" + citizenID + "' AND BOS_TYPE = '" + searchBossType + "' AND BOS_TYPE_ID = " + searchID, con)) {
@@ -273,7 +277,7 @@ namespace WEB_PERSONAL {
 
                             {
                                 Label lb = new Label();
-                                lb.Text = reader.GetString(1) + "<br /><span style='color:#808080'>" + reader.GetString(2) + "</span><br /><span style='color:#404040'>ตำแหน่ง : " + workPositionName + "</span><br /><span style='color:#404040'>ระดับ : " + adminPositionName + "</span>";
+                                lb.Text = reader.GetString(1) + "<br /><span style='color:#808080'>" + reader.GetString(2) + "</span><br /><span style='color:#404040'>ตำแหน่ง : " + workPositionName + "</span><br /><span style='color:#808080'>ระดับ : " + adminPositionName + "</span><br /><span style='color:#404040'>วิทยาเขต : " + campusName + "</span><br /><span style='color:#808080'>สำนัก : " + FacultyName + "</span><br /><span style='color:#404040'>กอง : " + DivisionName + "</span><br /><span style='color:#808080'>งาน/ฝ่าย : " + WorkDivisionName + "</span>";
                                 pm.Controls.Add(lb);
                             }
                             if (isBoss) {

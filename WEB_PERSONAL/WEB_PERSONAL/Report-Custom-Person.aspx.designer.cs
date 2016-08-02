@@ -22,22 +22,40 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.Panel Panel1;
         
         /// <summary>
-        /// txt1 control.
+        /// div1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt1;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div1;
         
         /// <summary>
-        /// btnShowReport control.
+        /// ImgPdf32 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnShowReport;
+        protected global::System.Web.UI.WebControls.ImageButton ImgPdf32;
+        
+        /// <summary>
+        /// ImgExcel32 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton ImgExcel32;
+        
+        /// <summary>
+        /// ImgWord32 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton ImgWord32;
         
         /// <summary>
         /// CrystalReportViewer1 control.

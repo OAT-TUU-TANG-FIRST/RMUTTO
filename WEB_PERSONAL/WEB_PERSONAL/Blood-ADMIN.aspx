@@ -5,13 +5,6 @@
             text-align: center;
         }
 
-        .panin {
-            border: 1px solid black;
-            margin: 20px;
-            background-color: rgba(255,255,255,0.6);
-            border-radius: 5px;
-        }
-
         .center1 {
             display: inline-block;
         }

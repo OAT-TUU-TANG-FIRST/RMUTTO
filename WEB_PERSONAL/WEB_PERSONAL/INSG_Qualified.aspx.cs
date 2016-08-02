@@ -259,8 +259,10 @@ namespace WEB_PERSONAL {
                                 }
 
                                 {
+                                    //if() ddlTab4PositionWorkRow1.SelectedValue = reader.IsDBNull(i) ? "0" : reader.GetInt32(i).ToString();
                                     Label lblPosition = new Label();
-                                    lblPosition.Text = reader.GetString(7);
+                                    lblPosition.Text = reader.IsDBNull(7) ? "" : reader.GetString(7);
+                                    //lblPosition.Text = reader.GetString(7);
                                     TableCell cell = new TableCell();
                                     cell.Controls.Add(lblPosition);
                                     row.Cells.Add(cell);
@@ -294,17 +296,17 @@ namespace WEB_PERSONAL {
 
                                 int รหัสประเภทบุคลากร = reader.GetInt32(2);
                                 //int รหัสระดับตำแหน่ง = reader.GetInt32(3);
-                                int รหัสตำแหน่งทางวิชาการ = reader.GetInt32(8);
-                                int รหัสตำแหน่งทางบริหาร = reader.GetInt32(9);
+                                int รหัสตำแหน่งทางวิชาการ = reader.IsDBNull(8) ? 0 : reader.GetInt32(8);
+                                int รหัสตำแหน่งทางบริหาร = reader.IsDBNull(9) ? 0 : reader.GetInt32(9);
 
                                 
 
-                                int รหัสตำแหน่งประเภททางบริหาร = reader.GetInt32(13);
-                                int รหัสตำแหน่งประเภททางอำนวยการ = reader.GetInt32(14);
-                                int รหัสตำแหน่งประเภททางวิชาการ = reader.GetInt32(15);
-                                int รหัสตำแหน่งประเภททางทั่วไป = reader.GetInt32(16);
+                                int รหัสตำแหน่งประเภททางบริหาร = reader.IsDBNull(13) ? 0 : reader.GetInt32(13);
+                                int รหัสตำแหน่งประเภททางอำนวยการ = reader.IsDBNull(14) ? 0 : reader.GetInt32(14);
+                                int รหัสตำแหน่งประเภททางวิชาการ = reader.IsDBNull(15) ? 0 : reader.GetInt32(15);
+                                int รหัสตำแหน่งประเภททางทั่วไป = reader.IsDBNull(16) ? 0 : reader.GetInt32(16);
 
-                                int รหัสกลุ่มงานพนักงานราชการ = reader.GetInt32(17);
+                                int รหัสกลุ่มงานพนักงานราชการ = reader.IsDBNull(17) ? 0 : reader.GetInt32(17);
 
                                 int รหัสเครืองราชปัจจุบัน = -1;
                                 using (OracleCommand com2 = new OracleCommand("SELECT IR_INSIG_ID FROM TB_INSIG_REQUEST WHERE IR_STATUS IN(3,4) AND IR_CITIZEN_ID = '" + psID + "' AND IR_GET_STATUS = 1 ORDER BY IR_ID DESC", con)) {
@@ -330,7 +332,7 @@ namespace WEB_PERSONAL {
                                 }
 
                                 int ปีที่ดำรงตำแหน่งระดับปฏิบัติงาน = -1;
-                                using (OracleCommand com2 = new OracleCommand("SELECT TRUNC((CURRENT_DATE - PDH_DATE_START)/365,0) FROM TB_POSITION_DEGREE_HISTORY WHERE PDH_POSI_ID = 10 AND PDH_CITIZEN_ID = '" + psID + "'", con)) {
+                                using (OracleCommand com2 = new OracleCommand("SELECT TRUNC((CURRENT_DATE - PDH_DATE_START)/365,0) FROM TB_POSITION_DEGREE_HISTORY WHERE POSI_GENERAL = 10 AND PDH_CITIZEN_ID = '" + psID + "'", con)) {
                                     using (OracleDataReader reader2 = com2.ExecuteReader()) {
                                         while (reader2.Read()) {
                                             ปีที่ดำรงตำแหน่งระดับปฏิบัติงาน = reader2.GetInt32(0);
@@ -340,7 +342,7 @@ namespace WEB_PERSONAL {
                                 }
 
                                 int ปีที่ดำรงตำแหน่งระดับชำนาญงาน = -1;
-                                using (OracleCommand com2 = new OracleCommand("SELECT TRUNC((CURRENT_DATE - PDH_DATE_START)/365,0) FROM TB_POSITION_DEGREE_HISTORY WHERE PDH_POSI_ID = 11 AND PDH_CITIZEN_ID = '" + psID + "'", con)) {
+                                using (OracleCommand com2 = new OracleCommand("SELECT TRUNC((CURRENT_DATE - PDH_DATE_START)/365,0) FROM TB_POSITION_DEGREE_HISTORY WHERE POSI_GENERAL = 11 AND PDH_CITIZEN_ID = '" + psID + "'", con)) {
                                     using (OracleDataReader reader2 = com2.ExecuteReader()) {
                                         while (reader2.Read()) {
                                             ปีที่ดำรงตำแหน่งระดับชำนาญงาน = reader2.GetInt32(0);
@@ -350,7 +352,7 @@ namespace WEB_PERSONAL {
                                 }
 
                                 int ปีที่ดำรงตำแหน่งระดับอาวุโส = -1;
-                                using (OracleCommand com2 = new OracleCommand("SELECT TRUNC((CURRENT_DATE - PDH_DATE_START)/365,0) FROM TB_POSITION_DEGREE_HISTORY WHERE PDH_POSI_ID = 12 AND PDH_CITIZEN_ID = '" + psID + "'", con)) {
+                                using (OracleCommand com2 = new OracleCommand("SELECT TRUNC((CURRENT_DATE - PDH_DATE_START)/365,0) FROM TB_POSITION_DEGREE_HISTORY WHERE POSI_GENERAL = 12 AND PDH_CITIZEN_ID = '" + psID + "'", con)) {
                                     using (OracleDataReader reader2 = com2.ExecuteReader()) {
                                         while (reader2.Read()) {
                                             ปีที่ดำรงตำแหน่งระดับอาวุโส = reader2.GetInt32(0);
@@ -383,10 +385,10 @@ namespace WEB_PERSONAL {
                                 int ปีที่ได้รับมปช = -1;
 
                                 for (int i = 1; i <= 12; i++) {
-                                    using (OracleCommand com2 = new OracleCommand("SELECT TRUNC((CURRENT_DATE - IUG_INSIG_DATE_GET)/365,0) FROM TB_INSIG_USER_GET WHERE IUG_INSIG_ID = " + i + " AND IUG_CITIZEN_ID = '" + psID + "'", con)) {
+                                    using (OracleCommand com2 = new OracleCommand("SELECT TRUNC((CURRENT_DATE - IR_DATE_GET_INSIG)/365,0) FROM TB_INSIG_REQUEST WHERE IR_INSIG_ID = " + i + " AND IR_CITIZEN_ID = '" + psID + "'", con)) {
                                         using (OracleDataReader reader2 = com2.ExecuteReader()) {
                                             while (reader2.Read()) {
-                                                int year = reader2.GetInt32(0);
+                                                int year = reader2.IsDBNull(0) ? 0 : reader2.GetInt32(0);
                                                 if (i == 1) { ปีที่ได้รับบม = year; }
                                                 else if (i == 2) { ปีที่ได้รับบช = year; }
                                                 else if (i == 3) { ปีที่ได้รับจม = year; }
@@ -1396,7 +1398,7 @@ namespace WEB_PERSONAL {
                                         }
                                     }
                                 }
-                                
+                                //Error
                                 int insID = int.Parse(lbName.Attributes["tuu2"]);
                                 using (OracleCommand com2 = new OracleCommand("SELECT COUNT(*) FROM TB_INSIG_REQUEST WHERE IR_STATUS IN(1,2) AND IR_CITIZEN_ID = '" + psID + "'", con)) {
                                     using (OracleDataReader reader2 = com2.ExecuteReader()) {

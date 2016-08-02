@@ -16,6 +16,7 @@
                 <div class="ps-box-i0">
                     <div class="ps-box-ct10" style="text-align: left;">
                         <div style="display: inline-block; vertical-align: top; margin-right: 10px;">
+                            <div><a href="Rank-ADMIN.aspx" class="ps-link" ><img src="Image/Small/wrench.png" class="icon_left"/>ยศ</a></div>
                             <div><a href="TitleName-ADMIN.aspx" class="ps-link" ><img src="Image/Small/wrench.png" class="icon_left"/>คำนำหน้า</a></div>
                             <div><a href="Gender-ADMIN.aspx" class="ps-link" ><img src="Image/Small/wrench.png" class="icon_left"/>เพศ</a></div>
                             <div><a href="National-ADMIN.aspx" class="ps-link" ><img src="Image/Small/wrench.png" class="icon_left"/>เชื้อชาติ / สัญชาติ</a></div>
@@ -26,10 +27,7 @@
                             <div><a href="Amphur-ADMIN.aspx" class="ps-link" ><img src="Image/Small/wrench.png" class="icon_left"/>อำเภอ</a></div>
                             <div><a href="District-ADMIN.aspx" class="ps-link" ><img src="Image/Small/wrench.png" class="icon_left"/>ตำบล</a></div>
                             <div><a href="GradCountry-ADMIN.aspx" class="ps-link" ><img src="Image/Small/wrench.png" class="icon_left"/>ประเทศ</a></div>
-                            <div><a href="GradLev-ADMIN.aspx" class="ps-link" ><img src="Image/Small/wrench.png" class="icon_left"/>ระดับการศึกษา</a></div>
-                            <div><a href="Month-ADMIN.aspx" class="ps-link" ><img src="Image/Small/wrench.png" class="icon_left"/>เดือน</a></div>
-                            <div><a href="Year-ADMIN.aspx" class="ps-link" ><img src="Image/Small/wrench.png" class="icon_left"/>ปี</a></div>
-                            <div><a href="StatusWork-ADMIN.aspx" class="ps-link" ><img src="Image/Small/wrench.png" class="icon_left"/>สถานะการทำงาน</a></div>
+
                         </div>
                         <div style="display: inline-block; vertical-align: top;">
                             <div><a href="Campus-ADMIN.aspx" class="ps-link" ><img src="Image/Small/wrench.png" class="icon_left"/>วิทยาเขต</a></div>
@@ -38,17 +36,21 @@
                             <div><a href="WorkDivision-ADMIN.aspx" class="ps-link" ><img src="Image/Small/wrench.png" class="icon_left"/>งาน / ฝ่าย</a></div>
                             <div><a href="StaffType-ADMIN.aspx" class="ps-link" ><img src="Image/Small/wrench.png" class="icon_left"/>ประเภทบุคลากร</a></div>
                             <div><a href="Budget-ADMIN.aspx" class="ps-link" ><img src="Image/Small/wrench.png" class="icon_left"/>ประเภทเงินจ้าง</a></div>
-                            <div><a href="Position-ADMIN.aspx" class="ps-link" ><img src="Image/Small/wrench.png" class="icon_left"/>ตำแหน่ง</a></div>
-                            <div><a href="AdminPosition-ADMIN.aspx" class="ps-link" ><img src="Image/Small/wrench.png" class="icon_left"/>ตำแหน่งบริหาร</a></div>
-                            <div><a href="PositionWork-ADMIN.aspx" class="ps-link" ><img src="Image/Small/wrench.png" class="icon_left"/>ตำแหน่งในสายงาน</a></div>
-                            <div><a href="AcademicPosition-ADMIN.aspx" class="ps-link" ><img src="Image/Small/wrench.png" class="icon_left"/>ตำแหน่งทางวิชาการ</a></div>
                             <div><a href="TeachISCED-ADMIN.aspx" class="ps-link" ><img src="Image/Small/wrench.png" class="icon_left"/>กลุ่มสาขาวิชาที่สอน</a></div>
-                            <div><a href="Staff-ADMIN.aspx" class="ps-link" ><img src="Image/Small/wrench.png" class="icon_left"/>ตำแหน่งประเภท</a></div>
-                            <div><a href="Rank-ADMIN.aspx" class="ps-link" ><img src="Image/Small/wrench.png" class="icon_left"/>ยศ</a></div>
+                            <div><a href="StatusWork-ADMIN.aspx" class="ps-link" ><img src="Image/Small/wrench.png" class="icon_left"/>สถานะบุคลากร</a></div>
+                            <div><a href="PositionWork-ADMIN.aspx" class="ps-link" ><img src="Image/Small/wrench.png" class="icon_left"/>ตำแหน่งในสายงาน</a></div>
+                            <div><a href="AdminPosition-ADMIN.aspx" class="ps-link" ><img src="Image/Small/wrench.png" class="icon_left"/>ตำแหน่งทางบริหาร</a></div>
+                            <div><a href="AcademicPosition-ADMIN.aspx" class="ps-link" ><img src="Image/Small/wrench.png" class="icon_left"/>ตำแหน่งทางวิชาการ</a></div>    
                         </div>
                     
-
-
+                        <div style="display: inline-block; vertical-align: top;">
+                            <div><a href="GradLev-ADMIN.aspx" class="ps-link" ><img src="Image/Small/wrench.png" class="icon_left"/>ระดับการศึกษา</a></div>
+                            <div><a href="Month-ADMIN.aspx" class="ps-link" ><img src="Image/Small/wrench.png" class="icon_left"/>เดือน</a></div>
+                            <div><a href="Year-ADMIN.aspx" class="ps-link" ><img src="Image/Small/wrench.png" class="icon_left"/>ปี</a></div>
+                            <div><a href="Staff-ADMIN.aspx" class="ps-link" ><img src="Image/Small/wrench.png" class="icon_left"/>ตำแหน่งประเภท</a></div>                         
+                            <div><a href="Position-ADMIN.aspx" class="ps-link" ><img src="Image/Small/wrench.png" class="icon_left"/>ระดับ</a></div>
+                         </div>
+ 
                     </div>
                 </div>
             </div>
@@ -58,23 +60,14 @@
                 </div>
                 <div class="ps-box-i0">
                     <div class="ps-box-ct10" style="text-align: left;">
-                    
                         <div><a href="Claninsignia-ADMIN.aspx" class="ps-link" ><img src="Image/Small/wrench.png" class="icon_left"/>กลุ่มเครื่องราชฯ</a></div>
-                        <div><a href="PosiGoverAcad-ADMIN.aspx" class="ps-link" ><img src="Image/Small/wrench.png" class="icon_left"/>ตำแหน่งประเภท</a></div>
-                        <div><a href="PosiInsigGover-ADMIN.aspx" class="ps-link" ><img src="Image/Small/wrench.png" class="icon_left"/>ระดับตำแหน่งประเภท</a></div>
-                        <div><a href="PosiInsigEMP-ADMIN.aspx" class="ps-link" ><img src="Image/Small/wrench.png" class="icon_left"/>ตำแหน่งกลุ่มพนักงานราชการ</a></div>
-
                         <div><a href="GradeInsignia-ADMIN.aspx" class="ps-link" ><img src="Image/Small/wrench.png" class="icon_left"/>เครื่่องราชฯ</a></div>
+                        <div><a href="psPerson-ADMIN.aspx" class="ps-link" ><img src="Image/Small/wrench.png" class="icon_left"/>ตำแหน่งประเภท</a></div>
                         <div><a href="PosiGoverSalary-ADMIN.aspx" class="ps-link" ><img src="Image/Small/wrench.png" class="icon_left"/>ขั้นเงินเดือนตำแหน่ง</a></div>
-                        <div><a href="PosiInsigDegree-ADMIN.aspx" class="ps-link" ><img src="Image/Small/wrench.png" class="icon_left"/>ตำแหน่งระดับ</a></div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="ps-separator"></div>
-        
-        
+        <div class="ps-separator"></div>  
     </div>
-    
-     
 </asp:Content>

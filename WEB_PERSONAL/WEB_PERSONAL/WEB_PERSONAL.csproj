@@ -117,8 +117,6 @@
     <Content Include="Access.aspx" />
     <Content Include="AddPerson-Edit.aspx" />
     <Content Include="AddPerson.aspx" />
-    <Content Include="AddPersonGP7-Edit.aspx" />
-    <Content Include="AddPersonGP7.aspx" />
     <Content Include="AdminPosition-ADMIN.aspx" />
     <Content Include="Amphur-ADMIN.aspx" />
     <Content Include="aspnet_client\system_web\4_0_30319\crystalreportviewers13\ActiveXControls\PrintControl.cab" />
@@ -785,6 +783,7 @@
     <Content Include="Image\Small\clock-history.png" />
     <Content Include="Image\Small\clock.png" />
     <Content Include="Image\Small\comment.png" />
+    <Content Include="Image\Small\copy.png" />
     <Content Include="Image\Small\document-accept.png" />
     <Content Include="Image\Small\document-create.png" />
     <Content Include="Image\Small\document-delete.png" />
@@ -857,12 +856,14 @@
     <Content Include="Image\TUUbg4.jpg" />
     <Content Include="Image\TUUbg5.jpg" />
     <Content Include="Image\white1.png" />
+    <Content Include="Image\x32\Excel32.png" />
     <Content Include="Image\x32\menu.png" />
     <Content Include="Image\x32\notification.png" />
     <Content Include="Image\x32\menu2.png" />
+    <Content Include="Image\x32\PDF32.png" />
+    <Content Include="Image\x32\Word32.png" />
     <Content Include="Image\มทร.ตะวันออก.jpg" />
     <Content Include="INSG_Qualified.aspx" />
-    <Content Include="INSG_Qualified_Detail-ADMIN.aspx" />
     <Content Include="INSG_Qualified_Detail.aspx" />
     <Content Include="INSG_Request.aspx" />
     <Content Include="INSG_RequestList.aspx" />
@@ -987,22 +988,18 @@
     <Content Include="PersonBranch.aspx" />
     <Content Include="PersonPositionManagement.aspx" />
     <Content Include="PersonReport.aspx" />
-    <Content Include="PosiGoverAcad-ADMIN.aspx" />
     <Content Include="PosiGoverSalary-ADMIN.aspx" />
-    <Content Include="PosiInsigDegree-ADMIN.aspx" />
-    <Content Include="PosiInsigEMP-ADMIN.aspx" />
-    <Content Include="PosiInsigGover-ADMIN.aspx" />
     <Content Include="Position-ADMIN.aspx" />
     <Content Include="personalDataSet.xsc">
       <DependentUpon>personalDataSet.xsd</DependentUpon>
     </Content>
     <Content Include="Plugins\EPPlus.dll" />
     <Content Include="Plugins\EPPlus.XML" />
-    <Content Include="PositionPerson.aspx" />
     <Content Include="PositionWork-ADMIN.aspx" />
     <Content Include="jquery.mCustomScrollbar\jquery.mCustomScrollbar.concat.min.js" />
     <Content Include="PrintLeaveForm.aspx" />
     <Content Include="Province-ADMIN.aspx" />
+    <Content Include="psPerson-ADMIN.aspx" />
     <Content Include="Rank-ADMIN.aspx" />
     <Content Include="Religion-ADMIN.aspx" />
     <Content Include="Report-Custom-Person.aspx" />
@@ -1051,6 +1048,17 @@
     <Content Include="Font\Roboto\Roboto-Regular.ttf" />
     <Content Include="Font\Roboto\Roboto-Thin.ttf" />
     <Content Include="Font\Roboto\Roboto-ThinItalic.ttf" />
+    <Content Include="DTpersonnel.xsc">
+      <DependentUpon>DTpersonnel.xsd</DependentUpon>
+    </Content>
+    <None Include="DTpersonnel.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DTpersonnel.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="DTpersonnel.xss">
+      <DependentUpon>DTpersonnel.xsd</DependentUpon>
+    </Content>
     <None Include="personalDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>personalDataSet.Designer.cs</LastGenOutput>
@@ -1124,20 +1132,6 @@
     </Compile>
     <Compile Include="AddPerson.aspx.designer.cs">
       <DependentUpon>AddPerson.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="AddPersonGP7-Edit.aspx.cs">
-      <DependentUpon>AddPersonGP7-Edit.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AddPersonGP7-Edit.aspx.designer.cs">
-      <DependentUpon>AddPersonGP7-Edit.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="AddPersonGP7.aspx.cs">
-      <DependentUpon>AddPersonGP7.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AddPersonGP7.aspx.designer.cs">
-      <DependentUpon>AddPersonGP7.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminPosition-ADMIN.aspx.cs">
       <DependentUpon>AdminPosition-ADMIN.aspx</DependentUpon>
@@ -1235,7 +1229,11 @@
     <Compile Include="Division-ADMIN.aspx.designer.cs">
       <DependentUpon>Division-ADMIN.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Entities\Insignia.cs" />
+    <Compile Include="DTpersonnel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DTpersonnel.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Report.cs" />
     <Compile Include="Entities\Personnel.cs" />
     <Compile Include="Entities\Seminar.cs" />
@@ -1284,13 +1282,6 @@
     </Compile>
     <Compile Include="INSG_Qualified.aspx.designer.cs">
       <DependentUpon>INSG_Qualified.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="INSG_Qualified_Detail-ADMIN.aspx.cs">
-      <DependentUpon>INSG_Qualified_Detail-ADMIN.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="INSG_Qualified_Detail-ADMIN.aspx.designer.cs">
-      <DependentUpon>INSG_Qualified_Detail-ADMIN.aspx</DependentUpon>
     </Compile>
     <Compile Include="INSG_Qualified_Detail.aspx.cs">
       <DependentUpon>INSG_Qualified_Detail.aspx</DependentUpon>
@@ -1432,40 +1423,12 @@
     <Compile Include="PersonReport.aspx.designer.cs">
       <DependentUpon>PersonReport.aspx</DependentUpon>
     </Compile>
-    <Compile Include="PosiGoverAcad-ADMIN.aspx.cs">
-      <DependentUpon>PosiGoverAcad-ADMIN.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="PosiGoverAcad-ADMIN.aspx.designer.cs">
-      <DependentUpon>PosiGoverAcad-ADMIN.aspx</DependentUpon>
-    </Compile>
     <Compile Include="PosiGoverSalary-ADMIN.aspx.cs">
       <DependentUpon>PosiGoverSalary-ADMIN.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="PosiGoverSalary-ADMIN.aspx.designer.cs">
       <DependentUpon>PosiGoverSalary-ADMIN.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="PosiInsigDegree-ADMIN.aspx.cs">
-      <DependentUpon>PosiInsigDegree-ADMIN.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="PosiInsigDegree-ADMIN.aspx.designer.cs">
-      <DependentUpon>PosiInsigDegree-ADMIN.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="PosiInsigEMP-ADMIN.aspx.cs">
-      <DependentUpon>PosiInsigEMP-ADMIN.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="PosiInsigEMP-ADMIN.aspx.designer.cs">
-      <DependentUpon>PosiInsigEMP-ADMIN.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="PosiInsigGover-ADMIN.aspx.cs">
-      <DependentUpon>PosiInsigGover-ADMIN.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="PosiInsigGover-ADMIN.aspx.designer.cs">
-      <DependentUpon>PosiInsigGover-ADMIN.aspx</DependentUpon>
     </Compile>
     <Compile Include="Position-ADMIN.aspx.cs">
       <DependentUpon>Position-ADMIN.aspx</DependentUpon>
@@ -1478,13 +1441,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>personalDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="PositionPerson.aspx.cs">
-      <DependentUpon>PositionPerson.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="PositionPerson.aspx.designer.cs">
-      <DependentUpon>PositionPerson.aspx</DependentUpon>
     </Compile>
     <Compile Include="PositionWork-ADMIN.aspx.cs">
       <DependentUpon>PositionWork-ADMIN.aspx</DependentUpon>
@@ -1514,6 +1470,13 @@
     <Compile Include="Province-ADMIN.aspx.designer.cs">
       <DependentUpon>Province-ADMIN.aspx</DependentUpon>
     </Compile>
+    <Compile Include="psPerson-ADMIN.aspx.cs">
+      <DependentUpon>psPerson-ADMIN.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="psPerson-ADMIN.aspx.designer.cs">
+      <DependentUpon>psPerson-ADMIN.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Rank-ADMIN.aspx.cs">
       <DependentUpon>Rank-ADMIN.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1539,6 +1502,18 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CrystalReport1.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Personnel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Personnel.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Personnel1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Personnel1.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="SEMINAR-ADMIN.aspx.cs">
@@ -1702,6 +1677,14 @@
     <EmbeddedResource Include="Reports\CrystalReport1.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CrystalReport1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Personnel.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Personnel.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Personnel1.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Personnel1.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

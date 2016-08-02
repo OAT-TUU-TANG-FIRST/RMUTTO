@@ -33,7 +33,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2" style="text-align: right;">
+                    <td colspan="2" style="text-align: center;">
                         <asp:LinkButton ID="lbuSearch" runat="server" OnClick="lbuSearch_Click" CssClass="ps-button"><img src="Image/Small/search.png" class="icon_left"/>ค้นหาบุคลากร</asp:LinkButton>
                     </td>
                     
