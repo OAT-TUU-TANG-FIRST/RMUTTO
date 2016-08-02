@@ -13,10 +13,9 @@ namespace WEB_PERSONAL {
     public partial class LeaveReport1 : System.Web.UI.Page {
 
         protected void Page_Load(object sender, EventArgs e) {
-            if (PersonnelSystem.GetPersonnelSystem(this) == null) {
-                Response.Redirect("Access.aspx");
-                return;
-            }
+
+
+
             if (!IsPostBack) {
                 for (int i = 2500; i < 2600; ++i) {
                     DropDownList1.Items.Add(new System.Web.UI.WebControls.ListItem("" + i, "" + i));
@@ -32,6 +31,13 @@ namespace WEB_PERSONAL {
 
                 DropDownList1.SelectedValue = "" + (Util.BudgetYear() + 543);
 
+                ddlView.Items.Add(new ListItem("แสดงทั้งหมด", "1"));
+                ddlView.Items.Add(new ListItem("แสดงเฉพาะภายในวิทยาเขต", "2"));
+                ddlView.Items.Add(new ListItem("แสดงเฉพาะภายใน สำนัก / สถาบัน / คณะ", "3"));
+                ddlView.Items.Add(new ListItem("แสดงเฉพาะภายใน กอง / สำนักงานเลขา / ภาควิชา", "4"));
+                ddlView.Items.Add(new ListItem("แสดงเฉพาะภายใน งาน / ฝ่าย", "5"));
+                ddlView.Items.Add(new ListItem("แสดงเฉพาะตนเอง", "6"));
+
             }
 
 
@@ -41,7 +47,7 @@ namespace WEB_PERSONAL {
 
         private void BindGridView1() {
 
-            Label1.Text = "(1 ตุลาคม " + (int.Parse(DropDownList1.SelectedValue) - 1) + " - 30 กันยายน " + DropDownList1.SelectedValue + ")";
+            //Label1.Text = "(1 ตุลาคม " + (int.Parse(DropDownList1.SelectedValue) - 1) + " - 30 กันยายน " + DropDownList1.SelectedValue + ")";
             tb.Rows.Clear();
             {
                 TableHeaderRow row = new TableHeaderRow();
@@ -113,7 +119,7 @@ namespace WEB_PERSONAL {
                     {
                         TableCell cell = new TableCell();
                         //cell.Text = ps.PositionName;
-                        using (OracleCommand com = new OracleCommand("SELECT TB_POSITION.NAME FROM PS_PERSON, TB_POSITION WHERE PS_CITIZEN_ID = '" + citizenID + "' AND PS_POSITION_ID = TB_POSITION.ID", con)) {
+                        using (OracleCommand com = new OracleCommand("SELECT TB_POSITION_WORK.POSITION_WORK_NAME FROM PS_PERSON, TB_POSITION_WORK WHERE PS_CITIZEN_ID = '" + citizenID + "' AND PS_WORK_POS_ID = TB_POSITION_WORK.POSITION_WORK_ID", con)) {
                             using (OracleDataReader reader = com.ExecuteReader()) {
                                 while (reader.Read()) {
                                     cell.Text = reader.GetString(0);
@@ -267,7 +273,7 @@ namespace WEB_PERSONAL {
         }
 
         protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e) {
-            Label1.Text = "(1 ตุลาคม " + DropDownList1.SelectedValue + " - 30 กันยายน " + (Convert.ToInt32(DropDownList1.SelectedValue) + 1) + ")";
+            //Label1.Text = "(1 ตุลาคม " + DropDownList1.SelectedValue + " - 30 กันยายน " + (Convert.ToInt32(DropDownList1.SelectedValue) + 1) + ")";
             BindGridView1();
         }
 

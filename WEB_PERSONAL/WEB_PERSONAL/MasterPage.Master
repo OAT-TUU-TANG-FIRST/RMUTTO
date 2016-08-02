@@ -163,7 +163,7 @@
                             </div>
                             <div class="ps-box-i0">
                                 <div class="ps-box-ct10">
-                                    <div>เวอร์ชั่น : v1.2.4</div>
+                                    <div>เวอร์ชั่น : v1.2.5</div>
                                     <div style="display: none;">ตัวนับ : <span id="s_counter" runat="server"></span></div>
                                 </div>
                             </div>

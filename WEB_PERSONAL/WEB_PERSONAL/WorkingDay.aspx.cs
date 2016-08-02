@@ -10,7 +10,12 @@ using WEB_PERSONAL.Class;
 namespace WEB_PERSONAL {
     public partial class WorkingDay : System.Web.UI.Page {
 
+        private Person loginPerson;
         protected void Page_Load(object sender, EventArgs e) {
+
+            PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
+            loginPerson = ps.LoginPerson;
+
             LoadCalendar(Table1, DateTime.Today);
             LoadCalendar(Table2, DateTime.Today.AddMonths(1));
             if(!IsPostBack) {
@@ -125,8 +130,9 @@ namespace WEB_PERSONAL {
                         } else {
                             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                                 con.Open();
-                                using (OracleCommand com = new OracleCommand("INSERT INTO LEV_WORKDAY (WORKDAY_ID, WORKDAY_DATE) VALUES(SEQ_WORKDAY_ID.NEXTVAL, :WORKDAY_DATE)", con)) {
+                                using (OracleCommand com = new OracleCommand("INSERT INTO LEV_WORKDAY (WORKDAY_ID, WORKDAY_DATE, CITIZEN_ID) VALUES(SEQ_WORKDAY_ID.NEXTVAL, :WORKDAY_DATE, :CITIZEN_ID)", con)) {
                                     com.Parameters.Add("WORKDAY_DATE", dt);
+                                    com.Parameters.Add("CITIZEN_ID", loginPerson.CitizenID);
                                     com.ExecuteNonQuery();
                                 }
                             }
@@ -165,9 +171,10 @@ namespace WEB_PERSONAL {
         protected void lbuChangeLate_Click(object sender, EventArgs e) {
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
-                using (OracleCommand com = new OracleCommand("UPDATE LEV_TIME SET TIME_HOUR_IN = :TIME_HOUR_IN, TIME_MINUTE_IN = :TIME_MINUTE_IN WHERE TIME_ID = 1", con)) {
+                using (OracleCommand com = new OracleCommand("UPDATE LEV_TIME SET TIME_HOUR_IN = :TIME_HOUR_IN, TIME_MINUTE_IN = :TIME_MINUTE_IN, CITIZEN_ID = :CITIZEN_ID WHERE TIME_ID = 1", con)) {
                     com.Parameters.Add("TIME_HOUR_IN", tbLateHour.Text);
                     com.Parameters.Add("TIME_MINUTE_IN", tbLateMinute.Text);
+                    com.Parameters.Add("CITIZEN_ID", loginPerson.CitizenID);
                     com.ExecuteNonQuery();
                 }
             }
@@ -176,9 +183,10 @@ namespace WEB_PERSONAL {
         protected void lbuChangeAbsent_Click(object sender, EventArgs e) {
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
-                using (OracleCommand com = new OracleCommand("UPDATE LEV_TIME SET TIME_HOUR_IN = :TIME_HOUR_IN, TIME_MINUTE_IN = :TIME_MINUTE_IN WHERE TIME_ID = 2", con)) {
+                using (OracleCommand com = new OracleCommand("UPDATE LEV_TIME SET TIME_HOUR_IN = :TIME_HOUR_IN, TIME_MINUTE_IN = :TIME_MINUTE_IN, CITIZEN_ID = :CITIZEN_ID WHERE TIME_ID = 2", con)) {
                     com.Parameters.Add("TIME_HOUR_IN", tbAbsentHour.Text);
                     com.Parameters.Add("TIME_MINUTE_IN", tbAbsentMinute.Text);
+                    com.Parameters.Add("CITIZEN_ID", loginPerson.CitizenID);
                     com.ExecuteNonQuery();
                 }
             }

@@ -863,17 +863,17 @@ namespace WEB_PERSONAL.Class {
                 DateTime to = ToDate.Value;
 
                 if (LeaveTypeID == 1) {
-                    using (OracleCommand com = new OracleCommand("UPDATE LEV_CLAIM SET SICK_NOW = SICK_REQ WHERE YEAR = " + BudgetYear + " AND PS_CITIZEN_ID = :PS_CITIZEN_ID", con)) {
+                    using (OracleCommand com = new OracleCommand("UPDATE LEV_CLAIM SET SICK_REQ = SICK_NOW WHERE YEAR = " + BudgetYear + " AND PS_CITIZEN_ID = :PS_CITIZEN_ID", con)) {
                         com.Parameters.Add("PS_CITIZEN_ID", PS_ID);
                         com.ExecuteNonQuery();
                     }
                 } else if (LeaveTypeID == 2) {
-                    using (OracleCommand com = new OracleCommand("UPDATE LEV_CLAIM SET BUSINESS_NOW = BUSINESS_REQ WHERE YEAR = " + BudgetYear + " AND PS_CITIZEN_ID = :PS_CITIZEN_ID", con)) {
+                    using (OracleCommand com = new OracleCommand("UPDATE LEV_CLAIM SET BUSINESS_REQ = BUSINESS_NOW WHERE YEAR = " + BudgetYear + " AND PS_CITIZEN_ID = :PS_CITIZEN_ID", con)) {
                         com.Parameters.Add("PS_CITIZEN_ID", PS_ID);
                         com.ExecuteNonQuery();
                     }
                 } else if (LeaveTypeID == 3) {
-                    using (OracleCommand com = new OracleCommand("UPDATE LEV_CLAIM SET GB_NOW = GB_REQ WHERE YEAR = " + BudgetYear + " AND PS_CITIZEN_ID = :PS_CITIZEN_ID", con)) {
+                    using (OracleCommand com = new OracleCommand("UPDATE LEV_CLAIM SET GB_REQ = GB_NOW WHERE YEAR = " + BudgetYear + " AND PS_CITIZEN_ID = :PS_CITIZEN_ID", con)) {
                         com.Parameters.Add("PS_CITIZEN_ID", PS_ID);
                         com.ExecuteNonQuery();
                     }
@@ -886,22 +886,22 @@ namespace WEB_PERSONAL.Class {
                         _restSave += _restThisFix - _restThis;
                         _restThis = _restThisFix;
                     }
-                    using (OracleCommand com = new OracleCommand("UPDATE LEV_CLAIM SET REST_NOW = REST_REQ, REST_SAVE = " + _restSave + ", REST_THIS = " + _restThis + " WHERE YEAR = " + BudgetYear + " AND PS_CITIZEN_ID = :PS_CITIZEN_ID", con)) {
+                    using (OracleCommand com = new OracleCommand("UPDATE LEV_CLAIM SET REST_REQ = REST_NOW, REST_SAVE = " + _restSave + ", REST_THIS = " + _restThis + " WHERE YEAR = " + BudgetYear + " AND PS_CITIZEN_ID = :PS_CITIZEN_ID", con)) {
                         com.Parameters.Add("PS_CITIZEN_ID", PS_ID);
                         com.ExecuteNonQuery();
                     }
                 } else if (LeaveTypeID == 5) {
-                    using (OracleCommand com = new OracleCommand("UPDATE LEV_CLAIM SET HGB_NOW = HGB_REQ WHERE YEAR = " + BudgetYear + " AND PS_CITIZEN_ID = :PS_CITIZEN_ID", con)) {
+                    using (OracleCommand com = new OracleCommand("UPDATE LEV_CLAIM SET HGB_REQ = HGB_NOW WHERE YEAR = " + BudgetYear + " AND PS_CITIZEN_ID = :PS_CITIZEN_ID", con)) {
                         com.Parameters.Add("PS_CITIZEN_ID", PS_ID);
                         com.ExecuteNonQuery();
                     }
                 } else if (LeaveTypeID == 6) {
-                    using (OracleCommand com = new OracleCommand("UPDATE LEV_CLAIM SET ORDAIN_NOW = ORDAIN_REQ WHERE YEAR = " + BudgetYear + " AND PS_CITIZEN_ID = :PS_CITIZEN_ID", con)) {
+                    using (OracleCommand com = new OracleCommand("UPDATE LEV_CLAIM SET ORDAIN_REQ = ORDAIN_NOW WHERE YEAR = " + BudgetYear + " AND PS_CITIZEN_ID = :PS_CITIZEN_ID", con)) {
                         com.Parameters.Add("PS_CITIZEN_ID", PS_ID);
                         com.ExecuteNonQuery();
                     }
                 } else if (LeaveTypeID == 7) {
-                    using (OracleCommand com = new OracleCommand("UPDATE LEV_CLAIM SET HUJ_NOW = HUJ_REQ WHERE YEAR = " + BudgetYear + " AND PS_CITIZEN_ID = :PS_CITIZEN_ID", con)) {
+                    using (OracleCommand com = new OracleCommand("UPDATE LEV_CLAIM SET HUJ_REQ = HUJ_NOW WHERE YEAR = " + BudgetYear + " AND PS_CITIZEN_ID = :PS_CITIZEN_ID", con)) {
                         com.Parameters.Add("PS_CITIZEN_ID", PS_ID);
                         com.ExecuteNonQuery();
                     }
@@ -909,6 +909,69 @@ namespace WEB_PERSONAL.Class {
             }
 
         }
+
+        public void ExecuteCancelBySystem() {
+            OracleConnection.ClearAllPools();
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
+                con.Open();
+                using (OracleCommand com = new OracleCommand("UPDATE LEV_DATA SET LEAVE_STATUS_ID = :LEAVE_STATUS_ID WHERE LEAVE_ID = :LEAVE_ID", con)) {
+                    com.Parameters.Add("LEAVE_STATUS_ID", 10);
+                    com.Parameters.Add("LEAVE_ID", LeaveID);
+                    com.ExecuteNonQuery();
+                }
+
+                DateTime start = FromDate.Value;
+                DateTime to = ToDate.Value;
+
+                if (LeaveTypeID == 1) {
+                    using (OracleCommand com = new OracleCommand("UPDATE LEV_CLAIM SET SICK_REQ = SICK_NOW WHERE YEAR = " + BudgetYear + " AND PS_CITIZEN_ID = :PS_CITIZEN_ID", con)) {
+                        com.Parameters.Add("PS_CITIZEN_ID", PS_ID);
+                        com.ExecuteNonQuery();
+                    }
+                } else if (LeaveTypeID == 2) {
+                    using (OracleCommand com = new OracleCommand("UPDATE LEV_CLAIM SET BUSINESS_REQ = BUSINESS_NOW WHERE YEAR = " + BudgetYear + " AND PS_CITIZEN_ID = :PS_CITIZEN_ID", con)) {
+                        com.Parameters.Add("PS_CITIZEN_ID", PS_ID);
+                        com.ExecuteNonQuery();
+                    }
+                } else if (LeaveTypeID == 3) {
+                    using (OracleCommand com = new OracleCommand("UPDATE LEV_CLAIM SET GB_REQ = GB_NOW WHERE YEAR = " + BudgetYear + " AND PS_CITIZEN_ID = :PS_CITIZEN_ID", con)) {
+                        com.Parameters.Add("PS_CITIZEN_ID", PS_ID);
+                        com.ExecuteNonQuery();
+                    }
+                } else if (LeaveTypeID == 4) {
+                    int _restSave = DatabaseManager.ExecuteInt("SELECT REST_SAVE FROM LEV_CLAIM WHERE PS_CITIZEN_ID = '" + PS_ID + "' AND YEAR = " + BudgetYear);
+                    int _restThis = DatabaseManager.ExecuteInt("SELECT REST_THIS FROM LEV_CLAIM WHERE PS_CITIZEN_ID = '" + PS_ID + "' AND YEAR = " + BudgetYear);
+                    int _restThisFix = DatabaseManager.ExecuteInt("SELECT REST_THIS_FIX FROM LEV_CLAIM WHERE PS_CITIZEN_ID = '" + PS_ID + "' AND YEAR = " + BudgetYear);
+                    _restThis += TotalDay;
+                    if (_restThis > _restThisFix) {
+                        _restSave += _restThisFix - _restThis;
+                        _restThis = _restThisFix;
+                    }
+                    using (OracleCommand com = new OracleCommand("UPDATE LEV_CLAIM SET REST_REQ = REST_NOW, REST_SAVE = " + _restSave + ", REST_THIS = " + _restThis + " WHERE YEAR = " + BudgetYear + " AND PS_CITIZEN_ID = :PS_CITIZEN_ID", con)) {
+                        com.Parameters.Add("PS_CITIZEN_ID", PS_ID);
+                        com.ExecuteNonQuery();
+                    }
+                } else if (LeaveTypeID == 5) {
+                    using (OracleCommand com = new OracleCommand("UPDATE LEV_CLAIM SET HGB_REQ = HGB_NOW WHERE YEAR = " + BudgetYear + " AND PS_CITIZEN_ID = :PS_CITIZEN_ID", con)) {
+                        com.Parameters.Add("PS_CITIZEN_ID", PS_ID);
+                        com.ExecuteNonQuery();
+                    }
+                } else if (LeaveTypeID == 6) {
+                    using (OracleCommand com = new OracleCommand("UPDATE LEV_CLAIM SET ORDAIN_REQ = ORDAIN_NOW WHERE YEAR = " + BudgetYear + " AND PS_CITIZEN_ID = :PS_CITIZEN_ID", con)) {
+                        com.Parameters.Add("PS_CITIZEN_ID", PS_ID);
+                        com.ExecuteNonQuery();
+                    }
+                } else if (LeaveTypeID == 7) {
+                    using (OracleCommand com = new OracleCommand("UPDATE LEV_CLAIM SET HUJ_REQ = HUJ_NOW WHERE YEAR = " + BudgetYear + " AND PS_CITIZEN_ID = :PS_CITIZEN_ID", con)) {
+                        com.Parameters.Add("PS_CITIZEN_ID", PS_ID);
+                        com.ExecuteNonQuery();
+                    }
+                }
+            }
+
+        }
+
+
 
     }
 }

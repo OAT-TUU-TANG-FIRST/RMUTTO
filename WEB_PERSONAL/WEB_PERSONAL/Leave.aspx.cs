@@ -584,7 +584,7 @@ namespace WEB_PERSONAL {
 
                 if(hfLeaveTypeID.Value == "1") {
                     if(totalDay <= หัวหน้าฝ่ายลาป่วยวัน) {
-                        if(loginPerson.AdminPositionID == "0" || loginPerson.AdminPositionID == "8") { //ไม่มี
+                        if(loginPerson.AdminPositionID == "0" || loginPerson.AdminPositionID == "8" || loginPerson.AdminPositionID == "9") { //ไม่มี
                             psCHID = DatabaseManager.รหัสหัวหน้าฝ่าย(loginPerson.WorkDivisionID);
                         } else if (loginPerson.AdminPositionID == "4") { //หัวหน้าฝ่าย
                             psCHID = DatabaseManager.รหัสหัวหน้าภาควิชา(loginPerson.DivisionID);
@@ -600,7 +600,7 @@ namespace WEB_PERSONAL {
                             psCHID = DatabaseManager.รหัสรัฐมนตรีเจ้าสังกัด();
                         }
                     } else if (totalDay <= หัวหน้าภาควิชาลาป่วยวัน) {
-                        if (loginPerson.AdminPositionID == "0" || loginPerson.AdminPositionID == "8") { //ไม่มี
+                        if (loginPerson.AdminPositionID == "0" || loginPerson.AdminPositionID == "8" || loginPerson.AdminPositionID == "9") { //ไม่มี
                             psCLID = DatabaseManager.รหัสหัวหน้าฝ่าย(loginPerson.WorkDivisionID);
                             psCHID = DatabaseManager.รหัสหัวหน้าภาควิชา(loginPerson.DivisionID);
                         } else if (loginPerson.AdminPositionID == "4") { //หัวหน้าฝ่าย
@@ -617,7 +617,7 @@ namespace WEB_PERSONAL {
                             psCHID = DatabaseManager.รหัสรัฐมนตรีเจ้าสังกัด();
                         }
                     } else if (totalDay <= คณะบดีลาป่วยวัน) {
-                        if (loginPerson.AdminPositionID == "0" || loginPerson.AdminPositionID == "8") { //ไม่มี
+                        if (loginPerson.AdminPositionID == "0" || loginPerson.AdminPositionID == "8" || loginPerson.AdminPositionID == "9") { //ไม่มี
                             psCLID = DatabaseManager.รหัสหัวหน้าฝ่าย(loginPerson.WorkDivisionID);
                             psCHID = DatabaseManager.รหัสคณบดี(loginPerson.FacultyID);
                         } else if (loginPerson.AdminPositionID == "4") { //หัวหน้าฝ่าย
@@ -635,7 +635,7 @@ namespace WEB_PERSONAL {
                             psCHID = DatabaseManager.รหัสรัฐมนตรีเจ้าสังกัด();
                         }
                     } else if (totalDay <= อธิการบดีลาป่วยวัน) {
-                        if (loginPerson.AdminPositionID == "0" || loginPerson.AdminPositionID == "8") { //ไม่มี
+                        if (loginPerson.AdminPositionID == "0" || loginPerson.AdminPositionID == "8" || loginPerson.AdminPositionID == "9") { //ไม่มี
                             psCLID = DatabaseManager.รหัสหัวหน้าฝ่าย(loginPerson.WorkDivisionID);
                             psCHID = DatabaseManager.รหัสอธิการบดี(loginPerson.CampusID);
                         } else if (loginPerson.AdminPositionID == "4") { //หัวหน้าฝ่าย
@@ -654,7 +654,7 @@ namespace WEB_PERSONAL {
                             psCHID = DatabaseManager.รหัสรัฐมนตรีเจ้าสังกัด();
                         }
                     } else {
-                        if (loginPerson.AdminPositionID == "0" || loginPerson.AdminPositionID == "8") { //ไม่มี
+                        if (loginPerson.AdminPositionID == "0" || loginPerson.AdminPositionID == "8" || loginPerson.AdminPositionID == "9") { //ไม่มี
                             psCLID = DatabaseManager.รหัสหัวหน้าฝ่าย(loginPerson.WorkDivisionID);
                             psCHID = DatabaseManager.รหัสเลขาธิการคณะกรรมการ();
                         } else if (loginPerson.AdminPositionID == "4") { //หัวหน้าฝ่าย
@@ -676,7 +676,7 @@ namespace WEB_PERSONAL {
                     }
                 } else if (hfLeaveTypeID.Value == "2") {
                     if (totalDay <= หัวหน้าฝ่ายลากิจวัน) {
-                        if (loginPerson.AdminPositionID == "0" || loginPerson.AdminPositionID == "8") { //ไม่มี
+                        if (loginPerson.AdminPositionID == "0" || loginPerson.AdminPositionID == "8" || loginPerson.AdminPositionID == "9") { //ไม่มี
                             psCHID = DatabaseManager.รหัสหัวหน้าฝ่าย(loginPerson.WorkDivisionID);
                         } else if (loginPerson.AdminPositionID == "4") { //หัวหน้าฝ่าย
                             psCHID = DatabaseManager.รหัสหัวหน้าภาควิชา(loginPerson.DivisionID);
@@ -692,7 +692,7 @@ namespace WEB_PERSONAL {
                             psCHID = DatabaseManager.รหัสรัฐมนตรีเจ้าสังกัด();
                         }
                     } else if (totalDay <= หัวหน้าภาควิชาลากิจวัน) {
-                        if (loginPerson.AdminPositionID == "0" || loginPerson.AdminPositionID == "8") { //ไม่มี
+                        if (loginPerson.AdminPositionID == "0" || loginPerson.AdminPositionID == "8" || loginPerson.AdminPositionID == "9") { //ไม่มี
                             psCLID = DatabaseManager.รหัสหัวหน้าฝ่าย(loginPerson.WorkDivisionID);
                             psCHID = DatabaseManager.รหัสหัวหน้าภาควิชา(loginPerson.DivisionID);
                         } else if (loginPerson.AdminPositionID == "4") { //หัวหน้าฝ่าย
@@ -709,7 +709,7 @@ namespace WEB_PERSONAL {
                             psCHID = DatabaseManager.รหัสรัฐมนตรีเจ้าสังกัด();
                         }
                     } else if (totalDay <= คณะบดีลากิจวัน) {
-                        if (loginPerson.AdminPositionID == "0" || loginPerson.AdminPositionID == "8") { //ไม่มี
+                        if (loginPerson.AdminPositionID == "0" || loginPerson.AdminPositionID == "8" || loginPerson.AdminPositionID == "9") { //ไม่มี
                             psCLID = DatabaseManager.รหัสหัวหน้าฝ่าย(loginPerson.WorkDivisionID);
                             psCHID = DatabaseManager.รหัสคณบดี(loginPerson.FacultyID);
                         } else if (loginPerson.AdminPositionID == "4") { //หัวหน้าฝ่าย
@@ -727,7 +727,7 @@ namespace WEB_PERSONAL {
                             psCHID = DatabaseManager.รหัสรัฐมนตรีเจ้าสังกัด();
                         }
                     } else if (totalDay <= อธิการบดีลากิจวัน) {
-                        if (loginPerson.AdminPositionID == "0" || loginPerson.AdminPositionID == "8") { //ไม่มี
+                        if (loginPerson.AdminPositionID == "0" || loginPerson.AdminPositionID == "8" || loginPerson.AdminPositionID == "9") { //ไม่มี
                             psCLID = DatabaseManager.รหัสหัวหน้าฝ่าย(loginPerson.WorkDivisionID);
                             psCHID = DatabaseManager.รหัสอธิการบดี(loginPerson.CampusID);
                         } else if (loginPerson.AdminPositionID == "4") { //หัวหน้าฝ่าย
@@ -746,7 +746,7 @@ namespace WEB_PERSONAL {
                             psCHID = DatabaseManager.รหัสรัฐมนตรีเจ้าสังกัด();
                         }
                     } else {
-                        if (loginPerson.AdminPositionID == "0" || loginPerson.AdminPositionID == "8") { //ไม่มี
+                        if (loginPerson.AdminPositionID == "0" || loginPerson.AdminPositionID == "8" || loginPerson.AdminPositionID == "9") { //ไม่มี
                             psCLID = DatabaseManager.รหัสหัวหน้าฝ่าย(loginPerson.WorkDivisionID);
                             psCHID = DatabaseManager.รหัสเลขาธิการคณะกรรมการ();
                         } else if (loginPerson.AdminPositionID == "4") { //หัวหน้าฝ่าย
@@ -767,7 +767,7 @@ namespace WEB_PERSONAL {
                         }
                     }
                 } else if (hfLeaveTypeID.Value == "3") {
-                    if (loginPerson.AdminPositionID == "0" || loginPerson.AdminPositionID == "8") { //ไม่มี
+                    if (loginPerson.AdminPositionID == "0" || loginPerson.AdminPositionID == "8" || loginPerson.AdminPositionID == "9") { //ไม่มี
                         psCLID = DatabaseManager.รหัสหัวหน้าฝ่าย(loginPerson.WorkDivisionID);
                         psCHID = DatabaseManager.รหัสหัวหน้าภาควิชา(loginPerson.DivisionID);
                     } else if (loginPerson.AdminPositionID == "4") { //หัวหน้าฝ่าย
@@ -784,7 +784,7 @@ namespace WEB_PERSONAL {
                         psCHID = DatabaseManager.รหัสรัฐมนตรีเจ้าสังกัด();
                     }
                 } else if (hfLeaveTypeID.Value == "4") {
-                    if (loginPerson.AdminPositionID == "0" || loginPerson.AdminPositionID == "8") { //ไม่มี
+                    if (loginPerson.AdminPositionID == "0" || loginPerson.AdminPositionID == "8" || loginPerson.AdminPositionID == "9") { //ไม่มี
                         psCLID = DatabaseManager.รหัสหัวหน้าฝ่าย(loginPerson.WorkDivisionID);
                         psCHID = DatabaseManager.รหัสหัวหน้าภาควิชา(loginPerson.DivisionID);
                     } else if (loginPerson.AdminPositionID == "4") { //หัวหน้าฝ่าย
@@ -801,7 +801,7 @@ namespace WEB_PERSONAL {
                         psCHID = DatabaseManager.รหัสรัฐมนตรีเจ้าสังกัด();
                     }
                 } else if (hfLeaveTypeID.Value == "5") {
-                    if (loginPerson.AdminPositionID == "0" || loginPerson.AdminPositionID == "8") { //ไม่มี
+                    if (loginPerson.AdminPositionID == "0" || loginPerson.AdminPositionID == "8" || loginPerson.AdminPositionID == "9") { //ไม่มี
                         psCLID = DatabaseManager.รหัสหัวหน้าฝ่าย(loginPerson.WorkDivisionID);
                         psCHID = DatabaseManager.รหัสอธิการบดี(loginPerson.CampusID);
                     } else if (loginPerson.AdminPositionID == "4") { //หัวหน้าฝ่าย
@@ -820,7 +820,7 @@ namespace WEB_PERSONAL {
                         psCHID = DatabaseManager.รหัสรัฐมนตรีเจ้าสังกัด();
                     }
                 } else if (hfLeaveTypeID.Value == "6" || hfLeaveTypeID.Value == "7") {
-                    if (loginPerson.AdminPositionID == "0" || loginPerson.AdminPositionID == "8") { //ไม่มี
+                    if (loginPerson.AdminPositionID == "0" || loginPerson.AdminPositionID == "8" || loginPerson.AdminPositionID == "9") { //ไม่มี
                         psCLID = DatabaseManager.รหัสหัวหน้าฝ่าย(loginPerson.WorkDivisionID);
                         psCHID = DatabaseManager.รหัสเลขาธิการคณะกรรมการ();
                     } else if (loginPerson.AdminPositionID == "4") { //หัวหน้าฝ่าย
@@ -845,10 +845,30 @@ namespace WEB_PERSONAL {
                 Person psCL = DatabaseManager.GetPerson(psCLID);
                 Person psCH = DatabaseManager.GetPerson(psCHID);
 
-                if(psCL == null) {
+                if(psCLID == "" && psCL == null) {
                     lbS2CL.Text = "ไม่มี";
                     psCLImage.Visible = false;
                 }
+                /*if(psCLID != "" && psCL == null) {
+                    psCLImage.Visible = false;
+                    lbS2CL.Text = "พบข้อผิดพลาด<br />ไม่พบพนักงาน";
+                    lbS2CL.ForeColor = Color.Red;
+                }*/
+
+
+
+
+                if (psCL != null) {
+                    lbS2CL.Text = "<span class='ps-lb-red-b'>" + psCL.FirstNameAndLastName + "</span><br />" + psCL.CitizenID + "<br />" + psCL.PositionWorkName + "<br />" + psCL.AdminPositionName;
+                    psCLImage.Visible = true;
+                } else {
+                    lbS2CL.Text = "ไม่มี";
+                    psCLImage.Visible = false;
+                }
+
+
+
+
 
                 if ( (psCLID != "" && psCL == null) || (psCHID != "" && psCH == null)) {
 
@@ -1149,6 +1169,21 @@ namespace WEB_PERSONAL {
             Response.Redirect("LeaveHistory.aspx");
         }
         protected void lbuSelectSick_Click(object sender, EventArgs e) {
+            OracleConnection.ClearAllPools();
+            using(OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
+                con.Open();
+                using(OracleCommand com = new OracleCommand("SELECT SICK_NOW - SICK_REQ FROM LEV_CLAIM WHERE PS_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND YEAR = " + Util.BudgetYear(), con)) {
+                    using(OracleDataReader reader = com.ExecuteReader()) {
+                        while(reader.Read()) {
+                            if(reader.GetInt32(0) != 0) {
+                                ChangeNotification("danger", "ไม่สามารถลาได้ มีการลาป่วยอยู่ในระหว่างดำเนินการ");
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
+            ClearNotification();
             hfLeaveTypeID.Value = "1";
             hfLeaveTypeName.Value = "ลาป่วย";
             MV1.ActiveViewIndex = 1;
@@ -1161,6 +1196,21 @@ namespace WEB_PERSONAL {
             trS1DrCer.Visible = true;
         }
         protected void lbuSelectBusiness_Click(object sender, EventArgs e) {
+            OracleConnection.ClearAllPools();
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
+                con.Open();
+                using (OracleCommand com = new OracleCommand("SELECT BUSINESS_NOW - BUSINESS_REQ FROM LEV_CLAIM WHERE PS_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND YEAR = " + Util.BudgetYear(), con)) {
+                    using (OracleDataReader reader = com.ExecuteReader()) {
+                        while (reader.Read()) {
+                            if (reader.GetInt32(0) != 0) {
+                                ChangeNotification("danger", "ไม่สามารถลาได้ มีการลากิจอยู่ในระหว่างดำเนินการ");
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
+            ClearNotification();
             hfLeaveTypeID.Value = "2";
             hfLeaveTypeName.Value = "ลากิจ";
             MV1.ActiveViewIndex = 1;
@@ -1172,6 +1222,21 @@ namespace WEB_PERSONAL {
             trS1Phone.Visible = true;
         }
         protected void lbuSelectRest_Click(object sender, EventArgs e) {
+            OracleConnection.ClearAllPools();
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
+                con.Open();
+                using (OracleCommand com = new OracleCommand("SELECT REST_NOW - REST_REQ FROM LEV_CLAIM WHERE PS_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND YEAR = " + Util.BudgetYear(), con)) {
+                    using (OracleDataReader reader = com.ExecuteReader()) {
+                        while (reader.Read()) {
+                            if (reader.GetInt32(0) != 0) {
+                                ChangeNotification("danger", "ไม่สามารถลาได้ มีการลาพักผ่อนอยู่ในระหว่างดำเนินการ");
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
+            ClearNotification();
             hfLeaveTypeID.Value = "4";
             hfLeaveTypeName.Value = "ลาพักผ่อน";
             MV1.ActiveViewIndex = 1;
@@ -1182,6 +1247,21 @@ namespace WEB_PERSONAL {
             trS1Phone.Visible = true;
         }
         protected void lbuSelectGiveBirth_Click(object sender, EventArgs e) {
+            OracleConnection.ClearAllPools();
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
+                con.Open();
+                using (OracleCommand com = new OracleCommand("SELECT GB_NOW - GB_REQ FROM LEV_CLAIM WHERE PS_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND YEAR = " + Util.BudgetYear(), con)) {
+                    using (OracleDataReader reader = com.ExecuteReader()) {
+                        while (reader.Read()) {
+                            if (reader.GetInt32(0) != 0) {
+                                ChangeNotification("danger", "ไม่สามารถลาได้ มีการลาคลอดบุตรอยู่ในระหว่างดำเนินการ");
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
+            ClearNotification();
             hfLeaveTypeID.Value = "3";
             hfLeaveTypeName.Value = "ลาคลอดบุตร";
             MV1.ActiveViewIndex = 1;
@@ -1193,6 +1273,21 @@ namespace WEB_PERSONAL {
             trS1Phone.Visible = true;
         }
         protected void lbuSelectHelpGiveBirth_Click(object sender, EventArgs e) {
+            OracleConnection.ClearAllPools();
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
+                con.Open();
+                using (OracleCommand com = new OracleCommand("SELECT HGB_NOW - HGB_REQ FROM LEV_CLAIM WHERE PS_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND YEAR = " + Util.BudgetYear(), con)) {
+                    using (OracleDataReader reader = com.ExecuteReader()) {
+                        while (reader.Read()) {
+                            if (reader.GetInt32(0) != 0) {
+                                ChangeNotification("danger", "ไม่สามารถลาได้ มีการลาไปช่วยเหลือภริยาที่คลอดบุตรอยู่ในระหว่างดำเนินการ");
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
+            ClearNotification();
             hfLeaveTypeID.Value = "5";
             hfLeaveTypeName.Value = "ลาไปช่วยเหลือภริยาที่คลอดบุตร";
             MV1.ActiveViewIndex = 1;
@@ -1203,8 +1298,24 @@ namespace WEB_PERSONAL {
             trS1GBDate.Visible = true;
             trS1Contact.Visible = true;
             trS1Phone.Visible = true;
+            
         }
         protected void lbuSelectOrdain_Click(object sender, EventArgs e) {
+            OracleConnection.ClearAllPools();
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
+                con.Open();
+                using (OracleCommand com = new OracleCommand("SELECT ORDAIN_NOW - ORDAIN_REQ FROM LEV_CLAIM WHERE PS_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND YEAR = " + Util.BudgetYear(), con)) {
+                    using (OracleDataReader reader = com.ExecuteReader()) {
+                        while (reader.Read()) {
+                            if (reader.GetInt32(0) != 0) {
+                                ChangeNotification("danger", "ไม่สามารถลาได้ มีการลาไปอุปสมบทอยู่ในระหว่างดำเนินการ");
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
+            ClearNotification();
             hfLeaveTypeID.Value = "6";
             hfLeaveTypeName.Value = "ลาไปอุปสมบท";
             MV1.ActiveViewIndex = 1;
@@ -1218,6 +1329,21 @@ namespace WEB_PERSONAL {
             trS1Phone.Visible = true;
         }
         protected void lbuSelectHuj_Click(object sender, EventArgs e) {
+            OracleConnection.ClearAllPools();
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
+                con.Open();
+                using (OracleCommand com = new OracleCommand("SELECT HUJ_NOW - HUJ_REQ FROM LEV_CLAIM WHERE PS_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND YEAR = " + Util.BudgetYear(), con)) {
+                    using (OracleDataReader reader = com.ExecuteReader()) {
+                        while (reader.Read()) {
+                            if (reader.GetInt32(0) != 0) {
+                                ChangeNotification("danger", "ไม่สามารถลาได้ มีการลาไปประกอบพิธีฮัจญ์อยู่ในระหว่างดำเนินการ");
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
+            ClearNotification();
             hfLeaveTypeID.Value = "7";
             hfLeaveTypeName.Value = "ลาไปประกอบพิธีฮัจญ์";
             MV1.ActiveViewIndex = 1;

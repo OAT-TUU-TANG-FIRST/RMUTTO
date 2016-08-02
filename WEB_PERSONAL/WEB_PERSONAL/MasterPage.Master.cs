@@ -17,6 +17,7 @@ namespace WEB_PERSONAL {
                 return;
             }
             Session.Timeout = 60;
+            OracleConnection.ClearAllPools();
         }
 
         protected void Page_Load(object sender, EventArgs e) {

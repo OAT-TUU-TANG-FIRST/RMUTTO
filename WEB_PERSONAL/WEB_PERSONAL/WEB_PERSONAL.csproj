@@ -1062,6 +1062,7 @@
     <None Include="Properties\PublishProfiles\ORCL.pubxml" />
     <Content Include="Upload\Character.zip" />
     <Content Include="Upload\Roboto.zip" />
+    <Content Include="Upload\SNR 2555.PDF" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
