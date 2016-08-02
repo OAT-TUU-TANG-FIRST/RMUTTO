@@ -18,6 +18,7 @@ namespace WEB_PERSONAL {
         private Label lb1;
         private Label lb2;
         private bool OK = true;
+        private bool OK2 = true;
         private string cccStaffType = "";
         private string cccCampus = "";
         private string cccFaculty = "";
@@ -56,13 +57,18 @@ namespace WEB_PERSONAL {
                     {
                         TableHeaderCell cell = new TableHeaderCell();
                         CheckBox cb = new CheckBox();
-                        cb.AutoPostBack = true;
-                        cb.CheckedChanged += (e2, e3) => {
+                        cb.ID = "CBBX";
+                        //cb.AutoPostBack = true;
+                        cb.Attributes["onclick"] = "toggle('ContentPlaceHolder1_CBBX', 'CBB')";
+                       /* cb.CheckedChanged += (e2, e3) => {
                             for (int i = 1; i < Table1.Rows.Count; i++) {
-                                CheckBox cb2 = (CheckBox)Table1.Rows[i].Cells[0].Controls[0];
-                                cb2.Checked = cb.Checked;
+                                if(Table1.Rows[i].Cells[0].Controls[0] != null) {
+                                    CheckBox cb2 = (CheckBox)Table1.Rows[i].Cells[0].Controls[0];
+                                    cb2.Checked = cb.Checked;
+                                }
+                                    
                             }
-                        };
+                        };*/
                         cell.Controls.Add(cb);
                         Label lb = new Label();
                         lb.Text = "เลือก";
@@ -148,6 +154,7 @@ namespace WEB_PERSONAL {
                             while (reader.Read()) {
 
                                 OK = true;
+                                OK2 = true;
                                 string psID = reader.GetString(0);
 
                                 TableRow row = new TableRow();
@@ -170,6 +177,7 @@ namespace WEB_PERSONAL {
 
                                 {
                                     CheckBox cb = new CheckBox();
+                                    cb.Attributes["name"] = "CBB";
                                     TableCell cell = new TableCell();
                                     cell.Controls.Add(cb);
                                     row.Cells.Add(cell);
@@ -244,7 +252,7 @@ namespace WEB_PERSONAL {
 
                                 {
                                     Label lblDateInwork = new Label();
-                                    lblDateInwork.Text = reader.GetDateTime(5).ToString("dd MMM yyyy");
+                                    lblDateInwork.Text = reader.IsDBNull(5) ? "" : reader.GetDateTime(5).ToString("dd MMM yyyy");
                                     TableCell cell = new TableCell();
                                     cell.Controls.Add(lblDateInwork);
                                     row.Cells.Add(cell);
@@ -252,7 +260,7 @@ namespace WEB_PERSONAL {
 
                                 {
                                     Label lblSalary = new Label();
-                                    lblSalary.Text = reader.GetInt32(6).ToString("#,###");
+                                    lblSalary.Text = reader.IsDBNull(6) ? "-1" : reader.GetInt32(6).ToString("#,###");
                                     TableCell cell = new TableCell();
                                     cell.Controls.Add(lblSalary);
                                     row.Cells.Add(cell);
@@ -318,8 +326,8 @@ namespace WEB_PERSONAL {
                                     }
                                 }
 
-                                int ปีที่ทำงาน = reader.GetInt32(3);
-                                int เงินเดือนปัจจุบัน = reader.GetInt32(4);
+                                int ปีที่ทำงาน = reader.IsDBNull(3) ? -1 : reader.GetInt32(3);
+                                int เงินเดือนปัจจุบัน = reader.IsDBNull(4) ? -1 : reader.GetInt32(4);
 
                                 int เงินเดือนขั้นต่ำของระดับชำนาญงาน = -1;
                                 using (OracleCommand com2 = new OracleCommand("SELECT P_SAL_MIN FROM TB_POSITION_SAL_MINMAX WHERE P_POS_ID = 14102", con)) {
@@ -332,7 +340,7 @@ namespace WEB_PERSONAL {
                                 }
 
                                 int ปีที่ดำรงตำแหน่งระดับปฏิบัติงาน = -1;
-                                using (OracleCommand com2 = new OracleCommand("SELECT TRUNC((CURRENT_DATE - PDH_DATE_START)/365,0) FROM TB_POSITION_DEGREE_HISTORY WHERE POSI_GENERAL = 10 AND PDH_CITIZEN_ID = '" + psID + "'", con)) {
+                                using (OracleCommand com2 = new OracleCommand("SELECT TRUNC((CURRENT_DATE - PDH_DATE_START)/365,0) FROM TB_PDH_GOVER WHERE PDH_POSITION_GET = 10 AND PDH_CITIZEN_ID = '" + psID + "'", con)) {
                                     using (OracleDataReader reader2 = com2.ExecuteReader()) {
                                         while (reader2.Read()) {
                                             ปีที่ดำรงตำแหน่งระดับปฏิบัติงาน = reader2.GetInt32(0);
@@ -342,7 +350,7 @@ namespace WEB_PERSONAL {
                                 }
 
                                 int ปีที่ดำรงตำแหน่งระดับชำนาญงาน = -1;
-                                using (OracleCommand com2 = new OracleCommand("SELECT TRUNC((CURRENT_DATE - PDH_DATE_START)/365,0) FROM TB_POSITION_DEGREE_HISTORY WHERE POSI_GENERAL = 11 AND PDH_CITIZEN_ID = '" + psID + "'", con)) {
+                                using (OracleCommand com2 = new OracleCommand("SELECT TRUNC((CURRENT_DATE - PDH_DATE_START)/365,0) FROM TB_PDH_GOVER WHERE PDH_POSITION_GET = 11 AND PDH_CITIZEN_ID = '" + psID + "'", con)) {
                                     using (OracleDataReader reader2 = com2.ExecuteReader()) {
                                         while (reader2.Read()) {
                                             ปีที่ดำรงตำแหน่งระดับชำนาญงาน = reader2.GetInt32(0);
@@ -352,7 +360,7 @@ namespace WEB_PERSONAL {
                                 }
 
                                 int ปีที่ดำรงตำแหน่งระดับอาวุโส = -1;
-                                using (OracleCommand com2 = new OracleCommand("SELECT TRUNC((CURRENT_DATE - PDH_DATE_START)/365,0) FROM TB_POSITION_DEGREE_HISTORY WHERE POSI_GENERAL = 12 AND PDH_CITIZEN_ID = '" + psID + "'", con)) {
+                                using (OracleCommand com2 = new OracleCommand("SELECT TRUNC((CURRENT_DATE - PDH_DATE_START)/365,0) FROM TB_PDH_GOVER WHERE PDH_POSITION_GET = 12 AND PDH_CITIZEN_ID = '" + psID + "'", con)) {
                                     using (OracleDataReader reader2 = com2.ExecuteReader()) {
                                         while (reader2.Read()) {
                                             ปีที่ดำรงตำแหน่งระดับอาวุโส = reader2.GetInt32(0);
@@ -408,7 +416,7 @@ namespace WEB_PERSONAL {
                                     }
                                 }
 
-
+                                lbName.Attributes.Add("tuu2", "-1");
                                 if (รหัสประเภทบุคลากร == 1) {//ข้าราชการ
                                     if (รหัสตำแหน่งประเภททางทั่วไป == 10) {//ระดับปฏิบัติงาน
                                         if (รหัสเครืองราชปัจจุบัน == -1) {
@@ -1400,20 +1408,29 @@ namespace WEB_PERSONAL {
                                 }
                                 //Error
                                 int insID = int.Parse(lbName.Attributes["tuu2"]);
-                                using (OracleCommand com2 = new OracleCommand("SELECT COUNT(*) FROM TB_INSIG_REQUEST WHERE IR_STATUS IN(1,2) AND IR_CITIZEN_ID = '" + psID + "'", con)) {
-                                    using (OracleDataReader reader2 = com2.ExecuteReader()) {
-                                        while (reader2.Read()) {
-                                            if(reader2.GetInt32(0) != 0) {
-                                                OK = false;
+                                if(insID == -1) {
+                                    OK = false;
+                                } else {
+                                    using (OracleCommand com2 = new OracleCommand("SELECT COUNT(*) FROM TB_INSIG_REQUEST WHERE IR_STATUS IN(1,2) AND IR_CITIZEN_ID = '" + psID + "'", con)) {
+                                        using (OracleDataReader reader2 = com2.ExecuteReader()) {
+                                            while (reader2.Read()) {
+                                                if (reader2.GetInt32(0) != 0) {
+                                                    OK = false;
+                                                }
                                             }
-                                        }
 
+                                        }
                                     }
                                 }
+                                
 
 
                                 if (OK) {
                                     Table1.Rows.Add(row);
+                                }
+
+                                if(!OK2) {
+                                    row.Cells[0].Controls.Clear();
                                 }
 
                             }
@@ -1463,6 +1480,9 @@ namespace WEB_PERSONAL {
                 ConditionLabel(pCondition, s[i], b[i]);
             }
             ConditionBar(pBar, get, size);
+            if(get != size) {
+                OK2 = false;
+            }
         }
         private void ConditionLabel(Panel p, string word, bool b) {
             if (b) {

@@ -1523,8 +1523,11 @@ namespace WEB_PERSONAL
             PPAS.PS_REF = tbRef14.Text;
             PPAS.INSERT_PS_POSITION_AND_SALARY();
 
-            P0.PS_SALARY = Convert.ToInt32(tbSalary14.Text);
-            P0.PS_POSS_SALARY = Convert.ToInt32(tbSalaryPosition14.Text);
+            int salary = DatabaseManager.ExecuteInt("SELECT * FROM (SELECT PS_SALARY FROM PS_POSITION_AND_SALARY ORDER BY PS_DATE DESC) WHERE ROWNUM = 1");
+            int posisalary = DatabaseManager.ExecuteInt("SELECT * FROM (SELECT PS_SALARY_POSITION FROM PS_POSITION_AND_SALARY ORDER BY PS_DATE DESC) WHERE ROWNUM = 1");
+
+            P0.PS_SALARY = Convert.ToInt32(salary);
+            P0.PS_POSS_SALARY = Convert.ToInt32(posisalary);
             P0.PS_CITIZEN_ID = p;
             P0.UPDATE_CURRENT_SALARY_PERSON();
 
@@ -2912,9 +2915,20 @@ namespace WEB_PERSONAL
         protected void modDeleteCommand5(Object sender, GridViewDeleteEventArgs e)
         {
             int id = Convert.ToInt32(GridViewPAS.DataKeys[e.RowIndex].Value);
+
             PS_POSITION_AND_SALARY PPAS = new PS_POSITION_AND_SALARY();
             PPAS.PS_PAS_ID = id;
             PPAS.DELETE_PS_POSITION_AND_SALARY();
+
+            PS_PERSON P0 = new PS_PERSON();
+            int salary = DatabaseManager.ExecuteInt("SELECT * FROM (SELECT PS_SALARY FROM PS_POSITION_AND_SALARY ORDER BY PS_DATE DESC) WHERE ROWNUM = 1");
+            int posisalary = DatabaseManager.ExecuteInt("SELECT * FROM (SELECT PS_SALARY_POSITION FROM PS_POSITION_AND_SALARY ORDER BY PS_DATE DESC) WHERE ROWNUM = 1");
+
+            P0.PS_SALARY = Convert.ToInt32(salary);
+            P0.PS_POSS_SALARY = Convert.ToInt32(posisalary);
+            P0.PS_CITIZEN_ID = p;
+            P0.UPDATE_CURRENT_SALARY_PERSON();
+              
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ลบข้อมูลเรียบร้อย')", true);
 
             if (string.IsNullOrEmpty(labelCitizenID.Text))

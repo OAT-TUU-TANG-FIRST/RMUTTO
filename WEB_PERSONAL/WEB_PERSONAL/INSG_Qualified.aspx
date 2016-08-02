@@ -1,5 +1,14 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="INSG_Qualified.aspx.cs" Inherits="WEB_PERSONAL.INSG_Qualified" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script>
+        function toggle(source, type) {
+            var checkboxes = document.getElementsByName(type);
+            var vSource = document.getElementById(source);
+            for (var i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].firstChild.checked = vSource.checked;
+            }
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="default_page_style">
