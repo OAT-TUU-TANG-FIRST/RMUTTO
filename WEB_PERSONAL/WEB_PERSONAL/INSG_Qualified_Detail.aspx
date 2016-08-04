@@ -1,5 +1,14 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="INSG_Qualified_Detail.aspx.cs" Inherits="WEB_PERSONAL.INSG_Qualififed_Detail" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+        <style type="text/css">
+        .col1 {
+            text-align: right;
+        }
+
+        .col2 {
+            text-align: left;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server" />
@@ -34,7 +43,7 @@
                 <tr>
                     <td class="col1">สังกัด/หน่วยงาน</td>
                     <td class="col2">
-                        <asp:Label ID="lblUniversity" runat="server">มหาวิทยาลัยเทคโนโลยีราชมงคลตะวันออก > </asp:Label>
+                        <asp:Label ID="lblUniversity" runat="server">มหาวิทยาลัยเทคโนโลยีราชมงคลตะวันออก </asp:Label>
                         <asp:Label ID="lblCampus" runat="server"></asp:Label>
                     </td>
                 </tr>

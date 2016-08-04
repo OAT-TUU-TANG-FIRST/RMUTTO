@@ -6,8 +6,15 @@
         };
     </script>
     <style type="text/css">
-        .textred {
-            color: red;
+        .col1 {
+            text-align: right;
+        }
+
+        .col2 {
+            text-align: left;
+        }
+        .textred{
+            color:red;
         }
     </style>
 </asp:Content>
@@ -16,7 +23,6 @@
     <asp:Panel ID="Panel2" runat="server" DefaultButton="lbuSearch">
         <div class="ps-header"><img src="Image/Small/search.png" />ค้นหาข้อมูลการพัฒนาบุคลากร</div>
         <asp:ScriptManager ID="ScriptManager1" runat="server" />
-        <div id="notification" runat="server"></div>
         <div>
             
             <div style="margin-bottom: 20px; text-align:center">
@@ -179,6 +185,7 @@
             <img src="Image/Small/edit.png" />แก้ไขข้อมูลการพัฒนาบุคลากร
         </div>
     </asp:Panel>
+    <div id="notification" runat="server"></div>
     <asp:Panel ID="Panel1" runat="server" CssClass="divpan" DefaultButton="lbuSubmit">
         
         <div>
@@ -187,95 +194,90 @@
                     <div style="text-align: center;">
                         <table class="ps-table-1" style="display: inline-block; text-align: left;">
                             <tr>
-                                <td>ชื่อ</td>
-                                <td>
-                                    <asp:TextBox ID="txtName" runat="server" Width="200px" CssClass="ps-textbox"></asp:TextBox><span class="textred">*</span>
+                                <td class="col1">ชื่อ</td>
+                                <td class="col2">
+                                    <asp:Label ID="lblName" runat="server"></asp:Label>
                                 </td>
                             </tr>
                             <tr>
-                                <td>นามสกุล</td>
-                                <td>
-                                    <asp:TextBox ID="txtLastName" runat="server" Width="200px" CssClass="ps-textbox"></asp:TextBox><span class="textred">*</span>
+                                <td class="col1">นามสกุล</td>
+                                <td class="col2">
+                                    <asp:Label ID="lblLastName" runat="server"></asp:Label>
                                 </td>
                             </tr>
                             <tr>
-                                <td>ตำแหน่ง</td>
-                                <td>
-                                    <asp:TextBox ID="txtPosition" runat="server" Width="200px" CssClass="ps-textbox"></asp:TextBox><span class="textred">*</span>
+                                <td class="col1">ตำแหน่ง</td>
+                                <td class="col2">
+                                    <asp:Label ID="lblPosition" runat="server"></asp:Label>
                                 </td>
                             </tr>
                             <tr>
-                                <td>ระดับ</td>
-                                <td>
-                                    <asp:TextBox ID="txtDegree" runat="server" Width="200px" CssClass="ps-textbox"></asp:TextBox><span class="textred">*</span>
+                                <td class="col1">ระดับ</td>
+                                <td class="col2">
+                                    <asp:Label ID="lblDegree" runat="server"></asp:Label>
                                 </td>
                             </tr>
                             <tr>
-                                <td>สังกัด</td>
-                                <td>
-                                    <asp:TextBox ID="txtCampus" runat="server" Width="600px" CssClass="ps-textbox" Placeholder="สังกัด"></asp:TextBox><span class="textred">*</span>
+                                <td class="col1">สังกัด</td>
+                                <td class="col2">
+                                    <asp:Label ID="lblCampus" runat="server"></asp:Label>
                                 </td>
                             </tr>
                             <tr>
-                                <td>ชื่อโครงการฝึกอบรม/สัมมนา/ดูงาน</td>
-                                <td>
-                                    <asp:TextBox ID="txtNameOfProject" runat="server" Width="300px" CssClass="ps-textbox" Placeholder="ชื่อโครงการฝึกอบรม/สัมมนา/ดูงาน"></asp:TextBox><span class="textred">*</span>
+                                <td class="col1">ชื่อโครงการฝึกอบรม/สัมมนา/ดูงาน</td>
+                                <td class="col2">
+                                    <asp:TextBox ID="txtNameOfProject" runat="server" Width="300px" CssClass="ps-textbox" Placeholder="ชื่อโครงการฝึกอบรม/สัมมนา/ดูงาน" ></asp:TextBox><span class="textred">*</span>
                                 </td>
                             </tr>
                             <tr>
-                                <td>สถานที่ฝึกอบรม/สัมมนา/ดูงาน</td>
-                                <td>
-                                    <asp:TextBox ID="txtPlace" runat="server" Width="300px" CssClass="ps-textbox" Placeholder="สถานที่ฝึกอบรม/สัมมนา/ดูงาน"></asp:TextBox><span class="textred">*</span>
+                                <td class="col1">สถานที่ฝึกอบรม/สัมมนา/ดูงาน</td>
+                                <td class="col2">
+                                    <asp:TextBox ID="txtPlace" runat="server" Width="300px" CssClass="ps-textbox" Placeholder="สถานที่ฝึกอบรม/สัมมนา/ดูงาน" ></asp:TextBox><span class="textred">*</span>
                                 </td>
                             </tr>
                             <tr>
-                                <td>ระยะเวลาการฝึกอบรม/สัมมนา/ดูงาน</td>
-                                <td>ตั้งแต่วันที่
-                                    <asp:TextBox ID="txtDateFrom" runat="server" Width="180px" MaxLength="12" CssClass="ps-textbox" AutoPostBack="True"></asp:TextBox>
-                                    ถึงวันที่
-                                    <asp:TextBox ID="txtDateTO" runat="server" MaxLength="12" Width="180px" OnTextChanged="txtDateTO_TextChanged" CssClass="ps-textbox" AutoPostBack="True"></asp:TextBox><span class="textred">*</span>
+                                <td class="col1">ระยะเวลาการฝึกอบรม/สัมมนา/ดูงาน</td>
+                                <td class="col2">
+                                    ตั้งแต่วันที่ <asp:TextBox ID="txtDateFrom" runat="server" Width="180px" MaxLength="12" CssClass="ps-textbox" AutoPostBack="True" OnTextChanged="txtDateFrom_TextChanged"></asp:TextBox>
+                                    ถึงวันที่ <asp:TextBox ID="txtDateTO" runat="server" MaxLength="12" Width="180px" OnTextChanged="txtDateTO_TextChanged" CssClass="ps-textbox" AutoPostBack="True"></asp:TextBox><span class="textred">*</span>
                                 </td>
                             </tr>
                             <tr>
-                                <td>รวมเวลา</td>
-                                <td>
-                                    <asp:TextBox ID="txtDay" runat="server" Width="50px" Enabled="False" CssClass="ps-textbox" AutoPostBack="True"></asp:TextBox>
-                                    วัน
-                                    <asp:TextBox ID="txtMonth" runat="server" Width="50px" Enabled="False" CssClass="ps-textbox" AutoPostBack="True"></asp:TextBox>
-                                    เดือน
-                                    <asp:TextBox ID="txtYear" runat="server" Width="50px" Enabled="False" CssClass="ps-textbox" AutoPostBack="True"></asp:TextBox>
-                                    ปี
+                                <td class="col1">รวมเวลา</td>
+                                <td class="col2">
+                                    <asp:Label ID="lblDay" runat="server">0</asp:Label> วัน &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <asp:Label ID="lblMonth" runat="server">0</asp:Label> เดือน&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <asp:Label ID="lblYear" runat="server">0</asp:Label> ปี
                                 </td>
                             </tr>
                             <tr>
-                                <td>ค่าใช้จ่ายตลอดโครงการ</td>
-                                <td>
-                                    <asp:TextBox ID="txtBudget" runat="server" Width="300px" CssClass="ps-textbox" Placeholder="ค่าใช้จ่ายตลอดโครงการ"></asp:TextBox>
-                                    บาท
+                                <td class="col1">ค่าใช้จ่ายตลอดโครงการ</td>
+                                <td class="col2">
+                                    <asp:TextBox ID="txtBudget" runat="server" Width="300px" CssClass="ps-textbox" Placeholder="ค่าใช้จ่ายตลอดโครงการ" ></asp:TextBox> บาท
                                 </td>
                             </tr>
                             <tr>
-                                <td>แหล่งงบประมาณที่ได้รับการสนับสนุน</td>
-                                <td>
-                                    <asp:TextBox ID="txtSupportBudget" runat="server" Width="460px" CssClass="ps-textbox" Placeholder="แหล่งงบประมาณที่ได้รับการสนับสนุน"></asp:TextBox><span class="textred">*</span>
+                                <td class="col1">แหล่งงบประมาณที่ได้รับการสนับสนุน</td>
+                                <td class="col2">
+                                    <asp:TextBox ID="txtSupportBudget" runat="server" Width="460px" CssClass="ps-textbox" Placeholder="แหล่งงบประมาณที่ได้รับการสนับสนุน" ></asp:TextBox><span class="textred">*</span>
                                 </td>
                             </tr>
                             <tr>
-                                <td>ประกาศนียบัตรที่ได้รับ</td>
-                                <td>
+                                <td class="col1">ประกาศนียบัตรที่ได้รับ</td>
+                                <td class="col2">
                                     <asp:CheckBox ID="chkBox" runat="server" Text="ถ้ามี" OnCheckedChanged="chkBox_CheckedChanged" AutoPostBack="True" />
                                     <asp:TextBox ID="txtCertificate" runat="server" Width="420px" Enabled="False" Text="ไม่มี" CssClass="ps-textbox" AutoPostBack="True"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
-                                <td>สรุปผลการฝึกอบรม/สัมมนา/ดูงาน</td>
-                                <td>
+                                <td class="col1">สรุปผลการฝึกอบรม/สัมมนา/ดูงาน</td>
+                                <td class="col2">
                                     <asp:TextBox ID="txtAbstract" runat="server" Height="50px" Width="600px" TextMode="MultiLine" CssClass="ps-textbox" Placeholder="สรุปผลการฝึกอบรม/สัมมนา/ดูงาน"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
-                                <td>ผลที่ได้รับจากการฝึกอบรม/สัมมนา/ดูงาน</td>
-                                <td>
+                                <td class="col1">ผลที่ได้รับจากการฝึกอบรม/สัมมนา/ดูงาน</td>
+                                <td class="col2">
                                     <asp:TextBox ID="txtResult" runat="server" Height="50px" Width="600px" TextMode="MultiLine" CssClass="ps-textbox" Placeholder="ผลที่ได้รับจากการฝึกอบรม/สัมมนา/ดูงาน"></asp:TextBox>
                                 </td>
                             </tr>
@@ -283,38 +285,38 @@
                                 <td colspan="2">การนำผลงานที่ได้รับจากการฝึกอบรม/สัมมนา/ดูงาน</td>
                             </tr>
                             <tr>
-                                <td>ด้านการเรียนการสอน</td>
-                                <td>
+                                <td class="col1">ด้านการเรียนการสอน</td>
+                                <td class="col2">
                                     <asp:TextBox ID="txtShow1" runat="server" Height="50px" Width="600px" TextMode="MultiLine" CssClass="ps-textbox" Placeholder="ด้านการเรียนการสอน"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
-                                <td>ด้านการวิจัย</td>
-                                <td>
+                                <td class="col1">ด้านการวิจัย</td>
+                                <td class="col2">
                                     <asp:TextBox ID="txtShow2" runat="server" Height="50px" Width="600px" TextMode="MultiLine" CssClass="ps-textbox" Placeholder="ด้านการวิจัย"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
-                                <td>ด้านการบริการวิชาการ</td>
-                                <td>
+                                <td class="col1">ด้านการบริการวิชาการ</td>
+                                <td class="col2">
                                     <asp:TextBox ID="txtShow3" runat="server" Height="50px" Width="600px" TextMode="MultiLine" CssClass="ps-textbox" Placeholder="ด้านการบริการวิชาการ"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
-                                <td>ด้านอื่นๆ</td>
-                                <td>
+                                <td class="col1">ด้านอื่นๆ</td>
+                                <td class="col2">
                                     <asp:TextBox ID="txtShow4" runat="server" Height="50px" Width="600px" TextMode="MultiLine" CssClass="ps-textbox" Placeholder="ด้านอื่นๆ"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
-                                <td>ปัญหาอุปสรรคในการฝึกอบรม/สัมมนา/ดูงาน</td>
-                                <td>
+                                <td class="col1">ปัญหาอุปสรรคในการฝึกอบรม/สัมมนา/ดูงาน</td>
+                                <td class="col2">
                                     <asp:TextBox ID="txtProblem" runat="server" Height="50px" Width="600px" TextMode="MultiLine" CssClass="ps-textbox" Placeholder="ปัญหาอุปสรรคในการฝึกอบรม/สัมมนา/ดูงาน"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
-                                <td>ความคิดเห็น/ข้อเสนอแนะอื่นๆ</td>
-                                <td>
+                                <td class="col1">ความคิดเห็น/ข้อเสนอแนะอื่นๆ</td>
+                                <td class="col2">
                                     <asp:TextBox ID="txtComment" runat="server" TextMode="MultiLine" Height="50px" Width="600px" CssClass="ps-textbox" Placeholder="ความคิดเห็น/ข้อเสนอแนะอื่นๆ"></asp:TextBox>
                                 </td>
                             </tr>

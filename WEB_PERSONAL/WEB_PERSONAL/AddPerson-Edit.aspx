@@ -526,7 +526,7 @@
                         </td>
                     </tr>
                 </table>
-                <table class="ps-table-1" style="margin-bottom: 20px; display: inline-block; vertical-align: top; text-align:left;" id="idPositionShowOfficeEmp" runat="server">
+                <table class="ps-table-1" style="margin-bottom: 20px; display: inline-block; margin-right: 20px; vertical-align: top;" id="idPositionShowOfficeEmp" runat="server">
                     <tr>
                         <th colspan="2">ตำแหน่งพนักงานราชการ</th>
                     </tr>

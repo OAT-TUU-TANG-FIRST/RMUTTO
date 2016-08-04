@@ -64,8 +64,7 @@
                 <img src="Image/Small/list.png" />ข้อมูล
             </div>
             <asp:ScriptManager ID="ScriptManager1" runat="server" />
-            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                <ContentTemplate>
+
                     <asp:GridView ID="GridView1" runat="server" Style="margin-left: auto; margin-right: auto; text-align: center;"
                         AutoGenerateColumns="false"
                         AllowPaging="true"
@@ -131,11 +130,7 @@
                             </asp:TemplateField>
                         </Columns>
                     </asp:GridView>
-                </ContentTemplate>
-                <Triggers>
-                    <asp:AsyncPostBackTrigger ControlID="Gridview1" />
-                </Triggers>
-            </asp:UpdatePanel>
+
         </div>
     </asp:Panel>
 </asp:Content>
