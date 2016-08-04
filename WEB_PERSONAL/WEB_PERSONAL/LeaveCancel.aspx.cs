@@ -112,7 +112,7 @@ namespace WEB_PERSONAL {
                             lbLeaveID.Text = leaveData.LeaveID.ToString();
                             lbLeaveTypeName.Text = leaveData.LeaveTypeName;
                             lbReqDate.Text = leaveData.RequestDate.Value.ToLongDateString();
-                            lbPSName.Text = leaveData.PS_Title + leaveData.PS_FirstName + " " + leaveData.PS_LastName;
+                           /* lbPSName.Text = leaveData.PS_Title + leaveData.PS_FirstName + " " + leaveData.PS_LastName;
                             lbPSPos.Text = leaveData.PS_Position;
                             lbPSAPos.Text = leaveData.PS_AdminPosition;
                             lbPSDept.Text = leaveData.PS_Department;
@@ -126,7 +126,7 @@ namespace WEB_PERSONAL {
                                 lbPSWorkInDate.Text = leaveData.PS_WorkInDate.Value.ToLongDateString();
                             } else {
                                 lbPSWorkInDate.Text = "-";
-                            }
+                            }*/
 
                             lbRestSave.Text = leaveData.RestSave + " วัน";
                             lbRestLeft.Text = leaveData.RestLeft + " วัน";
@@ -285,7 +285,7 @@ namespace WEB_PERSONAL {
                             lbLeaveID.Text = leaveData.LeaveID.ToString();
                             lbLeaveTypeName.Text = leaveData.LeaveTypeName;
                             lbReqDate.Text = leaveData.RequestDate.Value.ToLongDateString();
-                            lbPSName.Text = leaveData.PS_Title + leaveData.PS_FirstName + " " + leaveData.PS_LastName;
+                           /* lbPSName.Text = leaveData.PS_Title + leaveData.PS_FirstName + " " + leaveData.PS_LastName;
                             lbPSPos.Text = leaveData.PS_Position;
                             lbPSAPos.Text = leaveData.PS_AdminPosition;
                             lbPSDept.Text = leaveData.PS_Department;
@@ -299,7 +299,7 @@ namespace WEB_PERSONAL {
                                 lbPSWorkInDate.Text = leaveData.PS_WorkInDate.Value.ToLongDateString();
                             } else {
                                 lbPSWorkInDate.Text = "-";
-                            }
+                            }*/
 
                             lbRestSave.Text = leaveData.RestSave + " วัน";
                             lbRestLeft.Text = leaveData.RestLeft + " วัน";
@@ -375,7 +375,7 @@ namespace WEB_PERSONAL {
         protected void lbuCancelFinish_Click(object sender, EventArgs e) {
 
             LeaveData leaveData = (LeaveData)Session["LeaveData"];
-            leaveData.CancelReason = tbCancelReason.Text;
+            /*leaveData.CancelReason = tbCancelReason.Text;*/
             leaveData.ExecuteCancel();
 
             ClearNotification();

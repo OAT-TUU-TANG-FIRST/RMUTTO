@@ -57,7 +57,7 @@ namespace WEB_PERSONAL {
                         }
                     }
                 }
-                using (OracleCommand com = new OracleCommand("SELECT TO_DATE FROM LEV_DATA WHERE PS_ID = '" + loginPerson.CitizenID + "' AND LEAVE_TYPE_ID = 1 AND EXTRACT(YEAR FROM FROM_DATE) = " + Util.BudgetYear() + " AND CH_ALLOW = 1 ORDER BY LEAVE_ID DESC", con)) {
+                using (OracleCommand com = new OracleCommand("SELECT TO_DATE FROM LEV_DATA WHERE PS_ID = '" + loginPerson.CitizenID + "' AND LEAVE_TYPE_ID = 1 AND EXTRACT(YEAR FROM FROM_DATE) = " + Util.BudgetYear() + " AND ALLOW = 1 ORDER BY LEAVE_ID DESC", con)) {
                     using (OracleDataReader reader = com.ExecuteReader()) {
                         if (reader.Read()) {
                             divSickFrom.Visible = true;
@@ -246,7 +246,7 @@ namespace WEB_PERSONAL {
                     OracleConnection.ClearAllPools();
                     using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                         con.Open();
-                        using (OracleCommand com = new OracleCommand("SELECT LEAVE_ID FROM LEV_DATA WHERE " + Util.DatabaseToDateSearch(tbS1FromDate.Text) + " <= TO_DATE AND " + Util.DatabaseToDateSearch(tbS1ToDate.Text) + " >= FROM_DATE AND PS_ID = '" + loginPerson.CitizenID + "' AND BUDGET_YEAR = " + Util.BudgetYear() + " AND LEAVE_STATUS_ID IN(3,4) AND CH_ALLOW = 1", con)) {
+                        using (OracleCommand com = new OracleCommand("SELECT LEAVE_ID FROM LEV_DATA WHERE " + Util.DatabaseToDateSearch(tbS1FromDate.Text) + " <= TO_DATE AND " + Util.DatabaseToDateSearch(tbS1ToDate.Text) + " >= FROM_DATE AND PS_ID = '" + loginPerson.CitizenID + "' AND BUDGET_YEAR = " + Util.BudgetYear() + " AND LEAVE_STATUS_ID IN(3,4) AND ALLOW = 1", con)) {
                             using (OracleDataReader reader = com.ExecuteReader()) {
                                 while (reader.Read()) {
                                     LeaveData leaveData = new LeaveData();
@@ -256,7 +256,7 @@ namespace WEB_PERSONAL {
                                 }
                             }
                         }
-                        using (OracleCommand com = new OracleCommand("SELECT TO_DATE FROM LEV_DATA WHERE PS_ID = '" + loginPerson.CitizenID + "' AND LEAVE_TYPE_ID = " + hfLeaveTypeID.Value + " AND EXTRACT(YEAR FROM FROM_DATE) = " + Util.BudgetYear() + " AND LEAVE_STATUS_ID IN(3,4) AND CH_ALLOW = 1 ORDER BY LEAVE_ID DESC", con)) {
+                        using (OracleCommand com = new OracleCommand("SELECT TO_DATE FROM LEV_DATA WHERE PS_ID = '" + loginPerson.CitizenID + "' AND LEAVE_TYPE_ID = " + hfLeaveTypeID.Value + " AND EXTRACT(YEAR FROM FROM_DATE) = " + Util.BudgetYear() + " AND LEAVE_STATUS_ID IN(3,4) AND ALLOW = 1 ORDER BY LEAVE_ID DESC", con)) {
                             using (OracleDataReader reader = com.ExecuteReader()) {
                                 if (reader.Read()) {
                                     DateTime dtLastToDate = reader.GetDateTime(0);
@@ -404,12 +404,12 @@ namespace WEB_PERSONAL {
                 DateTime? lastToDate = null;
                 int lastTotalDay = 0;
 
-                int pastTotalDay = DatabaseManager.ExecuteInt("SELECT NVL(SUM(TOTAL_DAY),0) FROM LEV_DATA WHERE PS_ID = '" + loginPerson.CitizenID + "' AND LEAVE_TYPE_ID = " + hfLeaveTypeID.Value + " AND EXTRACT(YEAR FROM FROM_DATE) = " + Util.BudgetYear() + " AND CH_ALLOW = 1");
+                int pastTotalDay = DatabaseManager.ExecuteInt("SELECT NVL(SUM(TOTAL_DAY),0) FROM LEV_DATA WHERE PS_ID = '" + loginPerson.CitizenID + "' AND LEAVE_TYPE_ID = " + hfLeaveTypeID.Value + " AND EXTRACT(YEAR FROM FROM_DATE) = " + Util.BudgetYear() + " AND ALLOW = 1");
 
                 OracleConnection.ClearAllPools();
                 using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                     con.Open();
-                    using (OracleCommand com = new OracleCommand("SELECT FROM_DATE, TO_DATE, TOTAL_DAY FROM LEV_DATA WHERE PS_ID = '" + loginPerson.CitizenID + "' AND LEAVE_TYPE_ID = " + hfLeaveTypeID.Value + " AND EXTRACT(YEAR FROM FROM_DATE) = " + Util.BudgetYear() + " AND CH_ALLOW = 1 ORDER BY LEAVE_ID DESC", con)) {
+                    using (OracleCommand com = new OracleCommand("SELECT FROM_DATE, TO_DATE, TOTAL_DAY FROM LEV_DATA WHERE PS_ID = '" + loginPerson.CitizenID + "' AND LEAVE_TYPE_ID = " + hfLeaveTypeID.Value + " AND EXTRACT(YEAR FROM FROM_DATE) = " + Util.BudgetYear() + " AND ALLOW = 1 ORDER BY LEAVE_ID DESC", con)) {
                         using (OracleDataReader reader = com.ExecuteReader()) {
                             if (reader.Read()) {
                                 lastFromDate = reader.GetDateTime(0);
@@ -483,7 +483,7 @@ namespace WEB_PERSONAL {
 
                 //string psCLID = "";
                 //string psCHID = "";
-                List<string> psBossID = new List<string>();
+                List<Person> psBossID = new List<Person>();
 
                 int อธิการบดีลาป่วยวัน = -1;
                 int อธิการบดีลากิจวัน = -1;
@@ -553,6 +553,39 @@ namespace WEB_PERSONAL {
                         }
                     }
 
+                }
+
+                psBossID = DatabaseManager.รหัสหัวหน้า(loginPerson.CitizenID);
+                {
+                    TableRow row = new TableRow();
+                    TableCell cell;
+                    System.Web.UI.WebControls.Image image;
+                    tbBoss.Rows.Add(row);
+
+                    
+                    
+
+                    for (int i = 0; i < psBossID.Count; i++) {
+
+                        cell = new TableCell();
+                        image = new System.Web.UI.WebControls.Image();
+                        image.CssClass = "ps-ms-main-drop-profile-pic";
+
+                        string imagePath = DatabaseManager.GetPersonImageFileName(psBossID[i].CitizenID);
+                        if (imagePath != "") {
+                            image.Attributes["src"] = "Upload/PersonImage/" + imagePath;
+                            cell.Controls.Add(image);
+                        }
+
+                        
+                        Panel p2 = new Panel();
+                        Label lb = new Label();
+                        lb.Text = "<span class='ps-lb-red-b'>" + psBossID[i].FirstNameAndLastName + "</span><br /><span style='color: #808080;'>" + psBossID[i].CitizenID + "</span><br />" + psBossID[i].PositionWorkName + "<br />" + psBossID[i].AdminPositionName + "<br />" + psBossID[i].AdminPositionNameExtra();
+                        p2.Controls.Add(lb);
+                        cell.Controls.Add(p2);
+
+                        row.Cells.Add(cell);
+                    }
                 }
 
                 /*if(hfLeaveTypeID.Value == "1") {
@@ -832,8 +865,8 @@ namespace WEB_PERSONAL {
                 }*/
 
 
-                Person psCL = DatabaseManager.GetPerson("1"/*psCLID*/);
-                Person psCH = DatabaseManager.GetPerson("1"/*psCHID*/);
+                //Person psCL = DatabaseManager.GetPerson("1"/*psCLID*/);
+               // Person psCH = DatabaseManager.GetPerson("1"/*psCHID*/);
 
                /* if(psCLID == "" && psCL == null) {
                     lbS2CL.Text = "ไม่มี";
@@ -875,18 +908,18 @@ namespace WEB_PERSONAL {
                     return;
                 }*/
 
-                psCLImage.Visible = true;
+               /* psCLImage.Visible = true;
                 psCHImage.Visible = true;
                 lbS2CL.ForeColor = Color.Black;
                 lbS2CH.ForeColor = Color.Black;
-                lbuS2Finish.Visible = true;
+                lbuS2Finish.Visible = true;*/
 
                 //Person psCL = DatabaseManager.GetPerson("1700070000701");
                 //Person psCH = DatabaseManager.GetPerson("1700070000702");
 
-                if (psCL == null) {
+               /* if (psCL == null) {
                     lbS2CL.Text = "-";
-                }
+                }*/
 
                 //----------- END CL CH--
 
@@ -898,44 +931,6 @@ namespace WEB_PERSONAL {
                 leaveData.FromDate = dtFromDate;
                 leaveData.ToDate = dtToDate;
                 leaveData.TotalDay = totalDay;
-
-                if(psCL != null) {
-                    leaveData.CL_ID = psCL.CitizenID;
-                    leaveData.CL_Title = psCL.TitleName;
-                    leaveData.CL_FirstName = psCL.FirstName;
-                    leaveData.CL_LastName = psCL.LastName;
-                    leaveData.CL_Position = psCL.PositionWorkName;
-                    leaveData.CL_AdminPosition = psCL.AdminPositionName;
-                    lbS2CL.Text = "<span class='ps-lb-red-b'>" + psCL.FirstNameAndLastName + "</span><br />" + psCL.CitizenID + "<br />" + psCL.PositionWorkName + "<br />" + psCL.AdminPositionName;
-                    psCLImage.Visible = true;
-                } else {
-                    leaveData.CL_ID = "";
-                    leaveData.CL_Title = "";
-                    leaveData.CL_FirstName = "";
-                    leaveData.CL_LastName = "";
-                    leaveData.CL_Position = "";
-                    leaveData.CL_AdminPosition = "";
-                    leaveData.LeaveStatusID = 2;
-                    lbS2CL.Text = "ไม่มี";
-                    psCLImage.Visible = false;
-                }
-                
-                leaveData.CH_ID = psCH.CitizenID;
-                leaveData.CH_Title = psCH.TitleName;
-                leaveData.CH_FirstName = psCH.FirstName;
-                leaveData.CH_LastName = psCH.LastName;
-                leaveData.CH_Position = psCH.PositionWorkName;
-                leaveData.CH_AdminPosition = psCH.AdminPositionName;
-                lbS2CH.Text = "<span class='ps-lb-red-b'>" + psCH.FirstNameAndLastName + "</span><br />" + psCH.CitizenID + "<br />" + psCH.PositionWorkName + "<br />" + psCH.AdminPositionName;
-
-                leaveData.PS_Title = loginPerson.TitleName;
-                leaveData.PS_FirstName = loginPerson.FirstName;
-                leaveData.PS_LastName = loginPerson.LastName;
-                leaveData.PS_Position = loginPerson.PositionWorkName;
-                leaveData.PS_Department = loginPerson.DivisionName;
-                leaveData.PS_AdminPosition = loginPerson.AdminPositionName;
-                leaveData.PS_BirthDate = loginPerson.BirthDate;
-                leaveData.PS_WorkInDate = loginPerson.InWorkDate;
                 leaveData.Reason = tbS1Reason.Text;
                 leaveData.Contact = tbS1Contact.Text;
                 leaveData.Telephone = tbS1Phone.Text;
@@ -962,21 +957,18 @@ namespace WEB_PERSONAL {
                 if (hfLeaveTypeID.Value == "6")
                     leaveData.OrdainDate = Util.ToDateTimeOracle(tbS1OrdainDate.Text);
                 leaveData.Hujed = rbS1HujedT.Checked ? 1 : 0;
+
+                for (int i = 0; i < psBossID.Count; i++) {
+                    LeaveBossData leaveBossData = new LeaveBossData();
+                    leaveBossData.CitizenID = psBossID[i].CitizenID;
+                    leaveData.AddBoss(leaveBossData);
+                }
+
                 Session["LeaveData"] = leaveData;
 
                 hfFileUploadName.Value = drCer;
 
-                if(psCL != null) {
-                    string _psCLImage = DatabaseManager.GetPersonImageFileName(psCL.CitizenID);
-                    if (_psCLImage != "") {
-                        psCLImage.Src = "Upload/PersonImage/" + _psCLImage;
-                    }
-                }
                 
-                string _psCHImage = DatabaseManager.GetPersonImageFileName(psCH.CitizenID);
-                if (_psCHImage != "") {
-                    psCHImage.Src = "Upload/PersonImage/" + _psCHImage;
-                }
 
             }
 
@@ -992,7 +984,7 @@ namespace WEB_PERSONAL {
 
         protected void lbuS2Finish_Click(object sender, EventArgs e) {
             LeaveData leaveData = (LeaveData)(Session["LeaveData"]);
-            leaveData.LeaveID = DatabaseManager.ExecuteSequence("SEQ_LEV_MAIN_ID");
+            //leaveData.LeaveID = DatabaseManager.ExecuteSequence("SEQ_LEV_DATA_ID");
             if(hfLeaveTypeID.Value == "1") {
                 leaveData.AddLeaveSick();
                 FileUpload fu = (FileUpload)Session["LeaveSickFileUpload"];

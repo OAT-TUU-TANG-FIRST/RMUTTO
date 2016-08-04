@@ -85,7 +85,7 @@ namespace WEB_PERSONAL {
                     using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                         con.Open();
                         
-                        using (OracleCommand com = new OracleCommand("SELECT LEAVE_ID FROM LEV_DATA WHERE CURRENT_DATE >= FROM_DATE AND LEAVE_TYPE_ID IN(2,4,6,7) AND LEAVE_STATUS_ID IN(1,2)", con)) {
+                        using (OracleCommand com = new OracleCommand("SELECT LEAVE_ID FROM LEV_DATA WHERE CURRENT_DATE >= FROM_DATE AND LEAVE_TYPE_ID IN(2,4,6,7) AND LEAVE_STATUS_ID = 1", con)) {
                             using(OracleDataReader reader = com.ExecuteReader()) {
                                 while(reader.Read()) {
                                     int leaveID = reader.GetInt32(0);
@@ -97,7 +97,7 @@ namespace WEB_PERSONAL {
                                 
                         }
 
-                        using (OracleCommand com = new OracleCommand("SELECT LEAVE_ID FROM LEV_DATA WHERE LEAVE_STATUS_ID IN(1,2) AND TRUNC(CURRENT_DATE - REQ_DATE, 0) >= 3", con)) {
+                        using (OracleCommand com = new OracleCommand("SELECT LEAVE_ID FROM LEV_DATA WHERE LEAVE_STATUS_ID = 1 AND TRUNC(CURRENT_DATE - REQ_DATE, 0) >= 3", con)) {
                             using (OracleDataReader reader = com.ExecuteReader()) {
                                 while (reader.Read()) {
                                     int leaveID = reader.GetInt32(0);

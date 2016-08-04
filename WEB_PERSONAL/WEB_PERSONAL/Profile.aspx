@@ -163,6 +163,12 @@
                             </td>
                         </tr>
                         <tr>
+                            <td class="col1">งาน</td>
+                            <td class="col2">
+                                <asp:label id="lbWorkDivision" runat="server"></asp:label>
+                            </td>
+                        </tr>
+                        <tr>
                             <td class="col1">แผนก</td>
                             <td class="col2">
                                 <asp:label id="lbDept" runat="server"></asp:label>

@@ -817,6 +817,14 @@ namespace WEB_PERSONAL {
 
             
         }
+
+        public static bool IsBlank(string str) {
+            if(str == null || str == "") {
+                return true;
+            }
+            return false;
+        }
+
     }
 
 

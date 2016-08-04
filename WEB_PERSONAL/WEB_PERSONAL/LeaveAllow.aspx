@@ -216,38 +216,6 @@
                             </div>
                         </td>
                     </tr>
-                    <tr id="trCLOldComment" runat="server">
-                        <td class="col1">
-                            <img src="Image/Small/comment.png" class="icon_left" />
-                            ความเห็นผู้บังคับบัญชาระดับต่ำเก่า</td>
-                        <td class="col2">
-                            <asp:Label ID="lbCLOldComment" runat="server"></asp:Label>
-                        </td>
-                    </tr>
-                    <tr id="trCLOldDate" runat="server">
-                        <td class="col1">
-                            <img src="Image/Small/calendar.png" class="icon_left" />
-                            วันที่</td>
-                        <td class="col2">
-                            <asp:Label ID="lbCLOldDate" runat="server"></asp:Label>
-                        </td>
-                    </tr>
-                    <tr id="trCHOldComment" runat="server">
-                        <td class="col1">
-                            <img src="Image/Small/comment.png" class="icon_left" />
-                            ความเห็นเก่า</td>
-                        <td class="col2">
-                            <asp:Label ID="lbCHOldComment" runat="server"></asp:Label>
-                        </td>
-                    </tr>
-                    <tr id="trCHOldDate" runat="server">
-                        <td class="col1">
-                            <img src="Image/Small/calendar.png" class="icon_left" />
-                            วันที่</td>
-                        <td class="col2">
-                            <asp:Label ID="lbCHOldDate" runat="server"></asp:Label>
-                        </td>
-                    </tr>
                     <tr id="trCancelReason" runat="server">
                         <td class="col1">
                             <img src="Image/Small/comment.png" class="icon_left" />
@@ -257,15 +225,9 @@
                         </td>
                     </tr>
                     <tr>
-                    <td class="col1"><img src="Image/Small/comment.png" class="icon_left"/>ความเห็นจากผู้บังคับบัญชาระดับต่ำ</td>
+                    <td class="col1"><img src="Image/Small/comment.png" class="icon_left"/>ความเห็นของผู้ใต้บังคับบัญชา</td>
                     <td class="col2">
                         <asp:Label ID="lbCLComment" runat="server"></asp:Label>
-                    </td>
-                </tr>
-                    <tr>
-                    <td class="col1"><img src="Image/Small/calendar.png" class="icon_left"/>วันที่ลงความเห็น</td>
-                    <td class="col2">
-                        <asp:Label ID="lbCLDate" runat="server"></asp:Label>
                     </td>
                 </tr>
                     <tr>

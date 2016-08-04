@@ -42,8 +42,7 @@ namespace WEB_PERSONAL {
             }
 
             //---------
-            int count_cl = 0;
-            int count_ch = 0;
+            int count_approve = 0;
             int count_leave_finish = 0;
             int count_ins = 0;
             int count_get_ins = 0;
@@ -51,30 +50,17 @@ namespace WEB_PERSONAL {
             OracleConnection.ClearAllPools();
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
-                using (OracleCommand com = new OracleCommand("SELECT COUNT(LEAVE_ID) FROM LEV_DATA WHERE LEAVE_STATUS_ID in(1,5) AND CL_ID = '" + loginPerson.CitizenID + "'", con)) {
-                    using (OracleDataReader reader = com.ExecuteReader()) {
-                        while (reader.Read()) {
-                            count_cl = reader.GetInt32(0);
-                        }
-                    }
-                }
-                if (count_cl != 0) {
-                    lbLeaveCommentCount.Text = "" + count_cl;
-                    lbLeaveCommentCount.Visible = true;
-                } else {
-                    lbLeaveCommentCount.Text = "";
-                    lbLeaveCommentCount.Visible = false;
-                }
+                
 
-                using (OracleCommand com = new OracleCommand("SELECT COUNT(LEAVE_ID) FROM LEV_DATA WHERE LEAVE_STATUS_ID in(2,6) AND CH_ID = '" + loginPerson.CitizenID + "'", con)) {
+                using (OracleCommand com = new OracleCommand("SELECT COUNT(LEV_BOSS_DATA.LEAVE_BOSS_ID) FROM LEV_DATA, LEV_BOSS_DATA WHERE LEAVE_STATUS_ID IN(1,4) AND LEV_DATA.LEAVE_ID = LEV_BOSS_DATA.LEAVE_ID AND LEV_DATA.BOSS_STATE = LEV_BOSS_DATA.STATE AND LEV_BOSS_DATA.CITIZEN_ID = '" + loginPerson.CitizenID + "'", con)) {
                     using (OracleDataReader reader = com.ExecuteReader()) {
                         while (reader.Read()) {
-                            count_ch = reader.GetInt32(0);
+                            count_approve = reader.GetInt32(0);
                         }
                     }
                 }
-                if (count_ch != 0) {
-                    lbLeaveAllowCount.Text = "" + count_ch;
+                if (count_approve != 0) {
+                    lbLeaveAllowCount.Text = "" + count_approve;
                     lbLeaveAllowCount.Visible = true;
                 } else {
                     lbLeaveAllowCount.Text = "";
@@ -104,25 +90,21 @@ namespace WEB_PERSONAL {
                 }
 
 
-                int count = count_cl + count_ch + count_leave_finish + count_ins + count_get_ins;
+                int count = count_approve + count_leave_finish + count_ins + count_get_ins;
 
                 noti_leave_none.Visible = false;
-                noti_cl.Visible = false;
-                noti_ch.Visible = false;
+                noti_approve.Visible = false;
                 noti_leave_finish.Visible = false;
 
                 noti_ins_none.Visible = false;
                 noti_ins.Visible = false;
                 noti_get_ins.Visible = false;
 
-                if (count_cl + count_ch + count_leave_finish == 0) {
+                if (count_approve + count_leave_finish == 0) {
                     noti_leave_none.Visible = true;
                 } else {
-                    if (count_cl != 0) {
-                        noti_cl.Visible = true;
-                    }
-                    if (count_ch != 0) {
-                        noti_ch.Visible = true;
+                    if (count_approve != 0) {
+                        noti_approve.Visible = true;
                     }
                     if (count_leave_finish != 0) {
                         noti_leave_finish.Visible = true;

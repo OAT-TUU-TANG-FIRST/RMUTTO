@@ -99,6 +99,7 @@ namespace WEB_PERSONAL {
             lbInWorkDay.Text = pp.InWorkDate.Value.ToLongDateString();
             lbPosition.Text = pp.PositionWorkName;
             lbAdminPosition.Text = pp.AdminPositionName;
+            lbWorkDivision.Text = Util.IsBlank(pp.WorkDivisionName) ? "-" : pp.WorkDivisionName;
             lbDept.Text = pp.DivisionName;
             lbFaculty.Text = pp.FacultyName;
             lbCampus.Text = pp.CampusName;

@@ -15,7 +15,7 @@ namespace WEB_PERSONAL {
             PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
             Person loginPerson = ps.LoginPerson;
 
-            int count = DatabaseManager.GetLeaveRequiredCountByCommanderLow(loginPerson.CitizenID); ;
+            int count = 0;// DatabaseManager.GetLeaveRequiredCountByCommanderLow(loginPerson.CitizenID); ;
             /*using (OleDbConnection con = new OleDbConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
                 using (OleDbCommand com = new OleDbCommand("SELECT COUNT(LEV_MAIN.LEAVE_ID) FROM LEV_MAIN, LEV_FORM1 WHERE LEV_MAIN.LEAVE_ID = LEV_FORM1.LEAVE_ID AND CMD_LOW_ID = '" + loginPerson.CitizenID + "' AND LEAVE_STATE = 1", con)) {
@@ -148,7 +148,7 @@ namespace WEB_PERSONAL {
                         lbLeaveID.Text = leaveData.LeaveID.ToString();
                         lbLeaveTypeName.Text = leaveData.LeaveTypeName;
                         lbReqDate.Text = leaveData.RequestDate.Value.ToLongDateString();
-                        lbPSName.Text = leaveData.PS_Title + leaveData.PS_FirstName + " " + leaveData.PS_LastName;
+                       /* lbPSName.Text = leaveData.PS_Title + leaveData.PS_FirstName + " " + leaveData.PS_LastName;
                         lbPSPos.Text = leaveData.PS_Position;
                         lbPSAPos.Text = leaveData.PS_AdminPosition;
                         lbPSDept.Text = leaveData.PS_Department;
@@ -162,7 +162,7 @@ namespace WEB_PERSONAL {
                             lbPSWorkInDate.Text = leaveData.PS_WorkInDate.Value.ToLongDateString();
                         } else {
                             lbPSWorkInDate.Text = "-";
-                        }
+                        }*/
 
                         lbRestSave.Text = leaveData.RestSave + " วัน";
                         lbRestLeft.Text = leaveData.RestLeft + " วัน";
@@ -203,11 +203,11 @@ namespace WEB_PERSONAL {
                             lbLastFTTDate.Text = "ไม่เคยลา";
                         }
 
-                        if(leaveData.LeaveStatusID >= 5 && leaveData.LeaveStatusID <= 8) {
+                       /* if(leaveData.LeaveStatusID >= 5 && leaveData.LeaveStatusID <= 8) {
                             lbOldComment.Text = leaveData.CL_Comment;
                             lbOldDate.Text = leaveData.CL_Date.Value.ToLongDateString();
                             lbCancelReason.Text = leaveData.CancelReason;
-                        }
+                        }*/
                         
 
                         if (leaveData.DocterCertificationFileName != "") {
@@ -246,7 +246,7 @@ namespace WEB_PERSONAL {
 
                 MultiView1.ActiveViewIndex = 2;
 
-                LeaveData leaveData = (LeaveData)Session["LeaveData"];
+                /*LeaveData leaveData = (LeaveData)Session["LeaveData"];
                 if (leaveData.LeaveStatusID == 1) {
                     leaveData.CL_Comment = tbF1Comment.Text;
                     leaveData.CL_Date = DateTime.Today;
@@ -256,7 +256,7 @@ namespace WEB_PERSONAL {
                     leaveData.CL_CancelDate = DateTime.Today;
                     leaveData.ExecuteCancelComment();
                 }
-                
+                */
 
                 
             }
