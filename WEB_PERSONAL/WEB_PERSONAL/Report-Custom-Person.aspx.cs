@@ -136,5 +136,82 @@ namespace WEB_PERSONAL
             //(CrystalDecisions.Shared.ExportFormatType.WordForWindows, Response, true, "PersonDetails");
             //here i have use [ CrystalDecisions.Shared.ExportFormatType.WordForWindows ] to Export in Word
         }
+
+        protected void lbuSearch_Click(object sender, EventArgs e)
+        {
+            OracleConnection objConn = new OracleConnection();
+            OracleCommand objCmd = new OracleCommand();
+            OracleDataAdapter dtAdapter = new OracleDataAdapter();
+
+            DataSet ds = new DataSet();
+            DataTable dt = null;
+            string strConnString = null;
+            StringBuilder strSQL = new StringBuilder();
+
+            strConnString = "DATA SOURCE=ORCL_RMUTTO;PASSWORD=Zxcvbnm;PERSIST SECURITY INFO=True;USER ID=RMUTTO";
+
+            strSQL.Append(" SELECT PS_CITIZEN_ID, PS_FN_TH, PS_LN_TH, (SELECT GENDER_NAME FROM TB_GENDER WHERE GENDER_ID = PS_GENDER_ID) PS_GENDER_ID, (SELECT STAFFTYPE_NAME FROM TB_STAFFTYPE WHERE STAFFTYPE_ID = PS_STAFFTYPE_ID) PS_STAFFTYPE_ID");
+            strSQL.Append(" FROM PS_PERSON ");
+            strSQL.Append(" WHERE PS_CITIZEN_ID = '" + txtSearchCitizenID.Text + "'");
+
+            objConn.ConnectionString = strConnString;
+            var _with1 = objCmd;
+            _with1.Connection = objConn;
+            _with1.CommandText = strSQL.ToString();
+            _with1.CommandType = CommandType.Text;
+            dtAdapter.SelectCommand = objCmd;
+
+            dtAdapter.Fill(ds, "myDataReport");
+            dt = ds.Tables[0];
+
+            dtAdapter = null;
+            objConn.Close();
+            objConn = null;
+
+            ReportDocument rpt = new ReportDocument();
+
+            rpt.Load(Server.MapPath("~/Reports/Personnel1.rpt"));
+            rpt.SetDataSource(dt);
+            this.CrystalReportViewer1.ReportSource = rpt;
+        }
+
+        protected void lbuRefresh_Click(object sender, EventArgs e)
+        {
+            OracleConnection objConn = new OracleConnection();
+            OracleCommand objCmd = new OracleCommand();
+            OracleDataAdapter dtAdapter = new OracleDataAdapter();
+
+            DataSet ds = new DataSet();
+            DataTable dt = null;
+            string strConnString = null;
+            StringBuilder strSQL = new StringBuilder();
+
+
+            //strConnString = "Server=localhost;UID=sa;PASSWORD=;database=mydatabase;Max Pool Size=400;Connect Timeout=600;";
+            strConnString = "DATA SOURCE=ORCL_RMUTTO;PASSWORD=Zxcvbnm;PERSIST SECURITY INFO=True;USER ID=RMUTTO";
+
+            strSQL.Append(" SELECT PS_CITIZEN_ID, PS_FN_TH, PS_LN_TH, (SELECT GENDER_NAME FROM TB_GENDER WHERE GENDER_ID = PS_GENDER_ID) PS_GENDER_ID, (SELECT STAFFTYPE_NAME FROM TB_STAFFTYPE WHERE STAFFTYPE_ID = PS_STAFFTYPE_ID) PS_STAFFTYPE_ID");
+            strSQL.Append(" FROM PS_PERSON ");
+
+            objConn.ConnectionString = strConnString;
+            var _with1 = objCmd;
+            _with1.Connection = objConn;
+            _with1.CommandText = strSQL.ToString();
+            _with1.CommandType = CommandType.Text;
+            dtAdapter.SelectCommand = objCmd;
+
+            dtAdapter.Fill(ds, "myDataReport");
+            dt = ds.Tables[0];
+
+            dtAdapter = null;
+            objConn.Close();
+            objConn = null;
+
+            ReportDocument rpt = new ReportDocument();
+
+            rpt.Load(Server.MapPath("~/Reports/Personnel1.rpt"));
+            rpt.SetDataSource(dt);
+            this.CrystalReportViewer1.ReportSource = rpt;
+        }
     }
 }

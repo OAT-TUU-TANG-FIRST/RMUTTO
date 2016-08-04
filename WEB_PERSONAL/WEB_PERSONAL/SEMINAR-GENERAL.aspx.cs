@@ -27,11 +27,11 @@ namespace WEB_PERSONAL {
                         while (reader.Read())
                         {
                             int i = 0;
-                            txtName.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
-                            txtLastName.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
-                            txtPosition.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
-                            txtDegree.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
-                            txtCampus.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
+                            lblName.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
+                            lblLastName.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
+                            lblPosition.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
+                            lblDegree.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
+                            lblCampus.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
                         }
                     }
                 }
@@ -43,18 +43,18 @@ namespace WEB_PERSONAL {
         }
 
         protected void ClearData() {
-            txtName.Text = "";
-            txtLastName.Text = "";
-            txtPosition.Text = "";
-            txtDegree.Text = "";
-            txtCampus.Text = "";
+            lblName.Text = "";
+            lblLastName.Text = "";
+            lblPosition.Text = "";
+            lblDegree.Text = "";
+            lblCampus.Text = "";
             txtNameOfProject.Text = "";
             txtPlace.Text = "";
             txtDateFrom.Text = "";
             txtDateTO.Text = "";
-            txtYear.Text = "";
-            txtMonth.Text = "";
-            txtDay.Text = "";
+            lblYear.Text = "";
+            lblMonth.Text = "";
+            lblDay.Text = "";
             txtBudget.Text = "";
             txtSupportBudget.Text = "";
             txtAbstract.Text = "";
@@ -68,71 +68,6 @@ namespace WEB_PERSONAL {
         }
 
         protected void lbuSubmit_Click(object sender, EventArgs e) {
-            if (txtName.Text == "")
-            {
-                notification.Attributes["class"] = "alert alert_danger";
-                notification.InnerHtml = "";
-                notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
-                notification.InnerHtml += "<div>กรุณากรอกชื่อ</div>";
-                return;
-            }
-            else
-            {
-                notification.Attributes["class"] = "none";
-                notification.InnerHtml = "";
-            }
-            if (txtLastName.Text == "")
-            {
-                notification.Attributes["class"] = "alert alert_danger";
-                notification.InnerHtml = "";
-                notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
-                notification.InnerHtml += "<div>กรุณากรอกนามสกุล</div>";
-                return;
-            }
-            else
-            {
-                notification.Attributes["class"] = "none";
-                notification.InnerHtml = "";
-            }
-            if (txtPosition.Text == "")
-            {
-                notification.Attributes["class"] = "alert alert_danger";
-                notification.InnerHtml = "";
-                notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
-                notification.InnerHtml += "<div>กรุณากรอกตำแหน่ง</div>";
-                return;
-            }
-            else
-            {
-                notification.Attributes["class"] = "none";
-                notification.InnerHtml = "";
-            }
-            if (txtDegree.Text == "")
-            {
-                notification.Attributes["class"] = "alert alert_danger";
-                notification.InnerHtml = "";
-                notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
-                notification.InnerHtml += "<div>กรุณากรอกระดับ</div>";
-                return;
-            }
-            else
-            {
-                notification.Attributes["class"] = "none";
-                notification.InnerHtml = "";
-            }
-            if (txtCampus.Text == "")
-            {
-                notification.Attributes["class"] = "alert alert_danger";
-                notification.InnerHtml = "";
-                notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
-                notification.InnerHtml += "<div>กรุณากรอกสังกัด</div>";
-                return;
-            }
-            else
-            {
-                notification.Attributes["class"] = "none";
-                notification.InnerHtml = "";
-            }
             if (txtNameOfProject.Text == "")
             {
                 notification.Attributes["class"] = "alert alert_danger";
@@ -177,6 +112,7 @@ namespace WEB_PERSONAL {
             DateTime dtFromDate = Util.ToDateTimeOracle(txtDateFrom.Text);
             DateTime dtToDate = Util.ToDateTimeOracle(txtDateTO.Text);
             int totalDay = (int)(dtToDate - dtFromDate).TotalDays + 1;
+
             if (totalDay <= 0)
             {
                 notification.Attributes["class"] = "alert alert_danger";
@@ -184,6 +120,11 @@ namespace WEB_PERSONAL {
                 notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
                 notification.InnerHtml += "<div> - ระยะเวลาการฝึกอบรม/สัมมนา/ดูงาน ตั้งแต่วันที่ - ถึงวันที่ : วันที่ไม่ถูกต้อง</div>";
                 return;
+            }
+            else
+            {
+                notification.Attributes["class"] = "none";
+                notification.InnerHtml = "";
             }
 
             if (txtSupportBudget.Text == "")
@@ -205,18 +146,18 @@ namespace WEB_PERSONAL {
             Seminar S = new Seminar();
             PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
             Person PP = ps.LoginPerson;
-            S.SEMINAR_NAME = txtName.Text;
-            S.SEMINAR_LASTNAME = txtLastName.Text;
-            S.SEMINAR_POSITION = txtPosition.Text;
-            S.SEMINAR_DEGREE = txtDegree.Text;
-            S.SEMINAR_CAMPUS = txtCampus.Text;
+            S.SEMINAR_NAME = lblName.Text;
+            S.SEMINAR_LASTNAME = lblLastName.Text;
+            S.SEMINAR_POSITION = lblPosition.Text;
+            S.SEMINAR_DEGREE = lblDegree.Text;
+            S.SEMINAR_CAMPUS = lblCampus.Text;
             S.SEMINAR_NAMEOFPROJECT = txtNameOfProject.Text;
             S.SEMINAR_PLACE = txtPlace.Text;
             S.SEMINAR_DATETIME_FROM = Util.ODT(txtDateFrom.Text);
             S.SEMINAR_DATETIME_TO = Util.ODT(txtDateTO.Text);
-            S.SEMINAR_YEAR = Convert.ToInt32(txtYear.Text);
-            S.SEMINAR_MONTH = Convert.ToInt32(txtMonth.Text);
-            S.SEMINAR_DAY = Convert.ToInt32(txtDay.Text);
+            S.SEMINAR_YEAR = Convert.ToInt32(lblYear.Text);
+            S.SEMINAR_MONTH = Convert.ToInt32(lblMonth.Text);
+            S.SEMINAR_DAY = Convert.ToInt32(lblDay.Text);
             S.SEMINAR_BUDGET = Convert.ToInt32(txtBudget.Text);
             S.SEMINAR_SUPPORT_BUDGET = txtSupportBudget.Text;
             S.SEMINAR_CERTIFICATE = txtCertificate.Text;
@@ -235,17 +176,62 @@ namespace WEB_PERSONAL {
             ClearData();
             MultiView1.ActiveViewIndex = 1;
         }
+        //จากวันที่
+        protected void txtDateFrom_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtDateTO.Text))
+            {
+                DateTime dtFromDate = Util.ToDateTimeOracle(txtDateFrom.Text);
+                DateTime dtToDate = Util.ToDateTimeOracle(txtDateTO.Text);
+                int totalDay = (int)(dtToDate - dtFromDate).TotalDays + 1;
 
+                if (totalDay <= 0)
+                {
+                    notification.Attributes["class"] = "alert alert_danger";
+                    notification.InnerHtml = "";
+                    notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
+                    notification.InnerHtml += "<div> - ระยะเวลาการฝึกอบรม/สัมมนา/ดูงาน ตั้งแต่วันที่ - ถึงวันที่ : วันที่ไม่ถูกต้อง</div>";
+
+                    lblYear.Text = "0";
+                    lblMonth.Text = "0";
+                    lblDay.Text = "0";
+                    return;
+                }
+                else
+                {
+                    notification.Attributes["class"] = "none";
+                    notification.InnerHtml = "";
+                }
+
+                DateTime df = DateTime.Parse(txtDateFrom.Text);
+                DateTime dt = DateTime.Parse(txtDateTO.Text);
+                int day = (int)(dt - df).TotalDays + 1;
+
+                int year = (day / 365);
+                int month = (day % 365) / 30;
+                day = (day % 365) % 30;
+
+                lblYear.Text = "" + year;
+                lblMonth.Text = "" + month;
+                lblDay.Text = "" + day;
+            }
+        }
+        //ถึงวันที่
         protected void txtDateTO_TextChanged(object sender, EventArgs e) {
             DateTime dtFromDate = Util.ToDateTimeOracle(txtDateFrom.Text);
             DateTime dtToDate = Util.ToDateTimeOracle(txtDateTO.Text);
             int totalDay = (int)(dtToDate - dtFromDate).TotalDays + 1;
+
             if (totalDay <= 0)
             {
                 notification.Attributes["class"] = "alert alert_danger";
                 notification.InnerHtml = "";
                 notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
                 notification.InnerHtml += "<div> - ระยะเวลาการฝึกอบรม/สัมมนา/ดูงาน ตั้งแต่วันที่ - ถึงวันที่ : วันที่ไม่ถูกต้อง</div>";
+
+                lblYear.Text = "0";
+                lblMonth.Text = "0";
+                lblDay.Text = "0";
                 return;
             }
             else
@@ -262,11 +248,11 @@ namespace WEB_PERSONAL {
             int month = (day % 365) / 30;
             day = (day % 365) % 30;
 
-            txtYear.Text = "" + year;
-            txtMonth.Text = "" + month;
-            txtDay.Text = "" + day;
+            lblYear.Text = "" + year;
+            lblMonth.Text = "" + month;
+            lblDay.Text = "" + day;
         }
-
+        //เช็คติ๊กบ๊อค
         protected void chkBox_CheckedChanged(object sender, EventArgs e) {
             if (chkBox.Checked) {
                 txtCertificate.Enabled = true;
@@ -277,5 +263,6 @@ namespace WEB_PERSONAL {
             }
         }
 
+        
     }
 }

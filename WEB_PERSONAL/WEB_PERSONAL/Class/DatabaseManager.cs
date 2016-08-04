@@ -159,7 +159,17 @@ namespace WEB_PERSONAL.Class {
                             ++i;
                             
                             person.RetireDateLong = reader.GetValue(i++).ToString();
-                            person.InWorkDate = reader.GetDateTime(i++);
+
+                            if (reader.IsDBNull(i))
+                            {
+                                person.InWorkDate = null;
+                            }
+                            else
+                            {
+                                person.InWorkDate = reader.GetDateTime(i);
+                            }
+                            ++i;
+
                             person.StaffTypeID = reader.GetValue(i++).ToString();
                             person.StaffTypeName = reader.GetValue(i++).ToString();
                             person.FatherFirstName = reader.GetValue(i++).ToString();
