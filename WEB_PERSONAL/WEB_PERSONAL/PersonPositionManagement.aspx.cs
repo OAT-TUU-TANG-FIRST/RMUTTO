@@ -220,7 +220,7 @@ namespace WEB_PERSONAL {
                             }
                         }
                         string facID = "";
-                        using (OracleCommand com = new OracleCommand("SELECT PS_CITIZEN_ID, PS_FN_TH || ' ' || PS_LN_TH FROM PS_PERSON WHERE PS_ADMIN_POS_ID = 3 AND PS_FACULTY_ID = " + facultyID, con)) {
+                        using (OracleCommand com = new OracleCommand("SELECT PS_CITIZEN_ID, PS_FN_TH || ' ' || PS_LN_TH FROM PS_PERSON WHERE PS_ADMIN_POS_ID = 4 AND PS_FACULTY_ID = " + facultyID, con)) {
                             using (OracleDataReader reader = com.ExecuteReader()) {
                                 while (reader.Read()) {
                                     facID = reader.GetString(0);
@@ -259,7 +259,7 @@ namespace WEB_PERSONAL {
                             }
                         }
                         string rongFacultyID = "";
-                        using (OracleCommand com = new OracleCommand("SELECT PS_CITIZEN_ID, PS_FN_TH || ' ' || PS_LN_TH FROM PS_PERSON WHERE PS_ADMIN_POS_ID = 6 AND PS_FACULTY_ID = " + facultyID, con)) {
+                        using (OracleCommand com = new OracleCommand("SELECT PS_CITIZEN_ID, PS_FN_TH || ' ' || PS_LN_TH FROM PS_PERSON WHERE PS_ADMIN_POS_ID = 5 AND PS_FACULTY_ID = " + facultyID, con)) {
                             using (OracleDataReader reader = com.ExecuteReader()) {
                                 while (reader.Read()) {
                                     rongFacultyID = reader.GetString(0);
@@ -299,7 +299,7 @@ namespace WEB_PERSONAL {
                             }
                         }
                         string divisionBossID = "";
-                        using (OracleCommand com = new OracleCommand("SELECT PS_CITIZEN_ID, PS_FN_TH || ' ' || PS_LN_TH FROM PS_PERSON WHERE PS_ADMIN_POS_ID = 7 AND PS_DIVISION_ID = " + divisionID, con)) {
+                        using (OracleCommand com = new OracleCommand("SELECT PS_CITIZEN_ID, PS_FN_TH || ' ' || PS_LN_TH FROM PS_PERSON WHERE PS_ADMIN_POS_ID = 9 AND PS_DIVISION_ID = " + divisionID, con)) {
                             using (OracleDataReader reader = com.ExecuteReader()) {
                                 while (reader.Read()) {
                                     divisionBossID = reader.GetString(0);
@@ -340,7 +340,7 @@ namespace WEB_PERSONAL {
                             }
                         }
                         string workBossID = "";
-                        using (OracleCommand com = new OracleCommand("SELECT PS_CITIZEN_ID, PS_FN_TH || ' ' || PS_LN_TH FROM PS_PERSON WHERE PS_ADMIN_POS_ID = 4 AND PS_WORK_DIVISION_ID = " + workID, con)) {
+                        using (OracleCommand com = new OracleCommand("SELECT PS_CITIZEN_ID, PS_FN_TH || ' ' || PS_LN_TH FROM PS_PERSON WHERE PS_ADMIN_POS_ID = 11 AND PS_WORK_DIVISION_ID = " + workID, con)) {
                             using (OracleDataReader reader = com.ExecuteReader()) {
                                 while (reader.Read()) {
                                     workBossID = reader.GetString(0);
@@ -643,7 +643,7 @@ namespace WEB_PERSONAL {
             OracleConnection.ClearAllPools();
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
-                using (OracleCommand com = new OracleCommand("UPDATE PS_PERSON SET PS_ADMIN_POS_ID = '' WHERE PS_ADMIN_POS_ID = '1'", con)) {
+                using (OracleCommand com = new OracleCommand("UPDATE PS_PERSON SET PS_ADMIN_POS_ID = '0' WHERE PS_ADMIN_POS_ID = '1'", con)) {
                     com.ExecuteNonQuery();
                 }
                 using (OracleCommand com = new OracleCommand("UPDATE PS_PERSON SET PS_ADMIN_POS_ID = '1' WHERE PS_CITIZEN_ID = '" + p + "'", con)) {
@@ -665,7 +665,7 @@ namespace WEB_PERSONAL {
                         }
                     }
                 }
-                using (OracleCommand com = new OracleCommand("UPDATE PS_PERSON SET PS_ADMIN_POS_ID = '' WHERE PS_ADMIN_POS_ID = '2' AND PS_CAMPUS_ID = " + campusID, con)) {
+                using (OracleCommand com = new OracleCommand("UPDATE PS_PERSON SET PS_ADMIN_POS_ID = '0' WHERE PS_ADMIN_POS_ID = '2' AND PS_CAMPUS_ID = " + campusID, con)) {
                     com.ExecuteNonQuery();
                 }
                 using (OracleCommand com = new OracleCommand("UPDATE PS_PERSON SET PS_ADMIN_POS_ID = '2' WHERE PS_CITIZEN_ID = '" + p + "'", con)) {
@@ -687,10 +687,10 @@ namespace WEB_PERSONAL {
                         }
                     }
                 }
-                using (OracleCommand com = new OracleCommand("UPDATE PS_PERSON SET PS_ADMIN_POS_ID = '' WHERE PS_ADMIN_POS_ID = '3' AND PS_FACULTY_ID = " + facultyID, con)) {
+                using (OracleCommand com = new OracleCommand("UPDATE PS_PERSON SET PS_ADMIN_POS_ID = '0' WHERE PS_ADMIN_POS_ID = '4' AND PS_FACULTY_ID = " + facultyID, con)) {
                     com.ExecuteNonQuery();
                 }
-                using (OracleCommand com = new OracleCommand("UPDATE PS_PERSON SET PS_ADMIN_POS_ID = '3' WHERE PS_CITIZEN_ID = '" + p + "'", con)) {
+                using (OracleCommand com = new OracleCommand("UPDATE PS_PERSON SET PS_ADMIN_POS_ID = '4' WHERE PS_CITIZEN_ID = '" + p + "'", con)) {
                     com.ExecuteNonQuery();
                 }
             }
@@ -709,10 +709,10 @@ namespace WEB_PERSONAL {
                         }
                     }
                 }
-                using (OracleCommand com = new OracleCommand("UPDATE PS_PERSON SET PS_ADMIN_POS_ID = '' WHERE PS_ADMIN_POS_ID = '6' AND PS_FACULTY_ID = " + facultyID, con)) {
+                using (OracleCommand com = new OracleCommand("UPDATE PS_PERSON SET PS_ADMIN_POS_ID = '0' WHERE PS_ADMIN_POS_ID = '5' AND PS_FACULTY_ID = " + facultyID, con)) {
                     com.ExecuteNonQuery();
                 }
-                using (OracleCommand com = new OracleCommand("UPDATE PS_PERSON SET PS_ADMIN_POS_ID = '6' WHERE PS_CITIZEN_ID = '" + p + "'", con)) {
+                using (OracleCommand com = new OracleCommand("UPDATE PS_PERSON SET PS_ADMIN_POS_ID = '5' WHERE PS_CITIZEN_ID = '" + p + "'", con)) {
                     com.ExecuteNonQuery();
                 }
             }
@@ -731,10 +731,10 @@ namespace WEB_PERSONAL {
                         }
                     }
                 }
-                using (OracleCommand com = new OracleCommand("UPDATE PS_PERSON SET PS_ADMIN_POS_ID = '' WHERE PS_ADMIN_POS_ID = '7' AND PS_DIVISION_ID = " + divisionID, con)) {
+                using (OracleCommand com = new OracleCommand("UPDATE PS_PERSON SET PS_ADMIN_POS_ID = '0' WHERE PS_ADMIN_POS_ID = '9' AND PS_DIVISION_ID = " + divisionID, con)) {
                     com.ExecuteNonQuery();
                 }
-                using (OracleCommand com = new OracleCommand("UPDATE PS_PERSON SET PS_ADMIN_POS_ID = '7' WHERE PS_CITIZEN_ID = '" + p + "'", con)) {
+                using (OracleCommand com = new OracleCommand("UPDATE PS_PERSON SET PS_ADMIN_POS_ID = '9' WHERE PS_CITIZEN_ID = '" + p + "'", con)) {
                     com.ExecuteNonQuery();
                 }
             }
@@ -753,10 +753,10 @@ namespace WEB_PERSONAL {
                         }
                     }
                 }
-                using (OracleCommand com = new OracleCommand("UPDATE PS_PERSON SET PS_ADMIN_POS_ID = '' WHERE PS_ADMIN_POS_ID = '4' AND PS_WORK_DIVISION_ID = " + workID, con)) {
+                using (OracleCommand com = new OracleCommand("UPDATE PS_PERSON SET PS_ADMIN_POS_ID = '0' WHERE PS_ADMIN_POS_ID = '11' AND PS_WORK_DIVISION_ID = " + workID, con)) {
                     com.ExecuteNonQuery();
                 }
-                using (OracleCommand com = new OracleCommand("UPDATE PS_PERSON SET PS_ADMIN_POS_ID = '4' WHERE PS_CITIZEN_ID = '" + p + "'", con)) {
+                using (OracleCommand com = new OracleCommand("UPDATE PS_PERSON SET PS_ADMIN_POS_ID = '11' WHERE PS_CITIZEN_ID = '" + p + "'", con)) {
                     com.ExecuteNonQuery();
                 }
             }

@@ -97,7 +97,7 @@ namespace WEB_PERSONAL {
             lbGender.Text = pp.GenderName;
             lbBirthday.Text = pp.BirthDate.Value.ToLongDateString();
             lbInWorkDay.Text = pp.InWorkDate.Value.ToLongDateString();
-            lbPosition.Text = pp.PositionName;
+            lbPosition.Text = pp.PositionWorkName;
             lbAdminPosition.Text = pp.AdminPositionName;
             lbDept.Text = pp.DivisionName;
             lbFaculty.Text = pp.FacultyName;

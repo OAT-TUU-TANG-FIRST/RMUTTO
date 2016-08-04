@@ -243,7 +243,7 @@ namespace WEB_PERSONAL {
                                     while (reader2.Read()) {
                                         if(reader2.GetInt32(0) == 4 && type == "WD") {
                                             isBoss = true;
-                                        } else if (reader2.GetInt32(0) == 7 && type == "DV") {
+                                        } else if (reader2.GetInt32(0) == 10 && type == "DV") {
                                             isBoss = true;
                                         }
 
@@ -277,7 +277,11 @@ namespace WEB_PERSONAL {
 
                             {
                                 Label lb = new Label();
-                                lb.Text = reader.GetString(1) + "<br /><span style='color:#808080'>" + reader.GetString(2) + "</span><br /><span style='color:#404040'>ตำแหน่ง : " + workPositionName + "</span><br /><span style='color:#808080'>ระดับ : " + adminPositionName + "</span><br /><span style='color:#404040'>วิทยาเขต : " + campusName + "</span><br /><span style='color:#808080'>สำนัก : " + FacultyName + "</span><br /><span style='color:#404040'>กอง : " + DivisionName + "</span><br /><span style='color:#808080'>งาน/ฝ่าย : " + WorkDivisionName + "</span>";
+                                
+                                lb.Text = reader.GetString(1) + "<br /><span style='color:#808080'>" + reader.GetString(2) + "</span><br /><span style='color:#404040'>ตำแหน่ง : " + workPositionName + "</span><br /><span style='color:#404040'>" + campusName + "</span><br /><span style='color:#808080'>" + FacultyName + "</span><br /><span style='color:#404040'>" + DivisionName + "</span>";
+                                if (WorkDivisionName != "") {
+                                    lb.Text += "<br /><span style='color:#808080'>งาน/ฝ่าย : " + WorkDivisionName + "</span>";
+                                }
                                 pm.Controls.Add(lb);
                             }
                             if (isBoss) {

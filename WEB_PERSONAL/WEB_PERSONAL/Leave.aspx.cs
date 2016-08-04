@@ -481,22 +481,9 @@ namespace WEB_PERSONAL {
 
                 //----------CL CH--
 
-                string psCLID = "";
-                string psCHID = "";
-
-                int รัฐมนตรีเจ้าสังกัดลาป่วยวัน = -1;
-                int รัฐมนตรีเจ้าสังกัดลากิจวัน = -1;
-                bool รัฐมนตรีเจ้าสังกัดลาคลอดบุตร = false;
-                bool รัฐมนตรีเจ้าสังกัดลาช่วยเหลือภริยาคลอดบุตร = false;
-                bool รัฐมนตรีเจ้าสังกัดลาพักผ่อน = false;
-                bool รัฐมนตรีเจ้าสังกัดลาอุปสมบทฮัจญ์ = false;
-
-                int เลขาธิการคณะกรรมการลาป่วยวัน = -1;
-                int เลขาธิการคณะกรรมการลากิจวัน = -1;
-                bool เลขาธิการคณะกรรมการลาคลอดบุตร = false;
-                bool เลขาธิการคณะกรรมการลาช่วยเหลือภริยาคลอดบุตร = false;
-                bool เลขาธิการคณะกรรมการลาพักผ่อน = false;
-                bool เลขาธิการคณะกรรมการลาอุปสมบทฮัจญ์ = false;
+                //string psCLID = "";
+                //string psCHID = "";
+                List<string> psBossID = new List<string>();
 
                 int อธิการบดีลาป่วยวัน = -1;
                 int อธิการบดีลากิจวัน = -1;
@@ -532,43 +519,29 @@ namespace WEB_PERSONAL {
                     using (OracleCommand com = new OracleCommand("SELECT * FROM LEV_PERMISSION", con)) {
                         using (OracleDataReader reader = com.ExecuteReader()) {
                             while (reader.Read()) {
-                                int APID = reader.GetInt32(1);
-                                if(APID == 10021) {
-                                    รัฐมนตรีเจ้าสังกัดลาป่วยวัน = reader.GetInt32(2);
-                                    รัฐมนตรีเจ้าสังกัดลากิจวัน = reader.GetInt32(3);
-                                    รัฐมนตรีเจ้าสังกัดลาคลอดบุตร = Convert.ToBoolean(reader.GetInt32(4));
-                                    รัฐมนตรีเจ้าสังกัดลาช่วยเหลือภริยาคลอดบุตร = Convert.ToBoolean(reader.GetInt32(5));
-                                    รัฐมนตรีเจ้าสังกัดลาพักผ่อน = Convert.ToBoolean(reader.GetInt32(6));
-                                    รัฐมนตรีเจ้าสังกัดลาอุปสมบทฮัจญ์ = Convert.ToBoolean(reader.GetInt32(7));
-                                } else if(APID == 10022) {
-                                    เลขาธิการคณะกรรมการลาป่วยวัน = reader.GetInt32(2);
-                                    เลขาธิการคณะกรรมการลากิจวัน = reader.GetInt32(3);
-                                    เลขาธิการคณะกรรมการลาคลอดบุตร = Convert.ToBoolean(reader.GetInt32(4));
-                                    เลขาธิการคณะกรรมการลาช่วยเหลือภริยาคลอดบุตร = Convert.ToBoolean(reader.GetInt32(5));
-                                    เลขาธิการคณะกรรมการลาพักผ่อน = Convert.ToBoolean(reader.GetInt32(6));
-                                    เลขาธิการคณะกรรมการลาอุปสมบทฮัจญ์ = Convert.ToBoolean(reader.GetInt32(7));
-                                } else if (APID == 1) {
+                                int APOWER = reader.GetInt32(1);
+                                if (APOWER == 1) {
                                     อธิการบดีลาป่วยวัน = reader.GetInt32(2);
                                     อธิการบดีลากิจวัน = reader.GetInt32(3);
                                     อธิการบดีลาคลอดบุตร = Convert.ToBoolean(reader.GetInt32(4));
                                     อธิการบดีลาช่วยเหลือภริยาคลอดบุตร = Convert.ToBoolean(reader.GetInt32(5));
                                     อธิการบดีลาพักผ่อน = Convert.ToBoolean(reader.GetInt32(6));
                                     อธิการบดีลาอุปสมบทฮัจญ์ = Convert.ToBoolean(reader.GetInt32(7));
-                                } else if (APID == 3) {
+                                } else if (APOWER == 2) {
                                     คณะบดีลาป่วยวัน = reader.GetInt32(2);
                                     คณะบดีลากิจวัน = reader.GetInt32(3);
                                     คณะบดีลาคลอดบุตร = Convert.ToBoolean(reader.GetInt32(4));
                                     คณะบดีลาช่วยเหลือภริยาคลอดบุตร = Convert.ToBoolean(reader.GetInt32(5));
                                     คณะบดีลาพักผ่อน = Convert.ToBoolean(reader.GetInt32(6));
                                     คณะบดีลาอุปสมบทฮัจญ์ = Convert.ToBoolean(reader.GetInt32(7));
-                                } else if (APID == 7) {
+                                } else if (APOWER == 3) {
                                     หัวหน้าภาควิชาลาป่วยวัน = reader.GetInt32(2);
                                     หัวหน้าภาควิชาลากิจวัน = reader.GetInt32(3);
                                     หัวหน้าภาควิชาลาคลอดบุตร = Convert.ToBoolean(reader.GetInt32(4));
                                     หัวหน้าภาควิชาลาช่วยเหลือภริยาคลอดบุตร = Convert.ToBoolean(reader.GetInt32(5));
                                     หัวหน้าภาควิชาลาพักผ่อน = Convert.ToBoolean(reader.GetInt32(6));
                                     หัวหน้าภาควิชาลาอุปสมบทฮัจญ์ = Convert.ToBoolean(reader.GetInt32(7));
-                                } else if (APID == 4) {
+                                } else if (APOWER == 4) {
                                     หัวหน้าฝ่ายลาป่วยวัน = reader.GetInt32(2);
                                     หัวหน้าฝ่ายลากิจวัน = reader.GetInt32(3);
                                     หัวหน้าฝ่ายลาคลอดบุตร = Convert.ToBoolean(reader.GetInt32(4));
@@ -582,11 +555,28 @@ namespace WEB_PERSONAL {
 
                 }
 
-                if(hfLeaveTypeID.Value == "1") {
+                /*if(hfLeaveTypeID.Value == "1") {
                     if(totalDay <= หัวหน้าฝ่ายลาป่วยวัน) {
-                        if(loginPerson.AdminPositionID == "0" || loginPerson.AdminPositionID == "8" || loginPerson.AdminPositionID == "9") { //ไม่มี
-                            psCHID = DatabaseManager.รหัสหัวหน้าฝ่าย(loginPerson.WorkDivisionID);
-                        } else if (loginPerson.AdminPositionID == "4") { //หัวหน้าฝ่าย
+                        if(loginPerson.AdminPositionPower == "0") { //ไม่มี
+                            if(loginPerson.IsTeacher()) {
+                                psBossID.Add(DatabaseManager.รหัสหัวหน้าภาควิชา(loginPerson.DivisionID));
+                            } else if(loginPerson.WorkDivisionID != null) {
+                                psBossID.Add(DatabaseManager.รหัสหัวหน้าฝ่าย(loginPerson.DivisionID));
+                            } else {
+                                psBossID.Add(DatabaseManager.รหัสหัวหน้าภาควิชา(loginPerson.DivisionID));
+                            }
+
+
+                        } else if (loginPerson.AdminPositionPower == "1") { //หัวหน้าฝ่าย
+
+                            if (loginPerson.IsTeacher()) {
+                                psBossID.Add(DatabaseManager.รหัสหัวหน้าภาควิชา(loginPerson.DivisionID));
+                            } else if (loginPerson.WorkDivisionID != null) {
+                                psBossID.Add(DatabaseManager.รหัสหัวหน้าฝ่าย(loginPerson.DivisionID));
+                            } else {
+                                psBossID.Add(DatabaseManager.รหัสหัวหน้าภาควิชา(loginPerson.DivisionID));
+                            }
+
                             psCHID = DatabaseManager.รหัสหัวหน้าภาควิชา(loginPerson.DivisionID);
                         } else if (loginPerson.AdminPositionID == "7") { //หัวหน้าภาควิชา
                             psCHID = DatabaseManager.รหัสคณบดี(loginPerson.FacultyID);
@@ -839,21 +829,17 @@ namespace WEB_PERSONAL {
                     } else if (loginPerson.AdminPositionID == "10021") { //รัฐมนตรีเจ้าสังกัด	
                         psCHID = DatabaseManager.รหัสรัฐมนตรีเจ้าสังกัด();
                     }
-                }
+                }*/
 
 
-                Person psCL = DatabaseManager.GetPerson(psCLID);
-                Person psCH = DatabaseManager.GetPerson(psCHID);
+                Person psCL = DatabaseManager.GetPerson("1"/*psCLID*/);
+                Person psCH = DatabaseManager.GetPerson("1"/*psCHID*/);
 
-                if(psCLID == "" && psCL == null) {
+               /* if(psCLID == "" && psCL == null) {
                     lbS2CL.Text = "ไม่มี";
                     psCLImage.Visible = false;
                 }
-                /*if(psCLID != "" && psCL == null) {
-                    psCLImage.Visible = false;
-                    lbS2CL.Text = "พบข้อผิดพลาด<br />ไม่พบพนักงาน";
-                    lbS2CL.ForeColor = Color.Red;
-                }*/
+      
 
 
 
@@ -887,7 +873,7 @@ namespace WEB_PERSONAL {
 
                     lbuS2Finish.Visible = false;
                     return;
-                }
+                }*/
 
                 psCLImage.Visible = true;
                 psCHImage.Visible = true;

@@ -163,7 +163,7 @@
                             </div>
                             <div class="ps-box-i0">
                                 <div class="ps-box-ct10">
-                                    <div>เวอร์ชั่น : v1.2.5</div>
+                                    <div>เวอร์ชั่น : v1.2.6</div>
                                     <div style="display: none;">ตัวนับ : <span id="s_counter" runat="server"></span></div>
                                 </div>
                             </div>
@@ -195,7 +195,7 @@
                                                 <asp:Label ID="lbPosition" runat="server" Text="-"></asp:Label></td>
                                         </tr>
                                         <tr>
-                                            <td class="col1">ระดับ</td>
+                                            <td class="col1">บริหาร</td>
                                             <td class="col2">
                                                 <asp:Label ID="lbPositionRank" runat="server" Text="-"></asp:Label></td>
                                         </tr>

@@ -151,13 +151,13 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="col1">ตำแหน่ง</td>
+                            <td class="col1">ตำแหน่งในสายงาน</td>
                             <td class="col2">
                                 <asp:label id="lbPosition" runat="server"></asp:label>
                             </td>
                         </tr>
                         <tr>
-                            <td class="col1">ระดับ</td>
+                            <td class="col1">ตำแหน่งในทางบริหาร</td>
                             <td class="col2">
                                 <asp:label id="lbAdminPosition" runat="server"></asp:label>
                             </td>

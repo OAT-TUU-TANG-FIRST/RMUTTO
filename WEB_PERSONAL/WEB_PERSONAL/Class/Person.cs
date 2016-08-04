@@ -75,6 +75,7 @@ namespace WEB_PERSONAL.Class {
         public string SubStaffTypeName;
         public string AdminPositionID;
         public string AdminPositionName;
+        public string AdminPositionPower;
         public string PositionWorkID;
         public string PositionWorkName;
         public string SpecialName;
@@ -151,6 +152,10 @@ namespace WEB_PERSONAL.Class {
         }
         public string CoupleFirstNameAndLastName {
             get { return CoupleFirstName + " " + CoupleLastName; }
+        }
+
+        public bool IsTeacher() {
+            return PositionWorkID == "10108" ? true : false;
         }
 
     }
