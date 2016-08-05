@@ -14,7 +14,7 @@ namespace WEB_PERSONAL {
             PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
             Person loginPerson = ps.LoginPerson;
 
-            int count = DatabaseManager.GetLeaveRequiredCountByCommanderHigh(loginPerson.CitizenID);
+            int count = DatabaseManager.GetLeaveRequiredCountByCommander(loginPerson.CitizenID);
            /* using (OleDbConnection con = new OleDbConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
                 using (OleDbCommand com = new OleDbCommand("SELECT COUNT(LEAVE_ID) FROM LEV_LEAVE WHERE CMD_HIGH_ID = '" + loginPerson.CitizenID + "' AND LEV_LEAVE.STATE_ID = 2", con)) {
@@ -35,7 +35,7 @@ namespace WEB_PERSONAL {
 
             if (count > 0) {
 
-                SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEAVE_ID รหัสการลา, (SELECT PS_FN_TH || ' ' || PS_LN_TH FROM PS_PERSON WHERE PS_CITIZEN_ID = LEV_DATA.PS_ID) ชื่อผู้ลา, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_DATA.LEAVE_TYPE_ID) ประเภทการลา, REQ_DATE วันที่ข้อมูล, (SELECT LEAVE_STATUS_NAME FROM LEV_STATUS WHERE LEAVE_STATUS_ID = LEV_DATA.LEAVE_STATUS_ID) สถานะ FROM LEV_DATA WHERE LEAVE_STATUS_ID in(2,6) AND CH_ID = '" + loginPerson.CitizenID + "'");
+                SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEV_DATA.LEAVE_ID รหัสการลา, (SELECT PS_FN_TH || ' ' || PS_LN_TH FROM PS_PERSON WHERE PS_CITIZEN_ID = LEV_DATA.PS_ID) ชื่อผู้ลา, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_DATA.LEAVE_TYPE_ID) ประเภทการลา, REQ_DATE วันที่ข้อมูล, (SELECT LEAVE_STATUS_NAME FROM LEV_STATUS WHERE LEAVE_STATUS_ID = LEV_DATA.LEAVE_STATUS_ID) สถานะ FROM LEV_DATA, LEV_BOSS_DATA WHERE LEAVE_STATUS_ID IN(1,4) AND LEV_DATA.LEAVE_ID = LEV_BOSS_DATA.LEAVE_ID AND LEV_DATA.BOSS_STATE = LEV_BOSS_DATA.STATE AND LEV_BOSS_DATA.CITIZEN_ID = '" + loginPerson.CitizenID + "'");
                 GridView1.DataSource = sds;
                 GridView1.DataBind();
 
@@ -81,10 +81,10 @@ namespace WEB_PERSONAL {
                         trRestLeft.Visible = false;
                         trRestTotal.Visible = false;
                         trStatistic.Visible = false;
-                        trCLOldComment.Visible = false;
-                        trCLOldDate.Visible = false;
-                        trCHOldComment.Visible = false;
-                        trCHOldDate.Visible = false;
+                        //trCLOldComment.Visible = false;
+                        //trCLOldDate.Visible = false;
+                        //trCHOldComment.Visible = false;
+                        //trCHOldDate.Visible = false;
                         trCancelReason.Visible = false;
 
                         if (leaveData.LeaveTypeID == 1) {
@@ -129,31 +129,36 @@ namespace WEB_PERSONAL {
                         if (leaveData.LeaveStatusID == 2) {
 
                         } else if (leaveData.LeaveStatusID == 6) {
-                            trCLOldComment.Visible = true;
-                            trCLOldDate.Visible = true;
-                            trCHOldComment.Visible = true;
-                            trCHOldDate.Visible = true;
+                            //trCLOldComment.Visible = true;
+                            //trCLOldDate.Visible = true;
+                            //trCHOldComment.Visible = true;
+                            //trCHOldDate.Visible = true;
                             trCancelReason.Visible = true;
                         }
 
                         lbLeaveID.Text = leaveData.LeaveID.ToString();
                         lbLeaveTypeName.Text = leaveData.LeaveTypeName;
                         lbReqDate.Text = leaveData.RequestDate.Value.ToLongDateString();
-                        lbPSName.Text = leaveData.PS_Title + leaveData.PS_FirstName + " " + leaveData.PS_LastName;
-                        lbPSPos.Text = leaveData.PS_Position;
-                        lbPSAPos.Text = leaveData.PS_AdminPosition;
-                        lbPSDept.Text = leaveData.PS_Department;
+                        lbPSName.Text = leaveData.Person.FirstName + " " + leaveData.Person.LastName;
+                        lbPSPos.Text = leaveData.Person.PositionWorkName;
+                        lbPSAPos.Text = leaveData.Person.AdminPositionName;
+                        if(Util.IsBlank(leaveData.Person.WorkDivisionID)) {
+                            lbPSDept.Text = leaveData.Person.DivisionName;
+                        } else {
+                            lbPSDept.Text = leaveData.Person.WorkDivisionName;
+                        }
+                        
 
-                        if (leaveData.PS_BirthDate.HasValue) {
-                            lbPSBirthDate.Text = leaveData.PS_BirthDate.Value.ToLongDateString();
-                        } else {
-                            lbPSBirthDate.Text = "-";
-                        }
-                        if (leaveData.PS_WorkInDate.HasValue) {
-                            lbPSWorkInDate.Text = leaveData.PS_WorkInDate.Value.ToLongDateString();
-                        } else {
-                            lbPSWorkInDate.Text = "-";
-                        }
+                        //if (leaveData.PS_BirthDate.HasValue) {
+                            lbPSBirthDate.Text = leaveData.Person.BirthDate.Value.ToLongDateString();
+                        //} else {
+                        //    lbPSBirthDate.Text = "-";
+                        //}
+                        //if (leaveData.PS_WorkInDate.HasValue) {
+                            lbPSWorkInDate.Text = leaveData.Person.InWorkDate.Value.ToLongDateString();
+                        //} else {
+                        //    lbPSWorkInDate.Text = "-";
+                       // }
 
                         lbRestSave.Text = leaveData.RestSave + " วัน";
                         lbRestLeft.Text = leaveData.RestLeft + " วัน";
@@ -200,7 +205,16 @@ namespace WEB_PERSONAL {
                             divDrCer.InnerHtml = "<a href='Upload/Drcer/" + leaveData.DocterCertificationFileName + "'><img src='Upload/DrCer/" + leaveData.DocterCertificationFileName + "' style='width: 200px;' /></a>";
                         }
 
-                        if (leaveData.LeaveStatusID >= 1 && leaveData.LeaveStatusID <= 4) {
+                        lbCLComment.Text = "-";
+                        for (int j = 0; j < leaveData.LeaveBossDataList.Count; j++) {
+                            if(!leaveData.LeaveBossDataList[j].Allow.HasValue) {
+                                continue;
+                            }
+                            LeaveBossData leaveBossData = leaveData.LeaveBossDataList[j];
+                            lbCLComment.Text = "<div style='color: #808080'>" + leaveBossData.Person.FirstNameAndLastName + " / " + leaveBossData.AllowDate.Value.ToLongDateString() +  "</div><div style='margin-bottom: 10px;'> - " + leaveBossData.Comment + "</div>";
+                        }
+
+                        /*if (leaveData.LeaveStatusID >= 1 && leaveData.LeaveStatusID <= 4) {
                             if(leaveData.CL_ID == null) {
                                 lbCLComment.Text = "-";
                                 lbCLDate.Text = "-";
@@ -228,7 +242,7 @@ namespace WEB_PERSONAL {
                                 lbCLDate.Text = leaveData.CL_CancelDate.Value.ToLongDateString();
                             }
                             
-                        }
+                        }*/
 
                         
                         MultiView1.ActiveViewIndex = 1;
@@ -266,7 +280,13 @@ namespace WEB_PERSONAL {
                     allow = 2;
                 }
                 LeaveData leaveData = (LeaveData)Session["LeaveData"];
-                if (leaveData.LeaveStatusID == 2) {
+                LeaveBossData leaveBossData = leaveData.GetCurrentBoss();
+                leaveBossData.Comment = tbF1Comment.Text;
+                leaveBossData.Allow = allow;
+                leaveBossData.AllowDate = DateTime.Today;
+                leaveData.ExecuteAllow();
+
+                /*if (leaveData.LeaveStatusID == 2) {
                     leaveData.CH_Comment = tbF1Comment.Text;
                     leaveData.CH_Allow = allow;
                     leaveData.CH_Date = DateTime.Today;
@@ -276,7 +296,7 @@ namespace WEB_PERSONAL {
                     leaveData.CH_CancelAllow = allow;
                     leaveData.CH_CancelDate = DateTime.Today;
                     leaveData.ExecuteCancelAllow();
-                }
+                }*/
                     
 
                 

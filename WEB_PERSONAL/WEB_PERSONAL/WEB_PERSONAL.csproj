@@ -1183,6 +1183,7 @@
       <DependentUpon>Claninsignia-ADMIN.aspx</DependentUpon>
     </Compile>
     <Compile Include="Class\DatabaseManager.cs" />
+    <Compile Include="Class\LeaveBossData.cs" />
     <Compile Include="Class\LeaveData.cs" />
     <Compile Include="Class\Person.cs" />
     <Compile Include="Class\PersonnelSystem.cs" />

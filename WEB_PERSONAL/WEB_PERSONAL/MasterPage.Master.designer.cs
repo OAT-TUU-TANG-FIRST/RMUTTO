@@ -220,15 +220,6 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor A1;
         
         /// <summary>
-        /// lbLeaveCommentCount control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbLeaveCommentCount;
-        
-        /// <summary>
         /// lbLeaveAllowCount control.
         /// </summary>
         /// <remarks>
@@ -328,22 +319,13 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl noti_leave_none;
         
         /// <summary>
-        /// noti_cl control.
+        /// noti_approve control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl noti_cl;
-        
-        /// <summary>
-        /// noti_ch control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl noti_ch;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl noti_approve;
         
         /// <summary>
         /// noti_leave_finish control.

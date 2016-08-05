@@ -163,7 +163,7 @@
                             </div>
                             <div class="ps-box-i0">
                                 <div class="ps-box-ct10">
-                                    <div>เวอร์ชั่น : v1.2.6</div>
+                                    <div>เวอร์ชั่น : v1.2.7</div>
                                     <div style="display: none;">ตัวนับ : <span id="s_counter" runat="server"></span></div>
                                 </div>
                             </div>
@@ -243,7 +243,6 @@
                                 <div class="ps-box-ct10">
                                     <a href="Leave.aspx"><img src="Image/Small/document-create.png" />ทำการลา</a>
                                     <a href="LeaveCancel.aspx"><img src="Image/Small/document-delete.png" />ยกเลิกการลา</a>
-                                    <a href="LeaveComment.aspx"><img src="Image/Small/document-edit.png" />ลงความเห็นการลา<asp:Label ID="lbLeaveCommentCount" runat="server" Text="ทดสอบ" CssClass="master_text_alert"></asp:Label></a>
                                     <a href="LeaveAllow.aspx"><img src="Image/Small/document-accept.png" />อนุมัติการลา<asp:Label ID="lbLeaveAllowCount" runat="server" Text="ทดสอบ" CssClass="master_text_alert"></asp:Label></a>
                                     <a href="LeaveHistory.aspx"><img src="Image/Small/clock-history.png" />ประวัติการลา</a>
                                     <a href="WorkingTimeHistory.aspx"><img src="Image/Small/clock-history.png" />ประวัติเวลาปฏิบัติงาน</a>
@@ -295,13 +294,7 @@
                             <div class="ps-box-i0" id="noti_leave_none" runat="server">
                                 <div class="ps-box-hd10-cen" style="color: #a0a0a0; margin-top: 120px;">ไม่มีการแจ้งเตือนการลา</div>
                             </div>
-                            <div class="ps-box-i0" id="noti_cl" runat="server">
-                                <div class="ps-box-ct10-cen">
-                                    <div><img src='Image/Small/pencil_y.png' class='icon_left' />คุณมีรายการที่ต้องลงความเห็นการลา</div><br />
-                                    <div><a href='LeaveComment.aspx'>ไปหน้าการลงความเห็น<img src='Image/Small/next.png' class='icon_right' /></a></div>
-                                </div>
-                            </div>
-                            <div class="ps-box-i0" id="noti_ch" runat="server">
+                            <div class="ps-box-i0" id="noti_approve" runat="server">
                                 <div class="ps-box-ct10-cen">
                                     <div><img src='Image/Small/correct.png' class='icon_left' />คุณมีรายการที่ต้องอนุมัติการลา</div><br />
                                     <div><a href='LeaveAllow.aspx'>ไปหน้าการอนุมัติ<img src='Image/Small/next.png' class='icon_right' /></a></div>

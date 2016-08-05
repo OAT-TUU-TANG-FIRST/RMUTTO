@@ -287,29 +287,14 @@ namespace WEB_PERSONAL.Class {
             return null;
         }
         
-        public static int GetLeaveRequiredCountByCommanderLow(string citizenID) {
+        public static int GetLeaveRequiredCountByCommander(string citizenID) {
             OracleConnection.ClearAllPools();
             using (OracleConnection con = new OracleConnection(CONNECTION_STRING)) {
                 con.Open();
-                using (OracleCommand com = new OracleCommand("SELECT COUNT(LEAVE_ID) FROM LEV_DATA WHERE LEAVE_STATUS_ID in(1,5) AND CL_ID = '" + citizenID + "'", con)) {
+                using (OracleCommand com = new OracleCommand("SELECT COUNT(LEV_BOSS_DATA.LEAVE_BOSS_ID) FROM LEV_DATA, LEV_BOSS_DATA WHERE LEAVE_STATUS_ID IN(1,4) AND LEV_DATA.LEAVE_ID = LEV_BOSS_DATA.LEAVE_ID AND LEV_DATA.BOSS_STATE = LEV_BOSS_DATA.STATE AND LEV_BOSS_DATA.CITIZEN_ID = '" + citizenID + "'", con)) {
                     using (OracleDataReader reader = com.ExecuteReader()) {
                         while (reader.Read()) {
-                            int count = int.Parse(reader.GetValue(0).ToString());
-                            return count;
-                        }
-                    }
-                }
-            }
-            return -1;
-        }
-        public static int GetLeaveRequiredCountByCommanderHigh(string citizenID) {
-            OracleConnection.ClearAllPools();
-            using (OracleConnection con = new OracleConnection(CONNECTION_STRING)) {
-                con.Open();
-                using (OracleCommand com = new OracleCommand("SELECT COUNT(LEAVE_ID) FROM LEV_DATA WHERE LEAVE_STATUS_ID in(2,6) AND CH_ID = '" + citizenID + "'", con)) {
-                    using (OracleDataReader reader = com.ExecuteReader()) {
-                        while (reader.Read()) {
-                            int count = int.Parse(reader.GetValue(0).ToString());
+                            int count = int.Parse(reader.GetInt32(0).ToString());
                             return count;
                         }
                     }

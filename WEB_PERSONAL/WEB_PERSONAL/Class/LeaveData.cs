@@ -25,32 +25,7 @@ namespace WEB_PERSONAL.Class {
         public string Telephone;
 
         public string PS_ID;
-        public string PS_Title;
-        public string PS_FirstName;
-        public string PS_LastName;
-        public string PS_Position;
-        public string PS_AdminPosition;
-        public DateTime? PS_WorkInDate;
-        public DateTime? PS_BirthDate;
-
-        public string CL_ID;
-        public string CL_Title;
-        public string CL_FirstName;
-        public string CL_LastName;
-        public string CL_Position;
-        public string CL_AdminPosition;
-        public string CL_Comment;
-        public DateTime? CL_Date;
-
-        public string CH_ID;
-        public string CH_Title;
-        public string CH_FirstName;
-        public string CH_LastName;
-        public string CH_Position;
-        public string CH_AdminPosition;
-        public string CH_Comment;
-        public int CH_Allow;
-        public DateTime? CH_Date;
+        public Person Person;
 
         public string DocterCertificationFileName;
         public int CountPast;
@@ -67,12 +42,6 @@ namespace WEB_PERSONAL.Class {
         public int Ordained;
         public int Hujed;
 
-        public string CancelReason;
-        public string CL_CancelComment;
-        public DateTime? CL_CancelDate;
-        public string CH_CancelComment;
-        public int CH_CancelAllow;
-        public DateTime? CH_CancelDate;
 
         public string PS_Department;
 
@@ -83,6 +52,16 @@ namespace WEB_PERSONAL.Class {
 
         public string LeaveTypeName;
         public string LeaveStatusName;
+
+        public int? Allow;
+        public DateTime? AllowDate;
+        public int? CancelAllow;
+        public DateTime? CancelAllowDate;
+
+        public int BossState;
+        public int BossStateMax;
+
+        public List<LeaveBossData> LeaveBossDataList = new List<LeaveBossData>();
 
         public LeaveData() {
             
@@ -150,56 +129,7 @@ namespace WEB_PERSONAL.Class {
                             Contact = reader.IsDBNull(i) ? null : reader.GetString(i); ++i;
                             Telephone = reader.IsDBNull(i) ? null : reader.GetString(i); ++i;
                             PS_ID = reader.IsDBNull(i) ? null : reader.GetString(i); ++i;
-                            PS_Title = reader.IsDBNull(i) ? null : reader.GetString(i); ++i;
-                            PS_FirstName = reader.IsDBNull(i) ? null : reader.GetString(i); ++i;
-                            PS_LastName = reader.IsDBNull(i) ? null : reader.GetString(i); ++i;
-                            PS_Position = reader.IsDBNull(i) ? null : reader.GetString(i); ++i;
-                            PS_AdminPosition = reader.IsDBNull(i) ? null : reader.GetString(i); ++i;
-
-                            if (reader.IsDBNull(i)) {
-                                PS_WorkInDate = null;
-                            } else {
-                                PS_WorkInDate = reader.GetDateTime(i);
-                            }
-                            ++i;
-
-                            if (reader.IsDBNull(i)) {
-                                PS_BirthDate = null;
-                            } else {
-                                PS_BirthDate = reader.GetDateTime(i);
-                            }
-                            ++i;
-
-                            CL_ID = reader.IsDBNull(i) ? null : reader.GetString(i); ++i;
-                            CL_Title = reader.IsDBNull(i) ? null : reader.GetString(i); ++i;
-                            CL_FirstName = reader.IsDBNull(i) ? null : reader.GetString(i); ++i;
-                            CL_LastName = reader.IsDBNull(i) ? null : reader.GetString(i); ++i;
-                            CL_Position = reader.IsDBNull(i) ? null : reader.GetString(i); ++i;
-                            CL_AdminPosition = reader.IsDBNull(i) ? null : reader.GetString(i); ++i;
-                            CL_Comment = reader.IsDBNull(i) ? null : reader.GetString(i); ++i;
-
-                            if (reader.IsDBNull(i)) {
-                                CL_Date = null;
-                            } else {
-                                CL_Date = reader.GetDateTime(i);
-                            }
-                            ++i;
-
-                            CH_ID = reader.IsDBNull(i) ? null : reader.GetString(i); ++i;
-                            CH_Title = reader.IsDBNull(i) ? null : reader.GetString(i); ++i;
-                            CH_FirstName = reader.IsDBNull(i) ? null : reader.GetString(i); ++i;
-                            CH_LastName = reader.IsDBNull(i) ? null : reader.GetString(i); ++i;
-                            CH_Position = reader.IsDBNull(i) ? null : reader.GetString(i); ++i;
-                            CH_AdminPosition = reader.IsDBNull(i) ? null : reader.GetString(i); ++i;
-                            CH_Comment = reader.IsDBNull(i) ? null : reader.GetString(i); ++i;
-                            CH_Allow = reader.IsDBNull(i) ? -1 : reader.GetInt32(i); ++i;
-
-                            if (reader.IsDBNull(i)) {
-                                CH_Date = null;
-                            } else {
-                                CH_Date = reader.GetDateTime(i);
-                            }
-                            ++i;
+                            
 
                             DocterCertificationFileName = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
                             CountPast = reader.IsDBNull(i) ? -1 : reader.GetInt32(i); ++i;
@@ -227,25 +157,6 @@ namespace WEB_PERSONAL.Class {
 
                             Ordained = reader.IsDBNull(i) ? -1 : reader.GetInt32(i); ++i;
                             Hujed = reader.IsDBNull(i) ? -1 : reader.GetInt32(i); ++i;
-                            CancelReason = reader.IsDBNull(i) ? null : reader.GetString(i); ++i;
-                            CL_CancelComment = reader.IsDBNull(i) ? null : reader.GetString(i); ++i;
-
-                            if (reader.IsDBNull(i)) {
-                                CL_CancelDate = null;
-                            } else {
-                                CL_CancelDate = reader.GetDateTime(i);
-                            }
-                            ++i;
-
-                            CH_CancelComment = reader.IsDBNull(i) ? null : reader.GetString(i); ++i;
-                            CH_CancelAllow = reader.IsDBNull(i) ? -1 : reader.GetInt32(i); ++i;
-
-                            if (reader.IsDBNull(i)) {
-                                CH_CancelDate = null;
-                            } else {
-                                CH_CancelDate = reader.GetDateTime(i);
-                            }
-                            ++i;
 
                             PS_Department = reader.IsDBNull(i) ? null : reader.GetString(i); ++i;
 
@@ -254,11 +165,83 @@ namespace WEB_PERSONAL.Class {
                             RestTotal = reader.IsDBNull(i) ? -1 : reader.GetInt32(i); ++i;
                             BudgetYear = reader.IsDBNull(i) ? -1 : reader.GetInt32(i); ++i;
 
+                            if (reader.IsDBNull(i)) {
+                                Allow = null;
+                            } else {
+                                Allow = reader.GetInt32(i);
+                            }
+                            ++i;
+
+                            if (reader.IsDBNull(i)) {
+                                AllowDate = null;
+                            } else {
+                                AllowDate = reader.GetDateTime(i);
+                            }
+                            ++i;
+
+                            if (reader.IsDBNull(i)) {
+                                CancelAllow = null;
+                            } else {
+                                CancelAllow = reader.GetInt32(i);
+                            }
+                            ++i;
+
+                            if (reader.IsDBNull(i)) {
+                                CancelAllowDate = null;
+                            } else {
+                                CancelAllowDate = reader.GetDateTime(i);
+                            }
+                            ++i;
+
+                            BossState = reader.IsDBNull(i) ? -1 : reader.GetInt32(i); ++i;
+                            BossStateMax = reader.IsDBNull(i) ? -1 : reader.GetInt32(i); ++i;
+
                             LeaveTypeName = reader.IsDBNull(i) ? null : reader.GetString(i); ++i;
                             LeaveStatusName = reader.IsDBNull(i) ? null : reader.GetString(i); ++i;
                         }
                     }
                 }
+
+                Person = DatabaseManager.GetPerson(PS_ID);
+
+                using (OracleCommand com = new OracleCommand("SELECT LEV_BOSS_DATA.* FROM LEV_BOSS_DATA WHERE LEAVE_ID = " + ID, con)) {
+                    using (OracleDataReader reader = com.ExecuteReader()) {
+                        while (reader.Read()) {
+                            LeaveBossData leaveBossData = new LeaveBossData();
+                            leaveBossData.LeaveBossID = reader.GetInt32(0);
+                            leaveBossData.LeaveID = reader.GetInt32(1);
+                            leaveBossData.CitizenID = reader.GetString(2);
+                            leaveBossData.Comment = reader.IsDBNull(3) ? null : reader.GetString(3);
+                            if(reader.IsDBNull(4)) {
+                                leaveBossData.Allow = null;
+                            } else {
+                                leaveBossData.Allow = reader.GetInt32(4);
+                            }
+                            
+                            leaveBossData.State = reader.GetInt32(5);
+                            if(reader.IsDBNull(6)) {
+                                leaveBossData.AllowDate = null;
+                            } else {
+                                leaveBossData.AllowDate = reader.GetDateTime(6);
+                            }
+                            leaveBossData.CancelComment = reader.IsDBNull(7) ? null : reader.GetString(7);
+                            if (reader.IsDBNull(8)) {
+                                leaveBossData.CancelAllow = null;
+                            } else {
+                                leaveBossData.CancelAllow = reader.GetInt32(8);
+                            }
+                            if (reader.IsDBNull(9)) {
+                                leaveBossData.CancelAllowDate = null;
+                            } else {
+                                leaveBossData.CancelAllowDate = reader.GetDateTime(9);
+                            }
+                            leaveBossData.Person = DatabaseManager.GetPerson(leaveBossData.CitizenID);
+                            LeaveBossDataList.Add(leaveBossData);
+
+                        }
+                    }
+                }
+
             }
         }
         public void Update() {
@@ -272,7 +255,7 @@ namespace WEB_PERSONAL.Class {
             }
         }
         public void ExecuteCancel() {
-            OracleConnection.ClearAllPools();
+            /*OracleConnection.ClearAllPools();
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
                 using (OracleCommand com = new OracleCommand("UPDATE LEV_DATA SET CANCEL_DATE = :CANCEL_DATE, CANCEL_REASON = :CANCEL_REASON, LEAVE_STATUS_ID = :LEAVE_STATUS_ID WHERE LEAVE_ID = " + LeaveID, con)) {
@@ -323,7 +306,7 @@ namespace WEB_PERSONAL.Class {
                         com.ExecuteNonQuery();
                     }
                 }
-            }
+            }*/
         }
         public void AddLeaveSick() {
             AddLeave3K();
@@ -336,9 +319,10 @@ namespace WEB_PERSONAL.Class {
         }
         public void AddLeave3K() {
             OracleConnection.ClearAllPools();
+            LeaveID = DatabaseManager.ExecuteSequence("SEQ_LEV_DATA");
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
-                using (OracleCommand com = new OracleCommand("INSERT INTO LEV_DATA (LEAVE_ID, LEAVE_TYPE_ID, LEAVE_STATUS_ID, PS_ID, REQ_DATE, FROM_DATE, TO_DATE, TOTAL_DAY, CL_ID, CL_TT, CL_FN, CL_LN, CL_POS, CL_APOS, CH_ID, CH_TT, CH_FN, CH_LN, CH_POS, CH_APOS, PS_TT, PS_FN, PS_LN, PS_POS, PS_DEPT, PS_APOS, REASON, CONTACT, TELEPHONE, LAST_FROM_DATE, LAST_TO_DATE, LAST_TOTAL_DAY, DR_CER_FILE_NAME, COUNT_PAST, COUNT_NOW, COUNT_TOTAL, BUDGET_YEAR) VALUES (:LEAVE_ID, :LEAVE_TYPE_ID, :LEAVE_STATUS_ID, :PS_ID, :REQ_DATE, :FROM_DATE, :TO_DATE, :TOTAL_DAY, :CL_ID, :CL_TT, :CL_FN, :CL_LN, :CL_POS, :CL_APOS, :CH_ID, :CH_TT, :CH_FN, :CH_LN, :CH_POS, :CH_APOS, :PS_TT, :PS_FN, :PS_LN, :PS_POS, :PS_DEPT, :PS_APOS, :REASON, :CONTACT, :TELEPHONE, :LAST_FROM_DATE, :LAST_TO_DATE, :LAST_TOTAL_DAY, :DR_CER_FILE_NAME, :COUNT_PAST, :COUNT_NOW, :COUNT_TOTAL, :BUDGET_YEAR)", con)) {
+                using (OracleCommand com = new OracleCommand("INSERT INTO LEV_DATA (LEAVE_ID, LEAVE_TYPE_ID, LEAVE_STATUS_ID, PS_ID, REQ_DATE, FROM_DATE, TO_DATE, TOTAL_DAY, REASON, CONTACT, TELEPHONE, LAST_FROM_DATE, LAST_TO_DATE, LAST_TOTAL_DAY, DR_CER_FILE_NAME, COUNT_PAST, COUNT_NOW, COUNT_TOTAL, BUDGET_YEAR, BOSS_STATE, BOSS_STATE_MAX) VALUES (:LEAVE_ID, :LEAVE_TYPE_ID, :LEAVE_STATUS_ID, :PS_ID, :REQ_DATE, :FROM_DATE, :TO_DATE, :TOTAL_DAY, :REASON, :CONTACT, :TELEPHONE, :LAST_FROM_DATE, :LAST_TO_DATE, :LAST_TOTAL_DAY, :DR_CER_FILE_NAME, :COUNT_PAST, :COUNT_NOW, :COUNT_TOTAL, :BUDGET_YEAR, :BOSS_STATE, :BOSS_STATE_MAX)", con)) {
                     com.Parameters.Add("LEAVE_ID", LeaveID);
                     com.Parameters.Add("LEAVE_TYPE_ID", LeaveTypeID);
                     com.Parameters.Add("LEAVE_STATUS_ID", LeaveStatusID);
@@ -347,24 +331,6 @@ namespace WEB_PERSONAL.Class {
                     com.Parameters.Add("FROM_DATE", FromDate);
                     com.Parameters.Add("TO_DATE", ToDate);
                     com.Parameters.Add("TOTAL_DAY", TotalDay);
-                    com.Parameters.Add("CL_ID", CL_ID);
-                    com.Parameters.Add("CL_TT", CL_Title);
-                    com.Parameters.Add("CL_FN", CL_FirstName);
-                    com.Parameters.Add("CL_LN", CL_LastName);
-                    com.Parameters.Add("CL_POS", CL_Position);
-                    com.Parameters.Add("CL_APOS", CL_AdminPosition);
-                    com.Parameters.Add("CH_ID", CH_ID);
-                    com.Parameters.Add("CH_TT", CH_Title);
-                    com.Parameters.Add("CH_FN", CH_FirstName);
-                    com.Parameters.Add("CH_LN", CH_LastName);
-                    com.Parameters.Add("CH_POS", CH_Position);
-                    com.Parameters.Add("CH_APOS", CH_AdminPosition);
-                    com.Parameters.Add("PS_TT", PS_Title);
-                    com.Parameters.Add("PS_FN", PS_FirstName);
-                    com.Parameters.Add("PS_LN", PS_LastName);
-                    com.Parameters.Add("PS_POS", PS_Position);
-                    com.Parameters.Add("PS_DEPT", PS_Department);
-                    com.Parameters.Add("PS_APOS", PS_AdminPosition);
                     com.Parameters.Add("REASON", Reason);
                     com.Parameters.Add("CONTACT", Contact);
                     com.Parameters.Add("TELEPHONE", Telephone);
@@ -381,10 +347,24 @@ namespace WEB_PERSONAL.Class {
                     com.Parameters.Add("COUNT_NOW", CountNow);
                     com.Parameters.Add("COUNT_TOTAL", CountTotal);
                     com.Parameters.Add("BUDGET_YEAR", Util.BudgetYear());
+                    com.Parameters.Add("BOSS_STATE", 1);
+                    com.Parameters.Add("BOSS_STATE_MAX", LeaveBossDataList.Count);
                     com.ExecuteNonQuery();
                 }
 
-                if(LeaveTypeID == 1) {
+                int bossMax = LeaveBossDataList.Count;
+                for (int i = 0; i < bossMax; i++) {
+                    LeaveBossData leaveBossData = LeaveBossDataList[i];
+                    using (OracleCommand com = new OracleCommand("INSERT INTO LEV_BOSS_DATA (LEAVE_BOSS_ID, LEAVE_ID, CITIZEN_ID, STATE) VALUES (SEQ_LEV_BOSS_DATA.NEXTVAL, :LEAVE_ID, :CITIZEN_ID, :STATE)", con)) {
+                        com.Parameters.Add("LEAVE_ID", LeaveID);
+                        com.Parameters.Add("CITIZEN_ID", leaveBossData.CitizenID);
+                        com.Parameters.Add("STATE", i+1);
+                        com.ExecuteNonQuery();
+                    }
+                }
+                
+
+                    if (LeaveTypeID == 1) {
                     DatabaseManager.ExecuteNonQuery("UPDATE LEV_CLAIM SET SICK_REQ = SICK_NOW + " + TotalDay + " WHERE PS_CITIZEN_ID = '" + PS_ID + "' AND YEAR = " + Util.BudgetYear());
                 } else if (LeaveTypeID == 2) {
                     DatabaseManager.ExecuteNonQuery("UPDATE LEV_CLAIM SET BUSINESS_REQ = BUSINESS_NOW + " + TotalDay + " WHERE PS_CITIZEN_ID = '" + PS_ID + "' AND YEAR = " + Util.BudgetYear());
@@ -395,7 +375,7 @@ namespace WEB_PERSONAL.Class {
             }
         }
         public void AddLeaveRest() {
-            OracleConnection.ClearAllPools();
+            /*OracleConnection.ClearAllPools();
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
                 using (OracleCommand com = new OracleCommand("INSERT INTO LEV_DATA (LEAVE_ID, LEAVE_TYPE_ID, LEAVE_STATUS_ID, PS_ID, REQ_DATE, FROM_DATE, TO_DATE, TOTAL_DAY, CL_ID, CL_TT, CL_FN, CL_LN, CL_POS, CL_APOS, CH_ID, CH_TT, CH_FN, CH_LN, CH_POS, CH_APOS, PS_TT, PS_FN, PS_LN, PS_POS, PS_DEPT, PS_APOS, CONTACT, TELEPHONE, COUNT_PAST, COUNT_NOW, COUNT_TOTAL, REST_SAVE, REST_LEFT, REST_TOTAL, BUDGET_YEAR) VALUES (:LEAVE_ID, :LEAVE_TYPE_ID, :LEAVE_STATUS_ID, :PS_ID, :REQ_DATE, :FROM_DATE, :TO_DATE, :TOTAL_DAY, :CL_ID, :CL_TT, :CL_FN, :CL_LN, :CL_POS, :CL_APOS, :CH_ID, :CH_TT, :CH_FN, :CH_LN, :CH_POS, :CH_APOS, :PS_TT, :PS_FN, :PS_LN, :PS_POS, :PS_DEPT, :PS_APOS, :CONTACT, :TELEPHONE, :COUNT_PAST, :COUNT_NOW, :COUNT_TOTAL, :REST_SAVE, :REST_LEFT, :REST_TOTAL, :BUDGET_YEAR)", con)) {
@@ -437,10 +417,10 @@ namespace WEB_PERSONAL.Class {
                     com.ExecuteNonQuery();
                 }
                 DatabaseManager.ExecuteNonQuery("UPDATE LEV_CLAIM SET REST_REQ = REST_NOW + " + TotalDay + " WHERE PS_CITIZEN_ID = '" + PS_ID + "' AND YEAR = " + Util.BudgetYear());
-            }
+            }*/
         }
         public void AddLeaveHelpGiveBirth() {
-            OracleConnection.ClearAllPools();
+            /*OracleConnection.ClearAllPools();
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
                 using (OracleCommand com = new OracleCommand("INSERT INTO LEV_DATA (LEAVE_ID, LEAVE_TYPE_ID, LEAVE_STATUS_ID, PS_ID, REQ_DATE, FROM_DATE, TO_DATE, TOTAL_DAY, CL_ID, CL_TT, CL_FN, CL_LN, CL_POS, CL_APOS, CH_ID, CH_TT, CH_FN, CH_LN, CH_POS, CH_APOS, PS_TT, PS_FN, PS_LN, PS_POS, PS_DEPT, PS_APOS, CONTACT, TELEPHONE, COUNT_PAST, COUNT_NOW, COUNT_TOTAL, WIFE_FN, WIFE_LN, GB_DATE, BUDGET_YEAR) VALUES (:LEAVE_ID, :LEAVE_TYPE_ID, :LEAVE_STATUS_ID, :PS_ID, :REQ_DATE, :FROM_DATE, :TO_DATE, :TOTAL_DAY, :CL_ID, :CL_TT, :CL_FN, :CL_LN, :CL_POS, :CL_APOS, :CH_ID, :CH_TT, :CH_FN, :CH_LN, :CH_POS, :CH_APOS, :PS_TT, :PS_FN, :PS_LN, :PS_POS, :PS_DEPT, :PS_APOS, :CONTACT, :TELEPHONE, :COUNT_PAST, :COUNT_NOW, :COUNT_TOTAL, :WIFE_FN, :WIFE_LN, :GB_DATE, :BUDGET_YEAR)", con)) {
@@ -482,10 +462,10 @@ namespace WEB_PERSONAL.Class {
                     com.ExecuteNonQuery();
                 }
                 DatabaseManager.ExecuteNonQuery("UPDATE LEV_CLAIM SET HGB_REQ = HGB_NOW + " + TotalDay + " WHERE PS_CITIZEN_ID = '" + PS_ID + "' AND YEAR = " + Util.BudgetYear());
-            }
+            }*/
         }
         public void AddLeaveOrdain() {
-            OracleConnection.ClearAllPools();
+            /*OracleConnection.ClearAllPools();
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
                 using (OracleCommand com = new OracleCommand("INSERT INTO LEV_DATA (LEAVE_ID, LEAVE_TYPE_ID, LEAVE_STATUS_ID, PS_ID, REQ_DATE, FROM_DATE, TO_DATE, TOTAL_DAY, CL_ID, CL_TT, CL_FN, CL_LN, CL_POS, CL_APOS, CH_ID, CH_TT, CH_FN, CH_LN, CH_POS, CH_APOS, PS_TT, PS_FN, PS_LN, PS_POS, PS_DEPT, PS_APOS, PS_BIRTHDATE, PS_WORKIN_DATE, TELEPHONE, OD_ED, TP_NAME, TP_LOC, OD_DATE, BUDGET_YEAR) VALUES (:LEAVE_ID, :LEAVE_TYPE_ID, :LEAVE_STATUS_ID, :PS_ID, :REQ_DATE, :FROM_DATE, :TO_DATE, :TOTAL_DAY, :CL_ID, :CL_TT, :CL_FN, :CL_LN, :CL_POS, :CL_APOS, :CH_ID, :CH_TT, :CH_FN, :CH_LN, :CH_POS, :CH_APOS, :PS_TT, :PS_FN, :PS_LN, :PS_POS, :PS_DEPT, :PS_APOS, :PS_BIRTHDATE, :PS_WORKIN_DATE, :TELEPHONE, :OD_ED, :TP_NAME, :TP_LOC, :OD_DATE, :BUDGET_YEAR)", con)) {
@@ -526,10 +506,10 @@ namespace WEB_PERSONAL.Class {
                     com.ExecuteNonQuery();
                 }
                 DatabaseManager.ExecuteNonQuery("UPDATE LEV_CLAIM SET ORDAIN_REQ = ORDAIN_NOW + " + TotalDay + " WHERE PS_CITIZEN_ID = '" + PS_ID + "' AND YEAR = " + Util.BudgetYear());
-            }
+            }*/
         }
         public void AddLeaveHuj() {
-            OracleConnection.ClearAllPools();
+            /*OracleConnection.ClearAllPools();
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
                 using (OracleCommand com = new OracleCommand("INSERT INTO LEV_DATA (LEAVE_ID, LEAVE_TYPE_ID, LEAVE_STATUS_ID, PS_ID, REQ_DATE, FROM_DATE, TO_DATE, TOTAL_DAY, CL_ID, CL_TT, CL_FN, CL_LN, CL_POS, CL_APOS, CH_ID, CH_TT, CH_FN, CH_LN, CH_POS, CH_APOS, PS_TT, PS_FN, PS_LN, PS_POS, PS_DEPT, PS_APOS, PS_BIRTHDATE, PS_WORKIN_DATE, HUJ_ED, BUDGET_YEAR) VALUES (:LEAVE_ID, :LEAVE_TYPE_ID, :LEAVE_STATUS_ID, :PS_ID, :REQ_DATE, :FROM_DATE, :TO_DATE, :TOTAL_DAY, :CL_ID, :CL_TT, :CL_FN, :CL_LN, :CL_POS, :CL_APOS, :CH_ID, :CH_TT, :CH_FN, :CH_LN, :CH_POS, :CH_APOS, :PS_TT, :PS_FN, :PS_LN, :PS_POS, :PS_DEPT, :PS_APOS, :PS_BIRTHDATE, :PS_WORKIN_DATE, :HUJ_ED, :BUDGET_YEAR)", con)) {
@@ -566,10 +546,10 @@ namespace WEB_PERSONAL.Class {
                     com.ExecuteNonQuery();
                 }
                 DatabaseManager.ExecuteNonQuery("UPDATE LEV_CLAIM SET HUJ_REQ = HUJ_NOW + " + TotalDay + " WHERE PS_CITIZEN_ID = '" + PS_ID + "' AND YEAR = " + Util.BudgetYear());
-            }
+            }*/
         }
         public void ExecuteComment() {
-            OracleConnection.ClearAllPools();
+            /*OracleConnection.ClearAllPools();
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
                 using (OracleCommand com = new OracleCommand("UPDATE LEV_DATA SET LEAVE_STATUS_ID = :LEAVE_STATUS_ID, CL_COM = :CL_COM, CL_DATE = :CL_DATE WHERE LEAVE_ID = :LEAVE_ID", con)) {
@@ -579,10 +559,10 @@ namespace WEB_PERSONAL.Class {
                     com.Parameters.Add("LEAVE_ID", LeaveID);
                     com.ExecuteNonQuery();
                 }
-            }
+            }*/
         }
         public void ExecuteCancelComment() {
-            OracleConnection.ClearAllPools();
+            /*OracleConnection.ClearAllPools();
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
                 using (OracleCommand com = new OracleCommand("UPDATE LEV_DATA SET LEAVE_STATUS_ID = :LEAVE_STATUS_ID, CL_C_COM = :CL_C_COM, CL_C_DATE = :CL_C_DATE WHERE LEAVE_ID = :LEAVE_ID", con)) {
@@ -592,23 +572,42 @@ namespace WEB_PERSONAL.Class {
                     com.Parameters.Add("LEAVE_ID", LeaveID);
                     com.ExecuteNonQuery();
                 }
-            }
+            }*/
         }
         public void ExecuteAllow() {
             OracleConnection.ClearAllPools();
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
-                using (OracleCommand com = new OracleCommand("UPDATE LEV_DATA SET LEAVE_STATUS_ID = :LEAVE_STATUS_ID, CH_COM = :CH_COM, CH_ALLOW = :CH_ALLOW, CH_DATE = :CH_DATE WHERE LEAVE_ID = :LEAVE_ID", con)) {
+
+                if(BossState != BossStateMax) {
+                    LeaveBossData leaveBossData = GetCurrentBoss();
+                    using (OracleCommand com = new OracleCommand("UPDATE LEV_BOSS_DATA SET V_COMMENT = :V_COMMENT, V_ALLOW = :V_ALLOW, ALLOW_DATE = :ALLOW_DATE WHERE LEAVE_BOSS_ID = :LEAVE_BOSS_ID", con)) {
+                        com.Parameters.Add("V_COMMENT", leaveBossData.Comment );
+                        com.Parameters.Add("V_ALLOW", leaveBossData.Allow.Value);
+                        com.Parameters.Add("ALLOW_DATE", DateTime.Today);
+                        com.Parameters.Add("LEAVE_BOSS_ID", leaveBossData.LeaveBossID);
+                        com.ExecuteNonQuery();
+                    }
+                    using (OracleCommand com = new OracleCommand("UPDATE LEV_DATA SET BOSS_STATE = BOSS_STATE + 1 WHERE LEAVE_ID = :LEAVE_ID", con)) {
+                        com.Parameters.Add("LEAVE_ID", LeaveID);
+                        com.ExecuteNonQuery();
+                    }
+
+                } else {
+
+                }
+
+               /* using (OracleCommand com = new OracleCommand("UPDATE LEV_DATA SET LEAVE_STATUS_ID = :LEAVE_STATUS_ID, CH_COM = :CH_COM, CH_ALLOW = :CH_ALLOW, CH_DATE = :CH_DATE WHERE LEAVE_ID = :LEAVE_ID", con)) {
                     com.Parameters.Add("LEAVE_STATUS_ID", 3);
                     com.Parameters.Add("CH_COM", CH_Comment);
                     com.Parameters.Add("CH_ALLOW", CH_Allow);
                     com.Parameters.Add("CH_DATE", DateTime.Today);
                     com.Parameters.Add("LEAVE_ID", LeaveID);
                     com.ExecuteNonQuery();
-                }
+                }*/
 
                 
-                if(CH_Allow == 1) {
+                /*if(CH_Allow == 1) {
 
                     DateTime start = FromDate.Value;
                     DateTime to = ToDate.Value;
@@ -725,13 +724,13 @@ namespace WEB_PERSONAL.Class {
                             com.ExecuteNonQuery();
                         }
                     }
-                }
+                }*/
                 
 
             }
         }
         public void ExecuteCancelAllow() {
-            OracleConnection.ClearAllPools();
+            /*OracleConnection.ClearAllPools();
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
                 using (OracleCommand com = new OracleCommand("UPDATE LEV_DATA SET LEAVE_STATUS_ID = :LEAVE_STATUS_ID, CH_C_COM = :CH_C_COM, CH_C_ALLOW = :CH_C_ALLOW, CH_C_DATE = :CH_C_DATE WHERE LEAVE_ID = :LEAVE_ID", con)) {
@@ -846,7 +845,7 @@ namespace WEB_PERSONAL.Class {
                 }
 
 
-            }
+            }*/
         }
 
         public void ExecuteCancelByUser() {
@@ -971,6 +970,20 @@ namespace WEB_PERSONAL.Class {
 
         }
 
+        public void AddBoss(LeaveBossData leaveBossData) {
+            LeaveBossDataList.Add(leaveBossData);
+        }
+        public LeaveBossData GetCurrentBoss() {
+            return GetBossState(BossState);
+        }
+        public LeaveBossData GetBossState(int state) {
+            for (int i = 0; i < LeaveBossDataList.Count; i++) {
+                if(LeaveBossDataList[i].State == state) {
+                    return LeaveBossDataList[i];
+                }
+            }
+            return null;
+        }
 
 
     }

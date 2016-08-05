@@ -109,7 +109,7 @@ namespace WEB_PERSONAL {
                 string req_month = Util.ToThaiMonth(leaveData.RequestDate.Value.Month);
                 string req_year = (leaveData.RequestDate.Value.Year+543).ToString();
                 lbReqDate.Text = "วันที่ " + req_day + " เดือน " + req_month + " พ.ศ. " + req_year;
-                lbPSName.Text = leaveData.PS_Title + leaveData.PS_FirstName + " " + leaveData.PS_LastName;
+              /*  lbPSName.Text = leaveData.PS_Title + leaveData.PS_FirstName + " " + leaveData.PS_LastName;
                 lbPSPos.Text = leaveData.PS_Position;
                 lbPSAPos.Text = leaveData.PS_AdminPosition;
                 lbPSDept.Text = leaveData.PS_Department;
@@ -123,7 +123,7 @@ namespace WEB_PERSONAL {
                     lbPSWorkInDate.Text = leaveData.PS_WorkInDate.Value.ToLongDateString();
                 } else {
                     lbPSWorkInDate.Text = "-";
-                }
+                }*/
 
                 lbRestSave.Text = leaveData.RestSave + " วัน";
                 lbRestLeft.Text = leaveData.RestLeft + " วัน";
@@ -164,7 +164,7 @@ namespace WEB_PERSONAL {
                     lbLastFTTDate.Text = "ไม่เคยลา";
                 }
 
-                lbCLName.Text = leaveData.CL_Title + leaveData.CL_FirstName + " " + leaveData.CL_LastName;
+               /* lbCLName.Text = leaveData.CL_Title + leaveData.CL_FirstName + " " + leaveData.CL_LastName;
                 lbCLPos.Text = leaveData.CL_Position;
                 if (leaveData.CL_Comment != "") {
                     lbCLCom.Text = leaveData.CL_Comment;
@@ -212,7 +212,7 @@ namespace WEB_PERSONAL {
                         lbCH_C_Allow.Text = "-";
                     }
 
-                }
+                }*/
             }
 
         }

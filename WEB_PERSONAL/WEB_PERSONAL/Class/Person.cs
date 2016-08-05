@@ -157,6 +157,20 @@ namespace WEB_PERSONAL.Class {
         public bool IsTeacher() {
             return PositionWorkID == "10108" ? true : false;
         }
+        public string AdminPositionNameExtra() {
+            if(AdminPositionID == "1") {
+                return "มหาวิทยาลัยเทคโนโลยีราชมงคลตะวันออก";
+            } else if (AdminPositionID == "2") {
+                return CampusName;
+            } else if (AdminPositionID == "4") {
+                return FacultyName;
+            } else if (AdminPositionID == "5") {
+                return WorkDivisionName;
+            } else if (AdminPositionID == "10") {
+                return DivisionName;
+            }
+            return AdminPositionName;
+        }
 
     }
 
