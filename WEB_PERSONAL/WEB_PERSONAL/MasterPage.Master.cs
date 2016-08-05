@@ -51,8 +51,7 @@ namespace WEB_PERSONAL {
             OracleConnection.ClearAllPools();
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
-                //using (OracleCommand com = new OracleCommand("SELECT COUNT(LEAVE_ID) FROM LEV_DATA WHERE LEAVE_STATUS_ID in(1,5) AND CL_ID = '" + loginPerson.CitizenID + "'", con)) {
-                using (OracleCommand com = new OracleCommand("SELECT COUNT(LEAVE_ID) FROM LEV_DATA WHERE LEAVE_STATUS_ID in(1,5)", con)) {
+                using (OracleCommand com = new OracleCommand("SELECT COUNT(LEAVE_ID) FROM LEV_DATA WHERE LEAVE_STATUS_ID in(1,5) AND CL_ID = '" + loginPerson.CitizenID + "'", con)) {
                 using (OracleDataReader reader = com.ExecuteReader()) {
                         while (reader.Read()) {
                             count_cl = reader.GetInt32(0);
@@ -67,8 +66,7 @@ namespace WEB_PERSONAL {
                     lbLeaveCommentCount.Visible = false;
                 }
 
-                //using (OracleCommand com = new OracleCommand("SELECT COUNT(LEAVE_ID) FROM LEV_DATA WHERE LEAVE_STATUS_ID in(2,6) AND CH_ID = '" + loginPerson.CitizenID + "'", con)) {
-                using (OracleCommand com = new OracleCommand("SELECT COUNT(LEAVE_ID) FROM LEV_DATA WHERE LEAVE_STATUS_ID in(2,6)", con)) {
+                using (OracleCommand com = new OracleCommand("SELECT COUNT(LEAVE_ID) FROM LEV_DATA WHERE LEAVE_STATUS_ID in(2,6) AND CH_ID = '" + loginPerson.CitizenID + "'", con)) {
                 using (OracleDataReader reader = com.ExecuteReader()) {
                         while (reader.Read()) {
                             count_ch = reader.GetInt32(0);
