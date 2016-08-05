@@ -195,6 +195,30 @@ namespace WEB_PERSONAL
                 lbuTab3.CssClass = "ps-tab-selected";
                 notification.Attributes["class"] = "none";
                 notification.InnerHtml = "";
+
+                using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+                {
+                    con.Open();
+                    using (OracleCommand com = new OracleCommand("SELECT COUNT(*) FROM TB_WORK_DIVISION WHERE DIVISION_ID = " + ddlDivision.SelectedValue, con))
+                    {
+                        using (OracleDataReader reader = com.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                if (reader.GetInt32(0) == 0)
+                                {
+                                    ddlWorkDivision.Visible = false;
+                                    trWorkDivision.Visible = false;
+                                }
+                                else
+                                {
+                                    ddlWorkDivision.Visible = true;
+                                    trWorkDivision.Visible = true;
+                                }
+                            }
+                        }
+                    }
+                }
             } else if (_tab == "4") {
                 divTab4.Visible = true;
                 lbuTab4.CssClass = "ps-tab-selected";
@@ -509,7 +533,43 @@ namespace WEB_PERSONAL
             {
                 notification.Attributes["class"] = "none";
                 notification.InnerHtml = "";
+            }        
+
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+            {
+                con.Open();
+                using (OracleCommand com = new OracleCommand("SELECT COUNT(*) FROM TB_WORK_DIVISION WHERE DIVISION_ID = " + ddlDivision.SelectedValue, con))
+                {
+                    using (OracleDataReader reader = com.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            if (reader.GetInt32(0) != 0 && ddlWorkDivision.SelectedIndex == 0)
+                            {
+                                notification.Attributes["class"] = "alert alert_danger";
+                                notification.InnerHtml = "";
+                                notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
+                                notification.InnerHtml += "<div>กรุณาเลือกงาน / ฝ่าย</div>";
+                                return;
+                            }
+                            else
+                            {
+                                notification.Attributes["class"] = "none";
+                                notification.InnerHtml = "";
+                            }
+                            if(reader.GetInt32(0) == 0)
+                            {
+                                ddlWorkDivision.SelectedIndex = 0;
+                                using (OracleCommand com1 = new OracleCommand("UPDATE PS_PERSON SET PS_WORK_DIVISION_ID = null where ps_citizen_id = '" + p + "'", con))
+                                {
+                                    com1.ExecuteNonQuery();
+                                }
+                            }
+                        }
+                    }
+                }
             }
+
             if (ddlStaffType.SelectedIndex == 0)
             {
                 notification.Attributes["class"] = "alert alert_danger";
@@ -537,26 +597,49 @@ namespace WEB_PERSONAL
                 notification.InnerHtml = "";
             }
 
-            PS_PERSON P0 = new PS_PERSON();
-            P0.PS_CAMPUS_ID = Convert.ToInt32(ddlCampus.SelectedValue);
-            P0.PS_FACULTY_ID = Convert.ToInt32(ddlFaculty.SelectedValue);
-            P0.PS_DIVISION_ID = Convert.ToInt32(ddlDivision.SelectedValue);
-            P0.PS_WORK_DIVISION_ID = Convert.ToInt32(ddlWorkDivision.SelectedValue); ;
-            P0.PS_STAFFTYPE_ID = Convert.ToInt32(ddlStaffType.SelectedValue);
-            P0.PS_BUDGET_ID = Convert.ToInt32(ddlBudget.SelectedValue);
-            P0.PS_SPECIAL_WORK = tbSpecialWork.Text;
-            P0.PS_TEACH_ISCED_ID = ddlTeachISCED.SelectedValue;
-            P0.PS_INWORK_DATE = Util.ODT(tbDateInwork.Text);
-            P0.PS_SALARY = Convert.ToInt32(lblPositionSalary.Text);
-            P0.PS_POSS_SALARY = Convert.ToInt32(lblPositionSalary.Text);
-            P0.PS_SW_ID = Convert.ToInt32(ddlTab10StatusWork.SelectedValue);
-            P0.PS_CITIZEN_ID = p;
+            if (ddlWorkDivision.SelectedIndex == 0)
+            {
+                PS_PERSON P0 = new PS_PERSON();
+                P0.PS_CAMPUS_ID = Convert.ToInt32(ddlCampus.SelectedValue);
+                P0.PS_FACULTY_ID = Convert.ToInt32(ddlFaculty.SelectedValue);
+                P0.PS_DIVISION_ID = Convert.ToInt32(ddlDivision.SelectedValue);
+                P0.PS_STAFFTYPE_ID = Convert.ToInt32(ddlStaffType.SelectedValue);
+                P0.PS_BUDGET_ID = Convert.ToInt32(ddlBudget.SelectedValue);
+                P0.PS_SPECIAL_WORK = tbSpecialWork.Text;
+                P0.PS_TEACH_ISCED_ID = ddlTeachISCED.SelectedValue;
+                P0.PS_INWORK_DATE = Util.ODT(tbDateInwork.Text);
+                P0.PS_SALARY = Convert.ToInt32(lblPositionSalary.Text);
+                P0.PS_POSS_SALARY = Convert.ToInt32(lblPositionSalary.Text);
+                P0.PS_SW_ID = Convert.ToInt32(ddlTab10StatusWork.SelectedValue);
+                P0.PS_CITIZEN_ID = p;
 
-            P0.UPDATE_PS_PERSON_TAB3();
-            notification.Attributes["class"] = "alert alert_success";
-            notification.InnerHtml = "";
-            notification.InnerHtml += "<div><img src='Image/Small/correct.png' /><strong>บันทึกข้อมูลการทำงานสำเร็จ</strong></div>";
+                P0.UPDATE_PS_PERSON_TAB3_DV();
+                notification.Attributes["class"] = "alert alert_success";
+                notification.InnerHtml = "";
+                notification.InnerHtml += "<div><img src='Image/Small/correct.png' /><strong>บันทึกข้อมูลการทำงานสำเร็จ</strong></div>";
+            }
+            else
+            {
+                PS_PERSON P0 = new PS_PERSON();
+                P0.PS_CAMPUS_ID = Convert.ToInt32(ddlCampus.SelectedValue);
+                P0.PS_FACULTY_ID = Convert.ToInt32(ddlFaculty.SelectedValue);
+                P0.PS_DIVISION_ID = Convert.ToInt32(ddlDivision.SelectedValue);
+                P0.PS_WORK_DIVISION_ID = Convert.ToInt32(ddlWorkDivision.SelectedValue);
+                P0.PS_STAFFTYPE_ID = Convert.ToInt32(ddlStaffType.SelectedValue);
+                P0.PS_BUDGET_ID = Convert.ToInt32(ddlBudget.SelectedValue);
+                P0.PS_SPECIAL_WORK = tbSpecialWork.Text;
+                P0.PS_TEACH_ISCED_ID = ddlTeachISCED.SelectedValue;
+                P0.PS_INWORK_DATE = Util.ODT(tbDateInwork.Text);
+                P0.PS_SALARY = Convert.ToInt32(lblPositionSalary.Text);
+                P0.PS_POSS_SALARY = Convert.ToInt32(lblPositionSalary.Text);
+                P0.PS_SW_ID = Convert.ToInt32(ddlTab10StatusWork.SelectedValue);
+                P0.PS_CITIZEN_ID = p;
 
+                P0.UPDATE_PS_PERSON_TAB3_WD();
+                notification.Attributes["class"] = "alert alert_success";
+                notification.InnerHtml = "";
+                notification.InnerHtml += "<div><img src='Image/Small/correct.png' /><strong>บันทึกข้อมูลการทำงานสำเร็จ</strong></div>";
+            }
         }
 
         protected void lbuTab4Save_Click(object sender, EventArgs e) {
@@ -1844,6 +1927,8 @@ namespace WEB_PERSONAL
                                     BindView2();
                                     BindView3();
                                     BindView4();
+
+                                    
                                     //page.Response.Redirect(pageURL + "?p=" + psID + "&state=2");
                                     hfpsID.Value = p;
                                     selectTab("1");
@@ -3635,11 +3720,35 @@ namespace WEB_PERSONAL
                         ddlWorkDivision.DataBind();
                         sqlConn.Close();
 
-                        ddlWorkDivision.Items.Insert(0, new ListItem("--กรุณาเลือกงาน / ฝ่าย--", "0"));
+                        ddlWorkDivision.Items.Insert(0, new ListItem("--กรุณาเลือกงาน / ฝ่าย--"));
                     }
                 }
             }
             catch { }
+
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+            {
+                con.Open();
+                using (OracleCommand com = new OracleCommand("SELECT COUNT(*) FROM TB_WORK_DIVISION WHERE DIVISION_ID = " + ddlDivision.SelectedValue, con))
+                {
+                    using (OracleDataReader reader = com.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            if (reader.GetInt32(0) == 0)
+                            {
+                                ddlWorkDivision.Visible = false;
+                                trWorkDivision.Visible = false;
+                            }
+                            else
+                            {
+                                ddlWorkDivision.Visible = true;
+                                trWorkDivision.Visible = true;
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         protected void SQLddlPositionType14()

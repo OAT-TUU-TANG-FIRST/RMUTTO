@@ -104,7 +104,7 @@
                     <tr>
                         <td class="col1">วันเกิด</td>
                         <td class="col2">
-                            <asp:TextBox ID="tbBirthday" runat="server" CssClass="ps-textbox"></asp:TextBox><span class="textred">*</span>
+                            <asp:TextBox ID="tbBirthday" runat="server" CssClass="ps-textbox" placeholder="01 ม.ค. 25xx" MaxLength="12"></asp:TextBox><span class="textred">*</span>
                         </td>
                     </tr>
                 </table>
@@ -391,10 +391,10 @@
                             <asp:DropDownList ID="ddlDivision" runat="server" CssClass="ps-dropdown" OnSelectedIndexChanged="ddlDivision_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList><span class="textred">*</span>
                         </td>
                     </tr>
-                    <tr>
+                    <tr id="trWorkDivision" runat="server">
                         <td class="col1">งาน / ฝ่าย</td>
                         <td class="col2">
-                            <asp:DropDownList ID="ddlWorkDivision" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlWorkDivision" runat="server" CssClass="ps-dropdown"></asp:DropDownList><span class="textred">*</span>
                         </td>
                     </tr>
                     <tr>
@@ -428,7 +428,7 @@
                     <tr>
                         <td class="col1">วันที่บรรจุ</td>
                         <td class="col2">
-                            <asp:TextBox ID="tbDateInwork" runat="server" CssClass="ps-textbox"></asp:TextBox><span class="textred">*</span>
+                            <asp:TextBox ID="tbDateInwork" runat="server" CssClass="ps-textbox" placeholder="01 ม.ค. 25xx" MaxLength="12"></asp:TextBox><span class="textred">*</span>
                         </td>
                     </tr>
                     <tr>
@@ -492,7 +492,7 @@
                     <tr>
                         <td class="col1">วันที่ได้รับตำแหน่ง</td>
                         <td class="col2">
-                            <asp:TextBox ID="tbDateGetPositionGoverTab4" runat="server" CssClass="ps-textbox" MaxLength="12"></asp:TextBox><span class="textred">*</span>
+                            <asp:TextBox ID="tbDateGetPositionGoverTab4" runat="server" CssClass="ps-textbox" placeholder="01 ม.ค. 25xx" MaxLength="12"></asp:TextBox><span class="textred">*</span>
                         </td>
                     </tr>
                     <tr>
@@ -533,7 +533,7 @@
                     <tr>
                         <td class="col1">วันที่ได้รับตำแหน่ง</td>
                         <td class="col2">
-                            <asp:TextBox ID="tbDateGetPositionEMPTab4" runat="server" CssClass="ps-textbox" MaxLength="12"></asp:TextBox><span class="textred">*</span>
+                            <asp:TextBox ID="tbDateGetPositionEMPTab4" runat="server" CssClass="ps-textbox" placeholder="01 ม.ค. 25xx" MaxLength="12"></asp:TextBox><span class="textred">*</span>
                         </td>
                     </tr>
                     <tr>
@@ -826,7 +826,7 @@
                 <tr>
                     <td class="col1">วันที่มีผลบังคับใช้ (วัน เดือน ปี)</td>
                     <td class="col2">
-                        <asp:TextBox ID="tbUseDate11" runat="server" CssClass="ps-textbox"></asp:TextBox><span class="textred">*</span>
+                        <asp:TextBox ID="tbUseDate11" runat="server" CssClass="ps-textbox" placeholder="01 ม.ค. 25xx" MaxLength="12"></asp:TextBox><span class="textred">*</span>
                     </td>
                 </tr>
             </table>
@@ -1104,7 +1104,7 @@
                 <tr>
                     <td class="col1">วัน เดือน ปี</td>
                     <td class="col2">
-                        <asp:TextBox ID="tbDate14" runat="server" CssClass="ps-textbox"></asp:TextBox><span class="textred">*</span>
+                        <asp:TextBox ID="tbDate14" runat="server" CssClass="ps-textbox" placeholder="01 ม.ค. 25xx" MaxLength="12"></asp:TextBox><span class="textred">*</span>
                     </td>
                 </tr>
                 <tr>

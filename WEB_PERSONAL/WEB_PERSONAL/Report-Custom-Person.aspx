@@ -31,14 +31,6 @@
             <div class="ps-div-title-red">ออกรายงานบุคลากร</div>
             <div style="display: inline-block; margin-right: 20px;">
                 <table class="auto-style1" style="text-align: center">
-                    <tr>
-                        <td>
-                            <asp:ImageButton ID="ImgPdf32" Height="50px" ImageUrl="Image/x32/PDF32.png" runat="server" OnClick="ImgPdf32_Click"></asp:ImageButton></td>
-                        <td>
-                            <asp:ImageButton ID="ImgExcel32" Height="50px" ImageUrl="Image/x32/Excel32.png" runat="server" OnClick="ImgExcel32_Click"></asp:ImageButton></td>
-                        <td>
-                            <asp:ImageButton ID="ImgWord32" Height="50px" ImageUrl="Image/x32/Word32.png" runat="server" OnClick="ImgWord32_Click"></asp:ImageButton></td>
-                    </tr>
 
                 </table>
             </div>
@@ -64,6 +56,6 @@
         <div class="ps-separator"></div>
     </asp:Panel>
     <div>
-        <CR:CrystalReportViewer ID="CrystalReportViewer1" runat="server" AutoDataBind="true" />
+        <CR:CrystalReportViewer ID="CrystalReportViewer1" runat="server" AutoDataBind="true" BestFitPage="False" ToolPanelView="None" />
     </div>
 </asp:Content>

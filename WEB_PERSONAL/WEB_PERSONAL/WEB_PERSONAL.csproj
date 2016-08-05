@@ -1048,15 +1048,15 @@
     <Content Include="Font\Roboto\Roboto-Regular.ttf" />
     <Content Include="Font\Roboto\Roboto-Thin.ttf" />
     <Content Include="Font\Roboto\Roboto-ThinItalic.ttf" />
-    <Content Include="DTpersonnel.xsc">
+    <Content Include="Dataset\DTpersonnel.xsc">
       <DependentUpon>DTpersonnel.xsd</DependentUpon>
     </Content>
-    <None Include="DTpersonnel.xsd">
+    <None Include="Dataset\DTpersonnel.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DTpersonnel.Designer.cs</LastGenOutput>
     </None>
-    <Content Include="DTpersonnel.xss">
+    <Content Include="Dataset\DTpersonnel.xss">
       <DependentUpon>DTpersonnel.xsd</DependentUpon>
     </Content>
     <None Include="personalDataSet.xsd">
@@ -1229,7 +1229,7 @@
     <Compile Include="Division-ADMIN.aspx.designer.cs">
       <DependentUpon>Division-ADMIN.aspx</DependentUpon>
     </Compile>
-    <Compile Include="DTpersonnel.Designer.cs">
+    <Compile Include="Dataset\DTpersonnel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DTpersonnel.xsd</DependentUpon>

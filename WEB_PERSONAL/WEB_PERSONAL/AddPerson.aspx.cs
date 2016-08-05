@@ -145,11 +145,35 @@ namespace WEB_PERSONAL
                         ddlWorkDivision.DataBind();
                         sqlConn.Close();
 
-                        ddlWorkDivision.Items.Insert(0, new ListItem("--กรุณาเลือกงาน / ฝ่าย--", "0"));
+                        ddlWorkDivision.Items.Insert(0, new ListItem("--กรุณาเลือกงาน / ฝ่าย--"));
                     }
                 }
             }
             catch { }
+
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+            {
+                con.Open();
+                using (OracleCommand com = new OracleCommand("SELECT COUNT(*) FROM TB_WORK_DIVISION WHERE DIVISION_ID = " + ddlDivision.SelectedValue, con))
+                {
+                    using (OracleDataReader reader = com.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            if (reader.GetInt32(0) == 0)
+                            {
+                                ddlWorkDivision.Visible = false;
+                                trWorkDivision.Visible = false;
+                            }
+                            else
+                            {
+                                ddlWorkDivision.Visible = true;
+                                trWorkDivision.Visible = true;
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         protected void ClearText()
@@ -329,7 +353,35 @@ namespace WEB_PERSONAL
             {
                 notification.Attributes["class"] = "none";
                 notification.InnerHtml = "";
+            }       
+
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+            {
+                con.Open();
+                using (OracleCommand com = new OracleCommand("SELECT COUNT(*) FROM TB_WORK_DIVISION WHERE DIVISION_ID = " + ddlDivision.SelectedValue, con))
+                {
+                    using (OracleDataReader reader = com.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            if (reader.GetInt32(0) != 0 && ddlWorkDivision.SelectedIndex == 0)
+                            {
+                                notification.Attributes["class"] = "alert alert_danger";
+                                notification.InnerHtml = "";
+                                notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
+                                notification.InnerHtml += "<div>กรุณาเลือกงาน / ฝ่าย</div>";
+                                return;
+                            }
+                            else
+                            {
+                                notification.Attributes["class"] = "none";
+                                notification.InnerHtml = "";
+                            }
+                        }
+                    }
+                }
             }
+
             if (ddlStaffType.SelectedIndex == 0)
             {
                 notification.Attributes["class"] = "alert alert_danger";
@@ -343,45 +395,110 @@ namespace WEB_PERSONAL
                 notification.Attributes["class"] = "none";
                 notification.InnerHtml = "";
             }
-
-            PS_PERSON P0 = new PS_PERSON();
-            P0.PS_MINISTRY_ID = 1;
-            P0.PS_GROM = "มหาวิทยาลัยเทคโนโลยีราชมงคลตะวันออก";
-            P0.PS_CITIZEN_ID = tbCitizenID.Text;
-            P0.PS_TITLE_ID = Convert.ToInt32(ddlTitle.SelectedValue);
-            P0.PS_FN_TH = tbNameTH.Text;
-            P0.PS_LN_TH = tbLastNameTH.Text;
-            P0.PS_FN_EN = tbNameEN.Text;
-            P0.PS_LN_EN = tbLastNameEN.Text;
-            P0.PS_GENDER_ID = Convert.ToInt32(ddlGender.SelectedValue);
-            P0.PS_BIRTHDAY_DATE = Util.ODT(tbBirthday.Text);
-            P0.PS_BIRTHDAY_LONG = Util.ToThaiWordBirthday(tbBirthday.Text);
-            P0.PS_EMAIL = tbEmail.Text;
-            P0.PS_PHONE = tbPhone.Text;
-            P0.PS_TELEPHONE_WORK = tbTelephone.Text;
-            P0.PS_RACE_ID = Convert.ToInt32(ddlRace.SelectedValue);
-            P0.PS_NATION_ID = ddlNation.SelectedValue;
-            P0.PS_BLOOD_ID = Convert.ToInt32(ddlBlood.SelectedValue);
-            P0.PS_RELIGION_ID = Convert.ToInt32(ddlReligion.SelectedValue);
-            P0.PS_STATUS_ID = Convert.ToInt32(ddlStatus.SelectedValue);
-            P0.PS_SW_ID = 6;
-            P0.PS_CAMPUS_ID = Convert.ToInt32(ddlCampus.SelectedValue);
-            P0.PS_FACULTY_ID = Convert.ToInt32(ddlFaculty.SelectedValue);
-            P0.PS_DIVISION_ID = Convert.ToInt32(ddlDivision.SelectedValue);
-            P0.PS_WORK_DIVISION_ID = Convert.ToInt32(ddlWorkDivision.SelectedValue); ;
-            P0.PS_STAFFTYPE_ID = Convert.ToInt32(ddlStaffType.SelectedValue);
-            P0.PS_PASSWORD = Util.RandomPassword(8);
-       
-            if (P0.CheckUseCitizenID())
+            if (tbDateInwork.Text == "")
             {
-                P0.INSERT_PS_PERSON();
-                Util.SendMail(P0);
-                ClearText();
-                MultiView1.ActiveViewIndex = 1;
+                notification.Attributes["class"] = "alert alert_danger";
+                notification.InnerHtml = "";
+                notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
+                notification.InnerHtml += "<div>กรุณากรอกวันที่บรรจุ</div>";
+                return;
             }
             else
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('เลขบัตรประชาชนซ้ำ !')", true);
+                notification.Attributes["class"] = "none";
+                notification.InnerHtml = "";
+            }
+
+            if (ddlWorkDivision.SelectedIndex == 0)
+            {
+                PS_PERSON P0 = new PS_PERSON();
+                P0.PS_MINISTRY_ID = 1;
+                P0.PS_GROM = "มหาวิทยาลัยเทคโนโลยีราชมงคลตะวันออก";
+                P0.PS_CITIZEN_ID = tbCitizenID.Text;
+                P0.PS_TITLE_ID = Convert.ToInt32(ddlTitle.SelectedValue);
+                P0.PS_FN_TH = tbNameTH.Text;
+                P0.PS_LN_TH = tbLastNameTH.Text;
+                P0.PS_FN_EN = tbNameEN.Text;
+                P0.PS_LN_EN = tbLastNameEN.Text;
+                P0.PS_GENDER_ID = Convert.ToInt32(ddlGender.SelectedValue);
+                P0.PS_BIRTHDAY_DATE = Util.ODT(tbBirthday.Text);
+                P0.PS_BIRTHDAY_LONG = Util.ToThaiWordBirthday(tbBirthday.Text);
+                P0.PS_EMAIL = tbEmail.Text;
+                P0.PS_PHONE = tbPhone.Text;
+                P0.PS_TELEPHONE_WORK = tbTelephone.Text;
+                P0.PS_RACE_ID = Convert.ToInt32(ddlRace.SelectedValue);
+                P0.PS_NATION_ID = ddlNation.SelectedValue;
+                P0.PS_BLOOD_ID = Convert.ToInt32(ddlBlood.SelectedValue);
+                P0.PS_RELIGION_ID = Convert.ToInt32(ddlReligion.SelectedValue);
+                P0.PS_STATUS_ID = Convert.ToInt32(ddlStatus.SelectedValue);
+                P0.PS_SW_ID = 6;
+                P0.PS_CAMPUS_ID = Convert.ToInt32(ddlCampus.SelectedValue);
+                P0.PS_FACULTY_ID = Convert.ToInt32(ddlFaculty.SelectedValue);
+                P0.PS_DIVISION_ID = Convert.ToInt32(ddlDivision.SelectedValue);
+                P0.PS_STAFFTYPE_ID = Convert.ToInt32(ddlStaffType.SelectedValue);
+                P0.PS_INWORK_DATE = Util.ODT(tbDateInwork.Text);
+                P0.PS_PASSWORD = Util.RandomPassword(8);
+
+                if (P0.CheckUseCitizenID())
+                {
+                    P0.INSERT_PS_PERSON_DV();
+                    Util.SendMail(P0);
+                    ClearText();
+                    MultiView1.ActiveViewIndex = 1;
+                }
+                else
+                {
+                    notification.Attributes["class"] = "alert alert_danger";
+                    notification.InnerHtml = "";
+                    notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>แจ้งเตือน</strong></div>";
+                    notification.InnerHtml += "<div>มีรหัสบัตรประชาชนที่กรอกแล้วในฐานข้อมูล</div>";
+                }
+            }
+            else
+            {
+                PS_PERSON P0 = new PS_PERSON();
+                P0.PS_MINISTRY_ID = 1;
+                P0.PS_GROM = "มหาวิทยาลัยเทคโนโลยีราชมงคลตะวันออก";
+                P0.PS_CITIZEN_ID = tbCitizenID.Text;
+                P0.PS_TITLE_ID = Convert.ToInt32(ddlTitle.SelectedValue);
+                P0.PS_FN_TH = tbNameTH.Text;
+                P0.PS_LN_TH = tbLastNameTH.Text;
+                P0.PS_FN_EN = tbNameEN.Text;
+                P0.PS_LN_EN = tbLastNameEN.Text;
+                P0.PS_GENDER_ID = Convert.ToInt32(ddlGender.SelectedValue);
+                P0.PS_BIRTHDAY_DATE = Util.ODT(tbBirthday.Text);
+                P0.PS_BIRTHDAY_LONG = Util.ToThaiWordBirthday(tbBirthday.Text);
+                P0.PS_EMAIL = tbEmail.Text;
+                P0.PS_PHONE = tbPhone.Text;
+                P0.PS_TELEPHONE_WORK = tbTelephone.Text;
+                P0.PS_RACE_ID = Convert.ToInt32(ddlRace.SelectedValue);
+                P0.PS_NATION_ID = ddlNation.SelectedValue;
+                P0.PS_BLOOD_ID = Convert.ToInt32(ddlBlood.SelectedValue);
+                P0.PS_RELIGION_ID = Convert.ToInt32(ddlReligion.SelectedValue);
+                P0.PS_STATUS_ID = Convert.ToInt32(ddlStatus.SelectedValue);
+                P0.PS_SW_ID = 6;
+                P0.PS_CAMPUS_ID = Convert.ToInt32(ddlCampus.SelectedValue);
+                P0.PS_FACULTY_ID = Convert.ToInt32(ddlFaculty.SelectedValue);
+                P0.PS_DIVISION_ID = Convert.ToInt32(ddlDivision.SelectedValue);
+                P0.PS_WORK_DIVISION_ID = Convert.ToInt32(ddlWorkDivision.SelectedValue);
+                P0.PS_STAFFTYPE_ID = Convert.ToInt32(ddlStaffType.SelectedValue);
+                P0.PS_INWORK_DATE = Util.ODT(tbDateInwork.Text);
+                P0.PS_PASSWORD = Util.RandomPassword(8);
+
+                if (P0.CheckUseCitizenID())
+                {
+                    P0.INSERT_PS_PERSON_WD();
+                    Util.SendMail(P0);
+                    ClearText();
+                    MultiView1.ActiveViewIndex = 1;
+                }
+                else
+                {
+                    notification.Attributes["class"] = "alert alert_danger";
+                    notification.InnerHtml = "";
+                    notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>แจ้งเตือน</strong></div>";
+                    notification.InnerHtml += "<div>มีรหัสบัตรประชาชนที่กรอกแล้วในฐานข้อมูล</div>";
+                }
             }
         }
 

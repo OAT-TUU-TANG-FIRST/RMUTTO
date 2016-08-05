@@ -163,11 +163,10 @@ namespace WEB_PERSONAL.Entities {
             this.PS_START_ADMIN_POSI_ID = PS_START_ADMIN_POSI_ID;
         }
 
-        public int INSERT_PS_PERSON() {
+        public int INSERT_PS_PERSON_DV() {
             int id = 0;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
-            //OracleCommand command = new OracleCommand("INSERT INTO PS_PERSON (PS_CITIZEN_ID,PS_MINISTRY_ID,PS_GROM,PS_TITLE_ID,PS_FN_TH,PS_FN_EN,PS_LN_TH,PS_LN_EN,PS_GENDER_ID,PS_BIRTHDAY_DATE,PS_BIRTHDAY_LONG,PS_RACE_ID,PS_NATION_ID,PS_BLOOD_ID,PS_EMAIL,PS_PHONE,PS_TELEPHONE_WORK,PS_RELIGION_ID,PS_STATUS_ID,PS_DAD_FN,PS_DAD_LN,PS_MOM_FN,PS_MOM_LN,PS_MOM_LN_OLD,PS_LOV_FN,PS_LOV_LN,PS_LOV_LN_OLD,PS_HOMEADD,PS_SOI,PS_MOO,PS_STREET,PS_PROVINCE_ID,PS_AMPHUR_ID,PS_DISTRICT,PS_ZIPCODE,PS_COUNTRY_ID,PS_STATE,PS_HOMEADD_NOW,PS_SOI_NOW,PS_MOO_NOW,PS_STREET_NOW,PS_PROVINCE_ID_NOW,PS_AMPHUR_ID_NOW,PS_DISTRICT_ID_NOW,PS_ZIPCODE_NOW,PS_COUNTRY_ID_NOW,PS_STATE_NOW,PS_CAMPUS_ID,PS_FACULTY_ID,PS_DIVISION_ID,PS_WORK_DIVISION_ID,PS_STAFFTYPE_ID,PS_BUDGET_ID,PS_ADMIN_POS_ID,PS_WORK_POS_ID,PS_ACAD_POS_ID,PS_INWORK_DATE,PS_RETIRE_DATE,PS_RETIRE_LONG,PS_SPECIAL_WORK,PS_TEACH_ISCED_ID,PS_PASSWORD,PS_POSITION_ID,PS_SALARY,PS_PIG_ID,PS_SW_ID,PS_RANK_ID,PS_POSS_SALARY,PS_PIE_ID,PS_PID_ID) VALUES (:PS_CITIZEN_ID,:PS_MINISTRY_ID,:PS_GROM,:PS_TITLE_ID,:PS_FN_TH,:PS_FN_EN,:PS_LN_TH,:PS_LN_EN,:PS_GENDER_ID,:PS_BIRTHDAY_DATE,:PS_BIRTHDAY_LONG,:PS_RACE_ID,:PS_NATION_ID,:PS_BLOOD_ID,:PS_EMAIL,:PS_PHONE,:PS_TELEPHONE_WORK,:PS_RELIGION_ID,:PS_STATUS_ID,:PS_DAD_FN, :PS_DAD_LN, :PS_MOM_FN, :PS_MOM_LN, :PS_MOM_LN_OLD, :PS_LOV_FN, :PS_LOV_LN, :PS_LOV_LN_OLD, :PS_HOMEADD, :PS_SOI, :PS_MOO, :PS_STREET, :PS_PROVINCE_ID, :PS_AMPHUR_ID, :PS_DISTRICT, :PS_ZIPCODE, :PS_COUNTRY_ID, :PS_STATE, :PS_HOMEADD_NOW, :PS_SOI_NOW, :PS_MOO_NOW, :PS_STREET_NOW, :PS_PROVINCE_ID_NOW, :PS_AMPHUR_ID_NOW, :PS_DISTRICT_ID_NOW, :PS_ZIPCODE_NOW, :PS_COUNTRY_ID_NOW, :PS_STATE_NOW, :PS_CAMPUS_ID, :PS_FACULTY_ID, :PS_DIVISION_ID, :PS_WORK_DIVISION_ID, :PS_STAFFTYPE_ID, :PS_BUDGET_ID, :PS_ADMIN_POS_ID, :PS_WORK_POS_ID, :PS_ACAD_POS_ID, :PS_INWORK_DATE, :PS_RETIRE_DATE, :PS_RETIRE_LONG, :PS_SPECIAL_WORK, :PS_TEACH_ISCED_ID, :PS_PASSWORD, :PS_POSITION_ID, :PS_SALARY, :PS_PIG_ID, :PS_SW_ID, :PS_RANK_ID, :PS_POSS_SALARY, :PS_PIE_ID, :PS_PID_ID)", conn);
-            OracleCommand command = new OracleCommand("INSERT INTO PS_PERSON (PS_MINISTRY_ID,PS_GROM,PS_CITIZEN_ID,PS_TITLE_ID,PS_FN_TH,PS_LN_TH,PS_FN_EN,PS_LN_EN,PS_GENDER_ID,PS_BIRTHDAY_DATE,PS_BIRTHDAY_LONG,PS_EMAIL,PS_PHONE,PS_TELEPHONE_WORK,PS_RACE_ID,PS_NATION_ID,PS_BLOOD_ID,PS_RELIGION_ID,PS_STATUS_ID,PS_SW_ID,PS_CAMPUS_ID,PS_FACULTY_ID,PS_DIVISION_ID,PS_WORK_DIVISION_ID,PS_STAFFTYPE_ID,PS_PASSWORD) VALUES (:PS_MINISTRY_ID,:PS_GROM,:PS_CITIZEN_ID,:PS_TITLE_ID,:PS_FN_TH,:PS_LN_TH,:PS_FN_EN,:PS_LN_EN,:PS_GENDER_ID,:PS_BIRTHDAY_DATE,:PS_BIRTHDAY_LONG,:PS_EMAIL,:PS_PHONE,:PS_TELEPHONE_WORK,:PS_RACE_ID,:PS_NATION_ID,:PS_BLOOD_ID,:PS_RELIGION_ID,:PS_STATUS_ID,:PS_SW_ID,:PS_CAMPUS_ID,:PS_FACULTY_ID,:PS_DIVISION_ID,:PS_WORK_DIVISION_ID,:PS_STAFFTYPE_ID,:PS_PASSWORD)", conn);
+            OracleCommand command = new OracleCommand("INSERT INTO PS_PERSON (PS_MINISTRY_ID,PS_GROM,PS_CITIZEN_ID,PS_TITLE_ID,PS_FN_TH,PS_LN_TH,PS_FN_EN,PS_LN_EN,PS_GENDER_ID,PS_BIRTHDAY_DATE,PS_BIRTHDAY_LONG,PS_EMAIL,PS_PHONE,PS_TELEPHONE_WORK,PS_RACE_ID,PS_NATION_ID,PS_BLOOD_ID,PS_RELIGION_ID,PS_STATUS_ID,PS_SW_ID,PS_CAMPUS_ID,PS_FACULTY_ID,PS_DIVISION_ID,PS_STAFFTYPE_ID,PS_INWORK_DATE,PS_PASSWORD) VALUES (:PS_MINISTRY_ID,:PS_GROM,:PS_CITIZEN_ID,:PS_TITLE_ID,:PS_FN_TH,:PS_LN_TH,:PS_FN_EN,:PS_LN_EN,:PS_GENDER_ID,:PS_BIRTHDAY_DATE,:PS_BIRTHDAY_LONG,:PS_EMAIL,:PS_PHONE,:PS_TELEPHONE_WORK,:PS_RACE_ID,:PS_NATION_ID,:PS_BLOOD_ID,:PS_RELIGION_ID,:PS_STATUS_ID,:PS_SW_ID,:PS_CAMPUS_ID,:PS_FACULTY_ID,:PS_DIVISION_ID,:PS_STAFFTYPE_ID,:PS_INWORK_DATE,:PS_PASSWORD)", conn);
 
             try {
                 if (conn.State != ConnectionState.Open) {
@@ -196,14 +195,67 @@ namespace WEB_PERSONAL.Entities {
                 command.Parameters.Add(new OracleParameter("PS_CAMPUS_ID", PS_CAMPUS_ID));
                 command.Parameters.Add(new OracleParameter("PS_FACULTY_ID", PS_FACULTY_ID));
                 command.Parameters.Add(new OracleParameter("PS_DIVISION_ID", PS_DIVISION_ID));
-                command.Parameters.Add(new OracleParameter("PS_WORK_DIVISION_ID", PS_WORK_DIVISION_ID));
                 command.Parameters.Add(new OracleParameter("PS_STAFFTYPE_ID", PS_STAFFTYPE_ID));
+                command.Parameters.Add(new OracleParameter("PS_INWORK_DATE", PS_INWORK_DATE));
                 command.Parameters.Add(new OracleParameter("PS_PASSWORD", PS_PASSWORD));
-
                 id = command.ExecuteNonQuery();
             } catch (Exception ex) {
                 throw ex;
             } finally {
+                command.Dispose();
+                conn.Close();
+            }
+            return id;
+        }
+
+        public int INSERT_PS_PERSON_WD()
+        {
+            int id = 0;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            OracleCommand command = new OracleCommand("INSERT INTO PS_PERSON (PS_MINISTRY_ID,PS_GROM,PS_CITIZEN_ID,PS_TITLE_ID,PS_FN_TH,PS_LN_TH,PS_FN_EN,PS_LN_EN,PS_GENDER_ID,PS_BIRTHDAY_DATE,PS_BIRTHDAY_LONG,PS_EMAIL,PS_PHONE,PS_TELEPHONE_WORK,PS_RACE_ID,PS_NATION_ID,PS_BLOOD_ID,PS_RELIGION_ID,PS_STATUS_ID,PS_SW_ID,PS_CAMPUS_ID,PS_FACULTY_ID,PS_DIVISION_ID,PS_WORK_DIVISION_ID,PS_STAFFTYPE_ID,PS_INWORK_DATE,PS_PASSWORD) VALUES (:PS_MINISTRY_ID,:PS_GROM,:PS_CITIZEN_ID,:PS_TITLE_ID,:PS_FN_TH,:PS_LN_TH,:PS_FN_EN,:PS_LN_EN,:PS_GENDER_ID,:PS_BIRTHDAY_DATE,:PS_BIRTHDAY_LONG,:PS_EMAIL,:PS_PHONE,:PS_TELEPHONE_WORK,:PS_RACE_ID,:PS_NATION_ID,:PS_BLOOD_ID,:PS_RELIGION_ID,:PS_STATUS_ID,:PS_SW_ID,:PS_CAMPUS_ID,:PS_FACULTY_ID,:PS_DIVISION_ID,:PS_WORK_DIVISION_ID,:PS_STAFFTYPE_ID,:PS_INWORK_DATE,:PS_PASSWORD)", conn);
+
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                command.Parameters.Add(new OracleParameter("PS_MINISTRY_ID", PS_MINISTRY_ID));
+                command.Parameters.Add(new OracleParameter("PS_GROM", PS_GROM));
+                command.Parameters.Add(new OracleParameter("PS_CITIZEN_ID", PS_CITIZEN_ID));
+                command.Parameters.Add(new OracleParameter("PS_TITLE_ID", PS_TITLE_ID));
+                command.Parameters.Add(new OracleParameter("PS_FN_TH", PS_FN_TH));
+                command.Parameters.Add(new OracleParameter("PS_LN_TH", PS_LN_TH));
+                command.Parameters.Add(new OracleParameter("PS_FN_EN", PS_FN_EN));
+                command.Parameters.Add(new OracleParameter("PS_LN_EN", PS_LN_EN));
+                command.Parameters.Add(new OracleParameter("PS_GENDER_ID", PS_GENDER_ID));
+                command.Parameters.Add(new OracleParameter("PS_BIRTHDAY_DATE", PS_BIRTHDAY_DATE));
+                command.Parameters.Add(new OracleParameter("PS_BIRTHDAY_LONG", PS_BIRTHDAY_LONG));
+                command.Parameters.Add(new OracleParameter("PS_EMAIL", PS_EMAIL));
+                command.Parameters.Add(new OracleParameter("PS_PHONE", PS_PHONE));
+                command.Parameters.Add(new OracleParameter("PS_TELEPHONE_WORK", PS_TELEPHONE_WORK));
+                command.Parameters.Add(new OracleParameter("PS_RACE_ID", PS_RACE_ID));
+                command.Parameters.Add(new OracleParameter("PS_NATION_ID", PS_NATION_ID));
+                command.Parameters.Add(new OracleParameter("PS_BLOOD_ID", PS_BLOOD_ID));
+                command.Parameters.Add(new OracleParameter("PS_RELIGION_ID", PS_RELIGION_ID));
+                command.Parameters.Add(new OracleParameter("PS_STATUS_ID", PS_STATUS_ID));
+                command.Parameters.Add(new OracleParameter("PS_SW_ID", PS_SW_ID));
+                command.Parameters.Add(new OracleParameter("PS_CAMPUS_ID", PS_CAMPUS_ID));
+                command.Parameters.Add(new OracleParameter("PS_FACULTY_ID", PS_FACULTY_ID));
+                command.Parameters.Add(new OracleParameter("PS_DIVISION_ID", PS_DIVISION_ID));
+                command.Parameters.Add(new OracleParameter("PS_WORK_DIVISION_ID", PS_WORK_DIVISION_ID));
+                command.Parameters.Add(new OracleParameter("PS_STAFFTYPE_ID", PS_STAFFTYPE_ID));
+                command.Parameters.Add(new OracleParameter("PS_INWORK_DATE", PS_INWORK_DATE));
+                command.Parameters.Add(new OracleParameter("PS_PASSWORD", PS_PASSWORD));
+
+                id = command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
                 command.Dispose();
                 conn.Close();
             }
@@ -356,14 +408,13 @@ namespace WEB_PERSONAL.Entities {
             return result;
         }
 
-        public bool UPDATE_PS_PERSON_TAB3() {
+        public bool UPDATE_PS_PERSON_TAB3_DV() {
             bool result = false;
             OracleConnection conn = ConnectionDB.GetOracleConnection();
             string query = "Update PS_PERSON Set ";
             query += " PS_CAMPUS_ID = :PS_CAMPUS_ID ,";
             query += " PS_FACULTY_ID = :PS_FACULTY_ID ,";
             query += " PS_DIVISION_ID = :PS_DIVISION_ID ,";
-            query += " PS_WORK_DIVISION_ID = :PS_WORK_DIVISION_ID ,";
             query += " PS_STAFFTYPE_ID = :PS_STAFFTYPE_ID ,";
             query += " PS_BUDGET_ID = :PS_BUDGET_ID ,";
             query += " PS_SPECIAL_WORK = :PS_SPECIAL_WORK ,";
@@ -383,7 +434,6 @@ namespace WEB_PERSONAL.Entities {
                 command.Parameters.Add(new OracleParameter("PS_CAMPUS_ID", PS_CAMPUS_ID));
                 command.Parameters.Add(new OracleParameter("PS_FACULTY_ID", PS_FACULTY_ID));
                 command.Parameters.Add(new OracleParameter("PS_DIVISION_ID", PS_DIVISION_ID));
-                command.Parameters.Add(new OracleParameter("PS_WORK_DIVISION_ID", PS_WORK_DIVISION_ID));
                 command.Parameters.Add(new OracleParameter("PS_STAFFTYPE_ID", PS_STAFFTYPE_ID));
                 command.Parameters.Add(new OracleParameter("PS_BUDGET_ID", PS_BUDGET_ID));
                 command.Parameters.Add(new OracleParameter("PS_SPECIAL_WORK", PS_SPECIAL_WORK));
@@ -400,6 +450,64 @@ namespace WEB_PERSONAL.Entities {
             } catch (Exception ex) {
                 throw ex;
             } finally {
+                command.Dispose();
+                conn.Close();
+            }
+            return result;
+        }
+
+        public bool UPDATE_PS_PERSON_TAB3_WD()
+        {
+            bool result = false;
+            OracleConnection conn = ConnectionDB.GetOracleConnection();
+            string query = "Update PS_PERSON Set ";
+            query += " PS_CAMPUS_ID = :PS_CAMPUS_ID ,";
+            query += " PS_FACULTY_ID = :PS_FACULTY_ID ,";
+            query += " PS_DIVISION_ID = :PS_DIVISION_ID ,";
+            query += " PS_WORK_DIVISION_ID = :PS_WORK_DIVISION_ID ,";
+            query += " PS_STAFFTYPE_ID = :PS_STAFFTYPE_ID ,";
+            query += " PS_BUDGET_ID = :PS_BUDGET_ID ,";
+            query += " PS_SPECIAL_WORK = :PS_SPECIAL_WORK ,";
+            query += " PS_TEACH_ISCED_ID = :PS_TEACH_ISCED_ID ,";
+            query += " PS_INWORK_DATE = :PS_INWORK_DATE ,";
+            query += " PS_SALARY = :PS_SALARY ,";
+            query += " PS_POSS_SALARY = :PS_POSS_SALARY ,";
+            query += " PS_SW_ID = :PS_SW_ID ";
+            query += " where PS_CITIZEN_ID = :PS_CITIZEN_ID ";
+
+            OracleCommand command = new OracleCommand(query, conn);
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+
+                command.Parameters.Add(new OracleParameter("PS_CAMPUS_ID", PS_CAMPUS_ID));
+                command.Parameters.Add(new OracleParameter("PS_FACULTY_ID", PS_FACULTY_ID));
+                command.Parameters.Add(new OracleParameter("PS_DIVISION_ID", PS_DIVISION_ID));
+                command.Parameters.Add(new OracleParameter("PS_WORK_DIVISION_ID", PS_WORK_DIVISION_ID));
+                command.Parameters.Add(new OracleParameter("PS_STAFFTYPE_ID", PS_STAFFTYPE_ID));
+                command.Parameters.Add(new OracleParameter("PS_BUDGET_ID", PS_BUDGET_ID));
+                command.Parameters.Add(new OracleParameter("PS_SPECIAL_WORK", PS_SPECIAL_WORK));
+                command.Parameters.Add(new OracleParameter("PS_TEACH_ISCED_ID", PS_TEACH_ISCED_ID));
+                command.Parameters.Add(new OracleParameter("PS_INWORK_DATE", PS_INWORK_DATE));
+                command.Parameters.Add(new OracleParameter("PS_SALARY", PS_SALARY));
+                command.Parameters.Add(new OracleParameter("PS_POSS_SALARY", PS_POSS_SALARY));
+                command.Parameters.Add(new OracleParameter("PS_SW_ID", PS_SW_ID));
+                command.Parameters.Add(new OracleParameter("PS_CITIZEN_ID", PS_CITIZEN_ID));
+
+                if (command.ExecuteNonQuery() > 0)
+                {
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
                 command.Dispose();
                 conn.Close();
             }

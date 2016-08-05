@@ -12,7 +12,7 @@
   <xs:element name="DTpersonnel" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DTpersonnel" msprop:Generator_UserDSName="DTpersonnel">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="myDataReport" msprop:Generator_TableClassName="myDataReportDataTable" msprop:Generator_TableVarName="tablemyDataReport" msprop:Generator_TablePropName="myDataReport" msprop:Generator_RowDeletingName="myDataReportRowDeleting" msprop:Generator_RowChangingName="myDataReportRowChanging" msprop:Generator_RowEvHandlerName="myDataReportRowChangeEventHandler" msprop:Generator_RowDeletedName="myDataReportRowDeleted" msprop:Generator_UserTableName="myDataReport" msprop:Generator_RowChangedName="myDataReportRowChanged" msprop:Generator_RowEvArgName="myDataReportRowChangeEvent" msprop:Generator_RowClassName="myDataReportRow">
+        <xs:element name="myDataReport" msprop:Generator_TableClassName="myDataReportDataTable" msprop:Generator_TableVarName="tablemyDataReport" msprop:Generator_RowChangedName="myDataReportRowChanged" msprop:Generator_TablePropName="myDataReport" msprop:Generator_RowDeletingName="myDataReportRowDeleting" msprop:Generator_RowChangingName="myDataReportRowChanging" msprop:Generator_RowEvHandlerName="myDataReportRowChangeEventHandler" msprop:Generator_RowDeletedName="myDataReportRowDeleted" msprop:Generator_RowClassName="myDataReportRow" msprop:Generator_UserTableName="myDataReport" msprop:Generator_RowEvArgName="myDataReportRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="PS_CITIZEN_ID" msprop:Generator_ColumnVarNameInTable="columnPS_CITIZEN_ID" msprop:Generator_ColumnPropNameInRow="PS_CITIZEN_ID" msprop:Generator_ColumnPropNameInTable="PS_CITIZEN_IDColumn" msprop:Generator_UserColumnName="PS_CITIZEN_ID" type="xs:string" minOccurs="0" />
@@ -20,6 +20,13 @@
               <xs:element name="PS_LN_TH" msprop:Generator_ColumnVarNameInTable="columnPS_LN_TH" msprop:Generator_ColumnPropNameInRow="PS_LN_TH" msprop:Generator_ColumnPropNameInTable="PS_LN_THColumn" msprop:Generator_UserColumnName="PS_LN_TH" type="xs:string" minOccurs="0" />
               <xs:element name="PS_GENDER_ID" msprop:Generator_ColumnVarNameInTable="columnPS_GENDER_ID" msprop:Generator_ColumnPropNameInRow="PS_GENDER_ID" msprop:Generator_ColumnPropNameInTable="PS_GENDER_IDColumn" msprop:Generator_UserColumnName="PS_GENDER_ID" type="xs:string" minOccurs="0" />
               <xs:element name="PS_STAFFTYPE_ID" msprop:Generator_ColumnVarNameInTable="columnPS_STAFFTYPE_ID" msprop:Generator_ColumnPropNameInRow="PS_STAFFTYPE_ID" msprop:Generator_ColumnPropNameInTable="PS_STAFFTYPE_IDColumn" msprop:Generator_UserColumnName="PS_STAFFTYPE_ID" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="myDataReport2" msprop:Generator_TableClassName="myDataReport2DataTable" msprop:Generator_TableVarName="tablemyDataReport2" msprop:Generator_TablePropName="myDataReport2" msprop:Generator_RowDeletingName="myDataReport2RowDeleting" msprop:Generator_RowChangingName="myDataReport2RowChanging" msprop:Generator_RowEvHandlerName="myDataReport2RowChangeEventHandler" msprop:Generator_RowDeletedName="myDataReport2RowDeleted" msprop:Generator_UserTableName="myDataReport2" msprop:Generator_RowChangedName="myDataReport2RowChanged" msprop:Generator_RowEvArgName="myDataReport2RowChangeEvent" msprop:Generator_RowClassName="myDataReport2Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PS_CITIZEN_ID" msprop:Generator_ColumnVarNameInTable="columnPS_CITIZEN_ID" msprop:Generator_ColumnPropNameInRow="PS_CITIZEN_ID" msprop:Generator_ColumnPropNameInTable="PS_CITIZEN_IDColumn" msprop:Generator_UserColumnName="PS_CITIZEN_ID" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
