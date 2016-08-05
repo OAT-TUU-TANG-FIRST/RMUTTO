@@ -1052,9 +1052,9 @@
       <DependentUpon>DTpersonnel.xsd</DependentUpon>
     </Content>
     <None Include="Dataset\DTpersonnel.xsd">
-      <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DTpersonnel.Designer.cs</LastGenOutput>
+      <LastGenOutput>DTpersonnel1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </None>
     <Content Include="Dataset\DTpersonnel.xss">
       <DependentUpon>DTpersonnel.xsd</DependentUpon>
@@ -1202,6 +1202,11 @@
     <Compile Include="DataManager.aspx.designer.cs">
       <DependentUpon>DataManager.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Dataset\DTpersonnel1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DTpersonnel.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1229,11 +1234,6 @@
     </Compile>
     <Compile Include="Division-ADMIN.aspx.designer.cs">
       <DependentUpon>Division-ADMIN.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Dataset\DTpersonnel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DTpersonnel.xsd</DependentUpon>
     </Compile>
     <Compile Include="Entities\Report.cs" />
     <Compile Include="Entities\Personnel.cs" />
@@ -1499,16 +1499,10 @@
     <Compile Include="Report-Custom-Person.aspx.designer.cs">
       <DependentUpon>Report-Custom-Person.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Reports\CrystalReport1.cs">
+    <Compile Include="Reports\personGP7.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CrystalReport1.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\Personnel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Personnel.rpt</DependentUpon>
+      <DependentUpon>personGP7.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Personnel1.cs">
@@ -1675,13 +1669,9 @@
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Reports\CrystalReport1.rpt">
+    <EmbeddedResource Include="Reports\personGP7.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>CrystalReport1.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Personnel.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>Personnel.cs</LastGenOutput>
+      <LastGenOutput>personGP7.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Personnel1.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

@@ -16,14 +16,14 @@ namespace WEB_PERSONAL.Reports {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class Personnel : ReportClass {
+    public class personGP7 : ReportClass {
         
-        public Personnel() {
+        public personGP7() {
         }
         
         public override string ResourceName {
             get {
-                return "Personnel.rpt";
+                return "personGP7.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace WEB_PERSONAL.Reports {
         
         public override string FullResourceName {
             get {
-                return "WEB_PERSONAL.Reports.Personnel.rpt";
+                return "WEB_PERSONAL.Reports.personGP7.rpt";
             }
             set {
                 // Do nothing
@@ -90,9 +90,9 @@ namespace WEB_PERSONAL.Reports {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedPersonnel : Component, ICachedReport {
+    public class CachedpersonGP7 : Component, ICachedReport {
         
-        public CachedPersonnel() {
+        public CachedpersonGP7() {
         }
         
         [Browsable(false)]
@@ -129,7 +129,7 @@ namespace WEB_PERSONAL.Reports {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            Personnel rpt = new Personnel();
+            personGP7 rpt = new personGP7();
             rpt.Site = this.Site;
             return rpt;
         }
