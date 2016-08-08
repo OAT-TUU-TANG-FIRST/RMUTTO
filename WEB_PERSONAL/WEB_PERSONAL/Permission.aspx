@@ -46,6 +46,8 @@
                                     <asp:CheckBox ID="cbAddPerson6" runat="server" Text="การแก้ไขพัฒนาบุคลากร" /></div>
                                 <div>
                                     <asp:CheckBox ID="cbPersonPosition" runat="server" Text="จัดการแต่งตั้งหัวหน้า" /></div>
+                                <div>
+                                    <asp:CheckBox ID="cbAddPerson3" runat="server" Text="ออกรายงานพัฒนาบุคลากร(admin)" /></div>
                             </div>
                         </div>
                     </div>

@@ -13,6 +13,15 @@ namespace WEB_PERSONAL {
     public partial class PersonReport {
         
         /// <summary>
+        /// notification control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl notification;
+        
+        /// <summary>
         /// cbPsID control.
         /// </summary>
         /// <remarks>
@@ -920,15 +929,6 @@ namespace WEB_PERSONAL {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lbuExport;
-        
-        /// <summary>
-        /// lbuExport2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbuExport2;
         
         /// <summary>
         /// tb control.

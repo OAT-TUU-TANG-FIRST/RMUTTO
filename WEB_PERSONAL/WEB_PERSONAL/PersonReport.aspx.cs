@@ -237,16 +237,6 @@ namespace WEB_PERSONAL {
 
         protected void lbuSearch_Click(object sender, EventArgs e) {
 
-            //--
-
-            /*if(!cbPsID.Checked && !cbCitizenID.Checked && !cbPsName.Checked && !cbGender.Checked && !cbAge.Checked && !cbCampus.Checked && !cbBirthdayDate.Checked && !cbStatusWork.Checked) {
-                Util.Alert(this, "กรุณาเลือกข้อมูลที่ต้องการออกรายงานอย่างน้อย 1 ช่อง");
-                return;
-            }*/
-
-            //--
-
-
             List<string> headList = new List<string>();
             List<int> typeList = new List<int>();
             
@@ -693,55 +683,35 @@ namespace WEB_PERSONAL {
         }
 
         protected void lbuExport_Click(object sender, EventArgs e) {
+            /*if (!cbPsID.Checked || !cbCitizenID.Checked || !cbRank.Checked || !cbNameTH.Checked)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('กรุณาเลือกข้อมูลที่ต้องการออกรายงานและกดค้นหาก่อน')", true);
+                return;
+            }*/
             Table tb = ((Table)Session["PersonReportTable"]);
             int cols = tb.Rows[0].Cells.Count;
             for (int i = 0; i < cols; i++) {
-                tb.Rows[0].Cells[i].Style.Add("border", "1px solid #000000");
+                tb.Rows[0].Cells[i].Style.Add("border", "thin solid black");
             }
             for (int i = 1; i < tb.Rows.Count; i++) {
                 for (int j = 0; j < cols; j++) {
-                    tb.Rows[i].Cells[j].Style.Add("border", "1px solid #000000");
+                    tb.Rows[i].Cells[j].Style.Add("border", "thin solid black");
                 }
             }
-
-             Response.ContentType = "application/x-msexcel";
-             Response.AddHeader("Content-Disposition", "attachment;filename=PersonReport.xls");
-             Response.ContentEncoding = Encoding.UTF8;
-             StringWriter tw = new StringWriter();
-             HtmlTextWriter hw = new HtmlTextWriter(tw);
-             tb.RenderControl(hw);
-             Response.Write(tw.ToString());
-             Response.End();
+            Response.ContentType = "application/x-msexcel";
+            Response.AddHeader("Content-Disposition", "attachment;filename=PersonReport.xls");
+            Response.ContentEncoding = Encoding.UTF8;
+            StringWriter tw = new StringWriter();
+            HtmlTextWriter hw = new HtmlTextWriter(tw);
+            tb.RenderControl(hw);
+            string style = @"<style> TD { mso-number-format:\@; } </style>";
+            Response.Write(style);
+            Response.Write(tw.ToString());
+            Response.End();
         }
         public override void VerifyRenderingInServerForm(Control control) {
             /* Confirms that an HtmlForm control is rendered for the specified ASP.NET
                server control at run time. */
-        }
-
-        protected void lbuExport2_Click(object sender, EventArgs e)
-        {
-            Table tb = ((Table)Session["PersonReportTable"]);
-            int cols = tb.Rows[0].Cells.Count;
-            for (int i = 0; i < cols; i++)
-            {
-                tb.Rows[0].Cells[i].Style.Add("border", "1px solid #000000");
-            }
-            for (int i = 1; i < tb.Rows.Count; i++)
-            {
-                for (int j = 0; j < cols; j++)
-                {
-                    tb.Rows[i].Cells[j].Style.Add("border", "1px solid #000000");
-                }
-            }
-
-            Response.ContentType = "application/x-msword";
-            Response.AddHeader("Content-Disposition", "attachment;filename=PersonReport.doc");
-            Response.ContentEncoding = Encoding.UTF8;
-            StringWriter tw = new StringWriter();
-            HtmlTextWriter hw = new HtmlTextWriter(tw);
-            ((Table)Session["PersonReportTable"]).RenderControl(hw);
-            Response.Write(tw.ToString());
-            Response.End();
         }
     }
 }

@@ -86,13 +86,13 @@
                     <tr>
                         <td class="col1">ชื่อ อังกฤษ</td>
                         <td class="col2">
-                            <asp:TextBox ID="tbNameEN" runat="server" CssClass="ps-textbox"></asp:TextBox><span class="textred">*</span>
+                            <asp:TextBox ID="tbNameEN" runat="server" CssClass="ps-textbox"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
                         <td class="col1">นามสกุล อังกฤษ</td>
                         <td class="col2">
-                            <asp:TextBox ID="tbLastNameEN" runat="server" CssClass="ps-textbox"></asp:TextBox><span class="textred">*</span>
+                            <asp:TextBox ID="tbLastNameEN" runat="server" CssClass="ps-textbox"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
@@ -660,7 +660,7 @@
                 <tr>
                     <td class="col1">สถานศึกษา</td>
                     <td class="col2">
-                        <asp:TextBox ID="tbUnivName10" runat="server" CssClass="ps-textbox"></asp:TextBox><span class="textred">*</span>
+                        <asp:TextBox ID="tbUnivName10" runat="server" CssClass="ps-textbox" Width="230px"></asp:TextBox><span class="textred">*</span>
                     </td>
                 </tr>
                 <tr>
@@ -675,13 +675,13 @@
                 <tr>
                     <td class="col1">วุฒิ</td>
                     <td class="col2">
-                        <asp:TextBox ID="tbQualification10" runat="server" CssClass="ps-textbox"></asp:TextBox><span class="textred">*</span>
+                        <asp:TextBox ID="tbQualification10" runat="server" CssClass="ps-textbox" Width="230px"></asp:TextBox><span class="textred">*</span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">สาขาวิชาเอก</td>
                     <td class="col2">
-                        <asp:TextBox ID="tbMajor10" runat="server" CssClass="ps-textbox"></asp:TextBox><span class="textred">*</span>
+                        <asp:TextBox ID="tbMajor10" runat="server" CssClass="ps-textbox" Width="230px"></asp:TextBox><span class="textred">*</span>
                     </td>
                 </tr>
                 <tr>
@@ -695,7 +695,7 @@
         <div style="text-align: center; margin-top: 10px;">
             <asp:LinkButton ID="lbuTab5Save" runat="server" OnClick="lbuTab5Save_Click" CssClass="ps-button"><img src="Image/Small/save.png" class="icon_left"/>บันทึก</asp:LinkButton>
         </div>
-        <div style="margin-top: 10px; overflow-x: auto; width: 1200px">
+        <div style="margin-top: 10px; overflow-x: auto; width: 1200px;">
             <asp:GridView ID="GridViewStudy" runat="server" Style="margin-left: auto; margin-right: auto; text-align: center;"
                 AutoGenerateColumns="false"
                 AllowPaging="true"
@@ -705,7 +705,7 @@
                 OnRowUpdating="modUpdateCommand1"
                 OnRowDeleting="modDeleteCommand1"
                 OnRowDataBound="GridViewStudy_RowDataBound1"
-                OnPageIndexChanging="myGridViewStudy_PageIndexChanging1" PageSize="15" CssClass="ps-table-1">
+                OnPageIndexChanging="myGridViewStudy_PageIndexChanging1" PageSize="15" CssClass="ps-table-1" Width="100%">
                 <Columns>
                     <asp:TemplateField HeaderText="PS_STUDY_ID" Visible="false">
                         <ItemTemplate>
@@ -730,7 +730,7 @@
                             <asp:Label ID="lblPersonStudyUnivName" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_UNIV_NAME") %>'></asp:Label>
                         </ItemTemplate>
                         <EditItemTemplate>
-                            <asp:TextBox ID="txtPersonStudyUnivName" MaxLength="100" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_UNIV_NAME") %>'></asp:TextBox>
+                            <asp:TextBox ID="txtPersonStudyUnivName" Width="300px" MaxLength="100" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_UNIV_NAME") %>'></asp:TextBox>
                         </EditItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="ตั้งแต่(เดือน)">
@@ -808,19 +808,19 @@
                 <tr>
                     <td class="col1">ชื่อใบอนุญาต</td>
                     <td class="col2">
-                        <asp:TextBox ID="tbLicenseName11" runat="server" CssClass="ps-textbox"></asp:TextBox><span class="textred">*</span>
+                        <asp:TextBox ID="tbLicenseName11" runat="server" CssClass="ps-textbox" Width="300px"></asp:TextBox><span class="textred">*</span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">หน่วยงาน</td>
                     <td class="col2">
-                        <asp:TextBox ID="tbDepartment11" runat="server" CssClass="ps-textbox"></asp:TextBox><span class="textred">*</span>
+                        <asp:TextBox ID="tbDepartment11" runat="server" CssClass="ps-textbox" Width="300px"></asp:TextBox><span class="textred">*</span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">เลขที่ใบอนุญาต</td>
                     <td class="col2">
-                        <asp:TextBox ID="tbLicenseNo11" runat="server" CssClass="ps-textbox"></asp:TextBox><span class="textred">*</span>
+                        <asp:TextBox ID="tbLicenseNo11" runat="server" CssClass="ps-textbox" Width="300px"></asp:TextBox><span class="textred">*</span>
                     </td>
                 </tr>
                 <tr>
@@ -843,7 +843,7 @@
                     OnRowUpdating="modUpdateCommand2"
                     OnRowDeleting="modDeleteCommand2"
                     OnRowDataBound="GridViewLicense_RowDataBound2"
-                    OnPageIndexChanging="myGridViewLicense_PageIndexChanging2" PageSize="15" CssClass="ps-table-1" >
+                    OnPageIndexChanging="myGridViewLicense_PageIndexChanging2" PageSize="15" CssClass="ps-table-1" Width="100%">
                     <Columns>
                         <asp:TemplateField HeaderText="PS_PL_ID" Visible="false">
                             <ItemTemplate>
@@ -855,7 +855,7 @@
                                 <asp:Label ID="lblPersonLicenseCitizenID" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_CITIZEN_ID") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="ชื่อใบอนุญาต" ControlStyle-Width="200" >
+                        <asp:TemplateField HeaderText="ชื่อใบอนุญาต" ControlStyle-Width="400" >
                             <ItemTemplate>
                                 <asp:Label ID="lblPersonLicenseName" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_LICENSE_NAME") %>'></asp:Label>
                             </ItemTemplate>
@@ -879,7 +879,7 @@
                                 <asp:TextBox ID="txtPersonLicenseNo" MaxLength="100" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_LICENSE_NO") %>'></asp:TextBox>
                             </EditItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="วันที่มีผลบังคับใช้ (วัน เดือน ปี)" ControlStyle-Width="200" >
+                        <asp:TemplateField HeaderText="วันที่มีผลบังคับใช้ (วัน เดือน ปี)" ControlStyle-Width="100" >
                             <ItemTemplate>
                                 <asp:Label ID="lblPersonLicenseDate" runat="server" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "PS_USE_DATE")).ToString("dd MMM yyyy", System.Globalization.CultureInfo.CreateSpecificCulture("th-TH")) %>'></asp:Label>
                             </ItemTemplate>
@@ -907,7 +907,7 @@
                 <tr>
                     <td class="col1">หลักสูตรฝึกอบรม</td>
                     <td class="col2">
-                        <asp:TextBox ID="tbCourse" runat="server" CssClass="ps-textbox"></asp:TextBox><span class="textred">*</span>
+                        <asp:TextBox ID="tbCourse" runat="server" CssClass="ps-textbox" Width="300px"></asp:TextBox><span class="textred">*</span>
                     </td>
                 </tr>
                 <tr>
@@ -922,7 +922,7 @@
                 <tr>
                     <td class="col1">หน่วยงานที่จัดฝึกอบรม</td>
                     <td class="col2">
-                        <asp:TextBox ID="tbDepartment" runat="server" CssClass="ps-textbox"></asp:TextBox><span class="textred">*</span>
+                        <asp:TextBox ID="tbDepartment" runat="server" CssClass="ps-textbox" Width="300px"></asp:TextBox><span class="textred">*</span>
                     </td>
                 </tr>
             </table>
@@ -939,7 +939,7 @@
                     OnRowUpdating="modUpdateCommand3"
                     OnRowDeleting="modDeleteCommand3"
                     OnRowDataBound="GridViewTraining_RowDataBound3"
-                    OnPageIndexChanging="myGridViewTraining_PageIndexChanging3" PageSize="15" CssClass="ps-table-1" >
+                    OnPageIndexChanging="myGridViewTraining_PageIndexChanging3" PageSize="15" CssClass="ps-table-1" Width="100%">
                     <Columns>
                         <asp:TemplateField HeaderText="PS_TRAINING_ID" Visible="false">
                             <ItemTemplate>
@@ -951,7 +951,7 @@
                                 <asp:Label ID="lblPersonTrainingCitizenID" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_CITIZEN_ID") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="หลักสูตรฝึกอบรม" ControlStyle-Width="200" >
+                        <asp:TemplateField HeaderText="หลักสูตรฝึกอบรม" ControlStyle-Width="400" >
                             <ItemTemplate>
                                 <asp:Label ID="lblPersonTrainingCourse" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_COURSE") %>'></asp:Label>
                             </ItemTemplate>
@@ -959,7 +959,7 @@
                                 <asp:TextBox ID="txtPersonTrainingCourse" MaxLength="100" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_COURSE") %>'></asp:TextBox>
                             </EditItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="ตั้งแต่(เดือน)" ControlStyle-Width="60" >
+                        <asp:TemplateField HeaderText="ตั้งแต่(เดือน)" ControlStyle-Width="70" >
                             <ItemTemplate>
                                 <asp:Label ID="lblPersonTrainingFromMonth" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_FROM_MONTH") %>'></asp:Label>
                             </ItemTemplate>
@@ -967,7 +967,7 @@
                                 <asp:DropDownList ID="ddlPersonTrainingFromMonth" runat="server"></asp:DropDownList>
                             </EditItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="ตั้งแต่(ปี)" ControlStyle-Width="60" >
+                        <asp:TemplateField HeaderText="ตั้งแต่(ปี)" ControlStyle-Width="70" >
                             <ItemTemplate>
                                 <asp:Label ID="lblPersonTrainingFromYear" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_FROM_YEAR") %>'></asp:Label>
                             </ItemTemplate>
@@ -975,7 +975,7 @@
                                 <asp:DropDownList ID="ddlPersonTrainingFromYear" runat="server"></asp:DropDownList>
                             </EditItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="ถึง(เดือน)" ControlStyle-Width="60" >
+                        <asp:TemplateField HeaderText="ถึง(เดือน)" ControlStyle-Width="70" >
                             <ItemTemplate>
                                 <asp:Label ID="lblPersonTrainingToMonth" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_TO_MONTH") %>'></asp:Label>
                             </ItemTemplate>
@@ -983,7 +983,7 @@
                                 <asp:DropDownList ID="ddlPersonTrainingToMonth" runat="server"></asp:DropDownList>
                             </EditItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="ถึง(ปี)" ControlStyle-Width="60" >
+                        <asp:TemplateField HeaderText="ถึง(ปี)" ControlStyle-Width="70" >
                             <ItemTemplate>
                                 <asp:Label ID="lblPersonTrainingToYear" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_TO_YEAR") %>'></asp:Label>
                             </ItemTemplate>
@@ -1025,13 +1025,13 @@
                 <tr>
                     <td class="col1">รายการ</td>
                     <td class="col2">
-                        <asp:TextBox ID="tbName13" runat="server" CssClass="ps-textbox"></asp:TextBox><span class="textred">*</span>
+                        <asp:TextBox ID="tbName13" runat="server" CssClass="ps-textbox" Width="300px"></asp:TextBox><span class="textred">*</span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">เอกสารอ้างอิง</td>
                     <td class="col2">
-                        <asp:TextBox ID="tbREF13" runat="server" CssClass="ps-textbox"></asp:TextBox><span class="textred">*</span>
+                        <asp:TextBox ID="tbREF13" runat="server" CssClass="ps-textbox" Width="300px"></asp:TextBox><span class="textred">*</span>
                     </td>
                 </tr>
             </table>
@@ -1048,7 +1048,7 @@
                     OnRowUpdating="modUpdateCommand4"
                     OnRowDeleting="modDeleteCommand4"
                     OnRowDataBound="GridViewDAA_RowDataBound4"
-                    OnPageIndexChanging="myGridViewDAA_PageIndexChanging4" PageSize="15" CssClass="ps-table-1" >
+                    OnPageIndexChanging="myGridViewDAA_PageIndexChanging4" PageSize="15" CssClass="ps-table-1" Width="100%">
                     <Columns>
                         <asp:TemplateField HeaderText="PS_DAA_ID" Visible="false">
                             <ItemTemplate>
@@ -1068,7 +1068,7 @@
                                 <asp:DropDownList ID="ddlPersonDAAYear" runat="server"></asp:DropDownList>
                             </EditItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="รายการ" ControlStyle-Width="200" >
+                        <asp:TemplateField HeaderText="รายการ" ControlStyle-Width="400" >
                             <ItemTemplate>
                                 <asp:Label ID="lblPersonDAAName" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_DAA_NAME") %>'></asp:Label>
                             </ItemTemplate>
@@ -1104,13 +1104,13 @@
                 <tr>
                     <td class="col1">วัน เดือน ปี</td>
                     <td class="col2">
-                        <asp:TextBox ID="tbDate14" runat="server" CssClass="ps-textbox" placeholder="01 ม.ค. 25xx" MaxLength="12"></asp:TextBox><span class="textred">*</span>
+                        <asp:TextBox ID="tbDate14" runat="server" CssClass="ps-textbox" placeholder="01 ม.ค. 25xx" MaxLength="12" Width="300px"></asp:TextBox><span class="textred">*</span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">ตำแหน่ง</td>
                     <td class="col2">
-                        <asp:TextBox ID="tbPosition14" runat="server" CssClass="ps-textbox"></asp:TextBox><span class="textred">*</span>
+                        <asp:TextBox ID="tbPosition14" runat="server" CssClass="ps-textbox" Width="300px"></asp:TextBox><span class="textred">*</span>
                     </td>
                 </tr>
                 <tr>
@@ -1146,7 +1146,7 @@
                 <tr>
                     <td class="col1">เอกสารอ้างอิง</td>
                     <td class="col2">
-                        <asp:TextBox ID="tbRef14" runat="server" CssClass="ps-textbox"></asp:TextBox><span class="textred">*</span>
+                        <asp:TextBox ID="tbRef14" runat="server" CssClass="ps-textbox" Width="300px"></asp:TextBox><span class="textred">*</span>
                     </td>
                 </tr>
             </table>
@@ -1163,7 +1163,7 @@
                     OnRowUpdating="modUpdateCommand5"
                     OnRowDeleting="modDeleteCommand5"
                     OnRowDataBound="GridViewPAS_RowDataBound5"
-                    OnPageIndexChanging="myGridViewPAS_PageIndexChanging5" PageSize="15" CssClass="ps-table-1" >
+                    OnPageIndexChanging="myGridViewPAS_PageIndexChanging5" PageSize="15" CssClass="ps-table-1" Width="100%">
                     <Columns>
                         <asp:TemplateField HeaderText="PS_PAS_ID" Visible="false">
                             <ItemTemplate>

@@ -96,7 +96,8 @@ namespace WEB_PERSONAL
 
             //tab4
             DatabaseManager.BindDropDown(ddlTab4PositionWorkRow1, "SELECT * FROM TB_POSITION_WORK", "POSITION_WORK_NAME", "POSITION_WORK_ID", "--กรุณาเลือกตำแหน่งในสายงาน--");
-            DatabaseManager.BindDropDown(ddlTab4AdminPositionRow1, "SELECT * FROM TB_ADMIN_POSITION", "ADMIN_POSITION_NAME", "ADMIN_POSITION_ID", "--กรุณาเลือกตำแหน่งทางบริหาร--");
+            SqlddlAdminPosition();
+            //DatabaseManager.BindDropDown(ddlTab4AdminPositionRow1, "SELECT * FROM TB_ADMIN_POSITION", "ADMIN_POSITION_NAME", "ADMIN_POSITION_ID", "--กรุณาเลือกตำแหน่งทางบริหาร--");
             DatabaseManager.BindDropDown(ddlTab4AcadPositionRow1, "SELECT * FROM TB_ACADEMIC_POSITION", "ACAD_NAME", "ACAD_ID", "--กรุณาเลือกตำแหน่งทางวิชาการ--");
             DatabaseManager.BindDropDown(ddlTab4AdminPositionDegreeRow2, "SELECT * FROM PS_POSITION WHERE P_GROUP = 1", "P_NAME", "P_ID", "--กรุณาเลือกตำแหน่งประเภทบริหาร--");
             DatabaseManager.BindDropDown(ddlTab4DirectPositionDegreeRow2, "SELECT * FROM PS_POSITION WHERE P_GROUP = 2", "P_NAME", "P_ID", "--กรุณาเลือกตำแหน่งประเภทอำนวยการ--");
@@ -141,6 +142,33 @@ namespace WEB_PERSONAL
             tbZipcode.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
             tbZipcode2.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
             
+        }
+
+        protected void SqlddlAdminPosition()
+        {
+            try
+            {
+                using (OracleConnection sqlConn = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+                {
+                    using (OracleCommand sqlCmd = new OracleCommand())
+                    {
+                        sqlCmd.CommandText = "select * from TB_ADMIN_POSITION";
+                        sqlCmd.Connection = sqlConn;
+                        sqlConn.Open();
+                        OracleDataAdapter da = new OracleDataAdapter(sqlCmd);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        ddlTab4AdminPositionRow1.DataSource = dt;
+                        ddlTab4AdminPositionRow1.DataValueField = "ADMIN_POSITION_ID";
+                        ddlTab4AdminPositionRow1.DataTextField = "ADMIN_POSITION_NAME";
+                        ddlTab4AdminPositionRow1.DataBind();
+                        sqlConn.Close();
+
+                        ddlTab4AdminPositionRow1.Items.Insert(0, new ListItem("--กรุณาเลือกตำแหน่งบริหาร--"));
+                    }
+                }
+            }
+            catch { }
         }
 
         protected void ClearMiddleTab4()
@@ -362,32 +390,6 @@ namespace WEB_PERSONAL
                 notification.Attributes["class"] = "none";
                 notification.InnerHtml = "";
             }
-            if (tbNameEN.Text == "")
-            {
-                notification.Attributes["class"] = "alert alert_danger";
-                notification.InnerHtml = "";
-                notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
-                notification.InnerHtml += "<div>กรุณากรอกชื่อ อังกฤษ</div>";
-                return;
-            }
-            else
-            {
-                notification.Attributes["class"] = "none";
-                notification.InnerHtml = "";
-            }
-            if (tbLastNameEN.Text == "")
-            {
-                notification.Attributes["class"] = "alert alert_danger";
-                notification.InnerHtml = "";
-                notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
-                notification.InnerHtml += "<div>กรุณากรอกนามสกุล อังกฤษ</div>";
-                return;
-            }
-            else
-            {
-                notification.Attributes["class"] = "none";
-                notification.InnerHtml = "";
-            }
             if (ddlGender.SelectedIndex == 0)
             {
                 notification.Attributes["class"] = "alert alert_danger";
@@ -464,7 +466,6 @@ namespace WEB_PERSONAL
             notification.InnerHtml += "<div><img src='Image/Small/correct.png' /><strong>บันทึกข้อมูลพื้นฐานสำเร็จ</strong></div>";
         }
         protected void lbuTab2Save_Click(object sender, EventArgs e) {
-
             PS_PERSON P0 = new PS_PERSON();
             P0.PS_HOMEADD = tbHomeAdd.Text;
             P0.PS_SOI = tbSoi.Text;
@@ -492,6 +493,46 @@ namespace WEB_PERSONAL
             notification.Attributes["class"] = "alert alert_success";
             notification.InnerHtml = "";
             notification.InnerHtml += "<div><img src='Image/Small/correct.png' /><strong>บันทึกข้อมูลที่อยู่สำเร็จ</strong></div>";
+
+            /*using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+            {
+                using (OracleCommand com = new OracleCommand("UPDATE PS_PERSON SET PS_COUNTRY_ID = :PS_COUNTRY_ID WHERE PS_CITIZEN_ID = :PS_CITIZEN_ID", con))
+                using (OracleCommand com1 = new OracleCommand("UPDATE PS_PERSON SET PS_COUNTRY_ID_NOW = :PS_COUNTRY_ID_NOW WHERE PS_CITIZEN_ID = :PS_CITIZEN_ID", con))
+                {
+
+                    if (con.State != ConnectionState.Open)
+                    {
+                        con.Open();
+                    }
+
+                    if (ddlCountry.SelectedIndex == 0)
+                    {
+                        com.Parameters.Add(new OracleParameter("PS_COUNTRY_ID", null));
+                        com.Parameters.Add(new OracleParameter("PS_CITIZEN_ID", p));
+                        com.ExecuteNonQuery();
+                    }
+                    else
+                    {
+                        com.Parameters.Add(new OracleParameter("PS_COUNTRY_ID", ddlCountry.SelectedValue));
+                        com.Parameters.Add(new OracleParameter("PS_CITIZEN_ID", p));
+                        com.ExecuteNonQuery();
+                    }
+                    if (ddlCountry2.SelectedIndex == 0)
+                    {
+                        com1.Parameters.Add(new OracleParameter("PS_COUNTRY_ID_NOW", null));
+                        com1.Parameters.Add(new OracleParameter("PS_CITIZEN_ID", p));
+                        com1.ExecuteNonQuery();
+                    }
+                    else
+                    {
+                        com1.Parameters.Add(new OracleParameter("PS_COUNTRY_ID_NOW", ddlCountry2.SelectedValue));
+                        com1.Parameters.Add(new OracleParameter("PS_CITIZEN_ID", p));
+                        com1.ExecuteNonQuery();
+                    }
+                    com.Dispose();
+                    con.Close();
+                }    
+            }*/
         }
         protected void lbuTab3Save_Click(object sender, EventArgs e) {
 
@@ -1272,7 +1313,25 @@ namespace WEB_PERSONAL
                 notification.Attributes["class"] = "none";
                 notification.InnerHtml = "";
             }
+            /*
+            //เช็คปีไม่ติดลบ
+            int TotalYear = Convert.ToInt32(ddlYear10To.SelectedValue) - Convert.ToInt32(ddlYear10From.SelectedValue);
 
+            if (TotalYear <= 0)
+            {
+                notification.Attributes["class"] = "alert alert_danger";
+                notification.InnerHtml = "";
+                notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>แจ้งเตือน</strong></div>";
+                notification.InnerHtml += "<div> - ตั้งแต่ - ถึง (เดือน ปี) : ปีไม่ถูกต้อง</div>";
+                return;
+            }
+            else
+            {
+                notification.Attributes["class"] = "none";
+                notification.InnerHtml = "";
+            }
+            //
+            */
             PS_STUDY PStudy = new PS_STUDY();
             PStudy.PS_CITIZEN_ID = p;
             PStudy.PS_DEGREE_ID = Convert.ToInt32(ddlDegree10.SelectedValue);

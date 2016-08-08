@@ -60,13 +60,13 @@
                             <tr>
                                 <td class="col1">ชื่อ อังกฤษ</td>
                                 <td class="col2">
-                                    <asp:TextBox ID="tbNameEN" runat="server" CssClass="ps-textbox"></asp:TextBox><span class="textred">*</span>
+                                    <asp:TextBox ID="tbNameEN" runat="server" CssClass="ps-textbox"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">นามสกุล อังกฤษ</td>
                                 <td class="col2">
-                                    <asp:TextBox ID="tbLastNameEN" runat="server" CssClass="ps-textbox"></asp:TextBox><span class="textred">*</span>
+                                    <asp:TextBox ID="tbLastNameEN" runat="server" CssClass="ps-textbox"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>

@@ -1004,6 +1004,9 @@
     <Content Include="Religion-ADMIN.aspx" />
     <Content Include="Report-Custom-Person.aspx" />
     <Content Include="Profile.aspx" />
+    <Content Include="Report-Insignia.aspx" />
+    <Content Include="Report-Seminar-ADMIN.aspx" />
+    <Content Include="Report-Seminar.aspx" />
     <Content Include="Staff-ADMIN.aspx" />
     <Content Include="StaffType-ADMIN.aspx" />
     <Content Include="StatusPerson-ADMIN.aspx" />
@@ -1051,6 +1054,17 @@
     <Content Include="Dataset\DTpersonnel.xsc">
       <DependentUpon>DTpersonnel.xsd</DependentUpon>
     </Content>
+    <Content Include="Dataset\DTinsignia.xsc">
+      <DependentUpon>DTinsignia.xsd</DependentUpon>
+    </Content>
+    <None Include="Dataset\DTinsignia.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DTinsignia.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Dataset\DTinsignia.xss">
+      <DependentUpon>DTinsignia.xsd</DependentUpon>
+    </Content>
     <None Include="Dataset\DTpersonnel.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DTpersonnel1.Designer.cs</LastGenOutput>
@@ -1058,6 +1072,17 @@
     </None>
     <Content Include="Dataset\DTpersonnel.xss">
       <DependentUpon>DTpersonnel.xsd</DependentUpon>
+    </Content>
+    <Content Include="Dataset\DTseminar.xsc">
+      <DependentUpon>DTseminar.xsd</DependentUpon>
+    </Content>
+    <None Include="Dataset\DTseminar.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DTseminar.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Dataset\DTseminar.xss">
+      <DependentUpon>DTseminar.xsd</DependentUpon>
     </Content>
     <None Include="personalDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
@@ -1202,10 +1227,20 @@
     <Compile Include="DataManager.aspx.designer.cs">
       <DependentUpon>DataManager.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Dataset\DTinsignia.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DTinsignia.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Dataset\DTpersonnel1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DTpersonnel.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dataset\DTseminar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DTseminar.xsd</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -1499,6 +1534,33 @@
     <Compile Include="Report-Custom-Person.aspx.designer.cs">
       <DependentUpon>Report-Custom-Person.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Report-Insignia.aspx.cs">
+      <DependentUpon>Report-Insignia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Report-Insignia.aspx.designer.cs">
+      <DependentUpon>Report-Insignia.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Report-Seminar-ADMIN.aspx.cs">
+      <DependentUpon>Report-Seminar-ADMIN.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Report-Seminar-ADMIN.aspx.designer.cs">
+      <DependentUpon>Report-Seminar-ADMIN.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Report-Seminar.aspx.cs">
+      <DependentUpon>Report-Seminar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Report-Seminar.aspx.designer.cs">
+      <DependentUpon>Report-Seminar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Insignia1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Insignia1.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\personGP7.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1509,6 +1571,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Personnel1.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Seminar1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Seminar1.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="SEMINAR-ADMIN.aspx.cs">
@@ -1669,6 +1737,10 @@
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Reports\Insignia1.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Insignia1.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\personGP7.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>personGP7.cs</LastGenOutput>
@@ -1676,6 +1748,10 @@
     <EmbeddedResource Include="Reports\Personnel1.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Personnel1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Seminar1.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Seminar1.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

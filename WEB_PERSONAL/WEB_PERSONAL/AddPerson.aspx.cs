@@ -250,32 +250,6 @@ namespace WEB_PERSONAL
                 notification.Attributes["class"] = "none";
                 notification.InnerHtml = "";
             }
-            if (tbNameEN.Text == "")
-            {
-                notification.Attributes["class"] = "alert alert_danger";
-                notification.InnerHtml = "";
-                notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
-                notification.InnerHtml += "<div>กรุณากรอกชื่อ อังกฤษ</div>";
-                return;
-            }
-            else
-            {
-                notification.Attributes["class"] = "none";
-                notification.InnerHtml = "";
-            }
-            if (tbLastNameEN.Text == "")
-            {
-                notification.Attributes["class"] = "alert alert_danger";
-                notification.InnerHtml = "";
-                notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
-                notification.InnerHtml += "<div>กรุณากรอกนามสกุล อังกฤษ</div>";
-                return;
-            }
-            else
-            {
-                notification.Attributes["class"] = "none";
-                notification.InnerHtml = "";
-            }
             if (ddlGender.SelectedIndex == 0)
             {
                 notification.Attributes["class"] = "alert alert_danger";

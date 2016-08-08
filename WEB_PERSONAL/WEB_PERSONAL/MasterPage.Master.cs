@@ -133,6 +133,7 @@ namespace WEB_PERSONAL {
                 LeaveReport.Visible = false;
                 cbAddPerson1.Visible = false;
                 cbAddPerson2.Visible = false;
+                cbAddPerson3.Visible = false;
                 cbAddPerson6.Visible = false;
                 cbAddInsig1.Visible = false;
                 cbAddInsig2.Visible = false;
@@ -150,7 +151,7 @@ namespace WEB_PERSONAL {
                             else if (type == 2) LeaveReport.Visible = true;
                             else if (type == 3) cbAddPerson1.Visible = true;
                             else if (type == 4) cbAddPerson2.Visible = true;
-                            //else if (type == 5) cbAddPerson3.Visible = true;
+                            else if (type == 5) cbAddPerson3.Visible = true;
                             //else if (type == 6) cbAddPerson4.Visible = true;
                             else if (type == 8) cbAddPerson6.Visible = true;
                             else if (type == 9) cbAddInsig1.Visible = true;

@@ -26,13 +26,16 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div class="default_page_style">
+        <div class="ps-header">
+            <img src="Image/Small/report.png" />ออกรายงาน ก.พ.7
+        </div>
+        <div id="notification" runat="server"></div>
+    </div>
     <asp:Panel ID="Panel1" runat="server">
         <div id="div1" runat="server" style="text-align: center;">
-            <div class="ps-div-title-red">ออกรายงานบุคลากร</div>
-            <div style="display: inline-block; margin-right: 20px;">
-                <table class="auto-style1" style="text-align: center">
-
-                </table>
+            <div class="ps-div-title-red">
+                <img src="Image/Small/search.png" style="margin-right:10px" />ค้นหาข้อมูล
             </div>
             <div class="ps-separator"></div>
         </div>
@@ -44,7 +47,7 @@
                     <tr>
                         <td style="margin-left: auto; margin-right: auto; text-align: center">รหัสบัตรประชาชน 13 หลัก :</td>
                         <td style="text-align: left; width: 120px;">
-                            <asp:TextBox ID="txtSearchCitizenID" runat="server" CssClass="ps-textbox" Width="230px" MaxLength="100"></asp:TextBox></td>
+                            <asp:TextBox ID="txtSearchCitizenID" runat="server" CssClass="ps-textbox" Width="230px" MaxLength="13"></asp:TextBox></td>
                         <td style="text-align: left;">
                             <asp:LinkButton ID="lbuSearch" runat="server" OnClick="lbuSearch_Click" CssClass="ps-button"><img src="Image/Small/search.png" class="icon_left"/>ค้นหา</asp:LinkButton></td>
                         <td style="text-align: left;">
