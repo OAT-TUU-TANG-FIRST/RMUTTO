@@ -4,7 +4,6 @@
         .col1 {
             text-align: right;
         }
-
         .col2 {
             text-align: left;
         }
