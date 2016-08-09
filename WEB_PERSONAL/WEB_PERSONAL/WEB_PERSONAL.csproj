@@ -1007,6 +1007,7 @@
     <Content Include="Profile.aspx" />
     <Content Include="Report-Insignia.aspx" />
     <Content Include="Report-Seminar-ADMIN.aspx" />
+    <Content Include="Report-Seminar-Detail.aspx" />
     <Content Include="Report-Seminar.aspx" />
     <Content Include="Staff-ADMIN.aspx" />
     <Content Include="StaffType-ADMIN.aspx" />
@@ -1555,6 +1556,13 @@
     </Compile>
     <Compile Include="Report-Seminar-ADMIN.aspx.designer.cs">
       <DependentUpon>Report-Seminar-ADMIN.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Report-Seminar-Detail.aspx.cs">
+      <DependentUpon>Report-Seminar-Detail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Report-Seminar-Detail.aspx.designer.cs">
+      <DependentUpon>Report-Seminar-Detail.aspx</DependentUpon>
     </Compile>
     <Compile Include="Report-Seminar.aspx.cs">
       <DependentUpon>Report-Seminar.aspx</DependentUpon>

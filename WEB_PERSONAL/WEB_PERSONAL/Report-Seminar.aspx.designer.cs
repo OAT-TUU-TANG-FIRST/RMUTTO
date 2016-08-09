@@ -13,15 +13,6 @@ namespace WEB_PERSONAL {
     public partial class Report_Seminar {
         
         /// <summary>
-        /// hfSEID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hfSEID;
-        
-        /// <summary>
         /// MultiView1 control.
         /// </summary>
         /// <remarks>

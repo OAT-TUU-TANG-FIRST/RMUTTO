@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Report-Insignia.aspx.cs" Inherits="WEB_PERSONAL.Report_Insignia" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Report-Seminar-Detail.aspx.cs" Inherits="WEB_PERSONAL.Report_Seminar_Detail" %>
 <%@ Register Assembly="CrystalDecisions.Web, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" Namespace="CrystalDecisions.Web" TagPrefix="CR" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
        <style type="text/css">
@@ -17,7 +17,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="default_page_style">
         <div class="ps-header">
-            <img src="Image/Small/medal.png" />ออกรายงานเครื่องราชฯ
+            <img src="Image/Small/person2.png" />ออกรายงานพัฒนาบุคลากร
         </div>
     </div>
     <div>

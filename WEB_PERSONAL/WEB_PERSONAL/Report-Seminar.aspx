@@ -16,7 +16,6 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:HiddenField ID="hfSEID" runat="server" />
     <div class="default_page_style">
         <div class="ps-header">
             <img src="Image/Small/report.png" />ออกรายงานพัฒนาบุคลากร
