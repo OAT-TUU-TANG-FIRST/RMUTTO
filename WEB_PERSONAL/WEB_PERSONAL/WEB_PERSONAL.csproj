@@ -684,6 +684,7 @@
     <Content Include="aspnet_client\system_web\4_0_30319\crystalreportviewers13\urlreporting\activexviewer.js" />
     <Content Include="aspnet_client\system_web\4_0_30319\crystalreportviewers13\urlreporting\appletviewer.js" />
     <Content Include="Blood-ADMIN.aspx" />
+    <Content Include="Boss.aspx" />
     <Content Include="Budget-ADMIN.aspx" />
     <Content Include="Campus-ADMIN.aspx" />
     <Content Include="ChangePassword.aspx" />
@@ -1153,6 +1154,13 @@
     </Compile>
     <Compile Include="Blood-ADMIN.aspx.designer.cs">
       <DependentUpon>Blood-ADMIN.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Boss.aspx.cs">
+      <DependentUpon>Boss.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Boss.aspx.designer.cs">
+      <DependentUpon>Boss.aspx</DependentUpon>
     </Compile>
     <Compile Include="Budget-ADMIN.aspx.cs">
       <DependentUpon>Budget-ADMIN.aspx</DependentUpon>

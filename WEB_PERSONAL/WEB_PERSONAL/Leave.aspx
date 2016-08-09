@@ -396,6 +396,8 @@
                         </tr>
                     </table>
 
+                    <div class="ps-separator"></div>
+
                     <div class="ps-div-title-red" style="margin-top: 10px;">ผู้บังคับบัญชา</div>
 
                     <div style="text-align: center;">

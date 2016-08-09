@@ -57,7 +57,7 @@ namespace WEB_PERSONAL {
                         }
                     }
                 }
-                using (OracleCommand com = new OracleCommand("SELECT TO_DATE FROM LEV_DATA WHERE PS_ID = '" + loginPerson.CitizenID + "' AND LEAVE_TYPE_ID = 1 AND EXTRACT(YEAR FROM FROM_DATE) = " + Util.BudgetYear() + " AND ALLOW = 1 ORDER BY LEAVE_ID DESC", con)) {
+                using (OracleCommand com = new OracleCommand("SELECT TO_DATE FROM LEV_DATA WHERE PS_ID = '" + loginPerson.CitizenID + "' AND LEAVE_TYPE_ID = 1 AND EXTRACT(YEAR FROM FROM_DATE) = " + Util.BudgetYear() + " AND V_ALLOW = 1 ORDER BY LEAVE_ID DESC", con)) {
                     using (OracleDataReader reader = com.ExecuteReader()) {
                         if (reader.Read()) {
                             divSickFrom.Visible = true;
@@ -246,7 +246,7 @@ namespace WEB_PERSONAL {
                     OracleConnection.ClearAllPools();
                     using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                         con.Open();
-                        using (OracleCommand com = new OracleCommand("SELECT LEAVE_ID FROM LEV_DATA WHERE " + Util.DatabaseToDateSearch(tbS1FromDate.Text) + " <= TO_DATE AND " + Util.DatabaseToDateSearch(tbS1ToDate.Text) + " >= FROM_DATE AND PS_ID = '" + loginPerson.CitizenID + "' AND BUDGET_YEAR = " + Util.BudgetYear() + " AND LEAVE_STATUS_ID IN(3,4) AND ALLOW = 1", con)) {
+                        using (OracleCommand com = new OracleCommand("SELECT LEAVE_ID FROM LEV_DATA WHERE " + Util.DatabaseToDateSearch(tbS1FromDate.Text) + " <= TO_DATE AND " + Util.DatabaseToDateSearch(tbS1ToDate.Text) + " >= FROM_DATE AND PS_ID = '" + loginPerson.CitizenID + "' AND BUDGET_YEAR = " + Util.BudgetYear() + " AND LEAVE_STATUS_ID IN(3,4) AND V_ALLOW = 1", con)) {
                             using (OracleDataReader reader = com.ExecuteReader()) {
                                 while (reader.Read()) {
                                     LeaveData leaveData = new LeaveData();
@@ -256,7 +256,7 @@ namespace WEB_PERSONAL {
                                 }
                             }
                         }
-                        using (OracleCommand com = new OracleCommand("SELECT TO_DATE FROM LEV_DATA WHERE PS_ID = '" + loginPerson.CitizenID + "' AND LEAVE_TYPE_ID = " + hfLeaveTypeID.Value + " AND EXTRACT(YEAR FROM FROM_DATE) = " + Util.BudgetYear() + " AND LEAVE_STATUS_ID IN(3,4) AND ALLOW = 1 ORDER BY LEAVE_ID DESC", con)) {
+                        using (OracleCommand com = new OracleCommand("SELECT TO_DATE FROM LEV_DATA WHERE PS_ID = '" + loginPerson.CitizenID + "' AND LEAVE_TYPE_ID = " + hfLeaveTypeID.Value + " AND EXTRACT(YEAR FROM FROM_DATE) = " + Util.BudgetYear() + " AND LEAVE_STATUS_ID IN(3,4) AND V_ALLOW = 1 ORDER BY LEAVE_ID DESC", con)) {
                             using (OracleDataReader reader = com.ExecuteReader()) {
                                 if (reader.Read()) {
                                     DateTime dtLastToDate = reader.GetDateTime(0);
@@ -404,12 +404,12 @@ namespace WEB_PERSONAL {
                 DateTime? lastToDate = null;
                 int lastTotalDay = 0;
 
-                int pastTotalDay = DatabaseManager.ExecuteInt("SELECT NVL(SUM(TOTAL_DAY),0) FROM LEV_DATA WHERE PS_ID = '" + loginPerson.CitizenID + "' AND LEAVE_TYPE_ID = " + hfLeaveTypeID.Value + " AND EXTRACT(YEAR FROM FROM_DATE) = " + Util.BudgetYear() + " AND ALLOW = 1");
+                int pastTotalDay = DatabaseManager.ExecuteInt("SELECT NVL(SUM(TOTAL_DAY),0) FROM LEV_DATA WHERE PS_ID = '" + loginPerson.CitizenID + "' AND LEAVE_TYPE_ID = " + hfLeaveTypeID.Value + " AND EXTRACT(YEAR FROM FROM_DATE) = " + Util.BudgetYear() + " AND V_ALLOW = 1");
 
                 OracleConnection.ClearAllPools();
                 using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                     con.Open();
-                    using (OracleCommand com = new OracleCommand("SELECT FROM_DATE, TO_DATE, TOTAL_DAY FROM LEV_DATA WHERE PS_ID = '" + loginPerson.CitizenID + "' AND LEAVE_TYPE_ID = " + hfLeaveTypeID.Value + " AND EXTRACT(YEAR FROM FROM_DATE) = " + Util.BudgetYear() + " AND ALLOW = 1 ORDER BY LEAVE_ID DESC", con)) {
+                    using (OracleCommand com = new OracleCommand("SELECT FROM_DATE, TO_DATE, TOTAL_DAY FROM LEV_DATA WHERE PS_ID = '" + loginPerson.CitizenID + "' AND LEAVE_TYPE_ID = " + hfLeaveTypeID.Value + " AND EXTRACT(YEAR FROM FROM_DATE) = " + Util.BudgetYear() + " AND V_ALLOW = 1 ORDER BY LEAVE_ID DESC", con)) {
                         using (OracleDataReader reader = com.ExecuteReader()) {
                             if (reader.Read()) {
                                 lastFromDate = reader.GetDateTime(0);
@@ -485,7 +485,7 @@ namespace WEB_PERSONAL {
                 //string psCHID = "";
                 List<Person> psBossID = new List<Person>();
 
-                int อธิการบดีลาป่วยวัน = -1;
+                /*int อธิการบดีลาป่วยวัน = -1;
                 int อธิการบดีลากิจวัน = -1;
                 bool อธิการบดีลาคลอดบุตร = false;
                 bool อธิการบดีลาช่วยเหลือภริยาคลอดบุตร = false;
@@ -553,17 +553,144 @@ namespace WEB_PERSONAL {
                         }
                     }
 
+                }*/
+
+                using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
+                    con.Open();
+
+                    List<Person> tempBossID = DatabaseManager.รหัสหัวหน้า(loginPerson.CitizenID);
+                    for (int i = 0; i < tempBossID.Count; i++) {
+                        int dayReq = 1;
+                        bool ableAllow = false;
+                        using (OracleCommand com = new OracleCommand("SELECT * FROM LEV_PERMISSION WHERE ADMIN_POSITION_POWER = " + tempBossID[i].AdminPositionPower + " ORDER BY LEAVE_PERMISSION_ID DESC", con)) {
+                            using (OracleDataReader reader = com.ExecuteReader()) {
+                                while (reader.Read()) {       
+                                    if (hfLeaveTypeID.Value == "1") {
+                                        dayReq = reader.GetInt32(2);
+                                    } else if (hfLeaveTypeID.Value == "2") {
+                                        dayReq = reader.GetInt32(3);
+                                    } else if (hfLeaveTypeID.Value == "3") {
+                                        ableAllow = reader.GetInt32(4) == 1 ? true : false;
+                                    } else if (hfLeaveTypeID.Value == "4") {
+                                        ableAllow = reader.GetInt32(6) == 1 ? true : false;
+                                    } else if (hfLeaveTypeID.Value == "5") {
+                                        ableAllow = reader.GetInt32(5) == 1 ? true : false;
+                                    } else if (hfLeaveTypeID.Value == "6") {
+                                        ableAllow = reader.GetInt32(7) == 1 ? true : false;
+                                    } else if (hfLeaveTypeID.Value == "7") {
+                                        ableAllow = reader.GetInt32(7) == 1 ? true : false;
+                                    }
+
+                                }
+                            }
+                        }
+                        
+                        if(hfLeaveTypeID.Value == "1" || hfLeaveTypeID.Value == "2") {
+                            if (dayReq >= totalDay) {
+                                psBossID.Add(tempBossID[i]);
+                                break;
+                            } else {
+                                psBossID.Add(tempBossID[i]);
+                            }
+                        } else {
+                            if(ableAllow) {
+                                psBossID.Add(tempBossID[i]);
+                                break;
+                            } else {
+                                psBossID.Add(tempBossID[i]);
+                            }
+                        }
+                        
+
+                    }
+
+                    
+
                 }
 
-                psBossID = DatabaseManager.รหัสหัวหน้า(loginPerson.CitizenID);
+
+                
+
+                
                 {
+                    TableRow row = new TableRow();
+                    TableCell cell2;
+                    System.Web.UI.WebControls.Image image;
+                    tbBoss.Rows.Add(row);
+
+                    for (int j = 0; j < psBossID.Count; j++) {
+
+                        cell2 = new TableCell();
+                        cell2.Style.Add("vertical-align", "top");
+
+                        Table tb = new Table();
+                        tb.CssClass = "ps-table-1";
+                        tb.Style.Add("text-align", "left");
+                        {
+                            TableRow tr;
+                            TableCell cell3;
+
+                            tr = new TableRow();
+                            tb.Rows.Add(tr);
+
+                            cell3 = new TableCell();
+                            cell3.ColumnSpan = 2;
+                            cell3.Style.Add("text-align", "center");
+                            image = new System.Web.UI.WebControls.Image();
+                            image.CssClass = "ps-ms-main-drop-profile-pic";
+
+                            string imagePath = DatabaseManager.GetPersonImageFileName(psBossID[j].CitizenID);
+                            if (imagePath != "") {
+                                image.Attributes["src"] = "Upload/PersonImage/" + imagePath;
+                                cell3.Controls.Add(image);
+                            }
+                            tr.Cells.Add(cell3);
+
+                            tr = new TableRow();
+                            tb.Rows.Add(tr);
+
+                            cell3 = new TableCell();
+                            cell3.Text = "ชื่อ";
+                            tr.Cells.Add(cell3);
+
+                            cell3 = new TableCell();
+                            cell3.Text = psBossID[j].FirstNameAndLastName;
+                            tr.Cells.Add(cell3);
+
+                            tr = new TableRow();
+                            tb.Rows.Add(tr);
+
+                            cell3 = new TableCell();
+                            cell3.Text = "ตำแหน่ง";
+                            tr.Cells.Add(cell3);
+
+                            cell3 = new TableCell();
+                            cell3.Text = psBossID[j].PositionWorkName;
+                            tr.Cells.Add(cell3);
+
+                            tr = new TableRow();
+                            tb.Rows.Add(tr);
+
+                            cell3 = new TableCell();
+                            cell3.Text = "ระดับ";
+                            tr.Cells.Add(cell3);
+
+                            cell3 = new TableCell();
+                            cell3.Text = psBossID[j].AdminPositionName + "<br />" + psBossID[j].AdminPositionNameExtra();
+                            tr.Cells.Add(cell3);
+
+                        }
+
+                        cell2.Controls.Add(tb);
+
+                        row.Cells.Add(cell2);
+                    }
+                }
+                /*{
                     TableRow row = new TableRow();
                     TableCell cell;
                     System.Web.UI.WebControls.Image image;
                     tbBoss.Rows.Add(row);
-
-                    
-                    
 
                     for (int i = 0; i < psBossID.Count; i++) {
 
@@ -586,7 +713,7 @@ namespace WEB_PERSONAL {
 
                         row.Cells.Add(cell);
                     }
-                }
+                }*/
 
                 /*if(hfLeaveTypeID.Value == "1") {
                     if(totalDay <= หัวหน้าฝ่ายลาป่วยวัน) {
@@ -866,60 +993,60 @@ namespace WEB_PERSONAL {
 
 
                 //Person psCL = DatabaseManager.GetPerson("1"/*psCLID*/);
-               // Person psCH = DatabaseManager.GetPerson("1"/*psCHID*/);
+                // Person psCH = DatabaseManager.GetPerson("1"/*psCHID*/);
 
-               /* if(psCLID == "" && psCL == null) {
-                    lbS2CL.Text = "ไม่มี";
-                    psCLImage.Visible = false;
-                }
-      
-
-
-
-
-                if (psCL != null) {
-                    lbS2CL.Text = "<span class='ps-lb-red-b'>" + psCL.FirstNameAndLastName + "</span><br />" + psCL.CitizenID + "<br />" + psCL.PositionWorkName + "<br />" + psCL.AdminPositionName;
-                    psCLImage.Visible = true;
-                } else {
-                    lbS2CL.Text = "ไม่มี";
-                    psCLImage.Visible = false;
-                }
+                /* if(psCLID == "" && psCL == null) {
+                     lbS2CL.Text = "ไม่มี";
+                     psCLImage.Visible = false;
+                 }
 
 
 
 
 
-                if ( (psCLID != "" && psCL == null) || (psCHID != "" && psCH == null)) {
-
-                    if (psCLID != "" && psCL == null) {
-                        psCLImage.Visible = false;
-                        lbS2CL.Text = "พบข้อผิดพลาด<br />ไม่พบพนักงาน";
-                        lbS2CL.ForeColor = Color.Red;
-                    }
-
-                    if (psCHID != "" && psCH == null) {
-                        psCHImage.Visible = false;
-                        lbS2CH.Text = "พบข้อผิดพลาด<br />ไม่พบพนักงาน";
-                        lbS2CH.ForeColor = Color.Red;
-                    }
+                 if (psCL != null) {
+                     lbS2CL.Text = "<span class='ps-lb-red-b'>" + psCL.FirstNameAndLastName + "</span><br />" + psCL.CitizenID + "<br />" + psCL.PositionWorkName + "<br />" + psCL.AdminPositionName;
+                     psCLImage.Visible = true;
+                 } else {
+                     lbS2CL.Text = "ไม่มี";
+                     psCLImage.Visible = false;
+                 }
 
 
-                    lbuS2Finish.Visible = false;
-                    return;
-                }*/
 
-               /* psCLImage.Visible = true;
-                psCHImage.Visible = true;
-                lbS2CL.ForeColor = Color.Black;
-                lbS2CH.ForeColor = Color.Black;
-                lbuS2Finish.Visible = true;*/
+
+
+                 if ( (psCLID != "" && psCL == null) || (psCHID != "" && psCH == null)) {
+
+                     if (psCLID != "" && psCL == null) {
+                         psCLImage.Visible = false;
+                         lbS2CL.Text = "พบข้อผิดพลาด<br />ไม่พบพนักงาน";
+                         lbS2CL.ForeColor = Color.Red;
+                     }
+
+                     if (psCHID != "" && psCH == null) {
+                         psCHImage.Visible = false;
+                         lbS2CH.Text = "พบข้อผิดพลาด<br />ไม่พบพนักงาน";
+                         lbS2CH.ForeColor = Color.Red;
+                     }
+
+
+                     lbuS2Finish.Visible = false;
+                     return;
+                 }*/
+
+                /* psCLImage.Visible = true;
+                 psCHImage.Visible = true;
+                 lbS2CL.ForeColor = Color.Black;
+                 lbS2CH.ForeColor = Color.Black;
+                 lbuS2Finish.Visible = true;*/
 
                 //Person psCL = DatabaseManager.GetPerson("1700070000701");
                 //Person psCH = DatabaseManager.GetPerson("1700070000702");
 
-               /* if (psCL == null) {
-                    lbS2CL.Text = "-";
-                }*/
+                /* if (psCL == null) {
+                     lbS2CL.Text = "-";
+                 }*/
 
                 //----------- END CL CH--
 

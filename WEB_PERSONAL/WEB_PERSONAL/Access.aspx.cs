@@ -27,6 +27,7 @@ namespace WEB_PERSONAL {
                     }
                 }
             }
+            Session.Remove("PersonnelSystem");
         }
         protected void lbuLogin_Click(object sender, EventArgs e) {      
             int count = DatabaseManager.ExecuteInt("SELECT count(*) FROM PS_PERSON WHERE PS_CITIZEN_ID = '" + tbUsername.Text + "'");
@@ -109,6 +110,31 @@ namespace WEB_PERSONAL {
 
                         }
 
+                        /*using (OracleCommand com = new OracleCommand("SELECT LEAVE_ID FROM LEV_DATA WHERE CURRENT_DATE >= FROM_DATE AND LEAVE_TYPE_ID IN(2,4,6,7) AND LEAVE_STATUS_ID = 4", con)) {
+                            using (OracleDataReader reader = com.ExecuteReader()) {
+                                while (reader.Read()) {
+                                    int leaveID = reader.GetInt32(0);
+                                    LeaveData leaveData = new LeaveData();
+                                    leaveData.Load(leaveID);
+                                    leaveData.ExecuteCancelOfCancelBySystem();
+                                }
+                            }
+
+                        }
+
+                        using (OracleCommand com = new OracleCommand("SELECT LEAVE_ID FROM LEV_DATA WHERE LEAVE_STATUS_ID = 4 AND TRUNC(CURRENT_DATE - CANCEL_DATE, 0) >= 3", con)) {
+                            using (OracleDataReader reader = com.ExecuteReader()) {
+                                while (reader.Read()) {
+                                    int leaveID = reader.GetInt32(0);
+                                    LeaveData leaveData = new LeaveData();
+                                    leaveData.Load(leaveID);
+                                    leaveData.ExecuteCancelOfCancelBySystem();
+                                }
+                            }
+
+                        }*/
+
+                    //-------------
 
 
                         /*using (OracleCommand com = new OracleCommand("UPDATE LEV_DATA SET LEAVE_STATUS_ID = 10 WHERE LEAVE_ID = (SELECT LEAVE_ID FROM LEV_DATA WHERE CURRENT_DATE >= FROM_DATE AND LEAVE_TYPE_ID IN(2,4,6,7) AND LEAVE_STATUS_ID IN(1,2))", con)) {

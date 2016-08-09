@@ -23,12 +23,15 @@
                 <div>
                     <div class="ps-div-title-red">กรุณาเลือกรายการที่ต้องการอนุมัติการลา</div>
                     <asp:GridView ID="GridView1" runat="server" CssClass="ps-table-1" style="margin: 0 auto; margin-bottom: 20px;"></asp:GridView>
+                    <div style="text-align: center; margin-top: 10px;">
+                        <asp:Label ID="lbNoData" runat="server" Text="ขณะนี้ไม่มีรายการที่ท่านต้องอนุมัติ" style="color: #808080;"></asp:Label>
+                    </div>
                 </div>
             </asp:View>
             <asp:View ID="View2" runat="server">
                 <div>
                     <div class="ps-div-title-red">ข้อมูลการลา</div>
-                            <table class="ps-table-1" style="margin: 0 auto; margin-bottom: 10px;">
+                    <table class="ps-table-1" style="margin: 0 auto; margin-bottom: 10px;">
                     <tr>
                     <td class="col1">
                         <img src="Image/Small/ID.png" class="icon_left" />
@@ -224,26 +227,36 @@
                             <asp:Label ID="lbCancelReason" runat="server"></asp:Label>
                         </td>
                     </tr>
-                    <tr>
-                    <td class="col1"><img src="Image/Small/comment.png" class="icon_left"/>ความเห็นของผู้ใต้บังคับบัญชา</td>
-                    <td class="col2">
-                        <asp:Label ID="lbCLComment" runat="server"></asp:Label>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col1"><img src="Image/Small/comment.png" class="icon_left"/>ความเห็น</td>
-                        <td class="col2">
-                            <asp:TextBox ID="tbF1Comment" runat="server" Height="50px" Width="300px" TextMode="MultiLine" CssClass="ps-textbox"></asp:TextBox>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col1"><img src="Image/Small/correct.png" class="icon_left"/>การอนุมัติ</td>
-                        <td class="col2">
-                            <asp:RadioButton ID="rbAllow" runat="server" GroupName="allow" Text="อนุญาต" />
-                            <asp:RadioButton ID="rbNotAllow" runat="server" GroupName="allow" Text="ไม่อนุญาต" />
-                        </td>
-                    </tr>
+
+                    
                 </table>
+
+                    <div class="ps-separator"></div>
+
+                    <div class="ps-div-title-red">ผู้อนุมัติการลา</div>
+                    <div style="text-align: center;">
+                        <asp:Table ID="tbBoss" runat="server" Style="text-align: center; display: inline-block;"></asp:Table>
+                    </div>
+
+                    <div class="ps-separator"></div>
+
+                    <div class="ps-div-title-red">อนุมัติการลา</div>
+                    <table class="ps-table-1" style="margin: 0 auto; margin-bottom: 10px;">
+                        <tr>
+                            <td class="col1"><img src="Image/Small/comment.png" class="icon_left"/>ความเห็น</td>
+                            <td class="col2">
+                                <asp:TextBox ID="tbF1Comment" runat="server" Height="50px" Width="300px" TextMode="MultiLine" CssClass="ps-textbox"></asp:TextBox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col1"><img src="Image/Small/correct.png" class="icon_left"/>การอนุมัติ</td>
+                            <td class="col2">
+                                <asp:RadioButton ID="rbAllow" runat="server" GroupName="allow" Text="อนุญาต" />
+                                <asp:RadioButton ID="rbNotAllow" runat="server" GroupName="allow" Text="ไม่อนุญาต" />
+                            </td>
+                        </tr>
+                    </table>
+
                     <div style="text-align: center; margin-bottom: 10px;">
                         <asp:LinkButton ID="lbuBack" runat="server" CssClass="ps-button" OnClick="lbuBack_Click"><img src="Image/Small/back.png" class="icon_left"/>ย้อนกลับ</asp:LinkButton>
                         <asp:LinkButton ID="lbuAddComment" runat="server" CssClass="ps-button" OnClick="lbuAddComment_Click">ยืนยันการอนุมัติ<img src="Image/Small/next.png" class="icon_right"/></asp:LinkButton>

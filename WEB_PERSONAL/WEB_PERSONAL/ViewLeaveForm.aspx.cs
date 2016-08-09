@@ -15,9 +15,6 @@ namespace WEB_PERSONAL {
         protected void Page_Load(object sender, EventArgs e) {
 
             if(!IsPostBack) {
-                if (Request.QueryString["LeaveID"] == null) {
-                    return;
-                }
 
                 int leaveID = int.Parse(Request.QueryString["LeaveID"]);
                 LeaveData leaveData = new LeaveData();
@@ -44,11 +41,11 @@ namespace WEB_PERSONAL {
                 trRestTotal.Visible = false;
                 trStatistic.Visible = false;
                 trCancelReason.Visible = false;
-                trCLCancelComment.Visible = false;
+              /*  trCLCancelComment.Visible = false;
                 trCLCancelDate.Visible = false;
                 trCHCancelComment.Visible = false;
                 trCHCancelDate.Visible = false;
-                trCHCancelAllow.Visible = false;
+                trCHCancelAllow.Visible = false;*/
 
                 if (leaveData.LeaveTypeID == 1) {
                     trStatistic.Visible = true;
@@ -89,36 +86,41 @@ namespace WEB_PERSONAL {
                     trHujed.Visible = true;
                 }
 
-                if (leaveData.LeaveStatusID >= 1 && leaveData.LeaveStatusID <= 4) {
+                if (leaveData.LeaveStatusID >= 1 && leaveData.LeaveStatusID <= 3) {
 
-                } else if (leaveData.LeaveStatusID >= 5 && leaveData.LeaveStatusID <= 8) {
+                } else if (leaveData.LeaveStatusID >= 4 && leaveData.LeaveStatusID <= 6) {
                     trCancelReason.Visible = true;
-                    trCLCancelComment.Visible = true;
+                   /* trCLCancelComment.Visible = true;
                     trCLCancelDate.Visible = true;
                     trCHCancelComment.Visible = true;
                     trCHCancelDate.Visible = true;
-                    trCHCancelAllow.Visible = true;
+                    trCHCancelAllow.Visible = true;*/
                 }
 
                 lbLeaveID.Text = leaveData.LeaveID.ToString();
                 lbLeaveStatusID.Text = leaveData.LeaveStatusName;
                 lbLeaveType.Text = leaveData.LeaveTypeName;
                 lbReqDate.Text = leaveData.RequestDate.Value.ToLongDateString();
-                /*lbPSName.Text = leaveData.PS_Title + leaveData.PS_FirstName + " " + leaveData.PS_LastName;
-                lbPSPos.Text = leaveData.PS_Position;
-                lbPSAPos.Text = leaveData.PS_AdminPosition;
-                lbPSDept.Text = leaveData.PS_Department;
-
-                if (leaveData.PS_BirthDate.HasValue) {
-                    lbPSBirthDate.Text = leaveData.PS_BirthDate.Value.ToLongDateString();
+                lbPSName.Text = leaveData.Person.FirstName + " " + leaveData.Person.LastName;
+                lbPSPos.Text = leaveData.Person.PositionWorkName;
+                lbPSAPos.Text = leaveData.Person.AdminPositionName;
+                if (Util.IsBlank(leaveData.Person.WorkDivisionID)) {
+                    lbPSDept.Text = leaveData.Person.DivisionName;
                 } else {
-                    lbPSBirthDate.Text = "-";
+                    lbPSDept.Text = leaveData.Person.WorkDivisionName;
                 }
-                if (leaveData.PS_WorkInDate.HasValue) {
-                    lbPSWorkInDate.Text = leaveData.PS_WorkInDate.Value.ToLongDateString();
-                } else {
-                    lbPSWorkInDate.Text = "-";
-                }*/
+
+
+                //if (leaveData.PS_BirthDate.HasValue) {
+                lbPSBirthDate.Text = leaveData.Person.BirthDate.Value.ToLongDateString();
+                //} else {
+                //    lbPSBirthDate.Text = "-";
+                //}
+                //if (leaveData.PS_WorkInDate.HasValue) {
+                lbPSWorkInDate.Text = leaveData.Person.InWorkDate.Value.ToLongDateString();
+                //} else {
+                //    lbPSWorkInDate.Text = "-";
+                // }
 
                 lbRestSave.Text = leaveData.RestSave + " วัน";
                 lbRestLeft.Text = leaveData.RestLeft + " วัน";
@@ -158,6 +160,135 @@ namespace WEB_PERSONAL {
                 } else {
                     lbLastFTTDate.Text = "ไม่เคยลา";
                 }
+
+
+                {
+                    TableRow row = new TableRow();
+                    TableCell cell2;
+                    Image image;
+                    tbBoss.Rows.Add(row);
+
+                    for (int j = 0; j < leaveData.BossStateMax; j++) {
+
+                        LeaveBossData leaveBossData = leaveData.LeaveBossDataList[j];
+
+                        cell2 = new TableCell();
+                        cell2.Style.Add("vertical-align", "top");
+
+
+
+                        Table tb = new Table();
+                        tb.CssClass = "ps-table-1";
+                        tb.Style.Add("text-align", "left");
+                        {
+                            TableRow tr;
+                            TableCell cell3;
+
+                            tr = new TableRow();
+                            tb.Rows.Add(tr);
+
+                            cell3 = new TableCell();
+                            cell3.ColumnSpan = 2;
+                            cell3.Style.Add("text-align", "center");
+                            image = new Image();
+                            image.CssClass = "ps-ms-main-drop-profile-pic";
+
+                            string imagePath = DatabaseManager.GetPersonImageFileName(leaveBossData.CitizenID);
+                            if (imagePath != "") {
+                                image.Attributes["src"] = "Upload/PersonImage/" + imagePath;
+                                cell3.Controls.Add(image);
+                            }
+                            tr.Cells.Add(cell3);
+
+                            tr = new TableRow();
+                            tb.Rows.Add(tr);
+
+                            cell3 = new TableCell();
+                            cell3.Text = "ชื่อ";
+                            tr.Cells.Add(cell3);
+
+                            cell3 = new TableCell();
+                            cell3.Text = leaveBossData.Person.FirstNameAndLastName;
+                            tr.Cells.Add(cell3);
+
+                            tr = new TableRow();
+                            tb.Rows.Add(tr);
+
+                            cell3 = new TableCell();
+                            cell3.Text = "ตำแหน่ง";
+                            tr.Cells.Add(cell3);
+
+                            cell3 = new TableCell();
+                            cell3.Text = leaveBossData.Person.PositionWorkName;
+                            tr.Cells.Add(cell3);
+
+                            tr = new TableRow();
+                            tb.Rows.Add(tr);
+
+                            cell3 = new TableCell();
+                            cell3.Text = "ระดับ";
+                            tr.Cells.Add(cell3);
+
+                            cell3 = new TableCell();
+                            cell3.Text = leaveBossData.Person.AdminPositionName;// + "<br />" + leaveBossData.Person.AdminPositionNameExtra();
+                            tr.Cells.Add(cell3);
+
+                            tr = new TableRow();
+                            tb.Rows.Add(tr);
+
+                            cell3 = new TableCell();
+                            cell3.Text = "การอนุมัติ";
+                            tr.Cells.Add(cell3);
+
+                            cell3 = new TableCell();
+                            if (leaveBossData.Allow.HasValue) {
+                                cell3.Text = "<div style='color: #808080;'>" + leaveBossData.AllowDate.Value.ToLongDateString() + "</div>";
+                                if (leaveBossData.Allow.Value == 1) {
+                                    cell3.Text += "<div style='color: green'>อนุญาต</div>";
+                                } else {
+                                    cell3.Text += "<div style='color: red'>ไม่อนุญาต</div>";
+                                }
+                                cell3.Text += "<div style='color: #000000;'>" + leaveBossData.Comment + "</div>";
+
+                            }
+                            tr.Cells.Add(cell3);
+
+                            if(leaveData.CancelAllow.HasValue) {
+                                tr = new TableRow();
+                                tb.Rows.Add(tr);
+
+                                cell3 = new TableCell();
+                                cell3.Text = "การอนุมัติยกเลิก";
+                                tr.Cells.Add(cell3);
+
+                                cell3 = new TableCell();
+                                if (leaveBossData.CancelAllow.HasValue) {
+                                    cell3.Text = "<div style='color: #808080;'>" + leaveBossData.CancelAllowDate.Value.ToLongDateString() + "</div>";
+                                    if (leaveBossData.CancelAllow.Value == 1) {
+                                        cell3.Text += "<div style='color: green'>อนุญาต</div>";
+                                    } else {
+                                        cell3.Text += "<div style='color: red'>ไม่อนุญาต</div>";
+                                    }
+                                    cell3.Text += "<div style='color: #000000;'>" + leaveBossData.CancelComment + "</div>";
+
+                                }
+                                tr.Cells.Add(cell3);
+                            }
+
+
+                        }
+
+                        cell2.Controls.Add(tb);
+
+                        row.Cells.Add(cell2);
+                    }
+                }
+
+
+
+
+
+
 
                 /*if(leaveData.CL_ID == null) {
                     lbCLName.Text = "-";

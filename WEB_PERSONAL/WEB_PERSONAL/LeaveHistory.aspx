@@ -72,10 +72,6 @@
         <asp:View ID="View2" runat="server">
             <div>
 
-                <div class="ps-div-title-red">ประวัติการลาที่เป็นผู้ลงความเห็น</div>
-                <asp:Label ID="lbCL" runat="server" Text="ไม่มีข้อมูล" CssClass="lbGV"></asp:Label>
-                <asp:GridView ID="gvCL" runat="server" CssClass="ps-table-1" style="margin: 0 auto; margin-bottom: 20px;" AllowPaging="True" PageSize="10" OnPageIndexChanging="gvCL_PageIndexChanging"></asp:GridView>
-
                 <div class="ps-div-title-red">ประวัติการลาที่เป็นผู้อนุมัติ</div>
                 <asp:Label ID="lbCH" runat="server" Text="ไม่มีข้อมูล" CssClass="lbGV"></asp:Label>
                 <asp:GridView ID="gvCH" runat="server" CssClass="ps-table-1" style="margin: 0 auto; margin-bottom: 20px;" AllowPaging="True" PageSize="10" OnPageIndexChanging="gvCH_PageIndexChanging"></asp:GridView>

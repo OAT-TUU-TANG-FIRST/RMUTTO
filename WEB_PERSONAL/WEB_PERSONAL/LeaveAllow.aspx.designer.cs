@@ -49,6 +49,15 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.GridView GridView1;
         
         /// <summary>
+        /// lbNoData control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbNoData;
+        
+        /// <summary>
         /// View2 control.
         /// </summary>
         /// <remarks>
@@ -472,13 +481,13 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.Label lbCancelReason;
         
         /// <summary>
-        /// lbCLComment control.
+        /// tbBoss control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCLComment;
+        protected global::System.Web.UI.WebControls.Table tbBoss;
         
         /// <summary>
         /// tbF1Comment control.

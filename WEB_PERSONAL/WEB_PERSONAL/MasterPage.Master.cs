@@ -33,13 +33,7 @@ namespace WEB_PERSONAL {
             string name = loginPerson.FirstNameAndLastName;
             profile_name.InnerText = name;
           
-            string personImageFileName = DatabaseManager.GetPersonImageFileName(loginPerson.CitizenID);
-            if (personImageFileName != "") {
-                profile_pic.Src = "Upload/PersonImage/" + personImageFileName;
-                profile_pic2.Src = "Upload/PersonImage/" + personImageFileName;
-            }  else {
-                profile_pic.Src = "Image/Small/person2.png";
-            }
+           
 
             //---------
             int count_approve = 0;
@@ -49,7 +43,23 @@ namespace WEB_PERSONAL {
 
             OracleConnection.ClearAllPools();
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
-                con.Open();
+                con.Open();    
+                  
+                using (OracleCommand com = new OracleCommand("SELECT URL FROM PS_PERSON_IMAGE WHERE CITIZEN_ID = '" + loginPerson.CitizenID + "' AND PRESENT = 1", con)) {
+                    using (OracleDataReader reader = com.ExecuteReader()) {
+                        while (reader.Read()) {
+                            string fileName;
+                            fileName = reader.GetValue(0).ToString();
+                            string personImageFileName = DatabaseManager.GetPersonImageFileName(loginPerson.CitizenID);
+                            if (personImageFileName != "") {
+                                profile_pic.Src = "Upload/PersonImage/" + personImageFileName;
+                                profile_pic2.Src = "Upload/PersonImage/" + personImageFileName;
+                            } else {
+                                profile_pic.Src = "Image/Small/person2.png";
+                            }
+                        }
+                    }
+                }
                 
 
                 using (OracleCommand com = new OracleCommand("SELECT COUNT(LEV_BOSS_DATA.LEAVE_BOSS_ID) FROM LEV_DATA, LEV_BOSS_DATA WHERE LEAVE_STATUS_ID IN(1,4) AND LEV_DATA.LEAVE_ID = LEV_BOSS_DATA.LEAVE_ID AND LEV_DATA.BOSS_STATE = LEV_BOSS_DATA.STATE AND LEV_BOSS_DATA.CITIZEN_ID = '" + loginPerson.CitizenID + "'", con)) {
@@ -67,7 +77,7 @@ namespace WEB_PERSONAL {
                     lbLeaveAllowCount.Visible = false;
                 }
 
-                using (OracleCommand com = new OracleCommand("SELECT COUNT(LEAVE_ID) FROM LEV_DATA WHERE PS_ID = '" + loginPerson.CitizenID + "' AND LEAVE_STATUS_ID in(3,7)", con)) {
+                using (OracleCommand com = new OracleCommand("SELECT COUNT(LEAVE_ID) FROM LEV_DATA WHERE PS_ID = '" + loginPerson.CitizenID + "' AND LEAVE_STATUS_ID in(2,5)", con)) {
                     using (OracleDataReader reader = com.ExecuteReader()) {
                         while (reader.Read()) {
                             count_leave_finish = reader.GetInt32(0);
@@ -130,7 +140,7 @@ namespace WEB_PERSONAL {
                 //--Permission--
 
                 WorkingDay.Visible = false;
-                LeaveReport.Visible = false;
+                //LeaveReport.Visible = false;
                 cbAddPerson1.Visible = false;
                 cbAddPerson2.Visible = false;
                 cbAddPerson6.Visible = false;
@@ -147,7 +157,7 @@ namespace WEB_PERSONAL {
                         while (reader.Read()) {
                             int type = reader.GetInt32(0);
                             if (type == 1) WorkingDay.Visible = true;
-                            else if (type == 2) LeaveReport.Visible = true;
+                            //else if (type == 2) LeaveReport.Visible = true;
                             else if (type == 3) cbAddPerson1.Visible = true;
                             else if (type == 4) cbAddPerson2.Visible = true;
                             //else if (type == 5) cbAddPerson3.Visible = true;

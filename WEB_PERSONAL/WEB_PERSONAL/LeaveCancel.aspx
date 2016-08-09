@@ -243,10 +243,17 @@
                                 <img src="Image/Small/a.png" class="icon_left"/>
                                 เหตุผลที่ยกเลิก</td>
                             <td class="col2">
-                                <asp:TextBox ID="tbCancelReason" runat="server" TextMode="MultiLine"></asp:TextBox>
+                                <asp:TextBox ID="tbCancelReason" runat="server" TextMode="MultiLine" CssClass="ps-textbox"></asp:TextBox>
                             </td>
                         </tr>
                     </table>
+
+                    <div class="ps-separator"></div>
+
+                    <div class="ps-div-title-red">ผู้อนุมัติการลา</div>
+                    <div style="text-align: center;">
+                        <asp:Table ID="tbBoss" runat="server" Style="text-align: center; display: inline-block;"></asp:Table>
+                    </div>
 
                     <div style="text-align: center; margin-top: 10px;">
                         <asp:LinkButton ID="lbuCancelBack" runat="server" CssClass="ps-button" OnClick="lbuCancelBack_Click"><img src="Image/Small/back.png" class="icon_left"/>ย้อนกลับ</asp:LinkButton>

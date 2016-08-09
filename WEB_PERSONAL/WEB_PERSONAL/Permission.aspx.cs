@@ -32,13 +32,13 @@ namespace WEB_PERSONAL {
                     hfCitizenID.Value = tbCitizenID.Text;
                     d1.Style.Add("display", "block");
                     cb1.Checked = false;
-                    cb2.Checked = false;
+                    //cb2.Checked = false;
                     using (OracleCommand com = new OracleCommand("SELECT * FROM TB_PERMISSION WHERE CITIZEN_ID = '" + tbCitizenID.Text + "'", con)) {
                         using (OracleDataReader reader = com.ExecuteReader()) {
                             while (reader.Read()) {
                                 int type = reader.GetInt32(2);
                                 if (type == 1) { cb1.Checked = true; }
-                                else if (type == 2) { cb2.Checked = true; }
+                                //else if (type == 2) { cb2.Checked = true; }
                                 else if (type == 3) { cbAddPerson1.Checked = true; }
                                 else if (type == 4) { cbAddPerson2.Checked = true; }
                                // else if (type == 5) { cbAddPerson3.Checked = true; }
@@ -70,7 +70,7 @@ namespace WEB_PERSONAL {
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
                 Exe(cb1, citizenID, 1);
-                Exe(cb2, citizenID, 2);
+                //Exe(cb2, citizenID, 2);
                 Exe(cbAddPerson1, citizenID, 3);
                 Exe(cbAddPerson2, citizenID, 4);
                 //Exe(cbAddPerson3, citizenID, 5);

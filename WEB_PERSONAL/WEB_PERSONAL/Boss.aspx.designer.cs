@@ -10,16 +10,7 @@
 namespace WEB_PERSONAL {
     
     
-    public partial class Permission {
-        
-        /// <summary>
-        /// Panel1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel1;
+    public partial class Boss {
         
         /// <summary>
         /// tbCitizenID control.
@@ -31,147 +22,129 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.TextBox tbCitizenID;
         
         /// <summary>
-        /// lbuSearch control.
+        /// rbAtikan control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbuSearch;
+        protected global::System.Web.UI.WebControls.RadioButton rbAtikan;
         
         /// <summary>
-        /// d1 control.
+        /// rbCampus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl d1;
+        protected global::System.Web.UI.WebControls.RadioButton rbCampus;
         
         /// <summary>
-        /// lbName control.
+        /// ddlCampus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbName;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCampus;
         
         /// <summary>
-        /// cbAddPerson1 control.
+        /// rbFaculty control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbAddPerson1;
+        protected global::System.Web.UI.WebControls.RadioButton rbFaculty;
         
         /// <summary>
-        /// cbAddPerson2 control.
+        /// ddlFaculty control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbAddPerson2;
+        protected global::System.Web.UI.WebControls.DropDownList ddlFaculty;
         
         /// <summary>
-        /// cbAddPerson6 control.
+        /// rbDivision control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbAddPerson6;
+        protected global::System.Web.UI.WebControls.RadioButton rbDivision;
         
         /// <summary>
-        /// cbPersonPosition control.
+        /// ddlDivision control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbPersonPosition;
+        protected global::System.Web.UI.WebControls.DropDownList ddlDivision;
         
         /// <summary>
-        /// cb1 control.
+        /// trWorkDivision control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cb1;
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow trWorkDivision;
         
         /// <summary>
-        /// cbAddInsig1 control.
+        /// rbWorkDivision control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbAddInsig1;
+        protected global::System.Web.UI.WebControls.RadioButton rbWorkDivision;
         
         /// <summary>
-        /// cbAddInsig2 control.
+        /// ddlWorkDivision control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbAddInsig2;
+        protected global::System.Web.UI.WebControls.DropDownList ddlWorkDivision;
         
         /// <summary>
-        /// cbAddManage1 control.
+        /// ddlHighNode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbAddManage1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlHighNode;
         
         /// <summary>
-        /// cbAddManage2 control.
+        /// lbuAdd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbAddManage2;
+        protected global::System.Web.UI.WebControls.LinkButton lbuAdd;
         
         /// <summary>
-        /// lbuSave control.
+        /// lbResult control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbuSave;
+        protected global::System.Web.UI.WebControls.Label lbResult;
         
         /// <summary>
-        /// lbSaveComplete control.
+        /// tbBoss control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbSaveComplete;
-        
-        /// <summary>
-        /// d2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl d2;
-        
-        /// <summary>
-        /// hfCitizenID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hfCitizenID;
+        protected global::System.Web.UI.WebControls.Table tbBoss;
     }
 }

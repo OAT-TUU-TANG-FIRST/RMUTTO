@@ -59,8 +59,6 @@
                             <div class="ps-box-ct10">
                                 <div>
                                     <asp:CheckBox ID="cb1" runat="server" Text="จัดการวันปฏิบัติราชการ" /></div>
-                                <div>
-                                    <asp:CheckBox ID="cb2" runat="server" Text="ออกรายงานการลา" /></div>
                             </div>
                         </div>
 

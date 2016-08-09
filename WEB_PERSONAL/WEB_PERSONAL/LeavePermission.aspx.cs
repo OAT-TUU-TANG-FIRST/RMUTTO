@@ -14,7 +14,7 @@ namespace WEB_PERSONAL {
             
             using(OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
-                using(OracleCommand com = new OracleCommand("SELECT (SELECT ADMIN_POSITION_NAME FROM TB_ADMIN_POSITION WHERE ADMIN_POSITION_ID = LEV_PERMISSION.ADMIN_POSITION_ID) ระดับ, REPLACE(PUY_MAX, 999, 'ตามที่เห็นสมควร') ลาป่วย, REPLACE(KIJ_MAX, 999, 'ตามที่เห็นสมควร') ลากิจ, FUNC_LEV_PM(GIVE_BIRTH) ลาคลอดบุตร, FUNC_LEV_PM(HELP_GIVE_BIRTH) ลาไปช่วยเหลือภริยาที่คลอดบุตร, FUNC_LEV_PM(REST) ลาพักผ่อน, FUNC_LEV_PM(ORDAIN_HUJ) ลาไปอุปสมบทหรือประกอบพิธีฮัจย์ FROM LEV_PERMISSION", con)) {
+                using(OracleCommand com = new OracleCommand("SELECT (SELECT WM_CONCAT(ADMIN_POSITION_NAME) FROM TB_ADMIN_POSITION WHERE ADMIN_POSITION_POWER = LEV_PERMISSION.ADMIN_POSITION_POWER GROUP BY ADMIN_POSITION_POWER) ระดับ, REPLACE(PUY_MAX, 999, 'ตามที่เห็นสมควร') ลาป่วย, REPLACE(KIJ_MAX, 999, 'ตามที่เห็นสมควร') ลากิจ, FUNC_LEV_PM(GIVE_BIRTH) ลาคลอดบุตร, FUNC_LEV_PM(HELP_GIVE_BIRTH) ลาไปช่วยเหลือภริยาที่คลอดบุตร, FUNC_LEV_PM(REST) ลาพักผ่อน, FUNC_LEV_PM(ORDAIN_HUJ) ลาไปอุปสมบทหรือประกอบพิธีฮัจย์ FROM LEV_PERMISSION", con)) {
                     using(OracleDataReader reader = com.ExecuteReader()) {
                         while(reader.Read()) {
                             TableRow r = new TableRow();

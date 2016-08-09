@@ -18,7 +18,6 @@ namespace WEB_PERSONAL {
             FuncGVFinish();
             FuncGVProcessing();
             FuncGVHistory();
-            FuncGVCL();
             FuncGVCH();
             FuncLeaveClaim();
 
@@ -62,11 +61,6 @@ namespace WEB_PERSONAL {
             FuncGVFinish();
         }
 
-        protected void gvCL_PageIndexChanging(object sender, GridViewPageEventArgs e) {
-            gvCL.PageIndex = e.NewPageIndex;
-            FuncGVCL();
-        }
-
         protected void gvCH_PageIndexChanging(object sender, GridViewPageEventArgs e) {
             gvCH.PageIndex = e.NewPageIndex;
             FuncGVCH();
@@ -75,7 +69,7 @@ namespace WEB_PERSONAL {
         private void FuncGVFinish() {
 
             OracleConnection.ClearAllPools();
-            SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEAVE_ID รหัสการลา, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_DATA.LEAVE_TYPE_ID) ประเภทการลา, REQ_DATE วันที่ข้อมูล, FROM_DATE จากวันที่, TO_DATE ถึงวันที่, TOTAL_DAY รวมวัน, (SELECT LEAVE_STATUS_NAME FROM LEV_STATUS WHERE LEV_STATUS.LEAVE_STATUS_ID = LEV_DATA.LEAVE_STATUS_ID) สถานะ, NVL(CH_ALLOW,0) ผลการอนุมัติ FROM LEV_DATA WHERE LEAVE_STATUS_ID in(3,7) AND PS_ID = '" + loginPerson.CitizenID + "' ORDER BY LEAVE_ID DESC");
+            SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEAVE_ID รหัสการลา, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_DATA.LEAVE_TYPE_ID) ประเภทการลา, REQ_DATE วันที่ข้อมูล, FROM_DATE จากวันที่, TO_DATE ถึงวันที่, TOTAL_DAY รวมวัน, (SELECT LEAVE_STATUS_NAME FROM LEV_STATUS WHERE LEV_STATUS.LEAVE_STATUS_ID = LEV_DATA.LEAVE_STATUS_ID) สถานะ, NVL(V_ALLOW,0) ผลการอนุมัติ FROM LEV_DATA WHERE LEAVE_STATUS_ID in(2,5) AND PS_ID = '" + loginPerson.CitizenID + "' ORDER BY LEAVE_ID DESC");
             gvFinish.DataSource = sds;
             gvFinish.DataBind();
 
@@ -103,10 +97,10 @@ namespace WEB_PERSONAL {
                         LeaveData leaveData = new LeaveData();
                         leaveData.Load(int.Parse(ID));
 
-                        if (leaveData.LeaveStatusID == 3) {
-                            DatabaseManager.ExecuteNonQuery("UPDATE LEV_DATA SET LEAVE_STATUS_ID = 4 WHERE LEAVE_ID = " + ID);
-                        } else if (leaveData.LeaveStatusID == 7) {
-                            DatabaseManager.ExecuteNonQuery("UPDATE LEV_DATA SET LEAVE_STATUS_ID = 8 WHERE LEAVE_ID = " + ID);
+                        if (leaveData.LeaveStatusID == 2) {
+                            DatabaseManager.ExecuteNonQuery("UPDATE LEV_DATA SET LEAVE_STATUS_ID = 3 WHERE LEAVE_ID = " + ID);
+                        } else if (leaveData.LeaveStatusID == 5) {
+                            DatabaseManager.ExecuteNonQuery("UPDATE LEV_DATA SET LEAVE_STATUS_ID = 6 WHERE LEAVE_ID = " + ID);
                         }
                         Response.Redirect("LeaveHistory.aspx");
                     };
@@ -114,11 +108,11 @@ namespace WEB_PERSONAL {
                     gvFinish.Rows[i].Cells.Add(cell);
 
                     if (Util.StringEqual(gvFinish.Rows[i].Cells[7].Text, new string[] { "2" })) {
-                        gvFinish.Rows[i].Cells[7].Text = "ไม่อนุมัติ";
+                        gvFinish.Rows[i].Cells[7].Text = "ไม่อนุญาต";
                         gvFinish.Rows[i].Cells[7].ForeColor = System.Drawing.Color.Red;
                     }
                     if (Util.StringEqual(gvFinish.Rows[i].Cells[7].Text, new string[] { "1" })) {
-                        gvFinish.Rows[i].Cells[7].Text = "อนุมัติ";
+                        gvFinish.Rows[i].Cells[7].Text = "อนุญาต";
                         gvFinish.Rows[i].Cells[7].ForeColor = System.Drawing.Color.Green;
                     }
                 }
@@ -132,7 +126,7 @@ namespace WEB_PERSONAL {
         }
         private void FuncGVProcessing() {
             OracleConnection.ClearAllPools();
-            SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEAVE_ID รหัสการลา, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_DATA.LEAVE_TYPE_ID) ประเภทการลา, REQ_DATE วันที่ข้อมูล, FROM_DATE จากวันที่, TO_DATE ถึงวันที่, TOTAL_DAY รวมวัน, (SELECT LEAVE_STATUS_NAME FROM LEV_STATUS WHERE LEV_STATUS.LEAVE_STATUS_ID = LEV_DATA.LEAVE_STATUS_ID) สถานะ FROM LEV_DATA WHERE LEAVE_STATUS_ID in(1,2,5,6) AND PS_ID = '" + loginPerson.CitizenID + "' ORDER BY LEAVE_ID DESC");
+            SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEAVE_ID รหัสการลา, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_DATA.LEAVE_TYPE_ID) ประเภทการลา, REQ_DATE วันที่ข้อมูล, FROM_DATE จากวันที่, TO_DATE ถึงวันที่, TOTAL_DAY รวมวัน, (SELECT LEAVE_STATUS_NAME FROM LEV_STATUS WHERE LEV_STATUS.LEAVE_STATUS_ID = LEV_DATA.LEAVE_STATUS_ID) สถานะ FROM LEV_DATA WHERE LEAVE_STATUS_ID in(1,4) AND PS_ID = '" + loginPerson.CitizenID + "' ORDER BY LEAVE_ID DESC");
             gvProgressing.DataSource = sds;
             gvProgressing.DataBind();
 
@@ -172,7 +166,7 @@ namespace WEB_PERSONAL {
         }
         private void FuncGVHistory() {
             OracleConnection.ClearAllPools();
-            SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEAVE_ID รหัสการลา, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_DATA.LEAVE_TYPE_ID) ประเภทการลา, REQ_DATE วันที่ข้อมูล, FROM_DATE จากวันที่, TO_DATE ถึงวันที่, TOTAL_DAY รวมวัน, (SELECT LEAVE_STATUS_NAME FROM LEV_STATUS WHERE LEV_STATUS.LEAVE_STATUS_ID = LEV_DATA.LEAVE_STATUS_ID) สถานะ, NVL(CH_ALLOW,-1) ผลการอนุมัติ FROM LEV_DATA WHERE LEAVE_STATUS_ID in(4,8,9,10) AND PS_ID = '" + loginPerson.CitizenID + "' ORDER BY LEAVE_ID DESC");
+            SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEAVE_ID รหัสการลา, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_DATA.LEAVE_TYPE_ID) ประเภทการลา, REQ_DATE วันที่ข้อมูล, FROM_DATE จากวันที่, TO_DATE ถึงวันที่, TOTAL_DAY รวมวัน, (SELECT LEAVE_STATUS_NAME FROM LEV_STATUS WHERE LEV_STATUS.LEAVE_STATUS_ID = LEV_DATA.LEAVE_STATUS_ID) สถานะ, NVL(V_ALLOW,0) ผลการอนุมัติ FROM LEV_DATA WHERE LEAVE_STATUS_ID in(3,6,7,8) AND PS_ID = '" + loginPerson.CitizenID + "' ORDER BY LEAVE_ID DESC");
             gvHistory.DataSource = sds;
             gvHistory.DataBind();
 
@@ -202,16 +196,16 @@ namespace WEB_PERSONAL {
                     cell.Controls.Add(btn);
                     gvHistory.Rows[i].Cells.Add(cell);
 
-                    if (Util.StringEqual(gvHistory.Rows[i].Cells[7].Text, new string[] { "-1" })) {
+                    if (Util.StringEqual(gvHistory.Rows[i].Cells[7].Text, new string[] { "0" })) {
                         gvHistory.Rows[i].Cells[7].Text = "-";
                         gvHistory.Rows[i].Cells[7].ForeColor = System.Drawing.Color.Black;
                     }
                     if (Util.StringEqual(gvHistory.Rows[i].Cells[7].Text, new string[] { "2" })) {
-                        gvHistory.Rows[i].Cells[7].Text = "ไม่อนุมัติ";
+                        gvHistory.Rows[i].Cells[7].Text = "ไม่อนุญาต";
                         gvHistory.Rows[i].Cells[7].ForeColor = System.Drawing.Color.Red;
                     }
                     if (Util.StringEqual(gvHistory.Rows[i].Cells[7].Text, new string[] { "1" })) {
-                        gvHistory.Rows[i].Cells[7].Text = "อนุมัติ";
+                        gvHistory.Rows[i].Cells[7].Text = "อนุญาต";
                         gvHistory.Rows[i].Cells[7].ForeColor = System.Drawing.Color.Green;
                     }
                 }
@@ -225,59 +219,10 @@ namespace WEB_PERSONAL {
 
 
         }
-        private void FuncGVCL() {
-            OracleConnection.ClearAllPools();
-            SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEAVE_ID รหัสการลา, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_DATA.LEAVE_TYPE_ID) ประเภทการลา, REQ_DATE วันที่ข้อมูล,  (SELECT PS_FN_TH || ' ' || PS_LN_TH FROM PS_PERSON WHERE PS_CITIZEN_ID = LEV_DATA.PS_ID) ชื่อผู้ลา, (SELECT TB_POSITION.NAME FROM TB_POSITION, PS_PERSON WHERE TB_POSITION.ID = PS_PERSON.PS_POSITION_ID AND PS_PERSON.PS_CITIZEN_ID = LEV_DATA.PS_ID) ตำแหน่ง, (SELECT ADMIN_POSITION_NAME FROM TB_ADMIN_POSITION, PS_PERSON WHERE ADMIN_POSITION_ID = PS_PERSON.PS_ADMIN_POS_ID AND PS_PERSON.PS_CITIZEN_ID = LEV_DATA.PS_ID) ระดับ, (SELECT LEAVE_STATUS_NAME FROM LEV_STATUS WHERE LEV_STATUS.LEAVE_STATUS_ID = LEV_DATA.LEAVE_STATUS_ID) สถานะ, NVL(CH_ALLOW,-1) ผลการอนุมัติ FROM LEV_DATA WHERE CL_ID = '" + loginPerson.CitizenID + "' ORDER BY LEAVE_ID DESC");
-            gvCL.DataSource = sds;
-            gvCL.DataBind();
-
-            if (gvCL.Rows.Count > 0) {
-                lbCL.Visible = false;
-                TableHeaderCell headerCell = new TableHeaderCell();
-                headerCell.Text = "ดูข้อมูล";
-                gvCL.HeaderRow.Cells.Add(headerCell);
-
-                gvCL.HeaderRow.Cells[0].Text = "<img src='Image/Small/ID.png' class='icon_left'/>" + gvCL.HeaderRow.Cells[0].Text;
-                gvCL.HeaderRow.Cells[1].Text = "<img src='Image/Small/list.png' class='icon_left'/>" + gvCL.HeaderRow.Cells[1].Text;
-                gvCL.HeaderRow.Cells[2].Text = "<img src='Image/Small/calendar.png' class='icon_left'/>" + gvCL.HeaderRow.Cells[2].Text;
-                gvCL.HeaderRow.Cells[3].Text = "<img src='Image/Small/person2.png' class='icon_left'/>" + gvCL.HeaderRow.Cells[3].Text;
-                gvCL.HeaderRow.Cells[6].Text = "<img src='Image/Small/question.png' class='icon_left'/>" + gvCL.HeaderRow.Cells[6].Text;
-                gvCL.HeaderRow.Cells[7].Text = "<img src='Image/Small/correct.png' class='icon_left'/>" + gvCL.HeaderRow.Cells[7].Text;
-
-                for (int i = 0; i < gvCL.Rows.Count; ++i) {
-                    string ID = gvCL.Rows[i].Cells[0].Text;
-                    TableCell cell = new TableCell();
-                    LinkButton btn = new LinkButton();
-                    btn.CssClass = "ps-button-img";
-                    btn.Text = "<img src='Image/Small/search.png'></img>";
-                    btn.Click += (e2, e3) => {
-                        Response.Redirect("ViewLeaveForm.aspx?LeaveID=" + ID);
-                    };
-                    cell.Controls.Add(btn);
-                    gvCL.Rows[i].Cells.Add(cell);
-
-                    if (Util.StringEqual(gvCL.Rows[i].Cells[7].Text, new string[] { "-1" })) {
-                        gvCL.Rows[i].Cells[7].Text = "-";
-                        gvCL.Rows[i].Cells[7].ForeColor = System.Drawing.Color.Black;
-                    }
-                    if (Util.StringEqual(gvCL.Rows[i].Cells[7].Text, new string[] { "2" })) {
-                        gvCL.Rows[i].Cells[7].Text = "ไม่อนุมัติ";
-                        gvCL.Rows[i].Cells[7].ForeColor = System.Drawing.Color.Red;
-                    }
-                    if (Util.StringEqual(gvCL.Rows[i].Cells[7].Text, new string[] { "1" })) {
-                        gvCL.Rows[i].Cells[7].Text = "อนุมัติ";
-                        gvCL.Rows[i].Cells[7].ForeColor = System.Drawing.Color.Green;
-                    }
-                }
-
-                Util.NormalizeGridViewDate(gvCL, 2);
-            } else {
-                lbCL.Visible = true;
-            }
-        }
+        
         private void FuncGVCH() {
             OracleConnection.ClearAllPools();
-            SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEAVE_ID รหัสการลา, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_DATA.LEAVE_TYPE_ID) ประเภทการลา, REQ_DATE วันที่ข้อมูล,  (SELECT PS_FN_TH || ' ' || PS_LN_TH FROM PS_PERSON WHERE PS_CITIZEN_ID = LEV_DATA.PS_ID) ชื่อผู้ลา, (SELECT TB_POSITION.NAME FROM TB_POSITION, PS_PERSON WHERE TB_POSITION.ID = PS_PERSON.PS_POSITION_ID AND PS_PERSON.PS_CITIZEN_ID = LEV_DATA.PS_ID) ตำแหน่ง, (SELECT ADMIN_POSITION_NAME FROM TB_ADMIN_POSITION, PS_PERSON WHERE ADMIN_POSITION_ID = PS_PERSON.PS_ADMIN_POS_ID AND PS_PERSON.PS_CITIZEN_ID = LEV_DATA.PS_ID) ระดับ, (SELECT LEAVE_STATUS_NAME FROM LEV_STATUS WHERE LEV_STATUS.LEAVE_STATUS_ID = LEV_DATA.LEAVE_STATUS_ID) สถานะ, NVL(CH_ALLOW,-1) ผลการอนุมัติ FROM LEV_DATA WHERE CH_ID = '" + loginPerson.CitizenID + "' ORDER BY LEAVE_ID DESC");
+            SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEV_DATA.LEAVE_ID รหัสการลา, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_DATA.LEAVE_TYPE_ID) ประเภทการลา, REQ_DATE วันที่ข้อมูล,  (SELECT PS_FN_TH || ' ' || PS_LN_TH FROM PS_PERSON WHERE PS_CITIZEN_ID = LEV_DATA.PS_ID) ชื่อผู้ลา, (SELECT TB_POSITION_WORK.POSITION_WORK_NAME FROM TB_POSITION_WORK, PS_PERSON WHERE TB_POSITION_WORK.POSITION_WORK_ID = PS_PERSON.PS_WORK_POS_ID AND PS_PERSON.PS_CITIZEN_ID = LEV_DATA.PS_ID) ตำแหน่ง, (SELECT ADMIN_POSITION_NAME FROM TB_ADMIN_POSITION, PS_PERSON WHERE ADMIN_POSITION_ID = PS_PERSON.PS_ADMIN_POS_ID AND PS_PERSON.PS_CITIZEN_ID = LEV_DATA.PS_ID) ระดับ, (SELECT LEAVE_STATUS_NAME FROM LEV_STATUS WHERE LEV_STATUS.LEAVE_STATUS_ID = LEV_DATA.LEAVE_STATUS_ID) สถานะ, NVL(LEV_DATA.V_ALLOW,0) ผลการอนุมัติ FROM LEV_DATA, LEV_BOSS_DATA WHERE LEV_DATA.LEAVE_ID = LEV_BOSS_DATA.LEAVE_ID AND LEV_BOSS_DATA.CITIZEN_ID = '" + loginPerson.CitizenID + "' ORDER BY LEV_DATA.LEAVE_ID DESC");
             gvCH.DataSource = sds;
             gvCH.DataBind();
 
@@ -306,16 +251,16 @@ namespace WEB_PERSONAL {
                     cell.Controls.Add(btn);
                     gvCH.Rows[i].Cells.Add(cell);
 
-                    if (Util.StringEqual(gvCH.Rows[i].Cells[7].Text, new string[] { "-1" })) {
+                    if (Util.StringEqual(gvCH.Rows[i].Cells[7].Text, new string[] { "0" })) {
                         gvCH.Rows[i].Cells[7].Text = "-";
                         gvCH.Rows[i].Cells[7].ForeColor = System.Drawing.Color.Black;
                     }
                     if (Util.StringEqual(gvCH.Rows[i].Cells[7].Text, new string[] { "2" })) {
-                        gvCH.Rows[i].Cells[7].Text = "ไม่อนุมัติ";
+                        gvCH.Rows[i].Cells[7].Text = "ไม่อนุญาต";
                         gvCH.Rows[i].Cells[7].ForeColor = System.Drawing.Color.Red;
                     }
                     if (Util.StringEqual(gvCH.Rows[i].Cells[7].Text, new string[] { "1" })) {
-                        gvCH.Rows[i].Cells[7].Text = "อนุมัติ";
+                        gvCH.Rows[i].Cells[7].Text = "อนุญาต";
                         gvCH.Rows[i].Cells[7].ForeColor = System.Drawing.Color.Green;
                     }
                 }

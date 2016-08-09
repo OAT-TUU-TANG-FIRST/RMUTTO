@@ -128,7 +128,7 @@ namespace WEB_PERSONAL {
 
                         if (leaveData.LeaveStatusID == 2) {
 
-                        } else if (leaveData.LeaveStatusID == 6) {
+                        } else if (leaveData.LeaveStatusID == 4) {
                             //trCLOldComment.Visible = true;
                             //trCLOldDate.Visible = true;
                             //trCHOldComment.Visible = true;
@@ -205,14 +205,130 @@ namespace WEB_PERSONAL {
                             divDrCer.InnerHtml = "<a href='Upload/Drcer/" + leaveData.DocterCertificationFileName + "'><img src='Upload/DrCer/" + leaveData.DocterCertificationFileName + "' style='width: 200px;' /></a>";
                         }
 
-                        lbCLComment.Text = "-";
+                        /*lbCLComment.Text = "";
                         for (int j = 0; j < leaveData.LeaveBossDataList.Count; j++) {
                             if(!leaveData.LeaveBossDataList[j].Allow.HasValue) {
                                 continue;
                             }
                             LeaveBossData leaveBossData = leaveData.LeaveBossDataList[j];
-                            lbCLComment.Text = "<div style='color: #808080'>" + leaveBossData.Person.FirstNameAndLastName + " / " + leaveBossData.AllowDate.Value.ToLongDateString() +  "</div><div style='margin-bottom: 10px;'> - " + leaveBossData.Comment + "</div>";
+                            lbCLComment.Text += "<div style='color: #808080'>" + leaveBossData.Person.FirstNameAndLastName + " / " + leaveBossData.AllowDate.Value.ToLongDateString() +  "</div><div style='margin-bottom: 10px;'> - " + leaveBossData.Comment + "</div>";
+                        }*/
+
+                        {
+                            TableRow row = new TableRow();
+                            TableCell cell2;
+                            Image image;
+                            tbBoss.Rows.Add(row);
+
+                            for (int j = 0; j < leaveData.BossStateMax; j++) {
+
+                                LeaveBossData leaveBossData = leaveData.LeaveBossDataList[j];
+
+                                cell2 = new TableCell();
+                                cell2.Style.Add("vertical-align", "top");
+                                
+
+
+                                Table tb = new Table();
+                                tb.CssClass = "ps-table-1";
+                                tb.Style.Add("text-align", "left");
+                                {
+                                    TableRow tr;
+                                    TableCell cell3;
+
+                                    tr = new TableRow();
+                                    tb.Rows.Add(tr);
+
+                                    cell3 = new TableCell();
+                                    cell3.ColumnSpan = 2;
+                                    cell3.Style.Add("text-align", "center");
+                                    image = new Image();
+                                    image.CssClass = "ps-ms-main-drop-profile-pic";
+
+                                    string imagePath = DatabaseManager.GetPersonImageFileName(leaveBossData.CitizenID);
+                                    if (imagePath != "") {
+                                        image.Attributes["src"] = "Upload/PersonImage/" + imagePath;
+                                        cell3.Controls.Add(image);
+                                    }
+                                    tr.Cells.Add(cell3);
+
+                                    tr = new TableRow();
+                                    tb.Rows.Add(tr);
+
+                                    cell3 = new TableCell();
+                                    cell3.Text = "ชื่อ";
+                                    tr.Cells.Add(cell3);
+
+                                    cell3 = new TableCell();
+                                    cell3.Text = leaveBossData.Person.FirstNameAndLastName;
+                                    tr.Cells.Add(cell3);
+
+                                    tr = new TableRow();
+                                    tb.Rows.Add(tr);
+
+                                    cell3 = new TableCell();
+                                    cell3.Text = "ตำแหน่ง";
+                                    tr.Cells.Add(cell3);
+
+                                    cell3 = new TableCell();
+                                    cell3.Text = leaveBossData.Person.PositionWorkName;
+                                    tr.Cells.Add(cell3);
+
+                                    tr = new TableRow();
+                                    tb.Rows.Add(tr);
+
+                                    cell3 = new TableCell();
+                                    cell3.Text = "ระดับ";
+                                    tr.Cells.Add(cell3);
+
+                                    cell3 = new TableCell();
+                                    cell3.Text = leaveBossData.Person.AdminPositionName;// + "<br />" + leaveBossData.Person.AdminPositionNameExtra();
+                                    tr.Cells.Add(cell3);
+
+                                    tr = new TableRow();
+                                    tb.Rows.Add(tr);
+
+                                    cell3 = new TableCell();
+                                    cell3.Text = "การอนุมัติ";
+                                    tr.Cells.Add(cell3);
+
+                                    cell3 = new TableCell();                                    
+                                    if (leaveData.LeaveStatusID == 1) {
+                                        if (leaveBossData.Allow.HasValue) {
+                                            cell3.Text = "<div style='color: #808080;'>" + leaveBossData.AllowDate.Value.ToLongDateString() + "</div>";
+                                            if (leaveBossData.Allow.Value == 1) {
+                                                cell3.Text += "<div style='color: green'>อนุญาต</div>";
+                                            } else {
+                                                cell3.Text += "<div style='color: red'>ไม่อนุญาต</div>";
+                                            }
+                                            cell3.Text += "<div style='color: #000000;'>" + leaveBossData.Comment + "</div>";
+
+                                        }
+                                    } else if(leaveData.LeaveStatusID == 4) {
+                                        if (leaveBossData.CancelAllow.HasValue) {
+                                            cell3.Text = "<div style='color: #808080;'>" + leaveBossData.CancelAllowDate.Value.ToLongDateString() + "</div>";
+                                            if (leaveBossData.CancelAllow.Value == 1) {
+                                                cell3.Text += "<div style='color: green'>อนุญาต</div>";
+                                            } else {
+                                                cell3.Text += "<div style='color: red'>ไม่อนุญาต</div>";
+                                            }
+                                            cell3.Text += "<div style='color: #000000;'>" + leaveBossData.CancelComment + "</div>";
+
+                                        }
+                                    }
+                                    
+                                    tr.Cells.Add(cell3);
+
+
+                                }
+                                
+                                cell2.Controls.Add(tb);
+
+                                row.Cells.Add(cell2);
+                            }
                         }
+
+                        lbCancelReason.Text = leaveData.CancelReason;
 
                         /*if (leaveData.LeaveStatusID >= 1 && leaveData.LeaveStatusID <= 4) {
                             if(leaveData.CL_ID == null) {
@@ -244,7 +360,7 @@ namespace WEB_PERSONAL {
                             
                         }*/
 
-                        
+
                         MultiView1.ActiveViewIndex = 1;
 
                         error_area.Attributes["class"] = null;
@@ -255,7 +371,9 @@ namespace WEB_PERSONAL {
                     GridView1.Rows[i].Cells.Add(cell);
                 }
 
-                
+                lbNoData.Visible = false;
+            } else {
+                lbNoData.Visible = true;
             }
         }
 
@@ -281,10 +399,20 @@ namespace WEB_PERSONAL {
                 }
                 LeaveData leaveData = (LeaveData)Session["LeaveData"];
                 LeaveBossData leaveBossData = leaveData.GetCurrentBoss();
-                leaveBossData.Comment = tbF1Comment.Text;
-                leaveBossData.Allow = allow;
-                leaveBossData.AllowDate = DateTime.Today;
-                leaveData.ExecuteAllow();
+
+                if(leaveData.LeaveStatusID == 1) {
+                    leaveBossData.Comment = tbF1Comment.Text;
+                    leaveBossData.Allow = allow;
+                    leaveBossData.AllowDate = DateTime.Today;
+                    leaveData.ExecuteAllow();
+                } else if (leaveData.LeaveStatusID == 4) {
+                    leaveBossData.CancelComment = tbF1Comment.Text;
+                    leaveBossData.CancelAllow = allow;
+                    leaveBossData.CancelAllowDate = DateTime.Today;
+                    leaveData.ExecuteCancelAllow();
+                }
+
+                
 
                 /*if (leaveData.LeaveStatusID == 2) {
                     leaveData.CH_Comment = tbF1Comment.Text;

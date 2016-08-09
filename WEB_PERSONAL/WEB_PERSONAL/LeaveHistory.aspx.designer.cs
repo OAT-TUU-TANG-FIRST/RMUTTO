@@ -121,24 +121,6 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.View View2;
         
         /// <summary>
-        /// lbCL control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbCL;
-        
-        /// <summary>
-        /// gvCL control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvCL;
-        
-        /// <summary>
         /// lbCH control.
         /// </summary>
         /// <remarks>

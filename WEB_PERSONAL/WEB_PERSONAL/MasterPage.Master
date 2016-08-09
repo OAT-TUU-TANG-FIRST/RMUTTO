@@ -140,7 +140,7 @@
                             <span class="ps-ms-profile-div"><img src="Image/no_image.png" class="ps-ms-profile-pic" id="profile_pic" runat="server"/></span>
                             <span id="profile_name" runat="server"></span>
                         </asp:LinkButton>
-                        <asp:LinkButton ID="lbuLogout" runat="server" OnClick="lbuLogout_Click" CssClass="ps-ms-logout">ออกจากระบบ</asp:LinkButton>
+                        <a href="Access.aspx" class="ps-ms-logout">ออกจากระบบ</a>
                     </div>
                     </div>
                     
@@ -163,7 +163,7 @@
                             </div>
                             <div class="ps-box-i0">
                                 <div class="ps-box-ct10">
-                                    <div>เวอร์ชั่น : v1.2.7</div>
+                                    <div>เวอร์ชั่น : v1.2.8</div>
                                     <div style="display: none;">ตัวนับ : <span id="s_counter" runat="server"></span></div>
                                 </div>
                             </div>
@@ -228,7 +228,7 @@
                                     <a href="SEMINAR-GENERAL.aspx" id="cbNotPerson1" runat="server"><img src="Image/Small/add.png" />การเพิ่มพัฒนาบุคลากร</a>
                                     <a href="SEMINAR-ADMIN.aspx" id="cbAddPerson6" runat="server"><img src="Image/Small/edit.png" />การแก้ไขพัฒนาบุคลากร</a>
                                     <a href="PersonBranch.aspx" id="cbPersonMap" runat="server"><img src="Image/Small/list.png" />แผนผังบุคลากร</a>
-                                    <a href="PersonPositionManagement.aspx" id="cbPersonPosition" runat="server"><img src="Image/Small/person2.png" />จัดการแต่งตั้งหัวหน้า</a>
+                                    <a href="Boss.aspx" id="cbPersonPosition" runat="server"><img src="Image/Small/person2.png" />จัดการแต่งตั้งหัวหน้า</a>
                                     <a href="PersonReport.aspx" id="cbNotPerson2" runat="server"><img src="Image/Small/report.png" />ออกรายงานบุคลากร</a>
                                     <a href="Report-Custom-Person.aspx" id="A1" runat="server"><img src="Image/Small/report.png" />ออกรายงานบุคลากรV2</a>
                                 </div>
@@ -247,7 +247,7 @@
                                     <a href="LeaveHistory.aspx"><img src="Image/Small/clock-history.png" />ประวัติการลา</a>
                                     <a href="WorkingTimeHistory.aspx"><img src="Image/Small/clock-history.png" />ประวัติเวลาปฏิบัติงาน</a>
                                     <a href="LeavePermission.aspx"><img src="Image/Small/info.png" />ตารางสิทธิการอนุญาต</a>
-                                    <a href="LeaveReport.aspx" id="LeaveReport" runat="server"><img src="Image/Small/report.png" />ออกรายงานการลา</a>
+                                    <a href="LeaveReport.aspx"><img src="Image/Small/report.png" />ออกรายงานการลา</a>
                                     <a href="WorkingDay.aspx" id="WorkingDay" runat="server"><img src="Image/Small/wrench.png" />จัดการวันปฏิบัติราชการ</a>
                                 </div>
                             </div>
