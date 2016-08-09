@@ -1,5 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="INSG_Qualified.aspx.cs" Inherits="WEB_PERSONAL.INSG_Qualified" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+        .ttt{
+            table-layout: fixed;
+        }
+        .ttt td {
+            overflow: hidden;
+        }
+    </style>
     <script>
         function toggle(source, type) {
             var checkboxes = document.getElementsByName(type);
@@ -45,7 +53,9 @@
         </div>
         <div class="ps-separator"></div>
         <asp:LinkButton ID="lbuSend" runat="server" CssClass="ps-button" OnClick="lbuSend_Click"><img src='Image/Small/send-email.png' class='icon_left'/>ส่งการแจ้งเตือน</asp:LinkButton>
-        <asp:Table ID="Table1" runat="server" CssClass="ps-table-1" style="margin-top: 10px; overflow-x:auto; width:1600px;"></asp:Table>
+        <div style="overflow-x:auto; width: 2000px;">
+            <asp:Table ID="Table1" runat="server" CssClass="ps-table-1 ttt" style="margin-top: 10px;"></asp:Table>
+        </div>
         <asp:HiddenField ID="hf1" runat="server" />
     </div>
 </asp:Content>

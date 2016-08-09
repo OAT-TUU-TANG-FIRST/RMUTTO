@@ -412,6 +412,11 @@ namespace WEB_PERSONAL
                 P0.PS_STAFFTYPE_ID = Convert.ToInt32(ddlStaffType.SelectedValue);
                 P0.PS_INWORK_DATE = Util.ODT(tbDateInwork.Text);
                 P0.PS_PASSWORD = Util.RandomPassword(8);
+                P0.PS_POSI_ADMIN = 1;
+                P0.PS_POSI_DIRECT = 3;
+                P0.PS_POSI_ACAD = 5;
+                P0.PS_POSI_GENERAL = 10;
+                P0.PS_POSI_EMP_GROUP = 14;
 
                 if (P0.CheckUseCitizenID())
                 {
@@ -458,6 +463,11 @@ namespace WEB_PERSONAL
                 P0.PS_STAFFTYPE_ID = Convert.ToInt32(ddlStaffType.SelectedValue);
                 P0.PS_INWORK_DATE = Util.ODT(tbDateInwork.Text);
                 P0.PS_PASSWORD = Util.RandomPassword(8);
+                P0.PS_POSI_ADMIN = 1;
+                P0.PS_POSI_DIRECT = 3;
+                P0.PS_POSI_ACAD = 5;
+                P0.PS_POSI_GENERAL = 10;
+                P0.PS_POSI_EMP_GROUP = 14;
 
                 if (P0.CheckUseCitizenID())
                 {

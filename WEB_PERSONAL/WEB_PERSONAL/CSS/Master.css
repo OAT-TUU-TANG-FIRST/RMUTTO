@@ -1240,6 +1240,9 @@ input[type=radio] + label {
 .ps-table-1 tr:nth-child(odd) td {
     background-color: #fafafa;
 }
+.ps-table-1 tr:nth-child(even) td {
+    background-color: #f8f8f8;
+}
 .ps-table-1 .bottom {
     text-align: center;
 }
