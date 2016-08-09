@@ -1,5 +1,20 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="INSG_Request.aspx.cs" Inherits="WEB_PERSONAL.INSG_Request" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style type="text/css">
+        .col1 {
+            text-align: right;
+        }
+
+        .col2 {
+            text-align: left;
+        }
+        .textred{
+            color:red;
+        }
+        .auto-style1 {
+            height: 30px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server" />
@@ -21,42 +36,42 @@
             </asp:View>
             <asp:View ID="View1" runat="server">
                     <div class="ps-div-title-red">ข้อมูลการขอเครื่องราชอิสริยาภรณ์</div>
-                    <div style="text-align: center;">
+                    <div style="text-align: center; margin-bottom:20px;">
                         <table class="ps-table-1" style="display: inline-block; margin-right: 20px; vertical-align: top;">
                             <tr>
                                 <td class="col1">ยศ</td>
                                 <td class="col2">
-                                    <asp:Label ID="lbRank" runat="server" Enabled="false"></asp:Label>
+                                    <asp:Label ID="lbRank" runat="server" ></asp:Label>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">คำนำหน้าชื่อ</td>
                                 <td class="col2">
-                                    <asp:Label ID="lbTitleName" runat="server" Enabled="false"></asp:Label>
+                                    <asp:Label ID="lbTitleName" runat="server" ></asp:Label>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">ชื่อ</td>
                                 <td class="col2">
-                                    <asp:Label ID="lbName" runat="server" Enabled="false"></asp:Label>
+                                    <asp:Label ID="lbName" runat="server" ></asp:Label>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">นามสกุล</td>
                                 <td class="col2">
-                                    <asp:Label ID="lbLastName" runat="server" Enabled="false"></asp:Label>
+                                    <asp:Label ID="lbLastName" runat="server" ></asp:Label>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">เพศ</td>
                                 <td class="col2">
-                                    <asp:Label ID="lbGender" runat="server" Enabled="false"></asp:Label>
+                                    <asp:Label ID="lbGender" runat="server" ></asp:Label>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">วัน/เดือน/ปีเกิด</td>
                                 <td class="col2">
-                                    <asp:Label ID="lbBirthDate" runat="server" Enabled="false"></asp:Label>
+                                    <asp:Label ID="lbBirthDate" runat="server" ></asp:Label>
                                 </td>
                             </tr>
                         </table>
@@ -65,37 +80,37 @@
                             <tr>
                                 <td class="col1">วัน/เดือน/ปีที่เริ่มรับราชการ</td>
                                 <td class="col2">
-                                    <asp:Label ID="lbDateInwork" runat="server" Enabled="false"></asp:Label>
+                                    <asp:Label ID="lbDateInwork" runat="server" ></asp:Label>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">ตำแหน่งที่เริ่มรับราชการ</td>
                                 <td class="col2">
-                                    <asp:Label ID="lbPosiDateInwork" runat="server" Enabled="false"></asp:Label>
+                                    <asp:Label ID="lbPosiDateInwork" runat="server" ></asp:Label>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">ระดับที่เริ่มรับราชการ</td>
                                 <td class="col2">
-                                    <asp:Label ID="lbDegreeDateInwork" runat="server" Enabled="false"></asp:Label>
+                                    <asp:Label ID="lbDegreeDateInwork" runat="server" ></asp:Label>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">ชื่อตำแหน่งปัจจุบัน</td>
                                 <td class="col2">
-                                    <asp:Label ID="lbPositionCurrent" runat="server" Enabled="false"></asp:Label>
+                                    <asp:Label ID="lbPositionCurrent" runat="server" ></asp:Label>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">ประเภท</td>
                                 <td class="col2">
-                                    <asp:Label ID="lbType" runat="server" Enabled="false"></asp:Label>
+                                    <asp:Label ID="lbType" runat="server" ></asp:Label>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">ระดับ</td>
                                 <td class="col2">
-                                    <asp:Label ID="lbDegree" runat="server" Enabled="false"></asp:Label>
+                                    <asp:Label ID="lbDegree" runat="server" ></asp:Label>
                                 </td>
                             </tr>
                         </table>
@@ -104,19 +119,19 @@
                             <tr>
                                 <td class="col1">เงินเดือนป้จจุบัน</td>
                                 <td class="col2">
-                                    <asp:Label ID="lbSalaryCurrent" runat="server" Enabled="false"></asp:Label>
+                                    <asp:Label ID="lbSalaryCurrent" runat="server" ></asp:Label>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">เงินประจำตำแหน่ง</td>
                                 <td class="col2">
-                                    <asp:Label ID="lbPositionSalary" runat="server" Enabled="false"></asp:Label>
+                                    <asp:Label ID="lbPositionSalary" runat="server" ></asp:Label>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">เลขประจำตัวประชาชน</td>
                                 <td class="col2">
-                                    <asp:Label ID="lbCitizen" runat="server" Enabled="false"></asp:Label>
+                                    <asp:Label ID="lbCitizen" runat="server" ></asp:Label>
                                 </td>
                             </tr>
                         </table>
@@ -124,8 +139,8 @@
                 <div style="text-align: center; margin-top: 10px;">
                     <table class="ps-table-1" style="display: inline-block;">
                         <tr>
-                            <th><img src="Image/Small/medal.png" class="icon_left"/>เครื่องราชฯ ปัจจุบัน</th>
-                            <th><img src="Image/Small/medal.png" class="icon_left"/>เครื่องราชฯ ที่ขอ</th>
+                            <th class="auto-style1"><img src="Image/Small/medal.png" class="icon_left"/>เครื่องราชฯ ปัจจุบัน</th>
+                            <th class="auto-style1"><img src="Image/Small/medal.png" class="icon_left"/>เครื่องราชฯ ที่ขอ</th>
                         </tr>
                         <tr>
                             <td>

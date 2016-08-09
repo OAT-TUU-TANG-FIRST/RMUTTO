@@ -6,7 +6,6 @@
             $("#ContentPlaceHolder1_tbBirthdayDateFrom, #ContentPlaceHolder1_tbBirthdayDateTo").datepicker($.datepicker.regional["th"]);
             $("#ContentPlaceHolder1_tbInworkDateFrom, #ContentPlaceHolder1_tbInworkDateTo").datepicker($.datepicker.regional["th"]);
             $("#ContentPlaceHolder1_tbRetireDateFrom, #ContentPlaceHolder1_tbRetireDateTo").datepicker($.datepicker.regional["th"]);
-            $("#ContentPlaceHolder1_tbAgeConditionFrom, #ContentPlaceHolder1_tbAgeConditionTo").datepicker($.datepicker.regional["th"]);
         });
         function toggle(source, type) {
             var checkboxes = document.getElementsByName(type);
@@ -22,7 +21,11 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div>
+    <div class="default_page_style">
+        <div class="ps-header">
+            <img src="Image/Small/report.png" />ออกรายงานบุคลากร
+        </div>
+        <div id="notification" runat="server"></div>
         <div>
             <div class="ps-div-title-red">เลือกข้อมูลที่ต้องการออกรายงาน</div>
             <div style="text-align: center;">
@@ -203,90 +206,90 @@
                         <b>เลือกทั้งหมด</b>
                     </div>
                     <div>
-                        <asp:CheckBox ID="cbCitizenIDCondition" runat="server" name="condition" />เลขบัตรประชาชน
+                        <asp:CheckBox ID="cbCitizenIDCondition" runat="server" name="condition" />&nbsp;เลขบัตรประชาชน
                         <asp:textbox ID="tbCitizenIDCondition" runat="server" MaxLength="13" CssClass="ps-textbox" placeholder="เลขบัตรประชาชน"></asp:textbox>
                     </div>
                     <div>
-                        <asp:CheckBox ID="cbRankCondition" runat="server" name="condition" />ยศ
+                        <asp:CheckBox ID="cbRankCondition" runat="server" name="condition" />&nbsp;ยศ
                         <asp:DropDownList ID="ddlRank" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
                     </div>
                     <div>
-                        <asp:CheckBox ID="cbNameTHCondition" runat="server" name="condition" />ชื่อภาษาไทย
+                        <asp:CheckBox ID="cbNameTHCondition" runat="server" name="condition" />&nbsp;ชื่อภาษาไทย
                         <asp:textbox ID="tbNameFNTHCondition" runat="server" CssClass="ps-textbox" placeholder="ชื่อ ภาษาไทย"></asp:textbox>
                         <asp:textbox ID="tbNameLNTHCondition" runat="server" CssClass="ps-textbox" placeholder="นามสกุล ภาษาไทย"></asp:textbox>
                     </div>
                     <div>
-                        <asp:CheckBox ID="cbNameENCondition" runat="server" name="condition" />ชื่อภาษาอังกฤษ
+                        <asp:CheckBox ID="cbNameENCondition" runat="server" name="condition" />&nbsp;ชื่อภาษาอังกฤษ
                         <asp:textbox ID="tbNameFNENCondition" runat="server" CssClass="ps-textbox" placeholder="ชื่อภาษาอังกฤษ"></asp:textbox>
                         <asp:textbox ID="tbNameLNENCondition" runat="server" CssClass="ps-textbox" placeholder="นามสกุล ภาษาอังกฤษ"></asp:textbox>
                     </div>
                     <div>
-                        <asp:CheckBox ID="cbGenderCondition" runat="server" name="condition" />เพศ
-                        <asp:RadioButton ID="rbMale" runat="server" GroupName="gGender" Checked="true" />ชาย
-                        <asp:RadioButton ID="rbFemale" runat="server" GroupName="gGender" />หญิง
+                        <asp:CheckBox ID="cbGenderCondition" runat="server" name="condition" />&nbsp;เพศ
+                        <asp:RadioButton ID="rbMale" runat="server" GroupName="gGender" Checked="true" />&nbsp;ชาย
+                        <asp:RadioButton ID="rbFemale" runat="server" GroupName="gGender" />&nbsp;หญิง
                     </div>
                     <div>
-                        <asp:CheckBox ID="cbBirthdayDateCondition" runat="server" name="condition" />วันเกิด
-                        <asp:TextBox ID="tbBirthdayDateFrom" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                        <asp:CheckBox ID="cbBirthdayDateCondition" runat="server" name="condition" />&nbsp;วันเกิด
+                        <asp:TextBox ID="tbBirthdayDateFrom" runat="server" CssClass="ps-textbox" placeholder="01 ม.ค. 25xx"></asp:TextBox>
                         <span style="color: #808080;">ถึง</span>
-                        <asp:TextBox ID="tbBirthdayDateTo" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                        <asp:TextBox ID="tbBirthdayDateTo" runat="server" CssClass="ps-textbox" placeholder="01 ม.ค. 25xx"></asp:TextBox>
                     </div>
                     <div>
-                        <asp:CheckBox ID="cbRaceCondition" runat="server" name="condition" />เชื้อชาติ
+                        <asp:CheckBox ID="cbRaceCondition" runat="server" name="condition" />&nbsp;เชื้อชาติ
                         <asp:DropDownList ID="ddlRaceCondition" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
                     </div>
                     <div>
-                        <asp:CheckBox ID="cbNationCondition" runat="server" name="condition" />สัญชาติ
+                        <asp:CheckBox ID="cbNationCondition" runat="server" name="condition" />&nbsp;สัญชาติ
                         <asp:DropDownList ID="ddlNationCondition" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
                     </div>
                     <div>
-                        <asp:CheckBox ID="cbBloodCondition" runat="server" name="condition" />กรุ๊ปเลือด
+                        <asp:CheckBox ID="cbBloodCondition" runat="server" name="condition" />&nbsp;กรุ๊ปเลือด
                         <asp:DropDownList ID="ddlBloodCondition" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
                     </div>
 
                     <div class="ps-separator-black"></div>
 
                     <div>
-                        <asp:CheckBox ID="cbEmailCondition" runat="server" name="condition" />อีเมล
+                        <asp:CheckBox ID="cbEmailCondition" runat="server" name="condition" />&nbsp;อีเมล
                         <asp:textbox ID="tbEmailCondition" runat="server" CssClass="ps-textbox" placeholder="abcd1234@gmail.com"></asp:textbox>
                     </div>
                     <div>
-                        <asp:CheckBox ID="cbPhoneCondition" runat="server" name="condition" />เบอร์โทรศัพท์ส่วนตัว
+                        <asp:CheckBox ID="cbPhoneCondition" runat="server" name="condition" />&nbsp;เบอร์โทรศัพท์ส่วนตัว
                         <asp:textbox ID="tbPhoneCondition" runat="server" CssClass="ps-textbox" placeholder="081-234-5678"></asp:textbox>
                     </div>
                     <div>
-                        <asp:CheckBox ID="cbPhoneWorkCondition" runat="server" name="condition" />เบอร์โทรศัพท์ที่ทำงาน
+                        <asp:CheckBox ID="cbPhoneWorkCondition" runat="server" name="condition" />&nbsp;เบอร์โทรศัพท์ที่ทำงาน
                         <asp:textbox ID="tbPhoneWorkCondition" runat="server" CssClass="ps-textbox" placeholder="02-1234567"></asp:textbox>
                     </div>
                     <div>
-                        <asp:CheckBox ID="cbReligionCondition" runat="server" name="condition" />ศาสนา
+                        <asp:CheckBox ID="cbReligionCondition" runat="server" name="condition" />&nbsp;ศาสนา
                         <asp:DropDownList ID="ddlReligionCondition" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
                     </div>
                     <div>
-                        <asp:CheckBox ID="cbStatusCondition" runat="server" name="condition" />สถานภาพ
-                        <asp:RadioButton ID="rbSingle" runat="server" GroupName="gStatus" Checked="true" />โสด
-                        <asp:RadioButton ID="rbMarried" runat="server" GroupName="gStatus" />สมรส
-                        <asp:RadioButton ID="rbLeftAlone" runat="server" GroupName="gStatus" />หม้าย
-                        <asp:RadioButton ID="rbDivorced" runat="server" GroupName="gStatus" />หย่าร้าง
+                        <asp:CheckBox ID="cbStatusCondition" runat="server" name="condition" />&nbsp;สถานภาพ
+                        <asp:RadioButton ID="rbSingle" runat="server" GroupName="gStatus" Checked="true" />&nbsp;โสด
+                        <asp:RadioButton ID="rbMarried" runat="server" GroupName="gStatus" />&nbsp;สมรส
+                        <asp:RadioButton ID="rbLeftAlone" runat="server" GroupName="gStatus" />&nbsp;หม้าย
+                        <asp:RadioButton ID="rbDivorced" runat="server" GroupName="gStatus" />&nbsp;หย่าร้าง
                     </div>
                     <div>
-                        <asp:CheckBox ID="cbNameFatherCondition" runat="server" name="condition" />ชื่อบิดา
+                        <asp:CheckBox ID="cbNameFatherCondition" runat="server" name="condition" />&nbsp;ชื่อบิดา
                         <asp:textbox ID="tbFNFatherCondition" runat="server" CssClass="ps-textbox" placeholder="ชื่อบิดา"></asp:textbox>
                         <asp:textbox ID="tbLNFatherCondition" runat="server" CssClass="ps-textbox" placeholder="นามสกุลบิดา"></asp:textbox>
                     </div>
                     <div>
-                        <asp:CheckBox ID="cbNameMotherCondition" runat="server" name="condition" />ชื่อมารดา
+                        <asp:CheckBox ID="cbNameMotherCondition" runat="server" name="condition" />&nbsp;ชื่อมารดา
                         <asp:textbox ID="tbFNMotherCondition" runat="server" CssClass="ps-textbox" placeholder="ชื่อมารดา"></asp:textbox>
                         <asp:textbox ID="tbLNMotherCondition" runat="server" CssClass="ps-textbox" placeholder="นามสกุลมารดา"></asp:textbox>
                     </div>
                     <div>
-                        <asp:CheckBox ID="cbNameCoupleCondition" runat="server" name="condition" />ชื่อคู่สมรส
+                        <asp:CheckBox ID="cbNameCoupleCondition" runat="server" name="condition" />&nbsp;ชื่อคู่สมรส
                         <asp:textbox ID="tbFNCoupleCondition" runat="server" CssClass="ps-textbox" placeholder="ชื่อคู่สมรส"></asp:textbox>
                         <asp:textbox ID="tbLNCoupleCondition" runat="server" CssClass="ps-textbox" placeholder="นามสกุลคู่สมรส"></asp:textbox>
                     </div>
                     <div>
-                        <asp:CheckBox ID="cbAddressCondition" runat="server" name="condition" />ที่อยู่ตามทะเบียนบ้าน
-                        <asp:CheckBox ID="cbAddressCondition2" runat="server" name="condition" />ที่อยู่ปัจจุบัน
+                        <asp:CheckBox ID="cbAddressCondition" runat="server" name="condition" />&nbsp;ที่อยู่ตามทะเบียนบ้าน
+                        <asp:CheckBox ID="cbAddressCondition2" runat="server" name="condition" />&nbsp;ที่อยู่ปัจจุบัน
                         <asp:DropDownList ID="ddlAddressProvinceCondition" runat="server" CssClass="ps-dropdown" AutoPostBack="True" OnSelectedIndexChanged="ddlProvince_SelectedIndexChanged"></asp:DropDownList>
                         <asp:DropDownList ID="ddlAddressAmphurCondition" runat="server" CssClass="ps-dropdown" AutoPostBack="True" OnSelectedIndexChanged="ddlAmphur_SelectedIndexChanged"></asp:DropDownList>
                         <asp:DropDownList ID="ddlAddressDistrictCondition" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
@@ -295,40 +298,40 @@
                     <div class="ps-separator-black"></div>
 
                     <div>
-                        <asp:CheckBox ID="cbCampusCondition" runat="server" name="condition" />วิทยาเขต
+                        <asp:CheckBox ID="cbCampusCondition" runat="server" name="condition" />&nbsp;วิทยาเขต
                         <asp:DropDownList ID="ddlCampus" runat="server" CssClass="ps-dropdown" OnSelectedIndexChanged="ddlCampus_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
                         <asp:DropDownList ID="ddlFaculty" runat="server" CssClass="ps-dropdown" OnSelectedIndexChanged="ddlFaculty_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
                         <asp:DropDownList ID="ddlDivision" runat="server" CssClass="ps-dropdown" OnSelectedIndexChanged="ddlDivision_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
                         <asp:DropDownList ID="ddlWorkDivision" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
                     </div>
                     <div>
-                        <asp:CheckBox ID="cbStafftypeCondition" runat="server" name="condition" />ประเภทบุคลากร
+                        <asp:CheckBox ID="cbStafftypeCondition" runat="server" name="condition" />&nbsp;ประเภทบุคลากร
                         <asp:DropDownList ID="ddlStafftypeCondition" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
                     </div>
                     <div>
-                        <asp:CheckBox ID="cbBudgetCondition" runat="server" name="condition" />ประเภทเงินจ้าง
+                        <asp:CheckBox ID="cbBudgetCondition" runat="server" name="condition" />&nbsp;ประเภทเงินจ้าง
                         <asp:DropDownList ID="ddlBudgetCondition" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
                     </div>
                     <div>
-                        <asp:CheckBox ID="cbInworkDateCondition" runat="server" name="condition" />วันที่เข้าทำงาน
-                        <asp:TextBox ID="tbInworkDateFrom" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                        <asp:CheckBox ID="cbInworkDateCondition" runat="server" name="condition" />&nbsp;วันที่เข้าทำงาน
+                        <asp:TextBox ID="tbInworkDateFrom" runat="server" CssClass="ps-textbox" placeholder="01 ม.ค. 25xx"></asp:TextBox>
                         <span style="color: #808080;">ถึง</span>
-                        <asp:TextBox ID="tbInworkDateTo" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                        <asp:TextBox ID="tbInworkDateTo" runat="server" CssClass="ps-textbox" placeholder="01 ม.ค. 25xx"></asp:TextBox>
                     </div>
                     <div>
-                        <asp:CheckBox ID="cbRetireDateCondition" runat="server" name="condition" />วันที่เกษียณ
-                        <asp:TextBox ID="tbRetireDateFrom" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                        <asp:CheckBox ID="cbRetireDateCondition" runat="server" name="condition" />&nbsp;วันที่เกษียณ
+                        <asp:TextBox ID="tbRetireDateFrom" runat="server" CssClass="ps-textbox" placeholder="01 ม.ค. 25xx"></asp:TextBox>
                         <span style="color: #808080;">ถึง</span>
-                        <asp:TextBox ID="tbRetireDateTo" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                        <asp:TextBox ID="tbRetireDateTo" runat="server" CssClass="ps-textbox" placeholder="01 ม.ค. 25xx"></asp:TextBox>
                     </div>
                     <div>
-                        <asp:CheckBox ID="cbAgeCondition" runat="server" name="condition" />อายุ
-                        <asp:TextBox ID="tbAgeConditionFrom" runat="server" Width="50" CssClass="ps-textbox"></asp:TextBox>
+                        <asp:CheckBox ID="cbAgeCondition" runat="server" name="condition" />&nbsp;อายุ
+                        <asp:TextBox ID="tbAgeConditionFrom" runat="server" Width="50" CssClass="ps-textbox" MaxLength="3" placeholder="20"></asp:TextBox>
                         <span style="color: #808080;">ถึง</span>
-                        <asp:TextBox ID="tbAgeConditionTo" runat="server" Width="50" CssClass="ps-textbox"></asp:TextBox>
+                        <asp:TextBox ID="tbAgeConditionTo" runat="server" Width="50" CssClass="ps-textbox" MaxLength="3" placeholder="30"></asp:TextBox>
                     </div>
                     <div>
-                        <asp:CheckBox ID="cbStatusWorkCondition" runat="server" name="condition" />สถานะการทำงาน
+                        <asp:CheckBox ID="cbStatusWorkCondition" runat="server" name="condition" />&nbsp;สถานะการทำงาน
                         <asp:DropDownList ID="ddlStatusWork" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
                     </div>
                 </div>
@@ -341,7 +344,6 @@
         </div>
         <div>
             <asp:LinkButton ID="lbuExport" runat="server" CssClass="ps-button" OnClick="lbuExport_Click"><img src="Image/Small/excel.png" class="icon_left"/>Export</asp:LinkButton>
-            <asp:LinkButton ID="lbuExport2" runat="server" CssClass="ps-button" OnClick="lbuExport2_Click"><img src="Image/Small/word.png" class="icon_left"/>Export</asp:LinkButton>
         </div>
         <div style="overflow-x:auto; width:4600px">
             <asp:Table ID="tb" runat="server" CssClass="ps-table-1" Style="margin-top: 10px;"></asp:Table>

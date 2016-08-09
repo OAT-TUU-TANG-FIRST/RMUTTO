@@ -1005,6 +1005,9 @@
     <Content Include="Religion-ADMIN.aspx" />
     <Content Include="Report-Custom-Person.aspx" />
     <Content Include="Profile.aspx" />
+    <Content Include="Report-Insignia.aspx" />
+    <Content Include="Report-Seminar-ADMIN.aspx" />
+    <Content Include="Report-Seminar.aspx" />
     <Content Include="Staff-ADMIN.aspx" />
     <Content Include="StaffType-ADMIN.aspx" />
     <Content Include="StatusPerson-ADMIN.aspx" />
@@ -1049,16 +1052,38 @@
     <Content Include="Font\Roboto\Roboto-Regular.ttf" />
     <Content Include="Font\Roboto\Roboto-Thin.ttf" />
     <Content Include="Font\Roboto\Roboto-ThinItalic.ttf" />
-    <Content Include="DTpersonnel.xsc">
+    <Content Include="Dataset\DTpersonnel.xsc">
       <DependentUpon>DTpersonnel.xsd</DependentUpon>
     </Content>
-    <None Include="DTpersonnel.xsd">
+    <Content Include="Dataset\DTinsignia.xsc">
+      <DependentUpon>DTinsignia.xsd</DependentUpon>
+    </Content>
+    <None Include="Dataset\DTinsignia.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DTpersonnel.Designer.cs</LastGenOutput>
+      <LastGenOutput>DTinsignia.Designer.cs</LastGenOutput>
     </None>
-    <Content Include="DTpersonnel.xss">
+    <Content Include="Dataset\DTinsignia.xss">
+      <DependentUpon>DTinsignia.xsd</DependentUpon>
+    </Content>
+    <None Include="Dataset\DTpersonnel.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DTpersonnel1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Dataset\DTpersonnel.xss">
       <DependentUpon>DTpersonnel.xsd</DependentUpon>
+    </Content>
+    <Content Include="Dataset\DTseminar.xsc">
+      <DependentUpon>DTseminar.xsd</DependentUpon>
+    </Content>
+    <None Include="Dataset\DTseminar.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DTseminar.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Dataset\DTseminar.xss">
+      <DependentUpon>DTseminar.xsd</DependentUpon>
     </Content>
     <None Include="personalDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
@@ -1210,6 +1235,21 @@
     <Compile Include="DataManager.aspx.designer.cs">
       <DependentUpon>DataManager.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Dataset\DTinsignia.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DTinsignia.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dataset\DTpersonnel1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DTpersonnel.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dataset\DTseminar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DTseminar.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1237,11 +1277,6 @@
     </Compile>
     <Compile Include="Division-ADMIN.aspx.designer.cs">
       <DependentUpon>Division-ADMIN.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="DTpersonnel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DTpersonnel.xsd</DependentUpon>
     </Compile>
     <Compile Include="Entities\Report.cs" />
     <Compile Include="Entities\Personnel.cs" />
@@ -1507,22 +1542,49 @@
     <Compile Include="Report-Custom-Person.aspx.designer.cs">
       <DependentUpon>Report-Custom-Person.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Reports\CrystalReport1.cs">
+    <Compile Include="Report-Insignia.aspx.cs">
+      <DependentUpon>Report-Insignia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Report-Insignia.aspx.designer.cs">
+      <DependentUpon>Report-Insignia.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Report-Seminar-ADMIN.aspx.cs">
+      <DependentUpon>Report-Seminar-ADMIN.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Report-Seminar-ADMIN.aspx.designer.cs">
+      <DependentUpon>Report-Seminar-ADMIN.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Report-Seminar.aspx.cs">
+      <DependentUpon>Report-Seminar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Report-Seminar.aspx.designer.cs">
+      <DependentUpon>Report-Seminar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Insignia1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CrystalReport1.rpt</DependentUpon>
+      <DependentUpon>Insignia1.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\Personnel.cs">
+    <Compile Include="Reports\personGP7.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Personnel.rpt</DependentUpon>
+      <DependentUpon>personGP7.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Personnel1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Personnel1.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Seminar1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Seminar1.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="SEMINAR-ADMIN.aspx.cs">
@@ -1683,17 +1745,21 @@
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Reports\CrystalReport1.rpt">
+    <EmbeddedResource Include="Reports\Insignia1.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>CrystalReport1.cs</LastGenOutput>
+      <LastGenOutput>Insignia1.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Personnel.rpt">
+    <EmbeddedResource Include="Reports\personGP7.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>Personnel.cs</LastGenOutput>
+      <LastGenOutput>personGP7.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Personnel1.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Personnel1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Seminar1.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Seminar1.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

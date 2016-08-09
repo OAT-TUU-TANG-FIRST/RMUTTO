@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DTinsignia" targetNamespace="http://tempuri.org/DTinsignia.xsd" xmlns:mstns="http://tempuri.org/DTinsignia.xsd" xmlns="http://tempuri.org/DTinsignia.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DTinsignia" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DTinsignia" msprop:Generator_UserDSName="DTinsignia">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="myDataInsignia" msprop:Generator_TableClassName="myDataInsigniaDataTable" msprop:Generator_TableVarName="tablemyDataInsignia" msprop:Generator_TablePropName="myDataInsignia" msprop:Generator_RowDeletingName="myDataInsigniaRowDeleting" msprop:Generator_RowChangingName="myDataInsigniaRowChanging" msprop:Generator_RowEvHandlerName="myDataInsigniaRowChangeEventHandler" msprop:Generator_RowDeletedName="myDataInsigniaRowDeleted" msprop:Generator_UserTableName="myDataInsignia" msprop:Generator_RowChangedName="myDataInsigniaRowChanged" msprop:Generator_RowEvArgName="myDataInsigniaRowChangeEvent" msprop:Generator_RowClassName="myDataInsigniaRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IR_CITIZEN_ID" msprop:Generator_ColumnVarNameInTable="columnIR_CITIZEN_ID" msprop:Generator_ColumnPropNameInRow="IR_CITIZEN_ID" msprop:Generator_ColumnPropNameInTable="IR_CITIZEN_IDColumn" msprop:Generator_UserColumnName="IR_CITIZEN_ID" type="xs:string" minOccurs="0" />
+              <xs:element name="IR_INSIG_ID" msprop:Generator_ColumnVarNameInTable="columnIR_INSIG_ID" msprop:Generator_ColumnPropNameInRow="IR_INSIG_ID" msprop:Generator_ColumnPropNameInTable="IR_INSIG_IDColumn" msprop:Generator_UserColumnName="IR_INSIG_ID" type="xs:string" minOccurs="0" />
+              <xs:element name="IR_DATE_START" msprop:Generator_ColumnVarNameInTable="columnIR_DATE_START" msprop:Generator_ColumnPropNameInRow="IR_DATE_START" msprop:Generator_ColumnPropNameInTable="IR_DATE_STARTColumn" msprop:Generator_UserColumnName="IR_DATE_START" type="xs:string" minOccurs="0" />
+              <xs:element name="IR_RANK" msprop:Generator_ColumnVarNameInTable="columnIR_RANK" msprop:Generator_ColumnPropNameInRow="IR_RANK" msprop:Generator_ColumnPropNameInTable="IR_RANKColumn" msprop:Generator_UserColumnName="IR_RANK" type="xs:string" minOccurs="0" />
+              <xs:element name="IR_TITLE" msprop:Generator_ColumnVarNameInTable="columnIR_TITLE" msprop:Generator_ColumnPropNameInRow="IR_TITLE" msprop:Generator_ColumnPropNameInTable="IR_TITLEColumn" msprop:Generator_UserColumnName="IR_TITLE" type="xs:string" minOccurs="0" />
+              <xs:element name="IR_NAME" msprop:Generator_ColumnVarNameInTable="columnIR_NAME" msprop:Generator_ColumnPropNameInRow="IR_NAME" msprop:Generator_ColumnPropNameInTable="IR_NAMEColumn" msprop:Generator_UserColumnName="IR_NAME" type="xs:string" minOccurs="0" />
+              <xs:element name="IR_LASTNAME" msprop:Generator_ColumnVarNameInTable="columnIR_LASTNAME" msprop:Generator_ColumnPropNameInRow="IR_LASTNAME" msprop:Generator_ColumnPropNameInTable="IR_LASTNAMEColumn" msprop:Generator_UserColumnName="IR_LASTNAME" type="xs:string" minOccurs="0" />
+              <xs:element name="IR_GENDER" msprop:Generator_ColumnVarNameInTable="columnIR_GENDER" msprop:Generator_ColumnPropNameInRow="IR_GENDER" msprop:Generator_ColumnPropNameInTable="IR_GENDERColumn" msprop:Generator_UserColumnName="IR_GENDER" type="xs:string" minOccurs="0" />
+              <xs:element name="IR_BIRTHDATE" msprop:Generator_ColumnVarNameInTable="columnIR_BIRTHDATE" msprop:Generator_ColumnPropNameInRow="IR_BIRTHDATE" msprop:Generator_ColumnPropNameInTable="IR_BIRTHDATEColumn" msprop:Generator_UserColumnName="IR_BIRTHDATE" type="xs:string" minOccurs="0" />
+              <xs:element name="IR_DATE_INWORK" msprop:Generator_ColumnVarNameInTable="columnIR_DATE_INWORK" msprop:Generator_ColumnPropNameInRow="IR_DATE_INWORK" msprop:Generator_ColumnPropNameInTable="IR_DATE_INWORKColumn" msprop:Generator_UserColumnName="IR_DATE_INWORK" type="xs:string" minOccurs="0" />
+              <xs:element name="IR_START_POSITION" msprop:Generator_ColumnVarNameInTable="columnIR_START_POSITION" msprop:Generator_ColumnPropNameInRow="IR_START_POSITION" msprop:Generator_ColumnPropNameInTable="IR_START_POSITIONColumn" msprop:Generator_UserColumnName="IR_START_POSITION" type="xs:string" minOccurs="0" />
+              <xs:element name="IR_START_DEGREE" msprop:Generator_ColumnVarNameInTable="columnIR_START_DEGREE" msprop:Generator_ColumnPropNameInRow="IR_START_DEGREE" msprop:Generator_ColumnPropNameInTable="IR_START_DEGREEColumn" msprop:Generator_UserColumnName="IR_START_DEGREE" type="xs:string" minOccurs="0" />
+              <xs:element name="IR_CURRENT_POSITION" msprop:Generator_ColumnVarNameInTable="columnIR_CURRENT_POSITION" msprop:Generator_ColumnPropNameInRow="IR_CURRENT_POSITION" msprop:Generator_ColumnPropNameInTable="IR_CURRENT_POSITIONColumn" msprop:Generator_UserColumnName="IR_CURRENT_POSITION" type="xs:string" minOccurs="0" />
+              <xs:element name="IR_TYPE" msprop:Generator_ColumnVarNameInTable="columnIR_TYPE" msprop:Generator_ColumnPropNameInRow="IR_TYPE" msprop:Generator_ColumnPropNameInTable="IR_TYPEColumn" msprop:Generator_UserColumnName="IR_TYPE" type="xs:string" minOccurs="0" />
+              <xs:element name="IR_DEGREE" msprop:Generator_ColumnVarNameInTable="columnIR_DEGREE" msprop:Generator_ColumnPropNameInRow="IR_DEGREE" msprop:Generator_ColumnPropNameInTable="IR_DEGREEColumn" msprop:Generator_UserColumnName="IR_DEGREE" type="xs:string" minOccurs="0" />
+              <xs:element name="IR_CURRENT_SALARY" msprop:Generator_ColumnVarNameInTable="columnIR_CURRENT_SALARY" msprop:Generator_ColumnPropNameInRow="IR_CURRENT_SALARY" msprop:Generator_ColumnPropNameInTable="IR_CURRENT_SALARYColumn" msprop:Generator_UserColumnName="IR_CURRENT_SALARY" type="xs:string" minOccurs="0" />
+              <xs:element name="IR_POSITION_SALARY" msprop:Generator_ColumnVarNameInTable="columnIR_POSITION_SALARY" msprop:Generator_ColumnPropNameInRow="IR_POSITION_SALARY" msprop:Generator_ColumnPropNameInTable="IR_POSITION_SALARYColumn" msprop:Generator_UserColumnName="IR_POSITION_SALARY" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

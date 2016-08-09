@@ -22,16 +22,13 @@
     
     <asp:Panel ID="Panel2" runat="server" DefaultButton="lbuSearch">
         <div class="ps-header"><img src="Image/Small/search.png" />ค้นหาข้อมูลการพัฒนาบุคลากร</div>
-        <asp:ScriptManager ID="ScriptManager1" runat="server" />
-        <div>
-            
+        <div>  
             <div style="margin-bottom: 20px; text-align:center">
                 <div class="ps-div-title-red"><img src="Image/Small/search.png" class="icon_left"/>ค้นหารายชื่อ</div>
                 เลขบัตรประจำตัวประชาชน 13 หลัก :&nbsp<asp:TextBox ID="txtSearchSeminarCitizen" runat="server" CssClass="ps-textbox" Width="230px" MaxLength="13"></asp:TextBox>
                 <asp:LinkButton ID="lbuSearch" runat="server" OnClick="lbuSearch_Click" CssClass="ps-button"><img src="Image/Small/search.png" class="icon_left"/>ค้นหา</asp:LinkButton>
                 <asp:LinkButton ID="lbuRefresh" runat="server" OnClick="lbuRefresh_Click" CssClass="ps-button"><img src="Image/Small/refresh.png" class="icon_left"/>รีเฟรช</asp:LinkButton>
             </div>
-
             <asp:GridView ID="GridView1" runat="server" style="margin-bottom: 20px; margin-right: 20px; vertical-align: top; text-align: center;"
                 AutoGenerateColumns="false"
                 AllowPaging="true"

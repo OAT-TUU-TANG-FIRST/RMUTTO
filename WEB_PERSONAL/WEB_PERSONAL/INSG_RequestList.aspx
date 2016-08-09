@@ -19,7 +19,6 @@
                 <div style="text-align: center;">
                     <asp:Table ID="Table1" runat="server" CssClass="ps-table-1" style="display: inline-block;"></asp:Table>
                 </div>
-                
             </asp:View>
             <asp:View ID="View2" runat="server">
                 <div style="text-align: center;">

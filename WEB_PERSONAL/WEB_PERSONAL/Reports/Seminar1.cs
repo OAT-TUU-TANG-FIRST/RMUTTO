@@ -16,14 +16,14 @@ namespace WEB_PERSONAL.Reports {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class Personnel : ReportClass {
+    public class Seminar1 : ReportClass {
         
-        public Personnel() {
+        public Seminar1() {
         }
         
         public override string ResourceName {
             get {
-                return "Personnel.rpt";
+                return "Seminar1.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace WEB_PERSONAL.Reports {
         
         public override string FullResourceName {
             get {
-                return "WEB_PERSONAL.Reports.Personnel.rpt";
+                return "WEB_PERSONAL.Reports.Seminar1.rpt";
             }
             set {
                 // Do nothing
@@ -90,9 +90,9 @@ namespace WEB_PERSONAL.Reports {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedPersonnel : Component, ICachedReport {
+    public class CachedSeminar1 : Component, ICachedReport {
         
-        public CachedPersonnel() {
+        public CachedSeminar1() {
         }
         
         [Browsable(false)]
@@ -129,7 +129,7 @@ namespace WEB_PERSONAL.Reports {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            Personnel rpt = new Personnel();
+            Seminar1 rpt = new Seminar1();
             rpt.Site = this.Site;
             return rpt;
         }
