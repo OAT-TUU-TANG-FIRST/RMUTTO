@@ -659,7 +659,7 @@
                 <tr>
                     <td class="col1">สถานศึกษา</td>
                     <td class="col2">
-                        <asp:TextBox ID="tbUnivName10" runat="server" CssClass="ps-textbox" Width="230px"></asp:TextBox><span class="textred">*</span>
+                        <asp:TextBox ID="tbUnivName10" runat="server" CssClass="ps-textbox" Width="300px"></asp:TextBox><span class="textred">*</span>
                     </td>
                 </tr>
                 <tr>
@@ -674,13 +674,13 @@
                 <tr>
                     <td class="col1">วุฒิ</td>
                     <td class="col2">
-                        <asp:TextBox ID="tbQualification10" runat="server" CssClass="ps-textbox" Width="230px"></asp:TextBox><span class="textred">*</span>
+                        <asp:TextBox ID="tbQualification10" runat="server" CssClass="ps-textbox" Width="300px"></asp:TextBox><span class="textred">*</span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col1">สาขาวิชาเอก</td>
                     <td class="col2">
-                        <asp:TextBox ID="tbMajor10" runat="server" CssClass="ps-textbox" Width="230px"></asp:TextBox><span class="textred">*</span>
+                        <asp:TextBox ID="tbMajor10" runat="server" CssClass="ps-textbox" Width="300px"></asp:TextBox><span class="textred">*</span>
                     </td>
                 </tr>
                 <tr>
@@ -1103,7 +1103,7 @@
                 <tr>
                     <td class="col1">วัน เดือน ปี</td>
                     <td class="col2">
-                        <asp:TextBox ID="tbDate14" runat="server" CssClass="ps-textbox" placeholder="01 ม.ค. 25xx" MaxLength="12" Width="300px"></asp:TextBox><span class="textred">*</span>
+                        <asp:TextBox ID="tbDate14" runat="server" CssClass="ps-textbox" placeholder="01 ม.ค. 25xx" MaxLength="12" Width="100px"></asp:TextBox><span class="textred">*</span>
                     </td>
                 </tr>
                 <tr>
