@@ -35,7 +35,24 @@ namespace WEB_PERSONAL
                 BindDropDown();
             }
 
+            ShowTab3Quit();
             ShowTab4MiddleGover();
+        }
+
+        protected void ShowTab3Quit()
+        {
+            if (ddlTab10StatusWork.SelectedValue != "19")
+            {  
+            span1.Visible = false;
+            tbDateQuit.Visible = false;
+            span2.Visible = false;
+            }
+            else
+            {
+            span1.Visible = true;
+            tbDateQuit.Visible = true;
+            span2.Visible = true;
+            }
         }
 
         protected void ShowTab4MiddleGover()
@@ -638,6 +655,39 @@ namespace WEB_PERSONAL
                 notification.InnerHtml = "";
             }
 
+            //วันที่ลาออก ไม่ว่าง
+            if (ddlTab10StatusWork.SelectedValue == "19" && string.IsNullOrEmpty(tbDateQuit.Text))
+            {
+                notification.Attributes["class"] = "alert alert_danger";
+                notification.InnerHtml = "";
+                notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
+                notification.InnerHtml += "<div>กรุณากรอกวันที่ลาออก</div>";
+                return;
+            }
+            else
+            {
+                notification.Attributes["class"] = "none";
+                notification.InnerHtml = "";
+            }
+            //วันที่ลาออก ต้องไม่ต่ำกว่าวันที่เข้าทำงาน
+            DateTime dtFromDate = Util.ToDateTimeOracle(tbDateInwork.Text);
+            DateTime dtToDate = Util.ToDateTimeOracle(tbDateQuit.Text);
+            int totalDay = (int)(dtToDate - dtFromDate).TotalDays + 1;
+
+            if (totalDay <= 0)
+            {
+                notification.Attributes["class"] = "alert alert_danger";
+                notification.InnerHtml = "";
+                notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
+                notification.InnerHtml += "<div>วันที่ลาออกไม่สามารถน้อยกว่าวันที่บรรจุได้</div>";
+                return;
+            }
+            else
+            {
+                notification.Attributes["class"] = "none";
+                notification.InnerHtml = "";
+            }
+
             if (ddlWorkDivision.SelectedIndex == 0)
             {
                 PS_PERSON P0 = new PS_PERSON();
@@ -680,6 +730,33 @@ namespace WEB_PERSONAL
                 notification.Attributes["class"] = "alert alert_success";
                 notification.InnerHtml = "";
                 notification.InnerHtml += "<div><img src='Image/Small/correct.png' /><strong>บันทึกข้อมูลการทำงานสำเร็จ</strong></div>";
+            }
+
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+            {
+                using (OracleCommand com = new OracleCommand("UPDATE PS_PERSON SET PS_DATE_QUIT = :PS_DATE_QUIT WHERE PS_CITIZEN_ID = :PS_CITIZEN_ID", con))
+                {
+
+                    if (con.State != ConnectionState.Open)
+                    {
+                        con.Open();
+                    }
+
+                    if (ddlTab10StatusWork.SelectedValue != "19")
+                    {
+                        com.Parameters.Add(new OracleParameter("PS_DATE_QUIT", null));
+                        com.Parameters.Add(new OracleParameter("PS_CITIZEN_ID", p));
+                        com.ExecuteNonQuery();
+                    }
+                    else
+                    {
+                        com.Parameters.Add(new OracleParameter("PS_DATE_QUIT", Util.ODT(tbDateQuit.Text)));
+                        com.Parameters.Add(new OracleParameter("PS_CITIZEN_ID", p));
+                        com.ExecuteNonQuery();
+                    }
+                    com.Dispose();
+                    con.Close();
+                }    
             }
         }
 
@@ -1776,7 +1853,7 @@ namespace WEB_PERSONAL
         private void BindView3() {
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
-                using (OracleCommand com = new OracleCommand("SELECT PS_CAMPUS_ID,PS_FACULTY_ID,PS_DIVISION_ID,PS_WORK_DIVISION_ID,PS_STAFFTYPE_ID,PS_BUDGET_ID,PS_SPECIAL_WORK,PS_TEACH_ISCED_ID,PS_INWORK_DATE,PS_SALARY,PS_POSS_SALARY,PS_SW_ID FROM PS_PERSON WHERE PS_CITIZEN_ID = '" + p + "'", con)) {
+                using (OracleCommand com = new OracleCommand("SELECT PS_CAMPUS_ID,PS_FACULTY_ID,PS_DIVISION_ID,PS_WORK_DIVISION_ID,PS_STAFFTYPE_ID,PS_BUDGET_ID,PS_SPECIAL_WORK,PS_TEACH_ISCED_ID,PS_INWORK_DATE,PS_SALARY,PS_POSS_SALARY,PS_SW_ID,PS_DATE_QUIT FROM PS_PERSON WHERE PS_CITIZEN_ID = '" + p + "'", con)) {
                     using (OracleDataReader reader = com.ExecuteReader()) {
                         while (reader.Read()) {
                             //view3
@@ -1807,6 +1884,7 @@ namespace WEB_PERSONAL
                             lblSalary.Text = reader.IsDBNull(i) ? "" : reader.GetInt32(i).ToString(); ++i;
                             lblPositionSalary.Text = reader.IsDBNull(i) ? "0" : reader.GetInt32(i).ToString(); ++i;
                             ddlTab10StatusWork.SelectedValue = reader.IsDBNull(i) ? "0" : reader.GetInt32(i).ToString(); ++i;
+                            tbDateQuit.Text = Util.PureDatabaseToThaiDate(reader.IsDBNull(i) ? "" : reader.GetValue(i).ToString()); ++i;
                         }
                     }
                 }
@@ -3898,27 +3976,24 @@ namespace WEB_PERSONAL
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
             {
                 con.Open();
-                string CountryName = "";
-                using (OracleCommand com = new OracleCommand("SELECT COUNTRY_ID FROM TB_COUNTRY WHERE COUNTRY_ID = 236", con))
+                int CountryName = 236; //ไทย
+                using (OracleCommand com = new OracleCommand("SELECT COUNTRY_ID FROM TB_COUNTRY WHERE COUNTRY_ID = '" + ddlCountry.SelectedValue + "'", con))
                 {
                     using (OracleDataReader reader = com.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            CountryName = reader.GetInt32(0).ToString();
+                            if (CountryName == reader.GetInt32(0))
+                            {
+                                id1Tab2City1.Visible = false;
+                            }
+                            else
+                            {
+                                id1Tab2City1.Visible = true;
+                            }
                         }
                     }
-                }
-                
-                if (CountryName == ddlCountry.SelectedValue)
-                {
-                    id1Tab2City1.Visible = false;
-                }
-                else if(CountryName != ddlCountry.SelectedValue)
-                {
-                    id1Tab2City1.Visible = true;
-                }
-                
+                } 
             }
         }
 
@@ -3927,29 +4002,55 @@ namespace WEB_PERSONAL
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
             {
                 con.Open();
-                string CountryName = "";
-                using (OracleCommand com = new OracleCommand("SELECT COUNTRY_ID FROM TB_COUNTRY WHERE COUNTRY_ID = 236", con))
+                int CountryName = 236; //ไทย
+                using (OracleCommand com = new OracleCommand("SELECT COUNTRY_ID FROM TB_COUNTRY WHERE COUNTRY_ID = '" + ddlCountry2.SelectedValue + "'", con))
+                {
+                    using (OracleDataReader reader = com.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {                   
+                            if (CountryName == reader.GetInt32(0))
+                            {
+                                id2Tab2City2.Visible = false;
+                            }
+                            else
+                            {
+                                id2Tab2City2.Visible = true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        protected void ddlTab10StatusWork_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+            {
+                con.Open();
+                int StatusWork = 19; //ลาออก
+                using (OracleCommand com = new OracleCommand("SELECT SW_ID FROM TB_STATUS_WORK WHERE SW_ID = '" + ddlTab10StatusWork.SelectedValue + "'", con))
                 {
                     using (OracleDataReader reader = com.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            CountryName = reader.GetInt32(0).ToString();
+                            if (StatusWork == reader.GetInt32(0))
+                            {
+                                span1.Visible = true;
+                                tbDateQuit.Visible = true;
+                                span2.Visible = true;
+                            }
+                            else
+                            {
+                                span1.Visible = false;
+                                tbDateQuit.Visible = false;
+                                span2.Visible = false;
+                            }
                         }
                     }
                 }
-
-                if (CountryName == ddlCountry2.SelectedValue)
-                {
-                    id2Tab2City2.Visible = false;
-                }
-                else if (CountryName != ddlCountry2.SelectedValue)
-                {
-                    id2Tab2City2.Visible = true;
-                }
             }
         }
-        
     }
 }
-

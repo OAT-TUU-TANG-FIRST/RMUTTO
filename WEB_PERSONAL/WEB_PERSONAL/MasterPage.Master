@@ -233,6 +233,7 @@
                                     <a href="Report-Custom-Person.aspx" id="A1" runat="server"><img src="Image/Small/report.png" />ออกรายงาน ก.พ.7</a>
                                     <a href="Report-Seminar.aspx" id="A2" runat="server"><img src="Image/Small/report.png" />ออกรายงานพัฒนาบุคลากร</a>
                                     <a href="Report-Seminar-ADMIN.aspx" id="cbAddPerson3" runat="server"><img src="Image/Small/report.png" />ออกรายงานพัฒนาบุคลากร(admin)</a>
+                                    <a href="Report-Person-Quit.aspx" id="A3" runat="server"><img src="Image/Small/report.png" />ออกรายงานการลาออกบุคลากร</a>
                                 </div>
                             </div>
                         </div>

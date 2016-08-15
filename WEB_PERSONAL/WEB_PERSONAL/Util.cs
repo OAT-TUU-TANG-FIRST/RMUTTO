@@ -328,7 +328,7 @@ namespace WEB_PERSONAL {
                 case 8: ss[1] = "ส.ค."; break;
                 case 9: ss[1] = "ก.ย."; break;
                 case 10: ss[1] = "ต.ค."; break;
-                case 11: ss[1] = "พ.ศ."; break;
+                case 11: ss[1] = "พ.ย."; break;
                 case 12: ss[1] = "ธ.ค."; break;
             }
             return int.Parse(ss[0]).ToString("00") + " " + ss[1] + " " + ss[2].Substring(0, 4);
@@ -442,7 +442,7 @@ namespace WEB_PERSONAL {
                 case 8: return "ส.ค.";
                 case 9: return "ก.ย.";
                 case 10: return "ต.ค.";
-                case 11: return "พ.ศ.";
+                case 11: return "พ.ย.";
                 case 12: return "ธ.ค.";
                 default: return "[error]";
             }

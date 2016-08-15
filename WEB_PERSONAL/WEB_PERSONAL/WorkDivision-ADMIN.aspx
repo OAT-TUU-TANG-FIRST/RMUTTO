@@ -19,7 +19,7 @@
             <div>
                 <table class="center1">
                     <tr>
-                        <td style="margin-left: auto; margin-right: auto; text-align: center">ชื่องาน / ฝ่าย :</td>ps-textbox
+                        <td style="margin-left: auto; margin-right: auto; text-align: center">ชื่องาน / ฝ่าย :</td>
                         <td style="text-align: left; width: 50px;">
                             <asp:TextBox ID="txtSearchWorkDivisionName" runat="server" CssClass="ps-textbox" MaxLength="100" Width="150px"></asp:TextBox></td>
                     </tr>
