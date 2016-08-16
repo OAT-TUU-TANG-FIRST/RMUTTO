@@ -33,6 +33,9 @@ namespace WEB_PERSONAL
 
             if(!IsPostBack) {
                 BindDropDown();
+                tbPhone.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
+                tbSalary14.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
+                tbSalaryPosition14.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
             }
 
             ShowTab3Quit();
@@ -655,7 +658,25 @@ namespace WEB_PERSONAL
                 notification.InnerHtml = "";
             }
 
-            //วันที่ลาออก ไม่ว่าง
+            //วันที่บรรจุไม่สามารถน้อยกว่าวันเกิด
+            DateTime dtFromDateInwork = Util.ToDateTimeOracle(tbDateInwork.Text);
+            DateTime dtToDateBirthday = Util.ToDateTimeOracle(tbBirthday.Text);
+            int totalDayDateInwork = (int)(dtFromDateInwork - dtToDateBirthday.AddYears(20)).TotalDays + 1;
+            if (totalDayDateInwork <= 0)
+            {
+                notification.Attributes["class"] = "alert alert_danger";
+                notification.InnerHtml = "";
+                notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
+                notification.InnerHtml += "<div>วันที่บรรจุไม่สามารถต่ำกว่า 20 ปีของวันเกิด</div>";
+                return;
+            }
+            else
+            {
+                notification.Attributes["class"] = "none";
+                notification.InnerHtml = "";
+            }
+
+            //วันที่ลาออกว่าง
             if (ddlTab10StatusWork.SelectedValue == "19" && string.IsNullOrEmpty(tbDateQuit.Text))
             {
                 notification.Attributes["class"] = "alert alert_danger";
@@ -669,24 +690,28 @@ namespace WEB_PERSONAL
                 notification.Attributes["class"] = "none";
                 notification.InnerHtml = "";
             }
-            //วันที่ลาออก ต้องไม่ต่ำกว่าวันที่เข้าทำงาน
-            DateTime dtFromDate = Util.ToDateTimeOracle(tbDateInwork.Text);
-            DateTime dtToDate = Util.ToDateTimeOracle(tbDateQuit.Text);
-            int totalDay = (int)(dtToDate - dtFromDate).TotalDays + 1;
 
-            if (totalDay <= 0)
+            //วันที่ลาออก ต้องไม่ต่ำกว่าวันที่เข้าทำงาน
+            if (tbDateQuit.Text != "")
             {
-                notification.Attributes["class"] = "alert alert_danger";
-                notification.InnerHtml = "";
-                notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
-                notification.InnerHtml += "<div>วันที่ลาออกไม่สามารถน้อยกว่าวันที่บรรจุได้</div>";
-                return;
-            }
-            else
-            {
-                notification.Attributes["class"] = "none";
-                notification.InnerHtml = "";
-            }
+                DateTime dtFromDate = Util.ToDateTimeOracle(tbDateInwork.Text);
+                DateTime dtToDate = Util.ToDateTimeOracle(tbDateQuit.Text);
+                int totalDay = (int)(dtToDate - dtFromDate).TotalDays + 1;
+
+                if (totalDay <= 0)
+                {
+                    notification.Attributes["class"] = "alert alert_danger";
+                    notification.InnerHtml = "";
+                    notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
+                    notification.InnerHtml += "<div>วันที่ลาออกไม่สามารถต่ำกว่าวันที่บรรจุได้</div>";
+                    return;
+                }
+                else
+                {
+                    notification.Attributes["class"] = "none";
+                    notification.InnerHtml = "";
+                }
+            }         
 
             if (ddlWorkDivision.SelectedIndex == 0)
             {
@@ -1390,16 +1415,16 @@ namespace WEB_PERSONAL
                 notification.Attributes["class"] = "none";
                 notification.InnerHtml = "";
             }
-            /*
-            //เช็คปีไม่ติดลบ
-            int TotalYear = Convert.ToInt32(ddlYear10To.SelectedValue) - Convert.ToInt32(ddlYear10From.SelectedValue);
 
-            if (TotalYear <= 0)
+            DateTime dtStudyFrom = new DateTime(int.Parse(ddlYear10From.SelectedValue), int.Parse(ddlMonth10From.SelectedValue), 1);
+            DateTime dtStudyTo = new DateTime(int.Parse(ddlYear10To.SelectedValue), int.Parse(ddlMonth10To.SelectedValue), 1);
+
+            if((dtStudyTo - dtStudyFrom).TotalDays < 28)
             {
                 notification.Attributes["class"] = "alert alert_danger";
                 notification.InnerHtml = "";
-                notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>แจ้งเตือน</strong></div>";
-                notification.InnerHtml += "<div> - ตั้งแต่ - ถึง (เดือน ปี) : ปีไม่ถูกต้อง</div>";
+                notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
+                notification.InnerHtml += "<div>ตั้งแต่ - ถึง (เดือน ปี) : ช่วงเวลาการศึกษาต้องมากกว่า 1 เดือน</div>";
                 return;
             }
             else
@@ -1407,8 +1432,35 @@ namespace WEB_PERSONAL
                 notification.Attributes["class"] = "none";
                 notification.InnerHtml = "";
             }
-            //
-            */
+
+            //เช็ค เลือก ระดับการศึกษาซ้ำ
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+            {
+                con.Open();
+                using (OracleCommand com = new OracleCommand("SELECT COUNT(*) FROM PS_STUDY WHERE PS_DEGREE_ID = '" + ddlDegree10.SelectedValue + "'", con))
+                {
+                    using (OracleDataReader reader = com.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            if (reader.GetInt32(0) > 0)
+                            {
+                                notification.Attributes["class"] = "alert alert_danger";
+                                notification.InnerHtml = "";
+                                notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>แจ้งเตือน</strong></div>";
+                                notification.InnerHtml += "<div> - มีข้อมูลระดับการศึกษาที่คุณเลือกนี้อยู่แล้วในระบบ</div>";
+                                return;
+                            }
+                            else
+                            {
+                                notification.Attributes["class"] = "none";
+                                notification.InnerHtml = "";
+                            }
+                        }
+                    }
+                }
+            }
+
             PS_STUDY PStudy = new PS_STUDY();
             PStudy.PS_CITIZEN_ID = p;
             PStudy.PS_DEGREE_ID = Convert.ToInt32(ddlDegree10.SelectedValue);
@@ -1537,6 +1589,23 @@ namespace WEB_PERSONAL
                 notification.InnerHtml = "";
                 notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
                 notification.InnerHtml += "<div>กรุณากรอกหน่วยงานที่จัดฝึกอบรม</div>";
+                return;
+            }
+            else
+            {
+                notification.Attributes["class"] = "none";
+                notification.InnerHtml = "";
+            }
+
+            DateTime dtTrainingFrom = new DateTime(int.Parse(ddlYear12From.SelectedValue), int.Parse(ddlMonth12From.SelectedValue), 1);
+            DateTime dtTrainingTo = new DateTime(int.Parse(ddlYear12To.SelectedValue), int.Parse(ddlMonth12To.SelectedValue), 1);
+
+            if ((dtTrainingTo - dtTrainingFrom).TotalDays < 0)
+            {
+                notification.Attributes["class"] = "alert alert_danger";
+                notification.InnerHtml = "";
+                notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
+                notification.InnerHtml += "<div>ตั้งแต่ - ถึง (เดือน ปี) : ช่วงเวลาประวัติการฝึกอบรมไม่สามารถต่ำกว่า ตั้งแต่ ได้</div>";
                 return;
             }
             else
@@ -1881,7 +1950,7 @@ namespace WEB_PERSONAL
                             tbSpecialWork.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
                             ddlTeachISCED.SelectedValue = reader.IsDBNull(i) ? "0" : reader.GetInt32(i).ToString(); ++i;
                             tbDateInwork.Text = Util.PureDatabaseToThaiDate(reader.IsDBNull(i) ? "" : reader.GetValue(i).ToString()); ++i;
-                            lblSalary.Text = reader.IsDBNull(i) ? "" : reader.GetInt32(i).ToString(); ++i;
+                            lblSalary.Text = reader.IsDBNull(i) ? "0" : reader.GetInt32(i).ToString(); ++i;
                             lblPositionSalary.Text = reader.IsDBNull(i) ? "0" : reader.GetInt32(i).ToString(); ++i;
                             ddlTab10StatusWork.SelectedValue = reader.IsDBNull(i) ? "0" : reader.GetInt32(i).ToString(); ++i;
                             tbDateQuit.Text = Util.PureDatabaseToThaiDate(reader.IsDBNull(i) ? "" : reader.GetValue(i).ToString()); ++i;
@@ -2268,6 +2337,9 @@ namespace WEB_PERSONAL
                 GridViewStudy.EditIndex = -1;
                 BindData1();
             }
+
+            notification.Attributes["class"] = "none";
+            notification.InnerHtml = "";
         }
         protected void modDeleteCommand1(Object sender, GridViewDeleteEventArgs e)
         {
@@ -2287,6 +2359,9 @@ namespace WEB_PERSONAL
                 GridViewStudy.EditIndex = -1;
                 BindData1();
             }
+
+            notification.Attributes["class"] = "none";
+            notification.InnerHtml = "";
         }
         protected void modUpdateCommand1(Object sender, GridViewUpdateEventArgs e)
         {
@@ -2397,19 +2472,46 @@ namespace WEB_PERSONAL
                 notification.InnerHtml = "";
             }
 
-            PStudy.UPDATE_PS_STUDY();
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('อัพเดทข้อมูลเรียบร้อย')", true);
-            if (string.IsNullOrEmpty(labelCitizenID.Text))
+            //เช็ค เลือก ระดับการศึกษาซ้ำ
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
             {
-                GridViewStudy.EditIndex = -1;
-                BindData();
-            }
-            else
-            {
-                GridViewStudy.EditIndex = -1;
-                BindData1();
-            }
+                con.Open();
+                using (OracleCommand com = new OracleCommand("SELECT COUNT(*) FROM PS_STUDY WHERE PS_DEGREE_ID = '" + ddlPersonStudyDegreeID.SelectedValue + "'", con))
+                {
+                    using (OracleDataReader reader = com.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            if (reader.GetInt32(0) > 0)
+                            {
+                                notification.Attributes["class"] = "alert alert_danger";
+                                notification.InnerHtml = "";
+                                notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>แจ้งเตือน</strong></div>";
+                                notification.InnerHtml += "<div> - มีข้อมูลระดับการศึกษาที่คุณเลือกนี้อยู่แล้วในระบบ</div>";
+                                return;
+                            }
+                            else
+                            {
+                                PStudy.UPDATE_PS_STUDY();
+                                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('อัพเดทข้อมูลเรียบร้อย')", true);
+                                if (string.IsNullOrEmpty(labelCitizenID.Text))
+                                {
+                                    GridViewStudy.EditIndex = -1;
+                                    BindData();
+                                }
+                                else
+                                {
+                                    GridViewStudy.EditIndex = -1;
+                                    BindData1();
+                                }
 
+                                notification.Attributes["class"] = "none";
+                                notification.InnerHtml = "";
+                            }
+                        }
+                    }
+                }
+            }   
         }
 
         protected void GridViewStudy_RowDataBound1(object sender, GridViewRowEventArgs e)

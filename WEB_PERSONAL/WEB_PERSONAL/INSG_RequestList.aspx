@@ -14,6 +14,7 @@
         <div class="ps-header">
             <img src="Image/Small/medal.png" />รายชื่อการขอเครื่องราชฯ
         </div>
+        <div id="notification" runat="server"></div>
         <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex="0">
             <asp:View ID="View1" runat="server">
                 <div style="text-align: center;">

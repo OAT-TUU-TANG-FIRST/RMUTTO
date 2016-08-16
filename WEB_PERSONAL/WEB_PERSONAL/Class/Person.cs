@@ -138,6 +138,9 @@ namespace WEB_PERSONAL.Class {
 
         public string PositionSalary;
 
+        public DateTime? DateQuit;
+        public int Permission;
+
         public string FullName {
             get { return TitleName + FirstName + " " + LastName; }
         }

@@ -292,6 +292,15 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.CheckBox cbStatusWork;
         
         /// <summary>
+        /// ConditionDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ConditionDiv;
+        
+        /// <summary>
         /// cbCitizenIDCondition control.
         /// </summary>
         /// <remarks>

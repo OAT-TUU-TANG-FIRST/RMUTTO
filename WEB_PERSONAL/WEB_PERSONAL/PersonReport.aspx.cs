@@ -29,6 +29,15 @@ namespace WEB_PERSONAL {
 
                 DatabaseManager.BindDropDown(ddlStatusWork, "SELECT * FROM TB_STATUS_WORK", "SW_NAME", "SW_ID", "-กรุณาเลือกสถานะการทำงาน-");
             }
+            Person ps = PersonnelSystem.GetPersonnelSystem(this).LoginPerson;
+            if(ps.Permission == 1)
+            {
+                ConditionDiv.Visible = false;
+            }
+            else
+            {
+                ConditionDiv.Visible = true;
+            }
         }
 
         private void BindProvinceList()
@@ -651,7 +660,13 @@ namespace WEB_PERSONAL {
             OracleConnection.ClearAllPools();
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
-                using (OracleCommand com = new OracleCommand(select + " FROM PS_PERSON WHERE 1=1" + where, con)) {
+                string sql = select + " FROM PS_PERSON WHERE 1=1" + where;
+                Person ps = PersonnelSystem.GetPersonnelSystem(this).LoginPerson;
+                if (ps.Permission == 1)
+                {
+                    sql = select + " FROM PS_PERSON WHERE PS_CITIZEN_ID = '" + ps.CitizenID + "'";
+                }
+                using (OracleCommand com = new OracleCommand(sql, con)) {
                     using (OracleDataReader reader = com.ExecuteReader()) {
                         int j = 1;
                         while (reader.Read()) {

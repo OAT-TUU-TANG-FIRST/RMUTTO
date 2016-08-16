@@ -152,6 +152,11 @@ namespace WEB_PERSONAL
                 notification.InnerHtml += "<div> - ระยะเวลาการฝึกอบรม/สัมมนา/ดูงาน ตั้งแต่วันที่ - ถึงวันที่ : วันที่ไม่ถูกต้อง</div>";
                 return;
             }
+            else
+            {
+                notification.Attributes["class"] = "none";
+                notification.InnerHtml = "";
+            }
 
             if (txtSupportBudget.Text == "")
             {

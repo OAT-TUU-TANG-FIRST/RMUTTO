@@ -197,7 +197,7 @@
                 </div>
             </div>
 
-            <div style="text-align: center">
+            <div id="ConditionDiv" runat="server" style="text-align: center">
                 <div class="ps-div-title-red" style="margin-top: 10px;">เลือกเงื่อนไข การออกรายงาน</div>
                 <div style="text-align: left; display: inline-block">
                     <div>

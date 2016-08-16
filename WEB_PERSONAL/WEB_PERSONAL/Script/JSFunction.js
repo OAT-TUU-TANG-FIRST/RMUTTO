@@ -25,3 +25,23 @@ function openPopup(a) {
 function closePopup(a) {
     document.getElementById(a).style.display = 'none';
 }
+function OnClick(evt) {
+    var clickCount;
+
+    if (clickCount >= 2) {
+        clickCount = 1;          //reset clickCount
+        SingleClickFunction();
+        return false;
+    }
+}
+function AllowClickOnce(linkbuttonID) {
+    var linkbutton = document.getElementById(linkbuttonID);
+    if (linkbutton.clicked == '0') {
+        linkbutton.clicked = '1';
+        linkbutton.disabled = true;
+        return true;
+    }
+    else {
+        return false;
+    }
+}
