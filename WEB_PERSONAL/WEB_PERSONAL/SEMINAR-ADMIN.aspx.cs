@@ -15,12 +15,19 @@ namespace WEB_PERSONAL
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            BindData();
-
-            if (!IsPostBack)
+            Person ps = PersonnelSystem.GetPersonnelSystem(this).LoginPerson;
+            if (ps.Permission == 2)
             {
-                txtSearchSeminarCitizen.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
-                txtBudget.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
+                if (!IsPostBack)
+                {
+                    txtSearchSeminarCitizen.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
+                    txtBudget.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
+                }
+            }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ไม่สามารถใช้งานหน้าดังกล่าวได้ เนื่องจากสิทธิ์ไม่ถึง')", true);
+                Response.Redirect("Default.aspx");
             }
 
         }
@@ -39,14 +46,6 @@ namespace WEB_PERSONAL
         }
 
         #endregion
-        void BindData()
-        {
-            if (Session["PersonnelSystem"] == null)
-            {
-                Response.Redirect("Access.aspx");
-                return;
-            }
-        }
 
         void BindData1()
         {

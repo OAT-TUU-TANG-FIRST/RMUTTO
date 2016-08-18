@@ -344,7 +344,7 @@
         <div>
             <asp:LinkButton ID="lbuExport" runat="server" CssClass="ps-button" OnClick="lbuExport_Click"><img src="Image/Small/excel.png" class="icon_left"/>ออกรายงาน Excel</asp:LinkButton>
         </div>
-        <div style="overflow-x:auto; width:4600px">
+        <div style="overflow-x:auto; width:3600px">
             <asp:Table ID="tb" runat="server" CssClass="ps-table-1" Style="margin-top: 10px;"></asp:Table>
         </div>
     </div>
