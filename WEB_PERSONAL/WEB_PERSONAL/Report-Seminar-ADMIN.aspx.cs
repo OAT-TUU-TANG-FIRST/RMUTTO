@@ -15,7 +15,11 @@ namespace WEB_PERSONAL
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            Person ps = PersonnelSystem.GetPersonnelSystem(this).LoginPerson;
+            if (ps.Permission != 2)
+            {
+                Response.Redirect("NoPermission.aspx");
+            }
             {
                 Table1.Rows.Clear();
                 TableRow row = new TableRow();

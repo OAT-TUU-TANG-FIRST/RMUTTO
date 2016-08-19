@@ -14,6 +14,11 @@ namespace WEB_PERSONAL
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Person ps = PersonnelSystem.GetPersonnelSystem(this).LoginPerson;
+            if (ps.Permission != 3)
+            {
+                Response.Redirect("NoPermission.aspx");
+            }
             {
                 Table1.Rows.Clear();
                 TableRow row = new TableRow();
@@ -108,7 +113,7 @@ namespace WEB_PERSONAL
 
                             {
                                 Label lblDateStartRequest = new Label();
-                                lblDateStartRequest.Text = reader.GetDateTime(2).ToString("dd MMM yyyy");
+                                lblDateStartRequest.Text = reader.IsDBNull(2) ? "" : reader.GetDateTime(2).ToString("dd MMM yyyy");
                                 TableCell cell = new TableCell();
                                 cell.Controls.Add(lblDateStartRequest);
                                 row.Cells.Add(cell);
@@ -116,7 +121,7 @@ namespace WEB_PERSONAL
 
                             {
                                 Label lblRank = new Label();
-                                lblRank.Text = reader.GetString(3);
+                                lblRank.Text = reader.IsDBNull(3) ? "" : reader.GetString(3);
                                 TableCell cell = new TableCell();
                                 cell.Controls.Add(lblRank);
                                 row.Cells.Add(cell);
@@ -124,7 +129,7 @@ namespace WEB_PERSONAL
 
                             {
                                 Label lblTitleName = new Label();
-                                lblTitleName.Text = reader.GetString(4);
+                                lblTitleName.Text = reader.IsDBNull(4) ? "" : reader.GetString(4);
                                 TableCell cell = new TableCell();
                                 cell.Controls.Add(lblTitleName);
                                 row.Cells.Add(cell);
@@ -132,7 +137,7 @@ namespace WEB_PERSONAL
 
                             {
                                 LinkButton lbName = new LinkButton();
-                                lbName.Text = reader.GetString(5);
+                                lbName.Text = reader.IsDBNull(5) ? "" : reader.GetString(5);
                                 lbName.Click += (e2, e3) =>
                                 {
                                     Response.Redirect("INSG_Qualified_Detail.aspx?psID=" + psID);
@@ -144,7 +149,7 @@ namespace WEB_PERSONAL
 
                             {
                                 Label lblGender = new Label();
-                                lblGender.Text = reader.GetString(6);
+                                lblGender.Text = reader.IsDBNull(6) ? "" : reader.GetString(6);
                                 TableCell cell = new TableCell();
                                 cell.Controls.Add(lblGender);
                                 row.Cells.Add(cell);
@@ -152,7 +157,7 @@ namespace WEB_PERSONAL
 
                             {
                                 Label lblBirthDate = new Label();
-                                lblBirthDate.Text = reader.GetDateTime(7).ToString("dd MMM yyyy");
+                                lblBirthDate.Text = reader.IsDBNull(7) ? "" : reader.GetDateTime(7).ToString("dd MMM yyyy");
                                 TableCell cell = new TableCell();
                                 cell.Controls.Add(lblBirthDate);
                                 row.Cells.Add(cell);
@@ -160,7 +165,7 @@ namespace WEB_PERSONAL
 
                             {
                                 Label lblDateInwork = new Label();
-                                lblDateInwork.Text = reader.GetDateTime(8).ToString("dd MMM yyyy");
+                                lblDateInwork.Text = reader.IsDBNull(8) ? "" : reader.GetDateTime(8).ToString("dd MMM yyyy");
                                 TableCell cell = new TableCell();
                                 cell.Controls.Add(lblDateInwork);
                                 row.Cells.Add(cell);
@@ -227,6 +232,35 @@ namespace WEB_PERSONAL
         }
 
         protected void lbuSave_Click(object sender, EventArgs e) {
+            if (rbGet.Checked)
+            {
+                if(string.IsNullOrEmpty(tbDateGet.Text))
+                {
+                    notification.Attributes["class"] = "alert alert_danger";
+                    notification.InnerHtml = "";
+                    notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
+                    notification.InnerHtml += "<div>กรุณาเลือกวันที่ได้รับ</div>";
+                    return;
+                }
+                else
+                {
+                    notification.Attributes["class"] = "none";
+                    notification.InnerHtml = "";
+                }
+                if (string.IsNullOrEmpty(tbRef.Text))
+                {
+                    notification.Attributes["class"] = "alert alert_danger";
+                    notification.InnerHtml = "";
+                    notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
+                    notification.InnerHtml += "<div>กรุณากรอกเอกสารอ้างอิง</div>";
+                    return;
+                }
+                else
+                {
+                    notification.Attributes["class"] = "none";
+                    notification.InnerHtml = "";
+                }
+            }
             int IRID = int.Parse(hfIRID.Value);
             int res = 1;
             if (rbNotGet.Checked) {
@@ -237,11 +271,20 @@ namespace WEB_PERSONAL
                 con.Open();
                 if (res == 1) {
                     using (OracleCommand com = new OracleCommand("UPDATE TB_INSIG_REQUEST SET IR_STATUS = :IR_STATUS, IR_DATE_GET_INSIG = :IR_DATE_GET_INSIG, IR_GET_STATUS = :IR_GET_STATUS, IR_REFERENCE = :IR_REFERENCE WHERE IR_ID = :IR_ID", con)) {
-                        com.Parameters.AddWithValue("IR_STATUS", 3);
-                        com.Parameters.AddWithValue("IR_DATE_GET_INSIG", Util.ToDateTimeOracle(tbDateGet.Text));
-                        com.Parameters.AddWithValue("IR_GET_STATUS", res);
-                        com.Parameters.AddWithValue("IR_REFERENCE", tbRef.Text);
-                        com.Parameters.AddWithValue("IR_ID", IRID);
+                        DateTime? dt = new DateTime();
+                        if(tbDateGet.Text == "")
+                        {
+                            dt = null;
+                        }
+                        else
+                        {
+                            dt = Util.ToDateTimeOracle(tbDateGet.Text);
+                        }
+                        com.Parameters.Add("IR_STATUS", 3);
+                        com.Parameters.Add("IR_DATE_GET_INSIG", dt);
+                        com.Parameters.Add("IR_GET_STATUS", res);
+                        com.Parameters.Add("IR_REFERENCE", tbRef.Text);
+                        com.Parameters.Add("IR_ID", IRID);
                         com.ExecuteNonQuery();
                     }
                 } else {

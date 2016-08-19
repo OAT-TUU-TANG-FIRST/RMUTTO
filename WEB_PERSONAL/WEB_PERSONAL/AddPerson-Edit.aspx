@@ -15,6 +15,7 @@
         function pageLoad(sender, args) {
             $("#ContentPlaceHolder1_tbBirthday,#ContentPlaceHolder1_tbDateInwork,#ContentPlaceHolder1_tbUseDate11,#ContentPlaceHolder1_tbDate14").datepicker($.datepicker.regional["th"]);
             $("#ContentPlaceHolder1_tbDateInwork,#ContentPlaceHolder1_tbDateGetPositionGoverTab4,#ContentPlaceHolder1_tbDateGetPositionEMPTab4").datepicker($.datepicker.regional["th"]);
+            $("#ContentPlaceHolder1_tbDateQuit").datepicker($.datepicker.regional["th"]);
             $('document').ready(function () {
                 $(".date").datepicker($.datepicker.regional["th"]);
             });
@@ -431,6 +432,14 @@
                         </td>
                     </tr>
                     <tr>
+                        <td class="col1">สถานะบุคลากร</td>
+                        <td class="col2">
+                            <asp:DropDownList ID="ddlTab10StatusWork" runat="server" CssClass="ps-dropdown" AutoPostBack="true" OnSelectedIndexChanged="ddlTab10StatusWork_SelectedIndexChanged"></asp:DropDownList>
+                            <span id="span1" runat="server">&nbsp;&nbsp;&nbsp;วันที่ลาออก</span>
+                            <asp:TextBox ID="tbDateQuit" runat="server" CssClass="ps-textbox" placeholder="01 ม.ค. 25xx" MaxLength="12"></asp:TextBox><span id="span2" runat="server" class="textred">*</span>
+                        </td>
+                    </tr>
+                    <tr>
                         <td class="col1">เงินเดือน</td>
                         <td class="col2">
                             <asp:Label ID="lblSalary" runat="server"></asp:Label>
@@ -440,12 +449,6 @@
                         <td class="col1">เงินประจำตำแหน่ง</td>
                         <td class="col2">
                             <asp:Label ID="lblPositionSalary" runat="server"></asp:Label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col1">สถานะบุคลากร</td>
-                        <td class="col2">
-                            <asp:DropDownList ID="ddlTab10StatusWork" runat="server" CssClass="ps-dropdown" AutoPostBack="true"></asp:DropDownList>
                         </td>
                     </tr>
                 </table>

@@ -15,14 +15,16 @@ namespace WEB_PERSONAL
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            BindData();
-
+            Person ps = PersonnelSystem.GetPersonnelSystem(this).LoginPerson;
+            if (ps.Permission != 2)
+            {
+                Response.Redirect("NoPermission.aspx");
+            }
             if (!IsPostBack)
             {
                 txtSearchSeminarCitizen.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
                 txtBudget.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
             }
-
         }
         #region ViewState DataTable
 
@@ -39,14 +41,6 @@ namespace WEB_PERSONAL
         }
 
         #endregion
-        void BindData()
-        {
-            if (Session["PersonnelSystem"] == null)
-            {
-                Response.Redirect("Access.aspx");
-                return;
-            }
-        }
 
         void BindData1()
         {
@@ -151,6 +145,11 @@ namespace WEB_PERSONAL
                 notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>กรุณากรอกข้อมูลให้ครบถ้วน</strong></div>";
                 notification.InnerHtml += "<div> - ระยะเวลาการฝึกอบรม/สัมมนา/ดูงาน ตั้งแต่วันที่ - ถึงวันที่ : วันที่ไม่ถูกต้อง</div>";
                 return;
+            }
+            else
+            {
+                notification.Attributes["class"] = "none";
+                notification.InnerHtml = "";
             }
 
             if (txtSupportBudget.Text == "")

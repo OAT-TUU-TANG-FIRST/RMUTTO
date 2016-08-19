@@ -1,8 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="PersonReport.aspx.cs" Inherits="WEB_PERSONAL.PersonReport" MaintainScrollPositionOnPostback="true" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script>
-        $(function () {
-            
+        $(function () {  
             $("#ContentPlaceHolder1_tbBirthdayDateFrom, #ContentPlaceHolder1_tbBirthdayDateTo").datepicker($.datepicker.regional["th"]);
             $("#ContentPlaceHolder1_tbInworkDateFrom, #ContentPlaceHolder1_tbInworkDateTo").datepicker($.datepicker.regional["th"]);
             $("#ContentPlaceHolder1_tbRetireDateFrom, #ContentPlaceHolder1_tbRetireDateTo").datepicker($.datepicker.regional["th"]);
@@ -198,7 +197,7 @@
                 </div>
             </div>
 
-            <div style="text-align: center">
+            <div id="ConditionDiv" runat="server" style="text-align: center">
                 <div class="ps-div-title-red" style="margin-top: 10px;">เลือกเงื่อนไข การออกรายงาน</div>
                 <div style="text-align: left; display: inline-block">
                     <div>
@@ -343,9 +342,9 @@
             <div class="ps-separator"></div>
         </div>
         <div>
-            <asp:LinkButton ID="lbuExport" runat="server" CssClass="ps-button" OnClick="lbuExport_Click"><img src="Image/Small/excel.png" class="icon_left"/>Export</asp:LinkButton>
+            <asp:LinkButton ID="lbuExport" runat="server" CssClass="ps-button" OnClick="lbuExport_Click"><img src="Image/Small/excel.png" class="icon_left"/>ออกรายงาน Excel</asp:LinkButton>
         </div>
-        <div style="overflow-x:auto; width:4600px">
+        <div style="overflow-x:auto; width:3600px">
             <asp:Table ID="tb" runat="server" CssClass="ps-table-1" Style="margin-top: 10px;"></asp:Table>
         </div>
     </div>

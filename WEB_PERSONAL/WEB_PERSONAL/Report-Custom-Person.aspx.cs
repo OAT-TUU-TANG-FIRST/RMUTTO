@@ -6,7 +6,8 @@ using System.Data.OracleClient;
 using System.Data;
 using System.Text;
 using Rmutto.Connection;
-
+using WEB_PERSONAL.Class;
+using System.Web.UI;
 
 namespace WEB_PERSONAL
 {
@@ -14,15 +15,22 @@ namespace WEB_PERSONAL
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Person ps = PersonnelSystem.GetPersonnelSystem(this).LoginPerson;
+            if (ps.Permission != 2)
+            {
+                Response.Redirect("NoPermission.aspx");
+            }
             string result = "";
             OracleConnection con2 = ConnectionDB.GetOracleConnection();
             OracleCommand com2 = new OracleCommand("SELECT PS_CITIZEN_ID FROM PS_PERSON WHERE PS_CITIZEN_ID = '" + txtSearchCitizenID.Text + "'", con2);
 
-            if (con2.State != ConnectionState.Open) {
+            if (con2.State != ConnectionState.Open)
+            {
                 con2.Open();
             }
             OracleDataReader reader2 = com2.ExecuteReader();
-            while (reader2.Read()) {
+            while (reader2.Read())
+            {
                 result = reader2.GetString(0);
             }
 
@@ -178,13 +186,14 @@ namespace WEB_PERSONAL
 
             CrystalReportViewer1.ReportSource = rpt;
 
-            if (result != txtSearchCitizenID.Text) {
+            if (result != txtSearchCitizenID.Text)
+            {
                 notification.Attributes["class"] = "alert alert_danger";
                 notification.InnerHtml = "";
                 notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>แจ้งเตือน</strong></div>";
                 notification.InnerHtml += "<div> - ไม่พบข้อมูลของรหัสบัตรประชาชนดังกล่าว</div>";
                 return;
-            }
+            }      
         }
 
         protected void lbuSearch_Click(object sender, EventArgs e)

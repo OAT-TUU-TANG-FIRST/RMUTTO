@@ -980,6 +980,7 @@
     <Content Include="ListPerson-ADMIN.aspx" />
     <Content Include="Month-ADMIN.aspx" />
     <Content Include="National-ADMIN.aspx" />
+    <Content Include="NoPermission.aspx" />
     <Content Include="packages.config" />
     <Content Include="Permission.aspx" />
     <Content Include="PersonBranch.aspx" />
@@ -1000,6 +1001,7 @@
     <Content Include="Report-Custom-Person.aspx" />
     <Content Include="Profile.aspx" />
     <Content Include="Report-Insignia.aspx" />
+    <Content Include="Report-Person-Quit.aspx" />
     <Content Include="Report-Seminar-ADMIN.aspx" />
     <Content Include="Report-Seminar-Detail.aspx" />
     <Content Include="Report-Seminar.aspx" />
@@ -1402,6 +1404,12 @@
     <Compile Include="National-ADMIN.aspx.designer.cs">
       <DependentUpon>National-ADMIN.aspx</DependentUpon>
     </Compile>
+    <Compile Include="NoPermission.aspx.cs">
+      <DependentUpon>NoPermission.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NoPermission.aspx.designer.cs">
+      <DependentUpon>NoPermission.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Permission.aspx.cs">
       <DependentUpon>Permission.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1497,6 +1505,13 @@
     </Compile>
     <Compile Include="Report-Insignia.aspx.designer.cs">
       <DependentUpon>Report-Insignia.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Report-Person-Quit.aspx.cs">
+      <DependentUpon>Report-Person-Quit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Report-Person-Quit.aspx.designer.cs">
+      <DependentUpon>Report-Person-Quit.aspx</DependentUpon>
     </Compile>
     <Compile Include="Report-Seminar-ADMIN.aspx.cs">
       <DependentUpon>Report-Seminar-ADMIN.aspx</DependentUpon>

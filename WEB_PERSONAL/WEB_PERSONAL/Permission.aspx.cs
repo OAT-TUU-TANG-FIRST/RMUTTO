@@ -11,6 +11,11 @@ namespace WEB_PERSONAL {
     public partial class Permission : System.Web.UI.Page {
 
         protected void Page_Load(object sender, EventArgs e) {
+            Person ps = PersonnelSystem.GetPersonnelSystem(this).LoginPerson;
+            if (ps.Permission == 1)
+            {
+                Response.Redirect("NoPermission.aspx");
+            }
             lbSaveComplete.Visible = false;
         }
 
