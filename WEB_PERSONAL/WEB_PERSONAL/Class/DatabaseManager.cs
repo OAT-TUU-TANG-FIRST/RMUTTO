@@ -95,7 +95,7 @@ namespace WEB_PERSONAL.Class {
             gv.DataBind();
         }
         public static SqlDataSource CreateSQLDataSource(string sql) {
-            return new SqlDataSource("Oracle.DataAccess.Client", CONNECTION_STRING, sql);
+            return new SqlDataSource("System.Data.OracleClient", CONNECTION_STRING, sql);
         }
         public static bool ValidateUser(string personID, string password) {
             OracleConnection.ClearAllPools();
