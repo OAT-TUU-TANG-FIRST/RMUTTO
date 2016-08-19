@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Oracle.DataAccess.Client;
+using System.Data.OracleClient;
 using System.IO;
 using WEB_PERSONAL.Class;
 using System.Text;
@@ -193,12 +193,12 @@ namespace WEB_PERSONAL {
                         
                         using (OracleCommand com = new OracleCommand(
                             "SELECT" +
-                            " (SELECT NVL(COUNT(LEAVE_ID),0) FROM LEV_DATA WHERE LEAVE_STATUS_ID IN(2,3,4) AND LEAVE_TYPE_ID = 1 AND PS_ID = '" + citizenID + "' AND BUDGET_YEAR = " + budgetYear + ")" +
-                            ", (SELECT NVL(SUM(TOTAL_DAY),0) FROM LEV_DATA WHERE LEAVE_STATUS_ID IN(2,3,4) AND LEAVE_TYPE_ID = 1 AND PS_ID = '" + citizenID + "' AND BUDGET_YEAR = " + budgetYear + ")" +
-                            ", (SELECT NVL(COUNT(LEAVE_ID),0) FROM LEV_DATA WHERE LEAVE_STATUS_ID IN(2,3,4) AND LEAVE_TYPE_ID = 2 AND PS_ID = '" + citizenID + "' AND BUDGET_YEAR = " + budgetYear + ")" +
-                            ", (SELECT NVL(SUM(TOTAL_DAY),0) FROM LEV_DATA WHERE LEAVE_STATUS_ID IN(2,3,4) AND LEAVE_TYPE_ID = 2 AND PS_ID = '" + citizenID + "' AND BUDGET_YEAR = " + budgetYear + ")" +
-                            ", (SELECT NVL(COUNT(LEAVE_ID),0) FROM LEV_DATA WHERE LEAVE_STATUS_ID IN(2,3,4) AND LEAVE_TYPE_ID = 4 AND PS_ID = '" + citizenID + "' AND BUDGET_YEAR = " + budgetYear + ")" +
-                            ", (SELECT NVL(SUM(TOTAL_DAY),0) FROM LEV_DATA WHERE LEAVE_STATUS_ID IN(2,3,4) AND LEAVE_TYPE_ID = 4 AND PS_ID = '" + citizenID + "' AND BUDGET_YEAR = " + budgetYear + ")" +
+                            " (SELECT NVL(COUNT(LEAVE_ID),0) FROM LEV_DATA WHERE LEAVE_STATUS_ID IN(2,3,4) AND LEAVE_TYPE_ID = 1 AND PS_ID = '" + citizenID + "' AND BUDGET_YEAR = " + budgetYear + " AND V_ALLOW = 1 )" +
+                            ", (SELECT NVL(SUM(TOTAL_DAY),0) FROM LEV_DATA WHERE LEAVE_STATUS_ID IN(2,3,4) AND LEAVE_TYPE_ID = 1 AND PS_ID = '" + citizenID + "' AND BUDGET_YEAR = " + budgetYear + " AND V_ALLOW = 1 )" +
+                            ", (SELECT NVL(COUNT(LEAVE_ID),0) FROM LEV_DATA WHERE LEAVE_STATUS_ID IN(2,3,4) AND LEAVE_TYPE_ID = 2 AND PS_ID = '" + citizenID + "' AND BUDGET_YEAR = " + budgetYear + " AND V_ALLOW = 1 )" +
+                            ", (SELECT NVL(SUM(TOTAL_DAY),0) FROM LEV_DATA WHERE LEAVE_STATUS_ID IN(2,3,4) AND LEAVE_TYPE_ID = 2 AND PS_ID = '" + citizenID + "' AND BUDGET_YEAR = " + budgetYear + " AND V_ALLOW = 1 )" +
+                            ", (SELECT NVL(COUNT(LEAVE_ID),0) FROM LEV_DATA WHERE LEAVE_STATUS_ID IN(2,3,4) AND LEAVE_TYPE_ID = 4 AND PS_ID = '" + citizenID + "' AND BUDGET_YEAR = " + budgetYear + " AND V_ALLOW = 1 )" +
+                            ", (SELECT NVL(SUM(TOTAL_DAY),0) FROM LEV_DATA WHERE LEAVE_STATUS_ID IN(2,3,4) AND LEAVE_TYPE_ID = 4 AND PS_ID = '" + citizenID + "' AND BUDGET_YEAR = " + budgetYear + " AND V_ALLOW = 1 )" +
                             ", (SELECT NVL(COUNT(WORKTIME_ID),0) FROM LEV_WORKTIME WHERE LATE = 1 AND CITIZEN_ID = '" + citizenID + "' AND TODAY > TO_DATE('30-09-" + (budgetYear - 1) + "', 'DD-MM-YYYY') AND TODAY < TO_DATE('01-10-" + (budgetYear) + "', 'DD-MM-YYYY')" + ")" +
                             ", (SELECT NVL(COUNT(WORKTIME_ID),0) FROM LEV_WORKTIME WHERE ABSENT = 1 AND CITIZEN_ID = '" + citizenID + "' AND TODAY > TO_DATE('30-09-" + (budgetYear - 1) + "', 'DD-MM-YYYY') AND TODAY < TO_DATE('01-10-" + (budgetYear) + "', 'DD-MM-YYYY')" + ")" +
                             " FROM DUAL",
@@ -226,7 +226,7 @@ namespace WEB_PERSONAL {
                     {
                         TableCell cell = new TableCell();
                         cell.Text = "";
-                        using (OracleCommand command = new OracleCommand("SELECT FROM_DATE FROM LEV_DATA WHERE PS_ID = '" + citizenID + "' AND LEAVE_TYPE_ID = 3 AND BUDGET_YEAR = " + budgetYear + " ORDER BY LEAVE_ID DESC", con)) {
+                        using (OracleCommand command = new OracleCommand("SELECT FROM_DATE FROM LEV_DATA WHERE PS_ID = '" + citizenID + "' AND LEAVE_TYPE_ID = 3 AND BUDGET_YEAR = " + budgetYear + " AND V_ALLOW = 1 ORDER BY LEAVE_ID DESC", con)) {
                             using (OracleDataReader reader = command.ExecuteReader()) {
                                 if (reader.Read()) {
                                     cell.Text = reader.GetDateTime(0).ToLongDateString();
@@ -238,7 +238,7 @@ namespace WEB_PERSONAL {
                     {
                         TableCell cell = new TableCell();
                         cell.Text = "";
-                        using (OracleCommand command = new OracleCommand("SELECT FROM_DATE FROM LEV_DATA WHERE PS_ID = '" + citizenID + "' AND LEAVE_TYPE_ID = 6 AND BUDGET_YEAR = " + budgetYear + " ORDER BY LEAVE_ID DESC", con)) {
+                        using (OracleCommand command = new OracleCommand("SELECT FROM_DATE FROM LEV_DATA WHERE PS_ID = '" + citizenID + "' AND LEAVE_TYPE_ID = 6 AND BUDGET_YEAR = " + budgetYear + " AND V_ALLOW = 1 ORDER BY LEAVE_ID DESC", con)) {
                             using (OracleDataReader reader = command.ExecuteReader()) {
                                 if (reader.Read()) {
                                     cell.Text = reader.GetDateTime(0).ToLongDateString();

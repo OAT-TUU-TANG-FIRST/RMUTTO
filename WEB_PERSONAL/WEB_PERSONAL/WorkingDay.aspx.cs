@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Oracle.DataAccess.Client;
+using System.Data.OracleClient;
 using WEB_PERSONAL.Class;
 
 namespace WEB_PERSONAL {
@@ -85,7 +85,7 @@ namespace WEB_PERSONAL {
                     using(OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                         con.Open();
                         using(OracleCommand com = new OracleCommand("SELECT COUNT(WORKDAY_ID) FROM LEV_WORKDAY WHERE WORKDAY_DATE = :WORKDAY_DATE", con)) {
-                            com.Parameters.Add("WORKDAY_DATE", dt);
+                            com.Parameters.AddWithValue("WORKDAY_DATE", dt);
                             using(OracleDataReader reader = com.ExecuteReader()) {
                                 while(reader.Read()) {
                                     if(reader.GetInt32(0) > 0)
@@ -123,7 +123,7 @@ namespace WEB_PERSONAL {
                             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                                 con.Open();
                                 using (OracleCommand com = new OracleCommand("DELETE FROM LEV_WORKDAY WHERE WORKDAY_DATE = :WORKDAY_DATE", con)) {
-                                    com.Parameters.Add("WORKDAY_DATE", dt);
+                                    com.Parameters.AddWithValue("WORKDAY_DATE", dt);
                                     com.ExecuteNonQuery();
                                 }
                             }
@@ -131,8 +131,8 @@ namespace WEB_PERSONAL {
                             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                                 con.Open();
                                 using (OracleCommand com = new OracleCommand("INSERT INTO LEV_WORKDAY (WORKDAY_ID, WORKDAY_DATE, CITIZEN_ID) VALUES(SEQ_WORKDAY_ID.NEXTVAL, :WORKDAY_DATE, :CITIZEN_ID)", con)) {
-                                    com.Parameters.Add("WORKDAY_DATE", dt);
-                                    com.Parameters.Add("CITIZEN_ID", loginPerson.CitizenID);
+                                    com.Parameters.AddWithValue("WORKDAY_DATE", dt);
+                                    com.Parameters.AddWithValue("CITIZEN_ID", loginPerson.CitizenID);
                                     com.ExecuteNonQuery();
                                 }
                             }
@@ -172,9 +172,9 @@ namespace WEB_PERSONAL {
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
                 using (OracleCommand com = new OracleCommand("UPDATE LEV_TIME SET TIME_HOUR_IN = :TIME_HOUR_IN, TIME_MINUTE_IN = :TIME_MINUTE_IN, CITIZEN_ID = :CITIZEN_ID WHERE TIME_ID = 1", con)) {
-                    com.Parameters.Add("TIME_HOUR_IN", tbLateHour.Text);
-                    com.Parameters.Add("TIME_MINUTE_IN", tbLateMinute.Text);
-                    com.Parameters.Add("CITIZEN_ID", loginPerson.CitizenID);
+                    com.Parameters.AddWithValue("TIME_HOUR_IN", tbLateHour.Text);
+                    com.Parameters.AddWithValue("TIME_MINUTE_IN", tbLateMinute.Text);
+                    com.Parameters.AddWithValue("CITIZEN_ID", loginPerson.CitizenID);
                     com.ExecuteNonQuery();
                 }
             }
@@ -184,9 +184,9 @@ namespace WEB_PERSONAL {
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
                 using (OracleCommand com = new OracleCommand("UPDATE LEV_TIME SET TIME_HOUR_IN = :TIME_HOUR_IN, TIME_MINUTE_IN = :TIME_MINUTE_IN, CITIZEN_ID = :CITIZEN_ID WHERE TIME_ID = 2", con)) {
-                    com.Parameters.Add("TIME_HOUR_IN", tbAbsentHour.Text);
-                    com.Parameters.Add("TIME_MINUTE_IN", tbAbsentMinute.Text);
-                    com.Parameters.Add("CITIZEN_ID", loginPerson.CitizenID);
+                    com.Parameters.AddWithValue("TIME_HOUR_IN", tbAbsentHour.Text);
+                    com.Parameters.AddWithValue("TIME_MINUTE_IN", tbAbsentMinute.Text);
+                    com.Parameters.AddWithValue("CITIZEN_ID", loginPerson.CitizenID);
                     com.ExecuteNonQuery();
                 }
             }

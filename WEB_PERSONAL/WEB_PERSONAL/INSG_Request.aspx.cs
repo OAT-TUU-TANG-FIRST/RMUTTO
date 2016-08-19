@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Configuration;
 using WEB_PERSONAL.Class;
-using Oracle.DataAccess.Client;
+using System.Data.OracleClient;
 
 namespace WEB_PERSONAL {
     public partial class INSG_Request : System.Web.UI.Page {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Oracle.DataAccess.Client;
+using System.Data.OracleClient;
 using WEB_PERSONAL.Class;
 
 namespace WEB_PERSONAL {
@@ -150,13 +150,13 @@ namespace WEB_PERSONAL {
                     }
                     if (!have) {
                         using (OracleCommand com = new OracleCommand("INSERT INTO TB_PERMISSION VALUES(SEQ_PERMISSION_ID.NEXTVAL, :PS, " + type + ")", con)) {
-                            com.Parameters.Add("PS", citizenID);
+                            com.Parameters.AddWithValue("PS", citizenID);
                             com.ExecuteNonQuery();
                         }
                     }
                 } else {
                     using (OracleCommand com = new OracleCommand("DELETE TB_PERMISSION WHERE CITIZEN_ID = :PS AND PERMISSION_TYPE = " + type, con)) {
-                        com.Parameters.Add("PS", citizenID);
+                        com.Parameters.AddWithValue("PS", citizenID);
                         com.ExecuteNonQuery();
                     }
                 }

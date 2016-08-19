@@ -10,7 +10,7 @@ using System.Drawing;
 using System.Web.UI.HtmlControls;
 using WEB_PERSONAL.Class;
 using System.IO;
-using Oracle.DataAccess.Client;
+using System.Data.OracleClient;
 
 namespace WEB_PERSONAL {
     public partial class Leave : System.Web.UI.Page {
@@ -70,6 +70,33 @@ namespace WEB_PERSONAL {
                     }
                 }
             }
+
+            if(!IsPostBack) {
+                if (loginPerson.IsMale()) {
+                    trReqGiveBirth.Visible = false;
+                    trReqHelpGiveBirth.Visible = true;
+                    trReqOrdain.Visible = true;
+                    trReqHuj.Visible = true;
+
+                    lbuSelectGiveBirth.Visible = false;
+                    lbuSelectHelpGiveBirth.Visible = true;
+                    lbuSelectOrdain.Visible = true;
+                    lbuSelectHuj.Visible = true;
+
+                } else {
+                    trReqGiveBirth.Visible = true;
+                    trReqHelpGiveBirth.Visible = false;
+                    trReqOrdain.Visible = false;
+                    trReqHuj.Visible = false;
+
+                    lbuSelectGiveBirth.Visible = true;
+                    lbuSelectHelpGiveBirth.Visible = false;
+                    lbuSelectOrdain.Visible = false;
+                    lbuSelectHuj.Visible = false;
+                }
+            }
+            
+
         }
 
         protected void lbuS1Check_Click(object sender, EventArgs e) {
@@ -1493,6 +1520,29 @@ namespace WEB_PERSONAL {
             MV1.ActiveViewIndex = 0;
             ShowAllReq();
             ClearNotification();
+
+            if (loginPerson.IsMale()) {
+                trReqGiveBirth.Visible = false;
+                trReqHelpGiveBirth.Visible = true;
+                trReqOrdain.Visible = true;
+                trReqHuj.Visible = true;
+
+                lbuSelectGiveBirth.Visible = false;
+                lbuSelectHelpGiveBirth.Visible = true;
+                lbuSelectOrdain.Visible = true;
+                lbuSelectHuj.Visible = true;
+
+            } else {
+                trReqGiveBirth.Visible = true;
+                trReqHelpGiveBirth.Visible = false;
+                trReqOrdain.Visible = false;
+                trReqHuj.Visible = false;
+
+                lbuSelectGiveBirth.Visible = true;
+                lbuSelectHelpGiveBirth.Visible = false;
+                lbuSelectOrdain.Visible = false;
+                lbuSelectHuj.Visible = false;
+            }
         }
     }
 

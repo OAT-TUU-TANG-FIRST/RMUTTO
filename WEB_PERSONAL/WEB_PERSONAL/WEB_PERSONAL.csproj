@@ -112,7 +112,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="404.aspx" />
-    <Content Include="About.aspx" />
     <Content Include="AcademicPosition-ADMIN.aspx" />
     <Content Include="Access.aspx" />
     <Content Include="AddPerson-Edit.aspx" />
@@ -735,7 +734,6 @@
     <Content Include="CSS\Access.css" />
     <Content Include="CSS\Print.css" />
     <Content Include="DataManager.aspx" />
-    <Content Include="Developer.aspx" />
     <Content Include="District-ADMIN.aspx" />
     <Content Include="Division-ADMIN.aspx" />
     <Content Include="Faculty-ADMIN.aspx" />
@@ -870,7 +868,6 @@
     <Content Include="INSG_RequestList.aspx" />
     <Content Include="jquery.mCustomScrollbar\jquery.mCustomScrollbar.css" />
     <Content Include="Default.aspx" />
-    <Content Include="Error-Member.aspx" />
     <Content Include="Gender-ADMIN.aspx" />
     <Content Include="Image\444.png" />
     <Content Include="Image\555.jpg" />
@@ -978,7 +975,6 @@
     <Content Include="LeaveClaim.aspx" />
     <Content Include="LeaveComment.aspx" />
     <Content Include="LeaveHistory.aspx" />
-    <Content Include="LeaveManager.aspx" />
     <Content Include="LeavePermission.aspx" />
     <Content Include="LeaveReport.aspx" />
     <Content Include="ListPerson-ADMIN.aspx" />
@@ -987,7 +983,6 @@
     <Content Include="packages.config" />
     <Content Include="Permission.aspx" />
     <Content Include="PersonBranch.aspx" />
-    <Content Include="PersonPositionManagement.aspx" />
     <Content Include="PersonReport.aspx" />
     <Content Include="PosiGoverSalary-ADMIN.aspx" />
     <Content Include="Position-ADMIN.aspx" />
@@ -998,7 +993,6 @@
     <Content Include="Plugins\EPPlus.XML" />
     <Content Include="PositionWork-ADMIN.aspx" />
     <Content Include="jquery.mCustomScrollbar\jquery.mCustomScrollbar.concat.min.js" />
-    <Content Include="PrintLeaveForm.aspx" />
     <Content Include="Province-ADMIN.aspx" />
     <Content Include="psPerson-ADMIN.aspx" />
     <Content Include="Rank-ADMIN.aspx" />
@@ -1012,12 +1006,9 @@
     <Content Include="Staff-ADMIN.aspx" />
     <Content Include="StaffType-ADMIN.aspx" />
     <Content Include="StatusPerson-ADMIN.aspx" />
-    <Content Include="StatusPerson.aspx" />
     <Content Include="StatusWork-ADMIN.aspx" />
     <Content Include="SumReport_UpSalary.aspx" />
     <Content Include="TeachISCED-ADMIN.aspx" />
-    <Content Include="TestOutput.aspx" />
-    <Content Include="UploadList.aspx" />
     <Content Include="Upload\DrCer\0eu9ksfy2r6imt93n6vc0l0u.jpg" />
     <Content Include="Upload\DrCer\3hxshqkfv83d9zmj1llqngmg.jpg" />
     <Content Include="Upload\DrCer\6atwt1boqhp5m2j1z5eeztey.jpg" />
@@ -1034,7 +1025,6 @@
     <Content Include="WorkingDay.aspx" />
     <Content Include="WorkingTime.aspx" />
     <Content Include="WorkingTimeHistory.aspx" />
-    <Content Include="WorkingTimeManager.aspx" />
     <Content Include="Year-ADMIN.aspx" />
     <Content Include="MasterPage.Master" />
     <Content Include="Font\TH Sarabun PSK\THSarabun Bold.ttf" />
@@ -1124,13 +1114,6 @@
     </Compile>
     <Compile Include="404.aspx.designer.cs">
       <DependentUpon>404.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="About.aspx.cs">
-      <DependentUpon>About.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="About.aspx.designer.cs">
-      <DependentUpon>About.aspx</DependentUpon>
     </Compile>
     <Compile Include="AcademicPosition-ADMIN.aspx.cs">
       <DependentUpon>AcademicPosition-ADMIN.aspx</DependentUpon>
@@ -1258,13 +1241,6 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Developer.aspx.cs">
-      <DependentUpon>Developer.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Developer.aspx.designer.cs">
-      <DependentUpon>Developer.aspx</DependentUpon>
-    </Compile>
     <Compile Include="District-ADMIN.aspx.cs">
       <DependentUpon>District-ADMIN.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1283,13 +1259,6 @@
     <Compile Include="Entities\Personnel.cs" />
     <Compile Include="Entities\Seminar.cs" />
     <Compile Include="Entities\Manage.cs" />
-    <Compile Include="Error-Member.aspx.cs">
-      <DependentUpon>Error-Member.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Error-Member.aspx.designer.cs">
-      <DependentUpon>Error-Member.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Faculty-ADMIN.aspx.cs">
       <DependentUpon>Faculty-ADMIN.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1391,13 +1360,6 @@
     <Compile Include="LeaveHistory.aspx.designer.cs">
       <DependentUpon>LeaveHistory.aspx</DependentUpon>
     </Compile>
-    <Compile Include="LeaveManager.aspx.cs">
-      <DependentUpon>LeaveManager.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LeaveManager.aspx.designer.cs">
-      <DependentUpon>LeaveManager.aspx</DependentUpon>
-    </Compile>
     <Compile Include="LeavePermission.aspx.cs">
       <DependentUpon>LeavePermission.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1454,13 +1416,6 @@
     <Compile Include="PersonBranch.aspx.designer.cs">
       <DependentUpon>PersonBranch.aspx</DependentUpon>
     </Compile>
-    <Compile Include="PersonPositionManagement.aspx.cs">
-      <DependentUpon>PersonPositionManagement.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="PersonPositionManagement.aspx.designer.cs">
-      <DependentUpon>PersonPositionManagement.aspx</DependentUpon>
-    </Compile>
     <Compile Include="PersonReport.aspx.cs">
       <DependentUpon>PersonReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1493,13 +1448,6 @@
     </Compile>
     <Compile Include="PositionWork-ADMIN.aspx.designer.cs">
       <DependentUpon>PositionWork-ADMIN.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="PrintLeaveForm.aspx.cs">
-      <DependentUpon>PrintLeaveForm.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="PrintLeaveForm.aspx.designer.cs">
-      <DependentUpon>PrintLeaveForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="Profile.aspx.cs">
       <DependentUpon>Profile.aspx</DependentUpon>
@@ -1623,13 +1571,6 @@
     <Compile Include="StaffType-ADMIN.aspx.designer.cs">
       <DependentUpon>StaffType-ADMIN.aspx</DependentUpon>
     </Compile>
-    <Compile Include="StatusPerson.aspx.cs">
-      <DependentUpon>StatusPerson.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="StatusPerson.aspx.designer.cs">
-      <DependentUpon>StatusPerson.aspx</DependentUpon>
-    </Compile>
     <Compile Include="StatusWork-ADMIN.aspx.cs">
       <DependentUpon>StatusWork-ADMIN.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1658,13 +1599,6 @@
     <Compile Include="TeachISCED-ADMIN.aspx.designer.cs">
       <DependentUpon>TeachISCED-ADMIN.aspx</DependentUpon>
     </Compile>
-    <Compile Include="TestOutput.aspx.cs">
-      <DependentUpon>TestOutput.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="TestOutput.aspx.designer.cs">
-      <DependentUpon>TestOutput.aspx</DependentUpon>
-    </Compile>
     <Compile Include="TitleName-ADMIN.aspx.cs">
       <DependentUpon>TitleName-ADMIN.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1673,13 +1607,6 @@
       <DependentUpon>TitleName-ADMIN.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UploadList.aspx.cs">
-      <DependentUpon>UploadList.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UploadList.aspx.designer.cs">
-      <DependentUpon>UploadList.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Util.cs" />
     <Compile Include="ViewLeaveForm.aspx.cs">
       <DependentUpon>ViewLeaveForm.aspx</DependentUpon>
@@ -1715,13 +1642,6 @@
     </Compile>
     <Compile Include="WorkingTimeHistory.aspx.designer.cs">
       <DependentUpon>WorkingTimeHistory.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="WorkingTimeManager.aspx.cs">
-      <DependentUpon>WorkingTimeManager.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="WorkingTimeManager.aspx.designer.cs">
-      <DependentUpon>WorkingTimeManager.aspx</DependentUpon>
     </Compile>
     <Compile Include="Year-ADMIN.aspx.cs">
       <DependentUpon>Year-ADMIN.aspx</DependentUpon>

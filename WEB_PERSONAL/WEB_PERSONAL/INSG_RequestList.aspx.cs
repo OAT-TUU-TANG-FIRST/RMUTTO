@@ -2,7 +2,7 @@
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using WEB_PERSONAL.Class;
-using Oracle.DataAccess.Client;
+using System.Data.OracleClient;
 using System.Collections;
 using CrystalDecisions.CrystalReports.Engine;
 using System.Text;
@@ -237,18 +237,18 @@ namespace WEB_PERSONAL
                 con.Open();
                 if (res == 1) {
                     using (OracleCommand com = new OracleCommand("UPDATE TB_INSIG_REQUEST SET IR_STATUS = :IR_STATUS, IR_DATE_GET_INSIG = :IR_DATE_GET_INSIG, IR_GET_STATUS = :IR_GET_STATUS, IR_REFERENCE = :IR_REFERENCE WHERE IR_ID = :IR_ID", con)) {
-                        com.Parameters.Add("IR_STATUS", 3);
-                        com.Parameters.Add("IR_DATE_GET_INSIG", Util.ToDateTimeOracle(tbDateGet.Text));
-                        com.Parameters.Add("IR_GET_STATUS", res);
-                        com.Parameters.Add("IR_REFERENCE", tbRef.Text);
-                        com.Parameters.Add("IR_ID", IRID);
+                        com.Parameters.AddWithValue("IR_STATUS", 3);
+                        com.Parameters.AddWithValue("IR_DATE_GET_INSIG", Util.ToDateTimeOracle(tbDateGet.Text));
+                        com.Parameters.AddWithValue("IR_GET_STATUS", res);
+                        com.Parameters.AddWithValue("IR_REFERENCE", tbRef.Text);
+                        com.Parameters.AddWithValue("IR_ID", IRID);
                         com.ExecuteNonQuery();
                     }
                 } else {
                     using (OracleCommand com = new OracleCommand("UPDATE TB_INSIG_REQUEST SET IR_STATUS = :IR_STATUS, IR_GET_STATUS = :IR_GET_STATUS WHERE IR_ID = :IR_ID", con)) {
-                        com.Parameters.Add("IR_STATUS", 3);
-                        com.Parameters.Add("IR_GET_STATUS", res);
-                        com.Parameters.Add("IR_ID", IRID);
+                        com.Parameters.AddWithValue("IR_STATUS", 3);
+                        com.Parameters.AddWithValue("IR_GET_STATUS", res);
+                        com.Parameters.AddWithValue("IR_ID", IRID);
                         com.ExecuteNonQuery();
                     }
                 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Oracle.DataAccess.Client;
+using System.Data.OracleClient;
 using System.IO;
 using WEB_PERSONAL.Class;
 
@@ -153,10 +153,10 @@ namespace WEB_PERSONAL {
                 using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                     con.Open();
                     using(OracleCommand com = new OracleCommand("INSERT INTO PS_PERSON_IMAGE (ID, CITIZEN_ID, URL, PRESENT) VALUES(SEQ_PERSON_IMAGE_ID.NEXTVAL, :CITIZEN_ID, :URL, :PRESENT)", con)) {
-                        com.Parameters.Add("CITIZEN_ID", pp.CitizenID);
-                        com.Parameters.Add("URL", fname);
+                        com.Parameters.AddWithValue("CITIZEN_ID", pp.CitizenID);
+                        com.Parameters.AddWithValue("URL", fname);
                         int v1 = 0;
-                        com.Parameters.Add("PRESENT", v1);
+                        com.Parameters.AddWithValue("PRESENT", v1);
                         com.ExecuteNonQuery();
                     }
                 }

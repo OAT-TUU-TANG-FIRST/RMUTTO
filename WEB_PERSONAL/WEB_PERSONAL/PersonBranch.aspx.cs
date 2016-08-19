@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
-using Oracle.DataAccess.Client;
+using System.Data.OracleClient;
 using WEB_PERSONAL.Class;
 
 namespace WEB_PERSONAL {
@@ -241,11 +241,16 @@ namespace WEB_PERSONAL {
                             using (OracleCommand com2 = new OracleCommand("SELECT PS_ADMIN_POS_ID FROM PS_PERSON WHERE PS_CITIZEN_ID = '" + citizenID + "'", con)) {
                                 using (OracleDataReader reader2 = com2.ExecuteReader()) {
                                     while (reader2.Read()) {
-                                        if(reader2.GetInt32(0) == 4 && type == "WD") {
-                                            isBoss = true;
-                                        } else if (reader2.GetInt32(0) == 10 && type == "DV") {
-                                            isBoss = true;
+                                        if(reader2.IsDBNull(0)) {
+
+                                        } else {
+                                            if (reader2.GetInt32(0) == 4 && type == "WD") {
+                                                isBoss = true;
+                                            } else if (reader2.GetInt32(0) == 10 && type == "DV") {
+                                                isBoss = true;
+                                            }
                                         }
+                                        
 
                                     }
                                 }

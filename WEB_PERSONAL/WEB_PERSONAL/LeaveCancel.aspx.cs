@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using WEB_PERSONAL.Class;
-using Oracle.DataAccess.Client;
+using System.Data.OracleClient;
 
 namespace WEB_PERSONAL {
     public partial class LeaveCancel : System.Web.UI.Page {

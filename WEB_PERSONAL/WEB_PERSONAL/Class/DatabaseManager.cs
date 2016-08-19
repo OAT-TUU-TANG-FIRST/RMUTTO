@@ -4,20 +4,20 @@ using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
-using Oracle.DataAccess.Client;
+using System.Data.OracleClient;
 
 namespace WEB_PERSONAL.Class {
     
     public class DatabaseManager {
 
-        public static readonly string PROVIDER = "Oracle.DataAccess.Client";
+        public static readonly string PROVIDER = "System.Data.OracleClient";
         public static readonly string DATA_SOURCE = "203.158.140.67";
         public static readonly string PORT = "1521";
         public static readonly string SID = "orcl";
         public static readonly string USER_ID = "rmutto";
         public static readonly string PASSWORD = "Zxcvbnm";
         //public static readonly string CONNECTION_STRING_OLE = @"Provider=" + PROVIDER + "; Data Source = " + DATA_SOURCE + ":" + PORT + "/" + SID + ";USER ID=" + USER_ID + ";PASSWORD=" + PASSWORD;
-        public static readonly string CONNECTION_STRING = @"Data Source = " + DATA_SOURCE + ":" + PORT + "/" + SID + ";USER ID=" + USER_ID + ";PASSWORD=" + PASSWORD + ";Validate Connection=true;";
+        public static readonly string CONNECTION_STRING = @"Data Source = " + DATA_SOURCE + ":" + PORT + "/" + SID + ";USER ID=" + USER_ID + ";PASSWORD=" + PASSWORD + ";";
         //public static readonly string CONNECTION_STRING_FIXED = @"Provider=OraOLEDB.Oracle; Data Source = 203.158.140.67:1521/orcl;USER ID=rmutto;PASSWORD=Zxcvbnm";
 
         public static void ExecuteNonQuery(string sql) {
@@ -428,7 +428,7 @@ namespace WEB_PERSONAL.Class {
                 }
                 int bossNodeType = -1;
                 int bossNodeTypeID = -1;
-                if (workPositionID == 10108 && (adminPositionPower >= 3 || adminPositionPower == 0)) { //อาจารย์
+                if ((workPositionID == 10108 || workPositionID == 10077) && (adminPositionPower >= 3 || adminPositionPower == 0)) { //อาจารย์
                     if(adminPositionPower == 0) {
                         bossNodeType = 3;
                         bossNodeTypeID = divisionID;

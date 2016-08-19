@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Oracle.DataAccess.Client;
+using System.Data.OracleClient;
 using WEB_PERSONAL.Class;
 using System.Data;
 
@@ -106,27 +106,27 @@ namespace WEB_PERSONAL {
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
                 using (OracleCommand com = new OracleCommand("INSERT INTO TB_BOSS_NODE (BOSS_NODE_ID, BOSS_NODE_NAME, BOSS_NODES_ID, BOSS_NODE_PARENT_ID, BOSS_NODE_TYPE, BOSS_NODE_TYPE_ID, BOSS_NODE_CITIZEN_ID) VALUES(SEQ_BOSS_NODE_ID.NEXTVAL, :BOSS_NODE_NAME, :BOSS_NODES_ID, :BOSS_NODE_PARENT_ID, :BOSS_NODE_TYPE, :BOSS_NODE_TYPE_ID, :BOSS_NODE_CITIZEN_ID)", con)) {
-                    com.Parameters.Add("BOSS_NODE_NAME", bossNodeName + bossNodeNameNuy);
-                    com.Parameters.Add("BOSS_NODES_ID", 1);
-                    com.Parameters.Add("BOSS_NODE_PARENT_ID", ddlHighNode.SelectedValue);
+                    com.Parameters.AddWithValue("BOSS_NODE_NAME", bossNodeName + bossNodeNameNuy);
+                    com.Parameters.AddWithValue("BOSS_NODES_ID", 1);
+                    com.Parameters.AddWithValue("BOSS_NODE_PARENT_ID", ddlHighNode.SelectedValue);
                     if(type == -1) {
-                        com.Parameters.Add("BOSS_NODE_TYPE", null);
+                        com.Parameters.AddWithValue("BOSS_NODE_TYPE", null);
                     } else {
-                        com.Parameters.Add("BOSS_NODE_TYPE", type);
+                        com.Parameters.AddWithValue("BOSS_NODE_TYPE", type);
                     }
                     if(typeID == null) {
-                        com.Parameters.Add("BOSS_NODE_TYPE_ID", null);
+                        com.Parameters.AddWithValue("BOSS_NODE_TYPE_ID", null);
                     } else {
-                        com.Parameters.Add("BOSS_NODE_TYPE_ID", typeID);
+                        com.Parameters.AddWithValue("BOSS_NODE_TYPE_ID", typeID);
                     }
                     
-                    com.Parameters.Add("BOSS_NODE_CITIZEN_ID", tbCitizenID.Text);
+                    com.Parameters.AddWithValue("BOSS_NODE_CITIZEN_ID", tbCitizenID.Text);
                     com.ExecuteNonQuery();
                 }
 
                 using (OracleCommand com = new OracleCommand("UPDATE PS_PERSON SET PS_ADMIN_POS_ID = :PS_ADMIN_POS_ID " + personUpdate + " WHERE PS_CITIZEN_ID = :PS_CITIZEN_ID", con)) {
-                    com.Parameters.Add("PS_ADMIN_POS_ID", adminPositionID);
-                    com.Parameters.Add("PS_CITIZEN_ID", tbCitizenID.Text);
+                    com.Parameters.AddWithValue("PS_ADMIN_POS_ID", adminPositionID);
+                    com.Parameters.AddWithValue("PS_CITIZEN_ID", tbCitizenID.Text);
                     com.ExecuteNonQuery();
                 }
             }
@@ -246,21 +246,21 @@ namespace WEB_PERSONAL {
 
 
                                         using (OracleCommand com2 = new OracleCommand("UPDATE TB_BOSS_NODE SET BOSS_NODE_CITIZEN_ID = :BOSS_NODE_CITIZEN_ID WHERE BOSS_NODE_ID = :BOSS_NODE_ID", con2)) {
-                                            com2.Parameters.Add("BOSS_NODE_CITIZEN_ID", tbCitizen.Text);
-                                            com2.Parameters.Add("BOSS_NODE_ID", bossNodeID);
+                                            com2.Parameters.AddWithValue("BOSS_NODE_CITIZEN_ID", tbCitizen.Text);
+                                            com2.Parameters.AddWithValue("BOSS_NODE_ID", bossNodeID);
                                             com2.ExecuteNonQuery();
                                         }
                                         using (OracleCommand com2 = new OracleCommand("UPDATE PS_PERSON SET PS_ADMIN_POS_ID = :PS_ADMIN_POS_ID WHERE PS_CITIZEN_ID = :PS_CITIZEN_ID", con2)) {
                                             int v1 = 0;
-                                            com2.Parameters.Add("PS_ADMIN_POS_ID", v1);
-                                            com2.Parameters.Add("PS_CITIZEN_ID", citizenOld);
+                                            com2.Parameters.AddWithValue("PS_ADMIN_POS_ID", v1);
+                                            com2.Parameters.AddWithValue("PS_CITIZEN_ID", citizenOld);
                                             com2.ExecuteNonQuery();
                                         }
 
                                         int type = -1;
                                         int adminPositionID = -1;
                                         using (OracleCommand com2 = new OracleCommand("SELECT BOSS_NODE_TYPE FROM TB_BOSS_NODE WHERE BOSS_NODE_ID = :BOSS_NODE_ID", con2)) {
-                                            com2.Parameters.Add("BOSS_NODE_ID", bossNodeID);
+                                            com2.Parameters.AddWithValue("BOSS_NODE_ID", bossNodeID);
                                             using(OracleDataReader reader2 = com2.ExecuteReader()) {
                                                 while(reader2.Read()) {
                                                     type = reader2.GetInt32(0);
@@ -282,8 +282,8 @@ namespace WEB_PERSONAL {
 
                                         using (OracleCommand com2 = new OracleCommand("UPDATE PS_PERSON SET PS_ADMIN_POS_ID = :PS_ADMIN_POS_ID WHERE PS_CITIZEN_ID = :PS_CITIZEN_ID", con2)) {
                                             
-                                            com2.Parameters.Add("PS_ADMIN_POS_ID", adminPositionID);
-                                            com2.Parameters.Add("PS_CITIZEN_ID", tbCitizen.Text);
+                                            com2.Parameters.AddWithValue("PS_ADMIN_POS_ID", adminPositionID);
+                                            com2.Parameters.AddWithValue("PS_CITIZEN_ID", tbCitizen.Text);
                                             com2.ExecuteNonQuery();
                                         }
                                     }
@@ -317,13 +317,13 @@ namespace WEB_PERSONAL {
                                         }
 
                                         using (OracleCommand com2 = new OracleCommand("DELETE FROM TB_BOSS_NODE WHERE BOSS_NODE_ID = :BOSS_NODE_ID", con2)) {
-                                            com2.Parameters.Add("BOSS_NODE_ID", bossNodeID);
+                                            com2.Parameters.AddWithValue("BOSS_NODE_ID", bossNodeID);
                                             com2.ExecuteNonQuery();
                                         }
                                         using (OracleCommand com2 = new OracleCommand("UPDATE PS_PERSON SET PS_ADMIN_POS_ID = :PS_ADMIN_POS_ID WHERE PS_CITIZEN_ID = :PS_CITIZEN_ID", con2)) {
                                             int v1 = 0;
-                                            com2.Parameters.Add("PS_ADMIN_POS_ID", v1);
-                                            com2.Parameters.Add("PS_CITIZEN_ID", citizenOld);
+                                            com2.Parameters.AddWithValue("PS_ADMIN_POS_ID", v1);
+                                            com2.Parameters.AddWithValue("PS_CITIZEN_ID", citizenOld);
                                             com2.ExecuteNonQuery();
                                         }
                                     }

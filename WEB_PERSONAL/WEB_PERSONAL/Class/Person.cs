@@ -155,7 +155,7 @@ namespace WEB_PERSONAL.Class {
         }
 
         public bool IsTeacher() {
-            return PositionWorkID == "10108" ? true : false;
+            return PositionWorkID == "10108" || PositionWorkID == "10077" ? true : false;
         }
         public string AdminPositionNameExtra() {
             if(AdminPositionID == "1") {
@@ -171,7 +171,12 @@ namespace WEB_PERSONAL.Class {
             }
             return AdminPositionName;
         }
-
+        public bool IsMale() {
+            return GenderID == "1";
+        }
+        public bool IsFemale() {
+            return GenderID == "2";
+        }
     }
 
 }

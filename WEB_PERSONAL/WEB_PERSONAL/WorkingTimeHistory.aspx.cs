@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using WEB_PERSONAL.Class;
-using Oracle.DataAccess.Client;
+using System.Data.OracleClient;
 
 namespace WEB_PERSONAL {
     public partial class WorkingTimeHistory : System.Web.UI.Page {
@@ -110,7 +110,7 @@ namespace WEB_PERSONAL {
                         }*/
 
                         using (OracleCommand com = new OracleCommand("SELECT COUNT(WORKDAY_ID) FROM LEV_WORKDAY WHERE WORKDAY_DATE = :WORKDAY_DATE", con)) {
-                            com.Parameters.Add("WORKDAY_DATE", dt);
+                            com.Parameters.AddWithValue("WORKDAY_DATE", dt);
                             using (OracleDataReader reader = com.ExecuteReader()) {
                                 while (reader.Read()) {
                                     if (reader.GetInt32(0) > 0)
@@ -120,7 +120,7 @@ namespace WEB_PERSONAL {
                         }
 
                         using (OracleCommand com = new OracleCommand("SELECT COUNT(WORKTIME_ID) FROM LEV_WORKTIME WHERE TODAY = :TODAY AND CITIZEN_ID = '" + pp.CitizenID + "'", con)) {
-                            com.Parameters.Add("TODAY", dt);
+                            com.Parameters.AddWithValue("TODAY", dt);
                             using (OracleDataReader reader = com.ExecuteReader()) {
                                 while (reader.Read()) {
                                     if (reader.GetInt32(0) > 0)
@@ -130,7 +130,7 @@ namespace WEB_PERSONAL {
                         }
                         if (have) {
                             using (OracleCommand com = new OracleCommand("SELECT LATE FROM LEV_WORKTIME WHERE TODAY = :TODAY AND CITIZEN_ID = '" + pp.CitizenID + "'", con)) {
-                                com.Parameters.Add("TODAY", dt);
+                                com.Parameters.AddWithValue("TODAY", dt);
                                 using (OracleDataReader reader = com.ExecuteReader()) {
                                     while (reader.Read()) {
                                         if (!reader.IsDBNull(0)) {
@@ -140,7 +140,7 @@ namespace WEB_PERSONAL {
                                 }
                             }
                             using (OracleCommand com = new OracleCommand("SELECT ABSENT FROM LEV_WORKTIME WHERE TODAY = :TODAY AND CITIZEN_ID = '" + pp.CitizenID + "'", con)) {
-                                com.Parameters.Add("TODAY", dt);
+                                com.Parameters.AddWithValue("TODAY", dt);
                                 using (OracleDataReader reader = com.ExecuteReader()) {
                                     while (reader.Read()) {
                                         if (!reader.IsDBNull(0)) {
@@ -150,7 +150,7 @@ namespace WEB_PERSONAL {
                                 }
                             }
                             using (OracleCommand com = new OracleCommand("SELECT LEAVE FROM LEV_WORKTIME WHERE TODAY = :TODAY AND CITIZEN_ID = '" + pp.CitizenID + "'", con)) {
-                                com.Parameters.Add("TODAY", dt);
+                                com.Parameters.AddWithValue("TODAY", dt);
                                 using (OracleDataReader reader = com.ExecuteReader()) {
                                     while (reader.Read()) {
                                         if(!reader.IsDBNull(0)) {
@@ -161,7 +161,7 @@ namespace WEB_PERSONAL {
                                 }
                             }
                             using (OracleCommand com = new OracleCommand("SELECT HOUR_IN || ':' || MINUTE_IN, HOUR_OUT || ':' || MINUTE_OUT FROM LEV_WORKTIME WHERE TODAY = :TODAY AND CITIZEN_ID = '" + pp.CitizenID + "'", con)) {
-                                com.Parameters.Add("TODAY", dt);
+                                com.Parameters.AddWithValue("TODAY", dt);
                                 using (OracleDataReader reader = com.ExecuteReader()) {
                                     while (reader.Read()) {
                                         timeIn = reader.GetString(0);

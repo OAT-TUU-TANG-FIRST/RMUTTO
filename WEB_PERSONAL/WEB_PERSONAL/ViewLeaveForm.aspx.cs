@@ -6,7 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
 using WEB_PERSONAL.Class;
-using System.Data.OleDb;
+using System.Data.OracleClient;
 using System.Text;
 using System.IO;
 
