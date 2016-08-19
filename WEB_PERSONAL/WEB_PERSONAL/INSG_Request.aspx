@@ -27,7 +27,7 @@
                 <div>
                     <div class="ps-div-title-red">คุณไม่สามารถขอเครื่องราชฯ</div>
                     <div style="color: #808080; margin-top: 10px; text-align: center;">
-                        เมื่อคุณมีสิทธิขอเครื่องราชฯ ระบบจะมีการแจ้งเตือนให้คุณสามารถขอเครื่องราชฯได้
+                        เมื่อคุณมีสิทธิ์ขอเครื่องราชฯ ระบบจะมีการแจ้งเตือนให้คุณสามารถขอเครื่องราชฯได้
                     </div>
                     <div style="text-align: center; margin-top: 10px;">
                         <a href="Default.aspx" class="ps-button"><img src="Image/Small/home3.png" class="icon_left"/>กลับหน้าหลัก</a>

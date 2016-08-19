@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using WEB_PERSONAL.Class;
 
 namespace WEB_PERSONAL
 {
@@ -13,6 +14,11 @@ namespace WEB_PERSONAL
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Person ps = PersonnelSystem.GetPersonnelSystem(this).LoginPerson;
+            if (ps.Permission != 3)
+            {
+                Response.Redirect("NoPermission.aspx");
+            }
             if (!IsPostBack)
             {
                 BindData();

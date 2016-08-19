@@ -17,6 +17,11 @@ namespace WEB_PERSONAL
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Person ps = PersonnelSystem.GetPersonnelSystem(this).LoginPerson;
+            if (ps.Permission != 2)
+            {
+                Response.Redirect("NoPermission.aspx");
+            }
             if (!IsPostBack) {
                 DatabaseManager.BindDropDown(ddlMonth, "SELECT * FROM TB_MONTH", "MONTH_SHORT", "MONTH_ID", "--เดือน--");
                 DatabaseManager.BindDropDown(ddlYear, "SELECT * FROM TB_DATE_YEAR", "YEAR_ID", "YEAR_ID", "--ปี--");

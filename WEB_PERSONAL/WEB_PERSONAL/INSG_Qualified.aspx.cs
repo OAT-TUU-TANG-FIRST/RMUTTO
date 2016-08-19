@@ -22,26 +22,165 @@ namespace WEB_PERSONAL {
         private string cccStaffType = "";
         private string cccCampus = "";
         private string cccFaculty = "";
+        private string cccDivision = "";
+        private string cccWorkDivision = "";
 
         protected void Page_Load(object sender, EventArgs e) {
 
             Person ps = PersonnelSystem.GetPersonnelSystem(this).LoginPerson;
-            if (ps.Permission == 3)
+            if (ps.Permission != 3)
             {
-                if (!IsPostBack)
-                {
-                    DatabaseManager.BindDropDown(ddlStaffType, "SELECT * FROM TB_STAFFTYPE", "STAFFTYPE_NAME", "STAFFTYPE_ID", "--กรุณาประเภทบุคลากร--");
-                    DatabaseManager.BindDropDown(ddlCampus, "SELECT * FROM TB_CAMPUS", "CAMPUS_NAME", "CAMPUS_ID", "--กรุณาวิทยาเขต--");
-                    DatabaseManager.BindDropDown(ddlFaculty, "SELECT * FROM TB_FACULTY", "FACULTY_NAME", "FACULTY_ID", "--กรุณาเลือกคณะ--");
-                }
-                search();
+                Response.Redirect("NoPermission.aspx");
             }
-            else
+            if (!IsPostBack)
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ไม่สามารถใช้งานหน้าดังกล่าวได้ เนื่องจากสิทธิ์ไม่ถึง')", true);
-                Response.Redirect("Default.aspx");
-            }          
+                DatabaseManager.BindDropDown(ddlStaffType, "SELECT * FROM TB_STAFFTYPE", "STAFFTYPE_NAME", "STAFFTYPE_ID", "--กรุณาประเภทบุคลากร--");
+                SQLCampus();
+            }
+            search();        
         }
+
+        protected void SQLCampus()
+        {
+            try
+            {
+                using (OracleConnection sqlConn = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+                {
+                    using (OracleCommand sqlCmd = new OracleCommand())
+                    {
+                        sqlCmd.CommandText = "select * from TB_CAMPUS";
+                        sqlCmd.Connection = sqlConn;
+                        sqlConn.Open();
+                        OracleDataAdapter da = new OracleDataAdapter(sqlCmd);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        ddlCampus.DataSource = dt;
+                        ddlCampus.DataValueField = "CAMPUS_ID";
+                        ddlCampus.DataTextField = "CAMPUS_NAME";
+                        ddlCampus.DataBind();
+                        sqlConn.Close();
+
+                        ddlCampus.Items.Insert(0, new ListItem("--กรุณาเลือกวิทยาเขต--", "0"));
+                        ddlFaculty.Items.Insert(0, new ListItem("--กรุณาเลือกสำนัก / สถาบัน / คณะ--", "0"));
+                        ddlDivision.Items.Insert(0, new ListItem("--กรุณาเลือกกอง / สำนักงานเลขา / ภาควิชา--", "0"));
+                        ddlWorkDivision.Items.Insert(0, new ListItem("--กรุณาเลือกงาน / ฝ่าย--", "0"));
+                    }
+                }
+            }
+            catch { }
+        }
+
+        protected void ddlCampus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                using (OracleConnection sqlConn = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+                {
+                    using (OracleCommand sqlCmd = new OracleCommand())
+                    {
+                        sqlCmd.CommandText = "select * from TB_FACULTY where CAMPUS_ID = " + ddlCampus.SelectedValue;
+                        sqlCmd.Connection = sqlConn;
+                        sqlConn.Open();
+                        OracleDataAdapter da = new OracleDataAdapter(sqlCmd);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        ddlFaculty.DataSource = dt;
+                        ddlFaculty.DataValueField = "FACULTY_ID";
+                        ddlFaculty.DataTextField = "FACULTY_NAME";
+                        ddlFaculty.DataBind();
+                        sqlConn.Close();
+
+                        ddlFaculty.Items.Insert(0, new ListItem("--กรุณาเลือกสำนัก / สถาบัน / คณะ--", "0"));
+                        ddlDivision.Items.Clear();
+                        ddlDivision.Items.Insert(0, new ListItem("--กรุณาเลือกกอง / สำนักงานเลขา / ภาควิชา--", "0"));
+                        ddlWorkDivision.Items.Clear();
+                        ddlWorkDivision.Items.Insert(0, new ListItem("--กรุณาเลือกงาน / ฝ่าย--", "0"));
+                    }
+                }
+            }
+            catch { }
+        }
+
+        protected void ddlFaculty_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                using (OracleConnection sqlConn = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+                {
+                    using (OracleCommand sqlCmd = new OracleCommand())
+                    {
+                        sqlCmd.CommandText = "select * from TB_DIVISION where FACULTY_ID = " + ddlFaculty.SelectedValue;
+                        sqlCmd.Connection = sqlConn;
+                        sqlConn.Open();
+                        OracleDataAdapter da = new OracleDataAdapter(sqlCmd);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        ddlDivision.DataSource = dt;
+                        ddlDivision.DataValueField = "DIVISION_ID";
+                        ddlDivision.DataTextField = "DIVISION_NAME";
+                        ddlDivision.DataBind();
+                        sqlConn.Close();
+
+                        ddlDivision.Items.Insert(0, new ListItem("--กรุณาเลือกกอง / สำนักงานเลขา / ภาควิชา--", "0"));
+                        ddlWorkDivision.Items.Clear();
+                        ddlWorkDivision.Items.Insert(0, new ListItem("--กรุณาเลือกงาน / ฝ่าย--", "0"));
+                    }
+                }
+            }
+            catch { }
+        }
+
+        protected void ddlDivision_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                using (OracleConnection sqlConn = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+                {
+                    using (OracleCommand sqlCmd = new OracleCommand())
+                    {
+                        sqlCmd.CommandText = "select * from TB_WORK_DIVISION where DIVISION_ID = " + ddlDivision.SelectedValue;
+                        sqlCmd.Connection = sqlConn;
+                        sqlConn.Open();
+                        OracleDataAdapter da = new OracleDataAdapter(sqlCmd);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        ddlWorkDivision.DataSource = dt;
+                        ddlWorkDivision.DataValueField = "WORK_ID";
+                        ddlWorkDivision.DataTextField = "WORK_NAME";
+                        ddlWorkDivision.DataBind();
+                        sqlConn.Close();
+
+                        ddlWorkDivision.Items.Insert(0, new ListItem("--กรุณาเลือกงาน / ฝ่าย--"));
+                    }
+                }
+            }
+            catch { }
+
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+            {
+                con.Open();
+                using (OracleCommand com = new OracleCommand("SELECT COUNT(*) FROM TB_WORK_DIVISION WHERE DIVISION_ID = " + ddlDivision.SelectedValue, con))
+                {
+                    using (OracleDataReader reader = com.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            if (reader.GetInt32(0) == 0)
+                            {
+                                ddlWorkDivision.Visible = false;
+                                trWorkDivision.Visible = false;
+                            }
+                            else
+                            {
+                                ddlWorkDivision.Visible = true;
+                                trWorkDivision.Visible = true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         private void search() {
 
             if(ddlStaffType.SelectedIndex > 0 ) {
@@ -54,6 +193,14 @@ namespace WEB_PERSONAL {
             if (ddlFaculty.SelectedIndex > 0)
             {
                 cccFaculty = " AND PS_FACULTY_ID = " + ddlFaculty.SelectedValue;
+            }
+            if (ddlDivision.SelectedIndex > 0)
+            {
+                cccDivision = " AND PS_DIVISION_ID = " + ddlDivision.SelectedValue;
+            }
+            if (ddlWorkDivision.SelectedIndex > 0)
+            {
+                cccWorkDivision = " AND PS_WORK_DIVISION_ID = " + ddlWorkDivision.SelectedValue;
             }
 
             lbuSend.Visible = false;
@@ -159,7 +306,7 @@ namespace WEB_PERSONAL {
                         + ", PS_POSI_ACAD" //15
                         + ", PS_POSI_GENERAL" //16
                         + ", PS_POSI_EMP_GROUP" //17
-                        + " FROM PS_PERSON WHERE PS_STAFFTYPE_ID in(1,2,3,6) " + cccStaffType + cccCampus + cccFaculty, con)) {
+                        + " FROM PS_PERSON WHERE PS_STAFFTYPE_ID in(1,2,3,6) " + cccStaffType + cccCampus + cccFaculty + cccDivision + cccWorkDivision, con)) {
                         using (OracleDataReader reader = com.ExecuteReader()) {
                             while (reader.Read()) {
 

@@ -26,7 +26,7 @@
                             <div><a href="Province-ADMIN.aspx" class="ps-link" ><img src="Image/Small/wrench.png" class="icon_left"/>จังหวัด</a></div>
                             <div><a href="Amphur-ADMIN.aspx" class="ps-link" ><img src="Image/Small/wrench.png" class="icon_left"/>อำเภอ</a></div>
                             <div><a href="District-ADMIN.aspx" class="ps-link" ><img src="Image/Small/wrench.png" class="icon_left"/>ตำบล</a></div>
-                            <div><a href="GradCountry-ADMIN.aspx" class="ps-link" ><img src="Image/Small/wrench.png" class="icon_left"/>ประเทศ</a></div>
+                            <div><a href="Country-ADMIN.aspx" class="ps-link" ><img src="Image/Small/wrench.png" class="icon_left"/>ประเทศ</a></div>
 
                         </div>
                         <div style="display: inline-block; vertical-align: top;">

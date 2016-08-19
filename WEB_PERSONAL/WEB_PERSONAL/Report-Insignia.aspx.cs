@@ -13,36 +13,18 @@ namespace WEB_PERSONAL
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Person ps = PersonnelSystem.GetPersonnelSystem(this).LoginPerson;
+            if (ps.Permission != 3)
+            {
+                Response.Redirect("NoPermission.aspx");
+            }
             //ถ้ามัน เรียกเลข จากอีกฝั่งมา แล้วตรงกัน ถึงจะแสดง
             string irID = Request.QueryString["irID"];
-            //string irIDthan = "";
-            //string ResultIRid = "";
-            //string irIDLast = "";
 
             if (irID == null)
             {
                 Response.Redirect("INSG_RequestList.aspx");
             }
-
-            /*OracleConnection conn = ConnectionDB.GetOracleConnection();
-            OracleCommand com = new OracleCommand("SELECT IR_ID FROM TB_INSIG_REQUEST WHERE IR_ID = '" + irIDthan + "'", conn);
-
-            if (conn.State != ConnectionState.Open)
-            {
-                conn.Open();
-            }
-            OracleDataReader reader = com.ExecuteReader();
-            while (reader.Read())
-            {
-                irIDthan = reader.GetInt32(0).ToString();
-                using (MD5 md5Hash = MD5.Create())
-                {
-                    ResultIRid = GetMd5Hash(md5Hash, irIDthan);
-                }
-            }*/
-
-            //com.Dispose();
-            //conn.Close();
 
             OracleConnection objConn = new OracleConnection();
             OracleCommand objCmd = new OracleCommand();

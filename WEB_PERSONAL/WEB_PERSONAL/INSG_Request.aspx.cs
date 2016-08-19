@@ -10,172 +10,168 @@ using System.Configuration;
 using WEB_PERSONAL.Class;
 using Oracle.DataAccess.Client;
 
-namespace WEB_PERSONAL {
-    public partial class INSG_Request : System.Web.UI.Page {
+namespace WEB_PERSONAL
+{
+    public partial class INSG_Request : System.Web.UI.Page
+    {
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Person ps1 = PersonnelSystem.GetPersonnelSystem(this).LoginPerson;
             PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
             Person loginPerson = ps.LoginPerson;
-            if (ps1.Permission == 3)
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
             {
-                using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+                con.Open();
+                using (OracleCommand com = new OracleCommand("SELECT COUNT(*) FROM TB_INSIG_REQUEST WHERE IR_STATUS = 1 AND IR_CITIZEN_ID = '" + loginPerson.CitizenID + "'", con))
                 {
-                    con.Open();
-                    using (OracleCommand com = new OracleCommand("SELECT COUNT(*) FROM TB_INSIG_REQUEST WHERE IR_STATUS = 1 AND IR_CITIZEN_ID = '" + loginPerson.CitizenID + "'", con))
+                    using (OracleDataReader reader = com.ExecuteReader())
                     {
-                        using (OracleDataReader reader = com.ExecuteReader())
+                        while (reader.Read())
                         {
-                            while (reader.Read())
+                            if (reader.GetInt32(0) == 0)
                             {
-                                if (reader.GetInt32(0) == 0)
-                                {
-                                    return;
-                                }
+                                return;
                             }
                         }
                     }
                 }
+            }
 
-                lbRank.Text = loginPerson.RankName;
-                lbTitleName.Text = loginPerson.TitleName;
-                lbName.Text = loginPerson.FirstName;
-                lbLastName.Text = loginPerson.LastName;
-                lbGender.Text = loginPerson.GenderName;
-                lbBirthDate.Text = loginPerson.BirthDate.Value.ToLongDateString();
-                lbDateInwork.Text = loginPerson.InWorkDate.Value.ToLongDateString();
-                lbPosiDateInwork.Text = loginPerson.StartPositionWorkName;
-                lbDegreeDateInwork.Text = loginPerson.StartAdminPositionName;
-                lbPositionCurrent.Text = loginPerson.PositionWorkName;
-                lbType.Text = loginPerson.StaffTypeName;
-                lbDegree.Text = loginPerson.AdminPositionName;
-                lbSalaryCurrent.Text = loginPerson.Salary.ToString();
-                lbPositionSalary.Text = loginPerson.PositionSalary;
-                lbCitizen.Text = loginPerson.CitizenID;
+            lbRank.Text = loginPerson.RankName;
+            lbTitleName.Text = loginPerson.TitleName;
+            lbName.Text = loginPerson.FirstName;
+            lbLastName.Text = loginPerson.LastName;
+            lbGender.Text = loginPerson.GenderName;
+            lbBirthDate.Text = loginPerson.BirthDate.Value.ToLongDateString();
+            lbDateInwork.Text = loginPerson.InWorkDate.Value.ToLongDateString();
+            lbPosiDateInwork.Text = loginPerson.StartPositionWorkName;
+            lbDegreeDateInwork.Text = loginPerson.StartAdminPositionName;
+            lbPositionCurrent.Text = loginPerson.PositionWorkName;
+            lbType.Text = loginPerson.StaffTypeName;
+            lbDegree.Text = loginPerson.AdminPositionName;
+            lbSalaryCurrent.Text = loginPerson.Salary.ToString();
+            lbPositionSalary.Text = loginPerson.PositionSalary;
+            lbCitizen.Text = loginPerson.CitizenID;
 
-                int รหัสเครื่องราชปัจจุบัน = 0;
-                int รหัสเครื่องราชทที่ขอ = 0;
-                string ชื่อเครื่องราชปัจจุบัน = "-";
-                string ชื่อเครื่องราชที่ขอ = "-";
-                OracleConnection.ClearAllPools();
-                using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+            int รหัสเครื่องราชปัจจุบัน = 0;
+            int รหัสเครื่องราชทที่ขอ = 0;
+            string ชื่อเครื่องราชปัจจุบัน = "-";
+            string ชื่อเครื่องราชที่ขอ = "-";
+            OracleConnection.ClearAllPools();
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+            {
+                con.Open();
+                using (OracleCommand com = new OracleCommand("SELECT IR_INSIG_ID FROM TB_INSIG_REQUEST WHERE IR_GET_STATUS = 1 AND IR_CITIZEN_ID = '" + loginPerson.CitizenID + "' ORDER BY IR_ID DESC", con))
                 {
-                    con.Open();
-                    using (OracleCommand com = new OracleCommand("SELECT IR_INSIG_ID FROM TB_INSIG_REQUEST WHERE IR_GET_STATUS = 1 AND IR_CITIZEN_ID = '" + loginPerson.CitizenID + "' ORDER BY IR_ID DESC", con))
+                    using (OracleDataReader reader = com.ExecuteReader())
                     {
-                        using (OracleDataReader reader = com.ExecuteReader())
+                        if (reader.Read())
                         {
-                            if (reader.Read())
-                            {
-                                รหัสเครื่องราชปัจจุบัน = reader.GetInt32(0);
-                            }
+                            รหัสเครื่องราชปัจจุบัน = reader.GetInt32(0);
                         }
                     }
-                    using (OracleCommand com = new OracleCommand("SELECT IR_INSIG_ID FROM TB_INSIG_REQUEST WHERE IR_STATUS = 1 AND IR_CITIZEN_ID = '" + loginPerson.CitizenID + "'", con))
+                }
+                using (OracleCommand com = new OracleCommand("SELECT IR_INSIG_ID FROM TB_INSIG_REQUEST WHERE IR_STATUS = 1 AND IR_CITIZEN_ID = '" + loginPerson.CitizenID + "'", con))
+                {
+                    using (OracleDataReader reader = com.ExecuteReader())
                     {
-                        using (OracleDataReader reader = com.ExecuteReader())
+                        while (reader.Read())
                         {
-                            while (reader.Read())
-                            {
-                                รหัสเครื่องราชทที่ขอ = reader.GetInt32(0);
-                            }
+                            รหัสเครื่องราชทที่ขอ = reader.GetInt32(0);
                         }
                     }
-                    using (OracleCommand com = new OracleCommand("SELECT NAME_GRADEINSIGNIA_THA FROM INS_GRADEINSIGNIA WHERE ID_GRADEINSIGNIA = " + รหัสเครื่องราชปัจจุบัน, con))
+                }
+                using (OracleCommand com = new OracleCommand("SELECT NAME_GRADEINSIGNIA_THA FROM INS_GRADEINSIGNIA WHERE ID_GRADEINSIGNIA = " + รหัสเครื่องราชปัจจุบัน, con))
+                {
+                    using (OracleDataReader reader = com.ExecuteReader())
                     {
-                        using (OracleDataReader reader = com.ExecuteReader())
+                        while (reader.Read())
                         {
-                            while (reader.Read())
-                            {
-                                ชื่อเครื่องราชปัจจุบัน = reader.GetString(0);
-                            }
+                            ชื่อเครื่องราชปัจจุบัน = reader.GetString(0);
                         }
                     }
-                    using (OracleCommand com = new OracleCommand("SELECT NAME_GRADEINSIGNIA_THA FROM INS_GRADEINSIGNIA WHERE ID_GRADEINSIGNIA = " + รหัสเครื่องราชทที่ขอ, con))
+                }
+                using (OracleCommand com = new OracleCommand("SELECT NAME_GRADEINSIGNIA_THA FROM INS_GRADEINSIGNIA WHERE ID_GRADEINSIGNIA = " + รหัสเครื่องราชทที่ขอ, con))
+                {
+                    using (OracleDataReader reader = com.ExecuteReader())
                     {
-                        using (OracleDataReader reader = com.ExecuteReader())
+                        while (reader.Read())
                         {
-                            while (reader.Read())
-                            {
-                                ชื่อเครื่องราชที่ขอ = reader.GetString(0);
-                            }
+                            ชื่อเครื่องราชที่ขอ = reader.GetString(0);
                         }
                     }
-
-
                 }
 
-                if (รหัสเครื่องราชปัจจุบัน == 0)
-                {
-                    imgOldInsig.Visible = false;
-                }
-                else
-                {
-                    string fileName;
-                    switch (รหัสเครื่องราชปัจจุบัน)
-                    {
-                        case 12: fileName = "บ.ม."; break;
-                        case 11: fileName = "บ.ช."; break;
-                        case 10: fileName = "จ.ม."; break;
-                        case 9: fileName = "จ.ช."; break;
-                        case 8: fileName = "ต.ม."; break;
-                        case 7: fileName = "ต.ช."; break;
-                        case 6: fileName = "ท.ม."; break;
-                        case 5: fileName = "ท.ช."; break;
-                        case 4: fileName = "ป.ม."; break;
-                        case 3: fileName = "ป.ช."; break;
-                        case 2: fileName = "ม.ว.ม."; break;
-                        default: fileName = "ม.ป.ช."; break;
-                    }
-                    imgOldInsig.Attributes["src"] = "Image/Insignia/" + fileName + ".png";
-                }
 
-                if (รหัสเครื่องราชทที่ขอ == 0)
-                {
-                    imgNewInsig.Visible = false;
-                }
-                else
-                {
-                    string fileName;
-                    switch (รหัสเครื่องราชทที่ขอ)
-                    {
-                        case 12: fileName = "บ.ม."; break;
-                        case 11: fileName = "บ.ช."; break;
-                        case 10: fileName = "จ.ม."; break;
-                        case 9: fileName = "จ.ช."; break;
-                        case 8: fileName = "ต.ม."; break;
-                        case 7: fileName = "ต.ช."; break;
-                        case 6: fileName = "ท.ม."; break;
-                        case 5: fileName = "ท.ช."; break;
-                        case 4: fileName = "ป.ม."; break;
-                        case 3: fileName = "ป.ช."; break;
-                        case 2: fileName = "ม.ว.ม."; break;
-                        default: fileName = "ม.ป.ช."; break;
-                    }
-                    imgNewInsig.Attributes["src"] = "Image/Insignia/" + fileName + ".png";
-                }
+            }
 
-                lbOldInsigName.Text = ชื่อเครื่องราชปัจจุบัน;
-                lbNewInsigName.Text = ชื่อเครื่องราชที่ขอ;
-
-                MultiView1.ActiveViewIndex = 1;
+            if (รหัสเครื่องราชปัจจุบัน == 0)
+            {
+                imgOldInsig.Visible = false;
             }
             else
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ไม่สามารถใช้งานหน้าดังกล่าวได้ เนื่องจากสิทธิ์ไม่ถึง')", true);
-                Response.Redirect("Default.aspx");
+                string fileName;
+                switch (รหัสเครื่องราชปัจจุบัน)
+                {
+                    case 12: fileName = "บ.ม."; break;
+                    case 11: fileName = "บ.ช."; break;
+                    case 10: fileName = "จ.ม."; break;
+                    case 9: fileName = "จ.ช."; break;
+                    case 8: fileName = "ต.ม."; break;
+                    case 7: fileName = "ต.ช."; break;
+                    case 6: fileName = "ท.ม."; break;
+                    case 5: fileName = "ท.ช."; break;
+                    case 4: fileName = "ป.ม."; break;
+                    case 3: fileName = "ป.ช."; break;
+                    case 2: fileName = "ม.ว.ม."; break;
+                    default: fileName = "ม.ป.ช."; break;
+                }
+                imgOldInsig.Attributes["src"] = "Image/Insignia/" + fileName + ".png";
             }
+
+            if (รหัสเครื่องราชทที่ขอ == 0)
+            {
+                imgNewInsig.Visible = false;
+            }
+            else
+            {
+                string fileName;
+                switch (รหัสเครื่องราชทที่ขอ)
+                {
+                    case 12: fileName = "บ.ม."; break;
+                    case 11: fileName = "บ.ช."; break;
+                    case 10: fileName = "จ.ม."; break;
+                    case 9: fileName = "จ.ช."; break;
+                    case 8: fileName = "ต.ม."; break;
+                    case 7: fileName = "ต.ช."; break;
+                    case 6: fileName = "ท.ม."; break;
+                    case 5: fileName = "ท.ช."; break;
+                    case 4: fileName = "ป.ม."; break;
+                    case 3: fileName = "ป.ช."; break;
+                    case 2: fileName = "ม.ว.ม."; break;
+                    default: fileName = "ม.ป.ช."; break;
+                }
+                imgNewInsig.Attributes["src"] = "Image/Insignia/" + fileName + ".png";
+            }
+
+            lbOldInsigName.Text = ชื่อเครื่องราชปัจจุบัน;
+            lbNewInsigName.Text = ชื่อเครื่องราชที่ขอ;
+
+            MultiView1.ActiveViewIndex = 1;
         }
 
-        protected void lbuSubmitView2_Click(object sender, EventArgs e) {
+        protected void lbuSubmitView2_Click(object sender, EventArgs e)
+        {
 
             PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
             Person loginPerson = ps.LoginPerson;
 
-            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+            {
                 con.Open();
-                using (OracleCommand command = new OracleCommand("UPDATE TB_INSIG_REQUEST SET IR_STATUS = :IR_STATUS, IR_CITIZEN_ID = :IR_CITIZEN_ID, IR_DATE_START = :IR_DATE_START, IR_RANK = :IR_RANK, IR_TITLE = :IR_TITLE, IR_NAME = :IR_NAME, IR_LASTNAME = :IR_LASTNAME, IR_GENDER = :IR_GENDER, IR_BIRTHDATE = :IR_BIRTHDATE, IR_DATE_INWORK = :IR_DATE_INWORK, IR_START_POSITION = :IR_START_POSITION, IR_START_DEGREE = :IR_START_DEGREE, IR_CURRENT_POSITION = :IR_CURRENT_POSITION, IR_TYPE = :IR_TYPE, IR_DEGREE = :IR_DEGREE, IR_CURRENT_SALARY = :IR_CURRENT_SALARY, IR_POSITION_SALARY = :IR_POSITION_SALARY WHERE IR_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND IR_STATUS = 1", con)) {
+                using (OracleCommand command = new OracleCommand("UPDATE TB_INSIG_REQUEST SET IR_STATUS = :IR_STATUS, IR_CITIZEN_ID = :IR_CITIZEN_ID, IR_DATE_START = :IR_DATE_START, IR_RANK = :IR_RANK, IR_TITLE = :IR_TITLE, IR_NAME = :IR_NAME, IR_LASTNAME = :IR_LASTNAME, IR_GENDER = :IR_GENDER, IR_BIRTHDATE = :IR_BIRTHDATE, IR_DATE_INWORK = :IR_DATE_INWORK, IR_START_POSITION = :IR_START_POSITION, IR_START_DEGREE = :IR_START_DEGREE, IR_CURRENT_POSITION = :IR_CURRENT_POSITION, IR_TYPE = :IR_TYPE, IR_DEGREE = :IR_DEGREE, IR_CURRENT_SALARY = :IR_CURRENT_SALARY, IR_POSITION_SALARY = :IR_POSITION_SALARY WHERE IR_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND IR_STATUS = 1", con))
+                {
                     command.Parameters.Add(new OracleParameter("IR_STATUS", 2));
                     command.Parameters.Add(new OracleParameter("IR_CITIZEN_ID", lbCitizen.Text));
                     command.Parameters.Add(new OracleParameter("IR_DATE_START", DateTime.Now));

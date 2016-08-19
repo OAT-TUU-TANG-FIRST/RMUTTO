@@ -1,6 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="INSG_Qualified.aspx.cs" Inherits="WEB_PERSONAL.INSG_Qualified" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
+        .col1 {
+            text-align: right;
+        }
+        .col2 {
+            text-align: left;
+        }
         .ttt{
             table-layout: fixed;
         }
@@ -31,17 +37,29 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="col1">วิทยาเขต</td>
-                    <td class="col2">
-                        <asp:DropDownList ID="ddlCampus" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col1">สำนัก / สถาบัน / คณะ</td>
-                    <td class="col2">
-                        <asp:DropDownList ID="ddlFaculty" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
-                    </td>
-                </tr>
+                        <td class="col1">วิทยาเขต</td>
+                        <td class="col2">
+                            <asp:DropDownList ID="ddlCampus" runat="server" CssClass="ps-dropdown" OnSelectedIndexChanged="ddlCampus_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col1">สำนัก / สถาบัน / คณะ</td>
+                        <td class="col2">
+                            <asp:DropDownList ID="ddlFaculty" runat="server" CssClass="ps-dropdown" OnSelectedIndexChanged="ddlFaculty_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col1">กอง / สำนักงานเลขา / ภาควิชา</td>
+                        <td class="col2">
+                            <asp:DropDownList ID="ddlDivision" runat="server" CssClass="ps-dropdown" OnSelectedIndexChanged="ddlDivision_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                        </td>
+                    </tr>
+                    <tr id="trWorkDivision" runat="server">
+                        <td class="col1">งาน / ฝ่าย</td>
+                        <td class="col2">
+                            <asp:DropDownList ID="ddlWorkDivision" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
+                        </td>
+                    </tr>
                 <tr>
                     <td class="col1"></td>
                     <td class="col2">
@@ -53,7 +71,7 @@
         </div>
         <div class="ps-separator"></div>
         <asp:LinkButton ID="lbuSend" runat="server" CssClass="ps-button" OnClick="lbuSend_Click"><img src='Image/Small/send-email.png' class='icon_left'/>ส่งการแจ้งเตือน</asp:LinkButton>
-        <div style="overflow-x:auto; width: 2000px;">
+        <div style="overflow-x:auto; width: 1500px;">
             <asp:Table ID="Table1" runat="server" CssClass="ps-table-1 ttt" style="margin-top: 10px;"></asp:Table>
         </div>
         <asp:HiddenField ID="hf1" runat="server" />

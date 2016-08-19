@@ -19,42 +19,38 @@ namespace WEB_PERSONAL
         protected void Page_Load(object sender, EventArgs e)
         {
             Person ps = PersonnelSystem.GetPersonnelSystem(this).LoginPerson;
-            if (ps.Permission == 2)
+            if (ps.Permission != 2)
             {
-                if (hfpsID.Value != "")
-                {
-                    p = hfpsID.Value;
-                }
-                else
-                {
-                    divTab.Visible = false;
-                }
-
-                if (p == null)
-                {
-                    selectTab("0");
-                    if (CreateSelectPersonPageLoad(this, pPerson, "AddPerson-Edit.aspx"))
-                    {
-                        return;
-                    }
-                }
-
-                if (!IsPostBack)
-                {
-                    BindDropDown();
-                    tbPhone.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
-                    tbSalary14.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
-                    tbSalaryPosition14.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
-                }
-
-                ShowTab3Quit();
-                ShowTab4MiddleGover();
+                Response.Redirect("NoPermission.aspx");
+            }
+            if (hfpsID.Value != "")
+            {
+                p = hfpsID.Value;
             }
             else
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ไม่สามารถใช้งานหน้าดังกล่าวได้ เนื่องจากสิทธิ์ไม่ถึง')", true);
-                Response.Redirect("Default.aspx");
+                divTab.Visible = false;
             }
+
+            if (p == null)
+            {
+                selectTab("0");
+                if (CreateSelectPersonPageLoad(this, pPerson, "AddPerson-Edit.aspx"))
+                {
+                    return;
+                }
+            }
+
+            if (!IsPostBack)
+            {
+                BindDropDown();
+                tbPhone.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
+                tbSalary14.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
+                tbSalaryPosition14.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
+            }
+
+            ShowTab3Quit();
+            ShowTab4MiddleGover();
         }
 
         protected void ShowTab3Quit()
