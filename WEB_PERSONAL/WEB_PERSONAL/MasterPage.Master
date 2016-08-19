@@ -80,7 +80,7 @@
             var s = today.getSeconds();
             d = checkTime(d);
             M = checkTime(M);
-            m = checkTime(m);
+            m = checkTime(m); 
             s = checkTime(s);
 
             var days = ['อาทิตย์', 'จันทร์', 'อังคาร', 'พุธ', 'พฤหัสบดี', 'ศุกร์', 'เสาร์'];
