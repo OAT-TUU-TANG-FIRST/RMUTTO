@@ -7,11 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WEB_PERSONAL
-{
+namespace WEB_PERSONAL {
 
 
-    public partial class NoPermission
-    {
+    public partial class NoPermission {
     }
 }
