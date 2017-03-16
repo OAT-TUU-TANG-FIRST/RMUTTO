@@ -17,12 +17,7 @@
     <form id="form1" runat="server">
         <div class="login_popup">
             <div class="login_popup_in">
-
-
-
-
                 <div class="login_popup_in2">
-
                     <div class="ps-box-il" style="width: 400px;">
                         <div class="ps-box-i0">
                             <div class="ps-box-ct10-cen">

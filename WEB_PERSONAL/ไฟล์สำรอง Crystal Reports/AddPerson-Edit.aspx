@@ -1,796 +1,1257 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="AddPerson-Edit.aspx.cs" Inherits="WEB_PERSONAL.AddPerson_Edit" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="AddPerson-Edit.aspx.cs" Inherits="WEB_PERSONAL.AddPerson_Edit" MaintainScrollPositionOnPostback="true" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
-        .TMZ {
-            font-family: tahoma;
-            text-align: left;
-            color: #9999ff;
-            font-weight: 900;
+        .col1 {
+            text-align: right;
         }
-        fieldset {
-            padding: 0.2em 0.5em;
-            border: 3px solid #99e6ff;
-            color: black;
-            font-size: 90%;
+        .col2 {
             text-align: left;
         }
-        legend {
-            padding: 0.2em 0.5em;
-            border: 3px solid #99e6ff;
-            color: #99e6ff;
-            font-size: 120%;
-            text-align: left;
+        .textred{
+            color:red;
         }
     </style>
     <script>
-        $(function () {
+        function pageLoad(sender, args) {
             $("#ContentPlaceHolder1_tbBirthday,#ContentPlaceHolder1_tbDateInwork,#ContentPlaceHolder1_tbUseDate11,#ContentPlaceHolder1_tbDate14").datepicker($.datepicker.regional["th"]);
-            $("#ContentPlaceHolder1_tbDateInwork").datepicker($.datepicker.regional["th"]);
-        });
+            $("#ContentPlaceHolder1_tbDateInwork,#ContentPlaceHolder1_tbDateGetPositionGoverTab4,#ContentPlaceHolder1_tbDateGetPositionEMPTab4").datepicker($.datepicker.regional["th"]);
+            $("#ContentPlaceHolder1_tbDateQuit").datepicker($.datepicker.regional["th"]);
+            $('document').ready(function () {
+                $(".date").datepicker($.datepicker.regional["th"]);
+            });
+        };
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server" />
-    <div class="default_page_style">
+
+    <asp:HiddenField ID="hfpsID" runat="server" />
+
+    <div>
+
+        <div class="ps-header"><img src="Image/Small/edit.png" />แก้ไขข้อมูลบุคลากร</div>
+
+        <div id="divTab" runat="server" class="ps-tab-container">
+            <asp:LinkButton ID="lbuTab1" runat="server" OnClick="lbuTab1_Click" CssClass="ps-tab-unselected">ข้อมูลพื้นฐาน</asp:LinkButton>
+            <asp:LinkButton ID="lbuTab2" runat="server" OnClick="lbuTab2_Click" CssClass="ps-tab-unselected">ที่อยู่</asp:LinkButton>
+            <asp:LinkButton ID="lbuTab3" runat="server" OnClick="lbuTab3_Click" CssClass="ps-tab-unselected">ข้อมูลการทำงาน</asp:LinkButton>
+            <asp:LinkButton ID="lbuTab4" runat="server" OnClick="lbuTab4_Click" CssClass="ps-tab-unselected">ตำแหน่ง</asp:LinkButton>
+            <asp:LinkButton ID="lbuTab5" runat="server" OnClick="lbuTab5_Click" CssClass="ps-tab-unselected">ประวัติการศึกษา</asp:LinkButton>
+            <asp:LinkButton ID="lbuTab6" runat="server" OnClick="lbuTab6_Click" CssClass="ps-tab-unselected">ใบอนุญาตประกอบวิชาชีพ</asp:LinkButton>
+            <asp:LinkButton ID="lbuTab7" runat="server" OnClick="lbuTab7_Click" CssClass="ps-tab-unselected">ประวัติการฝึกอบรม</asp:LinkButton>
+            <asp:LinkButton ID="lbuTab8" runat="server" OnClick="lbuTab8_Click" CssClass="ps-tab-unselected">โทษทางวินัย</asp:LinkButton>
+            <asp:LinkButton ID="lbuTab9" runat="server" OnClick="lbuTab9_Click" CssClass="ps-tab-unselected">ตำแหน่งและเงินเดือน</asp:LinkButton>
+        </div>
+
         <div id="notification" runat="server"></div>
 
-        <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex="0">
-            <asp:View ID="View1" runat="server">
-                <fieldset>
-                    <legend class="TMZ">(1/8)</legend>
-                <div class="default_header">
-                    <img src="Image/Small/table.png" class="icon_left" />ข้อมูลส่วนตัว
-                </div>
-                <table>
+        <div id="divState1" runat="server">
+            <asp:Panel ID="pPerson" runat="server"></asp:Panel>
+        </div>
+
+        <div id="divTab1" runat="server" style="text-align: center;">
+            <div class="ps-div-title-red">ข้อมูลพื้นฐาน</div>
+            <div style="display: inline-block; margin-right: 20px; vertical-align: top;">
+                <table class="ps-table-1">
                     <tr>
                         <td class="col1">บัตรประชาชน</td>
                         <td class="col2">
-                                <asp:UpdatePanel ID="UpdatetbCitizenID" runat="server"><ContentTemplate>
-                                <asp:TextBox ID="tbCitizenID" runat="server" MaxLength="13"></asp:TextBox>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbCitizenID" /></Triggers></asp:UpdatePanel></td>
+                            <asp:Label ID="labelCitizenID" runat="server"></asp:Label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col1">ยศ</td>
+                        <td class="col2">
+                            <asp:DropDownList ID="ddlRank" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
+                        </td>
                     </tr>
                     <tr>
                         <td class="col1">คำนำหน้า</td>
                         <td class="col2">
-                                <asp:UpdatePanel ID="UpdateddlTitle" runat="server"><ContentTemplate>
-                                <asp:DropDownList ID="ddlTitle" runat="server"></asp:DropDownList>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="ddlTitle" /></Triggers></asp:UpdatePanel></td>
+                            <asp:DropDownList ID="ddlTitle" runat="server" CssClass="ps-dropdown"></asp:DropDownList><span class="textred">*</span>
+                        </td>
                     </tr>
                     <tr>
-                            <td class="col1">ชื่อ</td>
-                            <td class="col2">
-                                <asp:UpdatePanel ID="UpdatetbNameTH" runat="server"><ContentTemplate>
-                            <asp:TextBox ID="tbNameTH" runat="server"></asp:TextBox>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbNameTH" /></Triggers></asp:UpdatePanel></td>
+                        <td class="col1">ชื่อ</td>
+                        <td class="col2">
+                            <asp:TextBox ID="tbNameTH" runat="server" CssClass="ps-textbox"></asp:TextBox><span class="textred">*</span>
+                        </td>
                     </tr>
                     <tr>
                         <td class="col1">นามสกุล</td>
                         <td class="col2">
-                                <asp:UpdatePanel ID="UpdatetbLastNameTH" runat="server"><ContentTemplate>
-                            <asp:TextBox ID="tbLastNameTH" runat="server"></asp:TextBox>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbLastNameTH" /></Triggers></asp:UpdatePanel></td>
+                            <asp:TextBox ID="tbLastNameTH" runat="server" CssClass="ps-textbox"></asp:TextBox><span class="textred">*</span>
+                        </td>
                     </tr>
                     <tr>
                         <td class="col1">ชื่อ อังกฤษ</td>
                         <td class="col2">
-                                <asp:UpdatePanel ID="UpdatetbNameEN" runat="server"><ContentTemplate>
-                            <asp:TextBox ID="tbNameEN" runat="server"></asp:TextBox>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbNameEN" /></Triggers></asp:UpdatePanel></td>
+                            <asp:TextBox ID="tbNameEN" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                        </td>
                     </tr>
                     <tr>
                         <td class="col1">นามสกุล อังกฤษ</td>
                         <td class="col2">
-                                <asp:UpdatePanel ID="UpdatetbLastNameEN" runat="server"><ContentTemplate>
-                            <asp:TextBox ID="tbLastNameEN" runat="server"></asp:TextBox>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbLastNameEN" /></Triggers></asp:UpdatePanel></td>
+                            <asp:TextBox ID="tbLastNameEN" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                        </td>
                     </tr>
                     <tr>
                         <td class="col1">เพศ</td>
                         <td class="col2">
-                                <asp:UpdatePanel ID="UpdateddlGender" runat="server"><ContentTemplate>
-                                <asp:DropDownList ID="ddlGender" runat="server"></asp:DropDownList>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="ddlGender" /></Triggers></asp:UpdatePanel></td>
+                            <asp:DropDownList ID="ddlGender" runat="server" CssClass="ps-dropdown"></asp:DropDownList><span class="textred">*</span>
+                        </td>
                     </tr>
                     <tr>
                         <td class="col1">วันเกิด</td>
                         <td class="col2">
-                                <asp:UpdatePanel ID="UpdatetbBirthday" runat="server"><ContentTemplate>
-                            <asp:TextBox ID="tbBirthday" runat="server"></asp:TextBox>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbBirthday" /></Triggers></asp:UpdatePanel></td>
+                            <asp:TextBox ID="tbBirthday" runat="server" CssClass="ps-textbox" placeholder="01 ม.ค. 25xx" MaxLength="12"></asp:TextBox><span class="textred">*</span>
+                        </td>
                     </tr>
-                    <tr>
-                        <td class="col1">เชื้อชาติ</td>
-                        <td class="col2">
-                                <asp:UpdatePanel ID="UpdateddlRace" runat="server"><ContentTemplate>
-                                <asp:DropDownList ID="ddlRace" runat="server"></asp:DropDownList>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="ddlRace" /></Triggers></asp:UpdatePanel></td>
-                    </tr>
-                    <tr>
-                        <td class="col1">สัญชาติ</td>
-                        <td class="col2">
-                                <asp:UpdatePanel ID="UpdateddlNation" runat="server"><ContentTemplate>
-                                <asp:DropDownList ID="ddlNation" runat="server"></asp:DropDownList>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="ddlNation" /></Triggers></asp:UpdatePanel></td>
-                    </tr>
-                    <tr>
-                        <td class="col1">กรุ๊ปเลือด</td>
-                        <td class="col2">
-                                <asp:UpdatePanel ID="UpdateddlBlood" runat="server"><ContentTemplate>
-                                <asp:DropDownList ID="ddlBlood" runat="server"></asp:DropDownList>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="ddlBlood" /></Triggers></asp:UpdatePanel></td>
-                    </tr>
+                </table>
+            </div>
+            <div style="display: inline-block; margin-right: 20px; vertical-align: top;">
+                <table class="ps-table-1">
                     <tr>
                         <td class="col1">อีเมล</td>
                         <td class="col2">
-                                <asp:UpdatePanel ID="UpdatetbEmail" runat="server"><ContentTemplate>
-                            <asp:TextBox ID="tbEmail" runat="server"></asp:TextBox>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbEmail" /></Triggers></asp:UpdatePanel></td>
+                            <asp:TextBox ID="tbEmail" runat="server" CssClass="ps-textbox"></asp:TextBox><span class="textred">*</span>
+                        </td>
                     </tr>
                     <tr>
                         <td class="col1">โทรศัพท์มือถือ</td>
                         <td class="col2">
-                                <asp:UpdatePanel ID="UpdatetbPhone" runat="server"><ContentTemplate>
-                            <asp:TextBox ID="tbPhone" runat="server"></asp:TextBox>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbPhone" /></Triggers></asp:UpdatePanel></td>
+                            <asp:TextBox ID="tbPhone" runat="server" CssClass="ps-textbox" MaxLength="10"></asp:TextBox>
+                        </td>
                     </tr>
                     <tr>
                         <td class="col1">โทรศัพท์ที่ทำงาน</td>
                         <td class="col2">
-                                <asp:UpdatePanel ID="UpdatetbTelephone" runat="server"><ContentTemplate>
-                            <asp:TextBox ID="tbTelephone" runat="server"></asp:TextBox>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbTelephone" /></Triggers></asp:UpdatePanel></td>
+                            <asp:TextBox ID="tbTelephone" runat="server" CssClass="ps-textbox" MaxLength="15"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col1">เชื้อชาติ</td>
+                        <td class="col2">
+                            <asp:DropDownList ID="ddlRace" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col1">สัญชาติ</td>
+                        <td class="col2">
+                            <asp:DropDownList ID="ddlNation" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col1">กรุ๊ปเลือด</td>
+                        <td class="col2">
+                            <asp:DropDownList ID="ddlBlood" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
+                        </td>
                     </tr>
                     <tr>
                         <td class="col1">ศาสนา</td>
                         <td class="col2">
-                                <asp:UpdatePanel ID="UpdateddlReligion" runat="server"><ContentTemplate>
-                                <asp:DropDownList ID="ddlReligion" runat="server"></asp:DropDownList>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="ddlReligion" /></Triggers></asp:UpdatePanel></td>
+                            <asp:DropDownList ID="ddlReligion" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
+                        </td>
                     </tr>
                     <tr>
                         <td class="col1">สถานภาพ</td>
                         <td class="col2">
-                                <asp:UpdatePanel ID="UpdateddlStatus" runat="server"><ContentTemplate>
-                                <asp:DropDownList ID="ddlStatus" runat="server"></asp:DropDownList>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="ddlStatus" /></Triggers></asp:UpdatePanel></td>
+                            <asp:DropDownList ID="ddlStatus" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
+                        </td>
                     </tr>
+                </table>
+            </div>
+
+            <div style="display: inline-block; vertical-align: top;">
+                <table class="ps-table-1">
                     <tr>
                         <td class="col1">ชื่อบิดา</td>
                         <td class="col2">
-                                <asp:UpdatePanel ID="UpdatetbFatherName" runat="server"><ContentTemplate>
-                            <asp:TextBox ID="tbFatherName" runat="server"></asp:TextBox>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbFatherName" /></Triggers></asp:UpdatePanel></td>
+                            <asp:TextBox ID="tbFatherName" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                        </td>
                     </tr>
                     <tr>
                         <td class="col1">นามสกุลบิดา</td>
                         <td class="col2">
-                                <asp:UpdatePanel ID="UpdatetbFatherLastName" runat="server"><ContentTemplate>
-                            <asp:TextBox ID="tbFatherLastName" runat="server"></asp:TextBox>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbFatherLastName" /></Triggers></asp:UpdatePanel></td>
+                            <asp:TextBox ID="tbFatherLastName" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                        </td>
                     </tr>
                     <tr>
                         <td class="col1">ชื่อมารดา</td>
                         <td class="col2">
-                                <asp:UpdatePanel ID="UpdatetbMotherName" runat="server"><ContentTemplate>
-                            <asp:TextBox ID="tbMotherName" runat="server"></asp:TextBox>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbMotherName" /></Triggers></asp:UpdatePanel></td>
+                            <asp:TextBox ID="tbMotherName" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                        </td>
                     </tr>
                     <tr>
                         <td class="col1">นามสกุลมารดา</td>
                         <td class="col2">
-                                <asp:UpdatePanel ID="UpdatetbMotherLastName" runat="server"><ContentTemplate>
-                            <asp:TextBox ID="tbMotherLastName" runat="server"></asp:TextBox>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbMotherLastName" /></Triggers></asp:UpdatePanel></td>
+                            <asp:TextBox ID="tbMotherLastName" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                        </td>
                     </tr>
                     <tr>
                         <td class="col1">นามสกุลมารดาเดิม</td>
                         <td class="col2">
-                                <asp:UpdatePanel ID="UpdatetbMotherOldLastName" runat="server"><ContentTemplate>
-                            <asp:TextBox ID="tbMotherOldLastName" runat="server"></asp:TextBox>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbMotherOldLastName" /></Triggers></asp:UpdatePanel></td>
+                            <asp:TextBox ID="tbMotherOldLastName" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                        </td>
                     </tr>
                     <tr>
                         <td class="col1">ชื่อคู่สมรส</td>
                         <td class="col2">
-                                <asp:UpdatePanel ID="UpdatetbCoupleName" runat="server"><ContentTemplate>
-                            <asp:TextBox ID="tbCoupleName" runat="server"></asp:TextBox>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbCoupleName" /></Triggers></asp:UpdatePanel></td>
+                            <asp:TextBox ID="tbCoupleName" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                        </td>
                     </tr>
                     <tr>
                         <td class="col1">นามสกุลคู่สมรส</td>
                         <td class="col2">
-                                <asp:UpdatePanel ID="UpdatetbCoupleLastName" runat="server"><ContentTemplate>
-                            <asp:TextBox ID="tbCoupleLastName" runat="server"></asp:TextBox>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbCoupleLastName" /></Triggers></asp:UpdatePanel></td>
+                            <asp:TextBox ID="tbCoupleLastName" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                        </td>
                     </tr>
                     <tr>
-                        <td class="col1">นามสกุลคู่สมรสเดิม</td>
+                        <td class="col1">นามสกุลเดิมคู่สมรสเดิม</td>
                         <td class="col2">
-                                <asp:UpdatePanel ID="UpdatetbCoupleOldLastName" runat="server"><ContentTemplate>
-                            <asp:TextBox ID="tbCoupleOldLastName" runat="server"></asp:TextBox>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbCoupleOldLastName" /></Triggers></asp:UpdatePanel></td>
+                            <asp:TextBox ID="tbCoupleOldLastName" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                        </td>
                     </tr>
                 </table>
-                <asp:LinkButton ID="lbuV1Next" runat="server" OnClick="lbuV1Next_Click" CssClass="button button_default">ถัดไป</asp:LinkButton>
-                </fieldset>
-            </asp:View>
-            <asp:View ID="View2" runat="server">
-                <fieldset>
-                    <legend class="TMZ">(2/8)</legend>
-                <div style="float: left; display: inline-block; margin-right: 50px;">
-                    <div class="default_header">
-                        <img src="Image/Small/table.png" class="icon_left" />ที่อยู่ตามทะเบียนบ้าน
-                    </div>
-                    <table>
-                        <tr>
-                            <td class="col1">บ้านเลขที่</td>
-                            <td class="col2">
-                                    <asp:UpdatePanel ID="UpdatetbHomeAdd" runat="server"><ContentTemplate>
-                                <asp:TextBox ID="tbHomeAdd" runat="server"></asp:TextBox>
-                                    </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbHomeAdd" /></Triggers></asp:UpdatePanel></td>
-                        </tr>
-                        <tr>
-                            <td class="col1">ซอย</td>
-                            <td class="col2">
-                                    <asp:UpdatePanel ID="UpdatetbSoi" runat="server"><ContentTemplate>
-                                <asp:TextBox ID="tbSoi" runat="server"></asp:TextBox>
-                                    </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbSoi" /></Triggers></asp:UpdatePanel></td>
-                        </tr>
-                        <tr>
-                            <td class="col1">หมู่</td>
-                            <td class="col2">
-                                    <asp:UpdatePanel ID="UpdatetbMoo" runat="server"><ContentTemplate>
-                                <asp:TextBox ID="tbMoo" runat="server"></asp:TextBox>
-                                    </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbMoo" /></Triggers></asp:UpdatePanel></td>
-                        </tr>
-                        <tr>
-                            <td class="col1">ถนน</td>
-                            <td class="col2">
-                                    <asp:UpdatePanel ID="UpdatetbRoad" runat="server"><ContentTemplate>
-                                <asp:TextBox ID="tbRoad" runat="server"></asp:TextBox>
-                                    </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbRoad" /></Triggers></asp:UpdatePanel></td>
-                        </tr>
-                        <tr>
-                            <td class="col1">จังหวัด</td>
-                            <td class="col2">
-                                    <asp:UpdatePanel ID="UpdateddlProvince" runat="server"><ContentTemplate>
-                                    <asp:DropDownList ID="ddlProvince" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlProvince_SelectedIndexChanged"></asp:DropDownList>
-                                    </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="ddlProvince" /></Triggers></asp:UpdatePanel></td>
-                        </tr>
-                        <tr>
-                            <td class="col1">อำเภอ / เขต</td>
-                            <td class="col2">
-                                    <asp:UpdatePanel ID="UpdateddlAmphur" runat="server"><ContentTemplate>
-                                    <asp:DropDownList ID="ddlAmphur" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlAmphur_SelectedIndexChanged"></asp:DropDownList>
-                                    </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="ddlAmphur" /></Triggers></asp:UpdatePanel></td>
-                        </tr>
-                        <tr>
-                            <td class="col1">ตำบล / แขวง</td>
-                            <td class="col2">
-                                    <asp:UpdatePanel ID="UpdateddlDistrict" runat="server"><ContentTemplate>
-                                    <asp:DropDownList ID="ddlDistrict" runat="server" OnSelectedIndexChanged="ddlDistrict_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
-                                    </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="ddlDistrict" /></Triggers></asp:UpdatePanel></td>
-                        </tr>
-                        <tr>
-                            <td class="col1">รหัสไปรณีย์</td>
-                            <td class="col2">
-                                    <asp:UpdatePanel ID="UpdatetbZipcode" runat="server"><ContentTemplate>
-                                <asp:TextBox ID="tbZipcode" runat="server"></asp:TextBox>
-                                    </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbZipcode" /></Triggers></asp:UpdatePanel></td>
-                        </tr>
-                        <tr>
-                            <td class="col1">ประเทศ</td>
-                            <td class="col2">
-                                    <asp:UpdatePanel ID="UpdateddlCountry" runat="server"><ContentTemplate>
-                                    <asp:DropDownList ID="ddlCountry" runat="server"></asp:DropDownList>
-                                    </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="ddlCountry" /></Triggers></asp:UpdatePanel></td>
-                        </tr>
-                        <tr>
-                            <td class="col1">รัฐ</td>
-                            <td class="col2">
-                                    <asp:UpdatePanel ID="UpdatetbState" runat="server"><ContentTemplate>
-                                <asp:TextBox ID="tbState" runat="server"></asp:TextBox>
-                                    </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbState" /></Triggers></asp:UpdatePanel></td>
-                        </tr>
-                    </table>
-                </div>
-                <div style="float: left; display: inline-block;">
-                    <div class="default_header">
-                        <img src="Image/Small/table.png" class="icon_left" />ที่อยู่ที่ติดต่อได้
-                        
-                    </div>
-                    <table>
-                        <tr>
-                            <td class="col1">บ้านเลขที่</td>
-                            <td class="col2">
-                                    <asp:UpdatePanel ID="UpdatetbHomeAdd2" runat="server"><ContentTemplate>
-                                <asp:TextBox ID="tbHomeAdd2" runat="server"></asp:TextBox>
-                                    </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbHomeAdd2" /></Triggers></asp:UpdatePanel></td>
-                        </tr>
-                        <tr>
-                            <td class="col1">ซอย</td>
-                            <td class="col2">
-                                    <asp:UpdatePanel ID="UpdatetbSoi2" runat="server"><ContentTemplate>
-                                <asp:TextBox ID="tbSoi2" runat="server"></asp:TextBox>
-                                    </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbSoi2" /></Triggers></asp:UpdatePanel></td>
-                        </tr>
-                        <tr>
-                            <td class="col1">หมู่</td>
-                            <td class="col2">
-                                    <asp:UpdatePanel ID="UpdatetbMoo2" runat="server"><ContentTemplate>
-                                <asp:TextBox ID="tbMoo2" runat="server"></asp:TextBox>
-                                    </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbMoo2" /></Triggers></asp:UpdatePanel></td>
-                        </tr>
-                        <tr>
-                            <td class="col1">ถนน</td>
-                            <td class="col2">
-                                    <asp:UpdatePanel ID="UpdatetbRoad2" runat="server"><ContentTemplate>
-                                <asp:TextBox ID="tbRoad2" runat="server"></asp:TextBox>
-                                    </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbRoad2" /></Triggers></asp:UpdatePanel></td>
-                        </tr>
-                        <tr>
-                            <td class="col1">จังหวัด</td>
-                            <td class="col2">
-                                    <asp:UpdatePanel ID="UpdateddlProvince2" runat="server"><ContentTemplate>
-                                    <asp:DropDownList ID="ddlProvince2" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlProvince2_SelectedIndexChanged"></asp:DropDownList>
-                                    </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="ddlProvince2" /></Triggers></asp:UpdatePanel></td>
-                        </tr>
-                        <tr>
-                            <td class="col1">อำเภอ / เขต</td>
-                            <td class="col2">
-                                    <asp:UpdatePanel ID="UpdateddlAmphur2" runat="server"><ContentTemplate>
-                                    <asp:DropDownList ID="ddlAmphur2" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlAmphur2_SelectedIndexChanged"></asp:DropDownList>
-                                    </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="ddlAmphur2" /></Triggers></asp:UpdatePanel></td>
-                        </tr>
-                        <tr>
-                            <td class="col1">ตำบล / แขวง</td>
-                            <td class="col2">
-                                    <asp:UpdatePanel ID="UpdateddlDistrict2" runat="server"><ContentTemplate>
-                                    <asp:DropDownList ID="ddlDistrict2" runat="server" OnSelectedIndexChanged="ddlDistrict2_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
-                                    </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="ddlDistrict2" /></Triggers></asp:UpdatePanel></td>
-                        </tr>
-                        <tr>
-                            <td class="col1">รหัสไปรณีย์</td>
-                            <td class="col2">
-                                    <asp:UpdatePanel ID="UpdatetbZipcode2" runat="server"><ContentTemplate>
-                                <asp:TextBox ID="tbZipcode2" runat="server"></asp:TextBox>
-                                    </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbZipcode2" /></Triggers></asp:UpdatePanel></td>
-                        </tr>
-                        <tr>
-                            <td class="col1">ประเทศ</td>
-                            <td class="col2">
-                                    <asp:UpdatePanel ID="UpdateddlCountry2" runat="server"><ContentTemplate>
-                                    <asp:DropDownList ID="ddlCountry2" runat="server"></asp:DropDownList>
-                                    </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="ddlCountry2" /></Triggers></asp:UpdatePanel></td>
-                        </tr>
-                        <tr>
-                            <td class="col1">รัฐ</td>
-                            <td class="col2">
-                                    <asp:UpdatePanel ID="UpdatetbState2" runat="server"><ContentTemplate>
-                                <asp:TextBox ID="tbState2" runat="server"></asp:TextBox>
-                                    </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbState2" /></Triggers></asp:UpdatePanel></td>
-                        </tr>
-                    </table>
-                </div>
-                <div style="clear: both;">
-                    <asp:LinkButton ID="lbuV2Back" runat="server" OnClick="lbuV2Back_Click" CssClass="button button_default">ย้อนกลับ</asp:LinkButton>
-                    <asp:LinkButton ID="lbuV2Next" runat="server" CssClass="button button_default" OnClick="lbuV2Next_Click">ถัดไป</asp:LinkButton>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <asp:LinkButton ID="lbuAddressFetch" runat="server" CssClass="button button_default" OnClick="lbuAddressFetch_Click">ดึงข้อมูลที่อยู่ตามทะเบียนบ้าน</asp:LinkButton>
-                </div>
-                </fieldset>
-            </asp:View>
-            <asp:View ID="View3" runat="server">
-                <fieldset>
-                    <legend class="TMZ">(3/8)</legend>
-                <div class="default_header">
-                    <img src="Image/Small/table.png" class="icon_left" />ประวัติการศึกษา
-                </div>
-                    <table>
-                        <tr>
-                            <td style="text-align: center; margin-right: 5px;">ระดับการศึกษา</td>
-                            <td style="text-align: center; margin-right: 5px;">สถานศึกษา</td>
-                            <td style="text-align: center; margin-right: 5px; width: 300px">ตั้งแต่ - ถึง (เดือน ปี)</td>
-                            <td style="text-align: center; margin-right: 5px;">วุฒิ</td>
-                            <td style="text-align: center; margin-right: 5px;">สาขาวิชาเอก</td>
-                            <td style="text-align: center; margin-right: 5px;">ประเทศที่จบ</td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: left; width: 170px;">
-                                <asp:UpdatePanel ID="UpdateddlDegree10" runat="server"><ContentTemplate>
-                                <asp:DropDownList ID="ddlDegree10" runat="server" Width="200"></asp:DropDownList>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="ddlDegree10" /></Triggers></asp:UpdatePanel></td>
-                            <td style="text-align: left; width: 170px;">
-                                <asp:UpdatePanel ID="UpdatetbUnivName10" runat="server"><ContentTemplate>
-                                <asp:TextBox ID="tbUnivName10" runat="server" Width="180px" CssClass="tb5"></asp:TextBox>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbUnivName10" /></Triggers></asp:UpdatePanel></td>
-                            <td style="text-align: left;">
-                                <asp:UpdatePanel ID="UpdateddlMonth10From" runat="server"><ContentTemplate>
-                                <asp:DropDownList ID="ddlMonth10From" runat="server" CssClass="tb5" Width="80px"></asp:DropDownList>
-                                <asp:DropDownList ID="ddlYear10From" runat="server" CssClass="tb5" Width="65"></asp:DropDownList>
-                                <asp:DropDownList ID="ddlMonth10To" runat="server" CssClass="tb5" Width="80px"></asp:DropDownList>
-                                <asp:DropDownList ID="ddlYear10To" runat="server" CssClass="tb5" Width="65px"></asp:DropDownList>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="ddlMonth10From" /></Triggers></asp:UpdatePanel></td>
-                            <td style="text-align: left; width: 170px;">
-                                <asp:UpdatePanel ID="UpdatetbQualification10" runat="server"><ContentTemplate>
-                                <asp:TextBox ID="tbQualification10" runat="server" Width="180px" CssClass="tb5"></asp:TextBox>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbQualification10" /></Triggers></asp:UpdatePanel></td>
-                            <td style="text-align: left; width: 170px;">
-                                <asp:UpdatePanel ID="UpdatetbMajor10" runat="server"><ContentTemplate>
-                                <asp:TextBox ID="tbMajor10" runat="server" Width="180px" CssClass="tb5"></asp:TextBox>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbMajor10" /></Triggers></asp:UpdatePanel></td>
-                            <td style="text-align: left; width: 170px;">
-                                <asp:UpdatePanel ID="UpdatetbddlCountrySuccess10" runat="server"><ContentTemplate>
-                                <asp:DropDownList ID="ddlCountrySuccess10" runat="server" Width="180px"></asp:DropDownList>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="ddlCountrySuccess10" /></Triggers></asp:UpdatePanel></td>
-                            <td style="text-align: right; margin-right: 5px;">
+            </div>
 
-                                <asp:LinkButton ID="lbuV3Add" runat="server" OnClick="lbuV3Add_Click" CssClass="button button_default">+</asp:LinkButton></td>
-                                
-                        </tr>
-                    </table>
+            <div style="margin-top: 10px;">
+                <asp:LinkButton ID="lbuTab1Save" runat="server" OnClick="lbuTab1Save_Click" CssClass="ps-button"><img src="Image/Small/save.png" class="icon_left"/>บันทึก</asp:LinkButton>
+            </div>
+            <div class="ps-separator"></div>
+        </div>
 
-                    <asp:UpdatePanel ID="UpdateGridViewStudy" runat="server">
-                        <ContentTemplate>
-                            <asp:GridView ID="GridViewStudy" runat="server" Width="100%" Visible="false"></asp:GridView>
-                        </ContentTemplate>
-                        <Triggers>
-                            <asp:AsyncPostBackTrigger ControlID="GridViewStudy" />
-                        </Triggers>
-                    </asp:UpdatePanel>
-                    <asp:UpdatePanel ID="UpdateGridViewStudyShow" runat="server">
-                        <ContentTemplate>
-                            <asp:GridView ID="GridViewStudyShow" runat="server" Width="100%"></asp:GridView>
-                        </ContentTemplate>
-                        <Triggers>
-                            <asp:AsyncPostBackTrigger ControlID="GridViewStudyShow" />
-                        </Triggers>
-                    </asp:UpdatePanel>
+        <div id="divTab2" runat="server" style="text-align: center;">
+            <div class="ps-div-title-red">ข้อมูลที่อยู่</div>
+            <div style="display: inline-block; margin-right: 20px;">
+                <table class="ps-table-1">
+                    <tr>
+                        <th colspan="2">
+                            <img src="Image/Small/table.png" class="icon_left" />ที่อยู่ตามทะเบียนบ้าน
+                        </th>
+                    </tr>
+                    <tr>
+                        <td class="col1">บ้านเลขที่</td>
+                        <td class="col2">
+                            <asp:TextBox ID="tbHomeAdd" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col1">ซอย</td>
+                        <td class="col2">
+                            <asp:TextBox ID="tbSoi" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col1">หมู่</td>
+                        <td class="col2">
+                            <asp:TextBox ID="tbMoo" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col1">ถนน</td>
+                        <td class="col2">
+                            <asp:TextBox ID="tbRoad" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col1">จังหวัด</td>
+                        <td class="col2">
+                            <asp:DropDownList ID="ddlProvince" runat="server" CssClass="ps-dropdown" AutoPostBack="True" OnSelectedIndexChanged="ddlProvince_SelectedIndexChanged"></asp:DropDownList>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col1">อำเภอ / เขต</td>
+                        <td class="col2">
+                            <asp:DropDownList ID="ddlAmphur" runat="server" CssClass="ps-dropdown" AutoPostBack="True" OnSelectedIndexChanged="ddlAmphur_SelectedIndexChanged"></asp:DropDownList>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col1">ตำบล / แขวง</td>
+                        <td class="col2">
+                            <asp:DropDownList ID="ddlDistrict" runat="server" CssClass="ps-dropdown" OnSelectedIndexChanged="ddlDistrict_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col1">รหัสไปรณีย์</td>
+                        <td class="col2">
+                            <asp:TextBox ID="tbZipcode" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col1">ประเทศ</td>
+                        <td class="col2">
+                            <asp:DropDownList ID="ddlCountry" runat="server" CssClass="ps-dropdown" AutoPostBack="True" OnSelectedIndexChanged="ddlCountry_SelectedIndexChanged"></asp:DropDownList>
+                        </td>
+                    </tr>
+                    <tr id="id1Tab2City1" runat="server">
+                        <td class="col1">รัฐ</td>
+                        <td class="col2">
+                            <asp:TextBox ID="tbState" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div style="display: inline-block;">
+                <table class="ps-table-1">
+                    <tr>
+                        <th colspan="2">
+                            <img src="Image/Small/table.png" class="icon_left" />ที่อยู่ที่ติดต่อได้
+                        </th>
+                    </tr>
+                    <tr>
+                        <td class="col1">บ้านเลขที่</td>
+                        <td class="col2">
+                            <asp:TextBox ID="tbHomeAdd2" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col1">ซอย</td>
+                        <td class="col2">
+                            <asp:TextBox ID="tbSoi2" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col1">หมู่</td>
+                        <td class="col2">
+                            <asp:TextBox ID="tbMoo2" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col1">ถนน</td>
+                        <td class="col2">
+                            <asp:TextBox ID="tbRoad2" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col1">จังหวัด</td>
+                        <td class="col2">
+                            <asp:DropDownList ID="ddlProvince2" runat="server" CssClass="ps-dropdown" AutoPostBack="True" OnSelectedIndexChanged="ddlProvince2_SelectedIndexChanged"></asp:DropDownList>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col1">อำเภอ / เขต</td>
+                        <td class="col2">
+                            <asp:DropDownList ID="ddlAmphur2" runat="server" CssClass="ps-dropdown" AutoPostBack="True" OnSelectedIndexChanged="ddlAmphur2_SelectedIndexChanged"></asp:DropDownList>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col1">ตำบล / แขวง</td>
+                        <td class="col2">
+                            <asp:DropDownList ID="ddlDistrict2" runat="server" CssClass="ps-dropdown" OnSelectedIndexChanged="ddlDistrict2_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col1">รหัสไปรณีย์</td>
+                        <td class="col2">
+                            <asp:TextBox ID="tbZipcode2" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col1">ประเทศ</td>
+                        <td class="col2">
+                            <asp:DropDownList ID="ddlCountry2" runat="server" CssClass="ps-dropdown" AutoPostBack="True" OnSelectedIndexChanged="ddlCountry2_SelectedIndexChanged"></asp:DropDownList>
+                        </td>
+                    </tr>
+                    <tr id="id2Tab2City2" runat="server">
+                        <td class="col1">รัฐ</td>
+                        <td class="col2">
+                            <asp:TextBox ID="tbState2" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div style="margin-top: 10px;">
+                <asp:LinkButton ID="lbuTab2Save" runat="server" OnClick="lbuTab2Save_Click" CssClass="ps-button"><img src="Image/Small/save.png" class="icon_left"/>บันทึก</asp:LinkButton>
+                 &nbsp;&nbsp;
+                <asp:LinkButton ID="lbCopyAddress" runat="server" CssClass="ps-button" OnClick="lbCopyAddress_Click"><img src="Image/Small/copy.png" class="icon_left"/>คัดลอกข้อมูลที่อยู่ตามทะเบียนบ้าน</asp:LinkButton>
+            </div>
+            <div class="ps-separator"></div>
+        </div>
 
-                <div>
-                    <asp:LinkButton ID="lbuV3Back" runat="server" CssClass="button button_default" OnClick="lbuV3Back_Click">ย้อนกลับ</asp:LinkButton>
-                    <asp:LinkButton ID="lbuV3Next" runat="server" CssClass="button button_default" OnClick="lbuV3Next_Click">ถัดไป</asp:LinkButton>
-                </div>
-                </fieldset>
-            </asp:View>
-            <asp:View ID="View4" runat="server">
-                <fieldset>
-                    <legend class="TMZ">(4/8)</legend>
-                <div class="default_header">
-                    <img src="Image/Small/table.png" class="icon_left" />ข้อมูลการทำงาน
-                </div>
-                <table>
+        <div id="divTab3" runat="server" style="text-align: center;">
+            <div class="ps-div-title-red">ข้อมูลการทำงาน</div>
+            <div style="display: inline-block; margin-right: 20px; vertical-align: top;">
+                <table class="ps-table-1">
                     <tr>
                         <td class="col1">วิทยาเขต</td>
                         <td class="col2">
-                                <asp:UpdatePanel ID="UpdateddlCampus" runat="server"><ContentTemplate>
-                                <asp:DropDownList ID="ddlCampus" runat="server" OnSelectedIndexChanged="ddlCampus_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="ddlCampus" /></Triggers></asp:UpdatePanel></td>
+                            <asp:DropDownList ID="ddlCampus" runat="server" CssClass="ps-dropdown" OnSelectedIndexChanged="ddlCampus_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList><span class="textred">*</span>
+                        </td>
                     </tr>
                     <tr>
                         <td class="col1">สำนัก / สถาบัน / คณะ</td>
                         <td class="col2">
-                                <asp:UpdatePanel ID="UpdateddlFaculty" runat="server"><ContentTemplate>
-                                <asp:DropDownList ID="ddlFaculty" runat="server" OnSelectedIndexChanged="ddlFaculty_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="ddlFaculty" /></Triggers></asp:UpdatePanel></td>
+                            <asp:DropDownList ID="ddlFaculty" runat="server" CssClass="ps-dropdown" OnSelectedIndexChanged="ddlFaculty_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList><span class="textred">*</span>
+                        </td>
                     </tr>
                     <tr>
                         <td class="col1">กอง / สำนักงานเลขา / ภาควิชา</td>
                         <td class="col2">
-                                <asp:UpdatePanel ID="UpdateddlDivision" runat="server"><ContentTemplate>
-                                <asp:DropDownList ID="ddlDivision" runat="server" OnSelectedIndexChanged="ddlDivision_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="ddlDivision" /></Triggers></asp:UpdatePanel></td>
+                            <asp:DropDownList ID="ddlDivision" runat="server" CssClass="ps-dropdown" OnSelectedIndexChanged="ddlDivision_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList><span class="textred">*</span>
+                        </td>
                     </tr>
-                    <tr>
+                    <tr id="trWorkDivision" runat="server">
                         <td class="col1">งาน / ฝ่าย</td>
                         <td class="col2">
-                                <asp:UpdatePanel ID="UpdateddlWorkDivision" runat="server"><ContentTemplate>
-                                <asp:DropDownList ID="ddlWorkDivision" runat="server"></asp:DropDownList>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="ddlWorkDivision" /></Triggers></asp:UpdatePanel></td>
+                            <asp:DropDownList ID="ddlWorkDivision" runat="server" CssClass="ps-dropdown"></asp:DropDownList><span class="textred">*</span>
+                        </td>
                     </tr>
                     <tr>
                         <td class="col1">ประเภทบุคลากร</td>
                         <td class="col2">
-                                <asp:UpdatePanel ID="UpdateddlStaffType" runat="server"><ContentTemplate>
-                                <asp:DropDownList ID="ddlStaffType" runat="server"></asp:DropDownList>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="ddlStaffType" /></Triggers></asp:UpdatePanel></td>
+                            <asp:DropDownList ID="ddlStaffType" runat="server" CssClass="ps-dropdown"></asp:DropDownList><span class="textred">*</span>
+                        </td>
                     </tr>
                     <tr>
                         <td class="col1">ประเภทเงินจ้าง</td>
                         <td class="col2">
-                                <asp:UpdatePanel ID="UpdateddlBudget" runat="server"><ContentTemplate>
-                                <asp:DropDownList ID="ddlBudget" runat="server"></asp:DropDownList>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="ddlBudget" /></Triggers></asp:UpdatePanel></td>
+                            <asp:DropDownList ID="ddlBudget" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
+                        </td>
                     </tr>
-                    <tr>
-                        <td class="col1">ตำแหน่งบริหาร</td>
-                        <td class="col2">
-                                <asp:UpdatePanel ID="UpdateddlAdminPosition" runat="server"><ContentTemplate>
-                                <asp:DropDownList ID="ddlAdminPosition" runat="server"></asp:DropDownList>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="ddlAdminPosition" /></Triggers></asp:UpdatePanel></td>
-                    </tr>
-                    <tr>
-                        <td class="col1">ตำแหน่งในสายงาน</td>
-                        <td class="col2">
-                                <asp:UpdatePanel ID="UpdateddlPositionWork" runat="server"><ContentTemplate>
-                                <asp:DropDownList ID="ddlPositionWork" runat="server"></asp:DropDownList>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="ddlPositionWork" /></Triggers></asp:UpdatePanel></td>
-                    </tr>
-                    <tr>
-                        <td class="col1">ตำแหน่งทางวิชาการ</td>
-                        <td class="col2">
-                                <asp:UpdatePanel ID="UpdateddlAcademic" runat="server"><ContentTemplate>
-                                <asp:DropDownList ID="ddlAcademic" runat="server"></asp:DropDownList>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="ddlAcademic" /></Triggers></asp:UpdatePanel></td>
-                    </tr>
-                    <tr>
-                        <td class="col1">วันที่เริ่มบรรจุ / เริ่มงาน</td>
-                        <td class="col2">
-                                <asp:UpdatePanel ID="UpdatetbDateInwork" runat="server"><ContentTemplate>
-                                <asp:TextBox ID="tbDateInwork" runat="server"></asp:TextBox>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbDateInwork" /></Triggers></asp:UpdatePanel></td>
-                    </tr>
+                </table>
+            </div>
+            <div style="display: inline-block; vertical-align: top;">
+                <table class="ps-table-1">
                     <tr>
                         <td class="col1">ความเชี่ยวชาญในสายงาน</td>
                         <td class="col2">
-                                <asp:UpdatePanel ID="UpdatetbSpecialWork" runat="server"><ContentTemplate>
-                                <asp:TextBox ID="tbSpecialWork" runat="server"></asp:TextBox>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbSpecialWork" /></Triggers></asp:UpdatePanel></td>
+                            <asp:TextBox ID="tbSpecialWork" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                        </td>
                     </tr>
                     <tr>
                         <td class="col1">กลุ่มสาขาวิชาที่สอน</td>
                         <td class="col2">
-                                <asp:UpdatePanel ID="UpdateddlTeachISCED" runat="server"><ContentTemplate>
-                                <asp:DropDownList ID="ddlTeachISCED" runat="server"></asp:DropDownList>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="ddlTeachISCED" /></Triggers></asp:UpdatePanel></td>
+                            <asp:DropDownList ID="ddlTeachISCED" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col1">วันที่บรรจุ</td>
+                        <td class="col2">
+                            <asp:TextBox ID="tbDateInwork" runat="server" CssClass="ps-textbox" placeholder="01 ม.ค. 25xx" MaxLength="12"></asp:TextBox><span class="textred">*</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col1">สถานะบุคลากร</td>
+                        <td class="col2">
+                            <asp:DropDownList ID="ddlTab10StatusWork" runat="server" CssClass="ps-dropdown" AutoPostBack="true" OnSelectedIndexChanged="ddlTab10StatusWork_SelectedIndexChanged"></asp:DropDownList>
+                            <span id="span1" runat="server">&nbsp;&nbsp;&nbsp;วันที่ลาออก</span>
+                            <asp:TextBox ID="tbDateQuit" runat="server" CssClass="ps-textbox" placeholder="01 ม.ค. 25xx" MaxLength="12"></asp:TextBox><span id="span2" runat="server" class="textred">*</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col1">เงินเดือน</td>
+                        <td class="col2">
+                            <asp:Label ID="lblSalary" runat="server"></asp:Label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col1">เงินประจำตำแหน่ง</td>
+                        <td class="col2">
+                            <asp:Label ID="lblPositionSalary" runat="server"></asp:Label>
+                        </td>
                     </tr>
                 </table>
-                <div>
-                        <asp:LinkButton ID="lbuV4Back" runat="server" CssClass="button button_default" OnClick="lbuV4Back_Click">ย้อนกลับ</asp:LinkButton>
-                    <asp:LinkButton ID="lbuV4Next" runat="server" CssClass="button button_default" OnClick="lbuV4Next_Click">ถัดไป</asp:LinkButton>
+            </div>
+            <div style="margin-top: 10px;">
+                <asp:LinkButton ID="lbuTab3Save" runat="server" OnClick="lbuTab3Save_Click" CssClass="ps-button"><img src="Image/Small/save.png" class="icon_left"/>บันทึก</asp:LinkButton>
+            </div>
+            <div class="ps-separator"></div>
+        </div>
+
+        <div id="divTab4" runat="server" style="text-align: center;">
+            <div class="ps-div-title-red">ข้อมูลตำแหน่ง</div>
+            <div style="display: inline-block; margin-right: 20px;">
+                <table class="ps-table-1" style="margin-bottom: 20px; display: inline-block; margin-right: 20px; vertical-align: top; " id="idPositionShowAll" runat="server">
+                    <tr>
+                        <th colspan="2">ตำแหน่ง</th>
+                    </tr>
+                    <tr>
+                        <td class="col1">ตำแหน่งในสายงาน</td>
+                        <td class="col2">
+                            <asp:DropDownList ID="ddlTab4PositionWorkRow1" runat="server" CssClass="ps-dropdown"></asp:DropDownList><span class="textred">*</span>
+                            <asp:CheckBox ID="chkBoxWorkPosition" runat="server" Text="กรณีเป็นเลือกตำแหน่งในสายงานครั้งแรก"></asp:CheckBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col1">ตำแหน่งทางบริหาร</td>
+                        <td class="col2">
+                            <asp:DropDownList ID="ddlTab4AdminPositionRow1" runat="server" CssClass="ps-dropdown"></asp:DropDownList><span class="textred">*</span>
+                            <asp:CheckBox ID="chkBoxAdminPosition" runat="server" Text="กรณีเป็นเลือกตำแหน่งทางบริหารครั้งแรก"></asp:CheckBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col1">ตำแหน่งทางวิชาการ</td>
+                        <td class="col2">
+                            <asp:DropDownList ID="ddlTab4AcadPositionRow1" runat="server" CssClass="ps-dropdown"></asp:DropDownList><span class="textred">*</span>
+                        </td>
+                    </tr>
+                </table>
+                <table class="ps-table-1" style="margin-bottom: 20px; display: inline-block; margin-right: 20px; vertical-align: top;" id="idPositionShowGover" runat="server">
+                    <tr>
+                        <th colspan="2">ตำแหน่งข้าราชการ</th>
+                    </tr>
+                    <tr>
+                        <td class="col1">วันที่ได้รับตำแหน่ง</td>
+                        <td class="col2">
+                            <asp:TextBox ID="tbDateGetPositionGoverTab4" runat="server" CssClass="ps-textbox" placeholder="01 ม.ค. 25xx" MaxLength="12"></asp:TextBox><span class="textred">*</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col1">ตำแหน่งข้าราชการ</td>
+                        <td class="col2">
+                            <asp:DropDownList ID="ddlShowMenuGoverTab4" runat="server" CssClass="ps-dropdown" AutoPostBack="true"></asp:DropDownList>
+                        </td>
+                    </tr>
+                    <tr id="id1tab4middle" runat="server">
+                        <td class="col1">ตำแหน่งประเภทบริหาร</td>
+                        <td class="col2">
+                            <asp:DropDownList ID="ddlTab4AdminPositionDegreeRow2" runat="server" CssClass="ps-dropdown"></asp:DropDownList><span class="textred">*</span>
+                        </td>
+                    </tr>
+                    <tr id="id2tab4middle" runat="server">
+                        <td class="col1">ตำแหน่งประเภทอำนวยการ</td>
+                        <td class="col2">
+                            <asp:DropDownList ID="ddlTab4DirectPositionDegreeRow2" runat="server" CssClass="ps-dropdown"></asp:DropDownList><span class="textred">*</span>
+                        </td>
+                    </tr>
+                    <tr id="id3tab4middle" runat="server">
+                        <td class="col1">ตำแหน่งประเภทวิชาการ</td>
+                        <td class="col2">
+                            <asp:DropDownList ID="ddlTab4AcadPositionDegreeRow2" runat="server" CssClass="ps-dropdown"></asp:DropDownList><span class="textred">*</span>
+                        </td>
+                    </tr>
+                    <tr id="id4tab4middle" runat="server">
+                        <td class="col1">ตำแหน่งประเภททั่วไป</td>
+                        <td class="col2">
+                            <asp:DropDownList ID="ddlTab4GeneralPositionDegreeRow2" runat="server" CssClass="ps-dropdown"></asp:DropDownList><span class="textred">*</span>
+                        </td>
+                    </tr>
+                </table>
+                <table class="ps-table-1" style="margin-bottom: 20px; display: inline-block; margin-right: 20px; vertical-align: top;" id="idPositionShowOfficeEmp" runat="server">
+                    <tr>
+                        <th colspan="2">ตำแหน่งพนักงานราชการ</th>
+                    </tr>
+                    <tr>
+                        <td class="col1">วันที่ได้รับตำแหน่ง</td>
+                        <td class="col2">
+                            <asp:TextBox ID="tbDateGetPositionEMPTab4" runat="server" CssClass="ps-textbox" placeholder="01 ม.ค. 25xx" MaxLength="12"></asp:TextBox><span class="textred">*</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col1">ตำแหน่งพนักงานราชการ</td>
+                        <td class="col2">
+                            <asp:DropDownList ID="ddlTab4EmpPositionRow3" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
+                        </td>
+                    </tr>
+                </table>
+                <div style="text-align: center; margin-top: 10px; margin-bottom:20px">
+                    <asp:LinkButton ID="lbuTab4Save" runat="server" OnClick="lbuTab4Save_Click" CssClass="ps-button"><img src="Image/Small/save.png" class="icon_left"/>บันทึก</asp:LinkButton>
                 </div>
-                </fieldset>
-            </asp:View>
-            <asp:View ID="View5" runat="server">
-                <fieldset>
-                    <legend class="TMZ">(5/8)</legend>
-                <div class="default_header">
-                    <img src="Image/Small/table.png" class="icon_left" />ใบอนุญาตประกอบวิชาชีพ
-                </div>
-                    <table>
-                        <tr>
-                            <td style="text-align: center; margin-right: 5px;">ชื่อใบอนุญาต</td>
-                            <td style="text-align: center; margin-right: 5px;">หน่วยงาน</td>
-                            <td style="text-align: center; margin-right: 5px;">เลขที่ใบอนุญาต</td>
-                            <td style="text-align: center; margin-right: 5px;">วันที่มีผลบังคับใช้ (วัน เดือน ปี)</td>
+                <div style="margin-top: 10px; overflow-x: auto; width: 1200px">
+                <asp:GridView ID="GridviewPDHgover" runat="server" Style="margin-left: auto; margin-right: auto; text-align: center; "
+                    AutoGenerateColumns="false"
+                    AllowPaging="true"
+                    DataKeyNames="PDH_ID"
+                    OnRowEditing="modEditCommandGover"
+                    OnRowCancelingEdit="modCancelCommandGover"
+                    OnRowUpdating="modUpdateCommandGover"
+                    OnRowDeleting="modDeleteCommandGover"
+                    OnRowDataBound="GridViewGover_RowDataBound"
+                    OnPageIndexChanging="myGridViewGover_PageIndexChanging" PageSize="15" CssClass="ps-table-1" >
+                    <Columns>
+                        <asp:TemplateField HeaderText="PDH_ID" Visible="false">
+                            <ItemTemplate>
+                                <asp:Label ID="lblPDHidGover" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PDH_ID") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="รหัสบัตรประชาชน">
+                            <ItemTemplate>
+                                <asp:Label ID="lblPDHcitizenIDGover" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PDH_CITIZEN_ID") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="วันที่ได้รับตำแหน่ง" ControlStyle-Width="200" >
+                            <ItemTemplate>
+                                <asp:Label ID="lblPDHdateGover" runat="server" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "PDH_DATE_START")).ToString("dd MMM yyyy", System.Globalization.CultureInfo.CreateSpecificCulture("th-TH")) %>'></asp:Label>
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <asp:TextBox ID="txtPDHdateGover" MaxLength="12" runat="server" CssClass="date" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "PDH_DATE_START")).ToString("dd MMM yyyy", System.Globalization.CultureInfo.CreateSpecificCulture("th-TH")) %>'></asp:TextBox>
+                            </EditItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="ชื่อตำแหน่งที่ได้รับ" ControlStyle-Width="200" >
+                            <ItemTemplate>
+                                <asp:Label ID="lblPDHpositionGetGover" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PDH_POSITION_GET") %>'></asp:Label>
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <asp:DropDownList ID="ddlPDHpositionGetGover" runat="server"></asp:DropDownList>
+                            </EditItemTemplate>
+                        </asp:TemplateField>
+                        <asp:CommandField ShowEditButton="True" CancelText="Cancel" DeleteText="Delete" EditText="Edit" UpdateText="Update" HeaderText="แก้ไข"  />
+                        <asp:TemplateField HeaderText="ลบ" >
+                            <ItemTemplate>
+                                <asp:LinkButton ID="DeleteButton1" runat="server" CausesValidation="false" CommandName="Delete" Text="Delete"></asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                </asp:GridView>
+            </div>
 
-                        </tr>
-                        <tr>
-                            <td style="text-align: left; width: 170px;">
-                                <asp:UpdatePanel ID="UpdatetbLicenseName11" runat="server"><ContentTemplate>
-                                <asp:TextBox ID="tbLicenseName11" runat="server" Width="200px" CssClass="tb5"></asp:TextBox>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbLicenseName11" /></Triggers></asp:UpdatePanel></td>
-                            <td style="text-align: left; width: 170px;">
-                                <asp:UpdatePanel ID="UpdatetbDepartment11" runat="server"><ContentTemplate>
-                                <asp:TextBox ID="tbDepartment11" runat="server" Width="200px" CssClass="tb5"></asp:TextBox>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbDepartment11" /></Triggers></asp:UpdatePanel></td>
-                            <td style="text-align: left; width: 170px;">
-                                <asp:UpdatePanel ID="UpdatetbLicenseNo11" runat="server"><ContentTemplate>
-                                <asp:TextBox ID="tbLicenseNo11" runat="server" Width="200px" CssClass="tb5"></asp:TextBox>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbLicenseNo11" /></Triggers></asp:UpdatePanel></td>
-                            <td style="text-align: left; width: 220px;">
-                                <asp:UpdatePanel ID="UpdatetbUseDate11" runat="server"><ContentTemplate>
-                                <asp:TextBox ID="tbUseDate11" runat="server" Width="200px" CssClass="tb5"></asp:TextBox>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbUseDate11" /></Triggers></asp:UpdatePanel></td>
-                            <td style="text-align: right; margin-right: 5px;">
-                                
-                                <asp:LinkButton ID="lbuV5Add" runat="server" OnClick="lbuV5Add_Click" CssClass="button button_default">+</asp:LinkButton></td>
-
-                        </tr>
-                    </table>
-
-                    <asp:UpdatePanel ID="UpdateGridViewLicense" runat="server">
-                        <ContentTemplate>
-                            <asp:GridView ID="GridViewLicense" runat="server" Width="70%"></asp:GridView>
-                        </ContentTemplate>
-                        <Triggers>
-                            <asp:AsyncPostBackTrigger ControlID="GridViewLicense" />
-                        </Triggers>
-                    </asp:UpdatePanel>
-                <div>
-                    <asp:LinkButton ID="lbuV5Back" runat="server" CssClass="button button_default" OnClick="lbuV5Back_Click">ย้อนกลับ</asp:LinkButton>
-                    <asp:LinkButton ID="lbuV5Next" runat="server" CssClass="button button_default" OnClick="lbuV5Next_Click">ถัดไป</asp:LinkButton>
-                </div>
-                </fieldset>
-            </asp:View>
-            <asp:View ID="View6" runat="server">
-                <fieldset>
-                    <legend class="TMZ">(6/8)</legend>
-                <div class="default_header">
-                    <img src="Image/Small/table.png" class="icon_left" />ประวัติการฝึกอบรม
-                </div>
-                    <table>
-                        <tr>
-                            <td style="text-align: center; margin-right: 5px;">หลักสูตรฝึกอบรม</td>
-                            <td style="text-align: center; margin-right: 5px; width: 300px">ตั้งแต่ - ถึง (เดือน ปี)</td>
-                            <td style="text-align: center; margin-right: 5px;">หน่วยงานที่จัดฝึกอบรม</td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: left; width: 170px;">
-                                <asp:UpdatePanel ID="UpdatetbCourse" runat="server"><ContentTemplate>
-                                <asp:TextBox ID="tbCourse" runat="server" Width="200px" CssClass="tb5"></asp:TextBox>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbCourse" /></Triggers></asp:UpdatePanel></td>
-                            <td style="text-align: left;">
-                                <asp:UpdatePanel ID="Updatel2" runat="server"><ContentTemplate>
-                                <asp:DropDownList ID="ddlMonth12From" runat="server" CssClass="tb5" Width="80px"></asp:DropDownList>
-                                <asp:DropDownList ID="ddlYear12From" runat="server" CssClass="tb5" Width="65"></asp:DropDownList>
-                                <asp:DropDownList ID="ddlMonth12To" runat="server" CssClass="tb5" Width="80px"></asp:DropDownList>
-                                <asp:DropDownList ID="ddlYear12To" runat="server" CssClass="tb5" Width="65px"></asp:DropDownList>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="ddlMonth12From" /></Triggers></asp:UpdatePanel></td>
-                            <td style="text-align: left; width: 170px;">
-                                <asp:UpdatePanel ID="UpdatetbDepartment" runat="server"><ContentTemplate>
-                                <asp:TextBox ID="tbDepartment" runat="server" Width="290px" CssClass="tb5"></asp:TextBox>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbDepartment" /></Triggers></asp:UpdatePanel></td>
-                            <td style="text-align: right; margin-right: 5px;">
-                                
-                                <asp:LinkButton ID="lbuV6Add" runat="server" OnClick="lbuV6Add_Click" CssClass="button button_default">+</asp:LinkButton></td>
-                        </tr>
-                    </table>
-
-                    <asp:UpdatePanel ID="UpdateGridViewTraining" runat="server">
-                        <ContentTemplate>
-                            <asp:GridView ID="GridViewTraining" runat="server" Width="70%" Visible="false"></asp:GridView>
-                        </ContentTemplate>
-                        <Triggers>
-                            <asp:AsyncPostBackTrigger ControlID="GridViewTraining" />
-                        </Triggers>
-                    </asp:UpdatePanel>
-                    <asp:UpdatePanel ID="UpdateGridViewTrainingShow" runat="server">
-                        <ContentTemplate>
-                            <asp:GridView ID="GridViewTrainingShow" runat="server" Width="70%"></asp:GridView>
-                        </ContentTemplate>
-                        <Triggers>
-                            <asp:AsyncPostBackTrigger ControlID="GridViewTrainingShow" />
-                        </Triggers>
-                    </asp:UpdatePanel>
-
-                <div>
-                    <asp:LinkButton ID="lbuV6Back" runat="server" CssClass="button button_default" OnClick="lbuV6Back_Click">ย้อนกลับ</asp:LinkButton>
-                    <asp:LinkButton ID="lbuV6Next" runat="server" CssClass="button button_default" OnClick="lbuV6Next_Click">ถัดไป</asp:LinkButton>
-                </div>
-                </fieldset>
-            </asp:View>
-            <asp:View ID="View7" runat="server">
-                <fieldset>
-                    <legend class="TMZ">(7/8)</legend>
-                <div class="default_header">
-                    <img src="Image/Small/table.png" class="icon_left" />การได้รับโทษทางวินัยและการนิรโทษกรรม
-                </div>
-                    <table>
-                        <tr>
-                            <td style="text-align: center; margin-right: 5px;">พ.ศ.</td>
-                            <td style="text-align: center; margin-right: 5px; width: 500px">รายการ</td>
-                            <td style="text-align: center; margin-right: 5px;">เอกสารอ้างอิง</td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: left; width: 100px;">
-                                <asp:UpdatePanel ID="UpdateddlYear13" runat="server"><ContentTemplate>
-                                <asp:DropDownList ID="ddlYear13" runat="server" CssClass="tb5" Width="100px"></asp:DropDownList>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="ddlYear13" /></Triggers></asp:UpdatePanel></td>
-                            <td style="text-align: left;">
-                                <asp:UpdatePanel ID="UpdatetbName13" runat="server"><ContentTemplate>
-                                <asp:TextBox ID="tbName13" runat="server" Width="575px" CssClass="tb5"></asp:TextBox>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbName13" /></Triggers></asp:UpdatePanel></td>
-                            <td style="text-align: left; width: 170px;">
-                                <asp:UpdatePanel ID="UpdatetbREF13" runat="server"><ContentTemplate>
-                                <asp:TextBox ID="tbREF13" runat="server" Width="220px" CssClass="tb5"></asp:TextBox>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbREF13" /></Triggers></asp:UpdatePanel></td>
-                            <td style="text-align: right; margin-right: 5px;">
-
-                                <asp:LinkButton ID="lbuV7Add" runat="server" OnClick="lbuV7Add_Click" CssClass="button button_default">+</asp:LinkButton></td>
-
-                        </tr>
-                    </table>
-
-                    <asp:UpdatePanel ID="UpdateGridViewDDA" runat="server">
-                        <ContentTemplate>
-                            <asp:GridView ID="GridViewDDA" runat="server" Width="70%"></asp:GridView>
-                        </ContentTemplate>
-                        <Triggers>
-                            <asp:AsyncPostBackTrigger ControlID="GridViewDDA" />
-                        </Triggers>
-                    </asp:UpdatePanel>
-
-                <div>
-                    <asp:LinkButton ID="lbuV7Back" runat="server" CssClass="button button_default" OnClick="lbuV7Back_Click">ย้อนกลับ</asp:LinkButton>
-                    <asp:LinkButton ID="lbuV7Next" runat="server" CssClass="button button_default" OnClick="lbuV7Next_Click">ถัดไป</asp:LinkButton>
-                </div>
-                </fieldset>
-            </asp:View>
-            <asp:View ID="View8" runat="server">
-                <fieldset>
-                    <legend class="TMZ">(8/8)</legend>
-                <div class="default_header">
-                    <img src="Image/Small/table.png" class="icon_left" />ตำแหน่งและเงินเดือน
-                </div>
-
-                    <table>
-                        <tr>
-                            <td style="text-align: center; margin-right: 5px;">วัน เดือน ปี</td>
-                            <td style="text-align: center; margin-right: 5px;">ตำแหน่ง</td>
-                            <td style="text-align: center; margin-right: 5px;">เลขที่ตำแหน่ง</td>
-                            <td style="text-align: center; margin-right: 5px;">ตำแหน่งประเภท</td>
-                            <td style="text-align: center; margin-right: 5px;">ระดับ</td>
-                            <td style="text-align: center; margin-right: 5px;">เงินเดือน</td>
-                            <td style="text-align: center; margin-right: 5px;">เงินประจำตำแหน่ง</td>
-                            <td style="text-align: center; margin-right: 5px;">เอกสารอ้างอิง</td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: left;">
-                                <asp:UpdatePanel ID="UpdatetbDate14" runat="server"><ContentTemplate>
-                                <asp:TextBox ID="tbDate14" runat="server" Width="120px" CssClass="tb5"></asp:TextBox>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbDate14" /></Triggers></asp:UpdatePanel></td>
-                            <td style="text-align: left; width: 50px;">
-                                <asp:UpdatePanel ID="UpdatetbPosition14" runat="server"><ContentTemplate>
-                                <asp:TextBox ID="tbPosition14" runat="server" Width="280" CssClass="tb5"></asp:TextBox>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbPosition14" /></Triggers></asp:UpdatePanel></td>
-                            <td style="text-align: left; width: 50px;">
-                                <asp:UpdatePanel ID="UpdatetbPositionNo14" runat="server"><ContentTemplate>
-                                <asp:TextBox ID="tbPositionNo14" runat="server" Width="80px" CssClass="tb5"></asp:TextBox>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbPositionNo14" /></Triggers></asp:UpdatePanel></td>
-                            <td style="text-align: left; width: 50px;">
-                                <asp:UpdatePanel ID="UpdateddlPositionType14" runat="server"><ContentTemplate>
-                                <asp:DropDownList ID="ddlPositionType14" runat="server" CssClass="tb5" Width="150px" AutoPostBack="True" OnSelectedIndexChanged="ddlPositionType14_SelectedIndexChanged"></asp:DropDownList>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="ddlPositionType14" /></Triggers></asp:UpdatePanel></td>
-                            <td style="text-align: left; width: 50px;">
-                                <asp:UpdatePanel ID="UpdateddlPositionDegree14" runat="server"><ContentTemplate>
-                                <asp:DropDownList ID="ddlPositionDegree14" runat="server" CssClass="tb5" Width="150px" AutoPostBack="True"></asp:DropDownList>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="ddlPositionDegree14" /></Triggers></asp:UpdatePanel></td>
-                            <td style="text-align: left; width: 50px;">
-                                <asp:UpdatePanel ID="UpdatetbSalary14" runat="server"><ContentTemplate>
-                                <asp:TextBox ID="tbSalary14" runat="server" Width="80px" CssClass="tb5"></asp:TextBox>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbSalary14" /></Triggers></asp:UpdatePanel></td>
-                            <td style="text-align: left; width: 50px;">
-                                <asp:UpdatePanel ID="UpdatetbSalaryPosition14" runat="server"><ContentTemplate>
-                                <asp:TextBox ID="tbSalaryPosition14" runat="server" Width="80px" CssClass="tb5"></asp:TextBox>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbSalaryPosition14" /></Triggers></asp:UpdatePanel></td>
-                            <td style="text-align: left; width: 50px;">
-                                <asp:UpdatePanel ID="UpdatetbRef14" runat="server"><ContentTemplate>
-                                <asp:TextBox ID="tbRef14" runat="server" Width="210px" CssClass="tb5"></asp:TextBox>
-                                </ContentTemplate><Triggers><asp:AsyncPostBackTrigger ControlID="tbRef14" /></Triggers></asp:UpdatePanel></td>
-                            <td style="text-align: right; margin-right: 5px;"> 
-
-                                <asp:LinkButton ID="lbuV8Add" runat="server" OnClick="lbuV8Add_Click" CssClass="button button_default">+</asp:LinkButton></td>
-
-                        </tr>
-                    </table>
-                 
-                    <asp:UpdatePanel ID="UpdateGridViewPAS" runat="server">
-                        <ContentTemplate>
-                            <asp:GridView ID="GridViewPAS" runat="server" Width="100%" Visible="false"></asp:GridView>
-                        </ContentTemplate>
-                        <Triggers>
-                            <asp:AsyncPostBackTrigger ControlID="GridViewPAS" />
-                        </Triggers>
-                    </asp:UpdatePanel>
-                    <asp:UpdatePanel ID="UpdateGridViewPASShow" runat="server">
-                        <ContentTemplate>
-                            <asp:GridView ID="GridViewPASShow" runat="server" Width="100%"></asp:GridView>
-                        </ContentTemplate>
-                        <Triggers>
-                            <asp:AsyncPostBackTrigger ControlID="GridViewPASShow" />
-                        </Triggers>
-                    </asp:UpdatePanel>
-                <div>
-                    <asp:LinkButton ID="lbuV8Back" runat="server" CssClass="button button_default" OnClick="lbuV8Back_Click">ย้อนกลับ</asp:LinkButton>
-                        <asp:LinkButton ID="lbSubmit" runat="server" CssClass="button button_default" OnClick="lbSubmit_Click">ยืนยันการเพิ่มข้อมูลบุคลากร</asp:LinkButton>
-                </div>
-                </fieldset>
-            </asp:View>
-        </asp:MultiView>
+                <div style="margin-top: 10px; overflow-x: auto; width: 1200px">
+                <asp:GridView ID="GridviewPDHemp" runat="server" Style="margin-left: auto; margin-right: auto; text-align: center; "
+                    AutoGenerateColumns="false"
+                    AllowPaging="true"
+                    DataKeyNames="PDH_ID"
+                    OnRowEditing="modEditCommandEmp"
+                    OnRowCancelingEdit="modCancelCommandEmp"
+                    OnRowUpdating="modUpdateCommandEmp"
+                    OnRowDeleting="modDeleteCommandEmp"
+                    OnRowDataBound="GridViewEmp_RowDataBound"
+                    OnPageIndexChanging="myGridViewEmp_PageIndexChanging" PageSize="15" CssClass="ps-table-1" >
+                    <Columns>
+                        <asp:TemplateField HeaderText="PDH_ID" Visible="false">
+                            <ItemTemplate>
+                                <asp:Label ID="lblPDHidEmp" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PDH_ID") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="รหัสบัตรประชาชน">
+                            <ItemTemplate>
+                                <asp:Label ID="lblPDHcitizenIDEmp" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PDH_CITIZEN_ID") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="วันที่ได้รับตำแหน่งประเภท" ControlStyle-Width="200" >
+                            <ItemTemplate>
+                                <asp:Label ID="lblPDHdateEmp" runat="server" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "PDH_DATE_START")).ToString("dd MMM yyyy", System.Globalization.CultureInfo.CreateSpecificCulture("th-TH")) %>'></asp:Label>
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <asp:TextBox ID="txtPDHdateEmp" MaxLength="12" runat="server" CssClass="date" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "PDH_DATE_START")).ToString("dd MMM yyyy", System.Globalization.CultureInfo.CreateSpecificCulture("th-TH")) %>'></asp:TextBox>
+                            </EditItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="ตำแหน่งพนักงานราชการ" ControlStyle-Width="200" >
+                            <ItemTemplate>
+                                <asp:Label ID="lblPDHpositionGetEmp" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PDH_POSITION_GET") %>'></asp:Label>
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <asp:DropDownList ID="ddlPDHpositionGetEmp" runat="server"></asp:DropDownList>
+                            </EditItemTemplate>
+                        </asp:TemplateField>
+                        <asp:CommandField ShowEditButton="True" CancelText="Cancel" DeleteText="Delete" EditText="Edit" UpdateText="Update" HeaderText="แก้ไข"  />
+                        <asp:TemplateField HeaderText="ลบ" >
+                            <ItemTemplate>
+                                <asp:LinkButton ID="DeleteButton1" runat="server" CausesValidation="false" CommandName="Delete" Text="Delete"></asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                </asp:GridView>
+            </div>
+                <!-- END GRID VIEW-->
+            </div>
+            <div class="ps-separator"></div>
+        </div>
     </div>
+
+    <div id="divTab5" runat="server" style="text-align: center;">
+        <div class="ps-div-title-red">ข้อมูลประวัติการศึกษา</div>
+        <div style="text-align: center;">
+            <table class="ps-table-1" style="margin-bottom: 20px; display: inline-block; margin-right: 20px; vertical-align: top;">
+                <tr>
+                    <td class="col1">ระดับการศึกษา</td>
+                    <td class="col2">
+                        <asp:DropDownList ID="ddlDegree10" runat="server" CssClass="ps-dropdown"></asp:DropDownList><span class="textred">*</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col1">สถานศึกษา</td>
+                    <td class="col2">
+                        <asp:TextBox ID="tbUnivName10" runat="server" CssClass="ps-textbox" Width="300px"></asp:TextBox><span class="textred">*</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col1">ตั้งแต่ - ถึง (เดือน ปี)</td>
+                    <td class="col2">
+                        <asp:DropDownList ID="ddlMonth10From" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
+                        <asp:DropDownList ID="ddlYear10From" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
+                        <asp:DropDownList ID="ddlMonth10To" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
+                        <asp:DropDownList ID="ddlYear10To" runat="server" CssClass="ps-dropdown"></asp:DropDownList><span class="textred">*</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col1">วุฒิ</td>
+                    <td class="col2">
+                        <asp:TextBox ID="tbQualification10" runat="server" CssClass="ps-textbox" Width="300px"></asp:TextBox><span class="textred">*</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col1">สาขาวิชาเอก</td>
+                    <td class="col2">
+                        <asp:TextBox ID="tbMajor10" runat="server" CssClass="ps-textbox" Width="300px"></asp:TextBox><span class="textred">*</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col1">ประเทศที่จบการศึกษา</td>
+                    <td class="col2">
+                        <asp:DropDownList ID="ddlCountrySuccess10" runat="server" CssClass="ps-dropdown"></asp:DropDownList><span class="textred">*</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div style="text-align: center; margin-top: 10px;">
+            <asp:LinkButton ID="lbuTab5Save" runat="server" OnClick="lbuTab5Save_Click" CssClass="ps-button"><img src="Image/Small/save.png" class="icon_left"/>บันทึก</asp:LinkButton>
+        </div>
+        <div style="margin-top: 10px; overflow-x: auto; width: 1200px;">
+            <asp:GridView ID="GridViewStudy" runat="server" Style="margin-left: auto; margin-right: auto; text-align: center;"
+                AutoGenerateColumns="false"
+                AllowPaging="true"
+                DataKeyNames="PS_STUDY_ID"
+                OnRowEditing="modEditCommand1"
+                OnRowCancelingEdit="modCancelCommand1"
+                OnRowUpdating="modUpdateCommand1"
+                OnRowDeleting="modDeleteCommand1"
+                OnRowDataBound="GridViewStudy_RowDataBound1"
+                OnPageIndexChanging="myGridViewStudy_PageIndexChanging1" PageSize="15" CssClass="ps-table-1" Width="100%">
+                <Columns>
+                    <asp:TemplateField HeaderText="PS_STUDY_ID" Visible="false">
+                        <ItemTemplate>
+                            <asp:Label ID="lblPersonStudyID" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_STUDY_ID") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="PS_CITIZEN_ID" Visible="false">
+                        <ItemTemplate>
+                            <asp:Label ID="lblPersonStudyCitizenID" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_CITIZEN_ID") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="ระดับการศึกษา">
+                        <ItemTemplate>
+                            <asp:Label ID="lblPersonStudyDegreeID" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_DEGREE_ID") %>'></asp:Label>
+                        </ItemTemplate>
+                        <EditItemTemplate>
+                            <asp:DropDownList ID="ddlPersonStudyDegreeID" runat="server"></asp:DropDownList>
+                        </EditItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="สถานศึกษา">
+                        <ItemTemplate>
+                            <asp:Label ID="lblPersonStudyUnivName" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_UNIV_NAME") %>'></asp:Label>
+                        </ItemTemplate>
+                        <EditItemTemplate>
+                            <asp:TextBox ID="txtPersonStudyUnivName" Width="300px" MaxLength="100" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_UNIV_NAME") %>'></asp:TextBox>
+                        </EditItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="ตั้งแต่(เดือน)">
+                        <ItemTemplate>
+                            <asp:Label ID="lblPersonStudyFromMonth" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_FROM_MONTH") %>'></asp:Label>
+                        </ItemTemplate>
+                        <EditItemTemplate>
+                            <asp:DropDownList ID="ddlPersonStudyFromMonth" runat="server"></asp:DropDownList>
+                        </EditItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="ตั้งแต่(ปี)">
+                        <ItemTemplate>
+                            <asp:Label ID="lblPersonStudyFromYear" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_FROM_YEAR") %>'></asp:Label>
+                        </ItemTemplate>
+                        <EditItemTemplate>
+                            <asp:DropDownList ID="ddlPersonStudyFromYear" runat="server"></asp:DropDownList>
+                        </EditItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="ถึง(เดือน)">
+                        <ItemTemplate>
+                            <asp:Label ID="lblPersonStudyToMonth" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_TO_MONTH") %>'></asp:Label>
+                        </ItemTemplate>
+                        <EditItemTemplate>
+                            <asp:DropDownList ID="ddlPersonStudyToMonth" runat="server"></asp:DropDownList>
+                        </EditItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="ถึง(ปี)">
+                        <ItemTemplate>
+                            <asp:Label ID="lblPersonStudyToYear" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_TO_YEAR") %>'></asp:Label>
+                        </ItemTemplate>
+                        <EditItemTemplate>
+                            <asp:DropDownList ID="ddlPersonStudyToYear" runat="server"></asp:DropDownList>
+                        </EditItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="วุฒิ">
+                        <ItemTemplate>
+                            <asp:Label ID="lblPersonStudyQualification" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_QUALIFICATION") %>'></asp:Label>
+                        </ItemTemplate>
+                        <EditItemTemplate>
+                            <asp:TextBox ID="txtPersonStudyQualification" MaxLength="100" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_QUALIFICATION") %>'></asp:TextBox>
+                        </EditItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="สาขาวิชาเอก">
+                        <ItemTemplate>
+                            <asp:Label ID="lblPersonStudyMajor" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_MAJOR") %>'></asp:Label>
+                        </ItemTemplate>
+                        <EditItemTemplate>
+                            <asp:TextBox ID="txtPersonStudyMajor" MaxLength="100" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_MAJOR") %>'></asp:TextBox>
+                        </EditItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="ประเทศที่จบการศึกษา">
+                        <ItemTemplate>
+                            <asp:Label ID="lblPersonStudyCountryID" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_COUNTRY_ID") %>'></asp:Label>
+                        </ItemTemplate>
+                        <EditItemTemplate>
+                            <asp:DropDownList ID="ddlPersonStudyCountryID" runat="server"></asp:DropDownList>
+                        </EditItemTemplate>
+                    </asp:TemplateField>
+                    <asp:CommandField ShowEditButton="True" CancelText="Cancel" DeleteText="Delete" EditText="Edit" UpdateText="Update" HeaderText="แก้ไข" />
+                    <asp:TemplateField HeaderText="ลบ">
+                        <ItemTemplate>
+                            <asp:LinkButton ID="DeleteButton1" runat="server" CausesValidation="false" CommandName="Delete" Text="Delete"></asp:LinkButton>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                </Columns>
+            </asp:GridView>
+        </div>
+        <div class="ps-separator"></div>
+    </div>
+
+    <div id="divTab6" runat="server" style="text-align: center;">
+        <div class="ps-div-title-red">ข้อมูลใบอนุญาตประกอบวิชาชีพ</div>
+        <div style="text-align: center;">
+            <table class="ps-table-1" style="margin-bottom: 20px; display: inline-block; margin-right: 20px; vertical-align: top;">
+                <tr>
+                    <td class="col1">ชื่อใบอนุญาต</td>
+                    <td class="col2">
+                        <asp:TextBox ID="tbLicenseName11" runat="server" CssClass="ps-textbox" Width="300px"></asp:TextBox><span class="textred">*</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col1">หน่วยงาน</td>
+                    <td class="col2">
+                        <asp:TextBox ID="tbDepartment11" runat="server" CssClass="ps-textbox" Width="300px"></asp:TextBox><span class="textred">*</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col1">เลขที่ใบอนุญาต</td>
+                    <td class="col2">
+                        <asp:TextBox ID="tbLicenseNo11" runat="server" CssClass="ps-textbox" Width="300px"></asp:TextBox><span class="textred">*</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col1">วันที่มีผลบังคับใช้ (วัน เดือน ปี)</td>
+                    <td class="col2">
+                        <asp:TextBox ID="tbUseDate11" runat="server" CssClass="ps-textbox" placeholder="01 ม.ค. 25xx" MaxLength="12"></asp:TextBox><span class="textred">*</span>
+                    </td>
+                </tr>
+            </table>
+            <div style="text-align: center; margin-top: 10px;">
+                <asp:LinkButton ID="lbuTab6Save" runat="server" OnClick="lbuTab6Save_Click" CssClass="ps-button"><img src="Image/Small/save.png" class="icon_left"/>บันทึก</asp:LinkButton>
+            </div>
+            <div style="margin-top: 10px; overflow-x: auto; width: 1200px">
+                <asp:GridView ID="GridViewLicense" runat="server" Style="margin-left: auto; margin-right: auto; text-align: center; "
+                    AutoGenerateColumns="false"
+                    AllowPaging="true"
+                    DataKeyNames="PS_PL_ID"
+                    OnRowEditing="modEditCommand2"
+                    OnRowCancelingEdit="modCancelCommand2"
+                    OnRowUpdating="modUpdateCommand2"
+                    OnRowDeleting="modDeleteCommand2"
+                    OnRowDataBound="GridViewLicense_RowDataBound2"
+                    OnPageIndexChanging="myGridViewLicense_PageIndexChanging2" PageSize="15" CssClass="ps-table-1" Width="100%">
+                    <Columns>
+                        <asp:TemplateField HeaderText="PS_PL_ID" Visible="false">
+                            <ItemTemplate>
+                                <asp:Label ID="lblPersonLicenseID" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_PL_ID") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="PS_CITIZEN_ID" Visible="false">
+                            <ItemTemplate>
+                                <asp:Label ID="lblPersonLicenseCitizenID" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_CITIZEN_ID") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="ชื่อใบอนุญาต" ControlStyle-Width="400" >
+                            <ItemTemplate>
+                                <asp:Label ID="lblPersonLicenseName" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_LICENSE_NAME") %>'></asp:Label>
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <asp:TextBox ID="txtPersonLicenseName" MaxLength="100" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_LICENSE_NAME") %>'></asp:TextBox>
+                            </EditItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="หน่วยงาน" ControlStyle-Width="200" >
+                            <ItemTemplate>
+                                <asp:Label ID="lblPersonLicenseDepartment" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_DEPARTMENT") %>'></asp:Label>
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <asp:TextBox ID="txtPersonLicenseDepartment" MaxLength="100" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_DEPARTMENT") %>'></asp:TextBox>
+                            </EditItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="เลขที่ใบอนุญาต" ControlStyle-Width="200" >
+                            <ItemTemplate>
+                                <asp:Label ID="lblPersonLicenseNo" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_LICENSE_NO") %>'></asp:Label>
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <asp:TextBox ID="txtPersonLicenseNo" MaxLength="100" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_LICENSE_NO") %>'></asp:TextBox>
+                            </EditItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="วันที่มีผลบังคับใช้ (วัน เดือน ปี)" ControlStyle-Width="100" >
+                            <ItemTemplate>
+                                <asp:Label ID="lblPersonLicenseDate" runat="server" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "PS_USE_DATE")).ToString("dd MMM yyyy", System.Globalization.CultureInfo.CreateSpecificCulture("th-TH")) %>'></asp:Label>
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <asp:TextBox ID="txtPersonLicenseDate" MaxLength="12" runat="server" CssClass="date" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "PS_USE_DATE")).ToString("dd MMM yyyy", System.Globalization.CultureInfo.CreateSpecificCulture("th-TH")) %>'></asp:TextBox>
+                            </EditItemTemplate>
+                        </asp:TemplateField>
+                        <asp:CommandField ShowEditButton="True" CancelText="Cancel" DeleteText="Delete" EditText="Edit" UpdateText="Update" HeaderText="แก้ไข"  />
+                        <asp:TemplateField HeaderText="ลบ" >
+                            <ItemTemplate>
+                                <asp:LinkButton ID="DeleteButton1" runat="server" CausesValidation="false" CommandName="Delete" Text="Delete"></asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                </asp:GridView>
+            </div>
+            <div class="ps-separator"></div>
+        </div>
+    </div>    
+
+    <div id="divTab7" runat="server" style="text-align: center;">
+        <div class="ps-div-title-red">ข้อมูลประวัติการฝึกอบรม</div>
+        <div style="text-align: center;">
+            <table class="ps-table-1" style="margin-bottom: 20px; display: inline-block; margin-right: 20px; vertical-align: top;">
+                <tr>
+                    <td class="col1">หลักสูตรฝึกอบรม</td>
+                    <td class="col2">
+                        <asp:TextBox ID="tbCourse" runat="server" CssClass="ps-textbox" Width="300px"></asp:TextBox><span class="textred">*</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col1">ตั้งแต่ - ถึง (เดือน ปี)</td>
+                    <td class="col2">
+                        <asp:DropDownList ID="ddlMonth12From" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
+                        <asp:DropDownList ID="ddlYear12From" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
+                        <asp:DropDownList ID="ddlMonth12To" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
+                        <asp:DropDownList ID="ddlYear12To" runat="server" CssClass="ps-dropdown"></asp:DropDownList><span class="textred">*</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col1">หน่วยงานที่จัดฝึกอบรม</td>
+                    <td class="col2">
+                        <asp:TextBox ID="tbDepartment" runat="server" CssClass="ps-textbox" Width="300px"></asp:TextBox><span class="textred">*</span>
+                    </td>
+                </tr>
+            </table>
+            <div style="text-align: center; margin-top: 10px;">
+                <asp:LinkButton ID="lbuTab7Save" runat="server" OnClick="lbuTab7Save_Click" CssClass="ps-button"><img src="Image/Small/save.png" class="icon_left"/>บันทึก</asp:LinkButton>
+            </div>
+            <div style="margin-top: 10px; overflow-x: auto; width: 1200px">
+                <asp:GridView ID="GridViewTraining" runat="server" Style="margin-left: auto; margin-right: auto; text-align: center; "
+                    AutoGenerateColumns="false"
+                    AllowPaging="true"
+                    DataKeyNames="PS_TRAINING_ID"
+                    OnRowEditing="modEditCommand3"
+                    OnRowCancelingEdit="modCancelCommand3"
+                    OnRowUpdating="modUpdateCommand3"
+                    OnRowDeleting="modDeleteCommand3"
+                    OnRowDataBound="GridViewTraining_RowDataBound3"
+                    OnPageIndexChanging="myGridViewTraining_PageIndexChanging3" PageSize="15" CssClass="ps-table-1" Width="100%">
+                    <Columns>
+                        <asp:TemplateField HeaderText="PS_TRAINING_ID" Visible="false">
+                            <ItemTemplate>
+                                <asp:Label ID="lblPersonTrainingID" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_TRAINING_ID") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="PS_CITIZEN_ID" Visible="false">
+                            <ItemTemplate>
+                                <asp:Label ID="lblPersonTrainingCitizenID" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_CITIZEN_ID") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="หลักสูตรฝึกอบรม" ControlStyle-Width="400" >
+                            <ItemTemplate>
+                                <asp:Label ID="lblPersonTrainingCourse" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_COURSE") %>'></asp:Label>
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <asp:TextBox ID="txtPersonTrainingCourse" MaxLength="100" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_COURSE") %>'></asp:TextBox>
+                            </EditItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="ตั้งแต่(เดือน)" ControlStyle-Width="70" >
+                            <ItemTemplate>
+                                <asp:Label ID="lblPersonTrainingFromMonth" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_FROM_MONTH") %>'></asp:Label>
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <asp:DropDownList ID="ddlPersonTrainingFromMonth" runat="server"></asp:DropDownList>
+                            </EditItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="ตั้งแต่(ปี)" ControlStyle-Width="70" >
+                            <ItemTemplate>
+                                <asp:Label ID="lblPersonTrainingFromYear" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_FROM_YEAR") %>'></asp:Label>
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <asp:DropDownList ID="ddlPersonTrainingFromYear" runat="server"></asp:DropDownList>
+                            </EditItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="ถึง(เดือน)" ControlStyle-Width="70" >
+                            <ItemTemplate>
+                                <asp:Label ID="lblPersonTrainingToMonth" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_TO_MONTH") %>'></asp:Label>
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <asp:DropDownList ID="ddlPersonTrainingToMonth" runat="server"></asp:DropDownList>
+                            </EditItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="ถึง(ปี)" ControlStyle-Width="70" >
+                            <ItemTemplate>
+                                <asp:Label ID="lblPersonTrainingToYear" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_TO_YEAR") %>'></asp:Label>
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <asp:DropDownList ID="ddlPersonTrainingToYear" runat="server"></asp:DropDownList>
+                            </EditItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="หน่วยงานที่จัดฝึกอบรม" ControlStyle-Width="200" >
+                            <ItemTemplate>
+                                <asp:Label ID="lblPersonTrainingDepartment" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_DEPARTMENT") %>'></asp:Label>
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <asp:TextBox ID="txtPersonTrainingDepartment" MaxLength="100" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_DEPARTMENT") %>'></asp:TextBox>
+                            </EditItemTemplate>
+                        </asp:TemplateField>
+                        <asp:CommandField ShowEditButton="True" CancelText="Cancel" DeleteText="Delete" EditText="Edit" UpdateText="Update" HeaderText="แก้ไข"  />
+                        <asp:TemplateField HeaderText="ลบ" >
+                            <ItemTemplate>
+                                <asp:LinkButton ID="DeleteButton1" runat="server" CausesValidation="false" CommandName="Delete" Text="Delete"></asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                </asp:GridView>
+            </div>
+            <div class="ps-separator"></div>
+        </div>
+    </div>  
+
+    <div id="divTab8" runat="server" style="text-align: center;">
+        <div class="ps-div-title-red">ข้อมูลการได้รับโทษทางวินัยและการนิรโทษกรรม</div>
+        <div style="text-align: center;">
+            <table class="ps-table-1" style="margin-bottom: 20px; display: inline-block; margin-right: 20px; vertical-align: top;">
+                <tr>
+                    <td class="col1">พ.ศ.</td>
+                    <td class="col2">
+                        <asp:DropDownList ID="ddlYear13" runat="server" CssClass="ps-dropdown"></asp:DropDownList><span class="textred">*</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col1">รายการ</td>
+                    <td class="col2">
+                        <asp:TextBox ID="tbName13" runat="server" CssClass="ps-textbox" Width="300px"></asp:TextBox><span class="textred">*</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col1">เอกสารอ้างอิง</td>
+                    <td class="col2">
+                        <asp:TextBox ID="tbREF13" runat="server" CssClass="ps-textbox" Width="300px"></asp:TextBox><span class="textred">*</span>
+                    </td>
+                </tr>
+            </table>
+            <div style="text-align: center; margin-top: 10px;">
+                <asp:LinkButton ID="lbuTab8Save" runat="server" OnClick="lbuTab8Save_Click" CssClass="ps-button"><img src="Image/Small/save.png" class="icon_left"/>บันทึก</asp:LinkButton>
+            </div>
+            <div style="margin-top: 10px; overflow-x: auto; width: 1200px">
+                <asp:GridView ID="GridViewDAA" runat="server" Style="margin-left: auto; margin-right: auto; text-align: center; "
+                    AutoGenerateColumns="false"
+                    AllowPaging="true"
+                    DataKeyNames="PS_DAA_ID"
+                    OnRowEditing="modEditCommand4"
+                    OnRowCancelingEdit="modCancelCommand4"
+                    OnRowUpdating="modUpdateCommand4"
+                    OnRowDeleting="modDeleteCommand4"
+                    OnRowDataBound="GridViewDAA_RowDataBound4"
+                    OnPageIndexChanging="myGridViewDAA_PageIndexChanging4" PageSize="15" CssClass="ps-table-1" Width="100%">
+                    <Columns>
+                        <asp:TemplateField HeaderText="PS_DAA_ID" Visible="false">
+                            <ItemTemplate>
+                                <asp:Label ID="lblPersonDAAID" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_DAA_ID") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="PS_CITIZEN_ID" Visible="false">
+                            <ItemTemplate>
+                                <asp:Label ID="lblPersonDAACitizenID" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_CITIZEN_ID") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="พ.ศ." ControlStyle-Width="60" >
+                            <ItemTemplate>
+                                <asp:Label ID="lblPersonDAAYear" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_YEAR") %>'></asp:Label>
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <asp:DropDownList ID="ddlPersonDAAYear" runat="server"></asp:DropDownList>
+                            </EditItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="รายการ" ControlStyle-Width="400" >
+                            <ItemTemplate>
+                                <asp:Label ID="lblPersonDAAName" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_DAA_NAME") %>'></asp:Label>
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <asp:TextBox ID="txtPersonDAAName" MaxLength="100" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_DAA_NAME") %>'></asp:TextBox>
+                            </EditItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="เอกสารอ้างอิง" ControlStyle-Width="200" >
+                            <ItemTemplate>
+                                <asp:Label ID="lblPersonDAARef" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_REF") %>'></asp:Label>
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <asp:TextBox ID="txtPersonDAARef" MaxLength="100" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_REF") %>'></asp:TextBox>
+                            </EditItemTemplate>
+                        </asp:TemplateField>
+                        <asp:CommandField ShowEditButton="True" CancelText="Cancel" DeleteText="Delete" EditText="Edit" UpdateText="Update" HeaderText="แก้ไข"  />
+                        <asp:TemplateField HeaderText="ลบ" >
+                            <ItemTemplate>
+                                <asp:LinkButton ID="DeleteButton1" runat="server" CausesValidation="false" CommandName="Delete" Text="Delete"></asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                </asp:GridView>
+            </div>
+            <div class="ps-separator"></div>
+        </div>
+    </div>   
+
+    <div id="divTab9" runat="server" style="text-align: center;">
+        <div class="ps-div-title-red">ข้อมูลตำแหน่งและเงินเดือน</div>
+        <div style="text-align: center;">
+            <table class="ps-table-1" style="margin-bottom: 20px; display: inline-block; margin-right: 20px; vertical-align: top;">
+                <tr>
+                    <td class="col1">วัน เดือน ปี</td>
+                    <td class="col2">
+                        <asp:TextBox ID="tbDate14" runat="server" CssClass="ps-textbox" placeholder="01 ม.ค. 25xx" MaxLength="12" Width="100px"></asp:TextBox><span class="textred">*</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col1">ตำแหน่ง</td>
+                    <td class="col2">
+                        <asp:TextBox ID="tbPosition14" runat="server" CssClass="ps-textbox" Width="300px"></asp:TextBox><span class="textred">*</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col1">เลขที่ตำแหน่ง</td>
+                    <td class="col2">
+                        <asp:TextBox ID="tbPositionNo14" runat="server" CssClass="ps-textbox"></asp:TextBox><span class="textred">*</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col1">ตำแหน่งประเภท</td>
+                    <td class="col2">
+                        <asp:DropDownList ID="ddlPositionType14" runat="server" CssClass="ps-dropdown" AutoPostBack="True" OnSelectedIndexChanged="ddlPositionType14_SelectedIndexChanged"></asp:DropDownList><span class="textred">*</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col1">ระดับ</td>
+                    <td class="col2">
+                        <asp:DropDownList ID="ddlPositionDegree14" runat="server" CssClass="ps-dropdown" AutoPostBack="True"></asp:DropDownList><span class="textred">*</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col1">เงินเดือน</td>
+                    <td class="col2">
+                        <asp:TextBox ID="tbSalary14" runat="server" CssClass="ps-textbox"></asp:TextBox><span class="textred">*</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col1">เงินประจำตำแหน่ง</td>
+                    <td class="col2">
+                        <asp:TextBox ID="tbSalaryPosition14" runat="server" CssClass="ps-textbox"></asp:TextBox><span class="textred">*</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col1">เอกสารอ้างอิง</td>
+                    <td class="col2">
+                        <asp:TextBox ID="tbRef14" runat="server" CssClass="ps-textbox" Width="300px"></asp:TextBox><span class="textred">*</span>
+                    </td>
+                </tr>
+            </table>
+            <div style="text-align: center; margin-top: 10px;">
+                <asp:LinkButton ID="lbuTab9Save" runat="server" OnClick="lbuTab9Save_Click" CssClass="ps-button"><img src="Image/Small/save.png" class="icon_left"/>บันทึก</asp:LinkButton>
+            </div>
+            <div style="margin-top: 10px; overflow-x: auto; width: 1200px">
+                <asp:GridView ID="GridViewPAS" runat="server" Style="margin-left: auto; margin-right: auto; text-align: center; "
+                    AutoGenerateColumns="false"
+                    AllowPaging="true"
+                    DataKeyNames="PS_PAS_ID"
+                    OnRowEditing="modEditCommand5"
+                    OnRowCancelingEdit="modCancelCommand5"
+                    OnRowUpdating="modUpdateCommand5"
+                    OnRowDeleting="modDeleteCommand5"
+                    OnRowDataBound="GridViewPAS_RowDataBound5"
+                    OnPageIndexChanging="myGridViewPAS_PageIndexChanging5" PageSize="15" CssClass="ps-table-1" Width="100%">
+                    <Columns>
+                        <asp:TemplateField HeaderText="PS_PAS_ID" Visible="false">
+                            <ItemTemplate>
+                                <asp:Label ID="lblPersonPASID" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_PAS_ID") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="PS_CITIZEN_ID" Visible="false">
+                            <ItemTemplate>
+                                <asp:Label ID="lblPersonPASCitizenID" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_CITIZEN_ID") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="วัน เดือน ปี" ControlStyle-Width="80" >
+                            <ItemTemplate>
+                                <asp:Label ID="lblPersonPASDate" runat="server" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "PS_DATE")).ToString("dd MMM yyyy", System.Globalization.CultureInfo.CreateSpecificCulture("th-TH")) %>'></asp:Label>
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <asp:TextBox ID="txtPersonPASDate" MaxLength="12" runat="server" CssClass="date" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "PS_DATE")).ToString("dd MMM yyyy", System.Globalization.CultureInfo.CreateSpecificCulture("th-TH")) %>'></asp:TextBox>
+                            </EditItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="ตำแหน่ง" ControlStyle-Width="150" >
+                            <ItemTemplate>
+                                <asp:Label ID="lblPersonPASPOsitionName" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_POSITION") %>'></asp:Label>
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <asp:TextBox ID="txtPersonPASPOsitionName" MaxLength="100" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_POSITION") %>'></asp:TextBox>
+                            </EditItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="เลขที่ตำแหน่ง" ControlStyle-Width="40" >
+                            <ItemTemplate>
+                                <asp:Label ID="lblPersonPASPositionNO" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_POSITION_NO") %>'></asp:Label>
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <asp:TextBox ID="txtPersonPASPositionNO" MaxLength="100" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_POSITION_NO") %>'></asp:TextBox>
+                            </EditItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="ตำแหน่งประเภท" ControlStyle-Width="100" >
+                            <ItemTemplate>
+                                <asp:Label ID="lblPersonPASPositionType" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_POSITION_TYPE") %>'></asp:Label>
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <asp:DropDownList ID="ddlPersonPASPositionType" runat="server"></asp:DropDownList>
+                            </EditItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="ระดับ" ControlStyle-Width="100" >
+                            <ItemTemplate>
+                                <asp:Label ID="lblPersonPASDegree" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_POSITION_DEGREE") %>'></asp:Label>
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <asp:DropDownList ID="ddlPersonPASDegree" runat="server"></asp:DropDownList>
+                            </EditItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="เงินเดือน" ControlStyle-Width="70" >
+                            <ItemTemplate>
+                                <asp:Label ID="lblPersonPASSalary" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_SALARY") %>'></asp:Label>
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <asp:TextBox ID="txtPersonPASSalary" MaxLength="100" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_SALARY") %>'></asp:TextBox>
+                            </EditItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="เงินประจำตำแหน่ง" ControlStyle-Width="70" >
+                            <ItemTemplate>
+                                <asp:Label ID="lblPersonPASSalaryPosition" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_SALARY_POSITION") %>'></asp:Label>
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <asp:TextBox ID="txtPersonPASSalaryPosition" MaxLength="100" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_SALARY_POSITION") %>'></asp:TextBox>
+                            </EditItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="เอกสารอ้างอิง" ControlStyle-Width="130" >
+                            <ItemTemplate>
+                                <asp:Label ID="lblPersonPASRef" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_REF") %>'></asp:Label>
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <asp:TextBox ID="txtPersonPASRef" MaxLength="100" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.PS_REF") %>'></asp:TextBox>
+                            </EditItemTemplate>
+                        </asp:TemplateField>
+                        <asp:CommandField ShowEditButton="True" CancelText="Cancel" DeleteText="Delete" EditText="Edit" UpdateText="Update" HeaderText="แก้ไข"  />
+                        <asp:TemplateField HeaderText="ลบ" >
+                            <ItemTemplate>
+                                <asp:LinkButton ID="DeleteButton1" runat="server" CausesValidation="false" CommandName="Delete" Text="Delete"></asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                </asp:GridView>
+            </div>
+            <div class="ps-separator"></div>
+        </div>
+    </div>
+    
 </asp:Content>

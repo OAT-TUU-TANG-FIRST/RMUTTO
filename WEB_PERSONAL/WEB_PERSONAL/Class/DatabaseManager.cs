@@ -11,7 +11,8 @@ namespace WEB_PERSONAL.Class {
     public class DatabaseManager {
 
         public static readonly string PROVIDER = "System.Data.OracleClient";
-        public static readonly string DATA_SOURCE = "203.158.140.67";
+        //public static readonly string DATA_SOURCE = "203.158.140.67";
+        public static readonly string DATA_SOURCE = "localhost";
         public static readonly string PORT = "1521";
         public static readonly string SID = "orcl";
         public static readonly string USER_ID = "rmutto";
@@ -95,7 +96,7 @@ namespace WEB_PERSONAL.Class {
             gv.DataBind();
         }
         public static SqlDataSource CreateSQLDataSource(string sql) {
-            return new SqlDataSource("System.Data.OracleClient", CONNECTION_STRING, sql);
+            return new SqlDataSource("Oracle.DataAccess.Client", CONNECTION_STRING, sql);
         }
         public static bool ValidateUser(string personID, string password) {
             OracleConnection.ClearAllPools();
