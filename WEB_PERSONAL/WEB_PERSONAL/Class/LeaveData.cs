@@ -339,8 +339,8 @@ namespace WEB_PERSONAL.Class {
                         com.Parameters.AddWithValue("LAST_FROM_DATE", LastFromDate.Value);
                         com.Parameters.AddWithValue("LAST_TO_DATE", LastToDate.Value);
                     } else {
-                        com.Parameters.AddWithValue("LAST_FROM_DATE", null);
-                        com.Parameters.AddWithValue("LAST_TO_DATE", null);
+                        com.Parameters.AddWithValue("LAST_FROM_DATE", DBNull.Value);
+                        com.Parameters.AddWithValue("LAST_TO_DATE", DBNull.Value);
                     }
                     com.Parameters.AddWithValue("LAST_TOTAL_DAY", LastTotalDay);
                     com.Parameters.AddWithValue("DR_CER_FILE_NAME", DocterCertificationFileName);
@@ -397,8 +397,8 @@ namespace WEB_PERSONAL.Class {
                         com.Parameters.AddWithValue("LAST_FROM_DATE", LastFromDate.Value);
                         com.Parameters.AddWithValue("LAST_TO_DATE", LastToDate.Value);
                     } else {
-                        com.Parameters.AddWithValue("LAST_FROM_DATE", null);
-                        com.Parameters.AddWithValue("LAST_TO_DATE", null);
+                        com.Parameters.AddWithValue("LAST_FROM_DATE", DBNull.Value);
+                        com.Parameters.AddWithValue("LAST_TO_DATE", DBNull.Value);
                     }
                     com.Parameters.AddWithValue("LAST_TOTAL_DAY", LastTotalDay);
                     com.Parameters.AddWithValue("COUNT_PAST", CountPast);
@@ -495,8 +495,8 @@ namespace WEB_PERSONAL.Class {
                         com.Parameters.AddWithValue("LAST_FROM_DATE", LastFromDate.Value);
                         com.Parameters.AddWithValue("LAST_TO_DATE", LastToDate.Value);
                     } else {
-                        com.Parameters.AddWithValue("LAST_FROM_DATE", null);
-                        com.Parameters.AddWithValue("LAST_TO_DATE", null);
+                        com.Parameters.AddWithValue("LAST_FROM_DATE", DBNull.Value);
+                        com.Parameters.AddWithValue("LAST_TO_DATE", DBNull.Value);
                     }
                     com.Parameters.AddWithValue("LAST_TOTAL_DAY", LastTotalDay);
                     com.Parameters.AddWithValue("COUNT_PAST", CountPast);
@@ -593,8 +593,8 @@ namespace WEB_PERSONAL.Class {
                         com.Parameters.AddWithValue("LAST_FROM_DATE", LastFromDate.Value);
                         com.Parameters.AddWithValue("LAST_TO_DATE", LastToDate.Value);
                     } else {
-                        com.Parameters.AddWithValue("LAST_FROM_DATE", null);
-                        com.Parameters.AddWithValue("LAST_TO_DATE", null);
+                        com.Parameters.AddWithValue("LAST_FROM_DATE", DBNull.Value);
+                        com.Parameters.AddWithValue("LAST_TO_DATE", DBNull.Value);
                     }
                     com.Parameters.AddWithValue("LAST_TOTAL_DAY", LastTotalDay);
                     com.Parameters.AddWithValue("COUNT_PAST", CountPast);
@@ -691,8 +691,8 @@ namespace WEB_PERSONAL.Class {
                         com.Parameters.AddWithValue("LAST_FROM_DATE", LastFromDate.Value);
                         com.Parameters.AddWithValue("LAST_TO_DATE", LastToDate.Value);
                     } else {
-                        com.Parameters.AddWithValue("LAST_FROM_DATE", null);
-                        com.Parameters.AddWithValue("LAST_TO_DATE", null);
+                        com.Parameters.AddWithValue("LAST_FROM_DATE", DBNull.Value);
+                        com.Parameters.AddWithValue("LAST_TO_DATE", DBNull.Value);
                     }
                     com.Parameters.AddWithValue("LAST_TOTAL_DAY", LastTotalDay);
                     com.Parameters.AddWithValue("COUNT_PAST", CountPast);

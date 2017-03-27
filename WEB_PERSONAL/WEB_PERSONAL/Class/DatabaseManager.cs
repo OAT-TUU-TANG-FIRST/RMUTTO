@@ -12,7 +12,7 @@ namespace WEB_PERSONAL.Class {
 
         public static readonly string PROVIDER = "System.Data.OracleClient";
         //public static readonly string DATA_SOURCE = "203.158.140.67";
-        public static readonly string DATA_SOURCE = "localhost";
+        public static readonly string DATA_SOURCE = "192.168.1.49";
         public static readonly string PORT = "1521";
         public static readonly string SID = "orcl";
         public static readonly string USER_ID = "rmutto";
@@ -585,7 +585,30 @@ namespace WEB_PERSONAL.Class {
             }
             return fileNameList.ToArray();
         }
-        
+
+        public static bool ValidatePasswordFirst(string personID, string password)
+        {
+            OracleConnection.ClearAllPools();
+            using (OracleConnection con = new OracleConnection(CONNECTION_STRING))
+            {
+                con.Open();
+                using (OracleCommand com = new OracleCommand("SELECT PS_CITIZEN_ID, PS_BIRTHDAY_DATE FROM PS_PERSON", con))
+                {
+                    using (OracleDataReader reader = com.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            if (reader.GetString(0) == personID && reader.GetDateTime(1).ToString("DD MON YYYY") == password)
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
 
     }
 }
