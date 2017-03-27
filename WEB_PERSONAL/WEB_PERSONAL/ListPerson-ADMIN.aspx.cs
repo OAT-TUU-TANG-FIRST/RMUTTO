@@ -1,13 +1,13 @@
-﻿using WEB_PERSONAL.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using WEB_PERSONAL.Class;
 using System.Data.OracleClient;
+using System.Data;
+using System.Text;
+using WEB_PERSONAL.Class;
 
 namespace WEB_PERSONAL
 {
@@ -15,75 +15,31 @@ namespace WEB_PERSONAL
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            txtSearchCitizenID.Attributes.Add("onkeypress", "return allowOnlyNumber(this);");
+            if (!IsPostBack)
+            {
+                BindData();
+            }
         }
 
-        protected void lbuSearch_Click(object sender, EventArgs e)
+        protected void BindData()
         {
-            if (string.IsNullOrEmpty(txtSearchCitizenID.Text))
-            {
-                notification.Attributes["class"] = "alert alert_danger";
-                notification.InnerHtml = "";
-                notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>แจ้งเตือน</strong></div>";
-                notification.InnerHtml += "<div> - กรุณากรอกรหัสบัตรประชาชนในช่องคำค้นหา</div>";
-                return;
-            }
-            else
-            {
-                notification.Attributes["class"] = "none";
-                notification.InnerHtml = "";
-            }
-            if (txtSearchCitizenID.Text.Length < 13)
-            {
-                notification.Attributes["class"] = "alert alert_danger";
-                notification.InnerHtml = "";
-                notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>แจ้งเตือน</strong></div>";
-                notification.InnerHtml += "<div> - กรุณากรอกรหัสบัตรประชาชนในช่องค้นหาให้ครบ 13 หลัก</div>";
-                return;
-            }
-            else
-            {
-                notification.Attributes["class"] = "none";
-                notification.InnerHtml = "";
-            }
-
-            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
-            {
-                con.Open();
-                string result = "";
-                using (OracleCommand com = new OracleCommand("SELECT PS_CITIZEN_ID FROM PS_PERSON WHERE PS_CITIZEN_ID = '" + txtSearchCitizenID.Text + "'", con))
-                {
-                    using (OracleDataReader reader = com.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            result = reader.GetString(0);
-                        }
-                    }
-                }
-
-                if (result == txtSearchCitizenID.Text)
-                {
-                    SqlDataSource1.SelectCommand = "SELECT * FROM PS_PERSON WHERE PS_CITIZEN_ID = :PS_CITIZEN_ID";
-                    SqlDataSource1.SelectParameters.Add(":PS_CITIZEN_ID", txtSearchCitizenID.Text);
-
-                    notification.Attributes["class"] = "none";
-                    notification.InnerHtml = "";
-                }
-                else
-                {
-                    notification.Attributes["class"] = "alert alert_danger";
-                    notification.InnerHtml = "";
-                    notification.InnerHtml += "<div><img src='Image/Small/red_alert.png' /><strong>แจ้งเตือน</strong></div>";
-                    notification.InnerHtml += "<div> - ไม่พบข้อมูลของรหัสบัตรประชาชนดังกล่าว</div>";
-                    return;
-                }
-            }
+            OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING);
+            OracleDataAdapter sda = new OracleDataAdapter("SELECT PS_CITIZEN_ID, PS_FN_TH || ' ' || PS_LN_TH NAME, (SELECT STAFFTYPE_NAME FROM TB_STAFFTYPE WHERE STAFFTYPE_ID = PS_STAFFTYPE_ID) STAFFTYPE_NAME,(SELECT CAMPUS_NAME FROM TB_CAMPUS WHERE CAMPUS_ID = PS_CAMPUS_ID) CAMPUS_NAME, (SELECT FACULTY_NAME FROM TB_FACULTY WHERE FACULTY_ID = PS_FACULTY_ID) FACULTY_NAME, (SELECT DIVISION_NAME FROM TB_DIVISION WHERE DIVISION_ID = PS_DIVISION_ID) DIVISION_NAME, (SELECT WORK_NAME FROM TB_WORK_DIVISION WHERE WORK_ID = PS_WORK_DIVISION_ID) WORK_NAME FROM PS_PERSON", con);
+            DataTable dt = new DataTable();
+            sda.Fill(dt);
+            myRepeater.DataSource = dt;
+            myRepeater.DataBind();
         }
 
-        protected void lbuRefresh_Click(object sender, EventArgs e)
+        protected void myRepeater_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
-            Response.Redirect("ListPerson-ADMIN.aspx");
+            /*if (e.CommandName == "Edit" && e.CommandArgument.ToString() != "")
+            {
+                LinkButton lbu = (LinkButton)e.Item.FindControl("lbuEdit");
+                string value = lbu.CommandArgument;
+                Response.Redirect("#.aspx?id=" + value);
+            }*/
         }
+
     }
 }
