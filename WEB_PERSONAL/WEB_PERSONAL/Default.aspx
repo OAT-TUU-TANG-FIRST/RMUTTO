@@ -15,7 +15,7 @@
             font-size: 64px;
             text-align: center;
             color: #a0a0a0;
-            margin-top: 50px;
+            padding-top: 50px;
         }
         .c2 {
             font-size: 23px;

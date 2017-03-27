@@ -24,14 +24,14 @@ namespace WEB_PERSONAL {
             PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
             Person loginPerson = ps.LoginPerson;
 
-            lbName.Text = loginPerson.FullName;
-            lbStaffType.Text = loginPerson.StaffTypeName;
+            lbName.Text = loginPerson.FirstNameAndLastName;
+            /*lbStaffType.Text = loginPerson.StaffTypeName;
             lbPosition.Text = loginPerson.PositionWorkName;
             lbPositionRank.Text = loginPerson.AdminPositionName;
-            lbDepartment.Text = loginPerson.DivisionName;
+            lbDepartment.Text = loginPerson.DivisionName;*/
 
             string name = loginPerson.FirstNameAndLastName;
-            profile_name.InnerText = name;
+            //profile_name.InnerText = name;
           
            
 
@@ -52,10 +52,10 @@ namespace WEB_PERSONAL {
                             fileName = reader.GetValue(0).ToString();
                             string personImageFileName = DatabaseManager.GetPersonImageFileName(loginPerson.CitizenID);
                             if (personImageFileName != "") {
-                                profile_pic.Src = "Upload/PersonImage/" + personImageFileName;
+                                //profile_pic.Src = "Upload/PersonImage/" + personImageFileName;
                                 profile_pic2.Src = "Upload/PersonImage/" + personImageFileName;
                             } else {
-                                profile_pic.Src = "Image/Small/person2.png";
+                                //profile_pic.Src = "Image/Small/person2.png";
                             }
                         }
                     }

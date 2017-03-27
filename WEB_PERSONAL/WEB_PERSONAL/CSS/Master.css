@@ -32,8 +32,9 @@ input[type=radio] + label {
 }
 .ps-ms-wrapper {
     /*display: table;*/
-    width: 100%;
-    min-width: 1280px;
+    /*width: 100%;*/
+    /*min-width: 1280px;*/
+    margin-left: 200px;
 }
 .ps-ms-main {
     /*display: table-cell;
@@ -47,8 +48,8 @@ input[type=radio] + label {
 }
 .ps-ms-main-ft {
     padding: 0px 5px;
-    width: 1270px;
-    margin: 0 auto;
+    /*width: 1270px;
+    margin: 0 auto;*/
     height: 32px;
     line-height: 32px;
     text-align: center;
@@ -60,8 +61,8 @@ input[type=radio] + label {
 }
 .ps-ms-main-hd {
     padding: 0px 0px;
-    width: 1280px;
-    margin: 0 auto;
+    /*width: 1280px;
+    margin: 0 auto;*/
     height: 32px;
 }
 .ps-ms-main-hd-button {
@@ -112,11 +113,11 @@ input[type=radio] + label {
     vertical-align: top;
 }
 .ps-ms-main-ct {
-    width: 1240px;
+    /*width: 1240px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 20px;*/
     background-color: #ffffff;
-    min-height: calc(100vh - 106px);
+    min-height: calc(100vh - 116px);
 }
 .ps-ms-main-drop {
     display: none;
@@ -220,11 +221,12 @@ input[type=radio] + label {
 
 .ps-ms-profile-div {
     text-align: center;
+    margin-top: 5px;
 }
 .ps-ms-profile-pic {
     width: auto;
     height: 20px;
-    margin-bottom: -5px;
+   
 }
 
 .master_footer {
@@ -1292,4 +1294,168 @@ input[type=radio] + label {
 }
 .ps-link:hover {
     text-decoration: underline;
+}
+
+.ps-ms-left {
+    float: left;
+    width: 200px;
+    position: fixed;
+    background-color: #f8f8f8;
+    min-height: 100%;
+}
+.ps-ms-left-rmutto {
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    height: 32px;
+    /*background-color: rgb(0, 162, 232);*/
+    color: rgb(0, 142, 212);
+    font-size: 20px;
+    padding: 5px 0;
+}
+.ps-ms-left-rmutto:hover {
+    text-decoration: underline;
+}
+.ps-ms-left-item {
+    display: inline-block;
+    text-align: center;
+    width: 200px;
+}
+.ps-ms-left-item2 {
+    display: inline-block;
+    width: 200px;
+}
+.ps-ms-profile-name {
+    display: inline-block;
+    font-size: 16px;
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: rgb(0, 142, 212);
+
+}
+.ps-ms-profile-name:hover {
+    text-decoration: underline;
+}
+.ps-ms-profile-view {
+    text-decoration: none;
+    color: #000000;
+    background-color: #ffffff;
+    padding: 3px 20px;
+    border-radius: 2px;
+}
+.ps-ms-profile-view img {
+    vertical-align: top;
+}
+.ps-ms-left-separator {
+    border-bottom: 1px solid #e0e0e0;
+    margin: 10px 20px;
+}
+.ps-ms-left-header {
+    font-size: 14px;
+}
+.ps-ms-left-link-group {
+    display: block;
+    text-decoration: none;
+    color: #000000;
+    /*background-color: #e0e0e0;*/
+    
+    margin-bottom: 1px;
+    
+    /*width: 180px;*/
+    
+}
+.ps-ms-left-link-group-item {
+    display: none;
+    position: relative;
+    left: 200px;
+    top: -22px;
+    background-color: #f0f0f0;
+    padding: 20px;
+}
+.ps-ms-left-link-group-rr {
+    display: inline-block;
+    
+    width: 180px;
+    padding: 3px 0;
+    padding-left: 20px;
+    margin-bottom: 1px;
+    cursor: pointer;
+
+}
+.ps-ms-left-link-group-rr-selected {
+    background-color: rgb(0, 162, 232);
+    color: #ffffff;
+}
+.ps-ms-left-link-group-rr-img {
+    vertical-align: top;
+    margin-right: 5px;
+}
+/*.ps-ms-left-link-group-rr:hover {
+    background-color: #e0e0e0;
+}*/
+.ps-ms-left-link-group-rr:hover .ps-ms-left-link-group-rr-arrow {
+    display: inline-block;
+}
+.ps-ms-left-link-group-rr-arrow {
+    display: none;
+    float: right;
+    margin-right: 20px;
+}
+
+.ps-ms-left-ext {
+    display: none;
+    position: fixed;
+    left: 200px;
+    width: 250px;
+    height: 100vh;
+    background-color: #f8f8f8;
+    /*border-right: 1px solid #c0c0c0;*/
+    box-shadow: 0px 0px 10px #c0c0c0;
+}
+.ps-ms-left-ext-header {
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 20px;
+    margin-top: 20px;
+    border-bottom: 1px solid #c0c0c0;
+    padding-bottom: 10px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+.ps-ms-left-ext-header img {
+    vertical-align: top;
+    margin-right: 5px;
+    margin-top: 4px;
+}
+.ps-ms-left-ext-link {
+    display: block;
+    text-decoration: none;
+    color: #000000;
+    margin: 2px 0;
+    margin-left: 20px;
+    width: 200px;
+    padding: 2px 5px;
+    border-radius: 2px;
+}
+.ps-ms-left-ext-link img {
+    vertical-align: top;
+    margin-right: 5px;
+}
+.ps-ms-left-ext-link:hover {
+    color: #ffffff;
+    background-color: rgb(0, 142, 212);
+
+}
+.ps-ms-left-ext-close {
+    display: inline-block;
+    background-color: rgb(237, 28, 36);
+    color: #ffffff;
+    padding: 3px 20px;
+    border-radius: 2px;
+    border: none;
+    float: right;
+    cursor: pointer;
+}
+.ps-ms-left-ext-close:hover {
+    background-color: rgb(191, 24, 31);
 }
