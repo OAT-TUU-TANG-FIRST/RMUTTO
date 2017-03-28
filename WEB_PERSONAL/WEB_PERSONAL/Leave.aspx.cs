@@ -46,7 +46,7 @@ namespace WEB_PERSONAL {
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 OracleConnection.ClearAllPools();
                 con.Open();
-                using (OracleCommand com = new OracleCommand("SELECT SICK_MAX - SICK_NOW, BUSINESS_MAX - BUSINESS_NOW, REST_MAX - REST_NOW, ORDAIN_MAX - ORDAIN_NOW, HUJ_MAX - HUJ_NOW FROM LEV_CLAIM WHERE PS_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND YEAR = " + Util.BudgetYear(), con)) {
+                using (OracleCommand com = new OracleCommand("SELECT SICK_MAX - SICK_NOW, BUSINESS_MAX - BUSINESS_NOW, REST_MAX - REST_NOW, ORDAIN_MAX - ORDAIN_NOW, HUJ_MAX - HUJ_NOW FROM LEV_CLAIM WHERE PS_CITIZEN_ID = '" + loginPerson.PS_CITIZEN_ID + "' AND YEAR = " + Util.BudgetYear(), con)) {
                     using (OracleDataReader reader = com.ExecuteReader()) {
                         while(reader.Read()) {
                             lbSickLeftDay.Text = reader.GetInt32(0).ToString();
@@ -57,7 +57,7 @@ namespace WEB_PERSONAL {
                         }
                     }
                 }
-                using (OracleCommand com = new OracleCommand("SELECT TO_DATE FROM LEV_DATA WHERE PS_ID = '" + loginPerson.CitizenID + "' AND LEAVE_TYPE_ID = 1 AND EXTRACT(YEAR FROM FROM_DATE) = " + Util.BudgetYear() + " AND V_ALLOW = 1 ORDER BY LEAVE_ID DESC", con)) {
+                using (OracleCommand com = new OracleCommand("SELECT TO_DATE FROM LEV_DATA WHERE PS_ID = '" + loginPerson.PS_CITIZEN_ID + "' AND LEAVE_TYPE_ID = 1 AND EXTRACT(YEAR FROM FROM_DATE) = " + Util.BudgetYear() + " AND V_ALLOW = 1 ORDER BY LEAVE_ID DESC", con)) {
                     using (OracleDataReader reader = com.ExecuteReader()) {
                         if (reader.Read()) {
                             divSickFrom.Visible = true;
@@ -196,7 +196,7 @@ namespace WEB_PERSONAL {
                     OracleConnection.ClearAllPools();
                     using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                         con.Open();
-                        using (OracleCommand com = new OracleCommand("SELECT SICK_NOW, SICK_MAX, BUSINESS_NOW, BUSINESS_MAX, HUJ_NOW, HUJ_MAX, ORDAIN_NOW, ORDAIN_MAX FROM LEV_CLAIM WHERE YEAR = " + Util.BudgetYear() + " AND PS_CITIZEN_ID = '" + loginPerson.CitizenID + "'", con)) {
+                        using (OracleCommand com = new OracleCommand("SELECT SICK_NOW, SICK_MAX, BUSINESS_NOW, BUSINESS_MAX, HUJ_NOW, HUJ_MAX, ORDAIN_NOW, ORDAIN_MAX FROM LEV_CLAIM WHERE YEAR = " + Util.BudgetYear() + " AND PS_CITIZEN_ID = '" + loginPerson.PS_CITIZEN_ID + "'", con)) {
                             using (OracleDataReader reader = com.ExecuteReader()) {
                                 while (reader.Read()) {
                                     sick_now = reader.GetInt32(0);
@@ -273,7 +273,7 @@ namespace WEB_PERSONAL {
                     OracleConnection.ClearAllPools();
                     using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                         con.Open();
-                        using (OracleCommand com = new OracleCommand("SELECT LEAVE_ID FROM LEV_DATA WHERE " + Util.DatabaseToDateSearch(tbS1FromDate.Text) + " <= TO_DATE AND " + Util.DatabaseToDateSearch(tbS1ToDate.Text) + " >= FROM_DATE AND PS_ID = '" + loginPerson.CitizenID + "' AND BUDGET_YEAR = " + Util.BudgetYear() + " AND LEAVE_STATUS_ID IN(3,4) AND V_ALLOW = 1", con)) {
+                        using (OracleCommand com = new OracleCommand("SELECT LEAVE_ID FROM LEV_DATA WHERE " + Util.DatabaseToDateSearch(tbS1FromDate.Text) + " <= TO_DATE AND " + Util.DatabaseToDateSearch(tbS1ToDate.Text) + " >= FROM_DATE AND PS_ID = '" + loginPerson.PS_CITIZEN_ID + "' AND BUDGET_YEAR = " + Util.BudgetYear() + " AND LEAVE_STATUS_ID IN(3,4) AND V_ALLOW = 1", con)) {
                             using (OracleDataReader reader = com.ExecuteReader()) {
                                 while (reader.Read()) {
                                     LeaveData leaveData = new LeaveData();
@@ -283,7 +283,7 @@ namespace WEB_PERSONAL {
                                 }
                             }
                         }
-                        using (OracleCommand com = new OracleCommand("SELECT TO_DATE FROM LEV_DATA WHERE PS_ID = '" + loginPerson.CitizenID + "' AND LEAVE_TYPE_ID = " + hfLeaveTypeID.Value + " AND EXTRACT(YEAR FROM FROM_DATE) = " + Util.BudgetYear() + " AND LEAVE_STATUS_ID IN(3,4) AND V_ALLOW = 1 ORDER BY LEAVE_ID DESC", con)) {
+                        using (OracleCommand com = new OracleCommand("SELECT TO_DATE FROM LEV_DATA WHERE PS_ID = '" + loginPerson.PS_CITIZEN_ID + "' AND LEAVE_TYPE_ID = " + hfLeaveTypeID.Value + " AND EXTRACT(YEAR FROM FROM_DATE) = " + Util.BudgetYear() + " AND LEAVE_STATUS_ID IN(3,4) AND V_ALLOW = 1 ORDER BY LEAVE_ID DESC", con)) {
                             using (OracleDataReader reader = com.ExecuteReader()) {
                                 if (reader.Read()) {
                                     DateTime dtLastToDate = reader.GetDateTime(0);
@@ -343,8 +343,8 @@ namespace WEB_PERSONAL {
                 DateTime dtFromDate = Util.ToDateTimeOracle(tbS1FromDate.Text);
                 DateTime dtToDate = Util.ToDateTimeOracle(tbS1ToDate.Text);
                 int totalDay = (int)(dtToDate - dtFromDate).TotalDays + 1;
-                int max = DatabaseManager.ExecuteInt("SELECT REST_MAX FROM LEV_CLAIM WHERE PS_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND YEAR = " + Util.BudgetYear());
-                int now = DatabaseManager.ExecuteInt("SELECT REST_NOW FROM LEV_CLAIM WHERE PS_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND YEAR = " + Util.BudgetYear());
+                int max = DatabaseManager.ExecuteInt("SELECT REST_MAX FROM LEV_CLAIM WHERE PS_CITIZEN_ID = '" + loginPerson.PS_CITIZEN_ID + "' AND YEAR = " + Util.BudgetYear());
+                int now = DatabaseManager.ExecuteInt("SELECT REST_NOW FROM LEV_CLAIM WHERE PS_CITIZEN_ID = '" + loginPerson.PS_CITIZEN_ID + "' AND YEAR = " + Util.BudgetYear());
                 if (now + totalDay > max) {
                     ChangeNotification("danger", "ปีนี้คุณไม่สามารถลาพักผ่อนเกิน " + max + " วันได้ ลาไปแล้ว " + now + " วัน ครั้งนี้ " + totalDay + " วัน รวม " + (totalDay + now) + " วัน");
                     return;
@@ -431,12 +431,12 @@ namespace WEB_PERSONAL {
                 DateTime? lastToDate = null;
                 int lastTotalDay = 0;
 
-                int pastTotalDay = DatabaseManager.ExecuteInt("SELECT NVL(SUM(TOTAL_DAY),0) FROM LEV_DATA WHERE PS_ID = '" + loginPerson.CitizenID + "' AND LEAVE_TYPE_ID = " + hfLeaveTypeID.Value + " AND EXTRACT(YEAR FROM FROM_DATE) = " + Util.BudgetYear() + " AND V_ALLOW = 1");
+                int pastTotalDay = DatabaseManager.ExecuteInt("SELECT NVL(SUM(TOTAL_DAY),0) FROM LEV_DATA WHERE PS_ID = '" + loginPerson.PS_CITIZEN_ID + "' AND LEAVE_TYPE_ID = " + hfLeaveTypeID.Value + " AND EXTRACT(YEAR FROM FROM_DATE) = " + Util.BudgetYear() + " AND V_ALLOW = 1");
 
                 OracleConnection.ClearAllPools();
                 using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                     con.Open();
-                    using (OracleCommand com = new OracleCommand("SELECT FROM_DATE, TO_DATE, TOTAL_DAY FROM LEV_DATA WHERE PS_ID = '" + loginPerson.CitizenID + "' AND LEAVE_TYPE_ID = " + hfLeaveTypeID.Value + " AND EXTRACT(YEAR FROM FROM_DATE) = " + Util.BudgetYear() + " AND V_ALLOW = 1 ORDER BY LEAVE_ID DESC", con)) {
+                    using (OracleCommand com = new OracleCommand("SELECT FROM_DATE, TO_DATE, TOTAL_DAY FROM LEV_DATA WHERE PS_ID = '" + loginPerson.PS_CITIZEN_ID + "' AND LEAVE_TYPE_ID = " + hfLeaveTypeID.Value + " AND EXTRACT(YEAR FROM FROM_DATE) = " + Util.BudgetYear() + " AND V_ALLOW = 1 ORDER BY LEAVE_ID DESC", con)) {
                         using (OracleDataReader reader = com.ExecuteReader()) {
                             if (reader.Read()) {
                                 lastFromDate = reader.GetDateTime(0);
@@ -457,7 +457,7 @@ namespace WEB_PERSONAL {
                 OracleConnection.ClearAllPools();
                 using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                     con.Open();
-                    using (OracleCommand com = new OracleCommand("SELECT REST_SAVE, REST_THIS FROM LEV_CLAIM WHERE PS_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND YEAR = " + Util.BudgetYear(), con)) {
+                    using (OracleCommand com = new OracleCommand("SELECT REST_SAVE, REST_THIS FROM LEV_CLAIM WHERE PS_CITIZEN_ID = '" + loginPerson.PS_CITIZEN_ID + "' AND YEAR = " + Util.BudgetYear(), con)) {
                         using (OracleDataReader reader = com.ExecuteReader()) {
                             if (reader.Read()) {
                                 restSave = reader.GetInt32(0);
@@ -471,11 +471,11 @@ namespace WEB_PERSONAL {
 
 
                 lbS2PSName.Text = loginPerson.FullName;
-                lbS2PSPos.Text = loginPerson.PositionWorkName;
-                lbS2PSAPos.Text = loginPerson.AdminPositionName;
-                lbS2PSDept.Text = loginPerson.DivisionName;
-                lbS2PSBirthDate.Text = loginPerson.BirthDate.Value.ToLongDateString();
-                lbS2PSWorkInDate.Text = loginPerson.InWorkDate.Value.ToLongDateString();
+                lbS2PSPos.Text = loginPerson.PS_WORK_POS_NAME;
+                lbS2PSAPos.Text = loginPerson.PS_ADMIN_POS_NAME;
+                lbS2PSDept.Text = loginPerson.PS_DIVISION_NAME;
+                lbS2PSBirthDate.Text = loginPerson.PS_BIRTHDAY_DATE.Value.ToLongDateString();
+                lbS2PSWorkInDate.Text = loginPerson.PS_INWORK_DATE.Value.ToLongDateString();
                 lbS2RestSave.Text = restSave + " วัน";
                 lbS2RestLeft.Text = restLeft + " วัน";
                 lbS2RestTotal.Text = restTotal + " วัน";
@@ -585,7 +585,7 @@ namespace WEB_PERSONAL {
                 using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                     con.Open();
 
-                    List<Person> tempBossID = DatabaseManager.รหัสหัวหน้า(loginPerson.CitizenID);
+                    List<Person> tempBossID = DatabaseManager.รหัสหัวหน้า(loginPerson.PS_CITIZEN_ID);
                     for (int i = 0; i < tempBossID.Count; i++) {
                         int dayReq = 1;
                         bool ableAllow = false;
@@ -666,7 +666,7 @@ namespace WEB_PERSONAL {
                             image = new System.Web.UI.WebControls.Image();
                             image.CssClass = "ps-ms-main-drop-profile-pic";
 
-                            string imagePath = DatabaseManager.GetPersonImageFileName(psBossID[j].CitizenID);
+                            string imagePath = DatabaseManager.GetPersonImageFileName(psBossID[j].PS_CITIZEN_ID);
                             if (imagePath != "") {
                                 image.Attributes["src"] = "Upload/PersonImage/" + imagePath;
                                 cell3.Controls.Add(image);
@@ -692,7 +692,7 @@ namespace WEB_PERSONAL {
                             tr.Cells.Add(cell3);
 
                             cell3 = new TableCell();
-                            cell3.Text = psBossID[j].PositionWorkName;
+                            cell3.Text = psBossID[j].PS_WORK_POS_NAME;
                             tr.Cells.Add(cell3);
 
                             tr = new TableRow();
@@ -703,7 +703,7 @@ namespace WEB_PERSONAL {
                             tr.Cells.Add(cell3);
 
                             cell3 = new TableCell();
-                            cell3.Text = psBossID[j].AdminPositionName + "<br />" + psBossID[j].AdminPositionNameExtra();
+                            cell3.Text = psBossID[j].PS_ADMIN_POS_NAME + "<br />" + psBossID[j].AdminPositionNameExtra();
                             tr.Cells.Add(cell3);
 
                         }
@@ -1080,7 +1080,7 @@ namespace WEB_PERSONAL {
                 LeaveData leaveData = new LeaveData();
                 leaveData.LeaveTypeID = int.Parse(hfLeaveTypeID.Value);
                 leaveData.LeaveStatusID = 1;
-                leaveData.PS_ID = loginPerson.CitizenID;
+                leaveData.PS_ID = loginPerson.PS_CITIZEN_ID;
                 leaveData.RequestDate = DateTime.Now;
                 leaveData.FromDate = dtFromDate;
                 leaveData.ToDate = dtToDate;
@@ -1114,7 +1114,7 @@ namespace WEB_PERSONAL {
 
                 for (int i = 0; i < psBossID.Count; i++) {
                     LeaveBossData leaveBossData = new LeaveBossData();
-                    leaveBossData.CitizenID = psBossID[i].CitizenID;
+                    leaveBossData.CitizenID = psBossID[i].PS_CITIZEN_ID;
                     leaveData.AddBoss(leaveBossData);
                 }
 
@@ -1304,7 +1304,7 @@ namespace WEB_PERSONAL {
             OracleConnection.ClearAllPools();
             using(OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
-                using(OracleCommand com = new OracleCommand("SELECT SICK_NOW - SICK_REQ FROM LEV_CLAIM WHERE PS_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND YEAR = " + Util.BudgetYear(), con)) {
+                using(OracleCommand com = new OracleCommand("SELECT SICK_NOW - SICK_REQ FROM LEV_CLAIM WHERE PS_CITIZEN_ID = '" + loginPerson.PS_CITIZEN_ID + "' AND YEAR = " + Util.BudgetYear(), con)) {
                     using(OracleDataReader reader = com.ExecuteReader()) {
                         while(reader.Read()) {
                             if(reader.GetInt32(0) != 0) {
@@ -1331,7 +1331,7 @@ namespace WEB_PERSONAL {
             OracleConnection.ClearAllPools();
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
-                using (OracleCommand com = new OracleCommand("SELECT BUSINESS_NOW - BUSINESS_REQ FROM LEV_CLAIM WHERE PS_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND YEAR = " + Util.BudgetYear(), con)) {
+                using (OracleCommand com = new OracleCommand("SELECT BUSINESS_NOW - BUSINESS_REQ FROM LEV_CLAIM WHERE PS_CITIZEN_ID = '" + loginPerson.PS_CITIZEN_ID + "' AND YEAR = " + Util.BudgetYear(), con)) {
                     using (OracleDataReader reader = com.ExecuteReader()) {
                         while (reader.Read()) {
                             if (reader.GetInt32(0) != 0) {
@@ -1357,7 +1357,7 @@ namespace WEB_PERSONAL {
             OracleConnection.ClearAllPools();
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
-                using (OracleCommand com = new OracleCommand("SELECT REST_NOW - REST_REQ FROM LEV_CLAIM WHERE PS_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND YEAR = " + Util.BudgetYear(), con)) {
+                using (OracleCommand com = new OracleCommand("SELECT REST_NOW - REST_REQ FROM LEV_CLAIM WHERE PS_CITIZEN_ID = '" + loginPerson.PS_CITIZEN_ID + "' AND YEAR = " + Util.BudgetYear(), con)) {
                     using (OracleDataReader reader = com.ExecuteReader()) {
                         while (reader.Read()) {
                             if (reader.GetInt32(0) != 0) {
@@ -1382,7 +1382,7 @@ namespace WEB_PERSONAL {
             OracleConnection.ClearAllPools();
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
-                using (OracleCommand com = new OracleCommand("SELECT GB_NOW - GB_REQ FROM LEV_CLAIM WHERE PS_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND YEAR = " + Util.BudgetYear(), con)) {
+                using (OracleCommand com = new OracleCommand("SELECT GB_NOW - GB_REQ FROM LEV_CLAIM WHERE PS_CITIZEN_ID = '" + loginPerson.PS_CITIZEN_ID + "' AND YEAR = " + Util.BudgetYear(), con)) {
                     using (OracleDataReader reader = com.ExecuteReader()) {
                         while (reader.Read()) {
                             if (reader.GetInt32(0) != 0) {
@@ -1408,7 +1408,7 @@ namespace WEB_PERSONAL {
             OracleConnection.ClearAllPools();
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
-                using (OracleCommand com = new OracleCommand("SELECT HGB_NOW - HGB_REQ FROM LEV_CLAIM WHERE PS_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND YEAR = " + Util.BudgetYear(), con)) {
+                using (OracleCommand com = new OracleCommand("SELECT HGB_NOW - HGB_REQ FROM LEV_CLAIM WHERE PS_CITIZEN_ID = '" + loginPerson.PS_CITIZEN_ID + "' AND YEAR = " + Util.BudgetYear(), con)) {
                     using (OracleDataReader reader = com.ExecuteReader()) {
                         while (reader.Read()) {
                             if (reader.GetInt32(0) != 0) {
@@ -1436,7 +1436,7 @@ namespace WEB_PERSONAL {
             OracleConnection.ClearAllPools();
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
-                using (OracleCommand com = new OracleCommand("SELECT ORDAIN_NOW - ORDAIN_REQ FROM LEV_CLAIM WHERE PS_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND YEAR = " + Util.BudgetYear(), con)) {
+                using (OracleCommand com = new OracleCommand("SELECT ORDAIN_NOW - ORDAIN_REQ FROM LEV_CLAIM WHERE PS_CITIZEN_ID = '" + loginPerson.PS_CITIZEN_ID + "' AND YEAR = " + Util.BudgetYear(), con)) {
                     using (OracleDataReader reader = com.ExecuteReader()) {
                         while (reader.Read()) {
                             if (reader.GetInt32(0) != 0) {
@@ -1464,7 +1464,7 @@ namespace WEB_PERSONAL {
             OracleConnection.ClearAllPools();
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
-                using (OracleCommand com = new OracleCommand("SELECT HUJ_NOW - HUJ_REQ FROM LEV_CLAIM WHERE PS_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND YEAR = " + Util.BudgetYear(), con)) {
+                using (OracleCommand com = new OracleCommand("SELECT HUJ_NOW - HUJ_REQ FROM LEV_CLAIM WHERE PS_CITIZEN_ID = '" + loginPerson.PS_CITIZEN_ID + "' AND YEAR = " + Util.BudgetYear(), con)) {
                     using (OracleDataReader reader = com.ExecuteReader()) {
                         while (reader.Read()) {
                             if (reader.GetInt32(0) != 0) {

@@ -33,7 +33,7 @@ namespace WEB_PERSONAL {
 
             using(OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
-                using(OracleCommand com = new OracleCommand("SELECT ID, URL FROM PS_PERSON_IMAGE WHERE CITIZEN_ID = '" + pp.CitizenID + "'", con)) {
+                using(OracleCommand com = new OracleCommand("SELECT ID, URL FROM PS_PERSON_IMAGE WHERE CITIZEN_ID = '" + pp.PS_CITIZEN_ID + "'", con)) {
                     using(OracleDataReader reader = com.ExecuteReader()) {
                         while(reader.Read()) {
                             ids.Add(reader.GetInt32(0));
@@ -68,8 +68,8 @@ namespace WEB_PERSONAL {
                 lbSelectImagePresent.CssClass = "ps-button";
                 lbSelectImagePresent.Text = "<img src='Image/Small/pointer.png' class='icon_left' />เลือก";
                 lbSelectImagePresent.Click += (e1, e2) => {
-                    DatabaseManager.ExecuteNonQuery("UPDATE PS_PERSON_IMAGE SET PRESENT = 0 WHERE CITIZEN_ID = '" + pp.CitizenID + "'");
-                    DatabaseManager.ExecuteNonQuery("UPDATE PS_PERSON_IMAGE SET PRESENT = 1 WHERE CITIZEN_ID = '" + pp.CitizenID + "' AND ID = " + ID);
+                    DatabaseManager.ExecuteNonQuery("UPDATE PS_PERSON_IMAGE SET PRESENT = 0 WHERE CITIZEN_ID = '" + pp.PS_CITIZEN_ID + "'");
+                    DatabaseManager.ExecuteNonQuery("UPDATE PS_PERSON_IMAGE SET PRESENT = 1 WHERE CITIZEN_ID = '" + pp.PS_CITIZEN_ID + "' AND ID = " + ID);
                     Response.Redirect("Profile.aspx");
                 };
                 if(id1.Visible)
@@ -91,45 +91,45 @@ namespace WEB_PERSONAL {
             }
 
 
-            lbCitizenID.Text = pp.CitizenID;
-            lbFirstName.Text = pp.FirstName;
-            lbLastName.Text = pp.LastName;
-            lbGender.Text = pp.GenderName;
-            lbBirthday.Text = pp.BirthDate.Value.ToLongDateString();
-            lbInWorkDay.Text = pp.InWorkDate.Value.ToLongDateString();
-            lbPosition.Text = pp.PositionWorkName;
-            lbAdminPosition.Text = pp.AdminPositionName;
-            lbWorkDivision.Text = Util.IsBlank(pp.WorkDivisionName) ? "-" : pp.WorkDivisionName;
-            lbDept.Text = pp.DivisionName;
-            lbFaculty.Text = pp.FacultyName;
-            lbCampus.Text = pp.CampusName;
-            lbMinistry.Text = pp.MinistryName;
-            lbGrom.Text = pp.Grom;
-            lbRace.Text = pp.RaceName;
-            lbNation.Text = pp.NationName;
-            lbBlood.Text = pp.BloodName;
-            lbEmail.Text = pp.Email;
-            lbPhone.Text = pp.Telephone;
-            lbWorkPhone.Text = pp.WorkTelephone;
-            lbReligion.Text = pp.ReligionName;
-            lbStatusPerson.Text = pp.StatusPersonName;
-            lbStatusWork.Text = pp.StatusName;
-            lbFather.Text = pp.FatherFirstNameAndLastName;
-            lbMother.Text = pp.MotherFirstNameAndLastName;
-            lbCouple.Text = pp.CoupleFirstNameAndLastName;
+            lbCitizenID.Text = pp.PS_CITIZEN_ID;
+            lbFirstName.Text = pp.PS_FN_TH;
+            lbLastName.Text = pp.PS_LN_TH;
+            lbGender.Text = pp.PS_GENDER_NAME;
+            lbBirthday.Text = pp.PS_BIRTHDAY_DATE.Value.ToLongDateString();
+            lbInWorkDay.Text = pp.PS_INWORK_DATE.Value.ToLongDateString();
+            lbPosition.Text = pp.PS_WORK_POS_NAME;
+            lbAdminPosition.Text = pp.PS_ADMIN_POS_NAME;
+            lbWorkDivision.Text = Util.IsBlank(pp.PS_WORK_DIVISION_NAME) ? "-" : pp.PS_WORK_DIVISION_NAME;
+            lbDept.Text = pp.PS_DIVISION_NAME;
+            lbFaculty.Text = pp.PS_FACULTY_NAME;
+            lbCampus.Text = pp.PS_CAMPUS_NAME;
+            //lbMinistry.Text = pp.MinistryName;
+            //lbGrom.Text = pp.Grom;
+            //lbRace.Text = pp.RaceName;
+            lbNation.Text = pp.PS_NATION_NAME;
+            //lbBlood.Text = pp.BloodName;
+            lbEmail.Text = pp.PS_EMAIL;
+            lbPhone.Text = pp.PS_TELEPHONE;
+            //lbWorkPhone.Text = pp.tele;
+            lbReligion.Text = pp.PS_RELIGION_NAME;
+            //lbStatusPerson.Text = pp.StatusPersonName;
+            //lbStatusWork.Text = pp.StatusName;
+            //lbFather.Text = pp.FatherFirstNameAndLastName;
+            //lbMother.Text = pp.MotherFirstNameAndLastName;
+            //lbCouple.Text = pp.CoupleFirstNameAndLastName;
 
-            lbHomeAdd.Text = pp.HomeAdd;
-            lbSoi.Text = pp.Soi;
-            lbMoo.Text = pp.Moo;
-            lbStreet.Text = pp.Street;
-            lbProvince.Text = pp.ProvinceName;
-            lbAmphur.Text = pp.AmphurName;
-            lbDistrict.Text = pp.DistrictName;
-            lbZipcode.Text = pp.ZipCode;
-            lbCountry.Text = pp.PlaceCountryName;
-            lbState.Text = pp.PlaceState;
+            lbHomeAdd.Text = pp.PS_HOMEADD;
+            //lbSoi.Text = pp.Soi;
+            lbMoo.Text = pp.PS_MOO;
+            lbStreet.Text = pp.PS_STREET;
+            lbProvince.Text = pp.PS_PROVINCE_NAME;
+            lbAmphur.Text = pp.PS_AMPHUR_NAME;
+            lbDistrict.Text = pp.PS_DISTRICT_NAME;
+            lbZipcode.Text = pp.PS_ZIPCODE;
+            //lbCountry.Text = pp.PlaceCountryName;
+            //lbState.Text = pp.PlaceState;
 
-            lbHomeAddNow.Text = pp.HomeAddNow;
+            /*lbHomeAddNow.Text = pp.HomeAddNow;
             lbSoiNow.Text = pp.SoiNow;
             lbMooNow.Text = pp.MooNow;
             lbStreetNow.Text = pp.StreetNow;
@@ -138,7 +138,7 @@ namespace WEB_PERSONAL {
             lbDistrictNow.Text = pp.DistrictNameNow;
             lbZipcodeNow.Text = pp.ZipCodeNow;
             lbCountryNow.Text = pp.PlaceCountryNowName;
-            lbStateNow.Text = pp.PlaceStateNow;
+            lbStateNow.Text = pp.PlaceStateNow;*/
 
         }
 
@@ -153,7 +153,7 @@ namespace WEB_PERSONAL {
                 using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                     con.Open();
                     using(OracleCommand com = new OracleCommand("INSERT INTO PS_PERSON_IMAGE (ID, CITIZEN_ID, URL, PRESENT) VALUES(SEQ_PERSON_IMAGE_ID.NEXTVAL, :CITIZEN_ID, :URL, :PRESENT)", con)) {
-                        com.Parameters.AddWithValue("CITIZEN_ID", pp.CitizenID);
+                        com.Parameters.AddWithValue("CITIZEN_ID", pp.PS_CITIZEN_ID);
                         com.Parameters.AddWithValue("URL", fname);
                         int v1 = 0;
                         com.Parameters.AddWithValue("PRESENT", v1);

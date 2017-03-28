@@ -26,12 +26,6 @@ namespace WEB_PERSONAL {
         private string cccWorkDivision = "";
 
         protected void Page_Load(object sender, EventArgs e) {
-
-            Person ps = PersonnelSystem.GetPersonnelSystem(this).LoginPerson;
-            if (ps.Permission != 3)
-            {
-                Response.Redirect("NoPermission.aspx");
-            }
             if (!IsPostBack)
             {
                 DatabaseManager.BindDropDown(ddlStaffType, "SELECT * FROM TB_STAFFTYPE", "STAFFTYPE_NAME", "STAFFTYPE_ID", "--กรุณาประเภทบุคลากร--");

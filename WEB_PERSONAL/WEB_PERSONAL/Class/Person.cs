@@ -9,176 +9,112 @@ namespace WEB_PERSONAL.Class {
 
     public class Person {
 
-        public string ID;
-        public string CitizenID;
-        public string TitleID;
-        public string TitleName;
-        public string FirstName;
-        public string LastName;
-        public DateTime? BirthDate;
-        public string BirthDateLong;
-        public DateTime? RetireDate;
-        public string RetireDateLong;
-        public DateTime? InWorkDate;
-        public string StaffTypeID;
-        public string StaffTypeName;
-        public string FatherFirstName;
-        public string FatherLastName;
-        public string MotherFirstName;
-        public string MotherLastName;
-        public string MotherOldLastName;
-        public string CoupleFirstName;
-        public string CoupleLastName;
-        public string CoupleOldLastName;
-        public string MinistryID;
-        public string MinistryName;
-        public string DivisionID;
-        public string DivisionName;
-        public string Password;
-        public string SystemStatusID;
-        public string SystemStatusName;
-        public string GenderID;
-        public string GenderName;
-        public string RaceID;
-        public string RaceName;
-        public string NationID;
-        public string NationName;
-
-        public string HomeAdd;
-        public string Moo;
-        public string Street;
-        public string DistrictID;
-        public string DistrictName;
-        public string AmphurID;
-        public string AmphurName;
-        public string ProvinceID;
-        public string ProvinceName;
-        public string ZipCode;
-
-        public string HomeAddNow;
-        public string MooNow;
-        public string StreetNow;
-        public string DistrictIDNow;
-        public string DistrictNameNow;
-        public string AmphurIDNow;
-        public string AmphurNameNow;
-        public string ProvinceIDNow;
-        public string ProvinceNameNow;
-        public string ZipCodeNow;
-
-        public string Telephone;
-        public string TimeContactID;
-        public string TimeContactName;
-        public string BudgetID;
-        public string BudgetName;
-        public string SubStaffTypeID;
-        public string SubStaffTypeName;
-        public string AdminPositionID;
-        public string AdminPositionName;
         public string AdminPositionPower;
-        public string PositionWorkID;
-        public string PositionWorkName;
-        public string SpecialName;
-        public string TeachISCEDID;
-        public string TeachISCEDName;
-        public string GradISCEDID;
-        public string GradISCEDName;
-        public string GradProgID;
-        public string GradProgName;
-        public string GradUniv;
-        public string GradCountryID;
-        public string GradCountryName;
-        public string BranchID;
-        public string BranchName;
-        public string RankID;
-        public string RankName;
-        public string FacultyID;
-        public string FacultyName;
-        public string StartPositionWorkID;
-        public string StartPositionWorkName;
-        public string CampusID;
-        public string CampusName;
-        public string StatusID;
-        public string StatusName;
-        public string ReligionID;
-        public string ReligionName;
-
-        public string GotID;
-        public string GetID;
-
-        public string PositionID;
-        public string PositionName;
-
-        public int WorkYear;
-        public int Salary;
-        
-        public int NotificationCount;
-
-        public string Grom;
-        public string BloodID;
-        public string BloodName;
-        public string Email;
-        public string WorkTelephone;
-        public string Soi;
-        public string SoiNow;
-        public string PlaceCountryID;
-        public string PlaceCountryName;
-        public string PlaceCountryNowID;
-        public string PlaceCountryNowName;
-        public string PlaceState;
-        public string PlaceStateNow;
-        public string StatusPersonID;
-        public string StatusPersonName;
-
-        public string WorkDivisionID;
-        public string WorkDivisionName;
-
-        public string StartAdminPositionID;
-        public string StartAdminPositionName;
-
-        public string PositionSalary;
-
-        public DateTime? DateQuit;
-        public int Permission;
+        public string PS_CITIZEN_ID;
+        public string PS_ID;
+        public string PS_TITLE_ID;
+        public string PS_TITLE_NAME;
+        public string PS_FN_TH;
+        public string PS_LN_TH;
+        public string PS_GENDER_ID;
+        public string PS_GENDER_NAME;
+        public DateTime? PS_BIRTHDAY_DATE;
+        public string PS_EMAIL;
+        public string PS_CAMPUS_ID;
+        public string PS_CAMPUS_NAME;
+        public string PS_FACULTY_ID;
+        public string PS_FACULTY_NAME;
+        public string PS_DIVISION_ID;
+        public string PS_DIVISION_NAME;
+        public string PS_WORK_DIVISION_ID;
+        public string PS_WORK_DIVISION_NAME;
+        public string PS_ADMIN_POS_ID;
+        public string PS_ADMIN_POS_NAME;
+        public string PS_WORK_POS_ID;
+        public string PS_WORK_POS_NAME;
+        public DateTime? PS_INWORK_DATE;
+        public string PS_PASSWORD;
+        public string PS_POSITION_ID;
+        public string PS_POSITION_NAME;
+        public string PS_STAFFTYPE_ID;
+        public string PS_STAFFTYPE_NAME;
+        public string ST_LOGIN_ID;
+        public string ST_LOGIN_NAME;
+        public string PS_YEAR;
+        public string PS_HOMEADD;
+        public string PS_MOO;
+        public string PS_STREET;
+        public string PS_DISTRICT_ID;
+        public string PS_DISTRICT_NAME;
+        public string PS_AMPHUR_ID;
+        public string PS_AMPHUR_NAME;
+        public string PS_PROVINCE_ID;
+        public string PS_PROVINCE_NAME;
+        public string PS_TELEPHONE;
+        public string PS_ZIPCODE;
+        public string PS_NATION_ID;
+        public string PS_NATION_NAME;
+        public string PS_TIME_CONTACT_ID;
+        public string PS_TIME_CONTACT_NAME;
+        public string PS_BUDGET_ID;
+        public string PS_BUDGET_NAME;
+        public string PS_SUBSTAFFTYPE_ID;
+        public string PS_SUBSTAFFTYPE_NAME;
+        public string PS_POSITION_WORK;
+        public DateTime? PS_DATE_START_THIS_U;
+        public string PS_SPECIAL_NAME;
+        public string PS_TEACH_ISCED_ID;
+        public string PS_TEACH_ISCED_NAME;
+        public string PS_GRAD_LEV_ID;
+        public string PS_GRAD_LEV_NAME;
+        public string PS_GRAD_CURR;
+        public string PS_GRAD_ISCED_ID;
+        public string PS_GRAD_ISCED_NAME;
+        public string PS_GRAD_PROG_ID;
+        public string PS_GRAD_PROG_NAME;
+        public string PS_GRAD_UNIV;
+        public string PS_GRAD_COUNTRY_ID;
+        public string PS_GRAD_COUNTRY_NAME;
+        public string PS_DEFORM_ID;
+        public string PS_DEFORM_NAME;
+        public string PS_SIT_NO;
+        public string PS_RELIGION_ID;
+        public string PS_RELIGION_NAME;
+        public string PS_MOVEMENT_TYPE_ID;
+        public string PS_MOVEMENT_TYPE_NAME;
+        public DateTime? PS_MOVEMENT_DATE;
+        public string PERSON_ROLE_ID;
+        public string PERSON_ROLE_NAME;
 
         public string FullName {
-            get { return TitleName + FirstName + " " + LastName; }
+            get { return PS_TITLE_NAME + PS_FN_TH + " " + PS_LN_TH; }
         }
         public string FirstNameAndLastName {
-            get { return FirstName + " " + LastName; }
-        }
-        public string FatherFirstNameAndLastName {
-            get { return FatherFirstName + " " + FatherLastName; }
-        }
-        public string MotherFirstNameAndLastName {
-            get { return MotherFirstName + " " + MotherLastName; }
-        }
-        public string CoupleFirstNameAndLastName {
-            get { return CoupleFirstName + " " + CoupleLastName; }
+            get { return PS_FN_TH + " " + PS_LN_TH; }
         }
 
         public bool IsTeacher() {
-            return PositionWorkID == "10108" || PositionWorkID == "10077" ? true : false;
+            return PS_WORK_POS_ID == "10108" || PS_WORK_POS_ID == "10077" ? true : false;
         }
         public string AdminPositionNameExtra() {
-            if(AdminPositionID == "1") {
+            if(PS_ADMIN_POS_ID == "1") {
                 return "มหาวิทยาลัยเทคโนโลยีราชมงคลตะวันออก";
-            } else if (AdminPositionID == "2") {
-                return CampusName;
-            } else if (AdminPositionID == "4") {
-                return FacultyName;
-            } else if (AdminPositionID == "5") {
-                return WorkDivisionName;
-            } else if (AdminPositionID == "10") {
-                return DivisionName;
+            } else if (PS_ADMIN_POS_ID == "2") {
+                return PS_CAMPUS_NAME;
+            } else if (PS_ADMIN_POS_ID == "4") {
+                return PS_FACULTY_NAME;
+            } else if (PS_ADMIN_POS_ID == "5") {
+                return PS_WORK_DIVISION_NAME;
+            } else if (PS_ADMIN_POS_ID == "10") {
+                return PS_DIVISION_NAME;
             }
-            return AdminPositionName;
+            return PS_ADMIN_POS_NAME;
         }
         public bool IsMale() {
-            return GenderID == "1";
+            return PS_GENDER_ID == "1";
         }
         public bool IsFemale() {
-            return GenderID == "2";
+            return PS_GENDER_ID == "2";
         }
     }
 

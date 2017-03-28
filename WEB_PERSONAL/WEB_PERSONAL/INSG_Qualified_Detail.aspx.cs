@@ -56,7 +56,7 @@ namespace WEB_PERSONAL
             string psID = Request.QueryString["psID"];
             if (psID == null)
             {
-                psID = loginPerson.CitizenID;
+                psID = loginPerson.PS_CITIZEN_ID;
             }
 
             OracleConnection.ClearAllPools();
@@ -162,7 +162,7 @@ namespace WEB_PERSONAL
 
                 if (Request.QueryString["psID"] == null)
                 {
-                    using (OracleCommand com = new OracleCommand("UPDATE TB_INSIG_REQUEST SET IR_STATUS = 4 WHERE IR_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND IR_STATUS = 3", con))
+                    using (OracleCommand com = new OracleCommand("UPDATE TB_INSIG_REQUEST SET IR_STATUS = 4 WHERE IR_CITIZEN_ID = '" + loginPerson.PS_CITIZEN_ID + "' AND IR_STATUS = 3", con))
                     {
                         com.ExecuteNonQuery();
                     }

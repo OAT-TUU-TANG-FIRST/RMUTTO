@@ -11,11 +11,6 @@ using System.Data;
 namespace WEB_PERSONAL {
     public partial class Boss : System.Web.UI.Page {
         protected void Page_Load(object sender, EventArgs e) {
-            Person ps = PersonnelSystem.GetPersonnelSystem(this).LoginPerson;
-            if (ps.Permission != 2)
-            {
-                Response.Redirect("NoPermission.aspx");
-            }
             if (!IsPostBack) {
                 SQLCampus();
                 using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {

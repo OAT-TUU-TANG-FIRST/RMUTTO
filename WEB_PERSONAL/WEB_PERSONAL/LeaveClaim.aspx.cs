@@ -13,7 +13,7 @@ namespace WEB_PERSONAL {
             if(!IsPostBack) {
                 PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
                 Person loginPerson = ps.LoginPerson;
-                GridView1.DataSource = DatabaseManager.CreateSQLDataSource("SELECT * FROM LEV_CLAIM WHERE PS_CITIZEN_ID = '" + loginPerson.CitizenID + "'");
+                GridView1.DataSource = DatabaseManager.CreateSQLDataSource("SELECT * FROM LEV_CLAIM WHERE PS_CITIZEN_ID = '" + loginPerson.PS_CITIZEN_ID + "'");
                 GridView1.DataBind();
 
                 /*using(OleDbConnection con = new OleDbConnection(DatabaseManager.CONNECTION_STRING)) {

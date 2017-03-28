@@ -125,19 +125,19 @@ namespace WEB_PERSONAL {
                     sql = "SELECT PS_CITIZEN_ID FROM PS_PERSON ORDER BY PS_CITIZEN_ID ASC";
                     table.Rows.Remove(rowXT);
                 } else if (ddlView.SelectedValue == "2") {
-                    sql = "SELECT PS_CITIZEN_ID FROM PS_PERSON WHERE PS_CAMPUS_ID = " + loginPerson.CampusID + " ORDER BY PS_CITIZEN_ID ASC";
-                    cellXT.Text = loginPerson.CampusName;
+                    sql = "SELECT PS_CITIZEN_ID FROM PS_PERSON WHERE PS_CAMPUS_ID = " + loginPerson.PS_CAMPUS_ID + " ORDER BY PS_CITIZEN_ID ASC";
+                    cellXT.Text = loginPerson.PS_CAMPUS_NAME;
                 } else if (ddlView.SelectedValue == "3") {
-                    sql = "SELECT PS_CITIZEN_ID FROM PS_PERSON WHERE PS_FACULTY_ID = " + loginPerson.FacultyID + " ORDER BY PS_CITIZEN_ID ASC";
-                    cellXT.Text = loginPerson.FacultyName;
+                    sql = "SELECT PS_CITIZEN_ID FROM PS_PERSON WHERE PS_FACULTY_ID = " + loginPerson.PS_FACULTY_ID + " ORDER BY PS_CITIZEN_ID ASC";
+                    cellXT.Text = loginPerson.PS_FACULTY_NAME;
                 } else if (ddlView.SelectedValue == "4") {
-                    sql = "SELECT PS_CITIZEN_ID FROM PS_PERSON WHERE PS_DIVISION_ID = " + loginPerson.DivisionID + " ORDER BY PS_CITIZEN_ID ASC";
-                    cellXT.Text = loginPerson.DivisionName;
+                    sql = "SELECT PS_CITIZEN_ID FROM PS_PERSON WHERE PS_DIVISION_ID = " + loginPerson.PS_DIVISION_ID + " ORDER BY PS_CITIZEN_ID ASC";
+                    cellXT.Text = loginPerson.PS_DIVISION_NAME;
                 } else if (ddlView.SelectedValue == "5") {
-                    sql = "SELECT PS_CITIZEN_ID FROM PS_PERSON WHERE PS_WORK_DIVISION_ID = " + loginPerson.WorkDivisionID + " ORDER BY PS_CITIZEN_ID ASC";
-                    cellXT.Text = loginPerson.WorkDivisionName;
+                    sql = "SELECT PS_CITIZEN_ID FROM PS_PERSON WHERE PS_WORK_DIVISION_ID = " + loginPerson.PS_WORK_DIVISION_ID + " ORDER BY PS_CITIZEN_ID ASC";
+                    cellXT.Text = loginPerson.PS_WORK_DIVISION_NAME;
                 } else {
-                    sql = "SELECT PS_CITIZEN_ID FROM PS_PERSON WHERE PS_CITIZEN_ID = " + loginPerson.CitizenID + " ORDER BY PS_CITIZEN_ID ASC";
+                    sql = "SELECT PS_CITIZEN_ID FROM PS_PERSON WHERE PS_CITIZEN_ID = " + loginPerson.PS_CITIZEN_ID + " ORDER BY PS_CITIZEN_ID ASC";
                     table.Rows.Remove(rowXT);
                 }
 
@@ -320,7 +320,7 @@ namespace WEB_PERSONAL {
                 {
                     int leaveCount = 0;
                     int totalDay = 0;
-                    using (OracleCommand com = new OracleCommand("SELECT COUNT(LEAVE_ID), NVL(SUM(TOTAL_DAY),0) FROM LEV_DATA WHERE LEAVE_STATUS_ID IN(2,3) AND V_ALLOW = 1 AND PS_ID = '" + loginPerson.CitizenID + "' AND BUDGET_YEAR = " + budgetYear + " ORDER BY LEAVE_ID ASC", con)) {
+                    using (OracleCommand com = new OracleCommand("SELECT COUNT(LEAVE_ID), NVL(SUM(TOTAL_DAY),0) FROM LEV_DATA WHERE LEAVE_STATUS_ID IN(2,3) AND V_ALLOW = 1 AND PS_ID = '" + loginPerson.PS_CITIZEN_ID + "' AND BUDGET_YEAR = " + budgetYear + " ORDER BY LEAVE_ID ASC", con)) {
                         using (OracleDataReader reader = com.ExecuteReader()) {
                             while (reader.Read()) {
                                 leaveCount = reader.GetInt32(0);
@@ -369,7 +369,7 @@ namespace WEB_PERSONAL {
                     int ordainMax = -1;
                     int hujNow = -1;
                     int hujMax = -1;
-                    using (OracleCommand com = new OracleCommand("SELECT SICK_NOW, SICK_MAX, BUSINESS_NOW, BUSINESS_MAX, GB_NOW, REST_NOW, REST_MAX, HGB_NOW, ORDAIN_NOW, ORDAIN_MAX, HUJ_NOW, HUJ_MAX FROM LEV_CLAIM WHERE PS_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND YEAR = " + budgetYear, con)) {
+                    using (OracleCommand com = new OracleCommand("SELECT SICK_NOW, SICK_MAX, BUSINESS_NOW, BUSINESS_MAX, GB_NOW, REST_NOW, REST_MAX, HGB_NOW, ORDAIN_NOW, ORDAIN_MAX, HUJ_NOW, HUJ_MAX FROM LEV_CLAIM WHERE PS_CITIZEN_ID = '" + loginPerson.PS_CITIZEN_ID + "' AND YEAR = " + budgetYear, con)) {
                         using (OracleDataReader reader = com.ExecuteReader()) {
                             while (reader.Read()) {
                                 sickNow = reader.GetInt32(0);
@@ -430,7 +430,7 @@ namespace WEB_PERSONAL {
                     table.Rows.Add(row);
                 }
 
-                string sql = "SELECT LEAVE_ID, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_DATA.LEAVE_TYPE_ID) LEAVE_TYPE_NAME, REQ_DATE, FROM_DATE, TO_DATE, TOTAL_DAY, (SELECT LEAVE_STATUS_NAME FROM LEV_STATUS WHERE LEV_STATUS.LEAVE_STATUS_ID = LEV_DATA.LEAVE_STATUS_ID) LEAVE_STATUS_NAME, NVL((SELECT LEAVE_ALLOW_NAME FROM LEV_ALLOW WHERE LEV_ALLOW.LEAVE_ALLOW_ID = LEV_DATA.V_ALLOW), '-') LEAVE_ALLOW_NAME FROM LEV_DATA WHERE PS_ID = '" + loginPerson.CitizenID + "' AND BUDGET_YEAR = " + budgetYear + " ORDER BY LEAVE_ID ASC";
+                string sql = "SELECT LEAVE_ID, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_DATA.LEAVE_TYPE_ID) LEAVE_TYPE_NAME, REQ_DATE, FROM_DATE, TO_DATE, TOTAL_DAY, (SELECT LEAVE_STATUS_NAME FROM LEV_STATUS WHERE LEV_STATUS.LEAVE_STATUS_ID = LEV_DATA.LEAVE_STATUS_ID) LEAVE_STATUS_NAME, NVL((SELECT LEAVE_ALLOW_NAME FROM LEV_ALLOW WHERE LEV_ALLOW.LEAVE_ALLOW_ID = LEV_DATA.V_ALLOW), '-') LEAVE_ALLOW_NAME FROM LEV_DATA WHERE PS_ID = '" + loginPerson.PS_CITIZEN_ID + "' AND BUDGET_YEAR = " + budgetYear + " ORDER BY LEAVE_ID ASC";
                 using (OracleCommand com = new OracleCommand(sql, con)) {
                     using (OracleDataReader reader = com.ExecuteReader()) {
                         int i = 1;
@@ -547,21 +547,21 @@ namespace WEB_PERSONAL {
                 {
                     TableRow row = new TableRow();
                     { TableCell cell = new TableCell(); cell.Text = "ตำแหน่ง"; row.Cells.Add(cell); }
-                    { TableCell cell = new TableCell(); cell.Text = "" + leaveData.Person.PositionWorkName; row.Cells.Add(cell); }
+                    { TableCell cell = new TableCell(); cell.Text = "" + leaveData.Person.PS_WORK_POS_NAME; row.Cells.Add(cell); }
                     table.Rows.Add(row);
                 }
 
                 {
                     TableRow row = new TableRow();
                     { TableCell cell = new TableCell(); cell.Text = "ระดับ"; row.Cells.Add(cell); }
-                    { TableCell cell = new TableCell(); cell.Text = "" + leaveData.Person.AdminPositionName + leaveData.Person.AdminPositionNameExtra() == "ไม่มี" ? "" : leaveData.Person.AdminPositionNameExtra(); row.Cells.Add(cell); }
+                    { TableCell cell = new TableCell(); cell.Text = "" + leaveData.Person.PS_ADMIN_POS_NAME + leaveData.Person.AdminPositionNameExtra() == "ไม่มี" ? "" : leaveData.Person.AdminPositionNameExtra(); row.Cells.Add(cell); }
                     table.Rows.Add(row);
                 }
 
                 {
                     TableRow row = new TableRow();
                     { TableCell cell = new TableCell(); cell.Text = "สังกัด"; row.Cells.Add(cell); }
-                    { TableCell cell = new TableCell(); cell.Text = Util.IsBlank(leaveData.Person.WorkDivisionID) ? leaveData.Person.DivisionName : leaveData.Person.WorkDivisionName; row.Cells.Add(cell); }
+                    { TableCell cell = new TableCell(); cell.Text = Util.IsBlank(leaveData.Person.PS_WORK_DIVISION_NAME) ? leaveData.Person.PS_DIVISION_NAME : leaveData.Person.PS_WORK_DIVISION_NAME; row.Cells.Add(cell); }
                     table.Rows.Add(row);
                 }
 
@@ -693,13 +693,13 @@ namespace WEB_PERSONAL {
                     {
                         TableRow row = new TableRow();
                         { TableCell cell = new TableCell(); cell.Text = "ตำแหน่ง"; row.Cells.Add(cell); }
-                        { TableCell cell = new TableCell(); cell.Text = leaveBossData.Person.PositionWorkName; row.Cells.Add(cell); }
+                        { TableCell cell = new TableCell(); cell.Text = leaveBossData.Person.PS_WORK_POS_NAME; row.Cells.Add(cell); }
                         table.Rows.Add(row);
                     }
                     {
                         TableRow row = new TableRow();
                         { TableCell cell = new TableCell(); cell.Text = "ระดับ"; row.Cells.Add(cell); }
-                        { TableCell cell = new TableCell(); cell.Text = leaveBossData.Person.AdminPositionName; row.Cells.Add(cell); }
+                        { TableCell cell = new TableCell(); cell.Text = leaveBossData.Person.PS_ADMIN_POS_NAME; row.Cells.Add(cell); }
                         table.Rows.Add(row);
                     }
                     {
@@ -888,7 +888,7 @@ namespace WEB_PERSONAL {
             OracleConnection.ClearAllPools();
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
-                using (OracleCommand com = new OracleCommand("SELECT LEAVE_ID, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_DATA.LEAVE_TYPE_ID) LEAVE_TYPE_NAME, REQ_DATE, FROM_DATE, TO_DATE, TOTAL_DAY FROM LEV_DATA WHERE PS_ID = '" + loginPerson.CitizenID + "' ORDER BY LEAVE_ID ASC", con)) {
+                using (OracleCommand com = new OracleCommand("SELECT LEAVE_ID, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_DATA.LEAVE_TYPE_ID) LEAVE_TYPE_NAME, REQ_DATE, FROM_DATE, TO_DATE, TOTAL_DAY FROM LEV_DATA WHERE PS_ID = '" + loginPerson.PS_CITIZEN_ID + "' ORDER BY LEAVE_ID ASC", con)) {
                     using (OracleDataReader reader = com.ExecuteReader()) {
                         while (reader.Read()) {
                             ddlSelfViewLeaveID.Items.Add(new ListItem("" + reader.GetInt32(0) + " | " + reader.GetString(1) + " , " + reader.GetDateTime(2).ToLongDateString() + " | " + reader.GetDateTime(3).ToLongDateString() + " ถึง " + reader.GetDateTime(4).ToLongDateString() + " รวม " + reader.GetInt32(5) + " วัน ", "" + reader.GetInt32(0)));
