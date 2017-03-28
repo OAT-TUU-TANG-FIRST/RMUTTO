@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="Image/favicon.ico" type="image/x-icon" />
     <!--link rel="icon" href="Image/favicon.ico" /-->
     <title>ระบบบุคลากร - มหาวิทยาลัยเทคโนโลยีราชมงคลตะวันออก</title>
-    <link href="CSS/Master.css" rel="stylesheet" />
+    
 
     <link href="jQueryCalendarThai/jquery-ui-1.10.3.custom.css" rel="stylesheet" />
     <link href="jQueryCalendarThai/SpecialDateSheet.css" rel="stylesheet" />
@@ -122,10 +122,10 @@
                 $('#menu1-ct').slideToggle(500);
                 $('#menu2-ct').slideUp(500);
             });
-            $('#menu2').click(function () {
+            /*$('#menu2').click(function () {
                 $('#menu2-ct').slideToggle(500);
                 $('#menu1-ct').slideUp(500);
-            });
+            });*/
         });
 
     </script>
@@ -174,6 +174,25 @@
         
     </script>
 
+    <script>
+		$(document).ready(function () {
+			/*$(".ps-ms-left").click(function () {
+				$(".ps-ms-left-ext").toggle(0);
+			});
+			$(".ps-ms-left-ext-close").click(function () {
+				$(".ps-ms-left-ext").toggle(0);
+			});*/
+			$("#hdt").click(function () {
+			    $(".ps-ms-center-header-ext").fadeToggle(250);
+			    $(".ps-ms-center-header-notification").fadeOut(100);
+			});
+			$("#menu2").click(function () {
+			    $(".ps-ms-center-header-ext").fadeOut(100);
+			    $(".ps-ms-center-header-notification").fadeToggle(250);
+			});
+		});
+	</script>
+
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
 
     <asp:ContentPlaceHolder ID="head" runat="server">
@@ -189,12 +208,6 @@
             
             <a href="Default.aspx" class="ps-ms-left-rmutto">ระบบบุคลากร</a>
             
-
-            <div class="ps-ms-left-item">
-                <div class="ps-ms-profile-div"><img src="Image/no_image.png" class="ps-ms-main-drop-profile-pic" id="profile_pic2" runat="server"/></div>
-                <a href="profile.aspx" class="ps-ms-profile-name"><asp:Label ID="lbName" runat="server" Text="-"></asp:Label></a>        
-            </div> 
-            
             <div class="ps-ms-left-link-group-rr" id="hv1"><img src="Image/Small/person2.png" class="ps-ms-left-link-group-rr-img"/>บุคลากร<img src="Image/Small/arrow_right.png" class="ps-ms-left-link-group-rr-arrow" /></div>
             <div class="ps-ms-left-link-group-rr" id="hv2"><img src="Image/Small/document.png" class="ps-ms-left-link-group-rr-img" />การลา<img src="Image/Small/arrow_right.png" class="ps-ms-left-link-group-rr-arrow" /></div>
             <div class="ps-ms-left-link-group-rr" id="hv3"><img src="Image/Small/medal.png" class="ps-ms-left-link-group-rr-img" />เครื่องราชอิสริยาภรณ์<img src="Image/Small/arrow_right.png" class="ps-ms-left-link-group-rr-arrow" /></div>
@@ -202,18 +215,17 @@
             
             <div class="ps-ms-left-separator"></div>
 
-            
-
-
-            <div class="ps-ms-left-item">
-                <div>เวอร์ชั่น : v1.2.9</div>
-                <div style="display: none;">ตัวนับ : <span id="Span1" runat="server"></span></div>
+            <div class="ps-ms-left-down">
+                
+                <div>เวอร์ชั่น : v1.3</div>
              </div>
 
         </div>
 
         <div class="ps-ms-left-ext">
-            <input type="button" class="ps-ms-left-ext-close" value="ปิด"/>
+            <button type="button" class="ps-ms-left-ext-close">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </button>
             <div id="hvr1" style="display: none;">
                 <div class="ps-ms-left-ext-header"><img src="Image/Small/person2.png" />บุคลากร</div>
                 <a href="AddPerson.aspx" id="cbAddPerson1" runat="server" class="ps-ms-left-ext-link"><img src="Image/Small/add.png" />เพิ่มข้อมูลบุคลากร</a>
@@ -258,148 +270,107 @@
             
         </div>
 
-        <div class="ps-ms-wrapper">
-            
-            
+        <div class="ps-ms-center">
+			<div class="ps-ms-center-header">
+                <!--div id="menu2" class="ps-ms-main-hd-button"><img src="Image/x32/notification.png" /></!--div-->
+                
+				<!--div class="ps-ms-center-header-username">Username</!--div-->
 
-            <div class="ps-ms-main">
-                <div class="ps-ms-main-hd-wrapper">
-                    <div class="ps-ms-main-hd">
-                        <div class="ps-ms-main-hd-left">
-                        <!--div id="txt_date" class="ps-ms-main-hd-date"></!--div-->
-                            <!--div id="menu1" class="ps-ms-main-hd-button"><img src="Image/x32/menu.png" /></!--div>
-                            <div class="ps-ms-main-hd-name">ระบบบุคลากร</div-->
-                            
-                    </div>
-                    <div class="ps-ms-main-hd-right">
-                        <div id="menu2" class="ps-ms-main-hd-button"><img src="Image/x32/notification.png" /></div>
-                        <span class="ps-ms-main-hd-noti-alert-none" id="noti_alert" runat="server">0</span>
-                        
-                        <a href="Access.aspx" class="ps-ms-logout">ออกจากระบบ</a>
-                    </div>
-                    </div>
-                    
-                    <div class="ps-ms-main-drop" id="menu1-ct">
-                       <div class="ps-ms-main-drop-hd">
-                            <img src="Image/x32/menu.png"/>เมนู
-                        </div>
-                        <div class="ps-box-il-ms">
-                             <div class="ps-box-i0">
-                                <div class="ps-box-ct10">
-                                    <img src="Image/rmutto-ms-drop.png" class="rmutto"/>
-                                    <br />
-                                    <span class="ps-ms-rmutto"><span style="font-size: 23px;">ระบบบุคลากร</span><br />Personnel System</span>
-                                </div>
-                            </div>
-                            <div class="ps-box-i0">
-                                <div class="ps-box-ct10">
-                                    <a href="Default.aspx"><img src="Image/Small/home3.png" />หน้าหลัก</a>
-                                </div>
-                            </div>
-                            <div class="ps-box-i0">
-                                <div class="ps-box-ct10">
-                                    <div>เวอร์ชั่น : v1.2.9</div>
-                                    <div style="display: none;">ตัวนับ : <span id="s_counter" runat="server"></span></div>
-                                </div>
-                            </div>
-                        </div>
+                <button type="button" id="menu2" class="ps-ms-header-toggle">
+                    <span class="glyphicon glyphicon glyphicon-bell"></span>
+                    <span class="ps-ms-main-hd-noti-alert-none" id="noti_alert" runat="server">0</span>
+				</button>
 
-                        
-
-
-                        <div class="ps-box-il-ms">
-                            <div class="ps-box-i0">
-                                <div class="ps-box-hd10"><img src="Image/Small/medal.png" />เครื่องราชอิสริยาภรณ์</div>
-                             </div>
-                             <div class="ps-box-i0">
-                                <div class="ps-box-ct10">
-                                    
-                                    
-                               </div>
-                            </div>
-                        </div>
-
-                        <div class="ps-box-il-ms">
-                            <div class="ps-box-i0">
-                               <div class="ps-box-hd10"><img src="Image/Small/wrench.png" />จัดการข้อมูล</div>
-                             </div>
-                             <div class="ps-box-i0">
-                                <div class="ps-box-ct10">
-                                    
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="ps-ms-main-drop" id="menu2-ct">
-                        <div class="ps-ms-main-drop-hd">
-                            <img src="Image/x32/notification.png"/>การแจ้งเตือน
-                        </div>
-                        <div class="ps-box-il-ms">
-                            <div class="ps-box-i0">
-                                <div class="ps-box-hd10-cen"><img src="Image/Small/document.png" />การลา</div>
-                            </div>
-                            <div class="ps-box-i0" id="noti_leave_none" runat="server">
-                                <div class="ps-box-hd10-cen" style="color: #a0a0a0; margin-top: 120px;">ไม่มีการแจ้งเตือนการลา</div>
-                            </div>
-                            <div class="ps-box-i0" id="noti_approve" runat="server">
-                                <div class="ps-box-ct10-cen">
-                                    <div><img src='Image/Small/correct.png' class='icon_left' />คุณมีรายการที่ต้องอนุมัติการลา</div><br />
-                                    <div><a href='LeaveAllow.aspx'>ไปหน้าการอนุมัติ<img src='Image/Small/next.png' class='icon_right' /></a></div>
-                                </div>
-                            </div>
-                            <div class="ps-box-i0" id="noti_leave_finish" runat="server">
-                                <div class="ps-box-ct10-cen">
-                                    <div><img src='Image/Small/correct.png' class='icon_left' />คุณมีรายการที่การลาที่เสร็จสิ้น</div><br />
-                                    <div><a href='LeaveHistory.aspx'>ไปหน้าประวัติการลา<img src='Image/Small/next.png' class='icon_right' /></a></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ps-box-il-ms">
-                            <div class="ps-box-i0">
-                                <div class="ps-box-hd10-cen"><img src="Image/Small/medal.png" />เครื่องราชอิสริยาภรณ์</div>
-                            </div>
-                            <div class="ps-box-i0" id="noti_ins_none" runat="server">
-                                <div class="ps-box-hd10-cen" style="color: #a0a0a0; margin-top: 120px;">ไม่มีการแจ้งเตือนเครื่องราชฯ</div>
-                            </div>
-                            <div class="ps-box-i0" id="noti_ins" runat="server">
-                                <div class="ps-box-ct10-cen">
-                                    <div><img src='Image/Small/medal.png' class='icon_left' />คุณมีสิทธิขอเครื่องราชฯ</div><br />
-                                    <div><a href='INSG_Request.aspx'>ไปหน้าการขอเครื่องราชฯ<img src='Image/Small/next.png' class='icon_right' /></a></div>
-                                </div>
-                            </div>
-                            <div class="ps-box-i0" id="noti_get_ins" runat="server">
-                                <div class="ps-box-ct10-cen">
-                                    <div><img src='Image/Small/medal.png' class='icon_left' />คุณได้รับการแจ้งผลการขอเครื่องราชฯ</div><br />
-                                    <div><a href='INSG_Qualified_Detail.aspx'>ไปหน้าประวัติการได้รับเครื่องราชฯ<img src='Image/Small/next.png' class='icon_right' /></a></div>
-                                </div>
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
                 
 
+				<button type="button" id="hdt" class="ps-ms-header-toggle">
+                    <span class="glyphicon glyphicon-user"></span>
+                    <asp:Label ID="lbMasterHeaderName" runat="server" Text="Label" CssClass="ps-ms-header-toggle-username"></asp:Label>
+				</button>
 
-                <div class="ps-ms-main-ct">
-                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-                </asp:ContentPlaceHolder>
+			</div>
+			<div class="ps-ms-center-header-ext">
+				<div>
+                    <div class="ps-ms-page-header">
+                        <span class="glyphicon glyphicon glyphicon-user"></span>
+                        จัดการผู้ใช้
                     </div>
+					<div style="margin-right: 5px; font-size: 16px; text-align: center;">
+                        <img src="Image/no_image.png" class="ps-ms-header-profile" id="profile_pic3" runat="server"/>
+					</div>
+					
+					<div style="vertical-align: top; text-align: center; font-weight: bold;">
+						<div><asp:Label ID="lbMasterName" runat="server" Text="Label"></asp:Label></div>
+					</div>
+				</div>
+                <div class="ps-ms-separator"></div>
+				<div>
+				    <a href="Profile.aspx" class="ps-ms-button-orange">แก้ไขข้อมูล</a>
+				    <a href="Access.aspx" class="ps-ms-button-red">ออกจากระบบ</a>
+                </div>
+			</div>
 
-                <div class="ps-ms-main-ft-wrapper">
-                    <div class="ps-ms-main-ft">
-                        Copyright © 2016 Rajamangala University of Technology Tawan-ok. All rights reserved
+            <div class="ps-ms-center-header-notification">
+                <div>
+                    <div class="ps-ms-page-header">
+                        <span class="glyphicon glyphicon glyphicon-bell"></span>
+                        การแจ้งเตือน
+                    </div>
+                    <div class="ps-box-il-ms">
+                        <div class="ps-box-i0">
+                            <div class="ps-box-hd10-cen"><img src="Image/Small/document.png" />การลา</div>
+                        </div>
+                        <div class="ps-box-i0" id="noti_leave_none" runat="server">
+                            <div class="ps-box-hd10-cen" style="color: #a0a0a0; margin-top: 120px;">ไม่มีการแจ้งเตือนการลา</div>
+                        </div>
+                        <div class="ps-box-i0" id="noti_approve" runat="server">
+                            <div class="ps-box-ct10-cen">
+                                <div><img src='Image/Small/correct.png' class='icon_left' />คุณมีรายการที่ต้องอนุมัติการลา</div><br />
+                                <div><a href='LeaveAllow.aspx'>ไปหน้าการอนุมัติ<img src='Image/Small/next.png' class='icon_right' /></a></div>
+                            </div>
+                        </div>
+                        <div class="ps-box-i0" id="noti_leave_finish" runat="server">
+                            <div class="ps-box-ct10-cen">
+                                <div><img src='Image/Small/correct.png' class='icon_left' />คุณมีรายการที่การลาที่เสร็จสิ้น</div><br />
+                                <div><a href='LeaveHistory.aspx'>ไปหน้าประวัติการลา<img src='Image/Small/next.png' class='icon_right' /></a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ps-box-il-ms">
+                        <div class="ps-box-i0">
+                            <div class="ps-box-hd10-cen"><img src="Image/Small/medal.png" />เครื่องราชอิสริยาภรณ์</div>
+                        </div>
+                        <div class="ps-box-i0" id="noti_ins_none" runat="server">
+                            <div class="ps-box-hd10-cen" style="color: #a0a0a0; margin-top: 120px;">ไม่มีการแจ้งเตือนเครื่องราชฯ</div>
+                        </div>
+                        <div class="ps-box-i0" id="noti_ins" runat="server">
+                            <div class="ps-box-ct10-cen">
+                                <div><img src='Image/Small/medal.png' class='icon_left' />คุณมีสิทธิขอเครื่องราชฯ</div><br />
+                                <div><a href='INSG_Request.aspx'>ไปหน้าการขอเครื่องราชฯ<img src='Image/Small/next.png' class='icon_right' /></a></div>
+                            </div>
+                        </div>
+                        <div class="ps-box-i0" id="noti_get_ins" runat="server">
+                            <div class="ps-box-ct10-cen">
+                                <div><img src='Image/Small/medal.png' class='icon_left' />คุณได้รับการแจ้งผลการขอเครื่องราชฯ</div><br />
+                                <div><a href='INSG_Qualified_Detail.aspx'>ไปหน้าประวัติการได้รับเครื่องราชฯ<img src='Image/Small/next.png' class='icon_right' /></a></div>
+                            </div>
+                        </div>
+
+
                     </div>
                 </div>
-                
-
             </div>
+			
+			<div class="ps-ms-center-content">
+				<asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+			</div>
+			<div class="ps-ms-center-footer">
+                Copyright © 2016 Rajamangala University of Technology Tawan-ok. All rights reserved
+			</div>
+		</div>
 
-
-
-        </div>
+        
         
 
     </form>

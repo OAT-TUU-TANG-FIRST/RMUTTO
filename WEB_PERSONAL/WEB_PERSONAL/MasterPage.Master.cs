@@ -24,7 +24,10 @@ namespace WEB_PERSONAL {
             PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
             Person loginPerson = ps.LoginPerson;
 
-            lbName.Text = loginPerson.FirstNameAndLastName;
+            lbMasterName.Text = loginPerson.FirstNameAndLastName;
+            lbMasterHeaderName.Text = loginPerson.FirstNameAndLastName;
+
+            //lbName.Text = loginPerson.FirstNameAndLastName;
             /*lbStaffType.Text = loginPerson.StaffTypeName;
             lbPosition.Text = loginPerson.PositionWorkName;
             lbPositionRank.Text = loginPerson.AdminPositionName;
@@ -53,7 +56,8 @@ namespace WEB_PERSONAL {
                             string personImageFileName = DatabaseManager.GetPersonImageFileName(loginPerson.PS_CITIZEN_ID);
                             if (personImageFileName != "") {
                                 //profile_pic.Src = "Upload/PersonImage/" + personImageFileName;
-                                profile_pic2.Src = "Upload/PersonImage/" + personImageFileName;
+                                //profile_pic2.Src = "Upload/PersonImage/" + personImageFileName;
+                                profile_pic3.Src = "Upload/PersonImage/" + personImageFileName;
                             } else {
                                 //profile_pic.Src = "Image/Small/person2.png";
                             }
