@@ -69,7 +69,7 @@ namespace WEB_PERSONAL {
         private void FuncGVFinish() {
 
             OracleConnection.ClearAllPools();
-            SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEAVE_ID รหัสการลา, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_DATA.LEAVE_TYPE_ID) ประเภทการลา, REQ_DATE วันที่ข้อมูล, FROM_DATE จากวันที่, TO_DATE ถึงวันที่, TOTAL_DAY รวมวัน, (SELECT LEAVE_STATUS_NAME FROM LEV_STATUS WHERE LEV_STATUS.LEAVE_STATUS_ID = LEV_DATA.LEAVE_STATUS_ID) สถานะ, NVL(V_ALLOW,0) ผลการอนุมัติ FROM LEV_DATA WHERE LEAVE_STATUS_ID in(2,5) AND PS_ID = '" + loginPerson.CitizenID + "' ORDER BY LEAVE_ID DESC");
+            SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEAVE_ID รหัสการลา, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_DATA.LEAVE_TYPE_ID) ประเภทการลา, REQ_DATE วันที่ข้อมูล, FROM_DATE จากวันที่, TO_DATE ถึงวันที่, TOTAL_DAY รวมวัน, (SELECT LEAVE_STATUS_NAME FROM LEV_STATUS WHERE LEV_STATUS.LEAVE_STATUS_ID = LEV_DATA.LEAVE_STATUS_ID) สถานะ, NVL(V_ALLOW,0) ผลการอนุมัติ FROM LEV_DATA WHERE LEAVE_STATUS_ID in(2,5) AND PS_ID = '" + loginPerson.PS_CITIZEN_ID + "' ORDER BY LEAVE_ID DESC");
             gvFinish.DataSource = sds;
             gvFinish.DataBind();
 
@@ -126,7 +126,7 @@ namespace WEB_PERSONAL {
         }
         private void FuncGVProcessing() {
             OracleConnection.ClearAllPools();
-            SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEAVE_ID รหัสการลา, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_DATA.LEAVE_TYPE_ID) ประเภทการลา, REQ_DATE วันที่ข้อมูล, FROM_DATE จากวันที่, TO_DATE ถึงวันที่, TOTAL_DAY รวมวัน, (SELECT LEAVE_STATUS_NAME FROM LEV_STATUS WHERE LEV_STATUS.LEAVE_STATUS_ID = LEV_DATA.LEAVE_STATUS_ID) สถานะ FROM LEV_DATA WHERE LEAVE_STATUS_ID in(1,4) AND PS_ID = '" + loginPerson.CitizenID + "' ORDER BY LEAVE_ID DESC");
+            SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEAVE_ID รหัสการลา, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_DATA.LEAVE_TYPE_ID) ประเภทการลา, REQ_DATE วันที่ข้อมูล, FROM_DATE จากวันที่, TO_DATE ถึงวันที่, TOTAL_DAY รวมวัน, (SELECT LEAVE_STATUS_NAME FROM LEV_STATUS WHERE LEV_STATUS.LEAVE_STATUS_ID = LEV_DATA.LEAVE_STATUS_ID) สถานะ FROM LEV_DATA WHERE LEAVE_STATUS_ID in(1,4) AND PS_ID = '" + loginPerson.PS_CITIZEN_ID + "' ORDER BY LEAVE_ID DESC");
             gvProgressing.DataSource = sds;
             gvProgressing.DataBind();
 
@@ -166,7 +166,7 @@ namespace WEB_PERSONAL {
         }
         private void FuncGVHistory() {
             OracleConnection.ClearAllPools();
-            SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEAVE_ID รหัสการลา, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_DATA.LEAVE_TYPE_ID) ประเภทการลา, REQ_DATE วันที่ข้อมูล, FROM_DATE จากวันที่, TO_DATE ถึงวันที่, TOTAL_DAY รวมวัน, (SELECT LEAVE_STATUS_NAME FROM LEV_STATUS WHERE LEV_STATUS.LEAVE_STATUS_ID = LEV_DATA.LEAVE_STATUS_ID) สถานะ, NVL(V_ALLOW,0) ผลการอนุมัติ FROM LEV_DATA WHERE LEAVE_STATUS_ID in(3,6,7,8) AND PS_ID = '" + loginPerson.CitizenID + "' ORDER BY LEAVE_ID DESC");
+            SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEAVE_ID รหัสการลา, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_DATA.LEAVE_TYPE_ID) ประเภทการลา, REQ_DATE วันที่ข้อมูล, FROM_DATE จากวันที่, TO_DATE ถึงวันที่, TOTAL_DAY รวมวัน, (SELECT LEAVE_STATUS_NAME FROM LEV_STATUS WHERE LEV_STATUS.LEAVE_STATUS_ID = LEV_DATA.LEAVE_STATUS_ID) สถานะ, NVL(V_ALLOW,0) ผลการอนุมัติ FROM LEV_DATA WHERE LEAVE_STATUS_ID in(3,6,7,8) AND PS_ID = '" + loginPerson.PS_CITIZEN_ID + "' ORDER BY LEAVE_ID DESC");
             gvHistory.DataSource = sds;
             gvHistory.DataBind();
 
@@ -222,7 +222,7 @@ namespace WEB_PERSONAL {
         
         private void FuncGVCH() {
             OracleConnection.ClearAllPools();
-            SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEV_DATA.LEAVE_ID รหัสการลา, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_DATA.LEAVE_TYPE_ID) ประเภทการลา, REQ_DATE วันที่ข้อมูล,  (SELECT PS_FN_TH || ' ' || PS_LN_TH FROM PS_PERSON WHERE PS_CITIZEN_ID = LEV_DATA.PS_ID) ชื่อผู้ลา, (SELECT TB_POSITION_WORK.POSITION_WORK_NAME FROM TB_POSITION_WORK, PS_PERSON WHERE TB_POSITION_WORK.POSITION_WORK_ID = PS_PERSON.PS_WORK_POS_ID AND PS_PERSON.PS_CITIZEN_ID = LEV_DATA.PS_ID) ตำแหน่ง, (SELECT ADMIN_POSITION_NAME FROM TB_ADMIN_POSITION, PS_PERSON WHERE ADMIN_POSITION_ID = PS_PERSON.PS_ADMIN_POS_ID AND PS_PERSON.PS_CITIZEN_ID = LEV_DATA.PS_ID) ระดับ, (SELECT LEAVE_STATUS_NAME FROM LEV_STATUS WHERE LEV_STATUS.LEAVE_STATUS_ID = LEV_DATA.LEAVE_STATUS_ID) สถานะ, NVL(LEV_DATA.V_ALLOW,0) ผลการอนุมัติ FROM LEV_DATA, LEV_BOSS_DATA WHERE LEV_DATA.LEAVE_ID = LEV_BOSS_DATA.LEAVE_ID AND LEV_BOSS_DATA.CITIZEN_ID = '" + loginPerson.CitizenID + "' ORDER BY LEV_DATA.LEAVE_ID DESC");
+            SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEV_DATA.LEAVE_ID รหัสการลา, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_DATA.LEAVE_TYPE_ID) ประเภทการลา, REQ_DATE วันที่ข้อมูล,  (SELECT PS_FN_TH || ' ' || PS_LN_TH FROM PS_PERSON WHERE PS_CITIZEN_ID = LEV_DATA.PS_ID) ชื่อผู้ลา, (SELECT TB_POSITION_WORK.POSITION_WORK_NAME FROM TB_POSITION_WORK, PS_PERSON WHERE TB_POSITION_WORK.POSITION_WORK_ID = PS_PERSON.PS_WORK_POS_ID AND PS_PERSON.PS_CITIZEN_ID = LEV_DATA.PS_ID) ตำแหน่ง, (SELECT ADMIN_POSITION_NAME FROM TB_ADMIN_POSITION, PS_PERSON WHERE ADMIN_POSITION_ID = PS_PERSON.PS_ADMIN_POS_ID AND PS_PERSON.PS_CITIZEN_ID = LEV_DATA.PS_ID) ระดับ, (SELECT LEAVE_STATUS_NAME FROM LEV_STATUS WHERE LEV_STATUS.LEAVE_STATUS_ID = LEV_DATA.LEAVE_STATUS_ID) สถานะ, NVL(LEV_DATA.V_ALLOW,0) ผลการอนุมัติ FROM LEV_DATA, LEV_BOSS_DATA WHERE LEV_DATA.LEAVE_ID = LEV_BOSS_DATA.LEAVE_ID AND LEV_BOSS_DATA.CITIZEN_ID = '" + loginPerson.PS_CITIZEN_ID + "' ORDER BY LEV_DATA.LEAVE_ID DESC");
             gvCH.DataSource = sds;
             gvCH.DataBind();
 
@@ -274,7 +274,7 @@ namespace WEB_PERSONAL {
             OracleConnection.ClearAllPools();
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
-                using (OracleCommand com = new OracleCommand("SELECT (YEAR+543), SICK_NOW, SICK_REQ, SICK_MAX, BUSINESS_NOW, BUSINESS_REQ, BUSINESS_MAX, GB_NOW, GB_REQ, HGB_NOW, HGB_REQ, REST_NOW, REST_REQ, REST_SAVE, REST_SAVE_FIX, REST_THIS, REST_THIS_FIX, REST_MAX, ORDAIN_NOW, ORDAIN_REQ, ORDAIN_MAX, HUJ_NOW, HUJ_REQ, HUJ_MAX FROM LEV_CLAIM WHERE PS_CITIZEN_ID = '" + loginPerson.CitizenID + "'", con)) {
+                using (OracleCommand com = new OracleCommand("SELECT (YEAR+543), SICK_NOW, SICK_REQ, SICK_MAX, BUSINESS_NOW, BUSINESS_REQ, BUSINESS_MAX, GB_NOW, GB_REQ, HGB_NOW, HGB_REQ, REST_NOW, REST_REQ, REST_SAVE, REST_SAVE_FIX, REST_THIS, REST_THIS_FIX, REST_MAX, ORDAIN_NOW, ORDAIN_REQ, ORDAIN_MAX, HUJ_NOW, HUJ_REQ, HUJ_MAX FROM LEV_CLAIM WHERE PS_CITIZEN_ID = '" + loginPerson.PS_CITIZEN_ID + "'", con)) {
                     using (OracleDataReader reader = com.ExecuteReader()) {
                         while (reader.Read()) {
                             TableRow r = new TableRow();

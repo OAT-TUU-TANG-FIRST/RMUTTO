@@ -45,12 +45,12 @@ namespace WEB_PERSONAL {
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();    
                   
-                using (OracleCommand com = new OracleCommand("SELECT URL FROM PS_PERSON_IMAGE WHERE CITIZEN_ID = '" + loginPerson.CitizenID + "' AND PRESENT = 1", con)) {
+                using (OracleCommand com = new OracleCommand("SELECT URL FROM PS_PERSON_IMAGE WHERE CITIZEN_ID = '" + loginPerson.PS_CITIZEN_ID + "' AND PRESENT = 1", con)) {
                     using (OracleDataReader reader = com.ExecuteReader()) {
                         while (reader.Read()) {
                             string fileName;
                             fileName = reader.GetValue(0).ToString();
-                            string personImageFileName = DatabaseManager.GetPersonImageFileName(loginPerson.CitizenID);
+                            string personImageFileName = DatabaseManager.GetPersonImageFileName(loginPerson.PS_CITIZEN_ID);
                             if (personImageFileName != "") {
                                 //profile_pic.Src = "Upload/PersonImage/" + personImageFileName;
                                 profile_pic2.Src = "Upload/PersonImage/" + personImageFileName;
@@ -62,7 +62,7 @@ namespace WEB_PERSONAL {
                 }
                 
 
-                using (OracleCommand com = new OracleCommand("SELECT COUNT(LEV_BOSS_DATA.LEAVE_BOSS_ID) FROM LEV_DATA, LEV_BOSS_DATA WHERE LEAVE_STATUS_ID IN(1,4) AND LEV_DATA.LEAVE_ID = LEV_BOSS_DATA.LEAVE_ID AND LEV_DATA.BOSS_STATE = LEV_BOSS_DATA.STATE AND LEV_BOSS_DATA.CITIZEN_ID = '" + loginPerson.CitizenID + "'", con)) {
+                using (OracleCommand com = new OracleCommand("SELECT COUNT(LEV_BOSS_DATA.LEAVE_BOSS_ID) FROM LEV_DATA, LEV_BOSS_DATA WHERE LEAVE_STATUS_ID IN(1,4) AND LEV_DATA.LEAVE_ID = LEV_BOSS_DATA.LEAVE_ID AND LEV_DATA.BOSS_STATE = LEV_BOSS_DATA.STATE AND LEV_BOSS_DATA.CITIZEN_ID = '" + loginPerson.PS_CITIZEN_ID + "'", con)) {
                     using (OracleDataReader reader = com.ExecuteReader()) {
                         while (reader.Read()) {
                             count_approve = reader.GetInt32(0);
@@ -77,27 +77,27 @@ namespace WEB_PERSONAL {
                     lbLeaveAllowCount.Visible = false;
                 }
 
-                using (OracleCommand com = new OracleCommand("SELECT COUNT(LEAVE_ID) FROM LEV_DATA WHERE PS_ID = '" + loginPerson.CitizenID + "' AND LEAVE_STATUS_ID in(2,5)", con)) {
+                using (OracleCommand com = new OracleCommand("SELECT COUNT(LEAVE_ID) FROM LEV_DATA WHERE PS_ID = '" + loginPerson.PS_CITIZEN_ID + "' AND LEAVE_STATUS_ID in(2,5)", con)) {
                     using (OracleDataReader reader = com.ExecuteReader()) {
                         while (reader.Read()) {
                             count_leave_finish = reader.GetInt32(0);
                         }
                     }
                 }
-                using (OracleCommand com = new OracleCommand("SELECT COUNT(IR_ID) FROM TB_INSIG_REQUEST WHERE IR_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND IR_STATUS = 1", con)) {
+                /*using (OracleCommand com = new OracleCommand("SELECT COUNT(IR_ID) FROM TB_INSIG_REQUEST WHERE IR_CITIZEN_ID = '" + loginPerson.PS_CITIZEN_ID + "' AND IR_STATUS = 1", con)) {
                     using (OracleDataReader reader = com.ExecuteReader()) {
                         while (reader.Read()) {
                             count_ins = reader.GetInt32(0);
                         }
                     }
                 }
-                using (OracleCommand com = new OracleCommand("SELECT COUNT(IR_ID) FROM TB_INSIG_REQUEST WHERE IR_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND IR_STATUS = 3", con)) {
+                using (OracleCommand com = new OracleCommand("SELECT COUNT(IR_ID) FROM TB_INSIG_REQUEST WHERE IR_CITIZEN_ID = '" + loginPerson.PS_CITIZEN_ID + "' AND IR_STATUS = 3", con)) {
                     using (OracleDataReader reader = com.ExecuteReader()) {
                         while (reader.Read()) {
                             count_get_ins = reader.GetInt32(0);
                         }
                     }
-                }
+                }*/
 
 
                 int count = count_approve + count_leave_finish + count_ins + count_get_ins;
@@ -153,7 +153,7 @@ namespace WEB_PERSONAL {
                 cbPersonPosition.Visible = false;
                 
 
-                using (OracleCommand com = new OracleCommand("SELECT PERMISSION_TYPE FROM TB_PERMISSION WHERE CITIZEN_ID = '" + loginPerson.CitizenID + "'", con)) {
+                using (OracleCommand com = new OracleCommand("SELECT PERMISSION_TYPE FROM TB_PERMISSION WHERE CITIZEN_ID = '" + loginPerson.PS_CITIZEN_ID + "'", con)) {
                     using (OracleDataReader reader = com.ExecuteReader()) {
                         while (reader.Read()) {
                             int type = reader.GetInt32(0);
@@ -178,10 +178,7 @@ namespace WEB_PERSONAL {
                 }
 
                 if (!IsPostBack) {
-                    using (OracleCommand com = new OracleCommand("UPDATE TB_WEB SET COUNTER = COUNTER+1 WHERE ID = 1", con)) {
-                        com.ExecuteNonQuery();
-                    }
-                    //s_counter.InnerText = "" + DatabaseManager.GetCounter().ToString("#,###");
+
                 }
 
             }      

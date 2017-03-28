@@ -37,7 +37,7 @@ namespace WEB_PERSONAL {
 
             if (count > 0) {
 
-                SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEAVE_ID รหัสการลา, (SELECT PS_FN_TH || ' ' || PS_LN_TH FROM PS_PERSON WHERE PS_CITIZEN_ID = LEV_DATA.PS_ID) ชื่อผู้ลา, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_DATA.LEAVE_TYPE_ID) ประเภทการลา, REQ_DATE วันที่ข้อมูล, (SELECT LEAVE_STATUS_NAME FROM LEV_STATUS WHERE LEAVE_STATUS_ID = LEV_DATA.LEAVE_STATUS_ID) สถานะ FROM LEV_DATA WHERE LEAVE_STATUS_ID in(1,5) AND CL_ID = '" + loginPerson.CitizenID + "'");
+                SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEAVE_ID รหัสการลา, (SELECT PS_FN_TH || ' ' || PS_LN_TH FROM PS_PERSON WHERE PS_CITIZEN_ID = LEV_DATA.PS_ID) ชื่อผู้ลา, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_DATA.LEAVE_TYPE_ID) ประเภทการลา, REQ_DATE วันที่ข้อมูล, (SELECT LEAVE_STATUS_NAME FROM LEV_STATUS WHERE LEAVE_STATUS_ID = LEV_DATA.LEAVE_STATUS_ID) สถานะ FROM LEV_DATA WHERE LEAVE_STATUS_ID in(1,5) AND CL_ID = '" + loginPerson.PS_CITIZEN_ID + "'");
                 GridView1.DataSource = sds;
                 GridView1.DataBind();
 
@@ -287,7 +287,7 @@ namespace WEB_PERSONAL {
             OracleConnection.ClearAllPools();
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
-                using (OracleCommand com = new OracleCommand("SELECT COUNT(LEAVE_ID) FROM LEV_LEAVE WHERE CMD_LOW_ID = '" + loginPerson.CitizenID + "' AND LEV_LEAVE.STATE_ID = 1", con)) {
+                using (OracleCommand com = new OracleCommand("SELECT COUNT(LEAVE_ID) FROM LEV_LEAVE WHERE CMD_LOW_ID = '" + loginPerson.PS_CITIZEN_ID + "' AND LEV_LEAVE.STATE_ID = 1", con)) {
                     using (OracleDataReader reader = com.ExecuteReader()) {
                         while (reader.Read()) {
                             count = int.Parse(reader.GetValue(0).ToString());

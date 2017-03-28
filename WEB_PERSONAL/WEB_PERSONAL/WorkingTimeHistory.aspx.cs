@@ -119,7 +119,7 @@ namespace WEB_PERSONAL {
                             }
                         }
 
-                        using (OracleCommand com = new OracleCommand("SELECT COUNT(WORKTIME_ID) FROM LEV_WORKTIME WHERE TODAY = :TODAY AND CITIZEN_ID = '" + pp.CitizenID + "'", con)) {
+                        using (OracleCommand com = new OracleCommand("SELECT COUNT(WORKTIME_ID) FROM LEV_WORKTIME WHERE TODAY = :TODAY AND CITIZEN_ID = '" + pp.PS_CITIZEN_ID + "'", con)) {
                             com.Parameters.AddWithValue("TODAY", dt);
                             using (OracleDataReader reader = com.ExecuteReader()) {
                                 while (reader.Read()) {
@@ -129,7 +129,7 @@ namespace WEB_PERSONAL {
                             }
                         }
                         if (have) {
-                            using (OracleCommand com = new OracleCommand("SELECT LATE FROM LEV_WORKTIME WHERE TODAY = :TODAY AND CITIZEN_ID = '" + pp.CitizenID + "'", con)) {
+                            using (OracleCommand com = new OracleCommand("SELECT LATE FROM LEV_WORKTIME WHERE TODAY = :TODAY AND CITIZEN_ID = '" + pp.PS_CITIZEN_ID + "'", con)) {
                                 com.Parameters.AddWithValue("TODAY", dt);
                                 using (OracleDataReader reader = com.ExecuteReader()) {
                                     while (reader.Read()) {
@@ -139,7 +139,7 @@ namespace WEB_PERSONAL {
                                     }
                                 }
                             }
-                            using (OracleCommand com = new OracleCommand("SELECT ABSENT FROM LEV_WORKTIME WHERE TODAY = :TODAY AND CITIZEN_ID = '" + pp.CitizenID + "'", con)) {
+                            using (OracleCommand com = new OracleCommand("SELECT ABSENT FROM LEV_WORKTIME WHERE TODAY = :TODAY AND CITIZEN_ID = '" + pp.PS_CITIZEN_ID + "'", con)) {
                                 com.Parameters.AddWithValue("TODAY", dt);
                                 using (OracleDataReader reader = com.ExecuteReader()) {
                                     while (reader.Read()) {
@@ -149,7 +149,7 @@ namespace WEB_PERSONAL {
                                     }
                                 }
                             }
-                            using (OracleCommand com = new OracleCommand("SELECT LEAVE FROM LEV_WORKTIME WHERE TODAY = :TODAY AND CITIZEN_ID = '" + pp.CitizenID + "'", con)) {
+                            using (OracleCommand com = new OracleCommand("SELECT LEAVE FROM LEV_WORKTIME WHERE TODAY = :TODAY AND CITIZEN_ID = '" + pp.PS_CITIZEN_ID + "'", con)) {
                                 com.Parameters.AddWithValue("TODAY", dt);
                                 using (OracleDataReader reader = com.ExecuteReader()) {
                                     while (reader.Read()) {
@@ -160,7 +160,7 @@ namespace WEB_PERSONAL {
                                     }
                                 }
                             }
-                            using (OracleCommand com = new OracleCommand("SELECT HOUR_IN || ':' || MINUTE_IN, HOUR_OUT || ':' || MINUTE_OUT FROM LEV_WORKTIME WHERE TODAY = :TODAY AND CITIZEN_ID = '" + pp.CitizenID + "'", con)) {
+                            using (OracleCommand com = new OracleCommand("SELECT HOUR_IN || ':' || MINUTE_IN, HOUR_OUT || ':' || MINUTE_OUT FROM LEV_WORKTIME WHERE TODAY = :TODAY AND CITIZEN_ID = '" + pp.PS_CITIZEN_ID + "'", con)) {
                                 com.Parameters.AddWithValue("TODAY", dt);
                                 using (OracleDataReader reader = com.ExecuteReader()) {
                                     while (reader.Read()) {

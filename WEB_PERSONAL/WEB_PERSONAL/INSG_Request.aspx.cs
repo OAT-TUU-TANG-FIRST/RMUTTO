@@ -22,7 +22,7 @@ namespace WEB_PERSONAL
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
             {
                 con.Open();
-                using (OracleCommand com = new OracleCommand("SELECT COUNT(*) FROM TB_INSIG_REQUEST WHERE IR_STATUS = 1 AND IR_CITIZEN_ID = '" + loginPerson.CitizenID + "'", con))
+                using (OracleCommand com = new OracleCommand("SELECT COUNT(*) FROM TB_INSIG_REQUEST WHERE IR_STATUS = 1 AND IR_CITIZEN_ID = '" + loginPerson.PS_CITIZEN_ID + "'", con))
                 {
                     using (OracleDataReader reader = com.ExecuteReader())
                     {
@@ -37,7 +37,7 @@ namespace WEB_PERSONAL
                 }
             }
 
-            lbRank.Text = loginPerson.RankName;
+            /*lbRank.Text = loginPerson.RankName;
             lbTitleName.Text = loginPerson.TitleName;
             lbName.Text = loginPerson.FirstName;
             lbLastName.Text = loginPerson.LastName;
@@ -50,8 +50,8 @@ namespace WEB_PERSONAL
             lbType.Text = loginPerson.StaffTypeName;
             lbDegree.Text = loginPerson.AdminPositionName;
             lbSalaryCurrent.Text = loginPerson.Salary.ToString();
-            lbPositionSalary.Text = loginPerson.PositionSalary;
-            lbCitizen.Text = loginPerson.CitizenID;
+            lbPositionSalary.Text = loginPerson.PositionSalary;*/
+            lbCitizen.Text = loginPerson.PS_CITIZEN_ID;
 
             int รหัสเครื่องราชปัจจุบัน = 0;
             int รหัสเครื่องราชทที่ขอ = 0;
@@ -61,7 +61,7 @@ namespace WEB_PERSONAL
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
             {
                 con.Open();
-                using (OracleCommand com = new OracleCommand("SELECT IR_INSIG_ID FROM TB_INSIG_REQUEST WHERE IR_GET_STATUS = 1 AND IR_CITIZEN_ID = '" + loginPerson.CitizenID + "' ORDER BY IR_ID DESC", con))
+                using (OracleCommand com = new OracleCommand("SELECT IR_INSIG_ID FROM TB_INSIG_REQUEST WHERE IR_GET_STATUS = 1 AND IR_CITIZEN_ID = '" + loginPerson.PS_CITIZEN_ID + "' ORDER BY IR_ID DESC", con))
                 {
                     using (OracleDataReader reader = com.ExecuteReader())
                     {
@@ -71,7 +71,7 @@ namespace WEB_PERSONAL
                         }
                     }
                 }
-                using (OracleCommand com = new OracleCommand("SELECT IR_INSIG_ID FROM TB_INSIG_REQUEST WHERE IR_STATUS = 1 AND IR_CITIZEN_ID = '" + loginPerson.CitizenID + "'", con))
+                using (OracleCommand com = new OracleCommand("SELECT IR_INSIG_ID FROM TB_INSIG_REQUEST WHERE IR_STATUS = 1 AND IR_CITIZEN_ID = '" + loginPerson.PS_CITIZEN_ID + "'", con))
                 {
                     using (OracleDataReader reader = com.ExecuteReader())
                     {
@@ -170,7 +170,7 @@ namespace WEB_PERSONAL
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
             {
                 con.Open();
-                using (OracleCommand command = new OracleCommand("UPDATE TB_INSIG_REQUEST SET IR_STATUS = :IR_STATUS, IR_CITIZEN_ID = :IR_CITIZEN_ID, IR_DATE_START = :IR_DATE_START, IR_RANK = :IR_RANK, IR_TITLE = :IR_TITLE, IR_NAME = :IR_NAME, IR_LASTNAME = :IR_LASTNAME, IR_GENDER = :IR_GENDER, IR_BIRTHDATE = :IR_BIRTHDATE, IR_DATE_INWORK = :IR_DATE_INWORK, IR_START_POSITION = :IR_START_POSITION, IR_START_DEGREE = :IR_START_DEGREE, IR_CURRENT_POSITION = :IR_CURRENT_POSITION, IR_TYPE = :IR_TYPE, IR_DEGREE = :IR_DEGREE, IR_CURRENT_SALARY = :IR_CURRENT_SALARY, IR_POSITION_SALARY = :IR_POSITION_SALARY WHERE IR_CITIZEN_ID = '" + loginPerson.CitizenID + "' AND IR_STATUS = 1", con))
+                using (OracleCommand command = new OracleCommand("UPDATE TB_INSIG_REQUEST SET IR_STATUS = :IR_STATUS, IR_CITIZEN_ID = :IR_CITIZEN_ID, IR_DATE_START = :IR_DATE_START, IR_RANK = :IR_RANK, IR_TITLE = :IR_TITLE, IR_NAME = :IR_NAME, IR_LASTNAME = :IR_LASTNAME, IR_GENDER = :IR_GENDER, IR_BIRTHDATE = :IR_BIRTHDATE, IR_DATE_INWORK = :IR_DATE_INWORK, IR_START_POSITION = :IR_START_POSITION, IR_START_DEGREE = :IR_START_DEGREE, IR_CURRENT_POSITION = :IR_CURRENT_POSITION, IR_TYPE = :IR_TYPE, IR_DEGREE = :IR_DEGREE, IR_CURRENT_SALARY = :IR_CURRENT_SALARY, IR_POSITION_SALARY = :IR_POSITION_SALARY WHERE IR_CITIZEN_ID = '" + loginPerson.PS_CITIZEN_ID + "' AND IR_STATUS = 1", con))
                 {
                     command.Parameters.Add(new OracleParameter("IR_STATUS", 2));
                     command.Parameters.Add(new OracleParameter("IR_CITIZEN_ID", lbCitizen.Text));

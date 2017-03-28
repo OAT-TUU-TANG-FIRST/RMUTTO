@@ -19,7 +19,7 @@ namespace WEB_PERSONAL {
 
             lbResult.Text = "";
 
-            if (tbOld.Text != DatabaseManager.ExecuteString("SELECT PS_PASSWORD FROM PS_PERSON WHERE PS_CITIZEN_ID = '" + pp.CitizenID + "'")) {
+            if (tbOld.Text != DatabaseManager.ExecuteString("SELECT PS_PASSWORD FROM PS_PERSON WHERE PS_CITIZEN_ID = '" + pp.PS_CITIZEN_ID + "'")) {
                 lbResult.Text = "รหัสผ่านเก่าไม่ถูกต้อง";
                 lbResult.ForeColor = System.Drawing.Color.Red;
                 return;
@@ -41,7 +41,7 @@ namespace WEB_PERSONAL {
             }
 
 
-            DatabaseManager.ExecuteNonQuery("UPDATE PS_PERSON SET PS_PASSWORD = '" + tbNew.Text + "' WHERE PS_CITIZEN_ID = '" + pp.CitizenID + "'");
+            DatabaseManager.ExecuteNonQuery("UPDATE PS_PERSON SET PS_PASSWORD = '" + tbNew.Text + "' WHERE PS_CITIZEN_ID = '" + pp.PS_CITIZEN_ID + "'");
             lbResult.Text = "เปลี่ยนรหัสผ่านสำเร็จ";
             lbResult.ForeColor = System.Drawing.Color.Green;
         }

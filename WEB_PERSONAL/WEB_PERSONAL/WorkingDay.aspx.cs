@@ -132,7 +132,7 @@ namespace WEB_PERSONAL {
                                 con.Open();
                                 using (OracleCommand com = new OracleCommand("INSERT INTO LEV_WORKDAY (WORKDAY_ID, WORKDAY_DATE, CITIZEN_ID) VALUES(SEQ_WORKDAY_ID.NEXTVAL, :WORKDAY_DATE, :CITIZEN_ID)", con)) {
                                     com.Parameters.AddWithValue("WORKDAY_DATE", dt);
-                                    com.Parameters.AddWithValue("CITIZEN_ID", loginPerson.CitizenID);
+                                    com.Parameters.AddWithValue("CITIZEN_ID", loginPerson.PS_CITIZEN_ID);
                                     com.ExecuteNonQuery();
                                 }
                             }
@@ -174,7 +174,7 @@ namespace WEB_PERSONAL {
                 using (OracleCommand com = new OracleCommand("UPDATE LEV_TIME SET TIME_HOUR_IN = :TIME_HOUR_IN, TIME_MINUTE_IN = :TIME_MINUTE_IN, CITIZEN_ID = :CITIZEN_ID WHERE TIME_ID = 1", con)) {
                     com.Parameters.AddWithValue("TIME_HOUR_IN", tbLateHour.Text);
                     com.Parameters.AddWithValue("TIME_MINUTE_IN", tbLateMinute.Text);
-                    com.Parameters.AddWithValue("CITIZEN_ID", loginPerson.CitizenID);
+                    com.Parameters.AddWithValue("CITIZEN_ID", loginPerson.PS_CITIZEN_ID);
                     com.ExecuteNonQuery();
                 }
             }
@@ -186,7 +186,7 @@ namespace WEB_PERSONAL {
                 using (OracleCommand com = new OracleCommand("UPDATE LEV_TIME SET TIME_HOUR_IN = :TIME_HOUR_IN, TIME_MINUTE_IN = :TIME_MINUTE_IN, CITIZEN_ID = :CITIZEN_ID WHERE TIME_ID = 2", con)) {
                     com.Parameters.AddWithValue("TIME_HOUR_IN", tbAbsentHour.Text);
                     com.Parameters.AddWithValue("TIME_MINUTE_IN", tbAbsentMinute.Text);
-                    com.Parameters.AddWithValue("CITIZEN_ID", loginPerson.CitizenID);
+                    com.Parameters.AddWithValue("CITIZEN_ID", loginPerson.PS_CITIZEN_ID);
                     com.ExecuteNonQuery();
                 }
             }

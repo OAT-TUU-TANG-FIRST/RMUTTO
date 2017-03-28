@@ -101,23 +101,23 @@ namespace WEB_PERSONAL {
                 lbLeaveStatusID.Text = leaveData.LeaveStatusName;
                 lbLeaveType.Text = leaveData.LeaveTypeName;
                 lbReqDate.Text = leaveData.RequestDate.Value.ToLongDateString();
-                lbPSName.Text = leaveData.Person.FirstName + " " + leaveData.Person.LastName;
-                lbPSPos.Text = leaveData.Person.PositionWorkName;
-                lbPSAPos.Text = leaveData.Person.AdminPositionName;
-                if (Util.IsBlank(leaveData.Person.WorkDivisionID)) {
-                    lbPSDept.Text = leaveData.Person.DivisionName;
+                lbPSName.Text = leaveData.Person.PS_FN_TH + " " + leaveData.Person.PS_LN_TH;
+                lbPSPos.Text = leaveData.Person.PS_WORK_POS_NAME;
+                lbPSAPos.Text = leaveData.Person.PS_ADMIN_POS_NAME;
+                if (Util.IsBlank(leaveData.Person.PS_WORK_DIVISION_NAME)) {
+                    lbPSDept.Text = leaveData.Person.PS_DIVISION_NAME;
                 } else {
-                    lbPSDept.Text = leaveData.Person.WorkDivisionName;
+                    lbPSDept.Text = leaveData.Person.PS_WORK_DIVISION_NAME;
                 }
 
 
                 //if (leaveData.PS_BirthDate.HasValue) {
-                lbPSBirthDate.Text = leaveData.Person.BirthDate.Value.ToLongDateString();
+                lbPSBirthDate.Text = leaveData.Person.PS_BIRTHDAY_DATE.Value.ToLongDateString();
                 //} else {
                 //    lbPSBirthDate.Text = "-";
                 //}
                 //if (leaveData.PS_WorkInDate.HasValue) {
-                lbPSWorkInDate.Text = leaveData.Person.InWorkDate.Value.ToLongDateString();
+                lbPSWorkInDate.Text = leaveData.Person.PS_INWORK_DATE.Value.ToLongDateString();
                 //} else {
                 //    lbPSWorkInDate.Text = "-";
                 // }
@@ -219,7 +219,7 @@ namespace WEB_PERSONAL {
                             tr.Cells.Add(cell3);
 
                             cell3 = new TableCell();
-                            cell3.Text = leaveBossData.Person.PositionWorkName;
+                            cell3.Text = leaveBossData.Person.PS_WORK_POS_NAME;
                             tr.Cells.Add(cell3);
 
                             tr = new TableRow();
@@ -230,7 +230,7 @@ namespace WEB_PERSONAL {
                             tr.Cells.Add(cell3);
 
                             cell3 = new TableCell();
-                            cell3.Text = leaveBossData.Person.AdminPositionName;// + "<br />" + leaveBossData.Person.AdminPositionNameExtra();
+                            cell3.Text = leaveBossData.Person.PS_ADMIN_POS_NAME;// + "<br />" + leaveBossData.Person.AdminPositionNameExtra();
                             tr.Cells.Add(cell3);
 
                             tr = new TableRow();

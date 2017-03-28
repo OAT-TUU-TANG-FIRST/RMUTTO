@@ -19,7 +19,7 @@ namespace WEB_PERSONAL {
             //------
 
             {
-                SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEAVE_ID รหัสการลา, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_DATA.LEAVE_TYPE_ID) ประเภทการลา, REQ_DATE วันที่ข้อมูล, FROM_DATE จากวันที่, TO_DATE ถึงวันที่, TOTAL_DAY รวมวัน FROM LEV_DATA WHERE LEAVE_STATUS_ID = 1 AND PS_ID = '" + loginPerson.CitizenID + "' ORDER BY LEAVE_ID DESC");
+                SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEAVE_ID รหัสการลา, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_DATA.LEAVE_TYPE_ID) ประเภทการลา, REQ_DATE วันที่ข้อมูล, FROM_DATE จากวันที่, TO_DATE ถึงวันที่, TOTAL_DAY รวมวัน FROM LEV_DATA WHERE LEAVE_STATUS_ID = 1 AND PS_ID = '" + loginPerson.PS_CITIZEN_ID + "' ORDER BY LEAVE_ID DESC");
                 gvLeaveProgress.DataSource = sds;
                 gvLeaveProgress.DataBind();
 
@@ -111,16 +111,16 @@ namespace WEB_PERSONAL {
                             lbLeaveID.Text = leaveData.LeaveID.ToString();
                             lbLeaveTypeName.Text = leaveData.LeaveTypeName;
                             lbReqDate.Text = leaveData.RequestDate.Value.ToLongDateString();
-                            lbPSName.Text = leaveData.Person.FirstName + " " + leaveData.Person.LastName;
-                            lbPSPos.Text = leaveData.Person.PositionWorkName;
-                            lbPSAPos.Text = leaveData.Person.AdminPositionName;
-                            if (Util.IsBlank(leaveData.Person.WorkDivisionID)) {
-                                lbPSDept.Text = leaveData.Person.DivisionName;
+                            lbPSName.Text = leaveData.Person.PS_FN_TH + " " + leaveData.Person.PS_LN_TH;
+                            lbPSPos.Text = leaveData.Person.PS_WORK_POS_NAME;
+                            lbPSAPos.Text = leaveData.Person.PS_ADMIN_POS_NAME;
+                            if (Util.IsBlank(leaveData.Person.PS_WORK_DIVISION_ID)) {
+                                lbPSDept.Text = leaveData.Person.PS_DIVISION_NAME;
                             } else {
-                                lbPSDept.Text = leaveData.Person.WorkDivisionName;
+                                lbPSDept.Text = leaveData.Person.PS_WORK_DIVISION_NAME;
                             }
-                            lbPSBirthDate.Text = leaveData.Person.BirthDate.Value.ToLongDateString();
-                            lbPSWorkInDate.Text = leaveData.Person.InWorkDate.Value.ToLongDateString();
+                            lbPSBirthDate.Text = leaveData.Person.PS_BIRTHDAY_DATE.Value.ToLongDateString();
+                            lbPSWorkInDate.Text = leaveData.Person.PS_INWORK_DATE.Value.ToLongDateString();
 
                             lbRestSave.Text = leaveData.RestSave + " วัน";
                             lbRestLeft.Text = leaveData.RestLeft + " วัน";
@@ -222,7 +222,7 @@ namespace WEB_PERSONAL {
                                         tr.Cells.Add(cell3);
 
                                         cell3 = new TableCell();
-                                        cell3.Text = leaveBossData.Person.PositionWorkName;
+                                        cell3.Text = leaveBossData.Person.PS_WORK_POS_NAME;
                                         tr.Cells.Add(cell3);
 
                                         tr = new TableRow();
@@ -233,7 +233,7 @@ namespace WEB_PERSONAL {
                                         tr.Cells.Add(cell3);
 
                                         cell3 = new TableCell();
-                                        cell3.Text = leaveBossData.Person.AdminPositionName;// + "<br />" + leaveBossData.Person.AdminPositionNameExtra();
+                                        cell3.Text = leaveBossData.Person.PS_ADMIN_POS_NAME;// + "<br />" + leaveBossData.Person.AdminPositionNameExtra();
                                         tr.Cells.Add(cell3);
 
                                         tr = new TableRow();
@@ -292,7 +292,7 @@ namespace WEB_PERSONAL {
             //--------
 
             {
-                SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEAVE_ID รหัสการลา, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_DATA.LEAVE_TYPE_ID) ประเภทการลา, REQ_DATE วันที่ข้อมูล, FROM_DATE จากวันที่, TO_DATE ถึงวันที่, TOTAL_DAY รวมวัน FROM LEV_DATA WHERE LEAVE_STATUS_ID = 3 AND PS_ID = '" + loginPerson.CitizenID + "' AND V_ALLOW = 1 AND CEIL(FROM_DATE - CURRENT_DATE) >= 3 ORDER BY LEAVE_ID DESC");
+                SqlDataSource sds = DatabaseManager.CreateSQLDataSource("SELECT LEAVE_ID รหัสการลา, (SELECT LEAVE_TYPE_NAME FROM LEV_TYPE WHERE LEV_TYPE.LEAVE_TYPE_ID = LEV_DATA.LEAVE_TYPE_ID) ประเภทการลา, REQ_DATE วันที่ข้อมูล, FROM_DATE จากวันที่, TO_DATE ถึงวันที่, TOTAL_DAY รวมวัน FROM LEV_DATA WHERE LEAVE_STATUS_ID = 3 AND PS_ID = '" + loginPerson.PS_CITIZEN_ID + "' AND V_ALLOW = 1 AND CEIL(FROM_DATE - CURRENT_DATE) >= 3 ORDER BY LEAVE_ID DESC");
                 gvLeave.DataSource = sds;
                 gvLeave.DataBind();
 
@@ -384,16 +384,16 @@ namespace WEB_PERSONAL {
                             lbLeaveID.Text = leaveData.LeaveID.ToString();
                             lbLeaveTypeName.Text = leaveData.LeaveTypeName;
                             lbReqDate.Text = leaveData.RequestDate.Value.ToLongDateString();
-                            lbPSName.Text = leaveData.Person.FirstName + " " + leaveData.Person.LastName;
-                            lbPSPos.Text = leaveData.Person.PositionWorkName;
-                            lbPSAPos.Text = leaveData.Person.AdminPositionName;
-                            if (Util.IsBlank(leaveData.Person.WorkDivisionID)) {
-                                lbPSDept.Text = leaveData.Person.DivisionName;
+                            lbPSName.Text = leaveData.Person.PS_FN_TH + " " + leaveData.Person.PS_LN_TH;
+                            lbPSPos.Text = leaveData.Person.PS_WORK_POS_NAME;
+                            lbPSAPos.Text = leaveData.Person.PS_ADMIN_POS_NAME;
+                            if (Util.IsBlank(leaveData.Person.PS_WORK_DIVISION_ID)) {
+                                lbPSDept.Text = leaveData.Person.PS_DIVISION_NAME;
                             } else {
-                                lbPSDept.Text = leaveData.Person.WorkDivisionName;
+                                lbPSDept.Text = leaveData.Person.PS_WORK_DIVISION_NAME;
                             }
-                            lbPSBirthDate.Text = leaveData.Person.BirthDate.Value.ToLongDateString();
-                            lbPSWorkInDate.Text = leaveData.Person.InWorkDate.Value.ToLongDateString();
+                            lbPSBirthDate.Text = leaveData.Person.PS_BIRTHDAY_DATE.Value.ToLongDateString();
+                            lbPSWorkInDate.Text = leaveData.Person.PS_INWORK_DATE.Value.ToLongDateString();
 
                             lbRestSave.Text = leaveData.RestSave + " วัน";
                             lbRestLeft.Text = leaveData.RestLeft + " วัน";
@@ -499,7 +499,7 @@ namespace WEB_PERSONAL {
                                     tr.Cells.Add(cell3);
 
                                     cell3 = new TableCell();
-                                    cell3.Text = leaveBossData.Person.PositionWorkName;
+                                    cell3.Text = leaveBossData.Person.PS_WORK_POS_NAME;
                                     tr.Cells.Add(cell3);
 
                                     tr = new TableRow();
@@ -510,7 +510,7 @@ namespace WEB_PERSONAL {
                                     tr.Cells.Add(cell3);
 
                                     cell3 = new TableCell();
-                                    cell3.Text = leaveBossData.Person.AdminPositionName;// + "<br />" + leaveBossData.Person.AdminPositionNameExtra();
+                                    cell3.Text = leaveBossData.Person.PS_ADMIN_POS_NAME;// + "<br />" + leaveBossData.Person.AdminPositionNameExtra();
                                     tr.Cells.Add(cell3);
 
                                     tr = new TableRow();

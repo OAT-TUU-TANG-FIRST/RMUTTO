@@ -1,35 +1,60 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="ListPerson-ADMIN.aspx.cs" Inherits="WEB_PERSONAL.ListPerson_ADMIN" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <!-- for Menu List -->
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/metisMenu/dist/metisMenu.min.js"></script>
+    <script src="bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
+    <script src="dist/js/sb-admin-2.js"></script>
+    <!-- for Menu List -->
 
+    <script>
+        $(document).ready(function () {
+            $('#dataTables-example').DataTable({
+                responsive: true
+            });
+        });
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="ps-header"><img src="Image/Small/list.png" />รายชื่อบุคลากร</div>
+    <div class="ps-header">
+        <img src="Image/Small/list.png" />รายชื่อบุคลากร
+    </div>
     <div id="notification" runat="server"></div>
-    <div>
-        <div class="ps-div-title-red"><img src="Image/Small/search.png" class="icon_left"/>ค้นหารายชื่อ</div>
-        <div style="text-align: center;">
-            เลขบัตรประจำตัวประชาชน 13 หลัก :&nbsp<asp:TextBox ID="txtSearchCitizenID" runat="server" CssClass="ps-textbox" Width="230px" MaxLength="13"></asp:TextBox>
-            <asp:LinkButton ID="lbuSearch" runat="server" OnClick="lbuSearch_Click" CssClass="ps-button"><img src="Image/Small/search.png" class="icon_left"/>ค้นหา</asp:LinkButton>
-            <asp:LinkButton ID="lbuRefresh" runat="server" OnClick="lbuRefresh_Click" CssClass="ps-button"><img src="Image/Small/refresh.png" class="icon_left"/>รีเฟรช</asp:LinkButton>
+  
+    <div id="Dp1" runat="server" class="panel panel-default">
+        <div class="panel-heading">บุคลากรภายในมหาวิทยาลัย</div>
+        <div class="panel-body">
+            <div class="panel-body">
+                <div id="divLoad" runat="server" class="dataTable_wrapper">
+                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                        <thead>
+                            <tr>
+                                <th>ลำดับที่</th>
+                                <th>ชื่อ-สกุล</th>
+                                <th>ประเภทบุคลากร</th>
+                                <th>วิทยาเขต</th>
+                                <th>สำนัก / สถาบัน / คณะ</th>
+                                <th>กอง / สำนักงานเลขา / ภาควิชา</th>
+                                <th>งาน / ฝ่าย</th>
+                            </tr>
+                        </thead>
+                        <asp:Repeater ID="myRepeater" runat="server" OnItemCommand="myRepeater_ItemCommand">
+                            <ItemTemplate>
+                                <tr>
+                                    <td><%# Container.ItemIndex +1 %></td>
+                                    <td><%# DataBinder.Eval(Container.DataItem, "NAME") %></td>
+                                    <td><%# DataBinder.Eval(Container.DataItem, "STAFFTYPE_NAME") %></td>
+                                    <td><%# DataBinder.Eval(Container.DataItem, "CAMPUS_NAME") %></td>
+                                    <td><%# DataBinder.Eval(Container.DataItem, "FACULTY_NAME") %></td>
+                                    <td><%# DataBinder.Eval(Container.DataItem, "DIVISION_NAME") %></td>
+                                    <td><%# DataBinder.Eval(Container.DataItem, "WORK_NAME") %></td>
+                                </tr>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </table>
+                </div>
+            </div>
         </div>
-        
     </div>
-    <div class="ps-separator"></div>
-    <div>
-        <div class="ps-div-title-red"><img src="Image/Small/person2.png" class="icon_left"/>รายชื่อ</div>
-
-        <asp:GridView ID="GridView1" runat="server" EnableViewState="True" AutoGenerateColumns="False" DataKeyNames="PS_CITIZEN_ID" DataSourceID="SqlDataSource1" AllowPaging="True" AllowSorting="True" PageSize="50" Width="1220px" CssClass="ps-table-1">
-            <Columns>
-                <asp:BoundField DataField="PS_ID" HeaderText="ลำดับที่" SortExpression="PS_ID" />
-                <asp:HyperLinkField DataNavigateUrlFields="PS_CITIZEN_ID" DataNavigateUrlFormatString="Profile.aspx?psID={0}" DataTextField="PS_CITIZEN_ID" HeaderText="รหัสบัตรประชาชน" SortExpression="PS_CITIZEN_ID" />
-                <asp:BoundField DataField="PS_FN_TH" HeaderText="ชื่อ" SortExpression="PS_FN_TH" />
-                <asp:BoundField DataField="PS_LN_TH" HeaderText="นามสกุล" SortExpression="PS_LN_TH" />
-            </Columns>
-        </asp:GridView>
-
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ORCL_RMUTTO %>" ProviderName="<%$ ConnectionStrings:ORCL_RMUTTO.ProviderName %>" SelectCommand="SELECT &quot;PS_ID&quot;, &quot;PS_CITIZEN_ID&quot;, &quot;PS_FN_TH&quot;, &quot;PS_LN_TH&quot; FROM &quot;PS_PERSON&quot;"></asp:SqlDataSource>
-
-    </div>
-
 </asp:Content>

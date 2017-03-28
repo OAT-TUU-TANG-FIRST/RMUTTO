@@ -121,186 +121,121 @@ namespace WEB_PERSONAL.Class {
                 con.Open();
                 using (OracleCommand com = new OracleCommand(
 
-                    "SELECT PS_PERSON.PS_CITIZEN_ID, PS_PERSON.PS_TITLE_ID, (SELECT TITLE_NAME_TH FROM TB_TITLENAME WHERE TB_TITLENAME.TITLE_ID = PS_PERSON.PS_TITLE_ID) TITLE_NAME_TH, PS_PERSON.PS_FN_TH, PS_PERSON.PS_LN_TH, PS_GENDER_ID, (SELECT GENDER_NAME FROM TB_GENDER WHERE TB_GENDER.GENDER_ID = PS_PERSON.PS_GENDER_ID) GENDER_NAME, PS_BIRTHDAY_DATE, PS_BIRTHDAY_LONG, PS_RETIRE_DATE, PS_RETIRE_LONG, PS_INWORK_DATE, PS_PERSON.PS_STAFFTYPE_ID, (SELECT STAFFTYPE_NAME FROM TB_STAFFTYPE WHERE TB_STAFFTYPE.STAFFTYPE_ID = PS_PERSON.PS_STAFFTYPE_ID) STAFFTYPE_NAME, PS_DAD_FN, PS_DAD_LN, PS_MOM_FN, PS_MOM_LN, PS_MOM_LN_OLD, PS_LOV_FN, PS_LOV_LN, PS_LOV_LN_OLD, PS_PERSON.PS_MINISTRY_ID, (SELECT MINISTRY_NAME FROM TB_MINISTRY WHERE TB_MINISTRY.MINISTRY_ID = PS_PERSON.PS_MINISTRY_ID) MINISTRY_NAME, PS_DIVISION_ID, (SELECT DIVISION_NAME FROM TB_DIVISION WHERE TB_DIVISION.DIVISION_ID = PS_PERSON.PS_DIVISION_ID) DIVISION_NAME, PS_PASSWORD, PS_RACE_ID, (SELECT NATION_THA FROM TB_NATIONAL WHERE TB_NATIONAL.NATION_SEQ = PS_PERSON.PS_RACE_ID) RACE_THA, PS_NATION_ID, (SELECT NATION_THA FROM TB_NATIONAL WHERE TB_NATIONAL.NATION_SEQ = PS_PERSON.PS_NATION_ID) NATION_THA, PS_HOMEADD, PS_SOI, PS_MOO, PS_STREET, PS_DISTRICT, (SELECT DISTRICT_TH FROM TB_DISTRICT WHERE TB_DISTRICT.DISTRICT_ID = PS_PERSON.PS_DISTRICT) DISTRICT_TH, PS_AMPHUR_ID, (SELECT AMPHUR_TH FROM TB_AMPHUR WHERE TB_AMPHUR.AMPHUR_ID = PS_PERSON.PS_AMPHUR_ID) AMPHUR_TH, PS_PROVINCE_ID, (SELECT PROVINCE_TH FROM TB_PROVINCE WHERE TB_PROVINCE.PROVINCE_ID = PS_PERSON.PS_PROVINCE_ID) PROVINCE_TH, PS_ZIPCODE, PS_COUNTRY_ID, (SELECT COUNTRY_TH FROM TB_COUNTRY WHERE TB_COUNTRY.COUNTRY_ID = PS_PERSON.PS_COUNTRY_ID) PS_COUNTRY_NAME, PS_STATE, PS_HOMEADD_NOW, PS_SOI_NOW, PS_MOO_NOW, PS_STREET_NOW, PS_DISTRICT_ID_NOW, (SELECT DISTRICT_TH FROM TB_DISTRICT WHERE TB_DISTRICT.DISTRICT_ID = PS_PERSON.PS_DISTRICT_ID_NOW) DISTRICT_TH, PS_AMPHUR_ID_NOW, (SELECT AMPHUR_TH FROM TB_AMPHUR WHERE TB_AMPHUR.AMPHUR_ID = PS_PERSON.PS_AMPHUR_ID_NOW) AMPHUR_TH, PS_PROVINCE_ID_NOW, (SELECT PROVINCE_TH FROM TB_PROVINCE WHERE TB_PROVINCE.PROVINCE_ID = PS_PERSON.PS_PROVINCE_ID_NOW) PROVINCE_TH, PS_ZIPCODE_NOW, PS_COUNTRY_ID_NOW, (SELECT COUNTRY_TH FROM TB_COUNTRY WHERE TB_COUNTRY.COUNTRY_ID = PS_PERSON.PS_COUNTRY_ID_NOW) PS_COUNTRY_NAME_NOW, PS_STATE_NOW, PS_PHONE, PS_BUDGET_ID, (SELECT BUDGET_NAME FROM TB_BUDGET WHERE TB_BUDGET.BUDGET_ID = PS_PERSON.PS_BUDGET_ID) BUDGET_NAME, PS_ADMIN_POS_ID, (SELECT ADMIN_POSITION_NAME FROM TB_ADMIN_POSITION WHERE TB_ADMIN_POSITION.ADMIN_POSITION_ID = PS_PERSON.PS_ADMIN_POS_ID) ADMIN_POSITION_NAME, (SELECT ADMIN_POSITION_POWER FROM TB_ADMIN_POSITION WHERE TB_ADMIN_POSITION.ADMIN_POSITION_ID = PS_PERSON.PS_ADMIN_POS_ID) ADMIN_POSITION_POWER, PS_SPECIAL_WORK, PS_TEACH_ISCED_ID, PS_FACULTY_ID, (SELECT FACULTY_NAME FROM TB_FACULTY WHERE TB_FACULTY.FACULTY_ID = PS_PERSON.PS_FACULTY_ID) FACULTY_NAME, PS_CAMPUS_ID, (SELECT CAMPUS_NAME FROM TB_CAMPUS WHERE TB_CAMPUS.CAMPUS_ID = PS_PERSON.PS_CAMPUS_ID) CAMPUS_NAME, PS_SW_ID, PS_RELIGION_ID, (SELECT RELIGION_NAME FROM TB_RELIGION WHERE TB_RELIGION.RELIGION_ID = PS_PERSON.PS_RELIGION_ID) RELIGION_NAME, (SELECT PS_POSITION_AND_SALARY.PS_POSITION_NO FROM PS_POSITION_AND_SALARY WHERE PS_PERSON.PS_CITIZEN_ID = PS_POSITION_AND_SALARY.PS_CITIZEN_ID AND PRESENT = 1) POSITION_NO, (SELECT TB_POSITION.NAME FROM TB_POSITION WHERE PS_PERSON.PS_POSITION_ID = TB_POSITION.ID) POSITION_NAME, PS_SALARY, PS_STATUS_ID, (SELECT STATUS_NAME FROM TB_STATUS_PERSON WHERE PS_PERSON.PS_STATUS_ID = TB_STATUS_PERSON.STATUS_ID) STATUS_PERSON_NAME, PS_BLOOD_ID, (SELECT BLOOD_NAME FROM TB_BLOOD WHERE PS_PERSON.PS_BLOOD_ID = TB_BLOOD.BLOOD_ID) BLOOD_NAME, PS_TELEPHONE_WORK, PS_EMAIL, PS_GROM, (SELECT SW_NAME FROM TB_STATUS_WORK WHERE PS_PERSON.PS_SW_ID = TB_STATUS_WORK.SW_ID) STATUS_NAME, PS_WORK_DIVISION_ID, (SELECT WORK_NAME FROM TB_WORK_DIVISION WHERE PS_PERSON.PS_WORK_DIVISION_ID = TB_WORK_DIVISION.WORK_ID) WORK_NAME, PS_WORK_POS_ID, (SELECT POSITION_WORK_NAME FROM TB_POSITION_WORK WHERE TB_POSITION_WORK.POSITION_WORK_ID = PS_PERSON.PS_WORK_POS_ID) POSITION_WORK_NAME, PS_RANK_ID, (SELECT RANK_NAME_TH FROM TB_RANK WHERE TB_RANK.RANK_ID = PS_PERSON.PS_RANK_ID) RANK_NAME, PS_START_POSI_ID, (SELECT POSITION_WORK_NAME FROM TB_POSITION_WORK WHERE TB_POSITION_WORK.POSITION_WORK_ID = PS_PERSON.PS_START_POSI_ID) START_POSITION_WORK_NAME, PS_START_ADMIN_POSI_ID, (SELECT ADMIN_POSITION_NAME FROM TB_ADMIN_POSITION WHERE TB_ADMIN_POSITION.ADMIN_POSITION_ID = PS_PERSON.PS_START_ADMIN_POSI_ID) START_ADMIN_POSITION_NAME, PS_POSS_SALARY, PS_DATE_QUIT, PS_PERMISSION FROM PS_PERSON WHERE PS_CITIZEN_ID = '" + citizenID + "'"
-
-
-
-
+                    "SELECT PS_CITIZEN_ID, PS_ID, PS_TITLE_ID, PS_FN_TH, PS_LN_TH, PS_GENDER_ID, PS_BIRTHDAY_DATE, PS_EMAIL, PS_CAMPUS_ID, PS_FACULTY_ID, PS_DIVISION_ID, PS_WORK_DIVISION_ID, PS_ADMIN_POS_ID, PS_WORK_POS_ID, PS_INWORK_DATE, PS_PASSWORD, PS_POSITION_ID, PS_STAFFTYPE_ID, ST_LOGIN_ID, PS_YEAR, PS_HOMEADD, PS_MOO, PS_STREET, PS_DISTRICT_ID, PS_AMPHUR_ID, PS_PROVINCE_ID, PS_TELEPHONE, PS_ZIPCODE, PS_NATION_ID, PS_TIME_CONTACT_ID, PS_BUDGET_ID, PS_SUBSTAFFTYPE_ID, PS_POSITION_WORK, PS_DATE_START_THIS_U, PS_SPECIAL_NAME, PS_TEACH_ISCED_ID, PS_GRAD_LEV_ID, PS_GRAD_CURR, PS_GRAD_ISCED_ID, PS_GRAD_PROG_ID, PS_GRAD_UNIV, PS_GRAD_COUNTRY_ID, PS_DEFORM_ID, PS_SIT_NO, PS_RELIGION_ID, PS_MOVEMENT_TYPE_ID, PS_MOVEMENT_DATE, PERSON_ROLE_ID," +
+                    "(SELECT ADMIN_POSITION_POWER FROM TB_ADMIN_POSITION WHERE TB_ADMIN_POSITION.ADMIN_POSITION_ID = PS_PERSON.PS_ADMIN_POS_ID) ADMIN_POSITION_POWER, "+
+                    "(SELECT TITLE_NAME_TH FROM TB_TITLENAME WHERE TB_TITLENAME.TITLE_ID = PS_PERSON.PS_TITLE_ID) PS_TITLE_NAME," +
+                    "(SELECT GENDER_NAME FROM TB_GENDER WHERE TB_GENDER.GENDER_ID = PS_PERSON.PS_GENDER_ID) PS_GENDER_NAME," +
+                    "(SELECT CAMPUS_NAME FROM TB_CAMPUS WHERE TB_CAMPUS.CAMPUS_ID = PS_PERSON.PS_CAMPUS_ID) PS_CAMPUS_NAME," +
+                    "(SELECT FACULTY_NAME FROM TB_FACULTY WHERE TB_FACULTY.FACULTY_ID = PS_PERSON.PS_FACULTY_ID) PS_FACULTY_NAME," +
+                    "(SELECT DIVISION_NAME FROM TB_DIVISION WHERE TB_DIVISION.DIVISION_ID = PS_PERSON.PS_DIVISION_ID) PS_DIVISION_NAME," +
+                    "(SELECT WORK_NAME FROM TB_WORK_DIVISION WHERE TB_WORK_DIVISION.WORK_ID = PS_PERSON.PS_WORK_DIVISION_ID) PS_WORK_DIVISION_NAME," +
+                    "(SELECT ADMIN_POSITION_NAME FROM TB_ADMIN_POSITION WHERE TB_ADMIN_POSITION.ADMIN_POSITION_ID = PS_PERSON.PS_ADMIN_POS_ID) PS_ADMIN_POSITION_NAME," +
+                    "(SELECT POSITION_WORK_NAME FROM TB_POSITION_WORK WHERE TB_POSITION_WORK.POSITION_WORK_ID = PS_PERSON.PS_WORK_POS_ID) PS_WORK_POS_NAME," +
+                    "(SELECT P_NAME FROM PS_POSITION WHERE PS_POSITION.P_ID = PS_PERSON.PS_POSITION_ID) PS_POSITION_NAME," +
+                    "(SELECT STAFFTYPE_NAME FROM TB_STAFFTYPE WHERE TB_STAFFTYPE.STAFFTYPE_ID = PS_PERSON.PS_STAFFTYPE_ID) PS_STAFFTYPE_NAME," +
+                    "(SELECT ST_LOGIN_NAME FROM TB_STATUS_LOGIN WHERE TB_STATUS_LOGIN.ST_LOGIN_ID = PS_PERSON.ST_LOGIN_ID) ST_LOGIN_NAME," +
+                    "(SELECT DISTRICT_TH FROM TB_DISTRICT WHERE TB_DISTRICT.DISTRICT_ID = PS_PERSON.PS_DISTRICT_ID) PS_DISTRICT_NAME," +
+                    "(SELECT AMPHUR_TH FROM TB_AMPHUR WHERE TB_AMPHUR.AMPHUR_ID = PS_PERSON.PS_AMPHUR_ID) PS_AMPHUR_NAME," +
+                    "(SELECT PROVINCE_TH FROM TB_PROVINCE WHERE TB_PROVINCE.PROVINCE_ID = PS_PERSON.PS_PROVINCE_ID) PS_PROVINCE_NAME," +
+                    "(SELECT NATION_THA FROM TB_NATIONAL WHERE TB_NATIONAL.NATION_SEQ = PS_PERSON.PS_NATION_ID) PS_NATION_NAME," +
+                    "(SELECT TIME_CONTACT_NAME FROM TB_TIME_CONTACT WHERE TB_TIME_CONTACT.TIME_CONTACT_ID = PS_PERSON.PS_TIME_CONTACT_ID) PS_TIME_CONTACT_NAME," +
+                    "(SELECT BUDGET_NAME FROM TB_BUDGET WHERE TB_BUDGET.BUDGET_ID = PS_PERSON.PS_BUDGET_ID) PS_BUDGET_NAME," +
+                    "(SELECT SUBSTAFFTYPE_NAME FROM TB_SUBSTAFFTYPE WHERE TB_SUBSTAFFTYPE.SUBSTAFFTYPE_ID = PS_PERSON.PS_SUBSTAFFTYPE_ID) PS_SUBSTAFFTYPE_NAME," +
+                    "(SELECT ISCED_NAME FROM TB_ISCED WHERE TB_ISCED.ISCED_ID = PS_PERSON.PS_TEACH_ISCED_ID) PS_TEACH_ISCED_NAME," +
+                    "(SELECT LEV_NAME_TH FROM TB_LEV WHERE TB_LEV.LEV_ID = PS_PERSON.PS_GRAD_LEV_ID) PS_GRAD_LEV_NAME," +
+                    "(SELECT ISCED_NAME FROM TB_ISCED WHERE TB_ISCED.ISCED_ID = PS_PERSON.PS_TEACH_ISCED_ID) PS_GRAD_ISCED_ID," +
+                    "(SELECT PROGRAM_NAME FROM TB_PROGRAM WHERE TB_PROGRAM.PROGRAM_ID_NEW = PS_PERSON.PS_GRAD_PROG_ID) PS_GRAD_PROG_NAME," +
+                    "(SELECT COUNTRY_TH FROM TB_COUNTRY WHERE TB_COUNTRY.COUNTRY_ID = PS_PERSON.PS_GRAD_COUNTRY_ID) PS_GRAD_COUNTRY_NAME," +
+                    "(SELECT DEFORM_NAME FROM TB_DEFORM WHERE TB_DEFORM.DEFORM_ID = PS_PERSON.PS_DEFORM_ID) PS_DEFORM_NAME," +
+                    "(SELECT RELIGION_NAME FROM TB_RELIGION WHERE TB_RELIGION.RELIGION_ID = PS_PERSON.PS_RELIGION_ID) PS_RELIGION_NAME," +
+                    "(SELECT MOVEMENT_TYPE_NAME FROM TB_MOVEMENT_TYPE WHERE TB_MOVEMENT_TYPE.MOVEMENT_TYPE_ID = PS_PERSON.PS_MOVEMENT_TYPE_ID) PS_MOVEMENT_TYPE_NAME," +
+                    "(SELECT PERSON_ROLE_NAME FROM TB_PERSON_ROLE WHERE TB_PERSON_ROLE.PERSON_ROLE_ID = PS_PERSON.PERSON_ROLE_ID) PERSON_ROLE_NAME" +
+                    " FROM PS_PERSON WHERE PS_CITIZEN_ID = '" + citizenID + "'"
                     , con)) {
                     using (OracleDataReader reader = com.ExecuteReader()) {
                         while (reader.Read()) {
 
                             Person person = new Person();
                             int i = 0;
+                            //BASE
+                            person.PS_CITIZEN_ID = reader.GetValue(i++).ToString();
+                            person.PS_ID = reader.GetValue(i++).ToString();
+                            person.PS_TITLE_ID = reader.GetValue(i++).ToString();
+                            person.PS_FN_TH = reader.GetValue(i++).ToString();
+                            person.PS_LN_TH = reader.GetValue(i++).ToString();
+                            person.PS_GENDER_ID = reader.GetValue(i++).ToString();
+                            if (reader.IsDBNull(i)) { person.PS_BIRTHDAY_DATE = null; } else { person.PS_BIRTHDAY_DATE = reader.GetDateTime(i); } ++i;
+                            person.PS_EMAIL = reader.GetValue(i++).ToString();
+                            person.PS_CAMPUS_ID = reader.GetValue(i++).ToString();
+                            person.PS_FACULTY_ID = reader.GetValue(i++).ToString();
+                            person.PS_DIVISION_ID = reader.GetValue(i++).ToString();
+                            person.PS_WORK_DIVISION_ID = reader.GetValue(i++).ToString();
+                            person.PS_ADMIN_POS_ID = reader.GetValue(i++).ToString();
+                            person.PS_WORK_POS_ID = reader.GetValue(i++).ToString();
+                            if (reader.IsDBNull(i)) { person.PS_INWORK_DATE = null; } else { person.PS_INWORK_DATE = reader.GetDateTime(i); } ++i;
+                            person.PS_PASSWORD = reader.GetValue(i++).ToString();
+                            person.PS_POSITION_ID = reader.GetValue(i++).ToString();
+                            person.PS_STAFFTYPE_ID = reader.GetValue(i++).ToString();
+                            person.ST_LOGIN_ID = reader.GetValue(i++).ToString();
+                            person.PS_YEAR = reader.GetValue(i++).ToString();
+                            person.PS_HOMEADD = reader.GetValue(i++).ToString();
+                            person.PS_MOO = reader.GetValue(i++).ToString();
+                            person.PS_STREET = reader.GetValue(i++).ToString();
+                            person.PS_DISTRICT_ID = reader.GetValue(i++).ToString();
+                            person.PS_AMPHUR_ID = reader.GetValue(i++).ToString();
+                            person.PS_PROVINCE_ID = reader.GetValue(i++).ToString();
+                            person.PS_TELEPHONE = reader.GetValue(i++).ToString();
+                            person.PS_ZIPCODE = reader.GetValue(i++).ToString();
+                            person.PS_NATION_ID = reader.GetValue(i++).ToString();
+                            person.PS_TIME_CONTACT_ID = reader.GetValue(i++).ToString();
+                            person.PS_BUDGET_ID = reader.GetValue(i++).ToString();
+                            person.PS_SUBSTAFFTYPE_ID = reader.GetValue(i++).ToString();
+                            person.PS_POSITION_WORK = reader.GetValue(i++).ToString();
+                            if (reader.IsDBNull(i)) { person.PS_DATE_START_THIS_U = null; } else { person.PS_DATE_START_THIS_U = reader.GetDateTime(i); } ++i;
+                            person.PS_SPECIAL_NAME = reader.GetValue(i++).ToString();
+                            person.PS_TEACH_ISCED_ID = reader.GetValue(i++).ToString();
+                            person.PS_GRAD_LEV_ID = reader.GetValue(i++).ToString();
+                            person.PS_GRAD_CURR = reader.GetValue(i++).ToString();
+                            person.PS_GRAD_ISCED_ID = reader.GetValue(i++).ToString();
+                            person.PS_GRAD_PROG_ID = reader.GetValue(i++).ToString();
+                            person.PS_GRAD_UNIV = reader.GetValue(i++).ToString();
+                            person.PS_GRAD_COUNTRY_ID = reader.GetValue(i++).ToString();
+                            person.PS_DEFORM_ID = reader.GetValue(i++).ToString();
+                            person.PS_SIT_NO = reader.GetValue(i++).ToString();
+                            person.PS_RELIGION_ID = reader.GetValue(i++).ToString();
+                            person.PS_MOVEMENT_TYPE_ID = reader.GetValue(i++).ToString();
+                            if (reader.IsDBNull(i)) { person.PS_MOVEMENT_DATE = null; } else { person.PS_MOVEMENT_DATE = reader.GetDateTime(i); } ++i;
+                            person.PERSON_ROLE_ID = reader.GetValue(i++).ToString();
 
-                            person.CitizenID = reader.GetValue(i++).ToString();
-                            person.TitleID = reader.GetValue(i++).ToString();
-                            person.TitleName = reader.GetValue(i++).ToString();
-                            person.FirstName = reader.GetValue(i++).ToString();
-                            person.LastName = reader.GetValue(i++).ToString();
-                            person.GenderID = reader.GetValue(i++).ToString();
-                            person.GenderName = reader.GetValue(i++).ToString();
-                            person.BirthDate = reader.GetDateTime(i++);
-                            person.BirthDateLong = reader.GetValue(i++).ToString();
-
-                            if(reader.IsDBNull(i)) {
-                                person.RetireDate = null;
-                            } else {
-                                person.RetireDate = reader.GetDateTime(i);
-                            }
-                            ++i;
-                            
-                            person.RetireDateLong = reader.GetValue(i++).ToString();
-
-                            if (reader.IsDBNull(i))
-                            {
-                                person.InWorkDate = null;
-                            }
-                            else
-                            {
-                                person.InWorkDate = reader.GetDateTime(i);
-                            }
-                            ++i;
-
-                            person.StaffTypeID = reader.GetValue(i++).ToString();
-                            person.StaffTypeName = reader.GetValue(i++).ToString();
-                            person.FatherFirstName = reader.GetValue(i++).ToString();
-                            person.FatherLastName = reader.GetValue(i++).ToString();
-                            person.MotherFirstName = reader.GetValue(i++).ToString();
-                            person.MotherLastName = reader.GetValue(i++).ToString();
-                            person.MotherOldLastName = reader.GetValue(i++).ToString();
-                            person.CoupleFirstName = reader.GetValue(i++).ToString();
-                            person.CoupleLastName = reader.GetValue(i++).ToString();
-                            person.CoupleOldLastName = reader.GetValue(i++).ToString();
-                            person.MinistryID = reader.GetValue(i++).ToString();
-                            person.MinistryName = reader.GetValue(i++).ToString();
-
-                            if (reader.IsDBNull(i)) {
-                                person.DivisionID = null;
-                            } else {
-                                person.DivisionID = reader.GetValue(i).ToString();
-                            }
-                            ++i;
-
-                            if (reader.IsDBNull(i)) {
-                                person.DivisionName = null;
-                            } else {
-                                person.DivisionName = reader.GetValue(i).ToString();
-                            }
-                            ++i;
-
-                            person.Password = reader.GetValue(i++).ToString();
-                            person.RaceID = reader.GetValue(i++).ToString();
-                            person.RaceName = reader.GetValue(i++).ToString();
-                            person.NationID = reader.GetValue(i++).ToString();
-                            person.NationName = reader.GetValue(i++).ToString();
-
-                            person.HomeAdd = reader.GetValue(i++).ToString();
-                            person.Soi = reader.GetValue(i++).ToString();
-                            person.Moo = reader.GetValue(i++).ToString();
-                            person.Street = reader.GetValue(i++).ToString();
-                            person.DistrictID = reader.GetValue(i++).ToString();
-                            person.DistrictName = reader.GetValue(i++).ToString();
-                            person.AmphurID = reader.GetValue(i++).ToString();
-                            person.AmphurName = reader.GetValue(i++).ToString();
-                            person.ProvinceID = reader.GetValue(i++).ToString();
-                            person.ProvinceName = reader.GetValue(i++).ToString();
-                            person.ZipCode = reader.GetValue(i++).ToString();
-                            person.PlaceCountryID = reader.GetValue(i++).ToString();
-                            person.PlaceCountryName = reader.GetValue(i++).ToString();
-                            person.PlaceState = reader.GetValue(i++).ToString();
-
-                            person.HomeAddNow = reader.GetValue(i++).ToString();
-                            person.SoiNow = reader.GetValue(i++).ToString();
-                            person.MooNow = reader.GetValue(i++).ToString();
-                            person.StreetNow = reader.GetValue(i++).ToString();
-                            person.DistrictIDNow = reader.GetValue(i++).ToString();
-                            person.DistrictNameNow = reader.GetValue(i++).ToString();
-                            person.AmphurIDNow = reader.GetValue(i++).ToString();
-                            person.AmphurNameNow = reader.GetValue(i++).ToString();
-                            person.ProvinceIDNow = reader.GetValue(i++).ToString();
-                            person.ProvinceNameNow = reader.GetValue(i++).ToString();
-                            person.ZipCodeNow = reader.GetValue(i++).ToString();
-                            person.PlaceCountryID = reader.GetValue(i++).ToString();
-                            person.PlaceCountryNowName = reader.GetValue(i++).ToString();
-                            person.PlaceStateNow = reader.GetValue(i++).ToString();
-
-                            person.Telephone = reader.GetValue(i++).ToString();
-                            person.BudgetID = reader.GetValue(i++).ToString();
-                            person.BudgetName = reader.GetValue(i++).ToString();
-                            person.AdminPositionID = reader.GetValue(i++).ToString();
-                            person.AdminPositionName = reader.GetValue(i++).ToString();
+                            //NAME
                             person.AdminPositionPower = reader.GetValue(i++).ToString();
-                            person.SpecialName = reader.GetValue(i++).ToString();
-                            person.TeachISCEDID = reader.GetValue(i++).ToString();
-                            person.FacultyID = reader.GetValue(i++).ToString();
-                            person.FacultyName = reader.GetValue(i++).ToString();
-                            person.CampusID = reader.GetValue(i++).ToString();
-                            person.CampusName = reader.GetValue(i++).ToString();
-                            person.StatusID = reader.GetValue(i++).ToString();
-                            person.ReligionID = reader.GetValue(i++).ToString();
-                            person.ReligionName = reader.GetValue(i++).ToString();
-                            person.PositionID = reader.GetValue(i++).ToString();
-                            person.PositionName = reader.GetValue(i++).ToString();
-
-                            if (reader.IsDBNull(i))
-                            {
-                                person.Salary = 0;
-                            }
-                            else {
-                                person.Salary = reader.GetInt32(i);
-                            }
-                            ++i;
-
-                            //person.Salary = reader.GetInt32(i++);
-                            person.StatusPersonID = reader.GetValue(i++).ToString();
-                            person.StatusPersonName = reader.GetValue(i++).ToString();
-                            person.BloodID = reader.GetValue(i++).ToString();
-                            person.BloodName = reader.GetValue(i++).ToString();
-                            person.WorkTelephone = reader.GetValue(i++).ToString();
-                            person.Email = reader.GetValue(i++).ToString();
-                            person.Grom = reader.GetValue(i++).ToString();
-                            person.StatusName = reader.GetValue(i++).ToString();
-
-                            if (reader.IsDBNull(i)) {
-                                person.WorkDivisionID = null;
-                            } else {
-                                person.WorkDivisionID = reader.GetValue(i).ToString();
-                            }
-                            ++i;
-
-                            if (reader.IsDBNull(i)) {
-                                person.WorkDivisionName = null;
-                            } else {
-                                person.WorkDivisionName = reader.GetValue(i).ToString();
-                            }
-                            ++i;
-
-
-                            person.PositionWorkID = reader.GetValue(i++).ToString();
-                            person.PositionWorkName = reader.GetValue(i++).ToString();
-
-                            person.RankID = reader.GetValue(i++).ToString();
-                            person.RankName = reader.GetValue(i++).ToString();
-
-                            person.StartPositionWorkID = reader.GetValue(i++).ToString();
-                            person.StartPositionWorkName = reader.GetValue(i++).ToString();
-                            person.StartAdminPositionID = reader.GetValue(i++).ToString();
-                            person.StartAdminPositionName = reader.GetValue(i++).ToString();
-
-                            person.PositionSalary = reader.GetValue(i++).ToString();
-
-                            if (reader.IsDBNull(i))
-                            {
-                                person.DateQuit = null;
-                            }
-                            else
-                            {
-                                person.DateQuit = reader.GetDateTime(i);
-                            }
-                            ++i;
-
-                            person.Permission = reader.GetInt32(i++);
+                            person.PS_TITLE_NAME = reader.GetValue(i++).ToString();
+                            person.PS_GENDER_NAME = reader.GetValue(i++).ToString();
+                            person.PS_CAMPUS_NAME = reader.GetValue(i++).ToString();
+                            person.PS_FACULTY_NAME = reader.GetValue(i++).ToString();
+                            person.PS_DIVISION_NAME = reader.GetValue(i++).ToString();
+                            person.PS_WORK_DIVISION_NAME = reader.GetValue(i++).ToString();
+                            person.PS_ADMIN_POS_NAME = reader.GetValue(i++).ToString();
+                            person.PS_WORK_POS_NAME = reader.GetValue(i++).ToString();
+                            person.PS_POSITION_NAME = reader.GetValue(i++).ToString();
+                            person.PS_STAFFTYPE_NAME = reader.GetValue(i++).ToString();
+                            person.ST_LOGIN_NAME = reader.GetValue(i++).ToString();
+                            person.PS_DISTRICT_NAME = reader.GetValue(i++).ToString();
+                            person.PS_AMPHUR_NAME = reader.GetValue(i++).ToString();
+                            person.PS_PROVINCE_NAME = reader.GetValue(i++).ToString();
+                            person.PS_NATION_NAME = reader.GetValue(i++).ToString();
+                            person.PS_TIME_CONTACT_NAME = reader.GetValue(i++).ToString();
+                            person.PS_BUDGET_NAME = reader.GetValue(i++).ToString();
+                            person.PS_SUBSTAFFTYPE_NAME = reader.GetValue(i++).ToString();
+                            person.PS_TEACH_ISCED_NAME = reader.GetValue(i++).ToString();
+                            person.PS_GRAD_LEV_NAME = reader.GetValue(i++).ToString();
+                            person.PS_GRAD_ISCED_ID = reader.GetValue(i++).ToString();
+                            person.PS_GRAD_PROG_NAME = reader.GetValue(i++).ToString();
+                            person.PS_GRAD_COUNTRY_NAME = reader.GetValue(i++).ToString();
+                            person.PS_DEFORM_NAME = reader.GetValue(i++).ToString();
+                            person.PS_RELIGION_NAME = reader.GetValue(i++).ToString();
+                            person.PS_MOVEMENT_TYPE_NAME = reader.GetValue(i++).ToString();
+                            person.PERSON_ROLE_NAME = reader.GetValue(i++).ToString();
 
                             return person;
                         }
