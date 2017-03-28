@@ -177,12 +177,12 @@ namespace WEB_PERSONAL {
                     }
                 }
 
-                if (!IsPostBack) {
+                /*if (!IsPostBack) {
                     using (OracleCommand com = new OracleCommand("UPDATE TB_WEB SET COUNTER = COUNTER+1 WHERE ID = 1", con)) {
                         com.ExecuteNonQuery();
                     }
                     //s_counter.InnerText = "" + DatabaseManager.GetCounter().ToString("#,###");
-                }
+                }*/
 
             }      
 

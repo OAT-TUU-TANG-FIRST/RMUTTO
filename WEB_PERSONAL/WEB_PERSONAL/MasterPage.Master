@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="Image/favicon.ico" type="image/x-icon" />
     <!--link rel="icon" href="Image/favicon.ico" /-->
     <title>ระบบบุคลากร - มหาวิทยาลัยเทคโนโลยีราชมงคลตะวันออก</title>
-    <link href="CSS/Master.css" rel="stylesheet" />
+    
 
     <link href="jQueryCalendarThai/jquery-ui-1.10.3.custom.css" rel="stylesheet" />
     <link href="jQueryCalendarThai/SpecialDateSheet.css" rel="stylesheet" />
@@ -66,6 +66,8 @@
     <!-- Page script -->
     <script src="bootstrap/datetime/jquery.datetimepicker.js"></script>
     <!-- -->
+
+    <link href="CSS/Master.css" rel="stylesheet" />
 
     <script>
         $.datepicker.regional['th'] = {
@@ -227,12 +229,9 @@
             
             <div class="ps-ms-left-separator"></div>
 
-            
-
-
-            <div class="ps-ms-left-item">
-                <div>เวอร์ชั่น : v1.2.9</div>
-                <div style="display: none;">ตัวนับ : <span id="Span1" runat="server"></span></div>
+            <div class="ps-ms-left-down">
+                
+                <div>เวอร์ชั่น : v1.3</div>
              </div>
 
         </div>
