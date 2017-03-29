@@ -113,8 +113,7 @@
   <ItemGroup>
     <Content Include="404.aspx" />
     <Content Include="Access.aspx" />
-    <Content Include="AddPerson-Edit.aspx" />
-    <Content Include="AddPerson.aspx" />
+    <Content Include="Adduser.aspx" />
     <Content Include="aspnet_client\system_web\4_0_30319\crystalreportviewers13\ActiveXControls\PrintControl.cab" />
     <Content Include="aspnet_client\system_web\4_0_30319\crystalreportviewers13\ActiveXControls\PrintControl_res_cs.cab" />
     <Content Include="aspnet_client\system_web\4_0_30319\crystalreportviewers13\ActiveXControls\PrintControl_res_da.cab" />
@@ -3303,19 +3302,12 @@
     <Compile Include="Access.aspx.designer.cs">
       <DependentUpon>Access.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AddPerson-Edit.aspx.cs">
-      <DependentUpon>AddPerson-Edit.aspx</DependentUpon>
+    <Compile Include="Adduser.aspx.cs">
+      <DependentUpon>Adduser.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AddPerson-Edit.aspx.designer.cs">
-      <DependentUpon>AddPerson-Edit.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="AddPerson.aspx.cs">
-      <DependentUpon>AddPerson.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AddPerson.aspx.designer.cs">
-      <DependentUpon>AddPerson.aspx</DependentUpon>
+    <Compile Include="Adduser.aspx.designer.cs">
+      <DependentUpon>Adduser.aspx</DependentUpon>
     </Compile>
     <Compile Include="Boss.aspx.cs">
       <DependentUpon>Boss.aspx</DependentUpon>
