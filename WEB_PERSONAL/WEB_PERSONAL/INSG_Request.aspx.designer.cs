@@ -49,15 +49,6 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.View View1;
         
         /// <summary>
-        /// lbRank control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbRank;
-        
-        /// <summary>
         /// lbTitleName control.
         /// </summary>
         /// <remarks>
@@ -112,22 +103,13 @@ namespace WEB_PERSONAL {
         protected global::System.Web.UI.WebControls.Label lbDateInwork;
         
         /// <summary>
-        /// lbPosiDateInwork control.
+        /// lbFirstPosition control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbPosiDateInwork;
-        
-        /// <summary>
-        /// lbDegreeDateInwork control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbDegreeDateInwork;
+        protected global::System.Web.UI.WebControls.Label lbFirstPosition;
         
         /// <summary>
         /// lbPositionCurrent control.
@@ -218,6 +200,15 @@ namespace WEB_PERSONAL {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbNewInsigName;
+        
+        /// <summary>
+        /// TableCondition control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Table TableCondition;
         
         /// <summary>
         /// lbuSubmitView2 control.

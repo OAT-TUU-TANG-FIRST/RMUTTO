@@ -12,13 +12,13 @@
 }
 body {
     font-size: 12px;
-    background-color: rgb(245,245,245);
+    background-color: #f0f0f0;
 }
 
 
 .login_popup {
     width: 100vw;
-    height: 100vh;
+    /*height: 100vh;*/
 }
 
 .login_popup_in {
@@ -38,12 +38,15 @@ body {
 }
 .login_popup_in2 {
     width: 400px;
-    margin: 0 auto;
+    margin: 0px auto;
+    padding: 50px 0;
+    
 }
 
 
 .login_logo {
-    height: 250px;
+    height: 200px;
+    margin-bottom: 10px;
 }
 .login_default_textbox {
     width: 190px;

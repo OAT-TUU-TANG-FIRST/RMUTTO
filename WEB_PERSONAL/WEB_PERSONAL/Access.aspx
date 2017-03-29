@@ -7,8 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="icon" href="Image/favicon.ico" />
     <title>ระบบบุคลากร - มหาวิทยาลัยเทคโนโลยีราชมงคลตะวันออก</title>
-    <link rel="stylesheet" type="text/css" href="CSS/Master.css" />
-    <link href="CSS/Access.css" rel="stylesheet" />
+    
 
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
     <!-- Font Awesome -->
@@ -52,6 +51,9 @@
     <!-- Page script -->
     <script src="jquery.datetimepicker.js"></script>
     <!-- -->
+
+    <link rel="stylesheet" type="text/css" href="CSS/Master.css" />
+    <link href="CSS/Access.css" rel="stylesheet" />
 
     <script type="text/javascript">
         function ShowHidePassword() {
@@ -101,18 +103,18 @@
         <div class="login_popup">
             <div class="login_popup_in_access">
                 <div class="login_popup_in2">
-                    <div class="ps-box-il" style="width: 400px;">
-                        <div class="ps-box-i0">
-                            <div class="ps-box-ct10-cen">
+                    <div style="width: 400px;">
+                        <div style="text-align: center; margin-bottom: 20px;">
+                            <div>
                                 <img class="login_logo" src="Image/RMUTTO.png" />
                                 <div class="t1">ระบบบุคลากร</div>
                                 <div class="t2">มหาวิทยาลัยเทคโนโลยีราชมงคลตะวันออก</div>
                             </div>
                         </div>
-                        <div class="ps-box-i0">
-                            <div class="ps-box-ct10-cen">
+                        <div  style="text-align: center; margin-bottom: 10px;">
+                            <div>
                                 <asp:Panel ID="Panel1" runat="server" DefaultButton="btnLogin">
-                                    <div class="well input-group date">
+                                    <div class="input-group date">
                                         <asp:TextBox ID="tbUsername" runat="server" CssClass="form-control" MaxLength="13" placeHolder="รหัสประชาชน" onkeyup="RefreshUpdatePanel();" onkeypress="return isNumberKey(event)" AutoPostBack="true" OnTextChanged="tbUsername_TextChanged" required="required" TabIndex="1"></asp:TextBox>
                                         <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
                                     </div>
@@ -123,18 +125,21 @@
                                             </ContentTemplate>
                                         </asp:UpdatePanel>
                                     </div>
-                                    <div class="well input-group date" data-provide="datepicker" data-date-format="mm/dd/yyyy">
+                                    
                                         <asp:UpdatePanel ID="UpdatetbPassword" runat="server">
                                             <ContentTemplate>
-                                                <asp:TextBox ID="tbPassword" TextMode="Password" runat="server" CssClass="form-control" placeHolder="รหัสผ่าน" MaxLength="25" required="required" TabIndex="1"></asp:TextBox>
+                                                <div class="input-group date" data-provide="datepicker" data-date-format="mm/dd/yyyy">
+                                                    <asp:TextBox ID="tbPassword" TextMode="Password" runat="server" CssClass="form-control" placeHolder="รหัสผ่าน" MaxLength="25" required="required" TabIndex="1"></asp:TextBox>
+                                                    <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                                                </div>
                                             </ContentTemplate>
                                             <Triggers>
                                                 <asp:AsyncPostBackTrigger ControlID="tbPassword" />
                                             </Triggers>
                                         </asp:UpdatePanel>
-                                        <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
-                                    </div>
-                                    <div>
+                                        
+                                    
+                                    <div style="margin-top: 20px;">
                                         <asp:Button ID="btnLogin" runat="server" CssClass="btn btn-success" OnClick="btnLogin_Click" Text="เข้าสู่ระบบ" />
                                     </div>
                                     <div>
@@ -148,10 +153,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="ps-box-i0">
-                        <div class="ps-box-hd10-cen">
+                    <div  style="text-align: center;">
+                        <div style="font-size: 16px; margin-bottom: 10px;">
                             <img src="Image/Small/web.png" class="icon_left" />เว็บไซต์ในสถาบัน</div>
-                        <div class="ps-box-ct10-cen">
+                        <div>
                             <div class="web-link">
                                 <a href="http://www.rmutto.ac.th">บางพระ</a>
                                 <a href="http://www.chan.rmutto.ac.th">จันทบุรี</a>
